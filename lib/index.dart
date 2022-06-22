@@ -31,10 +31,10 @@ export 'pedido_programado/pedido_programado_widget.dart'
     show PedidoProgramadoWidget;
 export 'perfil_del_seller/perfil_del_seller_widget.dart'
     show PerfilDelSellerWidget;
-export 'carrito_por_sellers/carrito_por_sellers_widget.dart'
-    show CarritoPorSellersWidget;
 export 'detalle_pedido_programado/detalle_pedido_programado_widget.dart'
     show DetallePedidoProgramadoWidget;
+export 'carrito_por_sellers/carrito_por_sellers_widget.dart'
+    show CarritoPorSellersWidget;
 export 'valoraciones/valoraciones_widget.dart' show ValoracionesWidget;
 export 'profesional/profesional_widget.dart' show ProfesionalWidget;
 export 'onboarding1/onboarding1_widget.dart' show Onboarding1Widget;
