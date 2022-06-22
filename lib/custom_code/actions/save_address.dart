@@ -36,6 +36,12 @@ Future saveAddress(
 
   CollectionReference addresses = firestore.collection('users/$uid/addresses');
 
+  try {
+    await addresses.doc('Sin-Direccion').delete();
+  } catch (e) {
+    print(e);
+  }
+
   return await addresses.doc(name).set({
     'id': name,
     'addressLine1': addressLine1,

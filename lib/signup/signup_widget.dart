@@ -530,6 +530,14 @@ class _SignupWidgetState extends State<SignupWidget> {
                                       return;
                                     }
 
+                                    final usersCreateData =
+                                        createUsersRecordData(
+                                      displayName: nameController.text,
+                                    );
+                                    await UsersRecord.collection
+                                        .doc(user.uid)
+                                        .update(usersCreateData);
+
                                     await Navigator.push(
                                       context,
                                       PageTransition(
