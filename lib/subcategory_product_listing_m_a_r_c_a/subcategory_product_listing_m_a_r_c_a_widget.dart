@@ -214,32 +214,32 @@ class _SubcategoryProductListingMARCAWidgetState
                           return Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 0, 15, 15),
-                            child: FutureBuilder<ApiCallResponse>(
-                              future: GetOneVariantCall.call(
-                                productId: gridViewProductsRecord.id,
-                                userLocation: FFAppState().locationKey,
-                                userType: valueOrDefault(
-                                    currentUserDocument?.type, ''),
-                              ),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50,
-                                      height: 50,
-                                      child: SpinKitFadingCircle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryColor,
-                                        size: 50,
+                            child: AuthUserStreamWidget(
+                              child: FutureBuilder<ApiCallResponse>(
+                                future: GetOneVariantCall.call(
+                                  productId: gridViewProductsRecord.id,
+                                  userLocation: FFAppState().locationKey,
+                                  userType: valueOrDefault(
+                                      currentUserDocument?.type, ''),
+                                ),
+                                builder: (context, snapshot) {
+                                  // Customize what your widget looks like when it's loading.
+                                  if (!snapshot.hasData) {
+                                    return Center(
+                                      child: SizedBox(
+                                        width: 50,
+                                        height: 50,
+                                        child: SpinKitFadingCircle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryColor,
+                                          size: 50,
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                }
-                                final containerGetOneVariantResponse =
-                                    snapshot.data;
-                                return AuthUserStreamWidget(
-                                  child: Container(
+                                    );
+                                  }
+                                  final containerGetOneVariantResponse =
+                                      snapshot.data;
+                                  return Container(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(5),
                                     ),
@@ -591,9 +591,9 @@ class _SubcategoryProductListingMARCAWidgetState
                                         },
                                       ),
                                     ),
-                                  ),
-                                );
-                              },
+                                  );
+                                },
+                              ),
                             ),
                           );
                         },

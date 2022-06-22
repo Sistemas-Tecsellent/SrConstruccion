@@ -501,31 +501,31 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                       final rowProductsRecord = rowProductsRecordList[rowIndex];
                       return Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                        child: FutureBuilder<ApiCallResponse>(
-                          future: GetOneVariantCall.call(
-                            productId: rowProductsRecord.id,
-                            userLocation: FFAppState().locationKey,
-                            userType:
-                                valueOrDefault(currentUserDocument?.type, ''),
-                          ),
-                          builder: (context, snapshot) {
-                            // Customize what your widget looks like when it's loading.
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: SpinKitFadingCircle(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
-                                    size: 50,
+                        child: AuthUserStreamWidget(
+                          child: FutureBuilder<ApiCallResponse>(
+                            future: GetOneVariantCall.call(
+                              productId: rowProductsRecord.id,
+                              userLocation: FFAppState().locationKey,
+                              userType:
+                                  valueOrDefault(currentUserDocument?.type, ''),
+                            ),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50,
+                                    height: 50,
+                                    child: SpinKitFadingCircle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                      size: 50,
+                                    ),
                                   ),
-                                ),
-                              );
-                            }
-                            final stackGetOneVariantResponse = snapshot.data;
-                            return AuthUserStreamWidget(
-                              child: Container(
+                                );
+                              }
+                              final stackGetOneVariantResponse = snapshot.data;
+                              return Container(
                                 width: 210,
                                 child: Stack(
                                   children: [
@@ -777,9 +777,9 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                     ),
                                   ],
                                 ),
-                              ),
-                            );
-                          },
+                              );
+                            },
+                          ),
                         ),
                       );
                     }),
@@ -900,31 +900,32 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                               rowProductsRecordList[rowIndex];
                           return Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(5, 5, 5, 5),
-                            child: FutureBuilder<ApiCallResponse>(
-                              future: GetOneVariantCall.call(
-                                productId: rowProductsRecord.id,
-                                userLocation: FFAppState().locationKey,
-                                userType: valueOrDefault(
-                                    currentUserDocument?.type, ''),
-                              ),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50,
-                                      height: 50,
-                                      child: SpinKitFadingCircle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryColor,
-                                        size: 50,
+                            child: AuthUserStreamWidget(
+                              child: FutureBuilder<ApiCallResponse>(
+                                future: GetOneVariantCall.call(
+                                  productId: rowProductsRecord.id,
+                                  userLocation: FFAppState().locationKey,
+                                  userType: valueOrDefault(
+                                      currentUserDocument?.type, ''),
+                                ),
+                                builder: (context, snapshot) {
+                                  // Customize what your widget looks like when it's loading.
+                                  if (!snapshot.hasData) {
+                                    return Center(
+                                      child: SizedBox(
+                                        width: 50,
+                                        height: 50,
+                                        child: SpinKitFadingCircle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryColor,
+                                          size: 50,
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                }
-                                final cageGetOneVariantResponse = snapshot.data;
-                                return AuthUserStreamWidget(
-                                  child: Container(
+                                    );
+                                  }
+                                  final cageGetOneVariantResponse =
+                                      snapshot.data;
+                                  return Container(
                                     width: 150,
                                     height: 250,
                                     decoration: BoxDecoration(
@@ -1203,9 +1204,9 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                         ),
                                       ),
                                     ),
-                                  ),
-                                );
-                              },
+                                  );
+                                },
+                              ),
                             ),
                           );
                         }),
@@ -1328,31 +1329,32 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                               rowProductsRecordList[rowIndex];
                           return Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(5, 5, 0, 5),
-                            child: FutureBuilder<ApiCallResponse>(
-                              future: GetOneVariantCall.call(
-                                productId: rowProductsRecord.id,
-                                userLocation: FFAppState().locationKey,
-                                userType: valueOrDefault(
-                                    currentUserDocument?.type, ''),
-                              ),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50,
-                                      height: 50,
-                                      child: SpinKitFadingCircle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryColor,
-                                        size: 50,
+                            child: AuthUserStreamWidget(
+                              child: FutureBuilder<ApiCallResponse>(
+                                future: GetOneVariantCall.call(
+                                  productId: rowProductsRecord.id,
+                                  userLocation: FFAppState().locationKey,
+                                  userType: valueOrDefault(
+                                      currentUserDocument?.type, ''),
+                                ),
+                                builder: (context, snapshot) {
+                                  // Customize what your widget looks like when it's loading.
+                                  if (!snapshot.hasData) {
+                                    return Center(
+                                      child: SizedBox(
+                                        width: 50,
+                                        height: 50,
+                                        child: SpinKitFadingCircle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryColor,
+                                          size: 50,
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                }
-                                final cageGetOneVariantResponse = snapshot.data;
-                                return AuthUserStreamWidget(
-                                  child: Container(
+                                    );
+                                  }
+                                  final cageGetOneVariantResponse =
+                                      snapshot.data;
+                                  return Container(
                                     width: 150,
                                     height: 250,
                                     decoration: BoxDecoration(
@@ -1638,9 +1640,9 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                         ),
                                       ),
                                     ),
-                                  ),
-                                );
-                              },
+                                  );
+                                },
+                              ),
                             ),
                           );
                         }),
@@ -1762,31 +1764,32 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                               rowProductsRecordList[rowIndex];
                           return Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(5, 5, 0, 5),
-                            child: FutureBuilder<ApiCallResponse>(
-                              future: GetOneVariantCall.call(
-                                productId: rowProductsRecord.id,
-                                userLocation: FFAppState().locationKey,
-                                userType: valueOrDefault(
-                                    currentUserDocument?.type, ''),
-                              ),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50,
-                                      height: 50,
-                                      child: SpinKitFadingCircle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryColor,
-                                        size: 50,
+                            child: AuthUserStreamWidget(
+                              child: FutureBuilder<ApiCallResponse>(
+                                future: GetOneVariantCall.call(
+                                  productId: rowProductsRecord.id,
+                                  userLocation: FFAppState().locationKey,
+                                  userType: valueOrDefault(
+                                      currentUserDocument?.type, ''),
+                                ),
+                                builder: (context, snapshot) {
+                                  // Customize what your widget looks like when it's loading.
+                                  if (!snapshot.hasData) {
+                                    return Center(
+                                      child: SizedBox(
+                                        width: 50,
+                                        height: 50,
+                                        child: SpinKitFadingCircle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryColor,
+                                          size: 50,
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                }
-                                final cageGetOneVariantResponse = snapshot.data;
-                                return AuthUserStreamWidget(
-                                  child: Container(
+                                    );
+                                  }
+                                  final cageGetOneVariantResponse =
+                                      snapshot.data;
+                                  return Container(
                                     width: 150,
                                     height: 250,
                                     decoration: BoxDecoration(
@@ -2071,9 +2074,9 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                         ),
                                       ),
                                     ),
-                                  ),
-                                );
-                              },
+                                  );
+                                },
+                              ),
                             ),
                           );
                         }),

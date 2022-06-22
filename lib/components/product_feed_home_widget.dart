@@ -56,29 +56,29 @@ class _ProductFeedHomeWidgetState extends State<ProductFeedHomeWidget> {
           itemBuilder: (context, gridViewIndex) {
             final gridViewProductsRecord =
                 gridViewProductsRecordList[gridViewIndex];
-            return FutureBuilder<ApiCallResponse>(
-              future: GetOneVariantCall.call(
-                productId: gridViewProductsRecord.id,
-                userLocation: FFAppState().locationKey,
-                userType: valueOrDefault(currentUserDocument?.type, ''),
-              ),
-              builder: (context, snapshot) {
-                // Customize what your widget looks like when it's loading.
-                if (!snapshot.hasData) {
-                  return Center(
-                    child: SizedBox(
-                      width: 50,
-                      height: 50,
-                      child: SpinKitFadingCircle(
-                        color: FlutterFlowTheme.of(context).primaryColor,
-                        size: 50,
+            return AuthUserStreamWidget(
+              child: FutureBuilder<ApiCallResponse>(
+                future: GetOneVariantCall.call(
+                  productId: gridViewProductsRecord.id,
+                  userLocation: FFAppState().locationKey,
+                  userType: valueOrDefault(currentUserDocument?.type, ''),
+                ),
+                builder: (context, snapshot) {
+                  // Customize what your widget looks like when it's loading.
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: SizedBox(
+                        width: 50,
+                        height: 50,
+                        child: SpinKitFadingCircle(
+                          color: FlutterFlowTheme.of(context).primaryColor,
+                          size: 50,
+                        ),
                       ),
-                    ),
-                  );
-                }
-                final stackGetOneVariantResponse = snapshot.data;
-                return AuthUserStreamWidget(
-                  child: Stack(
+                    );
+                  }
+                  final stackGetOneVariantResponse = snapshot.data;
+                  return Stack(
                     children: [
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(10, 5, 0, 5),
@@ -307,9 +307,9 @@ class _ProductFeedHomeWidgetState extends State<ProductFeedHomeWidget> {
                         ),
                       ),
                     ],
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             );
           },
         );

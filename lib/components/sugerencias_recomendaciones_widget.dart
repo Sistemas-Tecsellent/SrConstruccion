@@ -163,33 +163,34 @@ class _SugerenciasRecomendacionesWidgetState
                                   return Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 5, 10, 5),
-                                    child: FutureBuilder<ApiCallResponse>(
-                                      future: GetOneVariantCall.call(
-                                        productId: rowProductsRecord.id,
-                                        userLocation: FFAppState().locationKey,
-                                        userType: valueOrDefault(
-                                            currentUserDocument?.type, ''),
-                                      ),
-                                      builder: (context, snapshot) {
-                                        // Customize what your widget looks like when it's loading.
-                                        if (!snapshot.hasData) {
-                                          return Center(
-                                            child: SizedBox(
-                                              width: 50,
-                                              height: 50,
-                                              child: SpinKitFadingCircle(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryColor,
-                                                size: 50,
+                                    child: AuthUserStreamWidget(
+                                      child: FutureBuilder<ApiCallResponse>(
+                                        future: GetOneVariantCall.call(
+                                          productId: rowProductsRecord.id,
+                                          userLocation:
+                                              FFAppState().locationKey,
+                                          userType: valueOrDefault(
+                                              currentUserDocument?.type, ''),
+                                        ),
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50,
+                                                height: 50,
+                                                child: SpinKitFadingCircle(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryColor,
+                                                  size: 50,
+                                                ),
                                               ),
-                                            ),
-                                          );
-                                        }
-                                        final cageGetOneVariantResponse =
-                                            snapshot.data;
-                                        return AuthUserStreamWidget(
-                                          child: InkWell(
+                                            );
+                                          }
+                                          final cageGetOneVariantResponse =
+                                              snapshot.data;
+                                          return InkWell(
                                             onTap: () async {
                                               await Navigator.push(
                                                 context,
@@ -528,9 +529,9 @@ class _SugerenciasRecomendacionesWidgetState
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                        );
-                                      },
+                                          );
+                                        },
+                                      ),
                                     ),
                                   );
                                 }),

@@ -530,145 +530,130 @@ class _Onboarding1WidgetState extends State<Onboarding1Widget> {
                                               ),
                                             ),
                                           ),
-                                          InkWell(
-                                            onTap: () async {
-                                              await Navigator.push(
-                                                context,
-                                                PageTransition(
-                                                  type: PageTransitionType.fade,
-                                                  duration:
-                                                      Duration(milliseconds: 0),
-                                                  reverseDuration:
-                                                      Duration(milliseconds: 0),
-                                                  child: ProfesionalWidget(),
+                                          Container(
+                                            width: 150,
+                                            height: 150,
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  blurRadius: 10,
+                                                  color: Color(0x08000000),
+                                                )
+                                              ],
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                            child: Stack(
+                                              alignment:
+                                                  AlignmentDirectional(0, 0),
+                                              children: [
+                                                Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0, -0.55),
+                                                  child: Container(
+                                                    width: 100,
+                                                    height: 100,
+                                                    decoration: BoxDecoration(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .tertiaryColor,
+                                                      shape: BoxShape.circle,
+                                                    ),
+                                                  ),
                                                 ),
-                                              );
-                                            },
-                                            child: Container(
-                                              width: 150,
-                                              height: 150,
-                                              decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    blurRadius: 10,
-                                                    color: Color(0x08000000),
-                                                  )
-                                                ],
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                              ),
-                                              child: Stack(
-                                                alignment:
-                                                    AlignmentDirectional(0, 0),
-                                                children: [
-                                                  Align(
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            0, -0.55),
-                                                    child: Container(
-                                                      width: 100,
-                                                      height: 100,
-                                                      decoration: BoxDecoration(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .tertiaryColor,
-                                                        shape: BoxShape.circle,
+                                                InkWell(
+                                                  onTap: () async {
+                                                    final usersUpdateData =
+                                                        createUsersRecordData(
+                                                      occupation: 'usuario',
+                                                      businessModel: 'usuario',
+                                                    );
+                                                    await currentUserReference
+                                                        .update(
+                                                            usersUpdateData);
+                                                    await Future.delayed(
+                                                        const Duration(
+                                                            milliseconds:
+                                                                3000));
+                                                    await Navigator.push(
+                                                      context,
+                                                      PageTransition(
+                                                        type: PageTransitionType
+                                                            .fade,
+                                                        duration: Duration(
+                                                            milliseconds: 0),
+                                                        reverseDuration:
+                                                            Duration(
+                                                                milliseconds:
+                                                                    0),
+                                                        child: HomeAltWidget(),
                                                       ),
-                                                    ),
-                                                  ),
-                                                  InkWell(
-                                                    onTap: () async {
-                                                      final usersUpdateData =
-                                                          createUsersRecordData(
-                                                        occupation: 'usuario',
-                                                        businessModel:
-                                                            'usuario',
-                                                      );
-                                                      await currentUserReference
-                                                          .update(
-                                                              usersUpdateData);
-                                                      await Navigator.push(
-                                                        context,
-                                                        PageTransition(
-                                                          type:
-                                                              PageTransitionType
-                                                                  .fade,
-                                                          duration: Duration(
-                                                              milliseconds: 0),
-                                                          reverseDuration:
-                                                              Duration(
-                                                                  milliseconds:
-                                                                      0),
-                                                          child:
-                                                              HomeAltWidget(),
+                                                    );
+                                                  },
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceEvenly,
+                                                    children: [
+                                                      ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(20),
+                                                        child: Image.asset(
+                                                          'assets/images/Ingeniero.png',
+                                                          width: 100,
+                                                          height: 100,
+                                                          fit: BoxFit.cover,
                                                         ),
-                                                      );
-                                                    },
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceEvenly,
-                                                      children: [
-                                                        ClipRRect(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(20),
-                                                          child: Image.asset(
-                                                            'assets/images/Ingeniero.png',
-                                                            width: 100,
-                                                            height: 100,
-                                                            fit: BoxFit.cover,
+                                                      ),
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        15,
+                                                                        0,
+                                                                        0,
+                                                                        0),
+                                                            child: Text(
+                                                              'Usuario',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText1
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Montserrat',
+                                                                    fontSize:
+                                                                        15,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                  ),
+                                                            ),
                                                           ),
-                                                        ),
-                                                        Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          15,
-                                                                          0,
-                                                                          0,
-                                                                          0),
-                                                              child: Text(
-                                                                'Usuario',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Montserrat',
-                                                                      fontSize:
-                                                                          15,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500,
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                            Icon(
-                                                              Icons
-                                                                  .keyboard_arrow_right_rounded,
-                                                              color:
-                                                                  Colors.black,
-                                                              size: 24,
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ],
-                                                    ),
+                                                          Icon(
+                                                            Icons
+                                                                .keyboard_arrow_right_rounded,
+                                                            color: Colors.black,
+                                                            size: 24,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
                                                   ),
-                                                ],
-                                              ),
+                                                ),
+                                              ],
                                             ),
                                           ),
                                         ],

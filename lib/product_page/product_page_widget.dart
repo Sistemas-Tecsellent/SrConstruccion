@@ -1,4 +1,5 @@
 import '../auth/auth_util.dart';
+import '../auth/firebase_user_provider.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../carrito/carrito_widget.dart';
@@ -12,6 +13,7 @@ import '../flutter_flow/flutter_flow_pdf_viewer.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../login/login_widget.dart';
 import '../marca_single/marca_single_widget.dart';
 import '../perfil_del_seller/perfil_del_seller_widget.dart';
 import '../search/search_widget.dart';
@@ -170,31 +172,43 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
               children: [
                 FFButtonWidget(
                   onPressed: () async {
-                    await actions.addProductToCart(
-                      widget.productId,
-                      FFAppState().currentVariant,
-                      expressCountValue,
-                      normalShipmentCountValue,
-                      FFAppState().locationKey,
-                      FFAppState().locationKeyCity,
-                    );
-                    cartLength = await actions.countItemsInCart(
-                      currentUserUid,
-                    );
+                    if (loggedIn) {
+                      await actions.addProductToCart(
+                        widget.productId,
+                        FFAppState().currentVariant,
+                        expressCountValue,
+                        normalShipmentCountValue,
+                        FFAppState().locationKey,
+                        FFAppState().locationKeyCity,
+                      );
+                      cartLength = await actions.countItemsInCart(
+                        currentUserUid,
+                      );
 
-                    final usersUpdateData = createUsersRecordData(
-                      itemsInCart: cartLength,
-                    );
-                    await currentUserReference.update(usersUpdateData);
-                    await Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.fade,
-                        duration: Duration(milliseconds: 0),
-                        reverseDuration: Duration(milliseconds: 0),
-                        child: CarritoWidget(),
-                      ),
-                    );
+                      final usersUpdateData = createUsersRecordData(
+                        itemsInCart: cartLength,
+                      );
+                      await currentUserReference.update(usersUpdateData);
+                      await Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.fade,
+                          duration: Duration(milliseconds: 0),
+                          reverseDuration: Duration(milliseconds: 0),
+                          child: CarritoWidget(),
+                        ),
+                      );
+                    } else {
+                      await Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.fade,
+                          duration: Duration(milliseconds: 0),
+                          reverseDuration: Duration(milliseconds: 0),
+                          child: LoginWidget(),
+                        ),
+                      );
+                    }
 
                     setState(() {});
                   },

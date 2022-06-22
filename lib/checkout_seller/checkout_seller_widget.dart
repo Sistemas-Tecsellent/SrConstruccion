@@ -1,5 +1,6 @@
 import '../anadir_direccion/anadir_direccion_widget.dart';
 import '../auth/auth_util.dart';
+import '../auth/firebase_user_provider.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../backend/stripe/payment_manager.dart';
@@ -13,6 +14,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../home_alt/home_alt_widget.dart';
+import '../login/login_widget.dart';
 import '../pago_aceptado/pago_aceptado_widget.dart';
 import '../perfil_del_seller/perfil_del_seller_widget.dart';
 import '../custom_code/actions/index.dart' as actions;
@@ -174,50 +176,67 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                               : null;
                       return FFButtonWidget(
                         onPressed: () async {
-                          if (functions.compareStrings(
-                              FFAppState().paymentMethod,
-                              'Tarjeta Crédito / Débito')) {
-                            bundleId = await actions.placeOrderBundle(
-                              widget.storeId,
-                            );
-                            final paymentResponse = await processStripePayment(
-                              amount:
-                                  buttonSellerWiseCheckoutsRecord.totalInCents,
-                              currency: 'MXN',
-                              customerEmail: currentUserEmail,
-                              customerName: currentUserDisplayName,
-                              description: '1x Codigo de Pago No. ${bundleId}',
-                              allowGooglePay: false,
-                              allowApplePay: false,
-                            );
-                            if (paymentResponse.paymentId == null) {
-                              if (paymentResponse.errorMessage != null) {
-                                showSnackbar(
-                                  context,
-                                  'Error: ${paymentResponse.errorMessage}',
-                                );
+                          if (loggedIn) {
+                            if (functions.compareStrings(
+                                FFAppState().paymentMethod,
+                                'Tarjeta Crédito / Débito')) {
+                              bundleId = await actions.placeOrderBundle(
+                                widget.storeId,
+                              );
+                              final paymentResponse =
+                                  await processStripePayment(
+                                amount: buttonSellerWiseCheckoutsRecord
+                                    .totalInCents,
+                                currency: 'MXN',
+                                customerEmail: currentUserEmail,
+                                customerName: currentUserDisplayName,
+                                description:
+                                    '1x Codigo de Pago No. ${bundleId}',
+                                allowGooglePay: false,
+                                allowApplePay: false,
+                              );
+                              if (paymentResponse.paymentId == null) {
+                                if (paymentResponse.errorMessage != null) {
+                                  showSnackbar(
+                                    context,
+                                    'Error: ${paymentResponse.errorMessage}',
+                                  );
+                                }
+                                return;
                               }
-                              return;
-                            }
-                            paymentId = paymentResponse.paymentId;
+                              paymentId = paymentResponse.paymentId;
 
-                            final usersUpdateData = {
-                              'liveOrders': FieldValue.arrayUnion([bundleId]),
-                            };
-                            await currentUserReference.update(usersUpdateData);
-                            setState(() => FFAppState().paymentId = paymentId);
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                                reverseDuration: Duration(milliseconds: 0),
-                                child: PagoAceptadoWidget(
-                                  total: buttonSellerWiseCheckoutsRecord.total,
-                                  orderId: bundleId,
+                              final usersUpdateData = {
+                                'liveOrders': FieldValue.arrayUnion([bundleId]),
+                              };
+                              await currentUserReference
+                                  .update(usersUpdateData);
+                              setState(
+                                  () => FFAppState().paymentId = paymentId);
+                              await Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.fade,
+                                  duration: Duration(milliseconds: 0),
+                                  reverseDuration: Duration(milliseconds: 0),
+                                  child: PagoAceptadoWidget(
+                                    total:
+                                        buttonSellerWiseCheckoutsRecord.total,
+                                    orderId: bundleId,
+                                  ),
                                 ),
-                              ),
-                            );
+                              );
+                            } else {
+                              await Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.fade,
+                                  duration: Duration(milliseconds: 0),
+                                  reverseDuration: Duration(milliseconds: 0),
+                                  child: HomeAltWidget(),
+                                ),
+                              );
+                            }
                           } else {
                             await Navigator.push(
                               context,
@@ -225,7 +244,7 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                 type: PageTransitionType.fade,
                                 duration: Duration(milliseconds: 0),
                                 reverseDuration: Duration(milliseconds: 0),
-                                child: HomeAltWidget(),
+                                child: LoginWidget(),
                               ),
                             );
                           }

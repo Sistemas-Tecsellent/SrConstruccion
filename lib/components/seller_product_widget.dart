@@ -264,43 +264,44 @@ class _SellerProductWidgetState extends State<SellerProductWidget> {
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(
                                                                 0, 0, 0, 10),
-                                                    child: FutureBuilder<
-                                                        ApiCallResponse>(
-                                                      future:
-                                                          GetVariantInventoryByStoreCall
-                                                              .call(
-                                                        productId:
-                                                            widget.productId,
-                                                        variantId:
-                                                            widget.variantId,
-                                                        store: widget.store,
-                                                        priceType: valueOrDefault(
-                                                            currentUserDocument
-                                                                ?.type,
-                                                            ''),
-                                                      ),
-                                                      builder:
-                                                          (context, snapshot) {
-                                                        // Customize what your widget looks like when it's loading.
-                                                        if (!snapshot.hasData) {
-                                                          return Center(
-                                                            child: SizedBox(
-                                                              width: 50,
-                                                              height: 50,
-                                                              child:
-                                                                  SpinKitFadingCircle(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryColor,
-                                                                size: 50,
+                                                    child: AuthUserStreamWidget(
+                                                      child: FutureBuilder<
+                                                          ApiCallResponse>(
+                                                        future:
+                                                            GetVariantInventoryByStoreCall
+                                                                .call(
+                                                          productId:
+                                                              widget.productId,
+                                                          variantId:
+                                                              widget.variantId,
+                                                          store: widget.store,
+                                                          priceType: valueOrDefault(
+                                                              currentUserDocument
+                                                                  ?.type,
+                                                              ''),
+                                                        ),
+                                                        builder: (context,
+                                                            snapshot) {
+                                                          // Customize what your widget looks like when it's loading.
+                                                          if (!snapshot
+                                                              .hasData) {
+                                                            return Center(
+                                                              child: SizedBox(
+                                                                width: 50,
+                                                                height: 50,
+                                                                child:
+                                                                    SpinKitFadingCircle(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryColor,
+                                                                  size: 50,
+                                                                ),
                                                               ),
-                                                            ),
-                                                          );
-                                                        }
-                                                        final textGetVariantInventoryByStoreResponse =
-                                                            snapshot.data;
-                                                        return AuthUserStreamWidget(
-                                                          child: Text(
+                                                            );
+                                                          }
+                                                          final textGetVariantInventoryByStoreResponse =
+                                                              snapshot.data;
+                                                          return Text(
                                                             GetVariantInventoryByStoreCall
                                                                 .inventory(
                                                               (textGetVariantInventoryByStoreResponse
@@ -317,9 +318,9 @@ class _SellerProductWidgetState extends State<SellerProductWidget> {
                                                                       0xFF8A8A8A),
                                                                   fontSize: 12,
                                                                 ),
-                                                          ),
-                                                        );
-                                                      },
+                                                          );
+                                                        },
+                                                      ),
                                                     ),
                                                   ),
                                                   Padding(

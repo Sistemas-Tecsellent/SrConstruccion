@@ -1,4 +1,5 @@
 import '../auth/auth_util.dart';
+import '../auth/firebase_user_provider.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../components/cart_product_widget.dart';
@@ -7,6 +8,7 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../login/login_widget.dart';
 import '../product_page/product_page_widget.dart';
 import '../custom_code/actions/index.dart' as actions;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -111,53 +113,65 @@ class _CarritoWidgetState extends State<CarritoWidget> {
                 children: [
                   FFButtonWidget(
                     onPressed: () async {
-                      userAddresses = await actions.getUserAddresses(
-                        currentUserUid,
-                      );
-                      setState(() =>
-                          FFAppState().userAddresses = userAddresses.toList());
-                      firstAddress = await actions.getFirstItemFromJsonList(
-                        FFAppState().userAddresses.toList(),
-                      );
-                      setState(
-                          () => FFAppState().checkoutAddress = firstAddress);
-                      invoiceProfiles = await actions.getInvoiceProfiles(
-                        currentUserUid,
-                      );
-                      setState(() => FFAppState().checkoutInvoiceProfiles =
-                          invoiceProfiles.toList());
-                      defaultInvoiceProfile =
-                          await actions.getFirstItemFromJsonList(
-                        invoiceProfiles.toList(),
-                      );
-                      setState(() => FFAppState().checkoutInvoiceProfile =
-                          defaultInvoiceProfile);
-                      setState(() => FFAppState().paymentMethod =
-                          'Tarjeta Crédito / Débito');
-                      checkoutResponse = await actions.setCheckoutSession(
-                        getJsonField(
-                          FFAppState().checkoutAddress,
-                          r'''$.name''',
-                        ).toString(),
-                        FFAppState().paymentMethod,
-                        defaultInvoiceProfile,
-                        'Gastos en General',
-                      );
-                      checkout = await actions.getCheckout(
-                        currentUserUid,
-                      );
-                      setState(() => FFAppState().checkoutSession = checkout);
-                      await showModalBottomSheet(
-                        isScrollControlled: true,
-                        backgroundColor: Colors.transparent,
-                        context: context,
-                        builder: (context) {
-                          return Padding(
-                            padding: MediaQuery.of(context).viewInsets,
-                            child: SugerenciasRecomendacionesWidget(),
-                          );
-                        },
-                      );
+                      if (loggedIn) {
+                        userAddresses = await actions.getUserAddresses(
+                          currentUserUid,
+                        );
+                        setState(() => FFAppState().userAddresses =
+                            userAddresses.toList());
+                        firstAddress = await actions.getFirstItemFromJsonList(
+                          FFAppState().userAddresses.toList(),
+                        );
+                        setState(
+                            () => FFAppState().checkoutAddress = firstAddress);
+                        invoiceProfiles = await actions.getInvoiceProfiles(
+                          currentUserUid,
+                        );
+                        setState(() => FFAppState().checkoutInvoiceProfiles =
+                            invoiceProfiles.toList());
+                        defaultInvoiceProfile =
+                            await actions.getFirstItemFromJsonList(
+                          invoiceProfiles.toList(),
+                        );
+                        setState(() => FFAppState().checkoutInvoiceProfile =
+                            defaultInvoiceProfile);
+                        setState(() => FFAppState().paymentMethod =
+                            'Tarjeta Crédito / Débito');
+                        checkoutResponse = await actions.setCheckoutSession(
+                          getJsonField(
+                            FFAppState().checkoutAddress,
+                            r'''$.name''',
+                          ).toString(),
+                          FFAppState().paymentMethod,
+                          defaultInvoiceProfile,
+                          'Gastos en General',
+                        );
+                        checkout = await actions.getCheckout(
+                          currentUserUid,
+                        );
+                        setState(() => FFAppState().checkoutSession = checkout);
+                        await showModalBottomSheet(
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          context: context,
+                          builder: (context) {
+                            return Padding(
+                              padding: MediaQuery.of(context).viewInsets,
+                              child: SugerenciasRecomendacionesWidget(),
+                            );
+                          },
+                        );
+                      } else {
+                        await Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            duration: Duration(milliseconds: 0),
+                            reverseDuration: Duration(milliseconds: 0),
+                            child: LoginWidget(),
+                          ),
+                        );
+                      }
 
                       setState(() {});
                     },

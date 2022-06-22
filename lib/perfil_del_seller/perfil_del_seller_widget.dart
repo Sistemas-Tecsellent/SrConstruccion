@@ -1581,41 +1581,43 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                 return Padding(
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(10, 0, 0, 0),
-                                                  child: FutureBuilder<
-                                                      ApiCallResponse>(
-                                                    future:
-                                                        GetOneVariantCall.call(
-                                                      productId:
-                                                          rowProductsRecord.id,
-                                                      userLocation: FFAppState()
-                                                          .locationKey,
-                                                      userType: valueOrDefault(
-                                                          currentUserDocument
-                                                              ?.type,
-                                                          ''),
-                                                    ),
-                                                    builder:
-                                                        (context, snapshot) {
-                                                      // Customize what your widget looks like when it's loading.
-                                                      if (!snapshot.hasData) {
-                                                        return Center(
-                                                          child: SizedBox(
-                                                            width: 50,
-                                                            height: 50,
-                                                            child:
-                                                                SpinKitFadingCircle(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primaryColor,
-                                                              size: 50,
+                                                  child: AuthUserStreamWidget(
+                                                    child: FutureBuilder<
+                                                        ApiCallResponse>(
+                                                      future: GetOneVariantCall
+                                                          .call(
+                                                        productId:
+                                                            rowProductsRecord
+                                                                .id,
+                                                        userLocation:
+                                                            FFAppState()
+                                                                .locationKey,
+                                                        userType: valueOrDefault(
+                                                            currentUserDocument
+                                                                ?.type,
+                                                            ''),
+                                                      ),
+                                                      builder:
+                                                          (context, snapshot) {
+                                                        // Customize what your widget looks like when it's loading.
+                                                        if (!snapshot.hasData) {
+                                                          return Center(
+                                                            child: SizedBox(
+                                                              width: 50,
+                                                              height: 50,
+                                                              child:
+                                                                  SpinKitFadingCircle(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryColor,
+                                                                size: 50,
+                                                              ),
                                                             ),
-                                                          ),
-                                                        );
-                                                      }
-                                                      final cageGetOneVariantResponse =
-                                                          snapshot.data;
-                                                      return AuthUserStreamWidget(
-                                                        child: Container(
+                                                          );
+                                                        }
+                                                        final cageGetOneVariantResponse =
+                                                            snapshot.data;
+                                                        return Container(
                                                           width: 180,
                                                           height: 280,
                                                           decoration:
@@ -1964,9 +1966,9 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                               );
                                                             },
                                                           ),
-                                                        ),
-                                                      );
-                                                    },
+                                                        );
+                                                      },
+                                                    ),
                                                   ),
                                                 );
                                               }),
@@ -2133,41 +2135,43 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                 return Padding(
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(10, 0, 0, 0),
-                                                  child: FutureBuilder<
-                                                      ApiCallResponse>(
-                                                    future:
-                                                        GetOneVariantCall.call(
-                                                      productId:
-                                                          rowProductsRecord.id,
-                                                      userLocation: FFAppState()
-                                                          .locationKey,
-                                                      userType: valueOrDefault(
-                                                          currentUserDocument
-                                                              ?.type,
-                                                          ''),
-                                                    ),
-                                                    builder:
-                                                        (context, snapshot) {
-                                                      // Customize what your widget looks like when it's loading.
-                                                      if (!snapshot.hasData) {
-                                                        return Center(
-                                                          child: SizedBox(
-                                                            width: 50,
-                                                            height: 50,
-                                                            child:
-                                                                SpinKitFadingCircle(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primaryColor,
-                                                              size: 50,
+                                                  child: AuthUserStreamWidget(
+                                                    child: FutureBuilder<
+                                                        ApiCallResponse>(
+                                                      future: GetOneVariantCall
+                                                          .call(
+                                                        productId:
+                                                            rowProductsRecord
+                                                                .id,
+                                                        userLocation:
+                                                            FFAppState()
+                                                                .locationKey,
+                                                        userType: valueOrDefault(
+                                                            currentUserDocument
+                                                                ?.type,
+                                                            ''),
+                                                      ),
+                                                      builder:
+                                                          (context, snapshot) {
+                                                        // Customize what your widget looks like when it's loading.
+                                                        if (!snapshot.hasData) {
+                                                          return Center(
+                                                            child: SizedBox(
+                                                              width: 50,
+                                                              height: 50,
+                                                              child:
+                                                                  SpinKitFadingCircle(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryColor,
+                                                                size: 50,
+                                                              ),
                                                             ),
-                                                          ),
-                                                        );
-                                                      }
-                                                      final cageGetOneVariantResponse =
-                                                          snapshot.data;
-                                                      return AuthUserStreamWidget(
-                                                        child: Container(
+                                                          );
+                                                        }
+                                                        final cageGetOneVariantResponse =
+                                                            snapshot.data;
+                                                        return Container(
                                                           width: 180,
                                                           height: 280,
                                                           decoration:
@@ -2489,9 +2493,9 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                               );
                                                             },
                                                           ),
-                                                        ),
-                                                      );
-                                                    },
+                                                        );
+                                                      },
+                                                    ),
                                                   ),
                                                 );
                                               }),
@@ -2661,41 +2665,43 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                 return Padding(
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(10, 0, 0, 0),
-                                                  child: FutureBuilder<
-                                                      ApiCallResponse>(
-                                                    future:
-                                                        GetOneVariantCall.call(
-                                                      productId:
-                                                          rowProductsRecord.id,
-                                                      userLocation: FFAppState()
-                                                          .locationKey,
-                                                      userType: valueOrDefault(
-                                                          currentUserDocument
-                                                              ?.type,
-                                                          ''),
-                                                    ),
-                                                    builder:
-                                                        (context, snapshot) {
-                                                      // Customize what your widget looks like when it's loading.
-                                                      if (!snapshot.hasData) {
-                                                        return Center(
-                                                          child: SizedBox(
-                                                            width: 50,
-                                                            height: 50,
-                                                            child:
-                                                                SpinKitFadingCircle(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primaryColor,
-                                                              size: 50,
+                                                  child: AuthUserStreamWidget(
+                                                    child: FutureBuilder<
+                                                        ApiCallResponse>(
+                                                      future: GetOneVariantCall
+                                                          .call(
+                                                        productId:
+                                                            rowProductsRecord
+                                                                .id,
+                                                        userLocation:
+                                                            FFAppState()
+                                                                .locationKey,
+                                                        userType: valueOrDefault(
+                                                            currentUserDocument
+                                                                ?.type,
+                                                            ''),
+                                                      ),
+                                                      builder:
+                                                          (context, snapshot) {
+                                                        // Customize what your widget looks like when it's loading.
+                                                        if (!snapshot.hasData) {
+                                                          return Center(
+                                                            child: SizedBox(
+                                                              width: 50,
+                                                              height: 50,
+                                                              child:
+                                                                  SpinKitFadingCircle(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryColor,
+                                                                size: 50,
+                                                              ),
                                                             ),
-                                                          ),
-                                                        );
-                                                      }
-                                                      final cageGetOneVariantResponse =
-                                                          snapshot.data;
-                                                      return AuthUserStreamWidget(
-                                                        child: Container(
+                                                          );
+                                                        }
+                                                        final cageGetOneVariantResponse =
+                                                            snapshot.data;
+                                                        return Container(
                                                           width: 180,
                                                           height: 280,
                                                           decoration:
@@ -3017,9 +3023,9 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                               );
                                                             },
                                                           ),
-                                                        ),
-                                                      );
-                                                    },
+                                                        );
+                                                      },
+                                                    ),
                                                   ),
                                                 );
                                               }),
@@ -3189,41 +3195,43 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                 return Padding(
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(10, 0, 0, 0),
-                                                  child: FutureBuilder<
-                                                      ApiCallResponse>(
-                                                    future:
-                                                        GetOneVariantCall.call(
-                                                      productId:
-                                                          rowProductsRecord.id,
-                                                      userLocation: FFAppState()
-                                                          .locationKey,
-                                                      userType: valueOrDefault(
-                                                          currentUserDocument
-                                                              ?.type,
-                                                          ''),
-                                                    ),
-                                                    builder:
-                                                        (context, snapshot) {
-                                                      // Customize what your widget looks like when it's loading.
-                                                      if (!snapshot.hasData) {
-                                                        return Center(
-                                                          child: SizedBox(
-                                                            width: 50,
-                                                            height: 50,
-                                                            child:
-                                                                SpinKitFadingCircle(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primaryColor,
-                                                              size: 50,
+                                                  child: AuthUserStreamWidget(
+                                                    child: FutureBuilder<
+                                                        ApiCallResponse>(
+                                                      future: GetOneVariantCall
+                                                          .call(
+                                                        productId:
+                                                            rowProductsRecord
+                                                                .id,
+                                                        userLocation:
+                                                            FFAppState()
+                                                                .locationKey,
+                                                        userType: valueOrDefault(
+                                                            currentUserDocument
+                                                                ?.type,
+                                                            ''),
+                                                      ),
+                                                      builder:
+                                                          (context, snapshot) {
+                                                        // Customize what your widget looks like when it's loading.
+                                                        if (!snapshot.hasData) {
+                                                          return Center(
+                                                            child: SizedBox(
+                                                              width: 50,
+                                                              height: 50,
+                                                              child:
+                                                                  SpinKitFadingCircle(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryColor,
+                                                                size: 50,
+                                                              ),
                                                             ),
-                                                          ),
-                                                        );
-                                                      }
-                                                      final cageGetOneVariantResponse =
-                                                          snapshot.data;
-                                                      return AuthUserStreamWidget(
-                                                        child: Container(
+                                                          );
+                                                        }
+                                                        final cageGetOneVariantResponse =
+                                                            snapshot.data;
+                                                        return Container(
                                                           width: 180,
                                                           height: 280,
                                                           decoration:
@@ -3540,9 +3548,9 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                               );
                                                             },
                                                           ),
-                                                        ),
-                                                      );
-                                                    },
+                                                        );
+                                                      },
+                                                    ),
                                                   ),
                                                 );
                                               }),
@@ -3716,43 +3724,45 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(
                                                                 10, 0, 0, 0),
-                                                    child: FutureBuilder<
-                                                        ApiCallResponse>(
-                                                      future: GetOneVariantCall
-                                                          .call(
-                                                        productId:
-                                                            rowProductsRecord
-                                                                .id,
-                                                        userLocation:
-                                                            FFAppState()
-                                                                .locationKey,
-                                                        userType: valueOrDefault(
-                                                            currentUserDocument
-                                                                ?.type,
-                                                            ''),
-                                                      ),
-                                                      builder:
-                                                          (context, snapshot) {
-                                                        // Customize what your widget looks like when it's loading.
-                                                        if (!snapshot.hasData) {
-                                                          return Center(
-                                                            child: SizedBox(
-                                                              width: 50,
-                                                              height: 50,
-                                                              child:
-                                                                  SpinKitFadingCircle(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryColor,
-                                                                size: 50,
+                                                    child: AuthUserStreamWidget(
+                                                      child: FutureBuilder<
+                                                          ApiCallResponse>(
+                                                        future:
+                                                            GetOneVariantCall
+                                                                .call(
+                                                          productId:
+                                                              rowProductsRecord
+                                                                  .id,
+                                                          userLocation:
+                                                              FFAppState()
+                                                                  .locationKey,
+                                                          userType: valueOrDefault(
+                                                              currentUserDocument
+                                                                  ?.type,
+                                                              ''),
+                                                        ),
+                                                        builder: (context,
+                                                            snapshot) {
+                                                          // Customize what your widget looks like when it's loading.
+                                                          if (!snapshot
+                                                              .hasData) {
+                                                            return Center(
+                                                              child: SizedBox(
+                                                                width: 50,
+                                                                height: 50,
+                                                                child:
+                                                                    SpinKitFadingCircle(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryColor,
+                                                                  size: 50,
+                                                                ),
                                                               ),
-                                                            ),
-                                                          );
-                                                        }
-                                                        final cageGetOneVariantResponse =
-                                                            snapshot.data;
-                                                        return AuthUserStreamWidget(
-                                                          child: Container(
+                                                            );
+                                                          }
+                                                          final cageGetOneVariantResponse =
+                                                              snapshot.data;
+                                                          return Container(
                                                             width: 180,
                                                             height: 280,
                                                             decoration:
@@ -4062,9 +4072,9 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                 );
                                                               },
                                                             ),
-                                                          ),
-                                                        );
-                                                      },
+                                                          );
+                                                        },
+                                                      ),
                                                     ),
                                                   );
                                                 }),

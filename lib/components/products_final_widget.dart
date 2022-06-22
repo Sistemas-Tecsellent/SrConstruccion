@@ -568,31 +568,30 @@ class _ProductsFinalWidgetState extends State<ProductsFinalWidget> {
                                                                               0,
                                                                               0),
                                                                           child:
-                                                                              FutureBuilder<ApiCallResponse>(
-                                                                            future:
-                                                                                GetOneVariantCall.call(
-                                                                              productId: cageProductsRecord.id,
-                                                                              userLocation: FFAppState().locationKey,
-                                                                              userType: valueOrDefault(currentUserDocument?.type, ''),
-                                                                            ),
-                                                                            builder:
-                                                                                (context, snapshot) {
-                                                                              // Customize what your widget looks like when it's loading.
-                                                                              if (!snapshot.hasData) {
-                                                                                return Center(
-                                                                                  child: SizedBox(
-                                                                                    width: 50,
-                                                                                    height: 50,
-                                                                                    child: SpinKitFadingCircle(
-                                                                                      color: FlutterFlowTheme.of(context).primaryColor,
-                                                                                      size: 50,
+                                                                              AuthUserStreamWidget(
+                                                                            child:
+                                                                                FutureBuilder<ApiCallResponse>(
+                                                                              future: GetOneVariantCall.call(
+                                                                                productId: cageProductsRecord.id,
+                                                                                userLocation: FFAppState().locationKey,
+                                                                                userType: valueOrDefault(currentUserDocument?.type, ''),
+                                                                              ),
+                                                                              builder: (context, snapshot) {
+                                                                                // Customize what your widget looks like when it's loading.
+                                                                                if (!snapshot.hasData) {
+                                                                                  return Center(
+                                                                                    child: SizedBox(
+                                                                                      width: 50,
+                                                                                      height: 50,
+                                                                                      child: SpinKitFadingCircle(
+                                                                                        color: FlutterFlowTheme.of(context).primaryColor,
+                                                                                        size: 50,
+                                                                                      ),
                                                                                     ),
-                                                                                  ),
-                                                                                );
-                                                                              }
-                                                                              final priceGetOneVariantResponse = snapshot.data;
-                                                                              return AuthUserStreamWidget(
-                                                                                child: Text(
+                                                                                  );
+                                                                                }
+                                                                                final priceGetOneVariantResponse = snapshot.data;
+                                                                                return Text(
                                                                                   GetOneVariantCall.price(
                                                                                     (priceGetOneVariantResponse?.jsonBody ?? ''),
                                                                                   ).toString(),
@@ -601,9 +600,9 @@ class _ProductsFinalWidgetState extends State<ProductsFinalWidget> {
                                                                                         color: Color(0xFF1EEBBD),
                                                                                         fontSize: 13,
                                                                                       ),
-                                                                                ),
-                                                                              );
-                                                                            },
+                                                                                );
+                                                                              },
+                                                                            ),
                                                                           ),
                                                                         ),
                                                                       ),

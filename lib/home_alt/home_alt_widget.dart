@@ -53,6 +53,7 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
     'iconButtonOnActionTriggerAnimation1': AnimationInfo(
       trigger: AnimationTrigger.onActionTrigger,
       duration: 600,
+      hideBeforeAnimating: false,
       initialState: AnimationState(
         offset: Offset(0, 0),
         scale: 1,
@@ -67,6 +68,7 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
     'iconButtonOnActionTriggerAnimation2': AnimationInfo(
       trigger: AnimationTrigger.onActionTrigger,
       duration: 600,
+      hideBeforeAnimating: false,
       initialState: AnimationState(
         offset: Offset(0, 0),
         scale: 1,

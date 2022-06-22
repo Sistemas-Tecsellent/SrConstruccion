@@ -28,6 +28,7 @@ class _ResumenSolicitudCotizacionWidgetState
     'listViewOnPageLoadAnimation': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       duration: 600,
+      hideBeforeAnimating: false,
       fadeIn: true,
       initialState: AnimationState(
         offset: Offset(0, 80),
