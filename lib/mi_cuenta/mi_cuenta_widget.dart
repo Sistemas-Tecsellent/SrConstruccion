@@ -200,6 +200,13 @@ class _MiCuentaWidgetState extends State<MiCuentaWidget> {
                                           return;
                                         }
                                       }
+
+                                      final usersUpdateData =
+                                          createUsersRecordData(
+                                        photoUrl: uploadedFileUrl,
+                                      );
+                                      await currentUserReference
+                                          .update(usersUpdateData);
                                     },
                                     child: Container(
                                       width: 35,
@@ -446,7 +453,6 @@ class _MiCuentaWidgetState extends State<MiCuentaWidget> {
                               onPressed: () async {
                                 final usersUpdateData = createUsersRecordData(
                                   phone: textController4?.text ?? '',
-                                  photoUrl: uploadedFileUrl,
                                   displayName: textController1?.text ?? '',
                                 );
                                 await currentUserReference

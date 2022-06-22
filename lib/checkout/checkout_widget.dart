@@ -638,14 +638,16 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                                         mainAxisSize:
                                                                             MainAxisSize.max,
                                                                         children: [
-                                                                          Text(
-                                                                            '\$',
-                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                  fontFamily: 'Montserrat',
-                                                                                  fontSize: 25,
-                                                                                  fontWeight: FontWeight.w500,
-                                                                                ),
-                                                                          ),
+                                                                          if ((containerCheckoutsRecord.totalInCents) <=
+                                                                              0)
+                                                                            Text(
+                                                                              '\$',
+                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                    fontFamily: 'Montserrat',
+                                                                                    fontSize: 25,
+                                                                                    fontWeight: FontWeight.w500,
+                                                                                  ),
+                                                                            ),
                                                                           Text(
                                                                             '\$---.--',
                                                                             style: FlutterFlowTheme.of(context).bodyText1.override(
