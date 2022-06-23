@@ -230,6 +230,7 @@ class _ServiciosSingleWidgetState extends State<ServiciosSingleWidget> {
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SingleChildScrollView(
                 child: Column(
