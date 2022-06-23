@@ -248,6 +248,7 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SingleChildScrollView(
                 child: Column(
@@ -876,7 +877,7 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                                         child: Image.network(
                                           valueOrDefault<String>(
                                             rowProductsRecord.saleImage,
-                                            'https://www.pngall.com/wp-content/uploads/5/Open-Box-PNG-Clipart.png',
+                                            'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FDise%C3%B1o%20sin%20t%C3%ADtulo%20(1).png?alt=media&token=96c985a1-8023-4ffe-b992-4d534a2e3767',
                                           ),
                                           width: 150,
                                           height: 170,

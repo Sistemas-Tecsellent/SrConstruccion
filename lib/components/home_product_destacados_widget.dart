@@ -175,7 +175,7 @@ class _HomeProductDestacadosWidgetState
                                                             rowProductsRecord
                                                                 .title
                                                                 .maybeHandleOverflow(
-                                                              maxChars: 22,
+                                                              maxChars: 50,
                                                               replacement: '…',
                                                             ),
                                                             textAlign:
@@ -350,10 +350,10 @@ class _HomeProductDestacadosWidgetState
                                           child: Image.network(
                                             valueOrDefault<String>(
                                               rowProductsRecord.saleImage,
-                                              'https://www.pngall.com/wp-content/uploads/5/Open-Box-PNG-Clipart.png',
+                                              'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FDise%C3%B1o%20sin%20t%C3%ADtulo%20(1).png?alt=media&token=96c985a1-8023-4ffe-b992-4d534a2e3767',
                                             ),
                                             width: 140,
-                                            height: 180,
+                                            height: 165,
                                             fit: BoxFit.contain,
                                           ),
                                         ),
@@ -504,6 +504,7 @@ class _HomeProductDestacadosWidgetState
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Container(
+                                                      width: 200,
                                                       decoration:
                                                           BoxDecoration(),
                                                       child: Align(
@@ -519,7 +520,7 @@ class _HomeProductDestacadosWidgetState
                                                             rowProductsRecord
                                                                 .title
                                                                 .maybeHandleOverflow(
-                                                              maxChars: 22,
+                                                              maxChars: 50,
                                                               replacement: '…',
                                                             ),
                                                             textAlign:
@@ -573,91 +574,73 @@ class _HomeProductDestacadosWidgetState
                                                                   .circular(0),
                                                             ),
                                                           ),
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        10,
-                                                                        0,
-                                                                        0,
-                                                                        0),
-                                                            child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                Align(
-                                                                  alignment:
-                                                                      AlignmentDirectional(
-                                                                          1, 0),
-                                                                  child:
-                                                                      Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0,
-                                                                            0,
-                                                                            10,
-                                                                            0),
-                                                                    child: Text(
-                                                                      '\$',
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .end,
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyText1
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Montserrat',
-                                                                            color:
-                                                                                Colors.white,
-                                                                            fontSize:
-                                                                                18,
-                                                                            fontWeight:
-                                                                                FontWeight.w500,
-                                                                          ),
-                                                                    ),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Align(
+                                                                alignment:
+                                                                    AlignmentDirectional(
+                                                                        1, 0),
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          10,
+                                                                          0,
+                                                                          5,
+                                                                          0),
+                                                                  child: Text(
+                                                                    '\$',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .end,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyText1
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Montserrat',
+                                                                          color:
+                                                                              Colors.white,
+                                                                          fontSize:
+                                                                              18,
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
+                                                                        ),
                                                                   ),
                                                                 ),
-                                                                Align(
-                                                                  alignment:
-                                                                      AlignmentDirectional(
-                                                                          1, 0),
-                                                                  child:
-                                                                      Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0,
-                                                                            0,
-                                                                            10,
-                                                                            0),
-                                                                    child: Text(
-                                                                      GetOneVariantCall
-                                                                          .price(
-                                                                        (stackGetOneVariantResponse?.jsonBody ??
-                                                                            ''),
-                                                                      ).toString(),
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .end,
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyText1
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Montserrat',
-                                                                            color:
-                                                                                Colors.white,
-                                                                            fontSize:
-                                                                                18,
-                                                                            fontWeight:
-                                                                                FontWeight.w500,
-                                                                          ),
-                                                                    ),
-                                                                  ),
+                                                              ),
+                                                              Align(
+                                                                alignment:
+                                                                    AlignmentDirectional(
+                                                                        1, 0),
+                                                                child: Text(
+                                                                  GetOneVariantCall
+                                                                      .price(
+                                                                    (stackGetOneVariantResponse
+                                                                            ?.jsonBody ??
+                                                                        ''),
+                                                                  ).toString(),
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .end,
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText1
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Montserrat',
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            18,
+                                                                        fontWeight:
+                                                                            FontWeight.w500,
+                                                                      ),
                                                                 ),
-                                                              ],
-                                                            ),
+                                                              ),
+                                                            ],
                                                           ),
                                                         ),
                                                       ),
@@ -719,10 +702,10 @@ class _HomeProductDestacadosWidgetState
                                           child: Image.network(
                                             valueOrDefault<String>(
                                               rowProductsRecord.saleImage,
-                                              'https://www.pngall.com/wp-content/uploads/5/Open-Box-PNG-Clipart.png',
+                                              'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FDise%C3%B1o%20sin%20t%C3%ADtulo%20(1).png?alt=media&token=96c985a1-8023-4ffe-b992-4d534a2e3767',
                                             ),
                                             width: 140,
-                                            height: 180,
+                                            height: 165,
                                             fit: BoxFit.contain,
                                           ),
                                         ),
@@ -862,8 +845,11 @@ class _HomeProductDestacadosWidgetState
                                                 child: Column(
                                                   mainAxisSize:
                                                       MainAxisSize.min,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     Container(
+                                                      width: 200,
                                                       decoration:
                                                           BoxDecoration(),
                                                       child: Align(
@@ -879,7 +865,7 @@ class _HomeProductDestacadosWidgetState
                                                             rowProductsRecord
                                                                 .title
                                                                 .maybeHandleOverflow(
-                                                              maxChars: 22,
+                                                              maxChars: 50,
                                                               replacement: '…',
                                                             ),
                                                             textAlign:
@@ -933,91 +919,73 @@ class _HomeProductDestacadosWidgetState
                                                                   .circular(0),
                                                             ),
                                                           ),
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        10,
-                                                                        0,
-                                                                        0,
-                                                                        0),
-                                                            child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                Align(
-                                                                  alignment:
-                                                                      AlignmentDirectional(
-                                                                          1, 0),
-                                                                  child:
-                                                                      Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0,
-                                                                            0,
-                                                                            10,
-                                                                            0),
-                                                                    child: Text(
-                                                                      '\$',
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .end,
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyText1
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Montserrat',
-                                                                            color:
-                                                                                Colors.white,
-                                                                            fontSize:
-                                                                                18,
-                                                                            fontWeight:
-                                                                                FontWeight.w500,
-                                                                          ),
-                                                                    ),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Align(
+                                                                alignment:
+                                                                    AlignmentDirectional(
+                                                                        1, 0),
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          10,
+                                                                          0,
+                                                                          5,
+                                                                          0),
+                                                                  child: Text(
+                                                                    '\$',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .end,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyText1
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Montserrat',
+                                                                          color:
+                                                                              Colors.white,
+                                                                          fontSize:
+                                                                              18,
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
+                                                                        ),
                                                                   ),
                                                                 ),
-                                                                Align(
-                                                                  alignment:
-                                                                      AlignmentDirectional(
-                                                                          1, 0),
-                                                                  child:
-                                                                      Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0,
-                                                                            0,
-                                                                            10,
-                                                                            0),
-                                                                    child: Text(
-                                                                      GetOneVariantCall
-                                                                          .price(
-                                                                        (stackGetOneVariantResponse?.jsonBody ??
-                                                                            ''),
-                                                                      ).toString(),
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .end,
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyText1
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Montserrat',
-                                                                            color:
-                                                                                Colors.white,
-                                                                            fontSize:
-                                                                                18,
-                                                                            fontWeight:
-                                                                                FontWeight.w500,
-                                                                          ),
-                                                                    ),
-                                                                  ),
+                                                              ),
+                                                              Align(
+                                                                alignment:
+                                                                    AlignmentDirectional(
+                                                                        1, 0),
+                                                                child: Text(
+                                                                  GetOneVariantCall
+                                                                      .price(
+                                                                    (stackGetOneVariantResponse
+                                                                            ?.jsonBody ??
+                                                                        ''),
+                                                                  ).toString(),
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .end,
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText1
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Montserrat',
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            18,
+                                                                        fontWeight:
+                                                                            FontWeight.w500,
+                                                                      ),
                                                                 ),
-                                                              ],
-                                                            ),
+                                                              ),
+                                                            ],
                                                           ),
                                                         ),
                                                       ),
@@ -1079,10 +1047,10 @@ class _HomeProductDestacadosWidgetState
                                           child: Image.network(
                                             valueOrDefault<String>(
                                               rowProductsRecord.saleImage,
-                                              'https://www.pngall.com/wp-content/uploads/5/Open-Box-PNG-Clipart.png',
+                                              'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FDise%C3%B1o%20sin%20t%C3%ADtulo%20(1).png?alt=media&token=96c985a1-8023-4ffe-b992-4d534a2e3767',
                                             ),
                                             width: 140,
-                                            height: 180,
+                                            height: 165,
                                             fit: BoxFit.contain,
                                           ),
                                         ),
