@@ -5,10 +5,11 @@ import '../../flutter_flow/flutter_flow_util.dart';
 
 import '../cloud_functions/cloud_functions.dart';
 
-final _isProd = false;
+final _isProd = true;
 
 // Stripe Credentials
-const _kProdStripePublishableKey = '';
+const _kProdStripePublishableKey =
+    'pk_live_51KeQUnBmz2HhZ6eyQglZ73HPFGbxY1ztVm4EHqFV95Bw78Imz4JSXevSzV3yWcPvJA5Gv5H78fzcXu0siZMJwT6800CuYmmuME';
 const _kTestStripePublishableKey =
     'pk_test_51KeQUnBmz2HhZ6eyYqiEP1XFntLkBszhbdDpx5U1I9Ni523p91hTnG5gXOcwSRVODfjkyrq1GY1wh0KCkgANSvKI009ZcZiCft';
 const _kAppleMerchantId = '';
