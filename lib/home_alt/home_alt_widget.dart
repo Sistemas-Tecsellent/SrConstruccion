@@ -1724,7 +1724,7 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                                           child:
                                                                               Text(
                                                                             rowProductsRecord.title.maybeHandleOverflow(
-                                                                              maxChars: 23,
+                                                                              maxChars: 40,
                                                                               replacement: '…',
                                                                             ),
                                                                             textAlign:

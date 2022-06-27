@@ -179,7 +179,7 @@ class _ProductFeedHomeWidgetState extends State<ProductFeedHomeWidget> {
                                         child: Text(
                                           gridViewProductsRecord.title
                                               .maybeHandleOverflow(
-                                            maxChars: 30,
+                                            maxChars: 40,
                                             replacement: '…',
                                           ),
                                           textAlign: TextAlign.start,

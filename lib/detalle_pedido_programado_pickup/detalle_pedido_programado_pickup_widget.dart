@@ -218,8 +218,11 @@ class _DetallePedidoProgramadoPickupWidgetState
                                                       MainAxisSize.max,
                                                   children: [
                                                     Text(
-                                                      columnOrdersForClientsRecord
-                                                          .distanceText,
+                                                      valueOrDefault<String>(
+                                                        columnOrdersForClientsRecord
+                                                            .distanceText,
+                                                        'Calculando...',
+                                                      ),
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .bodyText1

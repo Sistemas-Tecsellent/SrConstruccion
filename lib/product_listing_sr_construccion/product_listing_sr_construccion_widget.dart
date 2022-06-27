@@ -413,7 +413,9 @@ class _ProductListingSrConstruccionWidgetState
                                                   Text(
                                                     gridViewProductsRecord.title
                                                         .maybeHandleOverflow(
-                                                            maxChars: 15),
+                                                      maxChars: 15,
+                                                      replacement: '…',
+                                                    ),
                                                     maxLines: 1,
                                                     style: FlutterFlowTheme.of(
                                                             context)
