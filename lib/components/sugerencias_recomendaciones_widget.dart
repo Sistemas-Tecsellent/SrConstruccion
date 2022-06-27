@@ -336,7 +336,7 @@ class _SugerenciasRecomendacionesWidgetState
                                                                     String>(
                                                                   rowProductsRecord
                                                                       .mainImage,
-                                                                  'http://atlas-content-cdn.pixelsquid.com/stock-images/open-cardboard-box-9GemlD9-600.jpg',
+                                                                  'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
                                                                 ),
                                                                 width: 250,
                                                                 height: 100,
@@ -411,12 +411,7 @@ class _SugerenciasRecomendacionesWidgetState
                                                                           5),
                                                               child: Text(
                                                                 rowProductsRecord
-                                                                    .title
-                                                                    .maybeHandleOverflow(
-                                                                  maxChars: 23,
-                                                                  replacement:
-                                                                      '…',
-                                                                ),
+                                                                    .title,
                                                                 textAlign:
                                                                     TextAlign
                                                                         .start,

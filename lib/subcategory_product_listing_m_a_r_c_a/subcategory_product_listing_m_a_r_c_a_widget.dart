@@ -356,7 +356,7 @@ class _SubcategoryProductListingMARCAWidgetState
                                                       valueOrDefault<String>(
                                                         gridViewProductsRecord
                                                             .mainImage,
-                                                        'http://atlas-content-cdn.pixelsquid.com/stock-images/open-cardboard-box-9GemlD9-600.jpg',
+                                                        'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
                                                       ),
                                                       width: 100,
                                                       height: 100,
@@ -413,7 +413,9 @@ class _SubcategoryProductListingMARCAWidgetState
                                                   Text(
                                                     gridViewProductsRecord.title
                                                         .maybeHandleOverflow(
-                                                            maxChars: 15),
+                                                      maxChars: 15,
+                                                      replacement: '…',
+                                                    ),
                                                     maxLines: 1,
                                                     style: FlutterFlowTheme.of(
                                                             context)

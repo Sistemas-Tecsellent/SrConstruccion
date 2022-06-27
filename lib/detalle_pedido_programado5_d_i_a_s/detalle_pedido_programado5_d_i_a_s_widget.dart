@@ -9,6 +9,7 @@ import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:share_plus/share_plus.dart';
 
 class DetallePedidoProgramado5DIASWidget extends StatefulWidget {
   const DetallePedidoProgramado5DIASWidget({
@@ -212,8 +213,11 @@ class _DetallePedidoProgramado5DIASWidgetState
                                                       MainAxisSize.max,
                                                   children: [
                                                     Text(
-                                                      columnOrdersForClientsRecord
-                                                          .deliverDate,
+                                                      valueOrDefault<String>(
+                                                        columnOrdersForClientsRecord
+                                                            .deliverDate,
+                                                        'Calculando...',
+                                                      ),
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .bodyText1
@@ -738,8 +742,11 @@ class _DetallePedidoProgramado5DIASWidgetState
                                                       MainAxisSize.max,
                                                   children: [
                                                     Text(
-                                                      columnOrdersForClientsRecord
-                                                          .statusForClient,
+                                                      valueOrDefault<String>(
+                                                        columnOrdersForClientsRecord
+                                                            .statusForClient,
+                                                        'Calculando...',
+                                                      ),
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .bodyText1
@@ -792,7 +799,7 @@ class _DetallePedidoProgramado5DIASWidgetState
                                           shape: BoxShape.circle,
                                         ),
                                         child: Image.asset(
-                                          'assets/images/Logotipo_Usuario.png',
+                                          'assets/images/Trailer.png',
                                         ),
                                       ),
                                       Padding(
@@ -817,27 +824,57 @@ class _DetallePedidoProgramado5DIASWidgetState
                                                             FontWeight.normal,
                                                       ),
                                             ),
-                                            Text(
-                                              columnOrdersForClientsRecord
-                                                  .parcelGuide,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyText1
-                                                  .override(
-                                                    fontFamily: 'Montserrat',
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
+                                            InkWell(
+                                              onTap: () async {
+                                                await Share.share(
+                                                    columnOrdersForClientsRecord
+                                                        .parcelGuide);
+                                              },
+                                              child: Text(
+                                                columnOrdersForClientsRecord
+                                                    .parcelGuide,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              'Montserrat',
+                                                          fontSize: 12,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                        ),
+                                              ),
                                             ),
-                                            Text(
-                                              columnOrdersForClientsRecord
-                                                  .parcelLink,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyText1
-                                                  .override(
-                                                    fontFamily: 'Montserrat',
-                                                    fontWeight: FontWeight.w600,
+                                            Container(
+                                              width: 200,
+                                              decoration: BoxDecoration(),
+                                              child: InkWell(
+                                                onTap: () async {
+                                                  await Share.share(
+                                                      columnOrdersForClientsRecord
+                                                          .parcelLink);
+                                                },
+                                                child: Text(
+                                                  columnOrdersForClientsRecord
+                                                      .parcelLink
+                                                      .maybeHandleOverflow(
+                                                    maxChars: 20,
+                                                    replacement: '…',
                                                   ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyText1
+                                                      .override(
+                                                        fontFamily:
+                                                            'Montserrat',
+                                                        color:
+                                                            Color(0xFF1EEBBD),
+                                                        fontSize: 11,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
+                                                ),
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -903,21 +940,24 @@ class _DetallePedidoProgramado5DIASWidgetState
                                                             FontWeight.normal,
                                                       ),
                                                 ),
-                                                Text(
-                                                  listViewOrderBundlesRecord
-                                                      .customerAddress
-                                                      .maybeHandleOverflow(
-                                                          maxChars: 20),
-                                                  maxLines: 1,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily:
-                                                            'Montserrat',
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
+                                                Container(
+                                                  width: 200,
+                                                  decoration: BoxDecoration(),
+                                                  child: Text(
+                                                    listViewOrderBundlesRecord
+                                                        .customerAddress,
+                                                    maxLines: 1,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              'Montserrat',
+                                                          fontSize: 12,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                        ),
+                                                  ),
                                                 ),
                                               ],
                                             ),
