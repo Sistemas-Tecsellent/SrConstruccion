@@ -1,5 +1,6 @@
 import '../anadir_direccion/anadir_direccion_widget.dart';
 import '../auth/auth_util.dart';
+import '../auth/firebase_user_provider.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../carrito/carrito_widget.dart';
@@ -16,6 +17,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../listado_marcas/listado_marcas_widget.dart';
+import '../login/login_widget.dart';
 import '../marca_single/marca_single_widget.dart';
 import '../mis_pedidos/mis_pedidos_widget.dart';
 import '../notificaciones/notificaciones_widget.dart';
@@ -472,99 +474,113 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                         children: [
                           Stack(
                             children: [
-                              Align(
-                                alignment: AlignmentDirectional(0, 0),
-                                child: FutureBuilder<ApiCallResponse>(
-                                  future: GetCartAmountCall.call(
-                                    uid: currentUserUid,
-                                    cartId: currentUserUid,
-                                  ),
-                                  builder: (context, snapshot) {
-                                    // Customize what your widget looks like when it's loading.
-                                    if (!snapshot.hasData) {
-                                      return Center(
-                                        child: SizedBox(
-                                          width: 50,
-                                          height: 50,
-                                          child: SpinKitFadingCircle(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryColor,
-                                            size: 50,
-                                          ),
-                                        ),
-                                      );
-                                    }
-                                    final buttonGetCartAmountResponse =
-                                        snapshot.data;
-                                    return FFButtonWidget(
-                                      onPressed: () async {
-                                        await Navigator.push(
-                                          context,
-                                          PageTransition(
-                                            type: PageTransitionType.fade,
-                                            duration: Duration(milliseconds: 0),
-                                            reverseDuration:
-                                                Duration(milliseconds: 0),
-                                            child: CarritoWidget(),
+                              if (loggedIn ?? true)
+                                Align(
+                                  alignment: AlignmentDirectional(0, 0),
+                                  child: FutureBuilder<ApiCallResponse>(
+                                    future: GetCartAmountCall.call(
+                                      uid: currentUserUid,
+                                      cartId: currentUserUid,
+                                    ),
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 50,
+                                            height: 50,
+                                            child: SpinKitFadingCircle(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryColor,
+                                              size: 50,
+                                            ),
                                           ),
                                         );
-                                      },
-                                      text: GetCartAmountCall.amount(
-                                        (buttonGetCartAmountResponse
-                                                ?.jsonBody ??
-                                            ''),
-                                      ).toString(),
-                                      icon: Icon(
-                                        Icons.shopping_bag_outlined,
-                                        size: 30,
-                                      ),
-                                      options: FFButtonOptions(
-                                        width: 120,
-                                        height: 40,
-                                        color: Color(0xFF1EEBBD),
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .subtitle2
-                                            .override(
-                                              fontFamily: 'Montserrat',
-                                              color: Colors.white,
-                                              fontSize: 16,
+                                      }
+                                      final buttonGetCartAmountResponse =
+                                          snapshot.data;
+                                      return FFButtonWidget(
+                                        onPressed: () async {
+                                          await Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              type: PageTransitionType.fade,
+                                              duration:
+                                                  Duration(milliseconds: 0),
+                                              reverseDuration:
+                                                  Duration(milliseconds: 0),
+                                              child: CarritoWidget(),
                                             ),
-                                        elevation: 2,
-                                        borderSide: BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1,
+                                          );
+                                        },
+                                        text: GetCartAmountCall.amount(
+                                          (buttonGetCartAmountResponse
+                                                  ?.jsonBody ??
+                                              ''),
+                                        ).toString(),
+                                        icon: Icon(
+                                          Icons.shopping_bag_outlined,
+                                          size: 30,
                                         ),
-                                        borderRadius: 25,
+                                        options: FFButtonOptions(
+                                          width: 120,
+                                          height: 40,
+                                          color: Color(0xFF1EEBBD),
+                                          textStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .subtitle2
+                                                  .override(
+                                                    fontFamily: 'Montserrat',
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                  ),
+                                          elevation: 2,
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1,
+                                          ),
+                                          borderRadius: 25,
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              if (!(loggedIn) ?? true)
+                                FFButtonWidget(
+                                  onPressed: () async {
+                                    await Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                        reverseDuration:
+                                            Duration(milliseconds: 0),
+                                        child: LoginWidget(),
                                       ),
                                     );
                                   },
-                                ),
-                              ),
-                              FFButtonWidget(
-                                onPressed: () {
-                                  print('Button pressed ...');
-                                },
-                                text: 'Iniciar Sesión',
-                                options: FFButtonOptions(
-                                  width: 130,
-                                  height: 40,
-                                  color: Color(0xFF1EEBBD),
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .subtitle2
-                                      .override(
-                                        fontFamily: 'Montserrat',
-                                        color: Colors.white,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                  elevation: 2,
-                                  borderSide: BorderSide(
-                                    color: Colors.transparent,
-                                    width: 1,
+                                  text: 'Iniciar Sesión',
+                                  options: FFButtonOptions(
+                                    width: 130,
+                                    height: 40,
+                                    color: Color(0xFF1EEBBD),
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .subtitle2
+                                        .override(
+                                          fontFamily: 'Montserrat',
+                                          color: Colors.white,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                    elevation: 2,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1,
+                                    ),
+                                    borderRadius: 125,
                                   ),
-                                  borderRadius: 125,
                                 ),
-                              ),
                             ],
                           ),
                         ],
