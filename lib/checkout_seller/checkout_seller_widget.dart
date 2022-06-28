@@ -206,13 +206,6 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                               }
                               paymentId = paymentResponse.paymentId;
 
-                              final usersUpdateData = {
-                                'liveOrders': FieldValue.arrayUnion([bundleId]),
-                              };
-                              await currentUserReference
-                                  .update(usersUpdateData);
-                              setState(
-                                  () => FFAppState().paymentId = paymentId);
                               await Navigator.push(
                                 context,
                                 PageTransition(
@@ -226,6 +219,12 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                   ),
                                 ),
                               );
+
+                              final usersUpdateData = {
+                                'liveOrders': FieldValue.arrayUnion([bundleId]),
+                              };
+                              await currentUserReference
+                                  .update(usersUpdateData);
                             } else {
                               await Navigator.push(
                                 context,
@@ -351,7 +350,7 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
                                           Container(
-                                            height: 280,
+                                            height: 230,
                                             child: Stack(
                                               children: [
                                                 Row(
@@ -685,191 +684,88 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                 Align(
                                                   alignment:
                                                       AlignmentDirectional(
-                                                          0, 1),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 160, 0, 15),
-                                                    child: Container(
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              0.95,
-                                                      decoration: BoxDecoration(
-                                                        color: Colors.white,
-                                                        boxShadow: [
-                                                          BoxShadow(
-                                                            blurRadius: 5,
-                                                            color: Color(
-                                                                0x18000000),
-                                                          )
-                                                        ],
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(20),
-                                                      ),
-                                                      child: Column(
+                                                          0, 0.85),
+                                                  child: Container(
+                                                    width: 200,
+                                                    height: 50,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      boxShadow: [
+                                                        BoxShadow(
+                                                          blurRadius: 10,
+                                                          color:
+                                                              Color(0x14000000),
+                                                        )
+                                                      ],
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                    ),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  20, 0, 10, 0),
+                                                      child: Row(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
                                                         children: [
-                                                          Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceBetween,
-                                                            children: [
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            25,
-                                                                            0,
-                                                                            0,
-                                                                            0),
-                                                                child: Text(
-                                                                  'Datos de Facturación',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyText1
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Montserrat',
-                                                                        fontSize:
-                                                                            12,
-                                                                      ),
-                                                                ),
-                                                              ),
-                                                              FFButtonWidget(
-                                                                onPressed:
-                                                                    () async {
-                                                                  await showModalBottomSheet(
-                                                                    isScrollControlled:
-                                                                        true,
-                                                                    backgroundColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    context:
-                                                                        context,
-                                                                    builder:
-                                                                        (context) {
-                                                                      return Padding(
-                                                                        padding:
-                                                                            MediaQuery.of(context).viewInsets,
-                                                                        child:
-                                                                            FacturacionWidget(
-                                                                          storeId:
-                                                                              widget.storeId,
-                                                                        ),
-                                                                      );
-                                                                    },
-                                                                  );
-                                                                },
-                                                                text: 'Cambiar',
-                                                                options:
-                                                                    FFButtonOptions(
-                                                                  width: 100,
-                                                                  height: 40,
-                                                                  color: Color(
-                                                                      0x00FFFFFF),
-                                                                  textStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .subtitle2
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Montserrat',
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .alternate,
-                                                                        fontSize:
-                                                                            12,
-                                                                      ),
-                                                                  elevation: 0,
-                                                                  borderSide:
-                                                                      BorderSide(
-                                                                    color: Colors
-                                                                        .transparent,
-                                                                  ),
-                                                                  borderRadius:
-                                                                      0,
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
                                                           Padding(
                                                             padding:
                                                                 EdgeInsetsDirectional
                                                                     .fromSTEB(
-                                                                        5,
-                                                                        5,
                                                                         0,
-                                                                        0),
-                                                            child: Row(
+                                                                        10,
+                                                                        0,
+                                                                        10),
+                                                            child: Column(
                                                               mainAxisSize:
                                                                   MainAxisSize
                                                                       .max,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .start,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .center,
                                                               children: [
-                                                                Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          20,
-                                                                          0,
-                                                                          10,
-                                                                          0),
-                                                                  child: Column(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceEvenly,
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .start,
-                                                                    children: [
-                                                                      Text(
-                                                                        getJsonField(
-                                                                          FFAppState()
-                                                                              .checkoutInvoiceProfile,
-                                                                          r'''$.name''',
-                                                                        ).toString(),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyText1
-                                                                            .override(
-                                                                              fontFamily: 'Montserrat',
-                                                                              fontSize: 16,
-                                                                            ),
-                                                                      ),
-                                                                      Container(
-                                                                        width:
-                                                                            200,
-                                                                        decoration:
-                                                                            BoxDecoration(),
-                                                                      ),
-                                                                      Text(
-                                                                        getJsonField(
-                                                                          FFAppState()
-                                                                              .checkoutInvoiceProfile,
-                                                                          r'''$.address''',
-                                                                        ).toString(),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyText1
-                                                                            .override(
-                                                                              fontFamily: 'Montserrat',
-                                                                              color: Color(0xFF989898),
-                                                                              fontSize: 14,
-                                                                            ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
+                                                                Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  children: [
+                                                                    Text(
+                                                                      'Entrega Estimada',
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyText1
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Montserrat',
+                                                                            fontSize:
+                                                                                12,
+                                                                          ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                                Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  children: [
+                                                                    Text(
+                                                                      '1 mayo 2022   10:00 AM',
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyText1
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Montserrat',
+                                                                            fontWeight:
+                                                                                FontWeight.w500,
+                                                                          ),
+                                                                    ),
+                                                                  ],
                                                                 ),
                                                               ],
                                                             ),
@@ -880,6 +776,209 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                   ),
                                                 ),
                                               ],
+                                            ),
+                                          ),
+                                          Align(
+                                            alignment:
+                                                AlignmentDirectional(0, 1),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 0, 15),
+                                              child: Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.95,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                      blurRadius: 5,
+                                                      color: Color(0x18000000),
+                                                    )
+                                                  ],
+                                                  borderRadius:
+                                                      BorderRadius.circular(20),
+                                                ),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 0, 10),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        25,
+                                                                        0,
+                                                                        0,
+                                                                        0),
+                                                            child: Text(
+                                                              'Datos de Facturación',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText1
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Montserrat',
+                                                                    fontSize:
+                                                                        12,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                          FFButtonWidget(
+                                                            onPressed:
+                                                                () async {
+                                                              await showModalBottomSheet(
+                                                                isScrollControlled:
+                                                                    true,
+                                                                backgroundColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (context) {
+                                                                  return Padding(
+                                                                    padding: MediaQuery.of(
+                                                                            context)
+                                                                        .viewInsets,
+                                                                    child:
+                                                                        FacturacionWidget(
+                                                                      storeId:
+                                                                          widget
+                                                                              .storeId,
+                                                                    ),
+                                                                  );
+                                                                },
+                                                              );
+                                                            },
+                                                            text: 'Cambiar',
+                                                            options:
+                                                                FFButtonOptions(
+                                                              width: 100,
+                                                              height: 40,
+                                                              color: Color(
+                                                                  0x00FFFFFF),
+                                                              textStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .subtitle2
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Montserrat',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .alternate,
+                                                                        fontSize:
+                                                                            12,
+                                                                      ),
+                                                              elevation: 0,
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: Colors
+                                                                    .transparent,
+                                                              ),
+                                                              borderRadius: 0,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    5, 5, 0, 0),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          20,
+                                                                          0,
+                                                                          10,
+                                                                          0),
+                                                              child: Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceEvenly,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Text(
+                                                                    getJsonField(
+                                                                      (columnGetSellerWiseCheckoutResponse
+                                                                              ?.jsonBody ??
+                                                                          ''),
+                                                                      r'''$.invoiceData.name''',
+                                                                    ).toString(),
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyText1
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Montserrat',
+                                                                          fontSize:
+                                                                              16,
+                                                                        ),
+                                                                  ),
+                                                                  Container(
+                                                                    width: 200,
+                                                                    decoration:
+                                                                        BoxDecoration(),
+                                                                  ),
+                                                                  Text(
+                                                                    getJsonField(
+                                                                      (columnGetSellerWiseCheckoutResponse
+                                                                              ?.jsonBody ??
+                                                                          ''),
+                                                                      r'''$.invoiceData.address''',
+                                                                    ).toString().maybeHandleOverflow(
+                                                                        maxChars:
+                                                                            28),
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyText1
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Montserrat',
+                                                                          color:
+                                                                              Color(0xFF989898),
+                                                                          fontSize:
+                                                                              14,
+                                                                        ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
                                             ),
                                           ),
                                           Align(
@@ -1055,7 +1154,7 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                       .start,
                                                               children: [
                                                                 Text(
-                                                                  FFAppState()
+                                                                  columnSellerWiseCheckoutsRecord
                                                                       .paymentMethod,
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
@@ -1487,9 +1586,10 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                 children: [
                                                                   Text(
                                                                     getJsonField(
-                                                                      FFAppState()
-                                                                          .checkoutAddress,
-                                                                      r'''$.name''',
+                                                                      (columnGetSellerWiseCheckoutResponse
+                                                                              ?.jsonBody ??
+                                                                          ''),
+                                                                      r'''$.address.addressName''',
                                                                     ).toString(),
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
@@ -1525,8 +1625,8 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                               ),
                                                                               child: Text(
                                                                                 getJsonField(
-                                                                                  FFAppState().checkoutAddress,
-                                                                                  r'''$.addressLine1''',
+                                                                                  (columnGetSellerWiseCheckoutResponse?.jsonBody ?? ''),
+                                                                                  r'''$.address.addressLine1''',
                                                                                 ).toString().maybeHandleOverflow(maxChars: 10),
                                                                                 style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                       fontFamily: 'Montserrat',
@@ -1541,8 +1641,8 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                               ),
                                                                               child: Text(
                                                                                 getJsonField(
-                                                                                  FFAppState().checkoutAddress,
-                                                                                  r'''$.suburb''',
+                                                                                  (columnGetSellerWiseCheckoutResponse?.jsonBody ?? ''),
+                                                                                  r'''$.address.suburb''',
                                                                                 ).toString().maybeHandleOverflow(maxChars: 7),
                                                                                 maxLines: 1,
                                                                                 style: FlutterFlowTheme.of(context).bodyText1.override(
@@ -1564,9 +1664,9 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                     children: [
                                                                       Text(
                                                                         getJsonField(
-                                                                          FFAppState()
-                                                                              .checkoutAddress,
-                                                                          r'''$.city''',
+                                                                          (columnGetSellerWiseCheckoutResponse?.jsonBody ??
+                                                                              ''),
+                                                                          r'''$.address.city''',
                                                                         ).toString(),
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyText1
@@ -1587,9 +1687,9 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                       ),
                                                                       Text(
                                                                         getJsonField(
-                                                                          FFAppState()
-                                                                              .checkoutAddress,
-                                                                          r'''$.state''',
+                                                                          (columnGetSellerWiseCheckoutResponse?.jsonBody ??
+                                                                              ''),
+                                                                          r'''$.address.state''',
                                                                         ).toString(),
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyText1
@@ -1816,6 +1916,83 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                   MainAxisAlignment
                                                                       .spaceEvenly,
                                                               children: [
+                                                                Align(
+                                                                  alignment:
+                                                                      AlignmentDirectional(
+                                                                          0.95,
+                                                                          0),
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0,
+                                                                            5,
+                                                                            0,
+                                                                            0),
+                                                                    child:
+                                                                        InkWell(
+                                                                      onTap:
+                                                                          () async {
+                                                                        await actions
+                                                                            .clearExpressOrderProducts(
+                                                                          currentUserUid,
+                                                                          widget
+                                                                              .storeId,
+                                                                        );
+                                                                        await actions
+                                                                            .setCheckoutSessionSellerWise(
+                                                                          getJsonField(
+                                                                            (columnGetSellerWiseCheckoutResponse?.jsonBody ??
+                                                                                ''),
+                                                                            r'''$.address.addressName''',
+                                                                          ).toString(),
+                                                                          columnSellerWiseCheckoutsRecord
+                                                                              .paymentMethod,
+                                                                          getJsonField(
+                                                                            (columnGetSellerWiseCheckoutResponse?.jsonBody ??
+                                                                                ''),
+                                                                            r'''$.invoiceData.id''',
+                                                                          ).toString(),
+                                                                          getJsonField(
+                                                                            (columnGetSellerWiseCheckoutResponse?.jsonBody ??
+                                                                                ''),
+                                                                            r'''$.invoiceData.usage''',
+                                                                          ).toString(),
+                                                                          widget
+                                                                              .storeId,
+                                                                        );
+                                                                        await Navigator
+                                                                            .pushAndRemoveUntil(
+                                                                          context,
+                                                                          PageTransition(
+                                                                            type:
+                                                                                PageTransitionType.fade,
+                                                                            duration:
+                                                                                Duration(milliseconds: 0),
+                                                                            reverseDuration:
+                                                                                Duration(milliseconds: 0),
+                                                                            child:
+                                                                                CheckoutSellerWidget(
+                                                                              storeId: widget.storeId,
+                                                                            ),
+                                                                          ),
+                                                                          (r) =>
+                                                                              false,
+                                                                        );
+                                                                      },
+                                                                      child:
+                                                                          Text(
+                                                                        'Eliminar',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyText1
+                                                                            .override(
+                                                                              fontFamily: 'Montserrat',
+                                                                              color: Color(0xFFF60A0A),
+                                                                            ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
                                                                 Padding(
                                                                   padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
@@ -2291,6 +2468,85 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                 MainAxisAlignment
                                                                     .spaceEvenly,
                                                             children: [
+                                                              Align(
+                                                                alignment:
+                                                                    AlignmentDirectional(
+                                                                        0.95,
+                                                                        0),
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0,
+                                                                          5,
+                                                                          0,
+                                                                          0),
+                                                                  child:
+                                                                      InkWell(
+                                                                    onTap:
+                                                                        () async {
+                                                                      await actions
+                                                                          .clearNormalOrderProducts(
+                                                                        currentUserUid,
+                                                                        widget
+                                                                            .storeId,
+                                                                      );
+                                                                      await actions
+                                                                          .setCheckoutSessionSellerWise(
+                                                                        getJsonField(
+                                                                          (columnGetSellerWiseCheckoutResponse?.jsonBody ??
+                                                                              ''),
+                                                                          r'''$.address.addressName''',
+                                                                        ).toString(),
+                                                                        columnSellerWiseCheckoutsRecord
+                                                                            .paymentMethod,
+                                                                        getJsonField(
+                                                                          (columnGetSellerWiseCheckoutResponse?.jsonBody ??
+                                                                              ''),
+                                                                          r'''$.invoiceData.id''',
+                                                                        ).toString(),
+                                                                        getJsonField(
+                                                                          (columnGetSellerWiseCheckoutResponse?.jsonBody ??
+                                                                              ''),
+                                                                          r'''$.invoiceData.usage''',
+                                                                        ).toString(),
+                                                                        widget
+                                                                            .storeId,
+                                                                      );
+                                                                      await Navigator
+                                                                          .pushAndRemoveUntil(
+                                                                        context,
+                                                                        PageTransition(
+                                                                          type:
+                                                                              PageTransitionType.fade,
+                                                                          duration:
+                                                                              Duration(milliseconds: 0),
+                                                                          reverseDuration:
+                                                                              Duration(milliseconds: 0),
+                                                                          child:
+                                                                              CheckoutSellerWidget(
+                                                                            storeId:
+                                                                                widget.storeId,
+                                                                          ),
+                                                                        ),
+                                                                        (r) =>
+                                                                            false,
+                                                                      );
+                                                                    },
+                                                                    child: Text(
+                                                                      'Eliminar',
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyText1
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Montserrat',
+                                                                            color:
+                                                                                Color(0xFFF60A0A),
+                                                                          ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
                                                               Padding(
                                                                 padding:
                                                                     EdgeInsetsDirectional
@@ -2791,6 +3047,32 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                 MainAxisAlignment
                                                                     .spaceEvenly,
                                                             children: [
+                                                              Align(
+                                                                alignment:
+                                                                    AlignmentDirectional(
+                                                                        0.95,
+                                                                        0),
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0,
+                                                                          5,
+                                                                          0,
+                                                                          0),
+                                                                  child: Text(
+                                                                    'Eliminar',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyText1
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Montserrat',
+                                                                          color:
+                                                                              Color(0xFFF60A0A),
+                                                                        ),
+                                                                  ),
+                                                                ),
+                                                              ),
                                                               Padding(
                                                                 padding:
                                                                     EdgeInsetsDirectional
@@ -3214,6 +3496,85 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                 MainAxisAlignment
                                                                     .spaceEvenly,
                                                             children: [
+                                                              Align(
+                                                                alignment:
+                                                                    AlignmentDirectional(
+                                                                        0.95,
+                                                                        0),
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0,
+                                                                          5,
+                                                                          0,
+                                                                          0),
+                                                                  child:
+                                                                      InkWell(
+                                                                    onTap:
+                                                                        () async {
+                                                                      await actions
+                                                                          .clearPickupInStoreProduct(
+                                                                        currentUserUid,
+                                                                        widget
+                                                                            .storeId,
+                                                                      );
+                                                                      await actions
+                                                                          .setCheckoutSessionSellerWise(
+                                                                        getJsonField(
+                                                                          (columnGetSellerWiseCheckoutResponse?.jsonBody ??
+                                                                              ''),
+                                                                          r'''$.address.addressName''',
+                                                                        ).toString(),
+                                                                        columnSellerWiseCheckoutsRecord
+                                                                            .paymentMethod,
+                                                                        getJsonField(
+                                                                          (columnGetSellerWiseCheckoutResponse?.jsonBody ??
+                                                                              ''),
+                                                                          r'''$.invoiceData.id''',
+                                                                        ).toString(),
+                                                                        getJsonField(
+                                                                          (columnGetSellerWiseCheckoutResponse?.jsonBody ??
+                                                                              ''),
+                                                                          r'''$.invoiceData.usage''',
+                                                                        ).toString(),
+                                                                        widget
+                                                                            .storeId,
+                                                                      );
+                                                                      await Navigator
+                                                                          .pushAndRemoveUntil(
+                                                                        context,
+                                                                        PageTransition(
+                                                                          type:
+                                                                              PageTransitionType.fade,
+                                                                          duration:
+                                                                              Duration(milliseconds: 0),
+                                                                          reverseDuration:
+                                                                              Duration(milliseconds: 0),
+                                                                          child:
+                                                                              CheckoutSellerWidget(
+                                                                            storeId:
+                                                                                widget.storeId,
+                                                                          ),
+                                                                        ),
+                                                                        (r) =>
+                                                                            false,
+                                                                      );
+                                                                    },
+                                                                    child: Text(
+                                                                      'Eliminar',
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyText1
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Montserrat',
+                                                                            color:
+                                                                                Color(0xFFF60A0A),
+                                                                          ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
                                                               Padding(
                                                                 padding:
                                                                     EdgeInsetsDirectional

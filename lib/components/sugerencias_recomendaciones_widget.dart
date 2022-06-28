@@ -201,7 +201,8 @@ class _SugerenciasRecomendacionesWidgetState
                                                   reverseDuration:
                                                       Duration(milliseconds: 0),
                                                   child: ProductPageWidget(
-                                                    productId: '',
+                                                    productId:
+                                                        rowProductsRecord.id,
                                                   ),
                                                 ),
                                               );
