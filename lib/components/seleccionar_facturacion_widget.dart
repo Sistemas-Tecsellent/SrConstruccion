@@ -30,9 +30,7 @@ class SeleccionarFacturacionWidget extends StatefulWidget {
 class _SeleccionarFacturacionWidgetState
     extends State<SeleccionarFacturacionWidget> {
   String dropDownValue;
-  dynamic check;
   dynamic newInvoiceProfile;
-  dynamic checkoutSession;
 
   @override
   Widget build(BuildContext context) {
@@ -353,27 +351,17 @@ class _SeleccionarFacturacionWidgetState
                                     await actions.getInvoiceProfileById(
                                   containerPublicInvoiceProfilesRecord.id,
                                 );
-                                setState(() =>
-                                    FFAppState().checkoutInvoiceProfile =
-                                        newInvoiceProfile);
-                                setState(() =>
-                                    FFAppState().invoiceUsage = dropDownValue);
                                 if ((widget.storeId) == '\"\"') {
-                                  check = await actions.setCheckoutSession(
-                                    getJsonField(
-                                      FFAppState().checkoutAddress,
-                                      r'''$.name''',
-                                    ).toString(),
-                                    FFAppState().paymentMethod,
-                                    newInvoiceProfile,
-                                    FFAppState().invoiceUsage,
-                                  );
-                                  checkoutSession = await actions.getCheckout(
+                                  await actions
+                                      .setCheckoutModifyInvoiceAndUsage(
                                     currentUserUid,
+                                    getJsonField(
+                                      newInvoiceProfile,
+                                      r'''$.id''',
+                                    ).toString(),
+                                    dropDownValue,
                                   );
-                                  setState(() => FFAppState().checkoutSession =
-                                      checkoutSession);
-                                  await Navigator.push(
+                                  await Navigator.pushAndRemoveUntil(
                                     context,
                                     PageTransition(
                                       type: PageTransitionType.fade,
@@ -382,19 +370,19 @@ class _SeleccionarFacturacionWidgetState
                                           Duration(milliseconds: 0),
                                       child: CheckoutWidget(),
                                     ),
+                                    (r) => false,
                                   );
                                 } else {
-                                  await actions.setCheckoutSessionSellerWise(
-                                    getJsonField(
-                                      FFAppState().checkoutAddress,
-                                      r'''$.name''',
-                                    ).toString(),
-                                    FFAppState().paymentMethod,
-                                    newInvoiceProfile,
-                                    FFAppState().invoiceUsage,
+                                  await actions
+                                      .setCheckoutModifyInvoiceAndUsage(
                                     widget.storeId,
+                                    getJsonField(
+                                      newInvoiceProfile,
+                                      r'''$.id''',
+                                    ).toString(),
+                                    dropDownValue,
                                   );
-                                  await Navigator.push(
+                                  await Navigator.pushAndRemoveUntil(
                                     context,
                                     PageTransition(
                                       type: PageTransitionType.fade,
@@ -405,6 +393,7 @@ class _SeleccionarFacturacionWidgetState
                                         storeId: widget.storeId,
                                       ),
                                     ),
+                                    (r) => false,
                                   );
                                 }
 

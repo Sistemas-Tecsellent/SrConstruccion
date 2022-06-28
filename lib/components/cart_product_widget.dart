@@ -106,7 +106,7 @@ class _CartProductWidgetState extends State<CartProductWidget> {
                     return Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(10),
@@ -176,12 +176,16 @@ class _CartProductWidgetState extends State<CartProductWidget> {
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                                MainAxisAlignment.end,
                                             children: [
-                                              FaIcon(
-                                                FontAwesomeIcons.bolt,
-                                                color: Color(0xFF6CD554),
-                                                size: 14,
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 0, 5, 0),
+                                                child: FaIcon(
+                                                  FontAwesomeIcons.bolt,
+                                                  color: Color(0xFF6CD554),
+                                                  size: 14,
+                                                ),
                                               ),
                                               Text(
                                                 'Express\n30 min.',
@@ -205,7 +209,7 @@ class _CartProductWidgetState extends State<CartProductWidget> {
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  5, 0, 5, 0),
+                                                  15, 0, 5, 0),
                                           child: Text(
                                             formatNumber(
                                               rowVariantsRecord.publicPrice,
@@ -283,6 +287,8 @@ class _CartProductWidgetState extends State<CartProductWidget> {
                                               ),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
                                                 children: [
                                                   Icon(
                                                     Icons.access_time_outlined,
@@ -315,7 +321,7 @@ class _CartProductWidgetState extends State<CartProductWidget> {
                                             ),
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(5, 0, 5, 0),
+                                                  .fromSTEB(15, 0, 5, 0),
                                               child: Stack(
                                                 children: [
                                                   if ((widget.normalPrice) ==

@@ -31,10 +31,6 @@ class CarritoPorSellersWidget extends StatefulWidget {
 }
 
 class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
-  List<dynamic> invoiceProfiles;
-  List<dynamic> userAddresses;
-  dynamic firstAddress;
-  dynamic defaultInvoiceProfile;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -158,101 +154,131 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                       borderRadius: BorderRadius.circular(15),
                     ),
                     alignment: AlignmentDirectional(0, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        FFButtonWidget(
-                          onPressed: () async {
-                            if (loggedIn) {
-                              userAddresses = await actions.getUserAddresses(
-                                currentUserUid,
-                              );
-                              setState(() => FFAppState().userAddresses =
-                                  userAddresses.toList());
-                              firstAddress =
-                                  await actions.getFirstItemFromJsonList(
-                                FFAppState().userAddresses.toList(),
-                              );
-                              setState(() =>
-                                  FFAppState().checkoutAddress = firstAddress);
-                              invoiceProfiles =
-                                  await actions.getInvoiceProfiles(
-                                currentUserUid,
-                              );
-                              setState(() =>
-                                  FFAppState().checkoutInvoiceProfiles =
-                                      invoiceProfiles.toList());
-                              defaultInvoiceProfile =
-                                  await actions.getFirstItemFromJsonList(
-                                invoiceProfiles.toList(),
-                              );
-                              setState(() =>
-                                  FFAppState().checkoutInvoiceProfile =
-                                      defaultInvoiceProfile);
-                              setState(() => FFAppState().paymentMethod =
-                                  'Tarjeta Crédito / Débito');
-                              await actions.setCheckoutSessionSellerWise(
-                                getJsonField(
-                                  FFAppState().checkoutAddress,
-                                  r'''$.name''',
-                                ).toString(),
-                                FFAppState().paymentMethod,
-                                defaultInvoiceProfile,
-                                'Gastos en General',
-                                widget.storeId,
-                              );
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: CheckoutSellerWidget(
-                                    storeId: widget.storeId,
-                                  ),
-                                ),
-                              );
-                            } else {
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: LoginWidget(),
-                                ),
-                              );
-                            }
-
-                            setState(() {});
-                          },
-                          text: GetSellerWiseCartTotalCall.message(
-                            (containerGetSellerWiseCartTotalResponse
-                                    ?.jsonBody ??
-                                ''),
-                          ).toString(),
-                          options: FFButtonOptions(
-                            width: 300,
-                            height: 54,
-                            color: FlutterFlowTheme.of(context).primaryColor,
-                            textStyle:
-                                FlutterFlowTheme.of(context).subtitle2.override(
-                                      fontFamily: 'Montserrat',
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                            elevation: 0,
-                            borderSide: BorderSide(
-                              color: Colors.transparent,
-                              width: 1,
+                    child: StreamBuilder<List<AddressesRecord>>(
+                      stream: queryAddressesRecord(
+                        parent: currentUserReference,
+                        singleRecord: true,
+                      ),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: SpinKitFadingCircle(
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                size: 50,
+                              ),
                             ),
-                            borderRadius: 5,
-                          ),
-                        ),
-                      ],
+                          );
+                        }
+                        List<AddressesRecord> rowAddtoCartAddressesRecordList =
+                            snapshot.data;
+                        final rowAddtoCartAddressesRecord =
+                            rowAddtoCartAddressesRecordList.isNotEmpty
+                                ? rowAddtoCartAddressesRecordList.first
+                                : null;
+                        return Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            StreamBuilder<List<InvoiceProfilesRecord>>(
+                              stream: queryInvoiceProfilesRecord(
+                                parent: currentUserReference,
+                                singleRecord: true,
+                              ),
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 50,
+                                      height: 50,
+                                      child: SpinKitFadingCircle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor,
+                                        size: 50,
+                                      ),
+                                    ),
+                                  );
+                                }
+                                List<InvoiceProfilesRecord>
+                                    buttonInvoiceProfilesRecordList =
+                                    snapshot.data;
+                                final buttonInvoiceProfilesRecord =
+                                    buttonInvoiceProfilesRecordList.isNotEmpty
+                                        ? buttonInvoiceProfilesRecordList.first
+                                        : null;
+                                return FFButtonWidget(
+                                  onPressed: () async {
+                                    if (loggedIn) {
+                                      await actions
+                                          .setCheckoutSessionSellerWise(
+                                        rowAddtoCartAddressesRecord.name,
+                                        'Tarjeta Crédito / Débito',
+                                        buttonInvoiceProfilesRecord.id,
+                                        'Gastos en General',
+                                        widget.storeId,
+                                      );
+                                      await Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 0),
+                                          reverseDuration:
+                                              Duration(milliseconds: 0),
+                                          child: CheckoutSellerWidget(
+                                            storeId: widget.storeId,
+                                          ),
+                                        ),
+                                      );
+                                    } else {
+                                      await Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 0),
+                                          reverseDuration:
+                                              Duration(milliseconds: 0),
+                                          child: LoginWidget(),
+                                        ),
+                                      );
+                                    }
+                                  },
+                                  text: GetSellerWiseCartTotalCall.message(
+                                    (containerGetSellerWiseCartTotalResponse
+                                            ?.jsonBody ??
+                                        ''),
+                                  ).toString(),
+                                  options: FFButtonOptions(
+                                    width: 300,
+                                    height: 54,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .subtitle2
+                                        .override(
+                                          fontFamily: 'Montserrat',
+                                          color: Colors.white,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                    elevation: 0,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1,
+                                    ),
+                                    borderRadius: 5,
+                                  ),
+                                );
+                              },
+                            ),
+                          ],
+                        );
+                      },
                     ),
                   ),
                 );

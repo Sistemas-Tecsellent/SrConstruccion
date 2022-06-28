@@ -471,3 +471,25 @@ class CheckIfProductInCartCall {
         r'''$.amount''',
       );
 }
+
+class GetCheckoutInfoCall {
+  static Future<ApiCallResponse> call({
+    String uid = '',
+    String checkoutId = '',
+    String object = '',
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getCheckoutInfo',
+      apiUrl:
+          'https://us-central1-srconstruccion-d4663.cloudfunctions.net/getCheckoutInfo',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'uid': uid,
+        'checkoutId': checkoutId,
+        'object': object,
+      },
+      returnBody: true,
+    );
+  }
+}

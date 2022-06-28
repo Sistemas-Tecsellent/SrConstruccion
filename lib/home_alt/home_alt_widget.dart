@@ -470,79 +470,102 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Align(
-                            alignment: AlignmentDirectional(0, 0),
-                            child: FutureBuilder<ApiCallResponse>(
-                              future: GetCartAmountCall.call(
-                                uid: currentUserUid,
-                                cartId: currentUserUid,
-                              ),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50,
-                                      height: 50,
-                                      child: SpinKitFadingCircle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryColor,
-                                        size: 50,
+                          Stack(
+                            children: [
+                              Align(
+                                alignment: AlignmentDirectional(0, 0),
+                                child: FutureBuilder<ApiCallResponse>(
+                                  future: GetCartAmountCall.call(
+                                    uid: currentUserUid,
+                                    cartId: currentUserUid,
+                                  ),
+                                  builder: (context, snapshot) {
+                                    // Customize what your widget looks like when it's loading.
+                                    if (!snapshot.hasData) {
+                                      return Center(
+                                        child: SizedBox(
+                                          width: 50,
+                                          height: 50,
+                                          child: SpinKitFadingCircle(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryColor,
+                                            size: 50,
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                    final buttonGetCartAmountResponse =
+                                        snapshot.data;
+                                    return FFButtonWidget(
+                                      onPressed: () async {
+                                        await Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.fade,
+                                            duration: Duration(milliseconds: 0),
+                                            reverseDuration:
+                                                Duration(milliseconds: 0),
+                                            child: CarritoWidget(),
+                                          ),
+                                        );
+                                      },
+                                      text: GetCartAmountCall.amount(
+                                        (buttonGetCartAmountResponse
+                                                ?.jsonBody ??
+                                            ''),
+                                      ).toString(),
+                                      icon: Icon(
+                                        Icons.shopping_bag_outlined,
+                                        size: 30,
                                       ),
-                                    ),
-                                  );
-                                }
-                                final buttonGetCartAmountResponse =
-                                    snapshot.data;
-                                return FFButtonWidget(
-                                  onPressed: () async {
-                                    await Navigator.push(
-                                      context,
-                                      PageTransition(
-                                        type: PageTransitionType.fade,
-                                        duration: Duration(milliseconds: 0),
-                                        reverseDuration:
-                                            Duration(milliseconds: 0),
-                                        child: CarritoWidget(),
+                                      options: FFButtonOptions(
+                                        width: 120,
+                                        height: 40,
+                                        color: Color(0xFF1EEBBD),
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .subtitle2
+                                            .override(
+                                              fontFamily: 'Montserrat',
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                            ),
+                                        elevation: 2,
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1,
+                                        ),
+                                        borderRadius: 25,
                                       ),
                                     );
                                   },
-                                  text: GetCartAmountCall.amount(
-                                    (buttonGetCartAmountResponse?.jsonBody ??
-                                        ''),
-                                  ).toString(),
-                                  icon: Icon(
-                                    Icons.shopping_bag_outlined,
-                                    size: 30,
+                                ),
+                              ),
+                              FFButtonWidget(
+                                onPressed: () {
+                                  print('Button pressed ...');
+                                },
+                                text: 'Iniciar Sesión',
+                                options: FFButtonOptions(
+                                  width: 130,
+                                  height: 40,
+                                  color: Color(0xFF1EEBBD),
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .subtitle2
+                                      .override(
+                                        fontFamily: 'Montserrat',
+                                        color: Colors.white,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                  elevation: 2,
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1,
                                   ),
-                                  options: FFButtonOptions(
-                                    width: 120,
-                                    height: 40,
-                                    color: Color(0xFF1EEBBD),
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .subtitle2
-                                        .override(
-                                          fontFamily: 'Montserrat',
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                        ),
-                                    elevation: 2,
-                                    borderSide: BorderSide(
-                                      color: Colors.transparent,
-                                      width: 1,
-                                    ),
-                                    borderRadius: 25,
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
-                            child: Container(
-                              decoration: BoxDecoration(),
-                            ),
+                                  borderRadius: 125,
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -1023,15 +1046,27 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                                           MainAxisAlignment
                                                                               .spaceBetween,
                                                                       children: [
-                                                                        Image
-                                                                            .asset(
-                                                                          'assets/images/10.png',
-                                                                          width:
-                                                                              60,
-                                                                          height:
-                                                                              60,
-                                                                          fit: BoxFit
-                                                                              .contain,
+                                                                        Stack(
+                                                                          children: [
+                                                                            Image.asset(
+                                                                              'assets/images/Trailer.png',
+                                                                              width: 60,
+                                                                              height: 60,
+                                                                              fit: BoxFit.contain,
+                                                                            ),
+                                                                            Image.asset(
+                                                                              'assets/images/Motorcicle_Sr._Construccin.png',
+                                                                              width: 60,
+                                                                              height: 60,
+                                                                              fit: BoxFit.contain,
+                                                                            ),
+                                                                            Image.asset(
+                                                                              'assets/images/Trailer.png',
+                                                                              width: 60,
+                                                                              height: 60,
+                                                                              fit: BoxFit.contain,
+                                                                            ),
+                                                                          ],
                                                                         ),
                                                                         Padding(
                                                                           padding: EdgeInsetsDirectional.fromSTEB(

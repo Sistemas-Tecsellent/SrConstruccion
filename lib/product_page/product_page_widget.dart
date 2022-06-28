@@ -16,7 +16,6 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import '../login/login_widget.dart';
 import '../marca_single/marca_single_widget.dart';
 import '../perfil_del_seller/perfil_del_seller_widget.dart';
-import '../search/search_widget.dart';
 import '../valoraciones/valoraciones_widget.dart';
 import '../vendedores_en_mapa/vendedores_en_mapa_widget.dart';
 import '../custom_code/actions/index.dart' as actions;
@@ -99,27 +98,70 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
           },
         ),
         actions: [
-          FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30,
-            borderWidth: 1,
-            buttonSize: 60,
-            icon: Icon(
-              Icons.search,
-              color: Colors.black,
-              size: 15,
-            ),
-            onPressed: () async {
-              await Navigator.push(
-                context,
-                PageTransition(
-                  type: PageTransitionType.fade,
-                  duration: Duration(milliseconds: 0),
-                  reverseDuration: Duration(milliseconds: 0),
-                  child: SearchWidget(),
+          Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    FutureBuilder<ApiCallResponse>(
+                      future: GetCartAmountCall.call(
+                        uid: widget.productId,
+                        cartId: currentUserUid,
+                      ),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: SpinKitFadingCircle(
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                size: 50,
+                              ),
+                            ),
+                          );
+                        }
+                        final buttonGetCartAmountResponse = snapshot.data;
+                        return FFButtonWidget(
+                          onPressed: () {
+                            print('Button pressed ...');
+                          },
+                          text: GetCartAmountCall.amount(
+                            (buttonGetCartAmountResponse?.jsonBody ?? ''),
+                          ).toString(),
+                          icon: Icon(
+                            Icons.shopping_bag_outlined,
+                            size: 30,
+                          ),
+                          options: FFButtonOptions(
+                            width: 120,
+                            height: 40,
+                            color: Color(0xFF1EEBBD),
+                            textStyle:
+                                FlutterFlowTheme.of(context).subtitle2.override(
+                                      fontFamily: 'Montserrat',
+                                      color: Colors.white,
+                                    ),
+                            elevation: 2,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1,
+                            ),
+                            borderRadius: 25,
+                          ),
+                        );
+                      },
+                    ),
+                  ],
                 ),
-              );
-            },
+              ),
+            ],
           ),
         ],
         centerTitle: true,
