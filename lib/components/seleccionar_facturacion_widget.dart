@@ -1,7 +1,5 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../checkout/checkout_widget.dart';
-import '../checkout_seller/checkout_seller_widget.dart';
 import '../components/facturacion1_widget.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -361,17 +359,8 @@ class _SeleccionarFacturacionWidgetState
                                     ).toString(),
                                     dropDownValue,
                                   );
-                                  await Navigator.pushAndRemoveUntil(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 0),
-                                      reverseDuration:
-                                          Duration(milliseconds: 0),
-                                      child: CheckoutWidget(),
-                                    ),
-                                    (r) => false,
-                                  );
+                                  Navigator.pop(context);
+                                  Navigator.pop(context);
                                 } else {
                                   await actions
                                       .setCheckoutModifyInvoiceAndUsage(
@@ -382,19 +371,8 @@ class _SeleccionarFacturacionWidgetState
                                     ).toString(),
                                     dropDownValue,
                                   );
-                                  await Navigator.pushAndRemoveUntil(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 0),
-                                      reverseDuration:
-                                          Duration(milliseconds: 0),
-                                      child: CheckoutSellerWidget(
-                                        storeId: widget.storeId,
-                                      ),
-                                    ),
-                                    (r) => false,
-                                  );
+                                  Navigator.pop(context);
+                                  Navigator.pop(context);
                                 }
 
                                 setState(() {});

@@ -5,7 +5,6 @@ import '../auth/firebase_user_provider.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../backend/stripe/payment_manager.dart';
-import '../carrito/carrito_widget.dart';
 import '../components/cambiar_direccion_widget.dart';
 import '../components/facturacion_widget.dart';
 import '../components/metodo_de_pago_widget.dart';
@@ -91,16 +90,7 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                 size: 30,
               ),
               onPressed: () async {
-                await Navigator.pushAndRemoveUntil(
-                  context,
-                  PageTransition(
-                    type: PageTransitionType.fade,
-                    duration: Duration(milliseconds: 0),
-                    reverseDuration: Duration(milliseconds: 0),
-                    child: CarritoWidget(),
-                  ),
-                  (r) => false,
-                );
+                Navigator.pop(context);
               },
             ),
             title: Text(
@@ -2044,9 +2034,7 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                                               checkoutCheckoutsRecord.paymentMethod,
                                                                               getJsonField(
                                                                                 (columnGetCheckoutInfoResponse?.jsonBody ?? ''),
-
-                                                                                r'''$.id''',
-
+                                                                                r'''$.invoiceData.id''',
                                                                               ).toString(),
                                                                               getJsonField(
                                                                                 (columnGetCheckoutInfoResponse?.jsonBody ?? ''),
@@ -2606,8 +2594,7 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                                             checkoutCheckoutsRecord.paymentMethod,
                                                                             getJsonField(
                                                                               (columnGetCheckoutInfoResponse?.jsonBody ?? ''),
-
-                                                                              r'''$.id''',
+                                                                              r'''$.invoiceData.id''',
                                                                             ).toString(),
                                                                             getJsonField(
                                                                               (columnGetCheckoutInfoResponse?.jsonBody ?? ''),

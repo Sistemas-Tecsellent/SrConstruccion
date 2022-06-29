@@ -1955,7 +1955,7 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                           getJsonField(
                                                                             (columnGetSellerWiseCheckoutResponse?.jsonBody ??
                                                                                 ''),
-                                                                            r'''$.invoiceData.id''',
+                                                                            r'''$.id''',
                                                                           ).toString(),
                                                                           getJsonField(
                                                                             (columnGetSellerWiseCheckoutResponse?.jsonBody ??
@@ -2509,7 +2509,7 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                         getJsonField(
                                                                           (columnGetSellerWiseCheckoutResponse?.jsonBody ??
                                                                               ''),
-                                                                          r'''$.invoiceData.id''',
+                                                                          r'''$.id''',
                                                                         ).toString(),
                                                                         getJsonField(
                                                                           (columnGetSellerWiseCheckoutResponse?.jsonBody ??
