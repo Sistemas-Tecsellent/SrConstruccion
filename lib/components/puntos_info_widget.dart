@@ -42,8 +42,8 @@ class _PuntosInfoWidgetState extends State<PuntosInfoWidget> {
                     children: [
                       Divider(
                         thickness: 3,
-                        indent: 150,
-                        endIndent: 150,
+                        indent: 450,
+                        endIndent: 450,
                         color: Color(0xFFDBE2E7),
                       ),
                       Row(
@@ -121,6 +121,7 @@ class _PuntosInfoWidgetState extends State<PuntosInfoWidget> {
                                   EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                               child: Text(
                                 'Las transacciones del mes anterior marcarán tu nivel de usuario para el siguiente mes. Una vez conlcuido el mes, tus puntos vuelven a 0 y se inicia nuevamente el acumulamiento de puntos.',
+                                textAlign: TextAlign.center,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1
                                     .override(

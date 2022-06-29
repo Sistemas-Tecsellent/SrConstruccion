@@ -73,8 +73,8 @@ class _ProductosPedidoWidgetState extends State<ProductosPedidoWidget> {
                         children: [
                           Divider(
                             thickness: 3,
-                            indent: 150,
-                            endIndent: 150,
+                            indent: 400,
+                            endIndent: 400,
                             color: Color(0xFFDBE2E7),
                           ),
                           Row(
