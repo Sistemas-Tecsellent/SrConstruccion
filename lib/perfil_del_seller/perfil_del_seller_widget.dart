@@ -124,15 +124,7 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                 size: 25,
               ),
               onPressed: () async {
-                await Navigator.push(
-                  context,
-                  PageTransition(
-                    type: PageTransitionType.fade,
-                    duration: Duration(milliseconds: 0),
-                    reverseDuration: Duration(milliseconds: 0),
-                    child: HomeAltWidget(),
-                  ),
-                );
+                Navigator.pop(context);
               },
             ),
             actions: [
