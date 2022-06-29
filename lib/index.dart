@@ -63,9 +63,9 @@ export 'devolucion2/devolucion2_widget.dart' show Devolucion2Widget;
 export 'solicitud_devolucion_enviada/solicitud_devolucion_enviada_widget.dart'
     show SolicitudDevolucionEnviadaWidget;
 export 'mis_pedidos/mis_pedidos_widget.dart' show MisPedidosWidget;
-export 'checkout/checkout_widget.dart' show CheckoutWidget;
 export 'solicitud_devolucion_aceptada/solicitud_devolucion_aceptada_widget.dart'
     show SolicitudDevolucionAceptadaWidget;
+export 'checkout/checkout_widget.dart' show CheckoutWidget;
 export 'categoria_single/categoria_single_widget.dart'
     show CategoriaSingleWidget;
 export 'marca_single/marca_single_widget.dart' show MarcaSingleWidget;
