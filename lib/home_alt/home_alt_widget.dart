@@ -1177,6 +1177,7 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                       queryBuilder: (categoriesRecord) =>
                                           categoriesRecord.where('isTop',
                                               isEqualTo: true),
+                                      limit: 5,
                                     ),
                                     builder: (context, snapshot) {
                                       // Customize what your widget looks like when it's loading.
@@ -1252,7 +1253,7 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                           },
                                                           child: Container(
                                                             width: 150,
-                                                            height: 200,
+                                                            height: 150,
                                                             decoration:
                                                                 BoxDecoration(
                                                               color:
@@ -1360,9 +1361,9 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                         return SingleChildScrollView(
                                           scrollDirection: Axis.horizontal,
                                           child: Row(
-                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisSize: MainAxisSize.min,
                                             mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
+                                                MainAxisAlignment.center,
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,
                                             children: List.generate(
