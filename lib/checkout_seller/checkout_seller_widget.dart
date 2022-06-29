@@ -765,7 +765,7 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                           0,
                                                                           10,
                                                                           0,
-                                                                          10),
+                                                                          0),
                                                               child: Column(
                                                                 mainAxisSize:
                                                                     MainAxisSize
