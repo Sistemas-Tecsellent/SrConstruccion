@@ -8,20 +8,14 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 import 'package:cloud_functions/cloud_functions.dart';
 
-Future<dynamic> setCheckoutSession(
-  String addressName,
+Future setCheckoutModifyPaymentMet(
+  String checkoutId,
   String paymentMethod,
-  String invoiceProfile,
-  String invoiceUsage,
 ) async {
-  FirebaseFunctions functions =
-      FirebaseFunctions.instanceFor(region: 'us-central1');
-  HttpsCallable checkoutSession = functions.httpsCallable('setCheckoutSession');
-  final response = await checkoutSession.call(<String, dynamic>{
-    'address': addressName,
+  HttpsCallable setCheckoutModifyPaymentMet =
+      FirebaseFunctions.instance.httpsCallable('setCheckoutModifyPaymentMet');
+  await setCheckoutModifyPaymentMet.call(<String, dynamic>{
+    'checkoutId': checkoutId,
     'paymentMethod': paymentMethod,
-    'invoiceProfile': invoiceProfile,
-    'invoiceUsage': invoiceUsage,
   });
-  return response;
 }

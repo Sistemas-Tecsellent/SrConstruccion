@@ -1,3 +1,5 @@
+import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../components/seleccionar_facturacion_widget.dart';
 import '../flutter_flow/flutter_flow_radio_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -100,42 +102,84 @@ class _FacturacionWidgetState extends State<FacturacionWidget> {
                           ),
                         ],
                       ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                        child: FlutterFlowRadioButton(
-                          options: FFAppState()
-                              .checkoutInvoiceProfiles
-                              .map((e) => getJsonField(
-                                    e,
-                                    r'''$.name''',
-                                  ).toString())
-                              .toList()
-                              .toList(),
-                          onChanged: (value) {
-                            setState(() => radioButtonValue = value);
-                          },
-                          optionHeight: 50,
-                          textStyle:
-                              FlutterFlowTheme.of(context).bodyText1.override(
-                                    fontFamily: 'Montserrat',
-                                    color: Colors.black,
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * 0.5,
+                        decoration: BoxDecoration(),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                child:
+                                    StreamBuilder<List<InvoiceProfilesRecord>>(
+                                  stream: queryInvoiceProfilesRecord(
+                                    parent: currentUserReference,
                                   ),
-                          selectedTextStyle:
-                              FlutterFlowTheme.of(context).bodyText1.override(
-                                    fontFamily: 'Montserrat',
-                                    color: Colors.black,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                          buttonPosition: RadioButtonPosition.left,
-                          direction: Axis.vertical,
-                          radioButtonColor:
-                              FlutterFlowTheme.of(context).primaryColor,
-                          inactiveRadioButtonColor:
-                              FlutterFlowTheme.of(context).primaryColor,
-                          toggleable: false,
-                          horizontalAlignment: WrapAlignment.start,
-                          verticalAlignment: WrapCrossAlignment.start,
+                                  builder: (context, snapshot) {
+                                    // Customize what your widget looks like when it's loading.
+                                    if (!snapshot.hasData) {
+                                      return Center(
+                                        child: SizedBox(
+                                          width: 50,
+                                          height: 50,
+                                          child: SpinKitFadingCircle(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryColor,
+                                            size: 50,
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                    List<InvoiceProfilesRecord>
+                                        radioButtonInvoiceProfilesRecordList =
+                                        snapshot.data;
+                                    return FlutterFlowRadioButton(
+                                      options:
+                                          radioButtonInvoiceProfilesRecordList
+                                              .map((e) => e.name)
+                                              .toList()
+                                              .toList(),
+                                      onChanged: (value) {
+                                        setState(
+                                            () => radioButtonValue = value);
+                                      },
+                                      optionHeight: 50,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Montserrat',
+                                            color: Colors.black,
+                                          ),
+                                      selectedTextStyle:
+                                          FlutterFlowTheme.of(context)
+                                              .bodyText1
+                                              .override(
+                                                fontFamily: 'Montserrat',
+                                                color: Colors.black,
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                      buttonPosition: RadioButtonPosition.left,
+                                      direction: Axis.vertical,
+                                      radioButtonColor:
+                                          FlutterFlowTheme.of(context)
+                                              .primaryColor,
+                                      inactiveRadioButtonColor:
+                                          FlutterFlowTheme.of(context)
+                                              .primaryColor,
+                                      toggleable: false,
+                                      horizontalAlignment: WrapAlignment.start,
+                                      verticalAlignment:
+                                          WrapCrossAlignment.start,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       Padding(

@@ -75,6 +75,18 @@ class _$CheckoutsRecordSerializer
         ..add('ordersAmount')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
+    value = object.expressProducts;
+    if (value != null) {
+      result
+        ..add('expressProducts')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    value = object.normalProducts;
+    if (value != null) {
+      result
+        ..add('normalProducts')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
     value = object.reference;
     if (value != null) {
       result
@@ -130,6 +142,14 @@ class _$CheckoutsRecordSerializer
           result.ordersAmount = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
           break;
+        case 'expressProducts':
+          result.expressProducts = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
+        case 'normalProducts':
+          result.normalProducts = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
                   specifiedType: const FullType(
@@ -161,6 +181,10 @@ class _$CheckoutsRecord extends CheckoutsRecord {
   @override
   final int ordersAmount;
   @override
+  final int expressProducts;
+  @override
+  final int normalProducts;
+  @override
   final DocumentReference<Object> reference;
 
   factory _$CheckoutsRecord([void Function(CheckoutsRecordBuilder) updates]) =>
@@ -175,6 +199,8 @@ class _$CheckoutsRecord extends CheckoutsRecord {
       this.total,
       this.totalInCents,
       this.ordersAmount,
+      this.expressProducts,
+      this.normalProducts,
       this.reference})
       : super._();
 
@@ -198,6 +224,8 @@ class _$CheckoutsRecord extends CheckoutsRecord {
         total == other.total &&
         totalInCents == other.totalInCents &&
         ordersAmount == other.ordersAmount &&
+        expressProducts == other.expressProducts &&
+        normalProducts == other.normalProducts &&
         reference == other.reference;
   }
 
@@ -209,13 +237,19 @@ class _$CheckoutsRecord extends CheckoutsRecord {
                 $jc(
                     $jc(
                         $jc(
-                            $jc($jc($jc(0, id.hashCode), message.hashCode),
-                                paymentMethod.hashCode),
-                            shipmentTotal.hashCode),
-                        subtotal.hashCode),
-                    total.hashCode),
-                totalInCents.hashCode),
-            ordersAmount.hashCode),
+                            $jc(
+                                $jc(
+                                    $jc(
+                                        $jc($jc(0, id.hashCode),
+                                            message.hashCode),
+                                        paymentMethod.hashCode),
+                                    shipmentTotal.hashCode),
+                                subtotal.hashCode),
+                            total.hashCode),
+                        totalInCents.hashCode),
+                    ordersAmount.hashCode),
+                expressProducts.hashCode),
+            normalProducts.hashCode),
         reference.hashCode));
   }
 
@@ -230,6 +264,8 @@ class _$CheckoutsRecord extends CheckoutsRecord {
           ..add('total', total)
           ..add('totalInCents', totalInCents)
           ..add('ordersAmount', ordersAmount)
+          ..add('expressProducts', expressProducts)
+          ..add('normalProducts', normalProducts)
           ..add('reference', reference))
         .toString();
   }
@@ -273,6 +309,16 @@ class CheckoutsRecordBuilder
   int get ordersAmount => _$this._ordersAmount;
   set ordersAmount(int ordersAmount) => _$this._ordersAmount = ordersAmount;
 
+  int _expressProducts;
+  int get expressProducts => _$this._expressProducts;
+  set expressProducts(int expressProducts) =>
+      _$this._expressProducts = expressProducts;
+
+  int _normalProducts;
+  int get normalProducts => _$this._normalProducts;
+  set normalProducts(int normalProducts) =>
+      _$this._normalProducts = normalProducts;
+
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
   set reference(DocumentReference<Object> reference) =>
@@ -293,6 +339,8 @@ class CheckoutsRecordBuilder
       _total = $v.total;
       _totalInCents = $v.totalInCents;
       _ordersAmount = $v.ordersAmount;
+      _expressProducts = $v.expressProducts;
+      _normalProducts = $v.normalProducts;
       _reference = $v.reference;
       _$v = null;
     }
@@ -322,6 +370,8 @@ class CheckoutsRecordBuilder
             total: total,
             totalInCents: totalInCents,
             ordersAmount: ordersAmount,
+            expressProducts: expressProducts,
+            normalProducts: normalProducts,
             reference: reference);
     replace(_$result);
     return _$result;
