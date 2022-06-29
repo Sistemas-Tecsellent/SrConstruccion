@@ -1949,8 +1949,6 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                           widget
                                                                               .storeId,
                                                                         );
-                                                                        Navigator.pop(
-                                                                            context);
                                                                       },
                                                                       child:
                                                                           Text(
@@ -2484,8 +2482,6 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                         widget
                                                                             .storeId,
                                                                       );
-                                                                      Navigator.pop(
-                                                                          context);
                                                                     },
                                                                     child: Text(
                                                                       'Eliminar',
@@ -3495,8 +3491,6 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                         widget
                                                                             .storeId,
                                                                       );
-                                                                      Navigator.pop(
-                                                                          context);
                                                                     },
                                                                     child: Text(
                                                                       'Eliminar',
