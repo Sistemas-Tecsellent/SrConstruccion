@@ -30,6 +30,9 @@ class _FacturacionWidgetState extends State<FacturacionWidget> {
       alignment: AlignmentDirectional(0, 1),
       child: Container(
         width: MediaQuery.of(context).size.width,
+        constraints: BoxConstraints(
+          maxWidth: 500,
+        ),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
@@ -48,14 +51,14 @@ class _FacturacionWidgetState extends State<FacturacionWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(20, 8, 20, 0),
                   child: Column(
-                    mainAxisSize: MainAxisSize.max,
+                    mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Divider(
                         thickness: 3,
-                        indent: 150,
-                        endIndent: 150,
+                        indent: 450,
+                        endIndent: 450,
                         color: Color(0xFFDBE2E7),
                       ),
                       Row(
@@ -105,82 +108,76 @@ class _FacturacionWidgetState extends State<FacturacionWidget> {
                       ),
                       Container(
                         width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height * 0.5,
                         decoration: BoxDecoration(),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                child:
-                                    StreamBuilder<List<InvoiceProfilesRecord>>(
-                                  stream: queryInvoiceProfilesRecord(
-                                    parent: currentUserReference,
-                                  ),
-                                  builder: (context, snapshot) {
-                                    // Customize what your widget looks like when it's loading.
-                                    if (!snapshot.hasData) {
-                                      return Center(
-                                        child: SizedBox(
-                                          width: 50,
-                                          height: 50,
-                                          child: SpinKitFadingCircle(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryColor,
-                                            size: 50,
-                                          ),
-                                        ),
-                                      );
-                                    }
-                                    List<InvoiceProfilesRecord>
-                                        radioButtonInvoiceProfilesRecordList =
-                                        snapshot.data;
-                                    return FlutterFlowRadioButton(
-                                      options:
-                                          radioButtonInvoiceProfilesRecordList
-                                              .map((e) => e.name)
-                                              .toList()
-                                              .toList(),
-                                      onChanged: (value) {
-                                        setState(
-                                            () => radioButtonValue = value);
-                                      },
-                                      optionHeight: 50,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .bodyText1
-                                          .override(
-                                            fontFamily: 'Montserrat',
-                                            color: Colors.black,
-                                          ),
-                                      selectedTextStyle:
-                                          FlutterFlowTheme.of(context)
-                                              .bodyText1
-                                              .override(
-                                                fontFamily: 'Montserrat',
-                                                color: Colors.black,
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                      buttonPosition: RadioButtonPosition.left,
-                                      direction: Axis.vertical,
-                                      radioButtonColor:
-                                          FlutterFlowTheme.of(context)
-                                              .primaryColor,
-                                      inactiveRadioButtonColor:
-                                          FlutterFlowTheme.of(context)
-                                              .primaryColor,
-                                      toggleable: false,
-                                      horizontalAlignment: WrapAlignment.start,
-                                      verticalAlignment:
-                                          WrapCrossAlignment.start,
-                                    );
-                                  },
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                              child: StreamBuilder<List<InvoiceProfilesRecord>>(
+                                stream: queryInvoiceProfilesRecord(
+                                  parent: currentUserReference,
                                 ),
+                                builder: (context, snapshot) {
+                                  // Customize what your widget looks like when it's loading.
+                                  if (!snapshot.hasData) {
+                                    return Center(
+                                      child: SizedBox(
+                                        width: 50,
+                                        height: 50,
+                                        child: SpinKitFadingCircle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryColor,
+                                          size: 50,
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  List<InvoiceProfilesRecord>
+                                      radioButtonInvoiceProfilesRecordList =
+                                      snapshot.data;
+                                  return FlutterFlowRadioButton(
+                                    options:
+                                        radioButtonInvoiceProfilesRecordList
+                                            .map((e) => e.name)
+                                            .toList()
+                                            .toList(),
+                                    onChanged: (value) {
+                                      setState(() => radioButtonValue = value);
+                                    },
+                                    optionHeight: 50,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Montserrat',
+                                          color: Colors.black,
+                                        ),
+                                    selectedTextStyle:
+                                        FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Montserrat',
+                                              color: Colors.black,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                    buttonPosition: RadioButtonPosition.left,
+                                    direction: Axis.vertical,
+                                    radioButtonColor:
+                                        FlutterFlowTheme.of(context)
+                                            .primaryColor,
+                                    inactiveRadioButtonColor:
+                                        FlutterFlowTheme.of(context)
+                                            .primaryColor,
+                                    toggleable: false,
+                                    horizontalAlignment: WrapAlignment.start,
+                                    verticalAlignment: WrapCrossAlignment.start,
+                                  );
+                                },
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                       Padding(
