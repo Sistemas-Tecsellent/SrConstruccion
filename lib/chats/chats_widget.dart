@@ -1,6 +1,5 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../chat/chat_widget.dart';
 import '../flutter_flow/chat/index.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -37,7 +36,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            context.pop();
           },
         ),
         title: Text(
@@ -91,19 +90,23 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                       final chatInfo =
                           snapshot.data ?? FFChatInfo(listViewChatsRecord);
                       return FFChatPreview(
-                        onTap: () => Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.fade,
-                            duration: Duration(milliseconds: 0),
-                            reverseDuration: Duration(milliseconds: 0),
-                            child: ChatWidget(
-                              chatUser: chatInfo.otherUsers.length == 1
-                                  ? chatInfo.otherUsersList.first
-                                  : null,
-                              chatRef: chatInfo.chatRecord.reference,
-                            ),
-                          ),
+                        onTap: () => context.pushNamed(
+                          'chat',
+                          queryParams: {
+                            'chatUser': serializeParam(
+                                chatInfo.otherUsers.length == 1
+                                    ? chatInfo.otherUsersList.first
+                                    : null,
+                                ParamType.Document),
+                            'chatRef': serializeParam(
+                                chatInfo.chatRecord.reference,
+                                ParamType.DocumentReference),
+                          }.withoutNulls,
+                          extra: <String, dynamic>{
+                            'chatUser': chatInfo.otherUsers.length == 1
+                                ? chatInfo.otherUsersList.first
+                                : null,
+                          },
                         ),
                         lastChatText: chatInfo.chatPreviewMessage(),
                         lastChatTime: listViewChatsRecord.lastMessageTime,

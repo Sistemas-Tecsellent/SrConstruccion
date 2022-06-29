@@ -5,7 +5,6 @@ import '../components/envio_gratis_widget.dart';
 import '../components/seller_product_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../perfil_del_seller/perfil_del_seller_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -222,20 +221,13 @@ class _SellerFeedWidgetState extends State<SellerFeedWidget> {
                                                       : null;
                                               return InkWell(
                                                 onTap: () async {
-                                                  await Navigator.push(
-                                                    context,
-                                                    PageTransition(
-                                                      type: PageTransitionType
-                                                          .fade,
-                                                      duration: Duration(
-                                                          milliseconds: 0),
-                                                      reverseDuration: Duration(
-                                                          milliseconds: 0),
-                                                      child:
-                                                          PerfilDelSellerWidget(
-                                                        storeId: widget.storeId,
-                                                      ),
-                                                    ),
+                                                  context.pushNamed(
+                                                    'PerfilDelSeller',
+                                                    queryParams: {
+                                                      'storeId': serializeParam(
+                                                          widget.storeId,
+                                                          ParamType.String),
+                                                    }.withoutNulls,
                                                   );
                                                 },
                                                 child: Text(

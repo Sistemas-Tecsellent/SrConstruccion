@@ -1,11 +1,9 @@
 import '../backend/backend.dart';
 import '../components/anadir_facturacion_widget.dart';
 import '../components/facturacion1_widget.dart';
-import '../facturacion_perfil/facturacion_perfil_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../search/search_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -39,15 +37,7 @@ class _BuscarPorRFCWidgetState extends State<BuscarPorRFCWidget> {
             size: 30,
           ),
           onPressed: () async {
-            await Navigator.push(
-              context,
-              PageTransition(
-                type: PageTransitionType.fade,
-                duration: Duration(milliseconds: 0),
-                reverseDuration: Duration(milliseconds: 0),
-                child: FacturacionPerfilWidget(),
-              ),
-            );
+            context.pushNamed('FacturacionPerfil');
           },
         ),
         actions: [],
@@ -66,15 +56,7 @@ class _BuscarPorRFCWidgetState extends State<BuscarPorRFCWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(15, 10, 15, 20),
                   child: InkWell(
                     onTap: () async {
-                      await Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.fade,
-                          duration: Duration(milliseconds: 0),
-                          reverseDuration: Duration(milliseconds: 0),
-                          child: SearchWidget(),
-                        ),
-                      );
+                      context.pushNamed('search');
                     },
                     child: Row(
                       mainAxisSize: MainAxisSize.max,

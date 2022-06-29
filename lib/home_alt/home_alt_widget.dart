@@ -1,31 +1,17 @@
-import '../anadir_direccion/anadir_direccion_widget.dart';
 import '../auth/auth_util.dart';
 import '../auth/firebase_user_provider.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
-import '../carrito/carrito_widget.dart';
-import '../categoria_single/categoria_single_widget.dart';
 import '../components/drawer_widget.dart';
 import '../components/envio_gratis_widget.dart';
 import '../components/favs_tabs_widget.dart';
 import '../components/product_feed_home_widget.dart';
 import '../components/sellers_home_widget.dart';
-import '../facturacion_perfil/facturacion_perfil_widget.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../listado_marcas/listado_marcas_widget.dart';
-import '../marca_single/marca_single_widget.dart';
-import '../mis_pedidos/mis_pedidos_widget.dart';
-import '../notificaciones/notificaciones_widget.dart';
-import '../pedido_programado/pedido_programado_widget.dart';
-import '../perfil/perfil_widget.dart';
-import '../product_listing_sr_construccion/product_listing_sr_construccion_widget.dart';
-import '../product_page/product_page_widget.dart';
-import '../search/search_widget.dart';
-import '../vendedores_en_mapa/vendedores_en_mapa_widget.dart';
 import '../custom_code/actions/index.dart' as actions;
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -179,14 +165,15 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                           size: 30,
                         ),
                         onPressed: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                              reverseDuration: Duration(milliseconds: 0),
-                              child: PerfilWidget(),
-                            ),
+                          context.pushNamed(
+                            'Perfil',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.fade,
+                                duration: Duration(milliseconds: 0),
+                              ),
+                            },
                           );
                         },
                       ),
@@ -206,14 +193,15 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                           size: 30,
                         ),
                         onPressed: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                              reverseDuration: Duration(milliseconds: 0),
-                              child: HomeAltWidget(),
-                            ),
+                          context.pushNamed(
+                            'HomeAlt',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.fade,
+                                duration: Duration(milliseconds: 0),
+                              ),
+                            },
                           );
                         },
                       ),
@@ -235,14 +223,15 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                               size: 30,
                             ),
                             onPressed: () async {
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: NotificacionesWidget(),
-                                ),
+                              context.pushNamed(
+                                'Notificaciones',
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.fade,
+                                    duration: Duration(milliseconds: 0),
+                                  ),
+                                },
                               );
                             },
                           ).animated([
@@ -296,15 +285,16 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                     size: 30,
                                   ),
                                   onPressed: () async {
-                                    await Navigator.push(
-                                      context,
-                                      PageTransition(
-                                        type: PageTransitionType.fade,
-                                        duration: Duration(milliseconds: 0),
-                                        reverseDuration:
-                                            Duration(milliseconds: 0),
-                                        child: NotificacionesWidget(),
-                                      ),
+                                    context.pushNamed(
+                                      'Notificaciones',
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 0),
+                                        ),
+                                      },
                                     );
                                   },
                                 ).animated([
@@ -508,18 +498,7 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                 snapshot.data;
                                             return FFButtonWidget(
                                               onPressed: () async {
-                                                await Navigator.push(
-                                                  context,
-                                                  PageTransition(
-                                                    type:
-                                                        PageTransitionType.fade,
-                                                    duration: Duration(
-                                                        milliseconds: 0),
-                                                    reverseDuration: Duration(
-                                                        milliseconds: 0),
-                                                    child: CarritoWidget(),
-                                                  ),
-                                                );
+                                                context.pushNamed('Carrito');
                                               },
                                               text: GetCartAmountCall.amount(
                                                 (buttonGetCartAmountResponse
@@ -674,16 +653,7 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                     15, 0, 15, 0),
                                 child: InkWell(
                                   onTap: () async {
-                                    await Navigator.push(
-                                      context,
-                                      PageTransition(
-                                        type: PageTransitionType.fade,
-                                        duration: Duration(milliseconds: 0),
-                                        reverseDuration:
-                                            Duration(milliseconds: 0),
-                                        child: SearchWidget(),
-                                      ),
-                                    );
+                                    context.pushNamed('search');
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -816,23 +786,8 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                       1)
                                                     InkWell(
                                                       onTap: () async {
-                                                        await Navigator.push(
-                                                          context,
-                                                          PageTransition(
-                                                            type:
-                                                                PageTransitionType
-                                                                    .fade,
-                                                            duration: Duration(
-                                                                milliseconds:
-                                                                    0),
-                                                            reverseDuration:
-                                                                Duration(
-                                                                    milliseconds:
-                                                                        0),
-                                                            child:
-                                                                AnadirDireccionWidget(),
-                                                          ),
-                                                        );
+                                                        context.pushNamed(
+                                                            'AnadirDireccion');
                                                       },
                                                       child: Row(
                                                         mainAxisSize:
@@ -907,21 +862,8 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                         1,
                                                 child: InkWell(
                                                   onTap: () async {
-                                                    await Navigator.push(
-                                                      context,
-                                                      PageTransition(
-                                                        type: PageTransitionType
-                                                            .fade,
-                                                        duration: Duration(
-                                                            milliseconds: 0),
-                                                        reverseDuration:
-                                                            Duration(
-                                                                milliseconds:
-                                                                    0),
-                                                        child:
-                                                            FacturacionPerfilWidget(),
-                                                      ),
-                                                    );
+                                                    context.pushNamed(
+                                                        'FacturacionPerfil');
                                                   },
                                                   child: Row(
                                                     mainAxisSize:
@@ -1006,22 +948,8 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                               child: InkWell(
                                                                 onTap:
                                                                     () async {
-                                                                  await Navigator
-                                                                      .push(
-                                                                    context,
-                                                                    PageTransition(
-                                                                      type: PageTransitionType
-                                                                          .fade,
-                                                                      duration: Duration(
-                                                                          milliseconds:
-                                                                              0),
-                                                                      reverseDuration:
-                                                                          Duration(
-                                                                              milliseconds: 0),
-                                                                      child:
-                                                                          MisPedidosWidget(),
-                                                                    ),
-                                                                  );
+                                                                  context.pushNamed(
+                                                                      'MisPedidos');
                                                                 },
                                                                 child:
                                                                     Container(
@@ -1067,21 +995,14 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                                             await actions.getBundleCheckout(
                                                                           liveOrdersItem,
                                                                         );
-                                                                        await Navigator
-                                                                            .push(
-                                                                          context,
-                                                                          PageTransition(
-                                                                            type:
-                                                                                PageTransitionType.fade,
-                                                                            duration:
-                                                                                Duration(milliseconds: 0),
-                                                                            reverseDuration:
-                                                                                Duration(milliseconds: 0),
-                                                                            child:
-                                                                                PedidoProgramadoWidget(
-                                                                              bundleId: liveOrdersItem,
-                                                                            ),
-                                                                          ),
+                                                                        context
+                                                                            .pushNamed(
+                                                                          'PedidoProgramado',
+                                                                          queryParams:
+                                                                              {
+                                                                            'bundleId':
+                                                                                serializeParam(liveOrdersItem, ParamType.String),
+                                                                          }.withoutNulls,
                                                                         );
 
                                                                         setState(
@@ -1271,24 +1192,16 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                               child: InkWell(
                                                                 onTap:
                                                                     () async {
-                                                                  await Navigator
-                                                                      .push(
-                                                                    context,
-                                                                    PageTransition(
-                                                                      type: PageTransitionType
-                                                                          .fade,
-                                                                      duration: Duration(
-                                                                          milliseconds:
-                                                                              0),
-                                                                      reverseDuration:
-                                                                          Duration(
-                                                                              milliseconds: 0),
-                                                                      child:
-                                                                          CategoriaSingleWidget(
-                                                                        categoryId:
-                                                                            'materialesDeConstruccion',
-                                                                      ),
-                                                                    ),
+                                                                  context
+                                                                      .pushNamed(
+                                                                    'CategoriaSingle',
+                                                                    queryParams:
+                                                                        {
+                                                                      'categoryId': serializeParam(
+                                                                          'materialesDeConstruccion',
+                                                                          ParamType
+                                                                              .String),
+                                                                    }.withoutNulls,
                                                                   );
                                                                 },
                                                                 child:
@@ -1430,27 +1343,15 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                         children: [
                                                           InkWell(
                                                             onTap: () async {
-                                                              await Navigator
-                                                                  .push(
-                                                                context,
-                                                                PageTransition(
-                                                                  type:
-                                                                      PageTransitionType
-                                                                          .fade,
-                                                                  duration: Duration(
-                                                                      milliseconds:
-                                                                          0),
-                                                                  reverseDuration:
-                                                                      Duration(
-                                                                          milliseconds:
-                                                                              0),
-                                                                  child:
-                                                                      CategoriaSingleWidget(
-                                                                    categoryId:
-                                                                        rowCategoriesRecord
-                                                                            .id,
-                                                                  ),
-                                                                ),
+                                                              context.pushNamed(
+                                                                'CategoriaSingle',
+                                                                queryParams: {
+                                                                  'categoryId': serializeParam(
+                                                                      rowCategoriesRecord
+                                                                          .id,
+                                                                      ParamType
+                                                                          .String),
+                                                                }.withoutNulls,
                                                               );
                                                             },
                                                             child: Container(
@@ -1885,24 +1786,17 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                                         (stackGetOneVariantResponse?.jsonBody ??
                                                                             ''),
                                                                       ).toString());
-                                                                  await Navigator
-                                                                      .push(
-                                                                    context,
-                                                                    PageTransition(
-                                                                      type: PageTransitionType
-                                                                          .fade,
-                                                                      duration: Duration(
-                                                                          milliseconds:
-                                                                              0),
-                                                                      reverseDuration:
-                                                                          Duration(
-                                                                              milliseconds: 0),
-                                                                      child:
-                                                                          ProductPageWidget(
-                                                                        productId:
-                                                                            rowProductsRecord.id,
-                                                                      ),
-                                                                    ),
+                                                                  context
+                                                                      .pushNamed(
+                                                                    'ProductPage',
+                                                                    queryParams:
+                                                                        {
+                                                                      'productId': serializeParam(
+                                                                          rowProductsRecord
+                                                                              .id,
+                                                                          ParamType
+                                                                              .String),
+                                                                    }.withoutNulls,
                                                                   );
                                                                   await actions
                                                                       .productViewed(
@@ -2060,19 +1954,8 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                     10, 0, 20, 0),
                                             child: InkWell(
                                               onTap: () async {
-                                                await Navigator.push(
-                                                  context,
-                                                  PageTransition(
-                                                    type:
-                                                        PageTransitionType.fade,
-                                                    duration: Duration(
-                                                        milliseconds: 0),
-                                                    reverseDuration: Duration(
-                                                        milliseconds: 0),
-                                                    child:
-                                                        ListadoMarcasWidget(),
-                                                  ),
-                                                );
+                                                context
+                                                    .pushNamed('ListadoMarcas');
                                               },
                                               child: Text(
                                                 'Ver más',
@@ -2137,24 +2020,16 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                     .fromSTEB(0, 0, 10, 0),
                                                 child: InkWell(
                                                   onTap: () async {
-                                                    await Navigator.push(
-                                                      context,
-                                                      PageTransition(
-                                                        type: PageTransitionType
-                                                            .fade,
-                                                        duration: Duration(
-                                                            milliseconds: 0),
-                                                        reverseDuration:
-                                                            Duration(
-                                                                milliseconds:
-                                                                    0),
-                                                        child:
-                                                            MarcaSingleWidget(
-                                                          brandId:
-                                                              rowBrandsRecord
-                                                                  .id,
-                                                        ),
-                                                      ),
+                                                    context.pushNamed(
+                                                      'MarcaSingle',
+                                                      queryParams: {
+                                                        'brandId':
+                                                            serializeParam(
+                                                                rowBrandsRecord
+                                                                    .id,
+                                                                ParamType
+                                                                    .String),
+                                                      }.withoutNulls,
                                                     );
                                                   },
                                                   child: Container(
@@ -2256,19 +2131,8 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                     10, 0, 20, 0),
                                             child: InkWell(
                                               onTap: () async {
-                                                await Navigator.push(
-                                                  context,
-                                                  PageTransition(
-                                                    type:
-                                                        PageTransitionType.fade,
-                                                    duration: Duration(
-                                                        milliseconds: 0),
-                                                    reverseDuration: Duration(
-                                                        milliseconds: 0),
-                                                    child:
-                                                        VendedoresEnMapaWidget(),
-                                                  ),
-                                                );
+                                                context.pushNamed(
+                                                    'VendedoresEnMapa');
                                               },
                                               child: Text(
                                                 'Ver más',
@@ -2382,18 +2246,19 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                     10, 0, 20, 0),
                                             child: InkWell(
                                               onTap: () async {
-                                                await Navigator.push(
-                                                  context,
-                                                  PageTransition(
-                                                    type:
-                                                        PageTransitionType.fade,
-                                                    duration: Duration(
-                                                        milliseconds: 0),
-                                                    reverseDuration: Duration(
-                                                        milliseconds: 0),
-                                                    child:
-                                                        ProductListingSrConstruccionWidget(),
-                                                  ),
+                                                context.pushNamed(
+                                                  'ProductListingSrConstruccion',
+                                                  extra: <String, dynamic>{
+                                                    kTransitionInfoKey:
+                                                        TransitionInfo(
+                                                      hasTransition: true,
+                                                      transitionType:
+                                                          PageTransitionType
+                                                              .fade,
+                                                      duration: Duration(
+                                                          milliseconds: 0),
+                                                    ),
+                                                  },
                                                 );
                                               },
                                               child: Text(
@@ -2717,18 +2582,13 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                       ?.jsonBody ??
                                                   ''),
                                             ).toString());
-                                        await Navigator.push(
-                                          context,
-                                          PageTransition(
-                                            type: PageTransitionType.fade,
-                                            duration: Duration(milliseconds: 0),
-                                            reverseDuration:
-                                                Duration(milliseconds: 0),
-                                            child: ProductPageWidget(
-                                              productId:
-                                                  gridViewProductsRecord.id,
-                                            ),
-                                          ),
+                                        context.pushNamed(
+                                          'ProductPage',
+                                          queryParams: {
+                                            'productId': serializeParam(
+                                                gridViewProductsRecord.id,
+                                                ParamType.String),
+                                          }.withoutNulls,
                                         );
                                         if (loggedIn) {
                                           await actions.productViewed(

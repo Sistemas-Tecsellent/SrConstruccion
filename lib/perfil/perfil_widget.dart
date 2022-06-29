@@ -1,19 +1,9 @@
-import '../ajustes/ajustes_widget.dart';
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/wish_list_options_widget.dart';
-import '../direcciones/direcciones_widget.dart';
-import '../facturacion_perfil/facturacion_perfil_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../home_alt/home_alt_widget.dart';
-import '../mi_cuenta/mi_cuenta_widget.dart';
-import '../mis_cotizaciones/mis_cotizaciones_widget.dart';
-import '../mis_pedidos/mis_pedidos_widget.dart';
-import '../mis_servicios/mis_servicios_widget.dart';
-import '../notificaciones/notificaciones_widget.dart';
-import '../perfil_puntos/perfil_puntos_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -72,15 +62,7 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                 size: 30,
               ),
               onPressed: () async {
-                await Navigator.push(
-                  context,
-                  PageTransition(
-                    type: PageTransitionType.fade,
-                    duration: Duration(milliseconds: 0),
-                    reverseDuration: Duration(milliseconds: 0),
-                    child: HomeAltWidget(),
-                  ),
-                );
+                context.pushNamed('HomeAlt');
               },
             ),
             actions: [],
@@ -132,14 +114,15 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                               size: 30,
                             ),
                             onPressed: () async {
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: PerfilWidget(),
-                                ),
+                              context.pushNamed(
+                                'Perfil',
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.fade,
+                                    duration: Duration(milliseconds: 0),
+                                  ),
+                                },
                               );
                             },
                           ),
@@ -160,14 +143,15 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                               size: 30,
                             ),
                             onPressed: () async {
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: HomeAltWidget(),
-                                ),
+                              context.pushNamed(
+                                'HomeAlt',
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.fade,
+                                    duration: Duration(milliseconds: 0),
+                                  ),
+                                },
                               );
                             },
                           ),
@@ -185,14 +169,15 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                               size: 30,
                             ),
                             onPressed: () async {
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: NotificacionesWidget(),
-                                ),
+                              context.pushNamed(
+                                'Notificaciones',
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.fade,
+                                    duration: Duration(milliseconds: 0),
+                                  ),
+                                },
                               );
                             },
                           ),
@@ -320,24 +305,8 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                                       10, 0, 0),
                                                           child: InkWell(
                                                             onTap: () async {
-                                                              await Navigator
-                                                                  .push(
-                                                                context,
-                                                                PageTransition(
-                                                                  type:
-                                                                      PageTransitionType
-                                                                          .fade,
-                                                                  duration: Duration(
-                                                                      milliseconds:
-                                                                          0),
-                                                                  reverseDuration:
-                                                                      Duration(
-                                                                          milliseconds:
-                                                                              0),
-                                                                  child:
-                                                                      MiCuentaWidget(),
-                                                                ),
-                                                              );
+                                                              context.pushNamed(
+                                                                  'miCuenta');
                                                             },
                                                             child: Row(
                                                               mainAxisSize:
@@ -378,24 +347,8 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                                       10, 0, 0),
                                                           child: InkWell(
                                                             onTap: () async {
-                                                              await Navigator
-                                                                  .push(
-                                                                context,
-                                                                PageTransition(
-                                                                  type:
-                                                                      PageTransitionType
-                                                                          .fade,
-                                                                  duration: Duration(
-                                                                      milliseconds:
-                                                                          0),
-                                                                  reverseDuration:
-                                                                      Duration(
-                                                                          milliseconds:
-                                                                              0),
-                                                                  child:
-                                                                      PerfilPuntosWidget(),
-                                                                ),
-                                                              );
+                                                              context.pushNamed(
+                                                                  'PerfilPuntos');
                                                             },
                                                             child: Row(
                                                               mainAxisSize:
@@ -487,23 +440,8 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                                   0, 100, 0, 0),
                                                       child: InkWell(
                                                         onTap: () async {
-                                                          await Navigator.push(
-                                                            context,
-                                                            PageTransition(
-                                                              type:
-                                                                  PageTransitionType
-                                                                      .fade,
-                                                              duration: Duration(
-                                                                  milliseconds:
-                                                                      0),
-                                                              reverseDuration:
-                                                                  Duration(
-                                                                      milliseconds:
-                                                                          0),
-                                                              child:
-                                                                  FacturacionPerfilWidget(),
-                                                            ),
-                                                          );
+                                                          context.pushNamed(
+                                                              'FacturacionPerfil');
                                                         },
                                                         child: ListTile(
                                                           leading: FaIcon(
@@ -548,23 +486,8 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                     ),
                                                     InkWell(
                                                       onTap: () async {
-                                                        await Navigator.push(
-                                                          context,
-                                                          PageTransition(
-                                                            type:
-                                                                PageTransitionType
-                                                                    .fade,
-                                                            duration: Duration(
-                                                                milliseconds:
-                                                                    0),
-                                                            reverseDuration:
-                                                                Duration(
-                                                                    milliseconds:
-                                                                        0),
-                                                            child:
-                                                                DireccionesWidget(),
-                                                          ),
-                                                        );
+                                                        context.pushNamed(
+                                                            'Direcciones');
                                                       },
                                                       child: ListTile(
                                                         leading: Icon(
@@ -604,23 +527,8 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                     ),
                                                     InkWell(
                                                       onTap: () async {
-                                                        await Navigator.push(
-                                                          context,
-                                                          PageTransition(
-                                                            type:
-                                                                PageTransitionType
-                                                                    .fade,
-                                                            duration: Duration(
-                                                                milliseconds:
-                                                                    0),
-                                                            reverseDuration:
-                                                                Duration(
-                                                                    milliseconds:
-                                                                        0),
-                                                            child:
-                                                                AjustesWidget(),
-                                                          ),
-                                                        );
+                                                        context.pushNamed(
+                                                            'Ajustes');
                                                       },
                                                       child: ListTile(
                                                         leading: Icon(
@@ -813,20 +721,8 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                                     ),
                                                                     onPressed:
                                                                         () async {
-                                                                      await Navigator
-                                                                          .push(
-                                                                        context,
-                                                                        PageTransition(
-                                                                          type:
-                                                                              PageTransitionType.fade,
-                                                                          duration:
-                                                                              Duration(milliseconds: 0),
-                                                                          reverseDuration:
-                                                                              Duration(milliseconds: 0),
-                                                                          child:
-                                                                              MisPedidosWidget(),
-                                                                        ),
-                                                                      );
+                                                                      context.pushNamed(
+                                                                          'MisPedidos');
                                                                     },
                                                                   ),
                                                                   Text(
@@ -871,20 +767,8 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                                     ),
                                                                     onPressed:
                                                                         () async {
-                                                                      await Navigator
-                                                                          .push(
-                                                                        context,
-                                                                        PageTransition(
-                                                                          type:
-                                                                              PageTransitionType.fade,
-                                                                          duration:
-                                                                              Duration(milliseconds: 0),
-                                                                          reverseDuration:
-                                                                              Duration(milliseconds: 0),
-                                                                          child:
-                                                                              MisCotizacionesWidget(),
-                                                                        ),
-                                                                      );
+                                                                      context.pushNamed(
+                                                                          'MisCotizaciones');
                                                                     },
                                                                   ),
                                                                   Text(
@@ -929,20 +813,8 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                                     ),
                                                                     onPressed:
                                                                         () async {
-                                                                      await Navigator
-                                                                          .push(
-                                                                        context,
-                                                                        PageTransition(
-                                                                          type:
-                                                                              PageTransitionType.fade,
-                                                                          duration:
-                                                                              Duration(milliseconds: 0),
-                                                                          reverseDuration:
-                                                                              Duration(milliseconds: 0),
-                                                                          child:
-                                                                              MisServiciosWidget(),
-                                                                        ),
-                                                                      );
+                                                                      context.pushNamed(
+                                                                          'MisServicios');
                                                                     },
                                                                   ),
                                                                   Text(

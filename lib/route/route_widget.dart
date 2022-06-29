@@ -4,7 +4,6 @@ import '../flutter_flow/flutter_flow_google_map.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../home_alt/home_alt_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -65,15 +64,7 @@ class _RouteWidgetState extends State<RouteWidget> {
             size: 30,
           ),
           onPressed: () async {
-            await Navigator.push(
-              context,
-              PageTransition(
-                type: PageTransitionType.fade,
-                duration: Duration(milliseconds: 0),
-                reverseDuration: Duration(milliseconds: 0),
-                child: HomeAltWidget(),
-              ),
-            );
+            context.pushNamed('HomeAlt');
           },
         ),
         title: Text(

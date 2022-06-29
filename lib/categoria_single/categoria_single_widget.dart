@@ -5,15 +5,6 @@ import '../components/toggle_like_product_white_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../home_alt/home_alt_widget.dart';
-import '../listado_marcas/listado_marcas_widget.dart';
-import '../marca_single/marca_single_widget.dart';
-import '../notificaciones/notificaciones_widget.dart';
-import '../perfil/perfil_widget.dart';
-import '../product_listing_sr_construccion/product_listing_sr_construccion_widget.dart';
-import '../product_page/product_page_widget.dart';
-import '../search/search_widget.dart';
-import '../subcategoria_single/subcategoria_single_widget.dart';
 import '../custom_code/actions/index.dart' as actions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -55,15 +46,7 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
             size: 30,
           ),
           onPressed: () async {
-            await Navigator.push(
-              context,
-              PageTransition(
-                type: PageTransitionType.fade,
-                duration: Duration(milliseconds: 0),
-                reverseDuration: Duration(milliseconds: 0),
-                child: HomeAltWidget(),
-              ),
-            );
+            context.pushNamed('HomeAlt');
           },
         ),
         title: FutureBuilder<List<CategoriesRecord>>(
@@ -112,15 +95,7 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
               size: 15,
             ),
             onPressed: () async {
-              await Navigator.push(
-                context,
-                PageTransition(
-                  type: PageTransitionType.fade,
-                  duration: Duration(milliseconds: 0),
-                  reverseDuration: Duration(milliseconds: 0),
-                  child: SearchWidget(),
-                ),
-              );
+              context.pushNamed('search');
             },
           ),
         ],
@@ -172,14 +147,15 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                           size: 30,
                         ),
                         onPressed: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                              reverseDuration: Duration(milliseconds: 0),
-                              child: PerfilWidget(),
-                            ),
+                          context.pushNamed(
+                            'Perfil',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.fade,
+                                duration: Duration(milliseconds: 0),
+                              ),
+                            },
                           );
                         },
                       ),
@@ -199,14 +175,15 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                           size: 30,
                         ),
                         onPressed: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                              reverseDuration: Duration(milliseconds: 0),
-                              child: HomeAltWidget(),
-                            ),
+                          context.pushNamed(
+                            'HomeAlt',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.fade,
+                                duration: Duration(milliseconds: 0),
+                              ),
+                            },
                           );
                         },
                       ),
@@ -224,14 +201,15 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                           size: 30,
                         ),
                         onPressed: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                              reverseDuration: Duration(milliseconds: 0),
-                              child: NotificacionesWidget(),
-                            ),
+                          context.pushNamed(
+                            'Notificaciones',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.fade,
+                                duration: Duration(milliseconds: 0),
+                              ),
+                            },
                           );
                         },
                       ),
@@ -373,22 +351,16 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                                     children: [
                                       InkWell(
                                         onTap: () async {
-                                          await Navigator.push(
-                                            context,
-                                            PageTransition(
-                                              type: PageTransitionType.fade,
-                                              duration:
-                                                  Duration(milliseconds: 0),
-                                              reverseDuration:
-                                                  Duration(milliseconds: 0),
-                                              child: SubcategoriaSingleWidget(
-                                                categoryId:
-                                                    containerCategoriesRecord
-                                                        .id,
-                                                subcategoryId:
-                                                    rowSubcategoriesRecord.id,
-                                              ),
-                                            ),
+                                          context.pushNamed(
+                                            'subcategoriaSingle',
+                                            queryParams: {
+                                              'categoryId': serializeParam(
+                                                  containerCategoriesRecord.id,
+                                                  ParamType.String),
+                                              'subcategoryId': serializeParam(
+                                                  rowSubcategoriesRecord.id,
+                                                  ParamType.String),
+                                            }.withoutNulls,
                                           );
                                         },
                                         child: Container(
@@ -500,15 +472,7 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
                       child: InkWell(
                         onTap: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                              reverseDuration: Duration(milliseconds: 0),
-                              child: ProductListingSrConstruccionWidget(),
-                            ),
-                          );
+                          context.pushNamed('ProductListingSrConstruccion');
                         },
                         child: Text(
                           'Ver más',
@@ -650,21 +614,15 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                                                   };
                                                   await currentUserReference
                                                       .update(usersUpdateData);
-                                                  await Navigator.push(
-                                                    context,
-                                                    PageTransition(
-                                                      type: PageTransitionType
-                                                          .fade,
-                                                      duration: Duration(
-                                                          milliseconds: 0),
-                                                      reverseDuration: Duration(
-                                                          milliseconds: 0),
-                                                      child: ProductPageWidget(
-                                                        productId:
-                                                            rowProductsRecord
-                                                                .id,
-                                                      ),
-                                                    ),
+                                                  context.pushNamed(
+                                                    'ProductPage',
+                                                    queryParams: {
+                                                      'productId':
+                                                          serializeParam(
+                                                              rowProductsRecord
+                                                                  .id,
+                                                              ParamType.String),
+                                                    }.withoutNulls,
                                                   );
                                                 },
                                                 child: Container(
@@ -676,7 +634,7 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                                                         .primaryColor,
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            20),
+                                                            10),
                                                   ),
                                                   alignment:
                                                       AlignmentDirectional(
@@ -951,15 +909,7 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(10, 0, 20, 0),
                         child: InkWell(
                           onTap: () async {
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                                reverseDuration: Duration(milliseconds: 0),
-                                child: ListadoMarcasWidget(),
-                              ),
-                            );
+                            context.pushNamed('ListadoMarcas');
                           },
                           child: Text(
                             'Ver más',
@@ -1016,15 +966,7 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                                 EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
                             child: InkWell(
                               onTap: () async {
-                                await Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.fade,
-                                    duration: Duration(milliseconds: 0),
-                                    reverseDuration: Duration(milliseconds: 0),
-                                    child: MarcaSingleWidget(),
-                                  ),
-                                );
+                                context.pushNamed('MarcaSingle');
                               },
                               child: Container(
                                 width: 90,
@@ -1102,15 +1044,7 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
                       child: InkWell(
                         onTap: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                              reverseDuration: Duration(milliseconds: 0),
-                              child: ProductListingSrConstruccionWidget(),
-                            ),
-                          );
+                          context.pushNamed('ProductListingSrConstruccion');
                         },
                         child: Text(
                           'Ver más',
@@ -1252,20 +1186,13 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                                                     : null;
                                             return InkWell(
                                               onTap: () async {
-                                                await Navigator.push(
-                                                  context,
-                                                  PageTransition(
-                                                    type:
-                                                        PageTransitionType.fade,
-                                                    duration: Duration(
-                                                        milliseconds: 0),
-                                                    reverseDuration: Duration(
-                                                        milliseconds: 0),
-                                                    child: ProductPageWidget(
-                                                      productId:
-                                                          rowProductsRecord.id,
-                                                    ),
-                                                  ),
+                                                context.pushNamed(
+                                                  'ProductPage',
+                                                  queryParams: {
+                                                    'productId': serializeParam(
+                                                        rowProductsRecord.id,
+                                                        ParamType.String),
+                                                  }.withoutNulls,
                                                 );
                                               },
                                               child: Column(
@@ -1526,15 +1453,7 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
                       child: InkWell(
                         onTap: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                              reverseDuration: Duration(milliseconds: 0),
-                              child: ProductListingSrConstruccionWidget(),
-                            ),
-                          );
+                          context.pushNamed('ProductListingSrConstruccion');
                         },
                         child: Text(
                           'Ver más',
@@ -1699,24 +1618,16 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                                                 ),
                                                 InkWell(
                                                   onTap: () async {
-                                                    await Navigator.push(
-                                                      context,
-                                                      PageTransition(
-                                                        type: PageTransitionType
-                                                            .fade,
-                                                        duration: Duration(
-                                                            milliseconds: 0),
-                                                        reverseDuration:
-                                                            Duration(
-                                                                milliseconds:
-                                                                    0),
-                                                        child:
-                                                            ProductPageWidget(
-                                                          productId:
-                                                              rowProductsRecord
-                                                                  .id,
-                                                        ),
-                                                      ),
+                                                    context.pushNamed(
+                                                      'ProductPage',
+                                                      queryParams: {
+                                                        'productId':
+                                                            serializeParam(
+                                                                rowProductsRecord
+                                                                    .id,
+                                                                ParamType
+                                                                    .String),
+                                                      }.withoutNulls,
                                                     );
                                                   },
                                                   child: ClipRRect(
@@ -1946,15 +1857,7 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
                       child: InkWell(
                         onTap: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                              reverseDuration: Duration(milliseconds: 0),
-                              child: ProductListingSrConstruccionWidget(),
-                            ),
-                          );
+                          context.pushNamed('ProductListingSrConstruccion');
                         },
                         child: Text(
                           'Ver más',
@@ -2118,24 +2021,16 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                                                 ),
                                                 InkWell(
                                                   onTap: () async {
-                                                    await Navigator.push(
-                                                      context,
-                                                      PageTransition(
-                                                        type: PageTransitionType
-                                                            .fade,
-                                                        duration: Duration(
-                                                            milliseconds: 0),
-                                                        reverseDuration:
-                                                            Duration(
-                                                                milliseconds:
-                                                                    0),
-                                                        child:
-                                                            ProductPageWidget(
-                                                          productId:
-                                                              rowProductsRecord
-                                                                  .id,
-                                                        ),
-                                                      ),
+                                                    context.pushNamed(
+                                                      'ProductPage',
+                                                      queryParams: {
+                                                        'productId':
+                                                            serializeParam(
+                                                                rowProductsRecord
+                                                                    .id,
+                                                                ParamType
+                                                                    .String),
+                                                      }.withoutNulls,
                                                     );
                                                   },
                                                   child: ClipRRect(

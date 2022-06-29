@@ -1,7 +1,6 @@
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../pedido_programado/pedido_programado_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -141,15 +140,7 @@ class _PagoPendienteWidgetState extends State<PagoPendienteWidget> {
                   children: [
                     FFButtonWidget(
                       onPressed: () async {
-                        await Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.fade,
-                            duration: Duration(milliseconds: 0),
-                            reverseDuration: Duration(milliseconds: 0),
-                            child: PedidoProgramadoWidget(),
-                          ),
-                        );
+                        context.pushNamed('PedidoProgramado');
                       },
                       text: 'Continuar',
                       icon: Icon(

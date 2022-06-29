@@ -43,3 +43,4 @@ export 'set_checkout_modify_address.dart' show setCheckoutModifyAddress;
 export 'clear_express_order_products.dart' show clearExpressOrderProducts;
 export 'clear_normal_order_products.dart' show clearNormalOrderProducts;
 export 'clear_pickup_in_store_product.dart' show clearPickupInStoreProduct;
+export 'web_checkout.dart' show webCheckout;

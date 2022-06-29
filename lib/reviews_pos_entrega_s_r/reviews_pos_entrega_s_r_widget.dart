@@ -1,10 +1,7 @@
-import '../detalle_pedido_final/detalle_pedido_final_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../mis_pedidos/mis_pedidos_widget.dart';
-import '../reviewde_productos_pos_entrega/reviewde_productos_pos_entrega_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -40,15 +37,7 @@ class _ReviewsPosEntregaSRWidgetState extends State<ReviewsPosEntregaSRWidget> {
             size: 30,
           ),
           onPressed: () async {
-            await Navigator.push(
-              context,
-              PageTransition(
-                type: PageTransitionType.fade,
-                duration: Duration(milliseconds: 0),
-                reverseDuration: Duration(milliseconds: 0),
-                child: DetallePedidoFinalWidget(),
-              ),
-            );
+            context.pushNamed('DetallePedidoFinal');
           },
         ),
         actions: [],
@@ -152,15 +141,7 @@ class _ReviewsPosEntregaSRWidgetState extends State<ReviewsPosEntregaSRWidget> {
                   children: [
                     FFButtonWidget(
                       onPressed: () async {
-                        await Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.fade,
-                            duration: Duration(milliseconds: 0),
-                            reverseDuration: Duration(milliseconds: 0),
-                            child: ReviewdeProductosPosEntregaWidget(),
-                          ),
-                        );
+                        context.pushNamed('ReviewdeProductosPosEntrega');
                       },
                       text: 'Continuar',
                       options: FFButtonOptions(
@@ -188,15 +169,7 @@ class _ReviewsPosEntregaSRWidgetState extends State<ReviewsPosEntregaSRWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(200, 50, 0, 0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    await Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.fade,
-                        duration: Duration(milliseconds: 0),
-                        reverseDuration: Duration(milliseconds: 0),
-                        child: MisPedidosWidget(),
-                      ),
-                    );
+                    context.pushNamed('MisPedidos');
                   },
                   text: 'Omitir',
                   options: FFButtonOptions(

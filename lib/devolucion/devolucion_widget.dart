@@ -1,5 +1,4 @@
 import '../components/envio_gratis_widget.dart';
-import '../devolucion2/devolucion2_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -36,7 +35,7 @@ class _DevolucionWidgetState extends State<DevolucionWidget> {
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            context.pop();
           },
         ),
         title: Text(
@@ -125,15 +124,16 @@ class _DevolucionWidgetState extends State<DevolucionWidget> {
                                       0, 5, 10, 5),
                                   child: InkWell(
                                     onTap: () async {
-                                      await Navigator.push(
-                                        context,
-                                        PageTransition(
-                                          type: PageTransitionType.fade,
-                                          duration: Duration(milliseconds: 0),
-                                          reverseDuration:
-                                              Duration(milliseconds: 0),
-                                          child: Devolucion2Widget(),
-                                        ),
+                                      context.pushNamed(
+                                        'Devolucion2',
+                                        extra: <String, dynamic>{
+                                          kTransitionInfoKey: TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.fade,
+                                            duration: Duration(milliseconds: 0),
+                                          ),
+                                        },
                                       );
                                     },
                                     child: Container(
