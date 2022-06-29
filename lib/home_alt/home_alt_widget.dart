@@ -2466,7 +2466,7 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                     return GridView.builder(
                       padding: EdgeInsets.zero,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 6,
+                        crossAxisCount: 5,
                         crossAxisSpacing: 0,
                         mainAxisSpacing: 0,
                         childAspectRatio: 0.58,

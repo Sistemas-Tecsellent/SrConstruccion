@@ -63,6 +63,7 @@ class _SellerProductWidgetState extends State<SellerProductWidget> {
               : null;
           return Container(
             width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * 0.7,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
