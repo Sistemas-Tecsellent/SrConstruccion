@@ -2034,23 +2034,14 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                                               checkoutCheckoutsRecord.paymentMethod,
                                                                               getJsonField(
                                                                                 (columnGetCheckoutInfoResponse?.jsonBody ?? ''),
-                                                                                r'''$.invoiceData.id''',
+                                                                                r'''$.id''',
                                                                               ).toString(),
                                                                               getJsonField(
                                                                                 (columnGetCheckoutInfoResponse?.jsonBody ?? ''),
-                                                                                r'''$.invoiceData.usage''',
+                                                                                r'''$.usage''',
                                                                               ).toString(),
                                                                             );
-                                                                            await Navigator.pushAndRemoveUntil(
-                                                                              context,
-                                                                              PageTransition(
-                                                                                type: PageTransitionType.fade,
-                                                                                duration: Duration(milliseconds: 0),
-                                                                                reverseDuration: Duration(milliseconds: 0),
-                                                                                child: CheckoutWidget(),
-                                                                              ),
-                                                                              (r) => false,
-                                                                            );
+                                                                            Navigator.pop(context);
                                                                           },
                                                                           child:
                                                                               Text(
@@ -2594,25 +2585,15 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                                             checkoutCheckoutsRecord.paymentMethod,
                                                                             getJsonField(
                                                                               (columnGetCheckoutInfoResponse?.jsonBody ?? ''),
-                                                                              r'''$.invoiceData.id''',
+                                                                              r'''$.id''',
                                                                             ).toString(),
                                                                             getJsonField(
                                                                               (columnGetCheckoutInfoResponse?.jsonBody ?? ''),
-                                                                              r'''$.invoiceData.usage''',
+                                                                              r'''$.usage''',
                                                                             ).toString(),
                                                                           );
-                                                                          await Navigator
-                                                                              .pushAndRemoveUntil(
-                                                                            context,
-                                                                            PageTransition(
-                                                                              type: PageTransitionType.fade,
-                                                                              duration: Duration(milliseconds: 0),
-                                                                              reverseDuration: Duration(milliseconds: 0),
-                                                                              child: CheckoutWidget(),
-                                                                            ),
-                                                                            (r) =>
-                                                                                false,
-                                                                          );
+                                                                          Navigator.pop(
+                                                                              context);
                                                                         },
                                                                         child:
                                                                             Text(
