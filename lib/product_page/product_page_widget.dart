@@ -49,7 +49,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
   int normalShipmentCountValue;
   double ratingBarValue1;
   double ratingBarValue2;
-  int cartLength;
 
   @override
   void initState() {
@@ -225,14 +224,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                         FFAppState().locationKey,
                         FFAppState().locationKeyCity,
                       );
-                      cartLength = await actions.countItemsInCart(
-                        currentUserUid,
-                      );
-
-                      final usersUpdateData = createUsersRecordData(
-                        itemsInCart: cartLength,
-                      );
-                      await currentUserReference.update(usersUpdateData);
                       await Navigator.push(
                         context,
                         PageTransition(
@@ -253,8 +244,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                         ),
                       );
                     }
-
-                    setState(() {});
                   },
                   text: 'Agregar al carrito',
                   options: FFButtonOptions(

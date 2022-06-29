@@ -91,7 +91,7 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                 size: 30,
               ),
               onPressed: () async {
-                await Navigator.push(
+                await Navigator.pushAndRemoveUntil(
                   context,
                   PageTransition(
                     type: PageTransitionType.fade,
@@ -99,6 +99,7 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                     reverseDuration: Duration(milliseconds: 0),
                     child: CarritoWidget(),
                   ),
+                  (r) => false,
                 );
               },
             ),
@@ -2043,11 +2044,13 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                                               checkoutCheckoutsRecord.paymentMethod,
                                                                               getJsonField(
                                                                                 (columnGetCheckoutInfoResponse?.jsonBody ?? ''),
+
                                                                                 r'''$.id''',
+
                                                                               ).toString(),
                                                                               getJsonField(
                                                                                 (columnGetCheckoutInfoResponse?.jsonBody ?? ''),
-                                                                                r'''$.usage''',
+                                                                                r'''$.invoiceData.usage''',
                                                                               ).toString(),
                                                                             );
                                                                             await Navigator.pushAndRemoveUntil(
@@ -2603,11 +2606,12 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                                             checkoutCheckoutsRecord.paymentMethod,
                                                                             getJsonField(
                                                                               (columnGetCheckoutInfoResponse?.jsonBody ?? ''),
+
                                                                               r'''$.id''',
                                                                             ).toString(),
                                                                             getJsonField(
                                                                               (columnGetCheckoutInfoResponse?.jsonBody ?? ''),
-                                                                              r'''$.usage''',
+                                                                              r'''$.invoiceData.usage''',
                                                                             ).toString(),
                                                                           );
                                                                           await Navigator

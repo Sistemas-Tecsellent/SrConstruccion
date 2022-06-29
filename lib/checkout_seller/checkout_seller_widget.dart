@@ -92,7 +92,7 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                 size: 30,
               ),
               onPressed: () async {
-                await Navigator.push(
+                await Navigator.pushAndRemoveUntil(
                   context,
                   PageTransition(
                     type: PageTransitionType.fade,
@@ -103,6 +103,7 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                       calledFromPage: '\'\'\'',
                     ),
                   ),
+                  (r) => false,
                 );
               },
             ),
@@ -1939,6 +1940,9 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                           widget
                                                                               .storeId,
                                                                         );
+                                                                        await Future.delayed(const Duration(
+                                                                            milliseconds:
+                                                                                5000));
                                                                         await actions
                                                                             .setCheckoutSessionSellerWise(
                                                                           getJsonField(
@@ -2490,6 +2494,9 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                         widget
                                                                             .storeId,
                                                                       );
+                                                                      await Future.delayed(const Duration(
+                                                                          milliseconds:
+                                                                              5000));
                                                                       await actions
                                                                           .setCheckoutSessionSellerWise(
                                                                         getJsonField(
@@ -3518,6 +3525,9 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                         widget
                                                                             .storeId,
                                                                       );
+                                                                      await Future.delayed(const Duration(
+                                                                          milliseconds:
+                                                                              5000));
                                                                       await actions
                                                                           .setCheckoutSessionSellerWise(
                                                                         getJsonField(
