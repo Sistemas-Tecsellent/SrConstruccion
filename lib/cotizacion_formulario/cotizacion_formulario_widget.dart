@@ -1,5 +1,4 @@
 import '../backend/firebase_storage/storage.dart';
-import '../editar_direccion/editar_direccion_widget.dart';
 import '../flutter_flow/flutter_flow_count_controller.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
@@ -7,7 +6,6 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/upload_media.dart';
-import '../resumen_solicitud_cotizacion/resumen_solicitud_cotizacion_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -60,7 +58,7 @@ class _CotizacionFormularioWidgetState
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            context.pop();
           },
         ),
         title: Text(
@@ -1269,15 +1267,7 @@ class _CotizacionFormularioWidgetState
                   padding: EdgeInsetsDirectional.fromSTEB(20, 10, 20, 0),
                   child: InkWell(
                     onTap: () async {
-                      await Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.fade,
-                          duration: Duration(milliseconds: 0),
-                          reverseDuration: Duration(milliseconds: 0),
-                          child: EditarDireccionWidget(),
-                        ),
-                      );
+                      context.pushNamed('EditarDireccion');
                     },
                     child: Slidable(
                       actionPane: const SlidableScrollActionPane(),
@@ -1452,15 +1442,7 @@ class _CotizacionFormularioWidgetState
                       padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 30),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                              reverseDuration: Duration(milliseconds: 0),
-                              child: ResumenSolicitudCotizacionWidget(),
-                            ),
-                          );
+                          context.pushNamed('ResumenSolicitudCotizacion');
                         },
                         text: 'Enviar',
                         icon: Icon(

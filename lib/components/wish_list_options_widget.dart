@@ -1,9 +1,6 @@
 import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../wish_list_products/wish_list_products_widget.dart';
-import '../wish_list_sellers/wish_list_sellers_widget.dart';
-import '../wish_marcas/wish_marcas_widget.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -81,15 +78,7 @@ class _WishListOptionsWidgetState extends State<WishListOptionsWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                         child: InkWell(
                           onTap: () async {
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                                reverseDuration: Duration(milliseconds: 0),
-                                child: WishListProductsWidget(),
-                              ),
-                            );
+                            context.pushNamed('WishListProducts');
                           },
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -183,15 +172,7 @@ class _WishListOptionsWidgetState extends State<WishListOptionsWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
                         child: InkWell(
                           onTap: () async {
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                                reverseDuration: Duration(milliseconds: 0),
-                                child: WishListSellersWidget(),
-                              ),
-                            );
+                            context.pushNamed('WishListSellers');
                           },
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -280,15 +261,7 @@ class _WishListOptionsWidgetState extends State<WishListOptionsWidget> {
                       ),
                       InkWell(
                         onTap: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                              reverseDuration: Duration(milliseconds: 0),
-                              child: WishMarcasWidget(),
-                            ),
-                          );
+                          context.pushNamed('WishMarcas');
                         },
                         child: Row(
                           mainAxisSize: MainAxisSize.max,

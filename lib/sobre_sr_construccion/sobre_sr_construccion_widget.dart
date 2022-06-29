@@ -36,7 +36,7 @@ class _SobreSrConstruccionWidgetState extends State<SobreSrConstruccionWidget> {
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            context.pop();
           },
         ),
         actions: [],
@@ -66,7 +66,7 @@ class _SobreSrConstruccionWidgetState extends State<SobreSrConstruccionWidget> {
                         children: [
                           FFButtonWidget(
                             onPressed: () async {
-                              Navigator.pop(context);
+                              context.pop();
                             },
                             text: 'Volver',
                             icon: Icon(
@@ -161,7 +161,7 @@ class _SobreSrConstruccionWidgetState extends State<SobreSrConstruccionWidget> {
                                   alignment: AlignmentDirectional(1, 1),
                                   child: Image.asset(
                                     'assets/images/ISH_-_Presentacin_1_(3).png',
-                                    height: 450,
+                                    height: 420,
                                     fit: BoxFit.cover,
                                   ),
                                 ),

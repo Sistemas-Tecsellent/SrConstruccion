@@ -2,12 +2,6 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../home_alt/home_alt_widget.dart';
-import '../notificaciones/notificaciones_widget.dart';
-import '../perfil/perfil_widget.dart';
-import '../product_listing_sr_construccion/product_listing_sr_construccion_widget.dart';
-import '../product_page_servicios/product_page_servicios_widget.dart';
-import '../search/search_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -46,7 +40,7 @@ class _ServiciosSingleWidgetState extends State<ServiciosSingleWidget> {
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            context.pop();
           },
         ),
         title: FutureBuilder<List<CategoriesRecord>>(
@@ -99,15 +93,7 @@ class _ServiciosSingleWidgetState extends State<ServiciosSingleWidget> {
               size: 15,
             ),
             onPressed: () async {
-              await Navigator.push(
-                context,
-                PageTransition(
-                  type: PageTransitionType.fade,
-                  duration: Duration(milliseconds: 0),
-                  reverseDuration: Duration(milliseconds: 0),
-                  child: SearchWidget(),
-                ),
-              );
+              context.pushNamed('search');
             },
           ),
         ],
@@ -158,14 +144,15 @@ class _ServiciosSingleWidgetState extends State<ServiciosSingleWidget> {
                           size: 30,
                         ),
                         onPressed: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                              reverseDuration: Duration(milliseconds: 0),
-                              child: PerfilWidget(),
-                            ),
+                          context.pushNamed(
+                            'Perfil',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.fade,
+                                duration: Duration(milliseconds: 0),
+                              ),
+                            },
                           );
                         },
                       ),
@@ -182,14 +169,15 @@ class _ServiciosSingleWidgetState extends State<ServiciosSingleWidget> {
                         size: 30,
                       ),
                       onPressed: () async {
-                        await Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.fade,
-                            duration: Duration(milliseconds: 0),
-                            reverseDuration: Duration(milliseconds: 0),
-                            child: HomeAltWidget(),
-                          ),
+                        context.pushNamed(
+                          'HomeAlt',
+                          extra: <String, dynamic>{
+                            kTransitionInfoKey: TransitionInfo(
+                              hasTransition: true,
+                              transitionType: PageTransitionType.fade,
+                              duration: Duration(milliseconds: 0),
+                            ),
+                          },
                         );
                       },
                     ),
@@ -206,14 +194,15 @@ class _ServiciosSingleWidgetState extends State<ServiciosSingleWidget> {
                           size: 30,
                         ),
                         onPressed: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                              reverseDuration: Duration(milliseconds: 0),
-                              child: NotificacionesWidget(),
-                            ),
+                          context.pushNamed(
+                            'Notificaciones',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.fade,
+                                duration: Duration(milliseconds: 0),
+                              ),
+                            },
                           );
                         },
                       ),
@@ -335,15 +324,7 @@ class _ServiciosSingleWidgetState extends State<ServiciosSingleWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
                       child: InkWell(
                         onTap: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                              reverseDuration: Duration(milliseconds: 0),
-                              child: ProductListingSrConstruccionWidget(),
-                            ),
-                          );
+                          context.pushNamed('ProductListingSrConstruccion');
                         },
                         child: Text(
                           'Ver más',
@@ -387,15 +368,7 @@ class _ServiciosSingleWidgetState extends State<ServiciosSingleWidget> {
                           alignment: AlignmentDirectional(0, 0),
                           child: InkWell(
                             onTap: () async {
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: ProductPageServiciosWidget(),
-                                ),
-                              );
+                              context.pushNamed('ProductPageServicios');
                             },
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
@@ -493,15 +466,7 @@ class _ServiciosSingleWidgetState extends State<ServiciosSingleWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
                       child: InkWell(
                         onTap: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                              reverseDuration: Duration(milliseconds: 0),
-                              child: ProductListingSrConstruccionWidget(),
-                            ),
-                          );
+                          context.pushNamed('ProductListingSrConstruccion');
                         },
                         child: Text(
                           'Ver más',

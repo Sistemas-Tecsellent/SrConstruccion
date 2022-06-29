@@ -1,17 +1,11 @@
 import '../auth/auth_util.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
-import '../categoria_single_m_a_r_c_a/categoria_single_m_a_r_c_a_widget.dart';
 import '../components/toggle_like_brand_widget.dart';
 import '../components/toggle_like_product_white_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../home_alt/home_alt_widget.dart';
-import '../notificaciones/notificaciones_widget.dart';
-import '../perfil/perfil_widget.dart';
-import '../product_listing_sr_construccion/product_listing_sr_construccion_widget.dart';
-import '../product_page/product_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -51,7 +45,7 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            context.pop();
           },
         ),
         title: Text(
@@ -115,14 +109,15 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                           size: 30,
                         ),
                         onPressed: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                              reverseDuration: Duration(milliseconds: 0),
-                              child: PerfilWidget(),
-                            ),
+                          context.pushNamed(
+                            'Perfil',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.fade,
+                                duration: Duration(milliseconds: 0),
+                              ),
+                            },
                           );
                         },
                       ),
@@ -142,14 +137,15 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                           size: 30,
                         ),
                         onPressed: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                              reverseDuration: Duration(milliseconds: 0),
-                              child: HomeAltWidget(),
-                            ),
+                          context.pushNamed(
+                            'HomeAlt',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.fade,
+                                duration: Duration(milliseconds: 0),
+                              ),
+                            },
                           );
                         },
                       ),
@@ -167,14 +163,15 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                           size: 30,
                         ),
                         onPressed: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                              reverseDuration: Duration(milliseconds: 0),
-                              child: NotificacionesWidget(),
-                            ),
+                          context.pushNamed(
+                            'Notificaciones',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.fade,
+                                duration: Duration(milliseconds: 0),
+                              ),
+                            },
                           );
                         },
                       ),
@@ -322,21 +319,16 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                       children: [
                                         InkWell(
                                           onTap: () async {
-                                            await Navigator.push(
-                                              context,
-                                              PageTransition(
-                                                type: PageTransitionType.fade,
-                                                duration:
-                                                    Duration(milliseconds: 0),
-                                                reverseDuration:
-                                                    Duration(milliseconds: 0),
-                                                child:
-                                                    CategoriaSingleMARCAWidget(
-                                                  categoryId:
-                                                      columnCategoriesRecord.id,
-                                                  brandId: widget.brandId,
-                                                ),
-                                              ),
+                                            context.pushNamed(
+                                              'CategoriaSingleMARCA',
+                                              queryParams: {
+                                                'categoryId': serializeParam(
+                                                    columnCategoriesRecord.id,
+                                                    ParamType.String),
+                                                'brandId': serializeParam(
+                                                    widget.brandId,
+                                                    ParamType.String),
+                                              }.withoutNulls,
                                             );
                                           },
                                           child: Container(
@@ -445,15 +437,7 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
                       child: InkWell(
                         onTap: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                              reverseDuration: Duration(milliseconds: 0),
-                              child: ProductListingSrConstruccionWidget(),
-                            ),
-                          );
+                          context.pushNamed('ProductListingSrConstruccion');
                         },
                         child: Text(
                           'Ver más',
@@ -585,7 +569,7 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                     AlignmentDirectional(1, 1),
                                                 child: ClipRRect(
                                                   borderRadius:
-                                                      BorderRadius.circular(25),
+                                                      BorderRadius.circular(10),
                                                   child: Image.asset(
                                                     'assets/images/yellow_square.png',
                                                     width:
@@ -617,19 +601,13 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                         alignment: AlignmentDirectional(-1, -1),
                                         child: InkWell(
                                           onTap: () async {
-                                            await Navigator.push(
-                                              context,
-                                              PageTransition(
-                                                type: PageTransitionType.fade,
-                                                duration:
-                                                    Duration(milliseconds: 0),
-                                                reverseDuration:
-                                                    Duration(milliseconds: 0),
-                                                child: ProductPageWidget(
-                                                  productId:
-                                                      rowProductsRecord.id,
-                                                ),
-                                              ),
+                                            context.pushNamed(
+                                              'ProductPage',
+                                              queryParams: {
+                                                'productId': serializeParam(
+                                                    rowProductsRecord.id,
+                                                    ParamType.String),
+                                              }.withoutNulls,
                                             );
                                           },
                                           child: Image.network(
@@ -858,15 +836,7 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
                       child: InkWell(
                         onTap: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                              reverseDuration: Duration(milliseconds: 0),
-                              child: ProductListingSrConstruccionWidget(),
-                            ),
-                          );
+                          context.pushNamed('ProductListingSrConstruccion');
                         },
                         child: Text(
                           'Ver más',
@@ -1031,24 +1001,16 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                 ),
                                                 InkWell(
                                                   onTap: () async {
-                                                    await Navigator.push(
-                                                      context,
-                                                      PageTransition(
-                                                        type: PageTransitionType
-                                                            .fade,
-                                                        duration: Duration(
-                                                            milliseconds: 0),
-                                                        reverseDuration:
-                                                            Duration(
-                                                                milliseconds:
-                                                                    0),
-                                                        child:
-                                                            ProductPageWidget(
-                                                          productId:
-                                                              rowProductsRecord
-                                                                  .id,
-                                                        ),
-                                                      ),
+                                                    context.pushNamed(
+                                                      'ProductPage',
+                                                      queryParams: {
+                                                        'productId':
+                                                            serializeParam(
+                                                                rowProductsRecord
+                                                                    .id,
+                                                                ParamType
+                                                                    .String),
+                                                      }.withoutNulls,
                                                     );
                                                   },
                                                   child: ClipRRect(
@@ -1287,15 +1249,7 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
                       child: InkWell(
                         onTap: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                              reverseDuration: Duration(milliseconds: 0),
-                              child: ProductListingSrConstruccionWidget(),
-                            ),
-                          );
+                          context.pushNamed('ProductListingSrConstruccion');
                         },
                         child: Text(
                           'Ver más',
@@ -1460,24 +1414,16 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                 ),
                                                 InkWell(
                                                   onTap: () async {
-                                                    await Navigator.push(
-                                                      context,
-                                                      PageTransition(
-                                                        type: PageTransitionType
-                                                            .fade,
-                                                        duration: Duration(
-                                                            milliseconds: 0),
-                                                        reverseDuration:
-                                                            Duration(
-                                                                milliseconds:
-                                                                    0),
-                                                        child:
-                                                            ProductPageWidget(
-                                                          productId:
-                                                              rowProductsRecord
-                                                                  .id,
-                                                        ),
-                                                      ),
+                                                    context.pushNamed(
+                                                      'ProductPage',
+                                                      queryParams: {
+                                                        'productId':
+                                                            serializeParam(
+                                                                rowProductsRecord
+                                                                    .id,
+                                                                ParamType
+                                                                    .String),
+                                                      }.withoutNulls,
                                                     );
                                                   },
                                                   child: ClipRRect(
@@ -1723,15 +1669,7 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
                       child: InkWell(
                         onTap: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                              reverseDuration: Duration(milliseconds: 0),
-                              child: ProductListingSrConstruccionWidget(),
-                            ),
-                          );
+                          context.pushNamed('ProductListingSrConstruccion');
                         },
                         child: Text(
                           'Ver más',
@@ -1895,24 +1833,16 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                 ),
                                                 InkWell(
                                                   onTap: () async {
-                                                    await Navigator.push(
-                                                      context,
-                                                      PageTransition(
-                                                        type: PageTransitionType
-                                                            .fade,
-                                                        duration: Duration(
-                                                            milliseconds: 0),
-                                                        reverseDuration:
-                                                            Duration(
-                                                                milliseconds:
-                                                                    0),
-                                                        child:
-                                                            ProductPageWidget(
-                                                          productId:
-                                                              rowProductsRecord
-                                                                  .id,
-                                                        ),
-                                                      ),
+                                                    context.pushNamed(
+                                                      'ProductPage',
+                                                      queryParams: {
+                                                        'productId':
+                                                            serializeParam(
+                                                                rowProductsRecord
+                                                                    .id,
+                                                                ParamType
+                                                                    .String),
+                                                      }.withoutNulls,
                                                     );
                                                   },
                                                   child: ClipRRect(

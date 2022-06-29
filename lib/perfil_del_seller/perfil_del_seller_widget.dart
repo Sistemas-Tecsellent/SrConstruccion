@@ -2,7 +2,6 @@ import '../auth/auth_util.dart';
 import '../auth/firebase_user_provider.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
-import '../carrito_por_sellers/carrito_por_sellers_widget.dart';
 import '../components/envio_gratis_widget.dart';
 import '../components/seller_details_widget.dart';
 import '../components/seller_feed_widget.dart';
@@ -12,11 +11,6 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../home_alt/home_alt_widget.dart';
-import '../notificaciones/notificaciones_widget.dart';
-import '../perfil/perfil_widget.dart';
-import '../product_listing_for_seller/product_listing_for_seller_widget.dart';
-import '../search_products_seller/search_products_seller_widget.dart';
 import '../custom_code/actions/index.dart' as actions;
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
@@ -124,7 +118,7 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                 size: 25,
               ),
               onPressed: () async {
-                Navigator.pop(context);
+                context.pop();
               },
             ),
             actions: [
@@ -139,15 +133,7 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                   size: 15,
                 ),
                 onPressed: () async {
-                  await Navigator.push(
-                    context,
-                    PageTransition(
-                      type: PageTransitionType.fade,
-                      duration: Duration(milliseconds: 0),
-                      reverseDuration: Duration(milliseconds: 0),
-                      child: SearchProductsSellerWidget(),
-                    ),
-                  );
+                  context.pushNamed('searchProductsSeller');
                 },
               ),
             ],
@@ -199,14 +185,15 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                               size: 30,
                             ),
                             onPressed: () async {
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: PerfilWidget(),
-                                ),
+                              context.pushNamed(
+                                'Perfil',
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.fade,
+                                    duration: Duration(milliseconds: 0),
+                                  ),
+                                },
                               );
                             },
                           ),
@@ -227,14 +214,15 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                               size: 30,
                             ),
                             onPressed: () async {
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: HomeAltWidget(),
-                                ),
+                              context.pushNamed(
+                                'HomeAlt',
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.fade,
+                                    duration: Duration(milliseconds: 0),
+                                  ),
+                                },
                               );
                             },
                           ),
@@ -252,14 +240,15 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                               size: 30,
                             ),
                             onPressed: () async {
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: NotificacionesWidget(),
-                                ),
+                              context.pushNamed(
+                                'Notificaciones',
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.fade,
+                                    duration: Duration(milliseconds: 0),
+                                  ),
+                                },
                               );
                             },
                           ),
@@ -419,16 +408,11 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                                 final buttonGetCartAmountResponse = snapshot.data;
                                                                                 return FFButtonWidget(
                                                                                   onPressed: () async {
-                                                                                    await Navigator.push(
-                                                                                      context,
-                                                                                      PageTransition(
-                                                                                        type: PageTransitionType.fade,
-                                                                                        duration: Duration(milliseconds: 0),
-                                                                                        reverseDuration: Duration(milliseconds: 0),
-                                                                                        child: CarritoPorSellersWidget(
-                                                                                          storeId: widget.storeId,
-                                                                                        ),
-                                                                                      ),
+                                                                                    context.pushNamed(
+                                                                                      'CarritoPorSellers',
+                                                                                      queryParams: {
+                                                                                        'storeId': serializeParam(widget.storeId, ParamType.String),
+                                                                                      }.withoutNulls,
                                                                                     );
                                                                                   },
                                                                                   text: GetCartAmountCall.amount(
@@ -1086,19 +1070,8 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                   .fromSTEB(15, 10, 15, 0),
                                               child: InkWell(
                                                 onTap: () async {
-                                                  await Navigator.push(
-                                                    context,
-                                                    PageTransition(
-                                                      type: PageTransitionType
-                                                          .fade,
-                                                      duration: Duration(
-                                                          milliseconds: 0),
-                                                      reverseDuration: Duration(
-                                                          milliseconds: 0),
-                                                      child:
-                                                          SearchProductsSellerWidget(),
-                                                    ),
-                                                  );
+                                                  context.pushNamed(
+                                                      'searchProductsSeller');
                                                 },
                                                 child: Row(
                                                   mainAxisSize:
@@ -1377,23 +1350,8 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                   children: [
                                                     InkWell(
                                                       onTap: () async {
-                                                        await Navigator.push(
-                                                          context,
-                                                          PageTransition(
-                                                            type:
-                                                                PageTransitionType
-                                                                    .fade,
-                                                            duration: Duration(
-                                                                milliseconds:
-                                                                    0),
-                                                            reverseDuration:
-                                                                Duration(
-                                                                    milliseconds:
-                                                                        0),
-                                                            child:
-                                                                ProductListingForSellerWidget(),
-                                                          ),
-                                                        );
+                                                        context.pushNamed(
+                                                            'ProductListingForSeller');
                                                       },
                                                       child: Text(
                                                         'Ver más',
@@ -1499,24 +1457,16 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                 children: [
                                                   InkWell(
                                                     onTap: () async {
-                                                      await Navigator.push(
-                                                        context,
-                                                        PageTransition(
-                                                          type:
-                                                              PageTransitionType
-                                                                  .fade,
-                                                          duration: Duration(
-                                                              milliseconds: 0),
-                                                          reverseDuration:
-                                                              Duration(
-                                                                  milliseconds:
-                                                                      0),
-                                                          child:
-                                                              ProductListingForSellerWidget(
-                                                            storeId:
-                                                                widget.storeId,
-                                                          ),
-                                                        ),
+                                                      context.pushNamed(
+                                                        'ProductListingForSeller',
+                                                        queryParams: {
+                                                          'storeId':
+                                                              serializeParam(
+                                                                  widget
+                                                                      .storeId,
+                                                                  ParamType
+                                                                      .String),
+                                                        }.withoutNulls,
                                                       );
                                                     },
                                                     child: Text(
@@ -1783,15 +1733,7 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                                 final textStoresRecord = textStoresRecordList.isNotEmpty ? textStoresRecordList.first : null;
                                                                                 return InkWell(
                                                                                   onTap: () async {
-                                                                                    await Navigator.push(
-                                                                                      context,
-                                                                                      PageTransition(
-                                                                                        type: PageTransitionType.fade,
-                                                                                        duration: Duration(milliseconds: 0),
-                                                                                        reverseDuration: Duration(milliseconds: 0),
-                                                                                        child: PerfilDelSellerWidget(),
-                                                                                      ),
-                                                                                    );
+                                                                                    context.pushNamed('PerfilDelSeller');
                                                                                   },
                                                                                   child: Text(
                                                                                     textStoresRecord.name,
@@ -2061,24 +2003,16 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                 children: [
                                                   InkWell(
                                                     onTap: () async {
-                                                      await Navigator.push(
-                                                        context,
-                                                        PageTransition(
-                                                          type:
-                                                              PageTransitionType
-                                                                  .fade,
-                                                          duration: Duration(
-                                                              milliseconds: 0),
-                                                          reverseDuration:
-                                                              Duration(
-                                                                  milliseconds:
-                                                                      0),
-                                                          child:
-                                                              ProductListingForSellerWidget(
-                                                            storeId:
-                                                                widget.storeId,
-                                                          ),
-                                                        ),
+                                                      context.pushNamed(
+                                                        'ProductListingForSeller',
+                                                        queryParams: {
+                                                          'storeId':
+                                                              serializeParam(
+                                                                  widget
+                                                                      .storeId,
+                                                                  ParamType
+                                                                      .String),
+                                                        }.withoutNulls,
                                                       );
                                                     },
                                                     child: Text(
@@ -2311,19 +2245,14 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                             ),
                                                                             InkWell(
                                                                               onTap: () async {
-                                                                                await Navigator.push(
-                                                                                  context,
-                                                                                  PageTransition(
-                                                                                    type: PageTransitionType.fade,
-                                                                                    duration: Duration(milliseconds: 0),
-                                                                                    reverseDuration: Duration(milliseconds: 0),
-                                                                                    child: PerfilDelSellerWidget(
-                                                                                      storeId: widget.storeId,
-                                                                                      calledFromPage: 'perfil',
-                                                                                      productId: '\"\"',
-                                                                                      variantId: '\"\"',
-                                                                                    ),
-                                                                                  ),
+                                                                                context.pushNamed(
+                                                                                  'PerfilDelSeller',
+                                                                                  queryParams: {
+                                                                                    'storeId': serializeParam(widget.storeId, ParamType.String),
+                                                                                    'calledFromPage': serializeParam('perfil', ParamType.String),
+                                                                                    'productId': serializeParam('\"\"', ParamType.String),
+                                                                                    'variantId': serializeParam('\"\"', ParamType.String),
+                                                                                  }.withoutNulls,
                                                                                 );
                                                                               },
                                                                               child: Text(
@@ -2592,24 +2521,16 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                 children: [
                                                   InkWell(
                                                     onTap: () async {
-                                                      await Navigator.push(
-                                                        context,
-                                                        PageTransition(
-                                                          type:
-                                                              PageTransitionType
-                                                                  .fade,
-                                                          duration: Duration(
-                                                              milliseconds: 0),
-                                                          reverseDuration:
-                                                              Duration(
-                                                                  milliseconds:
-                                                                      0),
-                                                          child:
-                                                              ProductListingForSellerWidget(
-                                                            storeId:
-                                                                widget.storeId,
-                                                          ),
-                                                        ),
+                                                      context.pushNamed(
+                                                        'ProductListingForSeller',
+                                                        queryParams: {
+                                                          'storeId':
+                                                              serializeParam(
+                                                                  widget
+                                                                      .storeId,
+                                                                  ParamType
+                                                                      .String),
+                                                        }.withoutNulls,
                                                       );
                                                     },
                                                     child: Text(
@@ -2845,19 +2766,14 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                             ),
                                                                             InkWell(
                                                                               onTap: () async {
-                                                                                await Navigator.push(
-                                                                                  context,
-                                                                                  PageTransition(
-                                                                                    type: PageTransitionType.fade,
-                                                                                    duration: Duration(milliseconds: 0),
-                                                                                    reverseDuration: Duration(milliseconds: 0),
-                                                                                    child: PerfilDelSellerWidget(
-                                                                                      storeId: widget.storeId,
-                                                                                      calledFromPage: 'perfil',
-                                                                                      productId: 'l',
-                                                                                      variantId: 'l',
-                                                                                    ),
-                                                                                  ),
+                                                                                context.pushNamed(
+                                                                                  'PerfilDelSeller',
+                                                                                  queryParams: {
+                                                                                    'storeId': serializeParam(widget.storeId, ParamType.String),
+                                                                                    'calledFromPage': serializeParam('perfil', ParamType.String),
+                                                                                    'productId': serializeParam('l', ParamType.String),
+                                                                                    'variantId': serializeParam('l', ParamType.String),
+                                                                                  }.withoutNulls,
                                                                                 );
                                                                               },
                                                                               child: Text(
@@ -3126,24 +3042,16 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                 children: [
                                                   InkWell(
                                                     onTap: () async {
-                                                      await Navigator.push(
-                                                        context,
-                                                        PageTransition(
-                                                          type:
-                                                              PageTransitionType
-                                                                  .fade,
-                                                          duration: Duration(
-                                                              milliseconds: 0),
-                                                          reverseDuration:
-                                                              Duration(
-                                                                  milliseconds:
-                                                                      0),
-                                                          child:
-                                                              ProductListingForSellerWidget(
-                                                            storeId:
-                                                                widget.storeId,
-                                                          ),
-                                                        ),
+                                                      context.pushNamed(
+                                                        'ProductListingForSeller',
+                                                        queryParams: {
+                                                          'storeId':
+                                                              serializeParam(
+                                                                  widget
+                                                                      .storeId,
+                                                                  ParamType
+                                                                      .String),
+                                                        }.withoutNulls,
                                                       );
                                                     },
                                                     child: Text(
@@ -3379,15 +3287,7 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                             ),
                                                                             InkWell(
                                                                               onTap: () async {
-                                                                                await Navigator.push(
-                                                                                  context,
-                                                                                  PageTransition(
-                                                                                    type: PageTransitionType.fade,
-                                                                                    duration: Duration(milliseconds: 0),
-                                                                                    reverseDuration: Duration(milliseconds: 0),
-                                                                                    child: PerfilDelSellerWidget(),
-                                                                                  ),
-                                                                                );
+                                                                                context.pushNamed('PerfilDelSeller');
                                                                               },
                                                                               child: Text(
                                                                                 perfilDelSellerStoresRecord.name,
@@ -3655,24 +3555,16 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                 children: [
                                                   InkWell(
                                                     onTap: () async {
-                                                      await Navigator.push(
-                                                        context,
-                                                        PageTransition(
-                                                          type:
-                                                              PageTransitionType
-                                                                  .fade,
-                                                          duration: Duration(
-                                                              milliseconds: 0),
-                                                          reverseDuration:
-                                                              Duration(
-                                                                  milliseconds:
-                                                                      0),
-                                                          child:
-                                                              ProductListingForSellerWidget(
-                                                            storeId:
-                                                                widget.storeId,
-                                                          ),
-                                                        ),
+                                                      context.pushNamed(
+                                                        'ProductListingForSeller',
+                                                        queryParams: {
+                                                          'storeId':
+                                                              serializeParam(
+                                                                  widget
+                                                                      .storeId,
+                                                                  ParamType
+                                                                      .String),
+                                                        }.withoutNulls,
                                                       );
                                                     },
                                                     child: Text(
@@ -3915,15 +3807,7 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                               ),
                                                                               InkWell(
                                                                                 onTap: () async {
-                                                                                  await Navigator.push(
-                                                                                    context,
-                                                                                    PageTransition(
-                                                                                      type: PageTransitionType.fade,
-                                                                                      duration: Duration(milliseconds: 0),
-                                                                                      reverseDuration: Duration(milliseconds: 0),
-                                                                                      child: PerfilDelSellerWidget(),
-                                                                                    ),
-                                                                                  );
+                                                                                  context.pushNamed('PerfilDelSeller');
                                                                                 },
                                                                                 child: Text(
                                                                                   perfilDelSellerStoresRecord.name,

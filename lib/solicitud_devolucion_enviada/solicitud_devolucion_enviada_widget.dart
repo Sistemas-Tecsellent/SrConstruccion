@@ -84,7 +84,7 @@ class _SolicitudDevolucionEnviadaWidgetState
                   children: [
                     FFButtonWidget(
                       onPressed: () async {
-                        Navigator.pop(context);
+                        context.pop();
                       },
                       text: 'Continuar',
                       options: FFButtonOptions(

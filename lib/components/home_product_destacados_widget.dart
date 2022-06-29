@@ -4,7 +4,6 @@ import '../backend/backend.dart';
 import '../components/toggle_like_product_white_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../product_page/product_page_widget.dart';
 import '../custom_code/actions/index.dart' as actions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -319,18 +318,13 @@ class _HomeProductDestacadosWidgetState
                                                         ?.jsonBody ??
                                                     ''),
                                               ).toString());
-                                          await Navigator.push(
-                                            context,
-                                            PageTransition(
-                                              type: PageTransitionType.fade,
-                                              duration:
-                                                  Duration(milliseconds: 0),
-                                              reverseDuration:
-                                                  Duration(milliseconds: 0),
-                                              child: ProductPageWidget(
-                                                productId: rowProductsRecord.id,
-                                              ),
-                                            ),
+                                          context.pushNamed(
+                                            'ProductPage',
+                                            queryParams: {
+                                              'productId': serializeParam(
+                                                  rowProductsRecord.id,
+                                                  ParamType.String),
+                                            }.withoutNulls,
                                           );
                                           await actions.productViewed(
                                             rowProductsRecord.id,
@@ -671,18 +665,13 @@ class _HomeProductDestacadosWidgetState
                                                         ?.jsonBody ??
                                                     ''),
                                               ).toString());
-                                          await Navigator.push(
-                                            context,
-                                            PageTransition(
-                                              type: PageTransitionType.fade,
-                                              duration:
-                                                  Duration(milliseconds: 0),
-                                              reverseDuration:
-                                                  Duration(milliseconds: 0),
-                                              child: ProductPageWidget(
-                                                productId: rowProductsRecord.id,
-                                              ),
-                                            ),
+                                          context.pushNamed(
+                                            'ProductPage',
+                                            queryParams: {
+                                              'productId': serializeParam(
+                                                  rowProductsRecord.id,
+                                                  ParamType.String),
+                                            }.withoutNulls,
                                           );
                                           await actions.productViewed(
                                             rowProductsRecord.id,
@@ -1016,18 +1005,13 @@ class _HomeProductDestacadosWidgetState
                                                         ?.jsonBody ??
                                                     ''),
                                               ).toString());
-                                          await Navigator.push(
-                                            context,
-                                            PageTransition(
-                                              type: PageTransitionType.fade,
-                                              duration:
-                                                  Duration(milliseconds: 0),
-                                              reverseDuration:
-                                                  Duration(milliseconds: 0),
-                                              child: ProductPageWidget(
-                                                productId: rowProductsRecord.id,
-                                              ),
-                                            ),
+                                          context.pushNamed(
+                                            'ProductPage',
+                                            queryParams: {
+                                              'productId': serializeParam(
+                                                  rowProductsRecord.id,
+                                                  ParamType.String),
+                                            }.withoutNulls,
                                           );
                                           await actions.productViewed(
                                             rowProductsRecord.id,

@@ -33,7 +33,7 @@ class _MisServiciosWidgetState extends State<MisServiciosWidget> {
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            context.pop();
           },
         ),
         title: Text(

@@ -1,11 +1,9 @@
 import '../backend/backend.dart';
-import '../chats/chats_widget.dart';
 import '../components/productos_pedido_widget.dart';
 import '../flutter_flow/flutter_flow_google_map.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../pedido_programado/pedido_programado_widget.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -260,17 +258,12 @@ class _DetallePedidoProgramadoPickupWidgetState
                                   size: 30,
                                 ),
                                 onPressed: () async {
-                                  await Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 0),
-                                      reverseDuration:
-                                          Duration(milliseconds: 0),
-                                      child: PedidoProgramadoWidget(
-                                        bundleId: widget.bundleId,
-                                      ),
-                                    ),
+                                  context.pushNamed(
+                                    'PedidoProgramado',
+                                    queryParams: {
+                                      'bundleId': serializeParam(
+                                          widget.bundleId, ParamType.String),
+                                    }.withoutNulls,
                                   );
                                 },
                               ),
@@ -1149,17 +1142,7 @@ class _DetallePedidoProgramadoPickupWidgetState
                                           ),
                                           InkWell(
                                             onTap: () async {
-                                              await Navigator.push(
-                                                context,
-                                                PageTransition(
-                                                  type: PageTransitionType.fade,
-                                                  duration:
-                                                      Duration(milliseconds: 0),
-                                                  reverseDuration:
-                                                      Duration(milliseconds: 0),
-                                                  child: ChatsWidget(),
-                                                ),
-                                              );
+                                              context.pushNamed('Chats');
                                             },
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,

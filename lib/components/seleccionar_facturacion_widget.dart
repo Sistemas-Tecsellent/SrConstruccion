@@ -374,8 +374,8 @@ class _SeleccionarFacturacionWidgetState
                                           ).toString(),
                                           dropDownValue,
                                         );
-                                        Navigator.pop(context);
-                                        Navigator.pop(context);
+                                        context.pop();
+                                        context.pop();
                                       } else {
                                         await actions
                                             .setCheckoutModifyInvoiceAndUsage(
@@ -386,8 +386,8 @@ class _SeleccionarFacturacionWidgetState
                                           ).toString(),
                                           dropDownValue,
                                         );
-                                        Navigator.pop(context);
-                                        Navigator.pop(context);
+                                        context.pop();
+                                        context.pop();
                                       }
 
                                       setState(() {});

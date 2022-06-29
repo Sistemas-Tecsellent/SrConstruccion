@@ -3,8 +3,6 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../login/login_widget.dart';
-import '../onboarding1/onboarding1_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -106,16 +104,7 @@ class _SignupWidgetState extends State<SignupWidget> {
                                 ),
                                 FFButtonWidget(
                                   onPressed: () async {
-                                    await Navigator.push(
-                                      context,
-                                      PageTransition(
-                                        type: PageTransitionType.fade,
-                                        duration: Duration(milliseconds: 0),
-                                        reverseDuration:
-                                            Duration(milliseconds: 0),
-                                        child: LoginWidget(),
-                                      ),
-                                    );
+                                    context.pushNamed('login');
                                   },
                                   text: 'Iniciar Sesión',
                                   options: FFButtonOptions(
@@ -569,6 +558,7 @@ class _SignupWidgetState extends State<SignupWidget> {
                                     alignment: AlignmentDirectional(0, 1),
                                     child: FFButtonWidget(
                                       onPressed: () async {
+                                        GoRouter.of(context).prepareAuthEvent();
                                         if (passwordController?.text !=
                                             confirmPasswordController?.text) {
                                           ScaffoldMessenger.of(context)
@@ -600,16 +590,8 @@ class _SignupWidgetState extends State<SignupWidget> {
                                             .doc(user.uid)
                                             .update(usersCreateData);
 
-                                        await Navigator.push(
-                                          context,
-                                          PageTransition(
-                                            type: PageTransitionType.fade,
-                                            duration: Duration(milliseconds: 0),
-                                            reverseDuration:
-                                                Duration(milliseconds: 0),
-                                            child: Onboarding1Widget(),
-                                          ),
-                                        );
+                                        context.pushNamedAuth(
+                                            'Onboarding1', mounted);
                                       },
                                       text: 'Crear Cuenta',
                                       options: FFButtonOptions(
@@ -668,6 +650,7 @@ class _SignupWidgetState extends State<SignupWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
                             child: InkWell(
                               onTap: () async {
+                                GoRouter.of(context).prepareAuthEvent();
                                 final user = await signInWithFacebook(context);
                                 if (user == null) {
                                   return;
@@ -678,15 +661,7 @@ class _SignupWidgetState extends State<SignupWidget> {
                                 );
                                 await currentUserReference
                                     .update(usersUpdateData);
-                                await Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.fade,
-                                    duration: Duration(milliseconds: 0),
-                                    reverseDuration: Duration(milliseconds: 0),
-                                    child: Onboarding1Widget(),
-                                  ),
-                                );
+                                context.pushNamedAuth('Onboarding1', mounted);
                               },
                               child: Card(
                                 clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -718,6 +693,7 @@ class _SignupWidgetState extends State<SignupWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
                             child: InkWell(
                               onTap: () async {
+                                GoRouter.of(context).prepareAuthEvent();
                                 final user = await signInWithGoogle(context);
                                 if (user == null) {
                                   return;
@@ -728,15 +704,7 @@ class _SignupWidgetState extends State<SignupWidget> {
                                 );
                                 await currentUserReference
                                     .update(usersUpdateData);
-                                await Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.fade,
-                                    duration: Duration(milliseconds: 0),
-                                    reverseDuration: Duration(milliseconds: 0),
-                                    child: Onboarding1Widget(),
-                                  ),
-                                );
+                                context.pushNamedAuth('Onboarding1', mounted);
                               },
                               child: Card(
                                 clipBehavior: Clip.antiAliasWithSaveLayer,

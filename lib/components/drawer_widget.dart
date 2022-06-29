@@ -1,18 +1,9 @@
 import '../auth/auth_util.dart';
-import '../categorias/categorias_widget.dart';
 import '../components/wish_list_options_widget.dart';
-import '../cupones/cupones_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../home_alt_copy/home_alt_copy_widget.dart';
-import '../listado_marcas/listado_marcas_widget.dart';
-import '../listado_sellers/listado_sellers_widget.dart';
-import '../mis_pedidos/mis_pedidos_widget.dart';
-import '../notificaciones/notificaciones_widget.dart';
-import '../ofertas/ofertas_widget.dart';
-import '../perfil/perfil_widget.dart';
 import '../custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -156,7 +147,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                         size: 30,
                       ),
                       onPressed: () async {
-                        Navigator.pop(context);
+                        context.pop();
                       },
                     ),
                   ),
@@ -167,15 +158,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
               child: InkWell(
                 onTap: () async {
-                  await Navigator.push(
-                    context,
-                    PageTransition(
-                      type: PageTransitionType.fade,
-                      duration: Duration(milliseconds: 0),
-                      reverseDuration: Duration(milliseconds: 0),
-                      child: PerfilWidget(),
-                    ),
-                  );
+                  context.pushNamed('Perfil');
                 },
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
@@ -230,15 +213,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
               child: InkWell(
                 onTap: () async {
-                  await Navigator.push(
-                    context,
-                    PageTransition(
-                      type: PageTransitionType.fade,
-                      duration: Duration(milliseconds: 0),
-                      reverseDuration: Duration(milliseconds: 0),
-                      child: MisPedidosWidget(),
-                    ),
-                  );
+                  context.pushNamed('MisPedidos');
                 },
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
@@ -260,15 +235,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(40, 0, 0, 0),
                         child: InkWell(
                           onTap: () async {
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                                reverseDuration: Duration(milliseconds: 0),
-                                child: MisPedidosWidget(),
-                              ),
-                            );
+                            context.pushNamed('MisPedidos');
                           },
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -311,15 +278,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   );
                   setState(() =>
                       FFAppState().notifications = notifications.toList());
-                  await Navigator.push(
-                    context,
-                    PageTransition(
-                      type: PageTransitionType.fade,
-                      duration: Duration(milliseconds: 0),
-                      reverseDuration: Duration(milliseconds: 0),
-                      child: NotificacionesWidget(),
-                    ),
-                  );
+                  context.pushNamed('Notificaciones');
 
                   setState(() {});
                 },
@@ -456,15 +415,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
               child: InkWell(
                 onTap: () async {
-                  await Navigator.push(
-                    context,
-                    PageTransition(
-                      type: PageTransitionType.fade,
-                      duration: Duration(milliseconds: 0),
-                      reverseDuration: Duration(milliseconds: 0),
-                      child: OfertasWidget(),
-                    ),
-                  );
+                  context.pushNamed('Ofertas');
                 },
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
@@ -537,15 +488,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(40, 0, 0, 0),
                       child: InkWell(
                         onTap: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                              reverseDuration: Duration(milliseconds: 0),
-                              child: CuponesWidget(),
-                            ),
-                          );
+                          context.pushNamed('Cupones');
                         },
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -582,15 +525,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
               child: InkWell(
                 onTap: () async {
-                  await Navigator.push(
-                    context,
-                    PageTransition(
-                      type: PageTransitionType.fade,
-                      duration: Duration(milliseconds: 0),
-                      reverseDuration: Duration(milliseconds: 0),
-                      child: CategoriasWidget(),
-                    ),
-                  );
+                  context.pushNamed('Categorias');
                 },
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
@@ -612,15 +547,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(40, 0, 0, 0),
                         child: InkWell(
                           onTap: () async {
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                                reverseDuration: Duration(milliseconds: 0),
-                                child: CategoriasWidget(),
-                              ),
-                            );
+                            context.pushNamed('Categorias');
                           },
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -658,15 +585,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
               child: InkWell(
                 onTap: () async {
-                  await Navigator.push(
-                    context,
-                    PageTransition(
-                      type: PageTransitionType.fade,
-                      duration: Duration(milliseconds: 0),
-                      reverseDuration: Duration(milliseconds: 0),
-                      child: ListadoMarcasWidget(),
-                    ),
-                  );
+                  context.pushNamed('ListadoMarcas');
                 },
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
@@ -688,15 +607,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(40, 0, 0, 0),
                         child: InkWell(
                           onTap: () async {
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                                reverseDuration: Duration(milliseconds: 0),
-                                child: ListadoMarcasWidget(),
-                              ),
-                            );
+                            context.pushNamed('ListadoMarcas');
                           },
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -752,15 +663,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(40, 0, 0, 0),
                       child: InkWell(
                         onTap: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                              reverseDuration: Duration(milliseconds: 0),
-                              child: ListadoSellersWidget(),
-                            ),
-                          );
+                          context.pushNamed('listadoSellers');
                         },
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -801,17 +704,9 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 children: [
                   FFButtonWidget(
                     onPressed: () async {
+                      GoRouter.of(context).prepareAuthEvent();
                       await signOut();
-                      await Navigator.pushAndRemoveUntil(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.fade,
-                          duration: Duration(milliseconds: 0),
-                          reverseDuration: Duration(milliseconds: 0),
-                          child: HomeAltCopyWidget(),
-                        ),
-                        (r) => false,
-                      );
+                      context.goNamedAuth('HomeAltCopy', mounted);
                     },
                     text: 'Cerrar Sesión',
                     icon: FaIcon(

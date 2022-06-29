@@ -1,7 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
-import '../carrito_por_sellers/carrito_por_sellers_widget.dart';
 import '../flutter_flow/flutter_flow_count_controller.dart';
 import '../flutter_flow/flutter_flow_radio_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -740,18 +739,13 @@ class _SellerProductWidgetState extends State<SellerProductWidget> {
                                             countControllerValue,
                                             containerStoresRecord.id,
                                           );
-                                          await Navigator.push(
-                                            context,
-                                            PageTransition(
-                                              type: PageTransitionType.fade,
-                                              duration:
-                                                  Duration(milliseconds: 0),
-                                              reverseDuration:
-                                                  Duration(milliseconds: 0),
-                                              child: CarritoPorSellersWidget(
-                                                storeId: widget.store,
-                                              ),
-                                            ),
+                                          context.pushNamed(
+                                            'CarritoPorSellers',
+                                            queryParams: {
+                                              'storeId': serializeParam(
+                                                  widget.store,
+                                                  ParamType.String),
+                                            }.withoutNulls,
                                           );
                                         },
                                         text: 'Agregar al carrito',

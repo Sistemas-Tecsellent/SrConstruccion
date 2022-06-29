@@ -1,7 +1,6 @@
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../perfil_del_seller/perfil_del_seller_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -53,16 +52,12 @@ class _SellersHomeWidgetState extends State<SellersHomeWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
                   child: InkWell(
                     onTap: () async {
-                      await Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.fade,
-                          duration: Duration(milliseconds: 0),
-                          reverseDuration: Duration(milliseconds: 0),
-                          child: PerfilDelSellerWidget(
-                            storeId: rowStoresRecord.id,
-                          ),
-                        ),
+                      context.pushNamed(
+                        'PerfilDelSeller',
+                        queryParams: {
+                          'storeId': serializeParam(
+                              rowStoresRecord.id, ParamType.String),
+                        }.withoutNulls,
                       );
                     },
                     child: Container(

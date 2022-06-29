@@ -1,13 +1,9 @@
-import '../agendar_servicio/agendar_servicio_widget.dart';
 import '../auth/auth_util.dart';
-import '../checkout/checkout_widget.dart';
 import '../components/sugerencias_recomendaciones_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../search/search_widget.dart';
-import '../valoraciones/valoraciones_widget.dart';
 import '../custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -78,7 +74,7 @@ class _ProductPageServiciosWidgetState
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            context.pop();
           },
         ),
         actions: [
@@ -93,15 +89,7 @@ class _ProductPageServiciosWidgetState
               size: 15,
             ),
             onPressed: () async {
-              await Navigator.push(
-                context,
-                PageTransition(
-                  type: PageTransitionType.fade,
-                  duration: Duration(milliseconds: 0),
-                  reverseDuration: Duration(milliseconds: 0),
-                  child: SearchWidget(),
-                ),
-              );
+              context.pushNamed('search');
             },
           ),
         ],
@@ -128,15 +116,7 @@ class _ProductPageServiciosWidgetState
                 );
               },
             );
-            await Navigator.push(
-              context,
-              PageTransition(
-                type: PageTransitionType.fade,
-                duration: Duration(milliseconds: 0),
-                reverseDuration: Duration(milliseconds: 0),
-                child: CheckoutWidget(),
-              ),
-            );
+            context.pushNamed('Checkout');
           },
           child: Container(
             decoration: BoxDecoration(
@@ -157,15 +137,7 @@ class _ProductPageServiciosWidgetState
               children: [
                 FFButtonWidget(
                   onPressed: () async {
-                    await Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.fade,
-                        duration: Duration(milliseconds: 0),
-                        reverseDuration: Duration(milliseconds: 0),
-                        child: AgendarServicioWidget(),
-                      ),
-                    );
+                    context.pushNamed('AgendarServicio');
                   },
                   text: 'Agendar',
                   options: FFButtonOptions(
@@ -428,16 +400,7 @@ class _ProductPageServiciosWidgetState
                                       20, 0, 10, 0),
                                   child: InkWell(
                                     onTap: () async {
-                                      await Navigator.push(
-                                        context,
-                                        PageTransition(
-                                          type: PageTransitionType.fade,
-                                          duration: Duration(milliseconds: 0),
-                                          reverseDuration:
-                                              Duration(milliseconds: 0),
-                                          child: ValoracionesWidget(),
-                                        ),
-                                      );
+                                      context.pushNamed('Valoraciones');
                                     },
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,

@@ -2,7 +2,6 @@ import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../validacion_r_f_c/validacion_r_f_c_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -64,15 +63,7 @@ class _EmpresaWidgetState extends State<EmpresaWidget> {
                               businessModel: 'empresa',
                             );
                             await currentUserReference.update(usersUpdateData);
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                                reverseDuration: Duration(milliseconds: 0),
-                                child: ValidacionRFCWidget(),
-                              ),
-                            );
+                            context.pushNamed('ValidacionRFC');
                           },
                           child: Container(
                             width: 150,
@@ -135,15 +126,7 @@ class _EmpresaWidgetState extends State<EmpresaWidget> {
                               );
                               await currentUserReference
                                   .update(usersUpdateData);
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: ValidacionRFCWidget(),
-                                ),
-                              );
+                              context.pushNamed('ValidacionRFC');
                             },
                             child: Container(
                               width: 150,
@@ -214,15 +197,7 @@ class _EmpresaWidgetState extends State<EmpresaWidget> {
                               businessModel: 'empresa',
                             );
                             await currentUserReference.update(usersUpdateData);
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                                reverseDuration: Duration(milliseconds: 0),
-                                child: ValidacionRFCWidget(),
-                              ),
-                            );
+                            context.pushNamed('ValidacionRFC');
                           },
                           child: Container(
                             width: 150,
@@ -276,70 +251,67 @@ class _EmpresaWidgetState extends State<EmpresaWidget> {
                             ),
                           ),
                         ),
-                        InkWell(
-                          onTap: () async {
-                            final usersUpdateData = createUsersRecordData(
-                              occupation: 'industria',
-                              businessModel: 'empresa',
-                            );
-                            await currentUserReference.update(usersUpdateData);
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                                reverseDuration: Duration(milliseconds: 0),
-                                child: ValidacionRFCWidget(),
-                              ),
-                            );
-                          },
-                          child: Container(
-                            width: 150,
-                            height: 180,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 10,
-                                  color: Color(0x08000000),
-                                )
-                              ],
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(20),
-                                    child: Image.asset(
-                                      'assets/images/13.png',
-                                      width: 120,
-                                      height: 120,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        'Industria',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1
-                                            .override(
-                                              fontFamily: 'Montserrat',
-                                              fontSize: 17,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                          child: InkWell(
+                            onTap: () async {
+                              final usersUpdateData = createUsersRecordData(
+                                occupation: 'industria',
+                                businessModel: 'empresa',
+                              );
+                              await currentUserReference
+                                  .update(usersUpdateData);
+                              context.pushNamed('ValidacionRFC');
+                            },
+                            child: Container(
+                              width: 150,
+                              height: 180,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 10,
+                                    color: Color(0x08000000),
+                                  )
                                 ],
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(20),
+                                      child: Image.asset(
+                                        'assets/images/13.png',
+                                        width: 120,
+                                        height: 120,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'Industria',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1
+                                              .override(
+                                                fontFamily: 'Montserrat',
+                                                fontSize: 17,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -360,15 +332,7 @@ class _EmpresaWidgetState extends State<EmpresaWidget> {
                               businessModel: 'empresa',
                             );
                             await currentUserReference.update(usersUpdateData);
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                                reverseDuration: Duration(milliseconds: 0),
-                                child: ValidacionRFCWidget(),
-                              ),
-                            );
+                            context.pushNamed('ValidacionRFC');
                           },
                           child: Container(
                             width: 150,
