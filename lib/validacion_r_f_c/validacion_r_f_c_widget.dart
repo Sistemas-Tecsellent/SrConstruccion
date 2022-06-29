@@ -111,6 +111,9 @@ class _ValidacionRFCWidgetState extends State<ValidacionRFCWidget> {
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width * 0.9,
+                  constraints: BoxConstraints(
+                    maxWidth: 500,
+                  ),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(5),

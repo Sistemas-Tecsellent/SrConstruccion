@@ -6,7 +6,7 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../home_alt/home_alt_widget.dart';
+import '../home_alt_copy/home_alt_copy_widget.dart';
 import '../listado_marcas/listado_marcas_widget.dart';
 import '../listado_sellers/listado_sellers_widget.dart';
 import '../mis_pedidos/mis_pedidos_widget.dart';
@@ -55,88 +55,93 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(15, 20, 0, 10),
-                    child: Container(
-                      width: 70,
-                      height: 70,
-                      decoration: BoxDecoration(
-                        color: Color(0x00EEEEEE),
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 10,
-                            color: Color(0x15000000),
-                          )
-                        ],
-                        shape: BoxShape.circle,
-                      ),
-                      child: AuthUserStreamWidget(
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(15, 20, 0, 10),
                         child: Container(
-                          width: 85,
-                          height: 85,
-                          clipBehavior: Clip.antiAlias,
+                          width: 70,
+                          height: 70,
                           decoration: BoxDecoration(
+                            color: Color(0x00EEEEEE),
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 10,
+                                color: Color(0x15000000),
+                              )
+                            ],
                             shape: BoxShape.circle,
                           ),
-                          child: Image.network(
-                            valueOrDefault<String>(
-                              currentUserPhoto,
-                              'https://cdn.shopify.com/s/files/1/0590/5045/9343/files/MARCA_1.png?v=1655401635',
-                            ),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: 200,
-                    decoration: BoxDecoration(
-                      color: Color(0x00EEEEEE),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          AuthUserStreamWidget(
-                            child: Text(
-                              currentUserDisplayName,
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                    fontFamily: 'Montserrat',
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                            ),
-                          ),
-                          Container(
-                            width: 180,
-                            decoration: BoxDecoration(
-                              color: Color(0x00EEEEEE),
-                            ),
-                            child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
-                              child: Text(
-                                currentUserEmail,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: 'Montserrat',
-                                      color: Colors.white,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.normal,
-                                    ),
+                          child: AuthUserStreamWidget(
+                            child: Container(
+                              width: 85,
+                              height: 85,
+                              clipBehavior: Clip.antiAlias,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                              ),
+                              child: Image.network(
+                                valueOrDefault<String>(
+                                  currentUserPhoto,
+                                  'https://cdn.shopify.com/s/files/1/0590/5045/9343/files/MARCA_1.png?v=1655401635',
+                                ),
+                                fit: BoxFit.cover,
                               ),
                             ),
                           ),
-                        ],
+                        ),
                       ),
-                    ),
+                      Container(
+                        width: 200,
+                        decoration: BoxDecoration(
+                          color: Color(0x00EEEEEE),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              AuthUserStreamWidget(
+                                child: Text(
+                                  currentUserDisplayName,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Montserrat',
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                ),
+                              ),
+                              Container(
+                                width: 180,
+                                decoration: BoxDecoration(
+                                  color: Color(0x00EEEEEE),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 5, 0, 0),
+                                  child: Text(
+                                    currentUserEmail,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Montserrat',
+                                          color: Colors.white,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 30),
@@ -803,7 +808,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                           type: PageTransitionType.fade,
                           duration: Duration(milliseconds: 0),
                           reverseDuration: Duration(milliseconds: 0),
-                          child: HomeAltWidget(),
+                          child: HomeAltCopyWidget(),
                         ),
                         (r) => false,
                       );

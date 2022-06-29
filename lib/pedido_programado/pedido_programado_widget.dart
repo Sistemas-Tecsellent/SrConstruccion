@@ -119,6 +119,9 @@ class _PedidoProgramadoWidgetState extends State<PedidoProgramadoWidget> {
                                 child: Container(
                                   width:
                                       MediaQuery.of(context).size.width * 0.95,
+                                  constraints: BoxConstraints(
+                                    maxWidth: 500,
+                                  ),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     boxShadow: [
@@ -305,6 +308,10 @@ class _PedidoProgramadoWidgetState extends State<PedidoProgramadoWidget> {
                                                                 .size
                                                                 .width *
                                                             0.8,
+                                                        constraints:
+                                                            BoxConstraints(
+                                                          maxWidth: 400,
+                                                        ),
                                                         decoration:
                                                             BoxDecoration(
                                                           color:
@@ -372,6 +379,10 @@ class _PedidoProgramadoWidgetState extends State<PedidoProgramadoWidget> {
                                                                 .width *
                                                             0.8,
                                                         height: 5,
+                                                        constraints:
+                                                            BoxConstraints(
+                                                          maxWidth: 400,
+                                                        ),
                                                         decoration:
                                                             BoxDecoration(
                                                           color: FlutterFlowTheme
@@ -665,6 +676,9 @@ class _PedidoProgramadoWidgetState extends State<PedidoProgramadoWidget> {
                                 child: Container(
                                   width:
                                       MediaQuery.of(context).size.width * 0.95,
+                                  constraints: BoxConstraints(
+                                    maxWidth: 500,
+                                  ),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     boxShadow: [
@@ -823,6 +837,9 @@ class _PedidoProgramadoWidgetState extends State<PedidoProgramadoWidget> {
                                                           .size
                                                           .width *
                                                       0.8,
+                                                  constraints: BoxConstraints(
+                                                    maxWidth: 400,
+                                                  ),
                                                   decoration: BoxDecoration(
                                                     color: Color(0x00EEEEEE),
                                                   ),
@@ -857,6 +874,9 @@ class _PedidoProgramadoWidgetState extends State<PedidoProgramadoWidget> {
                                                           .width *
                                                       0.8,
                                                   height: 5,
+                                                  constraints: BoxConstraints(
+                                                    maxWidth: 400,
+                                                  ),
                                                   decoration: BoxDecoration(
                                                     color: FlutterFlowTheme.of(
                                                             context)
@@ -1124,6 +1144,9 @@ class _PedidoProgramadoWidgetState extends State<PedidoProgramadoWidget> {
                                 child: Container(
                                   width:
                                       MediaQuery.of(context).size.width * 0.95,
+                                  constraints: BoxConstraints(
+                                    maxWidth: 500,
+                                  ),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     boxShadow: [
@@ -1335,6 +1358,10 @@ class _PedidoProgramadoWidgetState extends State<PedidoProgramadoWidget> {
                                                                 .size
                                                                 .width *
                                                             0.8,
+                                                        constraints:
+                                                            BoxConstraints(
+                                                          maxWidth: 400,
+                                                        ),
                                                         decoration:
                                                             BoxDecoration(
                                                           color:
@@ -1373,6 +1400,10 @@ class _PedidoProgramadoWidgetState extends State<PedidoProgramadoWidget> {
                                                                 .width *
                                                             0.8,
                                                         height: 5,
+                                                        constraints:
+                                                            BoxConstraints(
+                                                          maxWidth: 400,
+                                                        ),
                                                         decoration:
                                                             BoxDecoration(
                                                           color: FlutterFlowTheme

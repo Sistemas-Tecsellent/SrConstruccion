@@ -252,7 +252,7 @@ class _OfertasTiendasWidgetState extends State<OfertasTiendasWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(20, 10, 20, 20),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
                         width: 100,
@@ -313,61 +313,64 @@ class _OfertasTiendasWidgetState extends State<OfertasTiendasWidget> {
                           ),
                         ),
                       ),
-                      Container(
-                        width: 100,
-                        decoration: BoxDecoration(
-                          color: Color(0x00EEEEEE),
-                          borderRadius: BorderRadius.circular(5),
-                          border: Border.all(
-                            color: Color(0x00FFFFFF),
-                            width: 0,
-                          ),
-                        ),
-                        child: InkWell(
-                          onTap: () async {
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                                reverseDuration: Duration(milliseconds: 0),
-                                child: OfertasMarcasWidget(),
-                              ),
-                            );
-                          },
-                          child: Container(
-                            width: 100,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .primaryBackground,
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 0,
-                                  color: Colors.transparent,
-                                )
-                              ],
-                              borderRadius: BorderRadius.circular(500),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                        child: Container(
+                          width: 100,
+                          decoration: BoxDecoration(
+                            color: Color(0x00EEEEEE),
+                            borderRadius: BorderRadius.circular(5),
+                            border: Border.all(
+                              color: Color(0x00FFFFFF),
+                              width: 0,
                             ),
-                            alignment: AlignmentDirectional(0, 0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 5, 0, 5),
-                                  child: Text(
-                                    'Marcas',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Montserrat',
-                                          color: Colors.black,
-                                          fontSize: 12,
-                                        ),
-                                  ),
+                          ),
+                          child: InkWell(
+                            onTap: () async {
+                              await Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.fade,
+                                  duration: Duration(milliseconds: 0),
+                                  reverseDuration: Duration(milliseconds: 0),
+                                  child: OfertasMarcasWidget(),
                                 ),
-                              ],
+                              );
+                            },
+                            child: Container(
+                              width: 100,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .primaryBackground,
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 0,
+                                    color: Colors.transparent,
+                                  )
+                                ],
+                                borderRadius: BorderRadius.circular(500),
+                              ),
+                              alignment: AlignmentDirectional(0, 0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 5, 0, 5),
+                                    child: Text(
+                                      'Marcas',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Montserrat',
+                                            color: Colors.black,
+                                            fontSize: 12,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -464,6 +467,7 @@ class _OfertasTiendasWidgetState extends State<OfertasTiendasWidget> {
                           ),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(

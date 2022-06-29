@@ -244,9 +244,9 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                   borderRadius:
                                                       BorderRadius.only(
                                                     bottomLeft:
-                                                        Radius.circular(10),
+                                                        Radius.circular(20),
                                                     bottomRight:
-                                                        Radius.circular(10),
+                                                        Radius.circular(20),
                                                     topLeft: Radius.circular(0),
                                                     topRight:
                                                         Radius.circular(0),
@@ -752,6 +752,9 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                                 .width *
                                                             0.9,
                                                     height: 150,
+                                                    constraints: BoxConstraints(
+                                                      maxWidth: 330,
+                                                    ),
                                                     decoration: BoxDecoration(
                                                       color: Colors.white,
                                                       boxShadow: [

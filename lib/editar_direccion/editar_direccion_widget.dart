@@ -161,6 +161,9 @@ class _EditarDireccionWidgetState extends State<EditarDireccionWidget> {
                         child: Container(
                           width: MediaQuery.of(context).size.width,
                           height: 460,
+                          constraints: BoxConstraints(
+                            maxWidth: 500,
+                          ),
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.only(

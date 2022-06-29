@@ -122,6 +122,9 @@ class _WishMarcasWidgetState extends State<WishMarcasWidget> {
                                             MediaQuery.of(context).size.width *
                                                 0.9,
                                         height: 90,
+                                        constraints: BoxConstraints(
+                                          maxWidth: 500,
+                                        ),
                                         decoration: BoxDecoration(
                                           color: Colors.white,
                                           borderRadius:

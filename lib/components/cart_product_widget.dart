@@ -63,6 +63,9 @@ class _CartProductWidgetState extends State<CartProductWidget> {
               return Container(
                 width: MediaQuery.of(context).size.width * 0.95,
                 height: 120,
+                constraints: BoxConstraints(
+                  maxWidth: 400,
+                ),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   boxShadow: [
@@ -236,7 +239,7 @@ class _CartProductWidgetState extends State<CartProductWidget> {
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
                                             mainAxisAlignment:
-                                                MainAxisAlignment.end,
+                                                MainAxisAlignment.start,
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.end,
                                             children: [
@@ -415,7 +418,7 @@ class _CartProductWidgetState extends State<CartProductWidget> {
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
                                             mainAxisAlignment:
-                                                MainAxisAlignment.end,
+                                                MainAxisAlignment.start,
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.end,
                                             children: [
