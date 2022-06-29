@@ -757,7 +757,7 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  0, 10, 0, 0),
+                                                                  0, 10, 0, 10),
                                                       child: Column(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
