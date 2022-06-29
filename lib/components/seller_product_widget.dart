@@ -141,8 +141,8 @@ class _SellerProductWidgetState extends State<SellerProductWidget> {
                                 children: [
                                   Divider(
                                     thickness: 3,
-                                    indent: 150,
-                                    endIndent: 150,
+                                    indent: 550,
+                                    endIndent: 550,
                                     color: Color(0xFFDBE2E7),
                                   ),
                                   Padding(
@@ -345,6 +345,9 @@ class _SellerProductWidgetState extends State<SellerProductWidget> {
                                   Container(
                                     width:
                                         MediaQuery.of(context).size.width * 0.9,
+                                    constraints: BoxConstraints(
+                                      maxWidth: 500,
+                                    ),
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       boxShadow: [
@@ -386,7 +389,13 @@ class _SellerProductWidgetState extends State<SellerProductWidget> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Container(
-                                                  width: 160,
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.45,
+                                                  constraints: BoxConstraints(
+                                                    maxWidth: 300,
+                                                  ),
                                                   decoration: BoxDecoration(),
                                                   child: Padding(
                                                     padding:
@@ -531,60 +540,74 @@ class _SellerProductWidgetState extends State<SellerProductWidget> {
                                                 ),
                                                 Container(
                                                   width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.4,
+                                                      .size
+                                                      .width,
                                                   height: 50,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            4),
-                                                    shape: BoxShape.rectangle,
-                                                    border: Border.all(
-                                                      color: Color(0xFFE9E9E9),
-                                                      width: 1,
-                                                    ),
+                                                  constraints: BoxConstraints(
+                                                    maxWidth: 300,
                                                   ),
-                                                  child:
-                                                      FlutterFlowCountController(
-                                                    decrementIconBuilder:
-                                                        (enabled) => FaIcon(
-                                                      FontAwesomeIcons.minus,
-                                                      color: enabled
-                                                          ? Color(0xDD000000)
-                                                          : Color(0xFFEEEEEE),
-                                                      size: 20,
-                                                    ),
-                                                    incrementIconBuilder:
-                                                        (enabled) => FaIcon(
-                                                      FontAwesomeIcons.plus,
-                                                      color: enabled
-                                                          ? Color(0xFF1EEBBD)
-                                                          : Color(0xFFEEEEEE),
-                                                      size: 20,
-                                                    ),
-                                                    countBuilder: (count) =>
-                                                        Text(
-                                                      count.toString(),
-                                                      style:
-                                                          GoogleFonts.getFont(
-                                                        'Roboto',
-                                                        color: Colors.black,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontSize: 16,
+                                                  decoration: BoxDecoration(
+                                                    color: Color(0xFFEEEEEE),
+                                                  ),
+                                                  child: Container(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.4,
+                                                    height: 50,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              4),
+                                                      shape: BoxShape.rectangle,
+                                                      border: Border.all(
+                                                        color:
+                                                            Color(0xFFE9E9E9),
+                                                        width: 1,
                                                       ),
                                                     ),
-                                                    count:
-                                                        countControllerValue ??=
-                                                            0,
-                                                    updateCount: (count) =>
-                                                        setState(() =>
-                                                            countControllerValue =
-                                                                count),
-                                                    stepSize: 1,
-                                                    minimum: 0,
+                                                    child:
+                                                        FlutterFlowCountController(
+                                                      decrementIconBuilder:
+                                                          (enabled) => FaIcon(
+                                                        FontAwesomeIcons.minus,
+                                                        color: enabled
+                                                            ? Color(0xDD000000)
+                                                            : Color(0xFFEEEEEE),
+                                                        size: 20,
+                                                      ),
+                                                      incrementIconBuilder:
+                                                          (enabled) => FaIcon(
+                                                        FontAwesomeIcons.plus,
+                                                        color: enabled
+                                                            ? Color(0xFF1EEBBD)
+                                                            : Color(0xFFEEEEEE),
+                                                        size: 20,
+                                                      ),
+                                                      countBuilder: (count) =>
+                                                          Text(
+                                                        count.toString(),
+                                                        style:
+                                                            GoogleFonts.getFont(
+                                                          'Roboto',
+                                                          color: Colors.black,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          fontSize: 16,
+                                                        ),
+                                                      ),
+                                                      count:
+                                                          countControllerValue ??=
+                                                              0,
+                                                      updateCount: (count) =>
+                                                          setState(() =>
+                                                              countControllerValue =
+                                                                  count),
+                                                      stepSize: 1,
+                                                      minimum: 0,
+                                                    ),
                                                   ),
                                                 ),
                                               ],
@@ -613,7 +636,7 @@ class _SellerProductWidgetState extends State<SellerProductWidget> {
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
-                                          MainAxisAlignment.start,
+                                          MainAxisAlignment.center,
                                       children: [
                                         FlutterFlowRadioButton(
                                           options: [
