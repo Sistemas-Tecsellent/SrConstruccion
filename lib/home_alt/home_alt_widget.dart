@@ -249,68 +249,71 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                           ).animated([
                             animationsMap['iconButtonOnActionTriggerAnimation1']
                           ]),
-                          StreamBuilder<List<NotificationsRecord>>(
-                            stream: queryNotificationsRecord(
-                              parent: currentUserReference,
-                              queryBuilder: (notificationsRecord) =>
-                                  notificationsRecord.where('isRead',
-                                      isEqualTo: false),
-                              singleRecord: true,
-                            ),
-                            builder: (context, snapshot) {
-                              // Customize what your widget looks like when it's loading.
-                              if (!snapshot.hasData) {
-                                return Center(
-                                  child: SizedBox(
-                                    width: 50,
-                                    height: 50,
-                                    child: SpinKitFadingCircle(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryColor,
-                                      size: 50,
-                                    ),
-                                  ),
-                                );
-                              }
-                              List<NotificationsRecord>
-                                  iconButtonNotificationsRecordList =
-                                  snapshot.data;
-                              // Return an empty Container when the document does not exist.
-                              if (snapshot.data.isEmpty) {
-                                return Container();
-                              }
-                              final iconButtonNotificationsRecord =
-                                  iconButtonNotificationsRecordList.isNotEmpty
-                                      ? iconButtonNotificationsRecordList.first
-                                      : null;
-                              return FlutterFlowIconButton(
-                                borderColor: Colors.transparent,
-                                borderRadius: 30,
-                                borderWidth: 1,
-                                buttonSize: 60,
-                                icon: Icon(
-                                  Icons.notifications_active,
-                                  color: FlutterFlowTheme.of(context).alternate,
-                                  size: 30,
-                                ),
-                                onPressed: () async {
-                                  await Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 0),
-                                      reverseDuration:
-                                          Duration(milliseconds: 0),
-                                      child: NotificacionesWidget(),
+                          if (loggedIn ?? true)
+                            StreamBuilder<List<NotificationsRecord>>(
+                              stream: queryNotificationsRecord(
+                                parent: currentUserReference,
+                                queryBuilder: (notificationsRecord) =>
+                                    notificationsRecord.where('isRead',
+                                        isEqualTo: false),
+                                singleRecord: true,
+                              ),
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 50,
+                                      height: 50,
+                                      child: SpinKitFadingCircle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor,
+                                        size: 50,
+                                      ),
                                     ),
                                   );
-                                },
-                              ).animated([
-                                animationsMap[
-                                    'iconButtonOnActionTriggerAnimation2']
-                              ]);
-                            },
-                          ),
+                                }
+                                List<NotificationsRecord>
+                                    iconButtonNotificationsRecordList =
+                                    snapshot.data;
+                                // Return an empty Container when the document does not exist.
+                                if (snapshot.data.isEmpty) {
+                                  return Container();
+                                }
+                                final iconButtonNotificationsRecord =
+                                    iconButtonNotificationsRecordList.isNotEmpty
+                                        ? iconButtonNotificationsRecordList
+                                            .first
+                                        : null;
+                                return FlutterFlowIconButton(
+                                  borderColor: Colors.transparent,
+                                  borderRadius: 30,
+                                  borderWidth: 1,
+                                  buttonSize: 60,
+                                  icon: Icon(
+                                    Icons.notifications_active,
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    size: 30,
+                                  ),
+                                  onPressed: () async {
+                                    await Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                        reverseDuration:
+                                            Duration(milliseconds: 0),
+                                        child: NotificacionesWidget(),
+                                      ),
+                                    );
+                                  },
+                                ).animated([
+                                  animationsMap[
+                                      'iconButtonOnActionTriggerAnimation2']
+                                ]);
+                              },
+                            ),
                           StreamBuilder<List<NotificationsRecord>>(
                             stream: queryNotificationsRecord(
                               parent: currentUserReference,
@@ -448,23 +451,24 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            FlutterFlowIconButton(
-                              borderColor: Colors.transparent,
-                              borderRadius: 30,
-                              borderWidth: 1,
-                              buttonSize: 50,
-                              fillColor:
-                                  FlutterFlowTheme.of(context).tertiaryColor,
-                              icon: Icon(
-                                Icons.menu_rounded,
-                                color:
-                                    FlutterFlowTheme.of(context).primaryColor,
-                                size: 30,
+                            if (loggedIn ?? true)
+                              FlutterFlowIconButton(
+                                borderColor: Colors.transparent,
+                                borderRadius: 30,
+                                borderWidth: 1,
+                                buttonSize: 50,
+                                fillColor:
+                                    FlutterFlowTheme.of(context).tertiaryColor,
+                                icon: Icon(
+                                  Icons.menu_rounded,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryColor,
+                                  size: 30,
+                                ),
+                                onPressed: () async {
+                                  scaffoldKey.currentState.openDrawer();
+                                },
                               ),
-                              onPressed: () async {
-                                scaffoldKey.currentState.openDrawer();
-                              },
-                            ),
                           ],
                         ),
                       ),
