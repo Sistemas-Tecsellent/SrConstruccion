@@ -2041,7 +2041,6 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                                                 r'''$.usage''',
                                                                               ).toString(),
                                                                             );
-                                                                            Navigator.pop(context);
                                                                           },
                                                                           child:
                                                                               Text(
@@ -2592,8 +2591,6 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                                               r'''$.usage''',
                                                                             ).toString(),
                                                                           );
-                                                                          Navigator.pop(
-                                                                              context);
                                                                         },
                                                                         child:
                                                                             Text(
