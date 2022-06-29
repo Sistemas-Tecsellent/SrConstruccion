@@ -33,7 +33,19 @@
             </array>
         </dict>
 
+        <dict>
+        <key>CFBundleTypeRole</key>
+        <string>Editor</string>
+        <key>CFBundleURLName</key>
+        <string>sr_construccion</string>
+        <key>CFBundleURLSchemes</key>
+        <array>
+        <string>com.tecsellent.srconstruccion</string>
+        </array>
+        </dict>
     </array>
+    <key>FlutterDeepLinkingEnabled</key>
+    <true/>
 
     <key>FacebookAppID</key>
     <string>491151169051585</string>

@@ -1,4 +1,3 @@
-import '../detalle_devolucion/detalle_devolucion_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -72,15 +71,7 @@ class _SolicitudDevolucionAceptadaWidgetState
                   children: [
                     FFButtonWidget(
                       onPressed: () async {
-                        await Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.fade,
-                            duration: Duration(milliseconds: 0),
-                            reverseDuration: Duration(milliseconds: 0),
-                            child: DetalleDevolucionWidget(),
-                          ),
-                        );
+                        context.pushNamed('DetalleDevolucion');
                       },
                       text: 'Continuar',
                       options: FFButtonOptions(

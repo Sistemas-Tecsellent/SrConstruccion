@@ -6,11 +6,11 @@ export 'product_page/product_page_widget.dart' show ProductPageWidget;
 export 'carrito/carrito_widget.dart' show CarritoWidget;
 export 'login/login_widget.dart' show LoginWidget;
 export 'signup/signup_widget.dart' show SignupWidget;
-export 'ajustes/ajustes_widget.dart' show AjustesWidget;
 export 'editar_direccion/editar_direccion_widget.dart'
     show EditarDireccionWidget;
 export 'notificationes_ajustes/notificationes_ajustes_widget.dart'
     show NotificationesAjustesWidget;
+export 'ajustes/ajustes_widget.dart' show AjustesWidget;
 export 'categorias/categorias_widget.dart' show CategoriasWidget;
 export 'mi_cuenta/mi_cuenta_widget.dart' show MiCuentaWidget;
 export 'direcciones/direcciones_widget.dart' show DireccionesWidget;

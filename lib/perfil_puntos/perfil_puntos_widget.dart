@@ -35,7 +35,7 @@ class _PerfilPuntosWidgetState extends State<PerfilPuntosWidget> {
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            context.pop();
           },
         ),
         actions: [

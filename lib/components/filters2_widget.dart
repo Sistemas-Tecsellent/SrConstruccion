@@ -626,7 +626,7 @@ class _Filters2WidgetState extends State<Filters2Widget> {
                             ),
                             FFButtonWidget(
                               onPressed: () async {
-                                Navigator.pop(context);
+                                context.pop();
                               },
                               text: 'Aplicar',
                               options: FFButtonOptions(

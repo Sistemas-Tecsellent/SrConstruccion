@@ -1,9 +1,6 @@
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../mi_cuenta/mi_cuenta_widget.dart';
-import '../notificationes_ajustes/notificationes_ajustes_widget.dart';
-import '../sobre_sr_construccion/sobre_sr_construccion_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -38,7 +35,7 @@ class _AjustesWidgetState extends State<AjustesWidget> {
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            context.pop();
           },
         ),
         title: Text(
@@ -79,15 +76,7 @@ class _AjustesWidgetState extends State<AjustesWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(40, 15, 0, 0),
                   child: InkWell(
                     onTap: () async {
-                      await Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.fade,
-                          duration: Duration(milliseconds: 0),
-                          reverseDuration: Duration(milliseconds: 0),
-                          child: MiCuentaWidget(),
-                        ),
-                      );
+                      context.pushNamed('miCuenta');
                     },
                     child: ListTile(
                       leading: Icon(
@@ -124,15 +113,7 @@ class _AjustesWidgetState extends State<AjustesWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(40, 0, 0, 0),
                   child: InkWell(
                     onTap: () async {
-                      await Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.fade,
-                          duration: Duration(milliseconds: 0),
-                          reverseDuration: Duration(milliseconds: 0),
-                          child: NotificationesAjustesWidget(),
-                        ),
-                      );
+                      context.pushNamed('NotificationesAjustes');
                     },
                     child: ListTile(
                       leading: FaIcon(
@@ -158,15 +139,7 @@ class _AjustesWidgetState extends State<AjustesWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(40, 0, 0, 0),
                   child: InkWell(
                     onTap: () async {
-                      await Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.fade,
-                          duration: Duration(milliseconds: 0),
-                          reverseDuration: Duration(milliseconds: 0),
-                          child: SobreSrConstruccionWidget(),
-                        ),
-                      );
+                      context.pushNamed('SobreSrConstruccion');
                     },
                     child: ListTile(
                       leading: Icon(

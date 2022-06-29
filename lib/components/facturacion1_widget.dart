@@ -337,7 +337,7 @@ class _Facturacion1WidgetState extends State<Facturacion1Widget> {
                                         .reference
                                         .update(
                                             publicInvoiceProfilesUpdateData);
-                                    Navigator.pop(context);
+                                    context.pop();
                                   },
                                   text: 'Guardar cambios',
                                   icon: Icon(
@@ -388,7 +388,7 @@ class _Facturacion1WidgetState extends State<Facturacion1Widget> {
                               containerPublicInvoiceProfilesRecord.address,
                               containerPublicInvoiceProfilesRecord.email,
                             );
-                            Navigator.pop(context);
+                            context.pop();
                           },
                           text: 'Añadir a mi cuenta',
                           icon: Icon(

@@ -6,7 +6,6 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/upload_media.dart';
-import '../solicitud_devolucion_enviada/solicitud_devolucion_enviada_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -49,7 +48,7 @@ class _Devolucion2WidgetState extends State<Devolucion2Widget> {
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            context.pop();
           },
         ),
         title: Text(
@@ -78,7 +77,7 @@ class _Devolucion2WidgetState extends State<Devolucion2Widget> {
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Row(
                           mainAxisSize: MainAxisSize.max,
@@ -509,16 +508,8 @@ class _Devolucion2WidgetState extends State<Devolucion2Widget> {
                             children: [
                               FFButtonWidget(
                                 onPressed: () async {
-                                  await Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 0),
-                                      reverseDuration:
-                                          Duration(milliseconds: 0),
-                                      child: SolicitudDevolucionEnviadaWidget(),
-                                    ),
-                                  );
+                                  context
+                                      .pushNamed('SolicitudDevolucionEnviada');
                                 },
                                 text: 'Devolver',
                                 options: FFButtonOptions(

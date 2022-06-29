@@ -1,4 +1,3 @@
-import '../anadir_direccion/anadir_direccion_widget.dart';
 import '../auth/auth_util.dart';
 import '../auth/firebase_user_provider.dart';
 import '../backend/api_requests/api_calls.dart';
@@ -7,15 +6,10 @@ import '../backend/stripe/payment_manager.dart';
 import '../components/cambiar_direccion_widget.dart';
 import '../components/facturacion_widget.dart';
 import '../components/metodo_de_pago_widget.dart';
-import '../detalle_pedido_programado/detalle_pedido_programado_widget.dart';
-import '../detalle_pedido_programado_checkout/detalle_pedido_programado_checkout_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../home_alt/home_alt_widget.dart';
-import '../login/login_widget.dart';
-import '../pago_aceptado/pago_aceptado_widget.dart';
 import '../custom_code/actions/index.dart' as actions;
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -78,7 +72,7 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
         return Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
-            backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             automaticallyImplyLeading: false,
             leading: FlutterFlowIconButton(
               borderColor: Colors.transparent,
@@ -91,7 +85,7 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                 size: 30,
               ),
               onPressed: () async {
-                Navigator.pop(context);
+                context.pop();
               },
             ),
             title: Text(
@@ -214,75 +208,77 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                       bundleId = await actions.placeOrderBundle(
                                         widget.storeId,
                                       );
-                                      final paymentResponse =
-                                          await processStripePayment(
-                                        amount: buttonSellerWiseCheckoutsRecord
-                                            .totalInCents,
-                                        currency: 'MXN',
-                                        customerEmail: currentUserEmail,
-                                        customerName: currentUserDisplayName,
-                                        description:
-                                            '1x Codigo de Pago No. ${bundleId}',
-                                        allowGooglePay: false,
-                                        allowApplePay: false,
-                                      );
-                                      if (paymentResponse.paymentId == null) {
-                                        if (paymentResponse.errorMessage !=
-                                            null) {
-                                          showSnackbar(
-                                            context,
-                                            'Error: ${paymentResponse.errorMessage}',
-                                          );
+                                      if (isWeb) {
+                                        await actions.webCheckout(
+                                          widget.storeId,
+                                          bundleId,
+                                        );
+                                      } else {
+                                        final paymentResponse =
+                                            await processStripePayment(
+                                          amount:
+                                              buttonSellerWiseCheckoutsRecord
+                                                  .totalInCents,
+                                          currency: 'MXN',
+                                          customerEmail: currentUserEmail,
+                                          customerName: currentUserDisplayName,
+                                          description:
+                                              '1x Codigo de Pago No. ${bundleId}',
+                                          allowGooglePay: false,
+                                          allowApplePay: false,
+                                        );
+                                        if (paymentResponse.paymentId == null) {
+                                          if (paymentResponse.errorMessage !=
+                                              null) {
+                                            showSnackbar(
+                                              context,
+                                              'Error: ${paymentResponse.errorMessage}',
+                                            );
+                                          }
+                                          return;
                                         }
-                                        return;
-                                      }
-                                      paymentId = paymentResponse.paymentId;
+                                        paymentId = paymentResponse.paymentId;
 
-                                      await Navigator.push(
-                                        context,
-                                        PageTransition(
-                                          type: PageTransitionType.fade,
-                                          duration: Duration(milliseconds: 0),
-                                          reverseDuration:
-                                              Duration(milliseconds: 0),
-                                          child: PagoAceptadoWidget(
-                                            total:
+                                        context.pushNamed(
+                                          'PagoAceptado',
+                                          queryParams: {
+                                            'total': serializeParam(
                                                 buttonSellerWiseCheckoutsRecord
                                                     .total,
-                                            orderId: bundleId,
-                                          ),
-                                        ),
-                                      );
+                                                ParamType.double),
+                                            'orderId': serializeParam(
+                                                bundleId, ParamType.String),
+                                          }.withoutNulls,
+                                        );
 
-                                      final usersUpdateData = {
-                                        'liveOrders':
-                                            FieldValue.arrayUnion([bundleId]),
-                                      };
-                                      await currentUserReference
-                                          .update(usersUpdateData);
+                                        final usersUpdateData = {
+                                          'liveOrders':
+                                              FieldValue.arrayUnion([bundleId]),
+                                        };
+                                        await currentUserReference
+                                            .update(usersUpdateData);
+                                      }
                                     } else {
-                                      await Navigator.push(
-                                        context,
-                                        PageTransition(
-                                          type: PageTransitionType.fade,
-                                          duration: Duration(milliseconds: 0),
-                                          reverseDuration:
-                                              Duration(milliseconds: 0),
-                                          child: HomeAltWidget(),
-                                        ),
+                                      await showDialog(
+                                        context: context,
+                                        builder: (alertDialogContext) {
+                                          return AlertDialog(
+                                            title: Text('Metodo de pago'),
+                                            content: Text(
+                                                'Por el momento solo se aceptan pogos con tarjeta'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext),
+                                                child: Text('Ok'),
+                                              ),
+                                            ],
+                                          );
+                                        },
                                       );
                                     }
                                   } else {
-                                    await Navigator.push(
-                                      context,
-                                      PageTransition(
-                                        type: PageTransitionType.fade,
-                                        duration: Duration(milliseconds: 0),
-                                        reverseDuration:
-                                            Duration(milliseconds: 0),
-                                        child: LoginWidget(),
-                                      ),
-                                    );
+                                    context.pushNamed('login');
                                   }
 
                                   setState(() {});
@@ -395,14 +391,16 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                             height: 230,
                                             child: Stack(
                                               children: [
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceEvenly,
-                                                  children: [
-                                                    Container(
+                                                if (responsiveVisibility(
+                                                  context: context,
+                                                  tabletLandscape: false,
+                                                  desktop: false,
+                                                ))
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            0, -1),
+                                                    child: Container(
                                                       width:
                                                           MediaQuery.of(context)
                                                               .size
@@ -432,6 +430,38 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                               Radius.circular(
                                                                   0),
                                                         ),
+                                                      ),
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0, 0),
+                                                    ),
+                                                  ),
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceEvenly,
+                                                  children: [
+                                                    Container(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.95,
+                                                      height: 200,
+                                                      constraints:
+                                                          BoxConstraints(
+                                                        maxWidth: 500,
+                                                      ),
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryColor,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(20),
                                                       ),
                                                       alignment:
                                                           AlignmentDirectional(
@@ -1393,20 +1423,8 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                 FFButtonWidget(
                                                                   onPressed:
                                                                       () async {
-                                                                    await Navigator
-                                                                        .push(
-                                                                      context,
-                                                                      PageTransition(
-                                                                        type: PageTransitionType
-                                                                            .fade,
-                                                                        duration:
-                                                                            Duration(milliseconds: 0),
-                                                                        reverseDuration:
-                                                                            Duration(milliseconds: 0),
-                                                                        child:
-                                                                            AnadirDireccionWidget(),
-                                                                      ),
-                                                                    );
+                                                                    context.pushNamed(
+                                                                        'AnadirDireccion');
                                                                   },
                                                                   text:
                                                                       'Añadir dirección',
@@ -1942,27 +1960,20 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                 0, 0, 0, 10),
                                                     child: InkWell(
                                                       onTap: () async {
-                                                        await Navigator.push(
-                                                          context,
-                                                          PageTransition(
-                                                            type:
-                                                                PageTransitionType
-                                                                    .fade,
-                                                            duration: Duration(
-                                                                milliseconds:
-                                                                    0),
-                                                            reverseDuration:
-                                                                Duration(
-                                                                    milliseconds:
-                                                                        0),
-                                                            child:
-                                                                DetallePedidoProgramadoCheckoutWidget(
-                                                              order:
-                                                                  'expressOrder',
-                                                              checkoutId: widget
-                                                                  .storeId,
-                                                            ),
-                                                          ),
+                                                        context.pushNamed(
+                                                          'DetallePedidoProgramadoCheckout',
+                                                          queryParams: {
+                                                            'order': serializeParam(
+                                                                'expressOrder',
+                                                                ParamType
+                                                                    .String),
+                                                            'checkoutId':
+                                                                serializeParam(
+                                                                    widget
+                                                                        .storeId,
+                                                                    ParamType
+                                                                        .String),
+                                                          }.withoutNulls,
                                                         );
                                                       },
                                                       child: Container(
@@ -2968,28 +2979,20 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                         10),
                                                             child: InkWell(
                                                               onTap: () async {
-                                                                await Navigator
-                                                                    .push(
-                                                                  context,
-                                                                  PageTransition(
-                                                                    type: PageTransitionType
-                                                                        .fade,
-                                                                    duration: Duration(
-                                                                        milliseconds:
-                                                                            0),
-                                                                    reverseDuration:
-                                                                        Duration(
-                                                                            milliseconds:
-                                                                                0),
-                                                                    child:
-                                                                        DetallePedidoProgramadoCheckoutWidget(
-                                                                      order:
-                                                                          'normalOrder',
-                                                                      checkoutId:
-                                                                          widget
-                                                                              .storeId,
-                                                                    ),
-                                                                  ),
+                                                                context
+                                                                    .pushNamed(
+                                                                  'DetallePedidoProgramadoCheckout',
+                                                                  queryParams: {
+                                                                    'order': serializeParam(
+                                                                        'normalOrder',
+                                                                        ParamType
+                                                                            .String),
+                                                                    'checkoutId': serializeParam(
+                                                                        widget
+                                                                            .storeId,
+                                                                        ParamType
+                                                                            .String),
+                                                                  }.withoutNulls,
                                                                 );
                                                               },
                                                               child: Container(
@@ -3343,24 +3346,8 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                           ),
                                                           InkWell(
                                                             onTap: () async {
-                                                              await Navigator
-                                                                  .push(
-                                                                context,
-                                                                PageTransition(
-                                                                  type:
-                                                                      PageTransitionType
-                                                                          .fade,
-                                                                  duration: Duration(
-                                                                      milliseconds:
-                                                                          0),
-                                                                  reverseDuration:
-                                                                      Duration(
-                                                                          milliseconds:
-                                                                              0),
-                                                                  child:
-                                                                      DetallePedidoProgramadoWidget(),
-                                                                ),
-                                                              );
+                                                              context.pushNamed(
+                                                                  'DetallePedidoProgramado');
                                                             },
                                                             child: Container(
                                                               width: MediaQuery.of(
@@ -3451,28 +3438,20 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                         10),
                                                             child: InkWell(
                                                               onTap: () async {
-                                                                await Navigator
-                                                                    .push(
-                                                                  context,
-                                                                  PageTransition(
-                                                                    type: PageTransitionType
-                                                                        .fade,
-                                                                    duration: Duration(
-                                                                        milliseconds:
-                                                                            0),
-                                                                    reverseDuration:
-                                                                        Duration(
-                                                                            milliseconds:
-                                                                                0),
-                                                                    child:
-                                                                        DetallePedidoProgramadoCheckoutWidget(
-                                                                      order:
-                                                                          'normal',
-                                                                      checkoutId:
-                                                                          widget
-                                                                              .storeId,
-                                                                    ),
-                                                                  ),
+                                                                context
+                                                                    .pushNamed(
+                                                                  'DetallePedidoProgramadoCheckout',
+                                                                  queryParams: {
+                                                                    'order': serializeParam(
+                                                                        'normal',
+                                                                        ParamType
+                                                                            .String),
+                                                                    'checkoutId': serializeParam(
+                                                                        widget
+                                                                            .storeId,
+                                                                        ParamType
+                                                                            .String),
+                                                                  }.withoutNulls,
                                                                 );
                                                               },
                                                               child: Container(
@@ -3970,28 +3949,20 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                         10),
                                                             child: InkWell(
                                                               onTap: () async {
-                                                                await Navigator
-                                                                    .push(
-                                                                  context,
-                                                                  PageTransition(
-                                                                    type: PageTransitionType
-                                                                        .fade,
-                                                                    duration: Duration(
-                                                                        milliseconds:
-                                                                            0),
-                                                                    reverseDuration:
-                                                                        Duration(
-                                                                            milliseconds:
-                                                                                0),
-                                                                    child:
-                                                                        DetallePedidoProgramadoCheckoutWidget(
-                                                                      order:
-                                                                          'pickupInStoreOrder',
-                                                                      checkoutId:
-                                                                          widget
-                                                                              .storeId,
-                                                                    ),
-                                                                  ),
+                                                                context
+                                                                    .pushNamed(
+                                                                  'DetallePedidoProgramadoCheckout',
+                                                                  queryParams: {
+                                                                    'order': serializeParam(
+                                                                        'pickupInStoreOrder',
+                                                                        ParamType
+                                                                            .String),
+                                                                    'checkoutId': serializeParam(
+                                                                        widget
+                                                                            .storeId,
+                                                                        ParamType
+                                                                            .String),
+                                                                  }.withoutNulls,
                                                                 );
                                                               },
                                                               child: Container(

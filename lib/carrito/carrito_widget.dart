@@ -8,8 +8,6 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../login/login_widget.dart';
-import '../product_page/product_page_widget.dart';
 import '../custom_code/actions/index.dart' as actions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +45,7 @@ class _CarritoWidgetState extends State<CarritoWidget> {
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            context.pop();
           },
         ),
         title: Text(
@@ -188,15 +186,7 @@ class _CarritoWidgetState extends State<CarritoWidget> {
                                   },
                                 );
                               } else {
-                                await Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.fade,
-                                    duration: Duration(milliseconds: 0),
-                                    reverseDuration: Duration(milliseconds: 0),
-                                    child: LoginWidget(),
-                                  ),
-                                );
+                                context.pushNamed('login');
                               }
 
                               setState(() {});
@@ -386,26 +376,18 @@ class _CarritoWidgetState extends State<CarritoWidget> {
                                                 ),
                                                 InkWell(
                                                   onTap: () async {
-                                                    await Navigator.push(
-                                                      context,
-                                                      PageTransition(
-                                                        type: PageTransitionType
-                                                            .fade,
-                                                        duration: Duration(
-                                                            milliseconds: 0),
-                                                        reverseDuration:
-                                                            Duration(
-                                                                milliseconds:
-                                                                    0),
-                                                        child:
-                                                            ProductPageWidget(
-                                                          productId:
-                                                              getJsonField(
-                                                            productsInCartItem,
-                                                            r'''$.productId''',
-                                                          ).toString(),
-                                                        ),
-                                                      ),
+                                                    context.pushNamed(
+                                                      'ProductPage',
+                                                      queryParams: {
+                                                        'productId':
+                                                            serializeParam(
+                                                                getJsonField(
+                                                                  productsInCartItem,
+                                                                  r'''$.productId''',
+                                                                ).toString(),
+                                                                ParamType
+                                                                    .String),
+                                                      }.withoutNulls,
                                                     );
                                                   },
                                                   child: CartProductWidget(

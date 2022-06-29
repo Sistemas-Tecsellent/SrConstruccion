@@ -1,10 +1,7 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../empresa/empresa_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../home_alt/home_alt_widget.dart';
-import '../profesional/profesional_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -67,91 +64,97 @@ class _Onboarding1WidgetState extends State<Onboarding1Widget> {
                                 AlignmentDirectional(0, 0.44999999999999996),
                             children: [
                               Align(
-                                alignment: AlignmentDirectional(0, -1),
+                                alignment: AlignmentDirectional(0, -0.8),
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 80),
                                   child: Image.asset(
-                                    'assets/images/Deliver_man_2.png',
+                                    'assets/images/111111.png',
                                     fit: BoxFit.cover,
                                   ),
                                 ),
                               ),
-                              Container(
-                                width: 300,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.4,
-                                constraints: BoxConstraints(
-                                  maxHeight: 200,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                alignment: AlignmentDirectional(0, 0),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 10, 0, 10),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        'Bienvenido a',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1
-                                            .override(
-                                              fontFamily: 'Montserrat',
-                                              fontSize: 30,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                      ),
-                                      Text(
-                                        'Sr. Construcción',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1
-                                            .override(
-                                              fontFamily: 'Montserrat',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryColor,
-                                              fontSize: 30,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            20, 20, 20, 0),
-                                        child: Text(
-                                          'La primera app de delivery de la industria de la construcción',
-                                          textAlign: TextAlign.center,
+                              Align(
+                                alignment: AlignmentDirectional(0, 0.7),
+                                child: Container(
+                                  width: 300,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.4,
+                                  constraints: BoxConstraints(
+                                    maxHeight: 200,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  alignment: AlignmentDirectional(0, 0),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 10, 0, 10),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'Bienvenido a',
                                           style: FlutterFlowTheme.of(context)
-                                              .subtitle2
+                                              .bodyText1
                                               .override(
                                                 fontFamily: 'Montserrat',
-                                                color: Colors.black,
-                                                fontSize: 13,
+                                                fontSize: 30,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            20, 0, 20, 0),
-                                        child: Text(
-                                          'Somos el mejor aliado en cualquier obra y proyecto de construcción',
-                                          textAlign: TextAlign.center,
+                                        Text(
+                                          'Sr. Construcción',
                                           style: FlutterFlowTheme.of(context)
-                                              .subtitle2
+                                              .bodyText1
                                               .override(
                                                 fontFamily: 'Montserrat',
-                                                color: Color(0x99000000),
-                                                fontSize: 11,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryColor,
+                                                fontSize: 30,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
-                                      ),
-                                    ],
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  20, 20, 20, 0),
+                                          child: Text(
+                                            'La primera app de delivery de la industria de la construcción',
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.of(context)
+                                                .subtitle2
+                                                .override(
+                                                  fontFamily: 'Montserrat',
+                                                  color: Colors.black,
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  20, 0, 20, 0),
+                                          child: Text(
+                                            'Somos el mejor aliado en cualquier obra y proyecto de construcción',
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.of(context)
+                                                .subtitle2
+                                                .override(
+                                                  fontFamily: 'Montserrat',
+                                                  color: Color(0x99000000),
+                                                  fontSize: 11,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -201,15 +204,16 @@ class _Onboarding1WidgetState extends State<Onboarding1Widget> {
                                       0, 20, 0, 0),
                                   child: InkWell(
                                     onTap: () async {
-                                      await Navigator.push(
-                                        context,
-                                        PageTransition(
-                                          type: PageTransitionType.fade,
-                                          duration: Duration(milliseconds: 0),
-                                          reverseDuration:
-                                              Duration(milliseconds: 0),
-                                          child: ProfesionalWidget(),
-                                        ),
+                                      context.pushNamed(
+                                        'Profesional',
+                                        extra: <String, dynamic>{
+                                          kTransitionInfoKey: TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.fade,
+                                            duration: Duration(milliseconds: 0),
+                                          ),
+                                        },
                                       );
                                     },
                                     child: Container(
@@ -244,17 +248,7 @@ class _Onboarding1WidgetState extends State<Onboarding1Widget> {
                                           ),
                                           InkWell(
                                             onTap: () async {
-                                              await Navigator.push(
-                                                context,
-                                                PageTransition(
-                                                  type: PageTransitionType.fade,
-                                                  duration:
-                                                      Duration(milliseconds: 0),
-                                                  reverseDuration:
-                                                      Duration(milliseconds: 0),
-                                                  child: ProfesionalWidget(),
-                                                ),
-                                              );
+                                              context.pushNamed('Profesional');
                                             },
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -317,15 +311,16 @@ class _Onboarding1WidgetState extends State<Onboarding1Widget> {
                                       0, 20, 0, 20),
                                   child: InkWell(
                                     onTap: () async {
-                                      await Navigator.push(
-                                        context,
-                                        PageTransition(
-                                          type: PageTransitionType.fade,
-                                          duration: Duration(milliseconds: 0),
-                                          reverseDuration:
-                                              Duration(milliseconds: 0),
-                                          child: EmpresaWidget(),
-                                        ),
+                                      context.pushNamed(
+                                        'Empresa',
+                                        extra: <String, dynamic>{
+                                          kTransitionInfoKey: TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.fade,
+                                            duration: Duration(milliseconds: 0),
+                                          ),
+                                        },
                                       );
                                     },
                                     child: Container(
@@ -451,17 +446,7 @@ class _Onboarding1WidgetState extends State<Onboarding1Widget> {
                                               .update(usersUpdateData);
                                           await Future.delayed(const Duration(
                                               milliseconds: 3000));
-                                          await Navigator.push(
-                                            context,
-                                            PageTransition(
-                                              type: PageTransitionType.fade,
-                                              duration:
-                                                  Duration(milliseconds: 0),
-                                              reverseDuration:
-                                                  Duration(milliseconds: 0),
-                                              child: HomeAltWidget(),
-                                            ),
-                                          );
+                                          context.pushNamed('HomeAlt');
                                         },
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,

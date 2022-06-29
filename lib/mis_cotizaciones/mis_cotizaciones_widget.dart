@@ -1,8 +1,6 @@
-import '../cotizacion_con_sub_cotizaciones/cotizacion_con_sub_cotizaciones_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../resumen_solicitud_cotizacion/resumen_solicitud_cotizacion_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -36,7 +34,7 @@ class _MisCotizacionesWidgetState extends State<MisCotizacionesWidget> {
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            context.pop();
           },
         ),
         title: Text(
@@ -78,15 +76,7 @@ class _MisCotizacionesWidgetState extends State<MisCotizacionesWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
                 child: InkWell(
                   onTap: () async {
-                    await Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.fade,
-                        duration: Duration(milliseconds: 0),
-                        reverseDuration: Duration(milliseconds: 0),
-                        child: ResumenSolicitudCotizacionWidget(),
-                      ),
-                    );
+                    context.pushNamed('ResumenSolicitudCotizacion');
                   },
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
@@ -378,15 +368,7 @@ class _MisCotizacionesWidgetState extends State<MisCotizacionesWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
                 child: InkWell(
                   onTap: () async {
-                    await Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.fade,
-                        duration: Duration(milliseconds: 0),
-                        reverseDuration: Duration(milliseconds: 0),
-                        child: CotizacionConSubCotizacionesWidget(),
-                      ),
-                    );
+                    context.pushNamed('CotizacionConSubCotizaciones');
                   },
                   child: Row(
                     mainAxisSize: MainAxisSize.max,

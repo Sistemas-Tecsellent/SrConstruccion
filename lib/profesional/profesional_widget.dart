@@ -2,7 +2,6 @@ import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../home_alt/home_alt_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -65,15 +64,7 @@ class _ProfesionalWidgetState extends State<ProfesionalWidget> {
                               businessModel: 'profesional',
                             );
                             await currentUserReference.update(usersUpdateData);
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                                reverseDuration: Duration(milliseconds: 0),
-                                child: HomeAltWidget(),
-                              ),
-                            );
+                            context.pushNamed('HomeAlt');
                           },
                           child: Container(
                             width: 100,
@@ -136,15 +127,7 @@ class _ProfesionalWidgetState extends State<ProfesionalWidget> {
                               );
                               await currentUserReference
                                   .update(usersUpdateData);
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: HomeAltWidget(),
-                                ),
-                              );
+                              context.pushNamed('HomeAlt');
                             },
                             child: Container(
                               width: 100,
@@ -206,15 +189,7 @@ class _ProfesionalWidgetState extends State<ProfesionalWidget> {
                               businessModel: 'profesional',
                             );
                             await currentUserReference.update(usersUpdateData);
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                                reverseDuration: Duration(milliseconds: 0),
-                                child: HomeAltWidget(),
-                              ),
-                            );
+                            context.pushNamed('HomeAlt');
                           },
                           child: Container(
                             width: 100,
@@ -285,15 +260,7 @@ class _ProfesionalWidgetState extends State<ProfesionalWidget> {
                               businessModel: 'profesional',
                             );
                             await currentUserReference.update(usersUpdateData);
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                                reverseDuration: Duration(milliseconds: 0),
-                                child: HomeAltWidget(),
-                              ),
-                            );
+                            context.pushNamed('HomeAlt');
                           },
                           child: Container(
                             width: 100,
@@ -356,15 +323,7 @@ class _ProfesionalWidgetState extends State<ProfesionalWidget> {
                               );
                               await currentUserReference
                                   .update(usersUpdateData);
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: HomeAltWidget(),
-                                ),
-                              );
+                              context.pushNamed('HomeAlt');
                             },
                             child: Container(
                               width: 100,
@@ -426,15 +385,7 @@ class _ProfesionalWidgetState extends State<ProfesionalWidget> {
                               businessModel: 'profesional',
                             );
                             await currentUserReference.update(usersUpdateData);
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                                reverseDuration: Duration(milliseconds: 0),
-                                child: HomeAltWidget(),
-                              ),
-                            );
+                            context.pushNamed('HomeAlt');
                           },
                           child: Container(
                             width: 100,
@@ -505,15 +456,7 @@ class _ProfesionalWidgetState extends State<ProfesionalWidget> {
                               businessModel: 'profesional',
                             );
                             await currentUserReference.update(usersUpdateData);
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                                reverseDuration: Duration(milliseconds: 0),
-                                child: HomeAltWidget(),
-                              ),
-                            );
+                            context.pushNamed('HomeAlt');
                           },
                           child: Container(
                             width: 100,
@@ -576,15 +519,7 @@ class _ProfesionalWidgetState extends State<ProfesionalWidget> {
                               );
                               await currentUserReference
                                   .update(usersUpdateData);
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: HomeAltWidget(),
-                                ),
-                              );
+                              context.pushNamed('HomeAlt');
                             },
                             child: Container(
                               width: 100,
@@ -646,15 +581,7 @@ class _ProfesionalWidgetState extends State<ProfesionalWidget> {
                               businessModel: 'profesional',
                             );
                             await currentUserReference.update(usersUpdateData);
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                                reverseDuration: Duration(milliseconds: 0),
-                                child: HomeAltWidget(),
-                              ),
-                            );
+                            context.pushNamed('HomeAlt');
                           },
                           child: Container(
                             width: 100,
@@ -725,15 +652,7 @@ class _ProfesionalWidgetState extends State<ProfesionalWidget> {
                               businessModel: 'profesional',
                             );
                             await currentUserReference.update(usersUpdateData);
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                                reverseDuration: Duration(milliseconds: 0),
-                                child: HomeAltWidget(),
-                              ),
-                            );
+                            context.pushNamed('HomeAlt');
                           },
                           child: Container(
                             width: 100,
@@ -796,15 +715,7 @@ class _ProfesionalWidgetState extends State<ProfesionalWidget> {
                               );
                               await currentUserReference
                                   .update(usersUpdateData);
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: HomeAltWidget(),
-                                ),
-                              );
+                              context.pushNamed('HomeAlt');
                             },
                             child: Container(
                               width: 100,
@@ -866,15 +777,7 @@ class _ProfesionalWidgetState extends State<ProfesionalWidget> {
                               businessModel: 'profesional',
                             );
                             await currentUserReference.update(usersUpdateData);
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                                reverseDuration: Duration(milliseconds: 0),
-                                child: HomeAltWidget(),
-                              ),
-                            );
+                            context.pushNamed('HomeAlt');
                           },
                           child: Container(
                             width: 100,

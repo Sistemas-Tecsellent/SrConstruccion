@@ -34,7 +34,7 @@ class _DetallePedidoProgramadoCheckoutWidgetState
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
         leading: FlutterFlowIconButton(
           borderColor: Colors.transparent,
@@ -47,11 +47,11 @@ class _DetallePedidoProgramadoCheckoutWidgetState
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            context.pop();
           },
         ),
         title: Text(
-          'DETALLE',
+          widget.order,
           style: FlutterFlowTheme.of(context).bodyText1.override(
                 fontFamily: 'Montserrat',
                 fontSize: 18,
@@ -62,7 +62,7 @@ class _DetallePedidoProgramadoCheckoutWidgetState
         centerTitle: true,
         elevation: 0,
       ),
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -1063,11 +1063,7 @@ class _DetallePedidoProgramadoCheckoutWidgetState
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Container(
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.3,
+                                                    width: 100,
                                                     height: 100,
                                                     decoration: BoxDecoration(),
                                                     child: Padding(
@@ -1080,18 +1076,14 @@ class _DetallePedidoProgramadoCheckoutWidgetState
                                                             BorderRadius
                                                                 .circular(5),
                                                         child: Image.network(
-                                                          containerProductsRecord
-                                                              .mainImage,
-                                                          width: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .width *
-                                                              0.9,
-                                                          height: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .height *
-                                                              0.9,
+                                                          valueOrDefault<
+                                                              String>(
+                                                            containerProductsRecord
+                                                                .mainImage,
+                                                            'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
+                                                          ),
+                                                          width: 150,
+                                                          height: 150,
                                                           fit: BoxFit.cover,
                                                         ),
                                                       ),

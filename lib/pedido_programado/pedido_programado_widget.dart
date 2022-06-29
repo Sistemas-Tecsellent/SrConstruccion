@@ -1,11 +1,7 @@
 import '../backend/backend.dart';
-import '../detalle_pedido_programado/detalle_pedido_programado_widget.dart';
-import '../detalle_pedido_programado5_d_i_a_s/detalle_pedido_programado5_d_i_a_s_widget.dart';
-import '../detalle_pedido_programado_pickup/detalle_pedido_programado_pickup_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../mis_pedidos/mis_pedidos_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -44,15 +40,7 @@ class _PedidoProgramadoWidgetState extends State<PedidoProgramadoWidget> {
             size: 30,
           ),
           onPressed: () async {
-            await Navigator.push(
-              context,
-              PageTransition(
-                type: PageTransitionType.fade,
-                duration: Duration(milliseconds: 0),
-                reverseDuration: Duration(milliseconds: 0),
-                child: MisPedidosWidget(),
-              ),
-            );
+            context.pushNamed('MisPedidos');
           },
         ),
         actions: [],
@@ -546,22 +534,17 @@ class _PedidoProgramadoWidgetState extends State<PedidoProgramadoWidget> {
                                             0, 0, 0, 10),
                                         child: InkWell(
                                           onTap: () async {
-                                            await Navigator.push(
-                                              context,
-                                              PageTransition(
-                                                type: PageTransitionType.fade,
-                                                duration:
-                                                    Duration(milliseconds: 0),
-                                                reverseDuration:
-                                                    Duration(milliseconds: 0),
-                                                child:
-                                                    DetallePedidoProgramadoWidget(
-                                                  bundleId: widget.bundleId,
-                                                  orderId:
-                                                      pedidoExpressOrdersForClientsRecord
-                                                          .id,
-                                                ),
-                                              ),
+                                            context.pushNamed(
+                                              'DetallePedidoProgramado',
+                                              queryParams: {
+                                                'bundleId': serializeParam(
+                                                    widget.bundleId,
+                                                    ParamType.String),
+                                                'orderId': serializeParam(
+                                                    pedidoExpressOrdersForClientsRecord
+                                                        .id,
+                                                    ParamType.String),
+                                              }.withoutNulls,
                                             );
                                           },
                                           child: Container(
@@ -1014,22 +997,17 @@ class _PedidoProgramadoWidgetState extends State<PedidoProgramadoWidget> {
                                             0, 0, 0, 10),
                                         child: InkWell(
                                           onTap: () async {
-                                            await Navigator.push(
-                                              context,
-                                              PageTransition(
-                                                type: PageTransitionType.fade,
-                                                duration:
-                                                    Duration(milliseconds: 0),
-                                                reverseDuration:
-                                                    Duration(milliseconds: 0),
-                                                child:
-                                                    DetallePedidoProgramado5DIASWidget(
-                                                  orderId:
-                                                      pedido15diasOrdersForClientsRecord
-                                                          .id,
-                                                  bundleId: widget.bundleId,
-                                                ),
-                                              ),
+                                            context.pushNamed(
+                                              'DetallePedidoProgramado5DIAS',
+                                              queryParams: {
+                                                'orderId': serializeParam(
+                                                    pedido15diasOrdersForClientsRecord
+                                                        .id,
+                                                    ParamType.String),
+                                                'bundleId': serializeParam(
+                                                    widget.bundleId,
+                                                    ParamType.String),
+                                              }.withoutNulls,
                                             );
                                           },
                                           child: Container(
@@ -1424,18 +1402,8 @@ class _PedidoProgramadoWidgetState extends State<PedidoProgramadoWidget> {
                                       ),
                                       InkWell(
                                         onTap: () async {
-                                          await Navigator.push(
-                                            context,
-                                            PageTransition(
-                                              type: PageTransitionType.fade,
-                                              duration:
-                                                  Duration(milliseconds: 0),
-                                              reverseDuration:
-                                                  Duration(milliseconds: 0),
-                                              child:
-                                                  DetallePedidoProgramadoWidget(),
-                                            ),
-                                          );
+                                          context.pushNamed(
+                                              'DetallePedidoProgramado');
                                         },
                                         child: Container(
                                           width: MediaQuery.of(context)
@@ -1532,22 +1500,17 @@ class _PedidoProgramadoWidgetState extends State<PedidoProgramadoWidget> {
                                             0, 0, 0, 10),
                                         child: InkWell(
                                           onTap: () async {
-                                            await Navigator.push(
-                                              context,
-                                              PageTransition(
-                                                type: PageTransitionType.fade,
-                                                duration:
-                                                    Duration(milliseconds: 0),
-                                                reverseDuration:
-                                                    Duration(milliseconds: 0),
-                                                child:
-                                                    DetallePedidoProgramadoPickupWidget(
-                                                  bundleId: widget.bundleId,
-                                                  orderId:
-                                                      pedido5diasOrdersForClientsRecord
-                                                          .id,
-                                                ),
-                                              ),
+                                            context.pushNamed(
+                                              'DetallePedidoProgramadoPickup',
+                                              queryParams: {
+                                                'bundleId': serializeParam(
+                                                    widget.bundleId,
+                                                    ParamType.String),
+                                                'orderId': serializeParam(
+                                                    pedido5diasOrdersForClientsRecord
+                                                        .id,
+                                                    ParamType.String),
+                                              }.withoutNulls,
                                             );
                                           },
                                           child: Container(
