@@ -30,10 +30,10 @@ Future clearNormalOrderProducts(
         .collection('users/$uid/carts/$checkoutId/products')
         .where("id", isNotEqualTo: checkoutId)
         .get()
-        .then((QuerySnapshot querySnapshot) {
+        .then((QuerySnapshot querySnapshot) async {
       for (var product in querySnapshot.docs) {
         if (product['deliveryType'] == '1-5 días') {
-          FirebaseFirestore.instance
+          await FirebaseFirestore.instance
               .doc('users/$uid/carts/$checkoutId/products/${product['id']}')
               .delete();
         }
