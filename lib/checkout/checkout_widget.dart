@@ -2043,7 +2043,7 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                                               checkoutCheckoutsRecord.paymentMethod,
                                                                               getJsonField(
                                                                                 (columnGetCheckoutInfoResponse?.jsonBody ?? ''),
-                                                                                r'''$.name''',
+                                                                                r'''$.id''',
                                                                               ).toString(),
                                                                               getJsonField(
                                                                                 (columnGetCheckoutInfoResponse?.jsonBody ?? ''),
@@ -2603,7 +2603,7 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                                             checkoutCheckoutsRecord.paymentMethod,
                                                                             getJsonField(
                                                                               (columnGetCheckoutInfoResponse?.jsonBody ?? ''),
-                                                                              r'''$.name''',
+                                                                              r'''$.id''',
                                                                             ).toString(),
                                                                             getJsonField(
                                                                               (columnGetCheckoutInfoResponse?.jsonBody ?? ''),

@@ -15,10 +15,10 @@ Future clearPickupInStoreProduct(
       .collection('users/$uid/carts/$checkoutId/products')
       .where("id", isNotEqualTo: checkoutId)
       .get()
-      .then((QuerySnapshot querySnapshot) {
+      .then((QuerySnapshot querySnapshot) async {
     for (var product in querySnapshot.docs) {
       if (product['deliveryType'] == 'Recoger en Tienda') {
-        FirebaseFirestore.instance
+        await FirebaseFirestore.instance
             .doc('users/$uid/carts/$checkoutId/products/${product['id']}')
             .delete();
       }
