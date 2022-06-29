@@ -1,3 +1,6 @@
+@JS()
+library stripe;
+
 // Automatic FlutterFlow imports
 import '../../backend/backend.dart';
 import '../../flutter_flow/flutter_flow_theme.dart';
@@ -6,22 +9,19 @@ import 'index.dart'; // Imports other custom actions
 import '../../flutter_flow/custom_functions.dart'; // Imports custom functions
 import 'package:flutter/material.dart';
 // Begin custom action code
-//@JS()
-//library stripe;
 
-//import 'package:js/js.dart';
-//import 'package:cloud_functions/cloud_functions.dart';
+import 'package:js/js.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 
 Future<String> webCheckout(
   String checkoutId,
   String bundleId,
 ) async {
-  /*
   HttpsCallable createStripeProduct =
       FirebaseFunctions.instance.httpsCallable('createStripeProduct');
   final response = await createStripeProduct
       .call(<String, dynamic>{'checkoutId': checkoutId, 'bundleId': bundleId});
-  
+
   var res = response.data;
   var productId = res['id'];
   var productName = res['name'];
@@ -40,11 +40,9 @@ Future<String> webCheckout(
     cancelUrl: 'http://tienda.srconstruccion.com',
   ));
 
-  return productName;*/
-  return "";
+  return productName;
 }
 
-/*
 @JS()
 class Stripe {
   external Stripe(String key);
@@ -81,4 +79,3 @@ class LineItem {
 
   external factory LineItem({String price, int quantity});
 }
-*/
