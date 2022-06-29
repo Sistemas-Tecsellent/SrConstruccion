@@ -379,150 +379,38 @@ class _SellerProductWidgetState extends State<SellerProductWidget> {
                                               fit: BoxFit.cover,
                                             ),
                                           ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    20, 0, 0, 0),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Container(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.45,
-                                                  constraints: BoxConstraints(
-                                                    maxWidth: 300,
-                                                  ),
-                                                  decoration: BoxDecoration(),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 0, 0, 10),
-                                                    child: Text(
-                                                      columnProductsRecord
-                                                          .title,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyText1
-                                                          .override(
-                                                            fontFamily:
-                                                                'Montserrat',
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          ),
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.5,
+                                            decoration: BoxDecoration(),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(20, 0, 0, 0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Container(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.45,
+                                                    constraints: BoxConstraints(
+                                                      maxWidth: 300,
                                                     ),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 0, 0, 10),
-                                                  child: Text(
-                                                    formatNumber(
-                                                      columnVariantsRecord
-                                                          .publicPrice,
-                                                      formatType:
-                                                          FormatType.decimal,
-                                                      decimalType: DecimalType
-                                                          .periodDecimal,
-                                                      currency: '',
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily:
-                                                              'Montserrat',
-                                                          color:
-                                                              Color(0xFF1EEBBD),
-                                                          fontSize: 16,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
-                                                  ),
-                                                ),
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0, 0, 0, 10),
-                                                      child:
-                                                          AuthUserStreamWidget(
-                                                        child: FutureBuilder<
-                                                            ApiCallResponse>(
-                                                          future:
-                                                              GetVariantInventoryByStoreCall
-                                                                  .call(
-                                                            productId: widget
-                                                                .productId,
-                                                            variantId:
-                                                                columnVariantsRecord
-                                                                    .id,
-                                                            store: widget.store,
-                                                            priceType:
-                                                                valueOrDefault(
-                                                                    currentUserDocument
-                                                                        ?.type,
-                                                                    ''),
-                                                          ),
-                                                          builder: (context,
-                                                              snapshot) {
-                                                            // Customize what your widget looks like when it's loading.
-                                                            if (!snapshot
-                                                                .hasData) {
-                                                              return Center(
-                                                                child: SizedBox(
-                                                                  width: 50,
-                                                                  height: 50,
-                                                                  child:
-                                                                      SpinKitFadingCircle(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryColor,
-                                                                    size: 50,
-                                                                  ),
-                                                                ),
-                                                              );
-                                                            }
-                                                            final textGetVariantInventoryByStoreResponse =
-                                                                snapshot.data;
-                                                            return Text(
-                                                              GetVariantInventoryByStoreCall
-                                                                  .inventory(
-                                                                (textGetVariantInventoryByStoreResponse
-                                                                        ?.jsonBody ??
-                                                                    ''),
-                                                              ).toString(),
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyText1
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Montserrat',
-                                                                    color: Color(
-                                                                        0xFF8A8A8A),
-                                                                    fontSize:
-                                                                        12,
-                                                                  ),
-                                                            );
-                                                          },
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Padding(
+                                                    decoration: BoxDecoration(),
+                                                    child: Padding(
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0, 0, 0, 10),
                                                       child: Text(
-                                                        ' piezas disponibles',
+                                                        columnProductsRecord
+                                                            .title,
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -530,87 +418,218 @@ class _SellerProductWidgetState extends State<SellerProductWidget> {
                                                                 .override(
                                                                   fontFamily:
                                                                       'Montserrat',
-                                                                  color: Color(
-                                                                      0xFF8A8A8A),
-                                                                  fontSize: 12,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
                                                                 ),
                                                       ),
                                                     ),
-                                                  ],
-                                                ),
-                                                Container(
-                                                  width: MediaQuery.of(context)
-                                                      .size
-                                                      .width,
-                                                  height: 50,
-                                                  constraints: BoxConstraints(
-                                                    maxWidth: 300,
                                                   ),
-                                                  decoration: BoxDecoration(
-                                                    color: Color(0xFFEEEEEE),
-                                                  ),
-                                                  child: Container(
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.4,
-                                                    height: 50,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              4),
-                                                      shape: BoxShape.rectangle,
-                                                      border: Border.all(
-                                                        color:
-                                                            Color(0xFFE9E9E9),
-                                                        width: 1,
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                0, 0, 0, 10),
+                                                    child: Text(
+                                                      formatNumber(
+                                                        columnVariantsRecord
+                                                            .publicPrice,
+                                                        formatType:
+                                                            FormatType.decimal,
+                                                        decimalType: DecimalType
+                                                            .periodDecimal,
+                                                        currency: '',
                                                       ),
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyText1
+                                                          .override(
+                                                            fontFamily:
+                                                                'Montserrat',
+                                                            color: Color(
+                                                                0xFF1EEBBD),
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                          ),
                                                     ),
-                                                    child:
-                                                        FlutterFlowCountController(
-                                                      decrementIconBuilder:
-                                                          (enabled) => FaIcon(
-                                                        FontAwesomeIcons.minus,
-                                                        color: enabled
-                                                            ? Color(0xDD000000)
-                                                            : Color(0xFFEEEEEE),
-                                                        size: 20,
-                                                      ),
-                                                      incrementIconBuilder:
-                                                          (enabled) => FaIcon(
-                                                        FontAwesomeIcons.plus,
-                                                        color: enabled
-                                                            ? Color(0xFF1EEBBD)
-                                                            : Color(0xFFEEEEEE),
-                                                        size: 20,
-                                                      ),
-                                                      countBuilder: (count) =>
-                                                          Text(
-                                                        count.toString(),
-                                                        style:
-                                                            GoogleFonts.getFont(
-                                                          'Roboto',
-                                                          color: Colors.black,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          fontSize: 16,
+                                                  ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(0, 0,
+                                                                    0, 10),
+                                                        child:
+                                                            AuthUserStreamWidget(
+                                                          child: FutureBuilder<
+                                                              ApiCallResponse>(
+                                                            future:
+                                                                GetVariantInventoryByStoreCall
+                                                                    .call(
+                                                              productId: widget
+                                                                  .productId,
+                                                              variantId:
+                                                                  columnVariantsRecord
+                                                                      .id,
+                                                              store:
+                                                                  widget.store,
+                                                              priceType:
+                                                                  valueOrDefault(
+                                                                      currentUserDocument
+                                                                          ?.type,
+                                                                      ''),
+                                                            ),
+                                                            builder: (context,
+                                                                snapshot) {
+                                                              // Customize what your widget looks like when it's loading.
+                                                              if (!snapshot
+                                                                  .hasData) {
+                                                                return Center(
+                                                                  child:
+                                                                      SizedBox(
+                                                                    width: 50,
+                                                                    height: 50,
+                                                                    child:
+                                                                        SpinKitFadingCircle(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryColor,
+                                                                      size: 50,
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              }
+                                                              final textGetVariantInventoryByStoreResponse =
+                                                                  snapshot.data;
+                                                              return Text(
+                                                                GetVariantInventoryByStoreCall
+                                                                    .inventory(
+                                                                  (textGetVariantInventoryByStoreResponse
+                                                                          ?.jsonBody ??
+                                                                      ''),
+                                                                ).toString(),
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyText1
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Montserrat',
+                                                                      color: Color(
+                                                                          0xFF8A8A8A),
+                                                                      fontSize:
+                                                                          12,
+                                                                    ),
+                                                              );
+                                                            },
+                                                          ),
                                                         ),
                                                       ),
-                                                      count:
-                                                          countControllerValue ??=
-                                                              0,
-                                                      updateCount: (count) =>
-                                                          setState(() =>
-                                                              countControllerValue =
-                                                                  count),
-                                                      stepSize: 1,
-                                                      minimum: 0,
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(0, 0,
+                                                                    0, 10),
+                                                        child: Text(
+                                                          ' piezas disponibles',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Montserrat',
+                                                                color: Color(
+                                                                    0xFF8A8A8A),
+                                                                fontSize: 12,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Container(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                            .size
+                                                            .width,
+                                                    height: 50,
+                                                    constraints: BoxConstraints(
+                                                      maxWidth: 300,
+                                                    ),
+                                                    decoration: BoxDecoration(
+                                                      color: Color(0xFFEEEEEE),
+                                                    ),
+                                                    child: Container(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.4,
+                                                      height: 50,
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(4),
+                                                        shape:
+                                                            BoxShape.rectangle,
+                                                        border: Border.all(
+                                                          color:
+                                                              Color(0xFFE9E9E9),
+                                                          width: 1,
+                                                        ),
+                                                      ),
+                                                      child:
+                                                          FlutterFlowCountController(
+                                                        decrementIconBuilder:
+                                                            (enabled) => FaIcon(
+                                                          FontAwesomeIcons
+                                                              .minus,
+                                                          color: enabled
+                                                              ? Color(
+                                                                  0xDD000000)
+                                                              : Color(
+                                                                  0xFFEEEEEE),
+                                                          size: 20,
+                                                        ),
+                                                        incrementIconBuilder:
+                                                            (enabled) => FaIcon(
+                                                          FontAwesomeIcons.plus,
+                                                          color: enabled
+                                                              ? Color(
+                                                                  0xFF1EEBBD)
+                                                              : Color(
+                                                                  0xFFEEEEEE),
+                                                          size: 20,
+                                                        ),
+                                                        countBuilder: (count) =>
+                                                            Text(
+                                                          count.toString(),
+                                                          style: GoogleFonts
+                                                              .getFont(
+                                                            'Roboto',
+                                                            color: Colors.black,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            fontSize: 16,
+                                                          ),
+                                                        ),
+                                                        count:
+                                                            countControllerValue ??=
+                                                                0,
+                                                        updateCount: (count) =>
+                                                            setState(() =>
+                                                                countControllerValue =
+                                                                    count),
+                                                        stepSize: 1,
+                                                        minimum: 0,
+                                                      ),
                                                     ),
                                                   ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ],
