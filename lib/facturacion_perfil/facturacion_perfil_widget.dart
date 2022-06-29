@@ -85,7 +85,7 @@ class _FacturacionPerfilWidgetState extends State<FacturacionPerfilWidget> {
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Column(
                   mainAxisSize: MainAxisSize.max,
@@ -171,6 +171,9 @@ class _FacturacionPerfilWidgetState extends State<FacturacionPerfilWidget> {
                             },
                             child: Container(
                               width: MediaQuery.of(context).size.width,
+                              constraints: BoxConstraints(
+                                maxWidth: 500,
+                              ),
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 boxShadow: [

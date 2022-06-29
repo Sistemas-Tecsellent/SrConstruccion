@@ -386,10 +386,24 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                       .size
                                                       .width,
                                                   height: 200,
+                                                  constraints: BoxConstraints(
+                                                    maxWidth: 500,
+                                                  ),
                                                   decoration: BoxDecoration(
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primaryColor,
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                      bottomLeft:
+                                                          Radius.circular(20),
+                                                      bottomRight:
+                                                          Radius.circular(20),
+                                                      topLeft:
+                                                          Radius.circular(0),
+                                                      topRight:
+                                                          Radius.circular(0),
+                                                    ),
                                                   ),
                                                   alignment:
                                                       AlignmentDirectional(
@@ -853,6 +867,9 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                     .size
                                                     .width *
                                                 0.95,
+                                            constraints: BoxConstraints(
+                                              maxWidth: 500,
+                                            ),
                                             decoration: BoxDecoration(
                                               color: Colors.white,
                                               boxShadow: [
@@ -1052,6 +1069,9 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                         width:
                                             MediaQuery.of(context).size.width *
                                                 0.95,
+                                        constraints: BoxConstraints(
+                                          maxWidth: 500,
+                                        ),
                                         decoration: BoxDecoration(
                                           color: Colors.white,
                                           boxShadow: [
@@ -1225,6 +1245,9 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                       .size
                                                       .width *
                                                   0.95,
+                                              constraints: BoxConstraints(
+                                                maxWidth: 500,
+                                              ),
                                               decoration: BoxDecoration(
                                                 color: Colors.white,
                                                 boxShadow: [
@@ -1419,6 +1442,9 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                       .size
                                                       .width *
                                                   0.95,
+                                              constraints: BoxConstraints(
+                                                maxWidth: 500,
+                                              ),
                                               decoration: BoxDecoration(
                                                 color: Colors.white,
                                                 boxShadow: [
@@ -1769,6 +1795,9 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                     child: Container(
                                       width: MediaQuery.of(context).size.width *
                                           0.95,
+                                      constraints: BoxConstraints(
+                                        maxWidth: 500,
+                                      ),
                                       decoration: BoxDecoration(
                                         color: Colors.white,
                                         boxShadow: [
@@ -1965,6 +1994,10 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                                 .size
                                                                 .width *
                                                             0.95,
+                                                        constraints:
+                                                            BoxConstraints(
+                                                          maxWidth: 500,
+                                                        ),
                                                         decoration:
                                                             BoxDecoration(
                                                           color: Colors.white,
@@ -2209,6 +2242,9 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                                               children: [
                                                                                 Container(
                                                                                   width: MediaQuery.of(context).size.width * 0.8,
+                                                                                  constraints: BoxConstraints(
+                                                                                    maxWidth: 400,
+                                                                                  ),
                                                                                   decoration: BoxDecoration(
                                                                                     color: Color(0x00EEEEEE),
                                                                                   ),
@@ -2251,6 +2287,9 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                                                 Container(
                                                                                   width: MediaQuery.of(context).size.width * 0.8,
                                                                                   height: 5,
+                                                                                  constraints: BoxConstraints(
+                                                                                    maxWidth: 400,
+                                                                                  ),
                                                                                   decoration: BoxDecoration(
                                                                                     color: FlutterFlowTheme.of(context).primaryColor,
                                                                                     borderRadius: BorderRadius.circular(10),
@@ -2539,6 +2578,10 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                                 .size
                                                                 .width *
                                                             0.95,
+                                                        constraints:
+                                                            BoxConstraints(
+                                                          maxWidth: 500,
+                                                        ),
                                                         decoration:
                                                             BoxDecoration(
                                                           color: Colors.white,
@@ -2785,6 +2828,9 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                                               children: [
                                                                                 Container(
                                                                                   width: MediaQuery.of(context).size.width * 0.8,
+                                                                                  constraints: BoxConstraints(
+                                                                                    maxWidth: 400,
+                                                                                  ),
                                                                                   decoration: BoxDecoration(
                                                                                     color: Color(0x00EEEEEE),
                                                                                   ),
@@ -2809,6 +2855,9 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                                                 Container(
                                                                                   width: MediaQuery.of(context).size.width * 0.8,
                                                                                   height: 5,
+                                                                                  constraints: BoxConstraints(
+                                                                                    maxWidth: 400,
+                                                                                  ),
                                                                                   decoration: BoxDecoration(
                                                                                     color: FlutterFlowTheme.of(context).primaryColor,
                                                                                     borderRadius: BorderRadius.circular(10),

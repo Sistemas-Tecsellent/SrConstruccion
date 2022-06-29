@@ -51,7 +51,7 @@ class _SignupWidgetState extends State<SignupWidget> {
           children: [
             Container(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.9,
+              height: MediaQuery.of(context).size.height * 1,
               decoration: BoxDecoration(
                 color: FlutterFlowTheme.of(context).primaryColor,
                 image: DecorationImage(
@@ -152,6 +152,7 @@ class _SignupWidgetState extends State<SignupWidget> {
                               child: Container(
                                 width: MediaQuery.of(context).size.width * 0.8,
                                 constraints: BoxConstraints(
+                                  maxWidth: 500,
                                   maxHeight: 320,
                                 ),
                                 decoration: BoxDecoration(

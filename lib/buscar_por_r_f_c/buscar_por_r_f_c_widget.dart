@@ -84,6 +84,9 @@ class _BuscarPorRFCWidgetState extends State<BuscarPorRFCWidget> {
                         Container(
                           width: MediaQuery.of(context).size.width * 0.9,
                           height: 50,
+                          constraints: BoxConstraints(
+                            maxWidth: 500,
+                          ),
                           decoration: BoxDecoration(
                             color: Colors.white,
                             boxShadow: [
@@ -200,6 +203,9 @@ class _BuscarPorRFCWidgetState extends State<BuscarPorRFCWidget> {
                                   },
                                   child: Container(
                                     width: MediaQuery.of(context).size.width,
+                                    constraints: BoxConstraints(
+                                      maxWidth: 500,
+                                    ),
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       boxShadow: [
@@ -328,6 +334,9 @@ class _BuscarPorRFCWidgetState extends State<BuscarPorRFCWidget> {
                     },
                     child: Container(
                       width: MediaQuery.of(context).size.width,
+                      constraints: BoxConstraints(
+                        maxWidth: 500,
+                      ),
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).primaryBackground,
                         boxShadow: [

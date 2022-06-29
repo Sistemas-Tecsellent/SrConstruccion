@@ -111,6 +111,9 @@ class _DetallePedidoProgramadoCheckoutWidgetState
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: Container(
+                                  constraints: BoxConstraints(
+                                    maxWidth: 300,
+                                  ),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     boxShadow: [
@@ -519,6 +522,9 @@ class _DetallePedidoProgramadoCheckoutWidgetState
                                   Container(
                                     width:
                                         MediaQuery.of(context).size.width * 0.9,
+                                    constraints: BoxConstraints(
+                                      maxWidth: 500,
+                                    ),
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       boxShadow: [
@@ -947,6 +953,9 @@ class _DetallePedidoProgramadoCheckoutWidgetState
                           padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                           child: Container(
                             width: MediaQuery.of(context).size.width * 0.9,
+                            constraints: BoxConstraints(
+                              maxWidth: 500,
+                            ),
                             decoration: BoxDecoration(),
                             child: Builder(
                               builder: (context) {

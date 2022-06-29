@@ -269,6 +269,8 @@ class _SellerFeedWidgetState extends State<SellerFeedWidget> {
                                 ),
                                 InkWell(
                                   onTap: () async {
+                                    setState(() => FFAppState().currentVariant =
+                                        columnVariantsRecord.id);
                                     await showModalBottomSheet(
                                       isScrollControlled: true,
                                       backgroundColor: Colors.transparent,

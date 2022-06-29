@@ -496,7 +496,7 @@ class _ResumenSolicitudCotizacionCopyWidgetState
                                                       color: Colors.white,
                                                     ),
                                                     child: Text(
-                                                      '[file name]',
+                                                      'Cotización',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)

@@ -145,6 +145,9 @@ class _AnadirDireccionWidgetState extends State<AnadirDireccionWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(0, 280, 0, 20),
                         child: Container(
                           width: MediaQuery.of(context).size.width,
+                          constraints: BoxConstraints(
+                            maxWidth: 500,
+                          ),
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.only(
