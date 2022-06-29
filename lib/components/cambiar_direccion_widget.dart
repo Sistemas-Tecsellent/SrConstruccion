@@ -1,7 +1,5 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../checkout/checkout_widget.dart';
-import '../checkout_seller/checkout_seller_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -227,35 +225,13 @@ class _CambiarDireccionWidgetState extends State<CambiarDireccionWidget> {
                                     currentUserUid,
                                     columnAddressesRecord.name,
                                   );
-                                  await Navigator.pushAndRemoveUntil(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 0),
-                                      reverseDuration:
-                                          Duration(milliseconds: 0),
-                                      child: CheckoutWidget(),
-                                    ),
-                                    (r) => false,
-                                  );
+                                  Navigator.pop(context);
                                 } else {
                                   await actions.setCheckoutModifyAddress(
                                     widget.storeId,
                                     columnAddressesRecord.name,
                                   );
-                                  await Navigator.pushAndRemoveUntil(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 0),
-                                      reverseDuration:
-                                          Duration(milliseconds: 0),
-                                      child: CheckoutSellerWidget(
-                                        storeId: widget.storeId,
-                                      ),
-                                    ),
-                                    (r) => false,
-                                  );
+                                  Navigator.pop(context);
                                 }
                               },
                             ),

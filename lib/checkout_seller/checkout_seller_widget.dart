@@ -16,7 +16,6 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import '../home_alt/home_alt_widget.dart';
 import '../login/login_widget.dart';
 import '../pago_aceptado/pago_aceptado_widget.dart';
-import '../perfil_del_seller/perfil_del_seller_widget.dart';
 import '../custom_code/actions/index.dart' as actions;
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -92,19 +91,7 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                 size: 30,
               ),
               onPressed: () async {
-                await Navigator.pushAndRemoveUntil(
-                  context,
-                  PageTransition(
-                    type: PageTransitionType.fade,
-                    duration: Duration(milliseconds: 0),
-                    reverseDuration: Duration(milliseconds: 0),
-                    child: PerfilDelSellerWidget(
-                      storeId: widget.storeId,
-                      calledFromPage: '\'\'\'',
-                    ),
-                  ),
-                  (r) => false,
-                );
+                Navigator.pop(context);
               },
             ),
             title: Text(
@@ -1940,9 +1927,6 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                           widget
                                                                               .storeId,
                                                                         );
-                                                                        await Future.delayed(const Duration(
-                                                                            milliseconds:
-                                                                                5000));
                                                                         await actions
                                                                             .setCheckoutSessionSellerWise(
                                                                           getJsonField(
@@ -1964,24 +1948,6 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                           ).toString(),
                                                                           widget
                                                                               .storeId,
-                                                                        );
-                                                                        await Navigator
-                                                                            .pushAndRemoveUntil(
-                                                                          context,
-                                                                          PageTransition(
-                                                                            type:
-                                                                                PageTransitionType.fade,
-                                                                            duration:
-                                                                                Duration(milliseconds: 0),
-                                                                            reverseDuration:
-                                                                                Duration(milliseconds: 0),
-                                                                            child:
-                                                                                CheckoutSellerWidget(
-                                                                              storeId: widget.storeId,
-                                                                            ),
-                                                                          ),
-                                                                          (r) =>
-                                                                              false,
                                                                         );
                                                                       },
                                                                       child:
@@ -2494,9 +2460,6 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                         widget
                                                                             .storeId,
                                                                       );
-                                                                      await Future.delayed(const Duration(
-                                                                          milliseconds:
-                                                                              5000));
                                                                       await actions
                                                                           .setCheckoutSessionSellerWise(
                                                                         getJsonField(
@@ -2518,25 +2481,6 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                         ).toString(),
                                                                         widget
                                                                             .storeId,
-                                                                      );
-                                                                      await Navigator
-                                                                          .pushAndRemoveUntil(
-                                                                        context,
-                                                                        PageTransition(
-                                                                          type:
-                                                                              PageTransitionType.fade,
-                                                                          duration:
-                                                                              Duration(milliseconds: 0),
-                                                                          reverseDuration:
-                                                                              Duration(milliseconds: 0),
-                                                                          child:
-                                                                              CheckoutSellerWidget(
-                                                                            storeId:
-                                                                                widget.storeId,
-                                                                          ),
-                                                                        ),
-                                                                        (r) =>
-                                                                            false,
                                                                       );
                                                                     },
                                                                     child: Text(
@@ -3525,9 +3469,6 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                         widget
                                                                             .storeId,
                                                                       );
-                                                                      await Future.delayed(const Duration(
-                                                                          milliseconds:
-                                                                              5000));
                                                                       await actions
                                                                           .setCheckoutSessionSellerWise(
                                                                         getJsonField(
@@ -3549,25 +3490,6 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                         ).toString(),
                                                                         widget
                                                                             .storeId,
-                                                                      );
-                                                                      await Navigator
-                                                                          .pushAndRemoveUntil(
-                                                                        context,
-                                                                        PageTransition(
-                                                                          type:
-                                                                              PageTransitionType.fade,
-                                                                          duration:
-                                                                              Duration(milliseconds: 0),
-                                                                          reverseDuration:
-                                                                              Duration(milliseconds: 0),
-                                                                          child:
-                                                                              CheckoutSellerWidget(
-                                                                            storeId:
-                                                                                widget.storeId,
-                                                                          ),
-                                                                        ),
-                                                                        (r) =>
-                                                                            false,
                                                                       );
                                                                     },
                                                                     child: Text(
