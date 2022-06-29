@@ -1,6 +1,6 @@
 // Export pages
-export 'home_alt/home_alt_widget.dart' show HomeAltWidget;
 export 'notificaciones/notificaciones_widget.dart' show NotificacionesWidget;
+export 'home_alt/home_alt_widget.dart' show HomeAltWidget;
 export 'perfil/perfil_widget.dart' show PerfilWidget;
 export 'product_page/product_page_widget.dart' show ProductPageWidget;
 export 'carrito/carrito_widget.dart' show CarritoWidget;
@@ -119,3 +119,4 @@ export 'subcategory_product_listing_m_a_r_c_a/subcategory_product_listing_m_a_r_
     show SubcategoryProductListingMARCAWidget;
 export 'calculando_costo_de_envio/calculando_costo_de_envio_widget.dart'
     show CalculandoCostoDeEnvioWidget;
+export 'home_alt_copy/home_alt_copy_widget.dart' show HomeAltCopyWidget;

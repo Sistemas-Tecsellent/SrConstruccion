@@ -138,7 +138,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                         ),
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.45,
+                        height: 210,
                         child: Stack(
                           alignment:
                               AlignmentDirectional(0, 0.8999999999999999),
@@ -148,6 +148,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                               child: Container(
                                 width: MediaQuery.of(context).size.width * 0.8,
                                 height: 180,
+                                constraints: BoxConstraints(
+                                  maxWidth: 500,
+                                ),
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(10),

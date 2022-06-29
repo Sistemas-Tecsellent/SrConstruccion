@@ -294,6 +294,9 @@ class _CarritoWidgetState extends State<CarritoWidget> {
                                                     .size
                                                     .width *
                                                 0.95,
+                                            constraints: BoxConstraints(
+                                              maxWidth: 400,
+                                            ),
                                             decoration: BoxDecoration(
                                               color: Colors.white,
                                               boxShadow: [
@@ -312,6 +315,9 @@ class _CarritoWidgetState extends State<CarritoWidget> {
                                                   width: MediaQuery.of(context)
                                                       .size
                                                       .width,
+                                                  constraints: BoxConstraints(
+                                                    maxWidth: 500,
+                                                  ),
                                                   decoration: BoxDecoration(
                                                     color: Colors.white,
                                                     borderRadius:

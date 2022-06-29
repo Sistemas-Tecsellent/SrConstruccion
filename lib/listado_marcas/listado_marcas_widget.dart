@@ -80,6 +80,9 @@ class _ListadoMarcasWidgetState extends State<ListadoMarcasWidget> {
                       Container(
                         width: MediaQuery.of(context).size.width * 0.9,
                         height: 50,
+                        constraints: BoxConstraints(
+                          maxWidth: 500,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(5),
@@ -277,6 +280,9 @@ class _ListadoMarcasWidgetState extends State<ListadoMarcasWidget> {
                                   child: Container(
                                     width:
                                         MediaQuery.of(context).size.width * 0.9,
+                                    constraints: BoxConstraints(
+                                      maxWidth: 500,
+                                    ),
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(10),

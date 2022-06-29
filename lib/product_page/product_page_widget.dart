@@ -64,14 +64,16 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
             (oneVariant?.jsonBody ?? ''),
             r'''$.variant.id''',
           ).toString());
-      await actions.productViewed(
-        widget.productId,
-      );
+      if (loggedIn) {
+        await actions.productViewed(
+          widget.productId,
+        );
 
-      final usersUpdateData = {
-        'recentlyViewed': FieldValue.arrayUnion([widget.productId]),
-      };
-      await currentUserReference.update(usersUpdateData);
+        final usersUpdateData = {
+          'recentlyViewed': FieldValue.arrayUnion([widget.productId]),
+        };
+        await currentUserReference.update(usersUpdateData);
+      }
     });
   }
 
@@ -106,57 +108,67 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    FutureBuilder<ApiCallResponse>(
-                      future: GetCartAmountCall.call(
-                        uid: widget.productId,
-                        cartId: currentUserUid,
-                      ),
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 50,
-                              height: 50,
-                              child: SpinKitFadingCircle(
-                                color:
-                                    FlutterFlowTheme.of(context).primaryColor,
-                                size: 50,
+                    if (loggedIn ?? true)
+                      FutureBuilder<ApiCallResponse>(
+                        future: GetCartAmountCall.call(
+                          uid: widget.productId,
+                          cartId: currentUserUid,
+                        ),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50,
+                                height: 50,
+                                child: SpinKitFadingCircle(
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryColor,
+                                  size: 50,
+                                ),
                               ),
+                            );
+                          }
+                          final buttonGetCartAmountResponse = snapshot.data;
+                          return FFButtonWidget(
+                            onPressed: () async {
+                              await Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.fade,
+                                  duration: Duration(milliseconds: 0),
+                                  reverseDuration: Duration(milliseconds: 0),
+                                  child: CarritoWidget(),
+                                ),
+                              );
+                            },
+                            text: GetCartAmountCall.amount(
+                              (buttonGetCartAmountResponse?.jsonBody ?? ''),
+                            ).toString(),
+                            icon: Icon(
+                              Icons.shopping_bag_outlined,
+                              size: 30,
+                            ),
+                            options: FFButtonOptions(
+                              width: 120,
+                              height: 40,
+                              color: Color(0xFF1EEBBD),
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .subtitle2
+                                  .override(
+                                    fontFamily: 'Montserrat',
+                                    color: Colors.white,
+                                  ),
+                              elevation: 2,
+                              borderSide: BorderSide(
+                                color: Colors.transparent,
+                                width: 1,
+                              ),
+                              borderRadius: 25,
                             ),
                           );
-                        }
-                        final buttonGetCartAmountResponse = snapshot.data;
-                        return FFButtonWidget(
-                          onPressed: () {
-                            print('Button pressed ...');
-                          },
-                          text: GetCartAmountCall.amount(
-                            (buttonGetCartAmountResponse?.jsonBody ?? ''),
-                          ).toString(),
-                          icon: Icon(
-                            Icons.shopping_bag_outlined,
-                            size: 30,
-                          ),
-                          options: FFButtonOptions(
-                            width: 120,
-                            height: 40,
-                            color: Color(0xFF1EEBBD),
-                            textStyle:
-                                FlutterFlowTheme.of(context).subtitle2.override(
-                                      fontFamily: 'Montserrat',
-                                      color: Colors.white,
-                                    ),
-                            elevation: 2,
-                            borderSide: BorderSide(
-                              color: Colors.transparent,
-                              width: 1,
-                            ),
-                            borderRadius: 25,
-                          ),
-                        );
-                      },
-                    ),
+                        },
+                      ),
                   ],
                 ),
               ),
@@ -1857,6 +1869,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                                   style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                                         fontFamily: 'Montserrat',
                                                                                                         color: Color(0xFF1EEBBD),
+                                                                                                        fontWeight: FontWeight.w600,
                                                                                                       ),
                                                                                                 ),
                                                                                               ),
@@ -1872,6 +1885,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                                   style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                                         fontFamily: 'Montserrat',
                                                                                                         color: Color(0xFF1EEBBD),
+                                                                                                        fontWeight: FontWeight.w600,
                                                                                                       ),
                                                                                                 ),
                                                                                               ),
@@ -2305,18 +2319,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                         mainAxisSize: MainAxisSize.max,
                                                                                         mainAxisAlignment: MainAxisAlignment.center,
                                                                                         children: [
-                                                                                          Padding(
-                                                                                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
-                                                                                            child: Text(
-                                                                                              '\$',
-                                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                                    fontFamily: 'Montserrat',
-                                                                                                    color: Color(0xFF1EEBBD),
-                                                                                                    fontSize: 13,
-                                                                                                    fontWeight: FontWeight.w600,
-                                                                                                  ),
-                                                                                            ),
-                                                                                          ),
                                                                                           Padding(
                                                                                             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                                                                                             child: Text(

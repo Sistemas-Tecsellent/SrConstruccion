@@ -129,7 +129,7 @@ class _Devolucion2WidgetState extends State<Devolucion2Widget> {
                           padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Padding(
                                 padding:

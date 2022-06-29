@@ -72,11 +72,14 @@ class _SearchProductsSellerWidgetState
                 padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
                       width: MediaQuery.of(context).size.width * 0.75,
                       height: 40,
+                      constraints: BoxConstraints(
+                        maxWidth: 400,
+                      ),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(5),
@@ -117,7 +120,7 @@ class _SearchProductsSellerWidgetState
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 5),
+                      padding: EdgeInsetsDirectional.fromSTEB(10, 5, 0, 5),
                       child: FlutterFlowIconButton(
                         borderColor: Colors.transparent,
                         borderRadius: 4,

@@ -317,6 +317,9 @@ class _DetallePedidoProgramado5DIASWidgetState
                                   Container(
                                     width:
                                         MediaQuery.of(context).size.width * 0.9,
+                                    constraints: BoxConstraints(
+                                      maxWidth: 500,
+                                    ),
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       boxShadow: [
@@ -769,52 +772,62 @@ class _DetallePedidoProgramado5DIASWidgetState
                                 ],
                               ),
                             ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(20, 10, 20, 0),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width * 0.8,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 10,
-                                      color: Color(0x14000000),
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Padding(
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      10, 10, 10, 10),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        width: 40,
-                                        height: 40,
-                                        clipBehavior: Clip.antiAlias,
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: Image.asset(
-                                          'assets/images/Trailer.png',
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            10, 10, 0, 10),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              columnOrdersForClientsRecord
-                                                  .parcelName,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
+                                      20, 10, 20, 0),
+                                  child: Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.9,
+                                    constraints: BoxConstraints(
+                                      maxWidth: 500,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          blurRadius: 10,
+                                          color: Color(0x14000000),
+                                        )
+                                      ],
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          10, 10, 10, 10),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            width: 40,
+                                            height: 40,
+                                            clipBehavior: Clip.antiAlias,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: Image.asset(
+                                              'assets/images/Trailer.png',
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    10, 10, 0, 10),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  columnOrdersForClientsRecord
+                                                      .parcelName,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
                                                       .bodyText1
                                                       .override(
                                                         fontFamily:
@@ -823,18 +836,18 @@ class _DetallePedidoProgramado5DIASWidgetState
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
-                                            ),
-                                            InkWell(
-                                              onTap: () async {
-                                                await Share.share(
+                                                ),
+                                                InkWell(
+                                                  onTap: () async {
+                                                    await Share.share(
+                                                        columnOrdersForClientsRecord
+                                                            .parcelGuide);
+                                                  },
+                                                  child: Text(
                                                     columnOrdersForClientsRecord
-                                                        .parcelGuide);
-                                              },
-                                              child: Text(
-                                                columnOrdersForClientsRecord
-                                                    .parcelGuide,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
+                                                        .parcelGuide,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
                                                         .bodyText1
                                                         .override(
                                                           fontFamily:
@@ -843,46 +856,48 @@ class _DetallePedidoProgramado5DIASWidgetState
                                                           fontWeight:
                                                               FontWeight.w600,
                                                         ),
-                                              ),
-                                            ),
-                                            Container(
-                                              width: 200,
-                                              decoration: BoxDecoration(),
-                                              child: InkWell(
-                                                onTap: () async {
-                                                  await Share.share(
-                                                      columnOrdersForClientsRecord
-                                                          .parcelLink);
-                                                },
-                                                child: Text(
-                                                  columnOrdersForClientsRecord
-                                                      .parcelLink
-                                                      .maybeHandleOverflow(
-                                                    maxChars: 20,
-                                                    replacement: '…',
                                                   ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily:
-                                                            'Montserrat',
-                                                        color:
-                                                            Color(0xFF1EEBBD),
-                                                        fontSize: 11,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
                                                 ),
-                                              ),
+                                                Container(
+                                                  width: 200,
+                                                  decoration: BoxDecoration(),
+                                                  child: InkWell(
+                                                    onTap: () async {
+                                                      await Share.share(
+                                                          columnOrdersForClientsRecord
+                                                              .parcelLink);
+                                                    },
+                                                    child: Text(
+                                                      columnOrdersForClientsRecord
+                                                          .parcelLink
+                                                          .maybeHandleOverflow(
+                                                        maxChars: 20,
+                                                        replacement: '…',
+                                                      ),
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyText1
+                                                          .override(
+                                                            fontFamily:
+                                                                'Montserrat',
+                                                            color: Color(
+                                                                0xFF1EEBBD),
+                                                            fontSize: 11,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
-                                    ],
+                                    ),
                                   ),
                                 ),
-                              ),
+                              ],
                             ),
                             Padding(
                               padding:
@@ -894,6 +909,9 @@ class _DetallePedidoProgramado5DIASWidgetState
                                   Container(
                                     width:
                                         MediaQuery.of(context).size.width * 0.9,
+                                    constraints: BoxConstraints(
+                                      maxWidth: 500,
+                                    ),
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       boxShadow: [
@@ -979,6 +997,9 @@ class _DetallePedidoProgramado5DIASWidgetState
                                   Container(
                                     width:
                                         MediaQuery.of(context).size.width * 0.9,
+                                    constraints: BoxConstraints(
+                                      maxWidth: 500,
+                                    ),
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       boxShadow: [
@@ -1055,6 +1076,9 @@ class _DetallePedidoProgramado5DIASWidgetState
                                                         .width *
                                                     0.2,
                                                 height: 30,
+                                                constraints: BoxConstraints(
+                                                  maxWidth: 70,
+                                                ),
                                                 decoration: BoxDecoration(
                                                   color: Color(0xFFEEEEEE),
                                                   borderRadius:
@@ -1136,6 +1160,9 @@ class _DetallePedidoProgramado5DIASWidgetState
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Container(
+                                    constraints: BoxConstraints(
+                                      maxWidth: 500,
+                                    ),
                                     decoration: BoxDecoration(
                                       boxShadow: [
                                         BoxShadow(
@@ -1429,6 +1456,9 @@ class _DetallePedidoProgramado5DIASWidgetState
                                   Container(
                                     width:
                                         MediaQuery.of(context).size.width * 0.9,
+                                    constraints: BoxConstraints(
+                                      maxWidth: 500,
+                                    ),
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       boxShadow: [

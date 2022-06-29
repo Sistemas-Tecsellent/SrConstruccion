@@ -71,9 +71,13 @@ class _CuponesWidgetState extends State<CuponesWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
                           width: MediaQuery.of(context).size.width * 0.88,
+                          constraints: BoxConstraints(
+                            maxWidth: 500,
+                          ),
                           decoration: BoxDecoration(
                             color: Colors.white,
                             boxShadow: [
@@ -164,6 +168,9 @@ class _CuponesWidgetState extends State<CuponesWidget> {
                   ),
                   Container(
                     height: 600,
+                    constraints: BoxConstraints(
+                      maxWidth: 500,
+                    ),
                     decoration: BoxDecoration(),
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(20, 10, 20, 0),

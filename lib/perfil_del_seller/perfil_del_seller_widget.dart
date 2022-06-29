@@ -2,7 +2,6 @@ import '../auth/auth_util.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../carrito_por_sellers/carrito_por_sellers_widget.dart';
-import '../components/drawer_widget.dart';
 import '../components/envio_gratis_widget.dart';
 import '../components/seller_details_widget.dart';
 import '../components/seller_feed_widget.dart';
@@ -278,10 +277,6 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
               ],
             ),
           ),
-          drawer: Drawer(
-            elevation: 16,
-            child: DrawerWidget(),
-          ),
           body: SafeArea(
             child: GestureDetector(
               onTap: () => FocusScope.of(context).unfocus(),
@@ -538,6 +533,10 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                   .width *
                                                               0.85,
                                                       height: 190,
+                                                      constraints:
+                                                          BoxConstraints(
+                                                        maxWidth: 500,
+                                                      ),
                                                       decoration: BoxDecoration(
                                                         color: Colors.white,
                                                         boxShadow: [
@@ -1006,63 +1005,59 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                     CrossAxisAlignment
                                                                         .end,
                                                                 children: [
-                                                                  Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            5,
-                                                                            0,
-                                                                            0,
-                                                                            0),
-                                                                    child: StreamBuilder<
-                                                                        List<
-                                                                            ProductsRecord>>(
-                                                                      stream:
-                                                                          queryProductsRecord(
-                                                                        queryBuilder: (productsRecord) => productsRecord.where(
-                                                                            'stores',
-                                                                            arrayContains:
-                                                                                widget.storeId),
-                                                                      ),
-                                                                      builder:
-                                                                          (context,
-                                                                              snapshot) {
-                                                                        // Customize what your widget looks like when it's loading.
-                                                                        if (!snapshot
-                                                                            .hasData) {
-                                                                          return Center(
-                                                                            child:
-                                                                                SizedBox(
-                                                                              width: 50,
-                                                                              height: 50,
-                                                                              child: SpinKitFadingCircle(
-                                                                                color: FlutterFlowTheme.of(context).primaryColor,
-                                                                                size: 50,
-                                                                              ),
-                                                                            ),
-                                                                          );
-                                                                        }
-                                                                        List<ProductsRecord>
-                                                                            textProductsRecordList =
-                                                                            snapshot.data;
-                                                                        return Text(
-                                                                          textProductsRecordList
-                                                                              .length
-                                                                              .toString(),
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyText1
-                                                                              .override(
-                                                                                fontFamily: 'Montserrat',
-                                                                                color: Color(0xFFC4C4C4),
-                                                                                fontSize: 11,
-                                                                              ),
-                                                                        );
-                                                                      },
+                                                                  StreamBuilder<
+                                                                      List<
+                                                                          ProductsRecord>>(
+                                                                    stream:
+                                                                        queryProductsRecord(
+                                                                      queryBuilder: (productsRecord) => productsRecord.where(
+                                                                          'stores',
+                                                                          arrayContains:
+                                                                              widget.storeId),
                                                                     ),
+                                                                    builder:
+                                                                        (context,
+                                                                            snapshot) {
+                                                                      // Customize what your widget looks like when it's loading.
+                                                                      if (!snapshot
+                                                                          .hasData) {
+                                                                        return Center(
+                                                                          child:
+                                                                              SizedBox(
+                                                                            width:
+                                                                                50,
+                                                                            height:
+                                                                                50,
+                                                                            child:
+                                                                                SpinKitFadingCircle(
+                                                                              color: FlutterFlowTheme.of(context).primaryColor,
+                                                                              size: 50,
+                                                                            ),
+                                                                          ),
+                                                                        );
+                                                                      }
+                                                                      List<ProductsRecord>
+                                                                          textProductsRecordList =
+                                                                          snapshot
+                                                                              .data;
+                                                                      return Text(
+                                                                        textProductsRecordList
+                                                                            .length
+                                                                            .toString(),
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyText1
+                                                                            .override(
+                                                                              fontFamily: 'Montserrat',
+                                                                              color: Color(0xFFC4C4C4),
+                                                                              fontSize: 11,
+                                                                            ),
+                                                                      );
+                                                                    },
                                                                   ),
                                                                   Padding(
                                                                     padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            5,
+                                                                            2,
                                                                             0,
                                                                             0,
                                                                             0),
@@ -1126,6 +1121,10 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                   .width *
                                                               0.9,
                                                       height: 50,
+                                                      constraints:
+                                                          BoxConstraints(
+                                                        maxWidth: 500,
+                                                      ),
                                                       decoration: BoxDecoration(
                                                         color: Colors.white,
                                                         borderRadius:
@@ -1807,6 +1806,10 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                   InkWell(
                                                                     onTap:
                                                                         () async {
+                                                                      setState(() => FFAppState()
+                                                                              .currentVariant =
+                                                                          columnVariantsRecord
+                                                                              .id);
                                                                       await showModalBottomSheet(
                                                                         isScrollControlled:
                                                                             true,
@@ -2334,6 +2337,10 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                   InkWell(
                                                                     onTap:
                                                                         () async {
+                                                                      setState(() => FFAppState()
+                                                                              .currentVariant =
+                                                                          columnVariantsRecord
+                                                                              .id);
                                                                       await showModalBottomSheet(
                                                                         isScrollControlled:
                                                                             true,
@@ -2864,6 +2871,10 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                   InkWell(
                                                                     onTap:
                                                                         () async {
+                                                                      setState(() => FFAppState()
+                                                                              .currentVariant =
+                                                                          columnVariantsRecord
+                                                                              .id);
                                                                       await showModalBottomSheet(
                                                                         isScrollControlled:
                                                                             true,
@@ -3389,6 +3400,10 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                   InkWell(
                                                                     onTap:
                                                                         () async {
+                                                                      setState(() => FFAppState()
+                                                                              .currentVariant =
+                                                                          columnVariantsRecord
+                                                                              .id);
                                                                       await showModalBottomSheet(
                                                                         isScrollControlled:
                                                                             true,
@@ -3940,6 +3955,9 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                             );
                                                                           },
                                                                         );
+                                                                        setState(() =>
+                                                                            FFAppState().currentVariant =
+                                                                                columnVariantsRecord.id);
                                                                       },
                                                                       child:
                                                                           ClipRRect(

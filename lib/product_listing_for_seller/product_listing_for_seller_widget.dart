@@ -5,6 +5,7 @@ import '../carrito_por_sellers/carrito_por_sellers_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../flutter_flow/flutter_flow_widgets.dart';
 import '../perfil_del_seller/perfil_del_seller_widget.dart';
 import '../product_page/product_page_widget.dart';
 import 'package:flutter/material.dart';
@@ -90,78 +91,73 @@ class _ProductListingForSellerWidgetState
             ),
             actions: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
-                child: FutureBuilder<ApiCallResponse>(
-                  future: GetCartAmountCall.call(
-                    uid: currentUserUid,
-                    cartId: widget.storeId,
-                  ),
-                  builder: (context, snapshot) {
-                    // Customize what your widget looks like when it's loading.
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: SizedBox(
-                          width: 50,
-                          height: 50,
-                          child: SpinKitFadingCircle(
-                            color: FlutterFlowTheme.of(context).primaryColor,
-                            size: 50,
-                          ),
-                        ),
-                      );
-                    }
-                    final stackGetCartAmountResponse = snapshot.data;
-                    return Stack(
-                      alignment: AlignmentDirectional(0, 0),
-                      children: [
-                        Align(
-                          alignment: AlignmentDirectional(1, -0.9),
-                          child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(25, 0, 0, 0),
-                            child: Text(
-                              GetCartAmountCall.amount(
-                                (stackGetCartAmountResponse?.jsonBody ?? ''),
-                              ).toString(),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                    fontFamily: 'Montserrat',
-                                    color: Color(0xFF84D566),
-                                  ),
+                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    FutureBuilder<ApiCallResponse>(
+                      future: GetCartAmountCall.call(
+                        uid: currentUserUid,
+                        cartId: widget.storeId,
+                      ),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: SpinKitFadingCircle(
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                size: 50,
+                              ),
                             ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 5, 10, 0),
-                          child: FlutterFlowIconButton(
-                            borderColor: Colors.transparent,
-                            borderRadius: 30,
-                            borderWidth: 1,
-                            buttonSize: 60,
-                            icon: Icon(
-                              Icons.shopping_cart_outlined,
-                              color: Colors.black,
-                              size: 30,
-                            ),
-                            onPressed: () async {
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: CarritoPorSellersWidget(
-                                    storeId: widget.storeId,
-                                  ),
+                          );
+                        }
+                        final buttonGetCartAmountResponse = snapshot.data;
+                        return FFButtonWidget(
+                          onPressed: () async {
+                            await Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.fade,
+                                duration: Duration(milliseconds: 0),
+                                reverseDuration: Duration(milliseconds: 0),
+                                child: CarritoPorSellersWidget(
+                                  storeId: widget.storeId,
                                 ),
-                              );
-                            },
+                              ),
+                            );
+                          },
+                          text: GetCartAmountCall.amount(
+                            (buttonGetCartAmountResponse?.jsonBody ?? ''),
+                          ).toString(),
+                          icon: Icon(
+                            Icons.shopping_bag_outlined,
+                            color: Colors.white,
+                            size: 24,
                           ),
-                        ),
-                      ],
-                    );
-                  },
+                          options: FFButtonOptions(
+                            width: 110,
+                            height: 40,
+                            color: Color(0xFF1EEBBD),
+                            textStyle:
+                                FlutterFlowTheme.of(context).subtitle2.override(
+                                      fontFamily: 'Montserrat',
+                                      color: Colors.white,
+                                    ),
+                            elevation: 2,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1,
+                            ),
+                            borderRadius: 120,
+                          ),
+                        );
+                      },
+                    ),
+                  ],
                 ),
               ),
             ],

@@ -480,6 +480,9 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                                                                 .size
                                                                 .width *
                                                             0.9,
+                                                    constraints: BoxConstraints(
+                                                      maxWidth: 500,
+                                                    ),
                                                     decoration: BoxDecoration(
                                                       color: Colors.white,
                                                       boxShadow: [
