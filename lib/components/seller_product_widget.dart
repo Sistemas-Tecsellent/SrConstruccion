@@ -213,130 +213,132 @@ class _SellerProductWidgetState extends State<SellerProductWidget> {
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
                                                   20, 0, 20, 0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              FutureBuilder<ApiCallResponse>(
-                                                future:
-                                                    GetApplicableVariantsCall
-                                                        .call(
-                                                  productId:
-                                                      columnProductsRecord.id,
-                                                  userLocation:
-                                                      FFAppState().locationKey,
-                                                ),
-                                                builder: (context, snapshot) {
-                                                  // Customize what your widget looks like when it's loading.
-                                                  if (!snapshot.hasData) {
-                                                    return Center(
-                                                      child: SizedBox(
-                                                        width: 50,
-                                                        height: 50,
-                                                        child:
-                                                            SpinKitFadingCircle(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryColor,
-                                                          size: 50,
+                                          child: SingleChildScrollView(
+                                            scrollDirection: Axis.horizontal,
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                FutureBuilder<ApiCallResponse>(
+                                                  future:
+                                                      GetApplicableVariantsCall
+                                                          .call(
+                                                    productId:
+                                                        columnProductsRecord.id,
+                                                    userLocation: FFAppState()
+                                                        .locationKey,
+                                                  ),
+                                                  builder: (context, snapshot) {
+                                                    // Customize what your widget looks like when it's loading.
+                                                    if (!snapshot.hasData) {
+                                                      return Center(
+                                                        child: SizedBox(
+                                                          width: 50,
+                                                          height: 50,
+                                                          child:
+                                                              SpinKitFadingCircle(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryColor,
+                                                            size: 50,
+                                                          ),
                                                         ),
-                                                      ),
-                                                    );
-                                                  }
-                                                  final rowGetApplicableVariantsResponse =
-                                                      snapshot.data;
-                                                  return Builder(
-                                                    builder: (context) {
-                                                      final units =
-                                                          getJsonField(
-                                                                (rowGetApplicableVariantsResponse
-                                                                        ?.jsonBody ??
-                                                                    ''),
-                                                                r'''$.variants''',
-                                                              )?.toList() ??
-                                                              [];
-                                                      return SingleChildScrollView(
-                                                        scrollDirection:
-                                                            Axis.horizontal,
-                                                        child: Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          children:
-                                                              List.generate(
-                                                                  units.length,
-                                                                  (unitsIndex) {
-                                                            final unitsItem =
-                                                                units[
-                                                                    unitsIndex];
-                                                            return Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0,
-                                                                          0,
-                                                                          10,
-                                                                          0),
-                                                              child: InkWell(
-                                                                onTap:
-                                                                    () async {
-                                                                  setState(() =>
-                                                                      FFAppState()
-                                                                              .currentVariant =
-                                                                          getJsonField(
-                                                                        unitsItem,
-                                                                        r'''$.id''',
-                                                                      ).toString());
-                                                                },
-                                                                child:
-                                                                    Container(
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .tertiaryColor,
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            50),
-                                                                  ),
-                                                                  child:
-                                                                      Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                      );
+                                                    }
+                                                    final rowGetApplicableVariantsResponse =
+                                                        snapshot.data;
+                                                    return Builder(
+                                                      builder: (context) {
+                                                        final units =
+                                                            getJsonField(
+                                                                  (rowGetApplicableVariantsResponse
+                                                                          ?.jsonBody ??
+                                                                      ''),
+                                                                  r'''$.variants''',
+                                                                )?.toList() ??
+                                                                [];
+                                                        return SingleChildScrollView(
+                                                          scrollDirection:
+                                                              Axis.horizontal,
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children:
+                                                                List.generate(
+                                                                    units
+                                                                        .length,
+                                                                    (unitsIndex) {
+                                                              final unitsItem =
+                                                                  units[
+                                                                      unitsIndex];
+                                                              return Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            30,
+                                                                            0,
+                                                                            0,
                                                                             10,
-                                                                            30,
-                                                                            10),
-                                                                    child: Text(
-                                                                      getJsonField(
-                                                                        unitsItem,
-                                                                        r'''$.unit''',
-                                                                      ).toString(),
-                                                                      style: FlutterFlowTheme.of(
+                                                                            0),
+                                                                child: InkWell(
+                                                                  onTap:
+                                                                      () async {
+                                                                    setState(() =>
+                                                                        FFAppState().currentVariant =
+                                                                            getJsonField(
+                                                                          unitsItem,
+                                                                          r'''$.id''',
+                                                                        ).toString());
+                                                                  },
+                                                                  child:
+                                                                      Container(
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .bodyText1
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Montserrat',
-                                                                            fontSize:
-                                                                                16,
-                                                                          ),
+                                                                          .tertiaryColor,
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              50),
+                                                                    ),
+                                                                    child:
+                                                                        Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              30,
+                                                                              10,
+                                                                              30,
+                                                                              10),
+                                                                      child:
+                                                                          Text(
+                                                                        getJsonField(
+                                                                          unitsItem,
+                                                                          r'''$.unit''',
+                                                                        ).toString(),
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyText1
+                                                                            .override(
+                                                                              fontFamily: 'Montserrat',
+                                                                              fontSize: 16,
+                                                                            ),
+                                                                      ),
                                                                     ),
                                                                   ),
                                                                 ),
-                                                              ),
-                                                            );
-                                                          }),
-                                                        ),
-                                                      );
-                                                    },
-                                                  );
-                                                },
-                                              ),
-                                            ],
+                                                              );
+                                                            }),
+                                                          ),
+                                                        );
+                                                      },
+                                                    );
+                                                  },
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ],
