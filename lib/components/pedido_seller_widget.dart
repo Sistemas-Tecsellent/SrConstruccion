@@ -160,6 +160,9 @@ class _PedidoSellerWidgetState extends State<PedidoSellerWidget> {
                                   Container(
                                     width: MediaQuery.of(context).size.width *
                                         0.76,
+                                    constraints: BoxConstraints(
+                                      maxWidth: 400,
+                                    ),
                                     decoration: BoxDecoration(
                                       color: Color(0x00EEEEEE),
                                     ),
@@ -188,6 +191,9 @@ class _PedidoSellerWidgetState extends State<PedidoSellerWidget> {
                                     width: MediaQuery.of(context).size.width *
                                         0.76,
                                     height: 5,
+                                    constraints: BoxConstraints(
+                                      maxWidth: 400,
+                                    ),
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .primaryColor,
