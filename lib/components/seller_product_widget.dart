@@ -554,8 +554,9 @@ class _SellerProductWidgetState extends State<SellerProductWidget> {
                                                   Container(
                                                     width:
                                                         MediaQuery.of(context)
-                                                            .size
-                                                            .width,
+                                                                .size
+                                                                .width *
+                                                            0.5,
                                                     height: 50,
                                                     constraints: BoxConstraints(
                                                       maxWidth: 300,
