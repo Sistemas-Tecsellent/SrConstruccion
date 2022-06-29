@@ -1,6 +1,4 @@
 import '../auth/auth_util.dart';
-import '../checkout/checkout_widget.dart';
-import '../checkout_seller/checkout_seller_widget.dart';
 import '../flutter_flow/flutter_flow_radio_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -146,35 +144,15 @@ class _MetodoDePagoWidgetState extends State<MetodoDePagoWidget> {
                                     currentUserUid,
                                     radioButtonValue,
                                   );
-                                  await Navigator.pushAndRemoveUntil(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 0),
-                                      reverseDuration:
-                                          Duration(milliseconds: 0),
-                                      child: CheckoutWidget(),
-                                    ),
-                                    (r) => false,
-                                  );
+                                  Navigator.pop(context);
+                                  Navigator.pop(context);
                                 } else {
                                   await actions.setCheckoutModifyPaymentMet(
                                     widget.storeId,
                                     radioButtonValue,
                                   );
-                                  await Navigator.pushAndRemoveUntil(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 0),
-                                      reverseDuration:
-                                          Duration(milliseconds: 0),
-                                      child: CheckoutSellerWidget(
-                                        storeId: widget.storeId,
-                                      ),
-                                    ),
-                                    (r) => false,
-                                  );
+                                  Navigator.pop(context);
+                                  Navigator.pop(context);
                                 }
                               },
                               text: 'Seleccionar',
