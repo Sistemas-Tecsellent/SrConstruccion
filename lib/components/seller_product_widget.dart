@@ -253,7 +253,7 @@ class _SellerProductWidgetState extends State<SellerProductWidget> {
                                                                 (rowGetApplicableVariantsResponse
                                                                         ?.jsonBody ??
                                                                     ''),
-                                                                r'''$''',
+                                                                r'''$.variants''',
                                                               )?.toList() ??
                                                               [];
                                                       return SingleChildScrollView(

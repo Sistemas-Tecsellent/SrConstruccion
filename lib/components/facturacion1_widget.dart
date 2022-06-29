@@ -65,6 +65,9 @@ class _Facturacion1WidgetState extends State<Facturacion1Widget> {
           return Container(
             width: MediaQuery.of(context).size.width,
             height: 500,
+            constraints: BoxConstraints(
+              maxWidth: 500,
+            ),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(

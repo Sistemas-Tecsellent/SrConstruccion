@@ -457,29 +457,33 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                       Expanded(
                                         child: Stack(
                                           children: [
-                                            Container(
-                                              width: MediaQuery.of(context)
-                                                  .size
-                                                  .width,
-                                              height: 100,
-                                              decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    blurRadius: 20,
-                                                    color: Color(0x0D000000),
-                                                  )
-                                                ],
-                                                borderRadius: BorderRadius.only(
-                                                  bottomLeft:
-                                                      Radius.circular(0),
-                                                  bottomRight:
-                                                      Radius.circular(0),
-                                                  topLeft: Radius.circular(20),
-                                                  topRight: Radius.circular(20),
+                                            if (loggedIn ?? true)
+                                              Container(
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
+                                                height: 100,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                      blurRadius: 20,
+                                                      color: Color(0x0D000000),
+                                                    )
+                                                  ],
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                    bottomLeft:
+                                                        Radius.circular(0),
+                                                    bottomRight:
+                                                        Radius.circular(0),
+                                                    topLeft:
+                                                        Radius.circular(20),
+                                                    topRight:
+                                                        Radius.circular(20),
+                                                  ),
                                                 ),
                                               ),
-                                            ),
                                             Padding(
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(0, 80, 0, 0),
