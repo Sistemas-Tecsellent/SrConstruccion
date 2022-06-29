@@ -53,8 +53,8 @@ class _MetodoDePagoWidgetState extends State<MetodoDePagoWidget> {
                     children: [
                       Divider(
                         thickness: 3,
-                        indent: 150,
-                        endIndent: 150,
+                        indent: 450,
+                        endIndent: 450,
                         color: Color(0xFFDBE2E7),
                       ),
                       Row(

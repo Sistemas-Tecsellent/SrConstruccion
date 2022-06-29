@@ -102,8 +102,8 @@ class _ProductsFinalWidgetState extends State<ProductsFinalWidget> {
                             children: [
                               Divider(
                                 thickness: 3,
-                                indent: 150,
-                                endIndent: 150,
+                                indent: 550,
+                                endIndent: 550,
                                 color: Color(0xFFDBE2E7),
                               ),
                               Row(
@@ -150,7 +150,7 @@ class _ProductsFinalWidgetState extends State<ProductsFinalWidget> {
                                   Expanded(
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 4, 16, 0),
+                                          0, 14, 16, 0),
                                       child: Text(
                                         'Detalles de Productos',
                                         style: FlutterFlowTheme.of(context)
