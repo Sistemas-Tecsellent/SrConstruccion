@@ -107,162 +107,216 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
             elevation: 0,
           ),
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          floatingActionButton: FloatingActionButton.extended(
-            onPressed: () {
-              print('FloatingActionButton pressed ...');
-            },
-            backgroundColor: Color(0x00FDC054),
-            elevation: 0,
-            label: Container(
-              decoration: BoxDecoration(
-                color: Color(0x00FF5963),
-                boxShadow: [
-                  BoxShadow(
-                    blurRadius: 3,
-                    color: Color(0x20000000),
-                  )
-                ],
-                borderRadius: BorderRadius.circular(15),
-              ),
-              alignment: AlignmentDirectional(0, 0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  StreamBuilder<List<SellerWiseCheckoutsRecord>>(
-                    stream: querySellerWiseCheckoutsRecord(
-                      parent: checkoutSellerCheckoutsRecord.reference,
-                      queryBuilder: (sellerWiseCheckoutsRecord) =>
-                          sellerWiseCheckoutsRecord.where('id',
-                              isEqualTo: widget.storeId),
-                      singleRecord: true,
-                    ),
-                    builder: (context, snapshot) {
-                      // Customize what your widget looks like when it's loading.
-                      if (!snapshot.hasData) {
-                        return Center(
-                          child: SizedBox(
-                            width: 50,
-                            height: 50,
-                            child: SpinKitFadingCircle(
-                              color: FlutterFlowTheme.of(context).primaryColor,
-                              size: 50,
-                            ),
-                          ),
-                        );
-                      }
-                      List<SellerWiseCheckoutsRecord>
-                          buttonSellerWiseCheckoutsRecordList = snapshot.data;
-                      // Return an empty Container when the document does not exist.
-                      if (snapshot.data.isEmpty) {
-                        return Container();
-                      }
-                      final buttonSellerWiseCheckoutsRecord =
-                          buttonSellerWiseCheckoutsRecordList.isNotEmpty
-                              ? buttonSellerWiseCheckoutsRecordList.first
-                              : null;
-                      return FFButtonWidget(
-                        onPressed: () async {
-                          if (loggedIn) {
-                            if (functions.compareStrings(
-                                FFAppState().paymentMethod,
-                                'Tarjeta Crédito / Débito')) {
-                              bundleId = await actions.placeOrderBundle(
-                                widget.storeId,
-                              );
-                              final paymentResponse =
-                                  await processStripePayment(
-                                amount: buttonSellerWiseCheckoutsRecord
-                                    .totalInCents,
-                                currency: 'MXN',
-                                customerEmail: currentUserEmail,
-                                customerName: currentUserDisplayName,
-                                description:
-                                    '1x Codigo de Pago No. ${bundleId}',
-                                allowGooglePay: false,
-                                allowApplePay: false,
-                              );
-                              if (paymentResponse.paymentId == null) {
-                                if (paymentResponse.errorMessage != null) {
-                                  showSnackbar(
-                                    context,
-                                    'Error: ${paymentResponse.errorMessage}',
-                                  );
-                                }
-                                return;
-                              }
-                              paymentId = paymentResponse.paymentId;
-
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: PagoAceptadoWidget(
-                                    total:
-                                        buttonSellerWiseCheckoutsRecord.total,
-                                    orderId: bundleId,
-                                  ),
-                                ),
-                              );
-
-                              final usersUpdateData = {
-                                'liveOrders': FieldValue.arrayUnion([bundleId]),
-                              };
-                              await currentUserReference
-                                  .update(usersUpdateData);
-                            } else {
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: HomeAltWidget(),
-                                ),
-                              );
-                            }
-                          } else {
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                                reverseDuration: Duration(milliseconds: 0),
-                                child: LoginWidget(),
-                              ),
-                            );
-                          }
-
-                          setState(() {});
-                        },
-                        text: 'Pagar',
-                        options: FFButtonOptions(
-                          width: 300,
-                          height: 54,
-                          color: FlutterFlowTheme.of(context).primaryColor,
-                          textStyle:
-                              FlutterFlowTheme.of(context).subtitle2.override(
-                                    fontFamily: 'Montserrat',
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                          elevation: 0,
-                          borderSide: BorderSide(
-                            color: Colors.transparent,
-                            width: 1,
-                          ),
-                          borderRadius: 5,
-                        ),
-                      );
-                    },
-                  ),
-                ],
-              ),
+          floatingActionButton: StreamBuilder<List<SellerWiseCheckoutsRecord>>(
+            stream: querySellerWiseCheckoutsRecord(
+              parent: checkoutSellerCheckoutsRecord.reference,
+              queryBuilder: (sellerWiseCheckoutsRecord) =>
+                  sellerWiseCheckoutsRecord.where('id',
+                      isEqualTo: widget.storeId),
+              singleRecord: true,
             ),
+            builder: (context, snapshot) {
+              // Customize what your widget looks like when it's loading.
+              if (!snapshot.hasData) {
+                return Center(
+                  child: SizedBox(
+                    width: 50,
+                    height: 50,
+                    child: SpinKitFadingCircle(
+                      color: FlutterFlowTheme.of(context).primaryColor,
+                      size: 50,
+                    ),
+                  ),
+                );
+              }
+              List<SellerWiseCheckoutsRecord>
+                  floatingActionButtonSellerWiseCheckoutsRecordList =
+                  snapshot.data;
+              // Return an empty Container when the document does not exist.
+              if (snapshot.data.isEmpty) {
+                return Container();
+              }
+              final floatingActionButtonSellerWiseCheckoutsRecord =
+                  floatingActionButtonSellerWiseCheckoutsRecordList.isNotEmpty
+                      ? floatingActionButtonSellerWiseCheckoutsRecordList.first
+                      : null;
+              return FloatingActionButton.extended(
+                onPressed: () {
+                  print('FloatingActionButton pressed ...');
+                },
+                backgroundColor: Color(0x00FDC054),
+                elevation: 0,
+                label: Visibility(
+                  visible: !(floatingActionButtonSellerWiseCheckoutsRecord
+                          .pendingShipmentPrice) ??
+                      true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0x00FF5963),
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 3,
+                          color: Color(0x20000000),
+                        )
+                      ],
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    alignment: AlignmentDirectional(0, 0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        if ((floatingActionButtonSellerWiseCheckoutsRecord
+                                .totalInCents) >
+                            0)
+                          StreamBuilder<List<SellerWiseCheckoutsRecord>>(
+                            stream: querySellerWiseCheckoutsRecord(
+                              parent: checkoutSellerCheckoutsRecord.reference,
+                              queryBuilder: (sellerWiseCheckoutsRecord) =>
+                                  sellerWiseCheckoutsRecord.where('id',
+                                      isEqualTo: widget.storeId),
+                              singleRecord: true,
+                            ),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50,
+                                    height: 50,
+                                    child: SpinKitFadingCircle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                      size: 50,
+                                    ),
+                                  ),
+                                );
+                              }
+                              List<SellerWiseCheckoutsRecord>
+                                  buttonSellerWiseCheckoutsRecordList =
+                                  snapshot.data;
+                              // Return an empty Container when the document does not exist.
+                              if (snapshot.data.isEmpty) {
+                                return Container();
+                              }
+                              final buttonSellerWiseCheckoutsRecord =
+                                  buttonSellerWiseCheckoutsRecordList.isNotEmpty
+                                      ? buttonSellerWiseCheckoutsRecordList
+                                          .first
+                                      : null;
+                              return FFButtonWidget(
+                                onPressed: () async {
+                                  if (loggedIn) {
+                                    if (functions.compareStrings(
+                                        FFAppState().paymentMethod,
+                                        'Tarjeta Crédito / Débito')) {
+                                      bundleId = await actions.placeOrderBundle(
+                                        widget.storeId,
+                                      );
+                                      final paymentResponse =
+                                          await processStripePayment(
+                                        amount: buttonSellerWiseCheckoutsRecord
+                                            .totalInCents,
+                                        currency: 'MXN',
+                                        customerEmail: currentUserEmail,
+                                        customerName: currentUserDisplayName,
+                                        description:
+                                            '1x Codigo de Pago No. ${bundleId}',
+                                        allowGooglePay: false,
+                                        allowApplePay: false,
+                                      );
+                                      if (paymentResponse.paymentId == null) {
+                                        if (paymentResponse.errorMessage !=
+                                            null) {
+                                          showSnackbar(
+                                            context,
+                                            'Error: ${paymentResponse.errorMessage}',
+                                          );
+                                        }
+                                        return;
+                                      }
+                                      paymentId = paymentResponse.paymentId;
+
+                                      await Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 0),
+                                          reverseDuration:
+                                              Duration(milliseconds: 0),
+                                          child: PagoAceptadoWidget(
+                                            total:
+                                                buttonSellerWiseCheckoutsRecord
+                                                    .total,
+                                            orderId: bundleId,
+                                          ),
+                                        ),
+                                      );
+
+                                      final usersUpdateData = {
+                                        'liveOrders':
+                                            FieldValue.arrayUnion([bundleId]),
+                                      };
+                                      await currentUserReference
+                                          .update(usersUpdateData);
+                                    } else {
+                                      await Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 0),
+                                          reverseDuration:
+                                              Duration(milliseconds: 0),
+                                          child: HomeAltWidget(),
+                                        ),
+                                      );
+                                    }
+                                  } else {
+                                    await Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                        reverseDuration:
+                                            Duration(milliseconds: 0),
+                                        child: LoginWidget(),
+                                      ),
+                                    );
+                                  }
+
+                                  setState(() {});
+                                },
+                                text: 'Pagar',
+                                options: FFButtonOptions(
+                                  width: 300,
+                                  height: 54,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryColor,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .subtitle2
+                                      .override(
+                                        fontFamily: 'Montserrat',
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                  elevation: 0,
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1,
+                                  ),
+                                  borderRadius: 5,
+                                ),
+                              );
+                            },
+                          ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
           ),
           body: SafeArea(
             child: GestureDetector(
@@ -669,100 +723,99 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                     ),
                                                   ],
                                                 ),
-                                                Align(
-                                                  alignment:
-                                                      AlignmentDirectional(
-                                                          0, 0.85),
-                                                  child: Container(
-                                                    width: 200,
-                                                    height: 50,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      boxShadow: [
-                                                        BoxShadow(
-                                                          blurRadius: 10,
-                                                          color:
-                                                              Color(0x14000000),
-                                                        )
-                                                      ],
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                    ),
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  20, 0, 10, 0),
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0,
-                                                                        10,
-                                                                        0,
-                                                                        10),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .center,
-                                                              children: [
-                                                                Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  children: [
-                                                                    Text(
-                                                                      'Entrega Estimada',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyText1
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Montserrat',
-                                                                            fontSize:
-                                                                                12,
-                                                                          ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  children: [
-                                                                    Text(
-                                                                      '1 mayo 2022   10:00 AM',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyText1
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Montserrat',
-                                                                            fontWeight:
-                                                                                FontWeight.w500,
-                                                                          ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
+                                                if (columnSellerWiseCheckoutsRecord
+                                                        .pendingShipmentPrice ??
+                                                    true)
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            0, 0.85),
+                                                    child: Container(
+                                                      width: 200,
+                                                      height: 50,
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        boxShadow: [
+                                                          BoxShadow(
+                                                            blurRadius: 10,
+                                                            color: Color(
+                                                                0x14000000),
+                                                          )
                                                         ],
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(20, 0,
+                                                                    10, 0),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0,
+                                                                          10,
+                                                                          0,
+                                                                          10),
+                                                              child: Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .center,
+                                                                children: [
+                                                                  Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    children: [
+                                                                      Text(
+                                                                        'Entrega Estimada',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyText1
+                                                                            .override(
+                                                                              fontFamily: 'Montserrat',
+                                                                              fontSize: 12,
+                                                                            ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                  Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    children: [
+                                                                      Text(
+                                                                        columnSellerWiseCheckoutsRecord
+                                                                            .deliverDate
+                                                                            .maybeHandleOverflow(maxChars: 20),
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyText1
+                                                                            .override(
+                                                                              fontFamily: 'Montserrat',
+                                                                              fontWeight: FontWeight.w500,
+                                                                            ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
-                                                ),
                                               ],
                                             ),
                                           ),
