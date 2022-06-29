@@ -24,8 +24,6 @@ class MetodoDePagoWidget extends StatefulWidget {
 
 class _MetodoDePagoWidgetState extends State<MetodoDePagoWidget> {
   String radioButtonValue;
-  dynamic check;
-  dynamic checkoutSession;
 
   @override
   Widget build(BuildContext context) {
@@ -114,6 +112,7 @@ class _MetodoDePagoWidgetState extends State<MetodoDePagoWidget> {
                             'Tarjeta Crédito / Débito',
                             'Kueski Pay'
                           ].toList(),
+                          initialValue: 'Tarjeta Crédito / Débito',
                           onChanged: (value) {
                             setState(() => radioButtonValue = value);
                           },
@@ -142,24 +141,12 @@ class _MetodoDePagoWidgetState extends State<MetodoDePagoWidget> {
                           children: [
                             FFButtonWidget(
                               onPressed: () async {
-                                setState(() => FFAppState().paymentMethod =
-                                    radioButtonValue);
                                 if ((widget.storeId) == '\"\"') {
-                                  check = await actions.setCheckoutSession(
-                                    getJsonField(
-                                      FFAppState().checkoutAddress,
-                                      r'''$.name''',
-                                    ).toString(),
-                                    FFAppState().paymentMethod,
-                                    FFAppState().checkoutInvoiceProfile,
-                                    FFAppState().invoiceUsage,
-                                  );
-                                  checkoutSession = await actions.getCheckout(
+                                  await actions.setCheckoutModifyPaymentMet(
                                     currentUserUid,
+                                    radioButtonValue,
                                   );
-                                  setState(() => FFAppState().checkoutSession =
-                                      checkoutSession);
-                                  await Navigator.push(
+                                  await Navigator.pushAndRemoveUntil(
                                     context,
                                     PageTransition(
                                       type: PageTransitionType.fade,
@@ -168,19 +155,14 @@ class _MetodoDePagoWidgetState extends State<MetodoDePagoWidget> {
                                           Duration(milliseconds: 0),
                                       child: CheckoutWidget(),
                                     ),
+                                    (r) => false,
                                   );
                                 } else {
-                                  await actions.setCheckoutSessionSellerWise(
-                                    getJsonField(
-                                      FFAppState().checkoutAddress,
-                                      r'''$.name''',
-                                    ).toString(),
-                                    FFAppState().paymentMethod,
-                                    FFAppState().checkoutInvoiceProfile,
-                                    FFAppState().invoiceUsage,
+                                  await actions.setCheckoutModifyPaymentMet(
                                     widget.storeId,
+                                    radioButtonValue,
                                   );
-                                  await Navigator.push(
+                                  await Navigator.pushAndRemoveUntil(
                                     context,
                                     PageTransition(
                                       type: PageTransitionType.fade,
@@ -191,10 +173,9 @@ class _MetodoDePagoWidgetState extends State<MetodoDePagoWidget> {
                                         storeId: widget.storeId,
                                       ),
                                     ),
+                                    (r) => false,
                                   );
                                 }
-
-                                setState(() {});
                               },
                               text: 'Seleccionar',
                               options: FFButtonOptions(

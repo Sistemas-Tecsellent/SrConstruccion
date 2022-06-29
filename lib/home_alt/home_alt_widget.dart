@@ -1,5 +1,6 @@
 import '../anadir_direccion/anadir_direccion_widget.dart';
 import '../auth/auth_util.dart';
+import '../auth/firebase_user_provider.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../carrito/carrito_widget.dart';
@@ -16,6 +17,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../listado_marcas/listado_marcas_widget.dart';
+import '../login/login_widget.dart';
 import '../marca_single/marca_single_widget.dart';
 import '../mis_pedidos/mis_pedidos_widget.dart';
 import '../notificaciones/notificaciones_widget.dart';
@@ -470,31 +472,82 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Align(
-                            alignment: AlignmentDirectional(0, 0),
-                            child: FutureBuilder<ApiCallResponse>(
-                              future: GetCartAmountCall.call(
-                                uid: currentUserUid,
-                                cartId: currentUserUid,
-                              ),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50,
-                                      height: 50,
-                                      child: SpinKitFadingCircle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryColor,
-                                        size: 50,
-                                      ),
+                          Stack(
+                            children: [
+                              if (loggedIn ?? true)
+                                Align(
+                                  alignment: AlignmentDirectional(0, 0),
+                                  child: FutureBuilder<ApiCallResponse>(
+                                    future: GetCartAmountCall.call(
+                                      uid: currentUserUid,
+                                      cartId: currentUserUid,
                                     ),
-                                  );
-                                }
-                                final buttonGetCartAmountResponse =
-                                    snapshot.data;
-                                return FFButtonWidget(
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 50,
+                                            height: 50,
+                                            child: SpinKitFadingCircle(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryColor,
+                                              size: 50,
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      final buttonGetCartAmountResponse =
+                                          snapshot.data;
+                                      return FFButtonWidget(
+                                        onPressed: () async {
+                                          await Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              type: PageTransitionType.fade,
+                                              duration:
+                                                  Duration(milliseconds: 0),
+                                              reverseDuration:
+                                                  Duration(milliseconds: 0),
+                                              child: CarritoWidget(),
+                                            ),
+                                          );
+                                        },
+                                        text: GetCartAmountCall.amount(
+                                          (buttonGetCartAmountResponse
+                                                  ?.jsonBody ??
+                                              ''),
+                                        ).toString(),
+                                        icon: Icon(
+                                          Icons.shopping_bag_outlined,
+                                          size: 30,
+                                        ),
+                                        options: FFButtonOptions(
+                                          width: 120,
+                                          height: 40,
+                                          color: Color(0xFF1EEBBD),
+                                          textStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .subtitle2
+                                                  .override(
+                                                    fontFamily: 'Montserrat',
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                  ),
+                                          elevation: 2,
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1,
+                                          ),
+                                          borderRadius: 25,
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              if (!(loggedIn) ?? true)
+                                FFButtonWidget(
                                   onPressed: () async {
                                     await Navigator.push(
                                       context,
@@ -503,20 +556,13 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                         duration: Duration(milliseconds: 0),
                                         reverseDuration:
                                             Duration(milliseconds: 0),
-                                        child: CarritoWidget(),
+                                        child: LoginWidget(),
                                       ),
                                     );
                                   },
-                                  text: GetCartAmountCall.amount(
-                                    (buttonGetCartAmountResponse?.jsonBody ??
-                                        ''),
-                                  ).toString(),
-                                  icon: Icon(
-                                    Icons.shopping_bag_outlined,
-                                    size: 30,
-                                  ),
+                                  text: 'Iniciar Sesión',
                                   options: FFButtonOptions(
-                                    width: 120,
+                                    width: 130,
                                     height: 40,
                                     color: Color(0xFF1EEBBD),
                                     textStyle: FlutterFlowTheme.of(context)
@@ -524,25 +570,18 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                         .override(
                                           fontFamily: 'Montserrat',
                                           color: Colors.white,
-                                          fontSize: 16,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                     elevation: 2,
                                     borderSide: BorderSide(
                                       color: Colors.transparent,
                                       width: 1,
                                     ),
-                                    borderRadius: 25,
+                                    borderRadius: 125,
                                   ),
-                                );
-                              },
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
-                            child: Container(
-                              decoration: BoxDecoration(),
-                            ),
+                                ),
+                            ],
                           ),
                         ],
                       ),
@@ -1023,15 +1062,27 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                                           MainAxisAlignment
                                                                               .spaceBetween,
                                                                       children: [
-                                                                        Image
-                                                                            .asset(
-                                                                          'assets/images/10.png',
-                                                                          width:
-                                                                              60,
-                                                                          height:
-                                                                              60,
-                                                                          fit: BoxFit
-                                                                              .contain,
+                                                                        Stack(
+                                                                          children: [
+                                                                            Image.asset(
+                                                                              'assets/images/Trailer.png',
+                                                                              width: 60,
+                                                                              height: 60,
+                                                                              fit: BoxFit.contain,
+                                                                            ),
+                                                                            Image.asset(
+                                                                              'assets/images/Motorcicle_Sr._Construccin.png',
+                                                                              width: 60,
+                                                                              height: 60,
+                                                                              fit: BoxFit.contain,
+                                                                            ),
+                                                                            Image.asset(
+                                                                              'assets/images/Trailer.png',
+                                                                              width: 60,
+                                                                              height: 60,
+                                                                              fit: BoxFit.contain,
+                                                                            ),
+                                                                          ],
                                                                         ),
                                                                         Padding(
                                                                           padding: EdgeInsetsDirectional.fromSTEB(
@@ -1724,7 +1775,7 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                                           child:
                                                                               Text(
                                                                             rowProductsRecord.title.maybeHandleOverflow(
-                                                                              maxChars: 23,
+                                                                              maxChars: 40,
                                                                               replacement: '…',
                                                                             ),
                                                                             textAlign:

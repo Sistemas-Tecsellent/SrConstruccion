@@ -331,8 +331,12 @@ class _DetallePedidoProgramadoWidgetState
                                                           MainAxisSize.max,
                                                       children: [
                                                         Text(
-                                                          columnOrdersForClientsRecord
-                                                              .shipmentTimeText,
+                                                          valueOrDefault<
+                                                              String>(
+                                                            columnOrdersForClientsRecord
+                                                                .shipmentTimeText,
+                                                            'Calculando...',
+                                                          ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyText1
@@ -1006,20 +1010,23 @@ class _DetallePedidoProgramadoWidgetState
                                                             FontWeight.normal,
                                                       ),
                                                 ),
-                                                Text(
-                                                  listViewOrderBundlesRecord
-                                                      .customerAddress
-                                                      .maybeHandleOverflow(
-                                                          maxChars: 20),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily:
-                                                            'Montserrat',
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
+                                                Container(
+                                                  width: 250,
+                                                  decoration: BoxDecoration(),
+                                                  child: Text(
+                                                    listViewOrderBundlesRecord
+                                                        .customerAddress,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              'Montserrat',
+                                                          fontSize: 12,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                        ),
+                                                  ),
                                                 ),
                                               ],
                                             ),

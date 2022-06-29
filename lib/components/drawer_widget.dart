@@ -6,9 +6,9 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../home_alt/home_alt_widget.dart';
 import '../listado_marcas/listado_marcas_widget.dart';
 import '../listado_sellers/listado_sellers_widget.dart';
-import '../login/login_widget.dart';
 import '../mis_pedidos/mis_pedidos_widget.dart';
 import '../notificaciones/notificaciones_widget.dart';
 import '../ofertas/ofertas_widget.dart';
@@ -803,7 +803,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                           type: PageTransitionType.fade,
                           duration: Duration(milliseconds: 0),
                           reverseDuration: Duration(milliseconds: 0),
-                          child: LoginWidget(),
+                          child: HomeAltWidget(),
                         ),
                         (r) => false,
                       );

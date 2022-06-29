@@ -1,4 +1,5 @@
 import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../checkout/checkout_widget.dart';
 import '../checkout_seller/checkout_seller_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
@@ -22,9 +23,6 @@ class CambiarDireccionWidget extends StatefulWidget {
 }
 
 class _CambiarDireccionWidgetState extends State<CambiarDireccionWidget> {
-  dynamic check;
-  dynamic checkoutSession;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -47,14 +45,32 @@ class _CambiarDireccionWidgetState extends State<CambiarDireccionWidget> {
       ),
       child: Padding(
         padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
-        child: Builder(
-          builder: (context) {
-            final addresses = FFAppState().userAddresses?.toList() ?? [];
+        child: StreamBuilder<List<AddressesRecord>>(
+          stream: queryAddressesRecord(
+            parent: currentUserReference,
+          ),
+          builder: (context, snapshot) {
+            // Customize what your widget looks like when it's loading.
+            if (!snapshot.hasData) {
+              return Center(
+                child: SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: SpinKitFadingCircle(
+                    color: FlutterFlowTheme.of(context).primaryColor,
+                    size: 50,
+                  ),
+                ),
+              );
+            }
+            List<AddressesRecord> columnAddressesRecordList = snapshot.data;
             return SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
-                children: List.generate(addresses.length, (addressesIndex) {
-                  final addressesItem = addresses[addressesIndex];
+                children: List.generate(columnAddressesRecordList.length,
+                    (columnIndex) {
+                  final columnAddressesRecord =
+                      columnAddressesRecordList[columnIndex];
                   return Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 5),
                     child: Container(
@@ -95,10 +111,7 @@ class _CambiarDireccionWidgetState extends State<CambiarDireccionWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0, 0, 0, 5),
                                         child: Text(
-                                          getJsonField(
-                                            addressesItem,
-                                            r'''$.name''',
-                                          ).toString(),
+                                          columnAddressesRecord.name,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyText1
                                               .override(
@@ -119,10 +132,10 @@ class _CambiarDireccionWidgetState extends State<CambiarDireccionWidget> {
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(0, 0, 0, 5),
                                                 child: Text(
-                                                  getJsonField(
-                                                    addressesItem,
-                                                    r'''$.addressLine1''',
-                                                  ).toString(),
+                                                  columnAddressesRecord
+                                                      .addressLine1
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 28),
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyText1
@@ -137,10 +150,7 @@ class _CambiarDireccionWidgetState extends State<CambiarDireccionWidget> {
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(0, 0, 0, 5),
                                                 child: Text(
-                                                  getJsonField(
-                                                    addressesItem,
-                                                    r'''$.suburb''',
-                                                  ).toString(),
+                                                  columnAddressesRecord.suburb,
                                                   maxLines: 1,
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -160,10 +170,7 @@ class _CambiarDireccionWidgetState extends State<CambiarDireccionWidget> {
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Text(
-                                            getJsonField(
-                                              addressesItem,
-                                              r'''$.city''',
-                                            ).toString(),
+                                            columnAddressesRecord.city,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1
                                                 .override(
@@ -182,10 +189,7 @@ class _CambiarDireccionWidgetState extends State<CambiarDireccionWidget> {
                                                 ),
                                           ),
                                           Text(
-                                            getJsonField(
-                                              addressesItem,
-                                              r'''$.state''',
-                                            ).toString(),
+                                            columnAddressesRecord.state,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1
                                                 .override(
@@ -218,24 +222,12 @@ class _CambiarDireccionWidgetState extends State<CambiarDireccionWidget> {
                                 size: 30,
                               ),
                               onPressed: () async {
-                                setState(() => FFAppState().checkoutAddress =
-                                    addressesItem);
                                 if ((widget.storeId) == '\"\"') {
-                                  check = await actions.setCheckoutSession(
-                                    getJsonField(
-                                      FFAppState().checkoutAddress,
-                                      r'''$.name''',
-                                    ).toString(),
-                                    FFAppState().paymentMethod,
-                                    FFAppState().checkoutInvoiceProfile,
-                                    FFAppState().invoiceUsage,
-                                  );
-                                  checkoutSession = await actions.getCheckout(
+                                  await actions.setCheckoutModifyAddress(
                                     currentUserUid,
+                                    columnAddressesRecord.name,
                                   );
-                                  setState(() => FFAppState().checkoutSession =
-                                      checkoutSession);
-                                  await Navigator.push(
+                                  await Navigator.pushAndRemoveUntil(
                                     context,
                                     PageTransition(
                                       type: PageTransitionType.fade,
@@ -244,19 +236,14 @@ class _CambiarDireccionWidgetState extends State<CambiarDireccionWidget> {
                                           Duration(milliseconds: 0),
                                       child: CheckoutWidget(),
                                     ),
+                                    (r) => false,
                                   );
                                 } else {
-                                  await actions.setCheckoutSessionSellerWise(
-                                    getJsonField(
-                                      FFAppState().checkoutAddress,
-                                      r'''$.name''',
-                                    ).toString(),
-                                    FFAppState().paymentMethod,
-                                    FFAppState().checkoutInvoiceProfile,
-                                    FFAppState().invoiceUsage,
+                                  await actions.setCheckoutModifyAddress(
                                     widget.storeId,
+                                    columnAddressesRecord.name,
                                   );
-                                  await Navigator.push(
+                                  await Navigator.pushAndRemoveUntil(
                                     context,
                                     PageTransition(
                                       type: PageTransitionType.fade,
@@ -267,10 +254,9 @@ class _CambiarDireccionWidgetState extends State<CambiarDireccionWidget> {
                                         storeId: widget.storeId,
                                       ),
                                     ),
+                                    (r) => false,
                                   );
                                 }
-
-                                setState(() {});
                               },
                             ),
                           ),

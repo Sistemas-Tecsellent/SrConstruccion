@@ -546,7 +546,11 @@ class _ProductListingForSellerWidgetState
                                                     children: [
                                                       Text(
                                                         gridViewProductsRecord
-                                                            .title,
+                                                            .title
+                                                            .maybeHandleOverflow(
+                                                          maxChars: 17,
+                                                          replacement: '…',
+                                                        ),
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)

@@ -420,3 +420,76 @@ class GetCartAmountCall {
         r'''$.amount''',
       );
 }
+
+class CheckIfProductInCartCall {
+  static Future<ApiCallResponse> call({
+    String uid = '',
+    String variantId = '',
+    String cartId = '',
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'checkIfProductInCart',
+      apiUrl:
+          'https://us-central1-srconstruccion-d4663.cloudfunctions.net/checkIfProductInCart',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'uid': uid,
+        'variantId': variantId,
+        'cartId': cartId,
+      },
+      returnBody: true,
+    );
+  }
+
+  static dynamic hasProduct(dynamic response) => getJsonField(
+        response,
+        r'''$.hasProduct''',
+      );
+  static dynamic productId(dynamic response) => getJsonField(
+        response,
+        r'''$.productId''',
+      );
+  static dynamic variantId(dynamic response) => getJsonField(
+        response,
+        r'''$.variantId''',
+      );
+  static dynamic expressShipAmount(dynamic response) => getJsonField(
+        response,
+        r'''$.expressShipAmount''',
+      );
+  static dynamic normalShipAmount(dynamic response) => getJsonField(
+        response,
+        r'''$.normalShipAmount''',
+      );
+  static dynamic deliveryType(dynamic response) => getJsonField(
+        response,
+        r'''$.deliveryType''',
+      );
+  static dynamic amount(dynamic response) => getJsonField(
+        response,
+        r'''$.amount''',
+      );
+}
+
+class GetCheckoutInfoCall {
+  static Future<ApiCallResponse> call({
+    String uid = '',
+    String checkoutId = '',
+    String object = '',
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getCheckoutInfo',
+      apiUrl:
+          'https://us-central1-srconstruccion-d4663.cloudfunctions.net/getCheckoutInfo',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'uid': uid,
+        'checkoutId': checkoutId,
+        'object': object,
+      },
+      returnBody: true,
+    );
+  }
+}

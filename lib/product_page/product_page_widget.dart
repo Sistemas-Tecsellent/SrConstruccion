@@ -16,7 +16,6 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import '../login/login_widget.dart';
 import '../marca_single/marca_single_widget.dart';
 import '../perfil_del_seller/perfil_del_seller_widget.dart';
-import '../search/search_widget.dart';
 import '../valoraciones/valoraciones_widget.dart';
 import '../vendedores_en_mapa/vendedores_en_mapa_widget.dart';
 import '../custom_code/actions/index.dart' as actions;
@@ -32,9 +31,11 @@ class ProductPageWidget extends StatefulWidget {
   const ProductPageWidget({
     Key key,
     this.productId,
+    this.variantId,
   }) : super(key: key);
 
   final String productId;
+  final String variantId;
 
   @override
   _ProductPageWidgetState createState() => _ProductPageWidgetState();
@@ -48,7 +49,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
   int normalShipmentCountValue;
   double ratingBarValue1;
   double ratingBarValue2;
-  int cartLength;
 
   @override
   void initState() {
@@ -97,27 +97,70 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
           },
         ),
         actions: [
-          FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30,
-            borderWidth: 1,
-            buttonSize: 60,
-            icon: Icon(
-              Icons.search,
-              color: Colors.black,
-              size: 15,
-            ),
-            onPressed: () async {
-              await Navigator.push(
-                context,
-                PageTransition(
-                  type: PageTransitionType.fade,
-                  duration: Duration(milliseconds: 0),
-                  reverseDuration: Duration(milliseconds: 0),
-                  child: SearchWidget(),
+          Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    FutureBuilder<ApiCallResponse>(
+                      future: GetCartAmountCall.call(
+                        uid: widget.productId,
+                        cartId: currentUserUid,
+                      ),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: SpinKitFadingCircle(
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                size: 50,
+                              ),
+                            ),
+                          );
+                        }
+                        final buttonGetCartAmountResponse = snapshot.data;
+                        return FFButtonWidget(
+                          onPressed: () {
+                            print('Button pressed ...');
+                          },
+                          text: GetCartAmountCall.amount(
+                            (buttonGetCartAmountResponse?.jsonBody ?? ''),
+                          ).toString(),
+                          icon: Icon(
+                            Icons.shopping_bag_outlined,
+                            size: 30,
+                          ),
+                          options: FFButtonOptions(
+                            width: 120,
+                            height: 40,
+                            color: Color(0xFF1EEBBD),
+                            textStyle:
+                                FlutterFlowTheme.of(context).subtitle2.override(
+                                      fontFamily: 'Montserrat',
+                                      color: Colors.white,
+                                    ),
+                            elevation: 2,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1,
+                            ),
+                            borderRadius: 25,
+                          ),
+                        );
+                      },
+                    ),
+                  ],
                 ),
-              );
-            },
+              ),
+            ],
           ),
         ],
         centerTitle: true,
@@ -181,14 +224,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                         FFAppState().locationKey,
                         FFAppState().locationKeyCity,
                       );
-                      cartLength = await actions.countItemsInCart(
-                        currentUserUid,
-                      );
-
-                      final usersUpdateData = createUsersRecordData(
-                        itemsInCart: cartLength,
-                      );
-                      await currentUserReference.update(usersUpdateData);
                       await Navigator.push(
                         context,
                         PageTransition(
@@ -209,8 +244,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                         ),
                       );
                     }
-
-                    setState(() {});
                   },
                   text: 'Agregar al carrito',
                   options: FFButtonOptions(
@@ -1473,510 +1506,477 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                           MainAxisAlignment
                                                               .spaceEvenly,
                                                       children: [
-                                                        Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceEvenly,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
+                                                        FutureBuilder<
+                                                            ApiCallResponse>(
+                                                          future:
+                                                              CheckIfProductInCartCall
+                                                                  .call(
+                                                            uid: currentUserUid,
+                                                            variantId:
+                                                                productoVariantsRecord
+                                                                    .id,
+                                                            cartId:
+                                                                currentUserUid,
+                                                          ),
+                                                          builder: (context,
+                                                              snapshot) {
+                                                            // Customize what your widget looks like when it's loading.
+                                                            if (!snapshot
+                                                                .hasData) {
+                                                              return Center(
+                                                                child: SizedBox(
+                                                                  width: 50,
+                                                                  height: 50,
+                                                                  child:
+                                                                      SpinKitFadingCircle(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryColor,
+                                                                    size: 50,
+                                                                  ),
+                                                                ),
+                                                              );
+                                                            }
+                                                            final columnCheckIfProductInCartResponse =
+                                                                snapshot.data;
+                                                            return Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceEvenly,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           20,
                                                                           0,
                                                                           0,
                                                                           20),
-                                                              child: Text(
-                                                                'Ordenar por tiempo de entrega',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Montserrat',
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500,
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                            Container(
-                                                              width:
-                                                                  MediaQuery.of(
+                                                                  child: Text(
+                                                                    'Ordenar por tiempo de entrega',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyText1
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Montserrat',
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
+                                                                        ),
+                                                                  ),
+                                                                ),
+                                                                Container(
+                                                                  width: MediaQuery.of(
                                                                           context)
                                                                       .size
                                                                       .width,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: Colors
-                                                                    .white,
-                                                              ),
-                                                              child: Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: Colors
+                                                                        .white,
+                                                                  ),
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             20,
                                                                             0,
                                                                             20,
                                                                             0),
-                                                                child: Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceBetween,
-                                                                  children: [
-                                                                    Row(
+                                                                    child: Row(
                                                                       mainAxisSize:
                                                                           MainAxisSize
                                                                               .max,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
                                                                       children: [
-                                                                        FaIcon(
-                                                                          FontAwesomeIcons
-                                                                              .bolt,
-                                                                          color:
-                                                                              Color(0xFF76E735),
-                                                                          size:
-                                                                              24,
+                                                                        Row(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          children: [
+                                                                            FaIcon(
+                                                                              FontAwesomeIcons.bolt,
+                                                                              color: Color(0xFF76E735),
+                                                                              size: 24,
+                                                                            ),
+                                                                            Container(
+                                                                              width: 68,
+                                                                              decoration: BoxDecoration(
+                                                                                color: Color(0x00EEEEEE),
+                                                                              ),
+                                                                              child: Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                                                                child: Text(
+                                                                                  'Express\n30 min.',
+                                                                                  textAlign: TextAlign.end,
+                                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                        fontFamily: 'Montserrat',
+                                                                                        color: Color(0xFF76E735),
+                                                                                        fontSize: 13,
+                                                                                        fontWeight: FontWeight.w600,
+                                                                                        fontStyle: FontStyle.italic,
+                                                                                      ),
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                            Padding(
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                                                              child: Column(
+                                                                                mainAxisSize: MainAxisSize.max,
+                                                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                children: [
+                                                                                  Row(
+                                                                                    mainAxisSize: MainAxisSize.max,
+                                                                                    children: [
+                                                                                      Text(
+                                                                                        formatNumber(
+                                                                                          productoVariantsRecord.publicPrice,
+                                                                                          formatType: FormatType.decimal,
+                                                                                          decimalType: DecimalType.periodDecimal,
+                                                                                          currency: '',
+                                                                                        ),
+                                                                                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                              fontFamily: 'Montserrat',
+                                                                                              color: Color(0xFF1EEBBD),
+                                                                                              fontWeight: FontWeight.w600,
+                                                                                            ),
+                                                                                      ),
+                                                                                    ],
+                                                                                  ),
+                                                                                  Row(
+                                                                                    mainAxisSize: MainAxisSize.max,
+                                                                                    children: [
+                                                                                      FutureBuilder<ApiCallResponse>(
+                                                                                        future: GetVariantInventoryCall.call(
+                                                                                          productId: widget.productId,
+                                                                                          variantId: productoVariantsRecord.id,
+                                                                                          userLocationState: FFAppState().locationKey,
+                                                                                          userLocationCity: FFAppState().locationKeyCity,
+                                                                                          priceType: 'public',
+                                                                                        ),
+                                                                                        builder: (context, snapshot) {
+                                                                                          // Customize what your widget looks like when it's loading.
+                                                                                          if (!snapshot.hasData) {
+                                                                                            return Center(
+                                                                                              child: SizedBox(
+                                                                                                width: 50,
+                                                                                                height: 50,
+                                                                                                child: SpinKitFadingCircle(
+                                                                                                  color: FlutterFlowTheme.of(context).primaryColor,
+                                                                                                  size: 50,
+                                                                                                ),
+                                                                                              ),
+                                                                                            );
+                                                                                          }
+                                                                                          final containerGetVariantInventoryResponse = snapshot.data;
+                                                                                          return Container(
+                                                                                            width: 89,
+                                                                                            decoration: BoxDecoration(
+                                                                                              color: Color(0x00EEEEEE),
+                                                                                            ),
+                                                                                            child: Column(
+                                                                                              mainAxisSize: MainAxisSize.max,
+                                                                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                              children: [
+                                                                                                Text(
+                                                                                                  getJsonField(
+                                                                                                    (containerGetVariantInventoryResponse?.jsonBody ?? ''),
+                                                                                                    r'''$.inventory''',
+                                                                                                  ).toString(),
+                                                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                        fontFamily: 'Montserrat',
+                                                                                                        color: Color(0xFFAEAEAE),
+                                                                                                        fontSize: 11,
+                                                                                                      ),
+                                                                                                ),
+                                                                                                Text(
+                                                                                                  'disponibles',
+                                                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                        fontFamily: 'Montserrat',
+                                                                                                        color: Color(0xFFAEAEAE),
+                                                                                                        fontSize: 10,
+                                                                                                      ),
+                                                                                                ),
+                                                                                              ],
+                                                                                            ),
+                                                                                          );
+                                                                                        },
+                                                                                      ),
+                                                                                    ],
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                            ),
+                                                                          ],
                                                                         ),
                                                                         Container(
                                                                           width:
-                                                                              68,
+                                                                              130,
+                                                                          height:
+                                                                              50,
                                                                           decoration:
                                                                               BoxDecoration(
                                                                             color:
-                                                                                Color(0x00EEEEEE),
-                                                                          ),
-                                                                          child:
-                                                                              Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
-                                                                                5,
-                                                                                0,
-                                                                                0,
-                                                                                0),
-                                                                            child:
-                                                                                Text(
-                                                                              'Express\n30 min.',
-                                                                              textAlign: TextAlign.end,
-                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                    fontFamily: 'Montserrat',
-                                                                                    color: Color(0xFF76E735),
-                                                                                    fontSize: 13,
-                                                                                    fontWeight: FontWeight.w600,
-                                                                                    fontStyle: FontStyle.italic,
-                                                                                  ),
+                                                                                Colors.white,
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(4),
+                                                                            shape:
+                                                                                BoxShape.rectangle,
+                                                                            border:
+                                                                                Border.all(
+                                                                              color: Color(0xFFE9E9E9),
+                                                                              width: 1,
                                                                             ),
                                                                           ),
-                                                                        ),
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              10,
-                                                                              0,
-                                                                              0,
-                                                                              0),
                                                                           child:
-                                                                              Column(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.max,
-                                                                            crossAxisAlignment:
-                                                                                CrossAxisAlignment.start,
-                                                                            children: [
-                                                                              Row(
-                                                                                mainAxisSize: MainAxisSize.max,
-                                                                                children: [
-                                                                                  Text(
-                                                                                    formatNumber(
-                                                                                      productoVariantsRecord.publicPrice,
-                                                                                      formatType: FormatType.decimal,
-                                                                                      decimalType: DecimalType.periodDecimal,
-                                                                                      currency: '',
-                                                                                    ),
-                                                                                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                          fontFamily: 'Montserrat',
-                                                                                          color: Color(0xFF1EEBBD),
-                                                                                          fontWeight: FontWeight.w600,
-                                                                                        ),
-                                                                                  ),
-                                                                                ],
+                                                                              FlutterFlowCountController(
+                                                                            decrementIconBuilder: (enabled) =>
+                                                                                FaIcon(
+                                                                              FontAwesomeIcons.minus,
+                                                                              color: enabled ? Color(0xDD000000) : Color(0xFFEEEEEE),
+                                                                              size: 20,
+                                                                            ),
+                                                                            incrementIconBuilder: (enabled) =>
+                                                                                FaIcon(
+                                                                              FontAwesomeIcons.plus,
+                                                                              color: enabled ? FlutterFlowTheme.of(context).primaryColor : Color(0xFFEEEEEE),
+                                                                              size: 20,
+                                                                            ),
+                                                                            countBuilder: (count) =>
+                                                                                Text(
+                                                                              count.toString(),
+                                                                              style: GoogleFonts.getFont(
+                                                                                'Roboto',
+                                                                                color: Colors.black,
+                                                                                fontWeight: FontWeight.w600,
+                                                                                fontSize: 16,
                                                                               ),
-                                                                              Row(
-                                                                                mainAxisSize: MainAxisSize.max,
-                                                                                children: [
-                                                                                  FutureBuilder<ApiCallResponse>(
-                                                                                    future: GetVariantInventoryCall.call(
-                                                                                      productId: widget.productId,
-                                                                                      variantId: productoVariantsRecord.id,
-                                                                                      userLocationState: FFAppState().locationKey,
-                                                                                      userLocationCity: FFAppState().locationKeyCity,
-                                                                                      priceType: 'public',
-                                                                                    ),
-                                                                                    builder: (context, snapshot) {
-                                                                                      // Customize what your widget looks like when it's loading.
-                                                                                      if (!snapshot.hasData) {
-                                                                                        return Center(
-                                                                                          child: SizedBox(
-                                                                                            width: 50,
-                                                                                            height: 50,
-                                                                                            child: SpinKitFadingCircle(
-                                                                                              color: FlutterFlowTheme.of(context).primaryColor,
-                                                                                              size: 50,
-                                                                                            ),
-                                                                                          ),
-                                                                                        );
-                                                                                      }
-                                                                                      final containerGetVariantInventoryResponse = snapshot.data;
-                                                                                      return Container(
-                                                                                        width: 89,
-                                                                                        decoration: BoxDecoration(
-                                                                                          color: Color(0x00EEEEEE),
-                                                                                        ),
-                                                                                        child: Column(
-                                                                                          mainAxisSize: MainAxisSize.max,
-                                                                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                          children: [
-                                                                                            Text(
-                                                                                              getJsonField(
-                                                                                                (containerGetVariantInventoryResponse?.jsonBody ?? ''),
-                                                                                                r'''$.inventory''',
-                                                                                              ).toString(),
-                                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                                    fontFamily: 'Montserrat',
-                                                                                                    color: Color(0xFFAEAEAE),
-                                                                                                    fontSize: 11,
-                                                                                                  ),
-                                                                                            ),
-                                                                                            Text(
-                                                                                              'disponibles',
-                                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                                    fontFamily: 'Montserrat',
-                                                                                                    color: Color(0xFFAEAEAE),
-                                                                                                    fontSize: 10,
-                                                                                                  ),
-                                                                                            ),
-                                                                                          ],
-                                                                                        ),
-                                                                                      );
-                                                                                    },
-                                                                                  ),
-                                                                                ],
-                                                                              ),
-                                                                            ],
+                                                                            ),
+                                                                            count: expressCountValue ??=
+                                                                                CheckIfProductInCartCall.expressShipAmount(
+                                                                              (columnCheckIfProductInCartResponse?.jsonBody ?? ''),
+                                                                            ),
+                                                                            updateCount: (count) =>
+                                                                                setState(() => expressCountValue = count),
+                                                                            stepSize:
+                                                                                1,
+                                                                            minimum:
+                                                                                0,
                                                                           ),
                                                                         ),
                                                                       ],
                                                                     ),
-                                                                    Container(
-                                                                      width:
-                                                                          130,
-                                                                      height:
-                                                                          50,
-                                                                      decoration:
-                                                                          BoxDecoration(
-                                                                        color: Colors
-                                                                            .white,
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(4),
-                                                                        shape: BoxShape
-                                                                            .rectangle,
-                                                                        border:
-                                                                            Border.all(
-                                                                          color:
-                                                                              Color(0xFFE9E9E9),
-                                                                          width:
-                                                                              1,
-                                                                        ),
-                                                                      ),
-                                                                      child:
-                                                                          FlutterFlowCountController(
-                                                                        decrementIconBuilder:
-                                                                            (enabled) =>
-                                                                                FaIcon(
-                                                                          FontAwesomeIcons
-                                                                              .minus,
-                                                                          color: enabled
-                                                                              ? Color(0xDD000000)
-                                                                              : Color(0xFFEEEEEE),
-                                                                          size:
-                                                                              20,
-                                                                        ),
-                                                                        incrementIconBuilder:
-                                                                            (enabled) =>
-                                                                                FaIcon(
-                                                                          FontAwesomeIcons
-                                                                              .plus,
-                                                                          color: enabled
-                                                                              ? FlutterFlowTheme.of(context).primaryColor
-                                                                              : Color(0xFFEEEEEE),
-                                                                          size:
-                                                                              20,
-                                                                        ),
-                                                                        countBuilder:
-                                                                            (count) =>
-                                                                                Text(
-                                                                          count
-                                                                              .toString(),
-                                                                          style:
-                                                                              GoogleFonts.getFont(
-                                                                            'Roboto',
-                                                                            color:
-                                                                                Colors.black,
-                                                                            fontWeight:
-                                                                                FontWeight.w600,
-                                                                            fontSize:
-                                                                                16,
-                                                                          ),
-                                                                        ),
-                                                                        count:
-                                                                            expressCountValue ??=
-                                                                                0,
-                                                                        updateCount:
-                                                                            (count) =>
-                                                                                setState(() => expressCountValue = count),
-                                                                        stepSize:
-                                                                            1,
-                                                                        minimum:
-                                                                            0,
-                                                                      ),
-                                                                    ),
-                                                                  ],
+                                                                  ),
                                                                 ),
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0,
                                                                           10,
                                                                           0,
                                                                           20),
-                                                              child: Container(
-                                                                width: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width,
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  color: Colors
-                                                                      .white,
-                                                                ),
-                                                                child: Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          20,
-                                                                          0,
-                                                                          20,
-                                                                          0),
-                                                                  child: Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceBetween,
-                                                                    children: [
-                                                                      Row(
+                                                                  child:
+                                                                      Container(
+                                                                    width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color: Colors
+                                                                          .white,
+                                                                    ),
+                                                                    child:
+                                                                        Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              20,
+                                                                              0,
+                                                                              20,
+                                                                              0),
+                                                                      child:
+                                                                          Row(
                                                                         mainAxisSize:
                                                                             MainAxisSize.max,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.spaceBetween,
                                                                         children: [
-                                                                          FaIcon(
-                                                                            FontAwesomeIcons.clock,
-                                                                            color:
-                                                                                Colors.black,
-                                                                            size:
-                                                                                20,
-                                                                          ),
-                                                                          Container(
-                                                                            width:
-                                                                                68,
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              color: Color(0x00EEEEEE),
-                                                                            ),
-                                                                            child:
-                                                                                Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-                                                                              child: Text(
-                                                                                'Estándar\n1-5 días',
-                                                                                textAlign: TextAlign.end,
-                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                      fontFamily: 'Montserrat',
-                                                                                      fontSize: 13,
-                                                                                      fontWeight: FontWeight.w600,
-                                                                                    ),
+                                                                          Row(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.max,
+                                                                            children: [
+                                                                              FaIcon(
+                                                                                FontAwesomeIcons.clock,
+                                                                                color: Colors.black,
+                                                                                size: 20,
                                                                               ),
-                                                                            ),
-                                                                          ),
-                                                                          Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
-                                                                                10,
-                                                                                0,
-                                                                                0,
-                                                                                0),
-                                                                            child:
-                                                                                Column(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                                                              children: [
-                                                                                Row(
+                                                                              Container(
+                                                                                width: 68,
+                                                                                decoration: BoxDecoration(
+                                                                                  color: Color(0x00EEEEEE),
+                                                                                ),
+                                                                                child: Padding(
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                                                                  child: Text(
+                                                                                    'Estándar\n1-5 días',
+                                                                                    textAlign: TextAlign.end,
+                                                                                    style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                          fontFamily: 'Montserrat',
+                                                                                          fontSize: 13,
+                                                                                          fontWeight: FontWeight.w600,
+                                                                                        ),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                              Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                                                                child: Column(
                                                                                   mainAxisSize: MainAxisSize.max,
+                                                                                  crossAxisAlignment: CrossAxisAlignment.start,
                                                                                   children: [
-                                                                                    Stack(
+                                                                                    Row(
+                                                                                      mainAxisSize: MainAxisSize.max,
                                                                                       children: [
-                                                                                        if ((valueOrDefault(currentUserDocument?.type, '')) == 'public')
-                                                                                          AuthUserStreamWidget(
-                                                                                            child: Text(
-                                                                                              formatNumber(
-                                                                                                productoVariantsRecord.publicPrice,
-                                                                                                formatType: FormatType.decimal,
-                                                                                                decimalType: DecimalType.periodDecimal,
-                                                                                                currency: '',
-                                                                                              ),
-                                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                                    fontFamily: 'Montserrat',
-                                                                                                    color: Color(0xFF1EEBBD),
+                                                                                        Stack(
+                                                                                          children: [
+                                                                                            if ((valueOrDefault(currentUserDocument?.type, '')) == 'public')
+                                                                                              AuthUserStreamWidget(
+                                                                                                child: Text(
+                                                                                                  formatNumber(
+                                                                                                    productoVariantsRecord.publicPrice,
+                                                                                                    formatType: FormatType.decimal,
+                                                                                                    decimalType: DecimalType.periodDecimal,
+                                                                                                    currency: '',
                                                                                                   ),
-                                                                                            ),
-                                                                                          ),
-                                                                                        if ((valueOrDefault(currentUserDocument?.type, '')) == 'wholesale')
-                                                                                          AuthUserStreamWidget(
-                                                                                            child: Text(
-                                                                                              formatNumber(
-                                                                                                productoVariantsRecord.wholesalePrice,
-                                                                                                formatType: FormatType.decimal,
-                                                                                                decimalType: DecimalType.periodDecimal,
-                                                                                                currency: '',
+                                                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                        fontFamily: 'Montserrat',
+                                                                                                        color: Color(0xFF1EEBBD),
+                                                                                                      ),
+                                                                                                ),
                                                                                               ),
-                                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                                    fontFamily: 'Montserrat',
-                                                                                                    color: Color(0xFF1EEBBD),
+                                                                                            if ((valueOrDefault(currentUserDocument?.type, '')) == 'wholesale')
+                                                                                              AuthUserStreamWidget(
+                                                                                                child: Text(
+                                                                                                  formatNumber(
+                                                                                                    productoVariantsRecord.wholesalePrice,
+                                                                                                    formatType: FormatType.decimal,
+                                                                                                    decimalType: DecimalType.periodDecimal,
+                                                                                                    currency: '',
                                                                                                   ),
-                                                                                            ),
-                                                                                          ),
-                                                                                        if ((valueOrDefault(currentUserDocument?.type, '')) == 'megaWholesale')
-                                                                                          AuthUserStreamWidget(
-                                                                                            child: Text(
-                                                                                              formatNumber(
-                                                                                                productoVariantsRecord.megaWholesalePrice,
-                                                                                                formatType: FormatType.decimal,
-                                                                                                decimalType: DecimalType.periodDecimal,
-                                                                                                currency: '',
+                                                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                        fontFamily: 'Montserrat',
+                                                                                                        color: Color(0xFF1EEBBD),
+                                                                                                      ),
+                                                                                                ),
                                                                                               ),
-                                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                                    fontFamily: 'Montserrat',
-                                                                                                    color: Color(0xFF1EEBBD),
-                                                                                                    fontWeight: FontWeight.w600,
+                                                                                            if ((valueOrDefault(currentUserDocument?.type, '')) == 'megaWholesale')
+                                                                                              AuthUserStreamWidget(
+                                                                                                child: Text(
+                                                                                                  formatNumber(
+                                                                                                    productoVariantsRecord.megaWholesalePrice,
+                                                                                                    formatType: FormatType.decimal,
+                                                                                                    decimalType: DecimalType.periodDecimal,
+                                                                                                    currency: '',
                                                                                                   ),
-                                                                                            ),
+                                                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                        fontFamily: 'Montserrat',
+                                                                                                        color: Color(0xFF1EEBBD),
+                                                                                                        fontWeight: FontWeight.w600,
+                                                                                                      ),
+                                                                                                ),
+                                                                                              ),
+                                                                                          ],
+                                                                                        ),
+                                                                                      ],
+                                                                                    ),
+                                                                                    Row(
+                                                                                      mainAxisSize: MainAxisSize.max,
+                                                                                      children: [
+                                                                                        Container(
+                                                                                          width: 89,
+                                                                                          decoration: BoxDecoration(
+                                                                                            color: Color(0x00EEEEEE),
                                                                                           ),
+                                                                                          child: Column(
+                                                                                            mainAxisSize: MainAxisSize.max,
+                                                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                            children: [
+                                                                                              Text(
+                                                                                                'disponible',
+                                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                      fontFamily: 'Montserrat',
+                                                                                                      color: Color(0xFFAEAEAE),
+                                                                                                      fontSize: 11,
+                                                                                                    ),
+                                                                                              ),
+                                                                                            ],
+                                                                                          ),
+                                                                                        ),
                                                                                       ],
                                                                                     ),
                                                                                   ],
                                                                                 ),
-                                                                                Row(
-                                                                                  mainAxisSize: MainAxisSize.max,
-                                                                                  children: [
-                                                                                    Container(
-                                                                                      width: 89,
-                                                                                      decoration: BoxDecoration(
-                                                                                        color: Color(0x00EEEEEE),
-                                                                                      ),
-                                                                                      child: Column(
-                                                                                        mainAxisSize: MainAxisSize.max,
-                                                                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                        children: [
-                                                                                          Text(
-                                                                                            'disponible',
-                                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                                  fontFamily: 'Montserrat',
-                                                                                                  color: Color(0xFFAEAEAE),
-                                                                                                  fontSize: 11,
-                                                                                                ),
-                                                                                          ),
-                                                                                        ],
-                                                                                      ),
-                                                                                    ),
-                                                                                  ],
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                          Container(
+                                                                            width:
+                                                                                130,
+                                                                            height:
+                                                                                50,
+                                                                            decoration:
+                                                                                BoxDecoration(
+                                                                              color: Colors.white,
+                                                                              borderRadius: BorderRadius.circular(4),
+                                                                              shape: BoxShape.rectangle,
+                                                                              border: Border.all(
+                                                                                color: Color(0xFFE9E9E9),
+                                                                                width: 1,
+                                                                              ),
+                                                                            ),
+                                                                            child:
+                                                                                FlutterFlowCountController(
+                                                                              decrementIconBuilder: (enabled) => FaIcon(
+                                                                                FontAwesomeIcons.minus,
+                                                                                color: enabled ? Color(0xDD000000) : Color(0xFFEEEEEE),
+                                                                                size: 20,
+                                                                              ),
+                                                                              incrementIconBuilder: (enabled) => FaIcon(
+                                                                                FontAwesomeIcons.plus,
+                                                                                color: enabled ? FlutterFlowTheme.of(context).primaryColor : Color(0xFFEEEEEE),
+                                                                                size: 20,
+                                                                              ),
+                                                                              countBuilder: (count) => Text(
+                                                                                count.toString(),
+                                                                                style: GoogleFonts.getFont(
+                                                                                  'Roboto',
+                                                                                  color: Colors.black,
+                                                                                  fontWeight: FontWeight.w600,
+                                                                                  fontSize: 16,
                                                                                 ),
-                                                                              ],
+                                                                              ),
+                                                                              count: normalShipmentCountValue ??= CheckIfProductInCartCall.normalShipAmount(
+                                                                                (columnCheckIfProductInCartResponse?.jsonBody ?? ''),
+                                                                              ),
+                                                                              updateCount: (count) => setState(() => normalShipmentCountValue = count),
+                                                                              stepSize: 1,
+                                                                              minimum: 0,
                                                                             ),
                                                                           ),
                                                                         ],
                                                                       ),
-                                                                      Container(
-                                                                        width:
-                                                                            130,
-                                                                        height:
-                                                                            50,
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                          color:
-                                                                              Colors.white,
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(4),
-                                                                          shape:
-                                                                              BoxShape.rectangle,
-                                                                          border:
-                                                                              Border.all(
-                                                                            color:
-                                                                                Color(0xFFE9E9E9),
-                                                                            width:
-                                                                                1,
-                                                                          ),
-                                                                        ),
-                                                                        child:
-                                                                            FlutterFlowCountController(
-                                                                          decrementIconBuilder: (enabled) =>
-                                                                              FaIcon(
-                                                                            FontAwesomeIcons.minus,
-                                                                            color: enabled
-                                                                                ? Color(0xDD000000)
-                                                                                : Color(0xFFEEEEEE),
-                                                                            size:
-                                                                                20,
-                                                                          ),
-                                                                          incrementIconBuilder: (enabled) =>
-                                                                              FaIcon(
-                                                                            FontAwesomeIcons.plus,
-                                                                            color: enabled
-                                                                                ? FlutterFlowTheme.of(context).primaryColor
-                                                                                : Color(0xFFEEEEEE),
-                                                                            size:
-                                                                                20,
-                                                                          ),
-                                                                          countBuilder: (count) =>
-                                                                              Text(
-                                                                            count.toString(),
-                                                                            style:
-                                                                                GoogleFonts.getFont(
-                                                                              'Roboto',
-                                                                              color: Colors.black,
-                                                                              fontWeight: FontWeight.w600,
-                                                                              fontSize: 16,
-                                                                            ),
-                                                                          ),
-                                                                          count: normalShipmentCountValue ??=
-                                                                              0,
-                                                                          updateCount: (count) =>
-                                                                              setState(() => normalShipmentCountValue = count),
-                                                                          stepSize:
-                                                                              1,
-                                                                          minimum:
-                                                                              0,
-                                                                        ),
-                                                                      ),
-                                                                    ],
+                                                                    ),
                                                                   ),
                                                                 ),
-                                                              ),
-                                                            ),
-                                                          ],
+                                                              ],
+                                                            );
+                                                          },
                                                         ),
                                                       ],
                                                     ),

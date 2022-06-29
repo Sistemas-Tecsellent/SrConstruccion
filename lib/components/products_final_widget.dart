@@ -109,17 +109,35 @@ class _ProductsFinalWidgetState extends State<ProductsFinalWidget> {
                               Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
+                                  Container(
+                                    width: 40,
+                                    height: 40,
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Image.network(
+                                      valueOrDefault<String>(
+                                        containerStoresRecord.logo,
+                                        'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
+                                      ),
+                                    ),
+                                  ),
                                   Expanded(
-                                    child: Text(
-                                      containerStoresRecord.name,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1
-                                          .override(
-                                            fontFamily: 'Montserrat',
-                                            color: Color(0xFF57636C),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.normal,
-                                          ),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          10, 0, 0, 0),
+                                      child: Text(
+                                        containerStoresRecord.name,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Montserrat',
+                                              color: Color(0xFF57636C),
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -134,7 +152,7 @@ class _ProductsFinalWidgetState extends State<ProductsFinalWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0, 4, 16, 0),
                                       child: Text(
-                                        'Tus Productos',
+                                        'Detalles de Productos',
                                         style: FlutterFlowTheme.of(context)
                                             .title1
                                             .override(
@@ -435,7 +453,7 @@ class _ProductsFinalWidgetState extends State<ProductsFinalWidget> {
                                                                           String>(
                                                                         cageProductsRecord
                                                                             .mainImage,
-                                                                        'http://atlas-content-cdn.pixelsquid.com/stock-images/open-cardboard-box-9GemlD9-600.jpg',
+                                                                        'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
                                                                       ),
                                                                       width:
                                                                           250,
@@ -494,43 +512,89 @@ class _ProductsFinalWidgetState extends State<ProductsFinalWidget> {
                                                                     ],
                                                                   ),
                                                                 ),
-                                                              Align(
-                                                                alignment:
-                                                                    AlignmentDirectional(
-                                                                        -1,
-                                                                        -0.45),
-                                                                child: Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0,
-                                                                          0,
-                                                                          0,
-                                                                          5),
-                                                                  child: Text(
-                                                                    cageProductsRecord
-                                                                        .title
-                                                                        .maybeHandleOverflow(
-                                                                      maxChars:
-                                                                          23,
-                                                                      replacement:
-                                                                          '…',
+                                                              Container(
+                                                                width: 200,
+                                                                decoration:
+                                                                    BoxDecoration(),
+                                                                child: Align(
+                                                                  alignment:
+                                                                      AlignmentDirectional(
+                                                                          -1,
+                                                                          -0.45),
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0,
+                                                                            0,
+                                                                            0,
+                                                                            5),
+                                                                    child: Text(
+                                                                      cageProductsRecord
+                                                                          .title,
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .start,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyText1
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Montserrat',
+                                                                            color:
+                                                                                Colors.black,
+                                                                            fontSize:
+                                                                                13,
+                                                                            fontWeight:
+                                                                                FontWeight.w500,
+                                                                          ),
                                                                     ),
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .start,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyText1
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Montserrat',
-                                                                          color:
-                                                                              Colors.black,
-                                                                          fontSize:
-                                                                              13,
-                                                                          fontWeight:
-                                                                              FontWeight.w500,
-                                                                        ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              Container(
+                                                                width: 200,
+                                                                decoration:
+                                                                    BoxDecoration(),
+                                                                child: Align(
+                                                                  alignment:
+                                                                      AlignmentDirectional(
+                                                                          -1,
+                                                                          -0.45),
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0,
+                                                                            0,
+                                                                            0,
+                                                                            5),
+                                                                    child: Text(
+                                                                      cageProductsRecord
+                                                                          .description
+                                                                          .maybeHandleOverflow(
+                                                                        maxChars:
+                                                                            100,
+                                                                        replacement:
+                                                                            '…',
+                                                                      ),
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .start,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyText1
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Montserrat',
+                                                                            color:
+                                                                                Colors.black,
+                                                                            fontSize:
+                                                                                11,
+                                                                            fontWeight:
+                                                                                FontWeight.normal,
+                                                                          ),
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
@@ -554,6 +618,7 @@ class _ProductsFinalWidgetState extends State<ProductsFinalWidget> {
                                                                             .override(
                                                                               fontFamily: 'Montserrat',
                                                                               color: Color(0xFF1EEBBD),
+                                                                              fontWeight: FontWeight.w600,
                                                                             ),
                                                                       ),
                                                                       Align(
@@ -599,6 +664,7 @@ class _ProductsFinalWidgetState extends State<ProductsFinalWidget> {
                                                                                         fontFamily: 'Montserrat',
                                                                                         color: Color(0xFF1EEBBD),
                                                                                         fontSize: 13,
+                                                                                        fontWeight: FontWeight.w600,
                                                                                       ),
                                                                                 );
                                                                               },
@@ -619,7 +685,11 @@ class _ProductsFinalWidgetState extends State<ProductsFinalWidget> {
                                                                           r'''$.amount''',
                                                                         ).toString(),
                                                                         style: FlutterFlowTheme.of(context)
-                                                                            .bodyText1,
+                                                                            .bodyText1
+                                                                            .override(
+                                                                              fontFamily: 'Montserrat',
+                                                                              fontSize: 12,
+                                                                            ),
                                                                       ),
                                                                       Padding(
                                                                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -631,8 +701,12 @@ class _ProductsFinalWidgetState extends State<ProductsFinalWidget> {
                                                                             Text(
                                                                           columnVariantsRecord
                                                                               .unit,
-                                                                          style:
-                                                                              FlutterFlowTheme.of(context).bodyText1,
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyText1
+                                                                              .override(
+                                                                                fontFamily: 'Montserrat',
+                                                                                fontSize: 12,
+                                                                              ),
                                                                         ),
                                                                       ),
                                                                     ],

@@ -129,7 +129,7 @@ class _CalculandoCostoDeEnvioWidgetState
                       onPressed: () {
                         print('Button pressed ...');
                       },
-                      text: 'Cancelar',
+                      text: 'Continuar',
                       options: FFButtonOptions(
                         width: 130,
                         height: 40,

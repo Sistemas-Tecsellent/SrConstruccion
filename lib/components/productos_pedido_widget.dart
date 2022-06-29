@@ -2,7 +2,6 @@ import '../auth/auth_util.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../components/envio_gratis_widget.dart';
-import '../flutter_flow/flutter_flow_count_controller.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../product_page/product_page_widget.dart';
@@ -24,8 +23,6 @@ class ProductosPedidoWidget extends StatefulWidget {
 }
 
 class _ProductosPedidoWidgetState extends State<ProductosPedidoWidget> {
-  int countControllerValue;
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<ApiCallResponse>(
@@ -89,7 +86,7 @@ class _ProductosPedidoWidgetState extends State<ProductosPedidoWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 4, 16, 0),
                                   child: Text(
-                                    'Tus Productos',
+                                    'Detalles de Productos',
                                     style: FlutterFlowTheme.of(context)
                                         .title1
                                         .override(
@@ -317,7 +314,7 @@ class _ProductosPedidoWidgetState extends State<ProductosPedidoWidget> {
                                                                       String>(
                                                                     cageProductsRecord
                                                                         .brandLogo,
-                                                                    'http://atlas-content-cdn.pixelsquid.com/stock-images/open-cardboard-box-9GemlD9-600.jpg',
+                                                                    'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
                                                                   ),
                                                                   width: 250,
                                                                   height: 100,
@@ -379,43 +376,89 @@ class _ProductosPedidoWidgetState extends State<ProductosPedidoWidget> {
                                                                 ],
                                                               ),
                                                             ),
-                                                          Align(
-                                                            alignment:
-                                                                AlignmentDirectional(
-                                                                    -1, -0.45),
-                                                            child: Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0,
-                                                                          0,
-                                                                          0,
-                                                                          5),
-                                                              child: Text(
-                                                                cageProductsRecord
-                                                                    .title
-                                                                    .maybeHandleOverflow(
-                                                                  maxChars: 23,
-                                                                  replacement:
-                                                                      '…',
+                                                          Container(
+                                                            width: 150,
+                                                            decoration:
+                                                                BoxDecoration(),
+                                                            child: Align(
+                                                              alignment:
+                                                                  AlignmentDirectional(
+                                                                      -1,
+                                                                      -0.45),
+                                                              child: Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0,
+                                                                            0,
+                                                                            0,
+                                                                            5),
+                                                                child: Text(
+                                                                  cageProductsRecord
+                                                                      .title,
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .start,
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText1
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Montserrat',
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontSize:
+                                                                            13,
+                                                                        fontWeight:
+                                                                            FontWeight.w500,
+                                                                      ),
                                                                 ),
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .start,
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Montserrat',
-                                                                      color: Colors
-                                                                          .black,
-                                                                      fontSize:
-                                                                          13,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500,
-                                                                    ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Container(
+                                                            width: 150,
+                                                            decoration:
+                                                                BoxDecoration(),
+                                                            child: Align(
+                                                              alignment:
+                                                                  AlignmentDirectional(
+                                                                      -1,
+                                                                      -0.45),
+                                                              child: Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0,
+                                                                            0,
+                                                                            0,
+                                                                            5),
+                                                                child: Text(
+                                                                  cageProductsRecord
+                                                                      .description
+                                                                      .maybeHandleOverflow(
+                                                                    maxChars:
+                                                                        100,
+                                                                    replacement:
+                                                                        '…',
+                                                                  ),
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .start,
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText1
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Montserrat',
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontSize:
+                                                                            11,
+                                                                        fontWeight:
+                                                                            FontWeight.normal,
+                                                                      ),
+                                                                ),
                                                               ),
                                                             ),
                                                           ),
@@ -442,6 +485,8 @@ class _ProductosPedidoWidgetState extends State<ProductosPedidoWidget> {
                                                                               'Montserrat',
                                                                           color:
                                                                               Color(0xFF1EEBBD),
+                                                                          fontWeight:
+                                                                              FontWeight.w600,
                                                                         ),
                                                                   ),
                                                                   Align(
@@ -495,6 +540,7 @@ class _ProductosPedidoWidgetState extends State<ProductosPedidoWidget> {
                                                                                     fontFamily: 'Montserrat',
                                                                                     color: Color(0xFF1EEBBD),
                                                                                     fontSize: 13,
+                                                                                    fontWeight: FontWeight.w600,
                                                                                   ),
                                                                             );
                                                                           },
@@ -516,7 +562,13 @@ class _ProductosPedidoWidgetState extends State<ProductosPedidoWidget> {
                                                                     ).toString(),
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .bodyText1,
+                                                                        .bodyText1
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Montserrat',
+                                                                          fontSize:
+                                                                              12,
+                                                                        ),
                                                                   ),
                                                                   Padding(
                                                                     padding: EdgeInsetsDirectional
@@ -530,7 +582,13 @@ class _ProductosPedidoWidgetState extends State<ProductosPedidoWidget> {
                                                                           .unit,
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .bodyText1,
+                                                                          .bodyText1
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Montserrat',
+                                                                            fontSize:
+                                                                                12,
+                                                                          ),
                                                                     ),
                                                                   ),
                                                                 ],
@@ -554,99 +612,6 @@ class _ProductosPedidoWidgetState extends State<ProductosPedidoWidget> {
                                                               child:
                                                                   EnvioGratisWidget(),
                                                             ),
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0,
-                                                                        5,
-                                                                        0,
-                                                                        0),
-                                                            child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                Container(
-                                                                  width: MediaQuery.of(
-                                                                              context)
-                                                                          .size
-                                                                          .width *
-                                                                      0.37,
-                                                                  height: 50,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    borderRadius:
-                                                                        BorderRadius
-                                                                            .circular(4),
-                                                                    shape: BoxShape
-                                                                        .rectangle,
-                                                                    border:
-                                                                        Border
-                                                                            .all(
-                                                                      color: Color(
-                                                                          0xFFE9E9E9),
-                                                                      width: 1,
-                                                                    ),
-                                                                  ),
-                                                                  child:
-                                                                      FlutterFlowCountController(
-                                                                    decrementIconBuilder:
-                                                                        (enabled) =>
-                                                                            FaIcon(
-                                                                      FontAwesomeIcons
-                                                                          .minus,
-                                                                      color: enabled
-                                                                          ? Color(
-                                                                              0xDD000000)
-                                                                          : Color(
-                                                                              0xFFEEEEEE),
-                                                                      size: 20,
-                                                                    ),
-                                                                    incrementIconBuilder:
-                                                                        (enabled) =>
-                                                                            FaIcon(
-                                                                      FontAwesomeIcons
-                                                                          .plus,
-                                                                      color: enabled
-                                                                          ? Color(
-                                                                              0xFF1EEBBD)
-                                                                          : Color(
-                                                                              0xFFEEEEEE),
-                                                                      size: 20,
-                                                                    ),
-                                                                    countBuilder:
-                                                                        (count) =>
-                                                                            Text(
-                                                                      count
-                                                                          .toString(),
-                                                                      style: GoogleFonts
-                                                                          .getFont(
-                                                                        'Roboto',
-                                                                        color: Colors
-                                                                            .black,
-                                                                        fontWeight:
-                                                                            FontWeight.w600,
-                                                                        fontSize:
-                                                                            16,
-                                                                      ),
-                                                                    ),
-                                                                    count:
-                                                                        countControllerValue ??=
-                                                                            0,
-                                                                    updateCount:
-                                                                        (count) =>
-                                                                            setState(() =>
-                                                                                countControllerValue = count),
-                                                                    stepSize: 1,
-                                                                    minimum: 0,
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
                                                         ],
                                                       );
                                                     },
