@@ -1,10 +1,8 @@
 import '../auth/auth_util.dart';
-import '../buscar_por_r_f_c/buscar_por_r_f_c_widget.dart';
 import '../components/facturacion1_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../perfil/perfil_widget.dart';
 import '../custom_code/actions/index.dart' as actions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -55,15 +53,7 @@ class _FacturacionPerfilWidgetState extends State<FacturacionPerfilWidget> {
             size: 30,
           ),
           onPressed: () async {
-            await Navigator.push(
-              context,
-              PageTransition(
-                type: PageTransitionType.fade,
-                duration: Duration(milliseconds: 0),
-                reverseDuration: Duration(milliseconds: 0),
-                child: PerfilWidget(),
-              ),
-            );
+            context.pushNamed('Perfil');
           },
         ),
         title: Text(
@@ -85,22 +75,14 @@ class _FacturacionPerfilWidgetState extends State<FacturacionPerfilWidget> {
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     InkWell(
                       onTap: () async {
-                        await Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.fade,
-                            duration: Duration(milliseconds: 0),
-                            reverseDuration: Duration(milliseconds: 0),
-                            child: BuscarPorRFCWidget(),
-                          ),
-                        );
+                        context.pushNamed('BuscarPorRFC');
                       },
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
@@ -121,15 +103,7 @@ class _FacturacionPerfilWidgetState extends State<FacturacionPerfilWidget> {
                               size: 25,
                             ),
                             onPressed: () async {
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: BuscarPorRFCWidget(),
-                                ),
-                              );
+                              context.pushNamed('BuscarPorRFC');
                             },
                           ),
                         ],
@@ -171,6 +145,9 @@ class _FacturacionPerfilWidgetState extends State<FacturacionPerfilWidget> {
                             },
                             child: Container(
                               width: MediaQuery.of(context).size.width,
+                              constraints: BoxConstraints(
+                                maxWidth: 500,
+                              ),
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 boxShadow: [

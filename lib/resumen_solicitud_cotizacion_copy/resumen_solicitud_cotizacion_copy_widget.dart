@@ -1,14 +1,11 @@
 import '../backend/firebase_storage/storage.dart';
-import '../checkout/checkout_widget.dart';
 import '../components/sugerencias_recomendaciones_widget.dart';
-import '../cotizacion_formulario/cotizacion_formulario_widget.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/upload_media.dart';
-import '../perfil/perfil_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -76,15 +73,7 @@ class _ResumenSolicitudCotizacionCopyWidgetState
             size: 30,
           ),
           onPressed: () async {
-            await Navigator.push(
-              context,
-              PageTransition(
-                type: PageTransitionType.fade,
-                duration: Duration(milliseconds: 0),
-                reverseDuration: Duration(milliseconds: 0),
-                child: PerfilWidget(),
-              ),
-            );
+            context.pushNamed('Perfil');
           },
         ),
         title: Text(
@@ -119,15 +108,7 @@ class _ResumenSolicitudCotizacionCopyWidgetState
                 );
               },
             );
-            await Navigator.push(
-              context,
-              PageTransition(
-                type: PageTransitionType.fade,
-                duration: Duration(milliseconds: 0),
-                reverseDuration: Duration(milliseconds: 0),
-                child: CheckoutWidget(),
-              ),
-            );
+            context.pushNamed('Checkout');
           },
           child: Container(
             decoration: BoxDecoration(
@@ -195,7 +176,7 @@ class _ResumenSolicitudCotizacionCopyWidgetState
                       children: [
                         FFButtonWidget(
                           onPressed: () async {
-                            Navigator.pop(context);
+                            context.pop();
                           },
                           text: 'Volver',
                           icon: Icon(
@@ -261,18 +242,8 @@ class _ResumenSolicitudCotizacionCopyWidgetState
                                         ),
                                         FFButtonWidget(
                                           onPressed: () async {
-                                            await Navigator.push(
-                                              context,
-                                              PageTransition(
-                                                type: PageTransitionType.fade,
-                                                duration:
-                                                    Duration(milliseconds: 0),
-                                                reverseDuration:
-                                                    Duration(milliseconds: 0),
-                                                child:
-                                                    CotizacionFormularioWidget(),
-                                              ),
-                                            );
+                                            context.pushNamed(
+                                                'CotizacionFormulario');
                                           },
                                           text: 'Volver a cotizar',
                                           options: FFButtonOptions(
@@ -496,7 +467,7 @@ class _ResumenSolicitudCotizacionCopyWidgetState
                                                       color: Colors.white,
                                                     ),
                                                     child: Text(
-                                                      '[file name]',
+                                                      'Cotización',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)

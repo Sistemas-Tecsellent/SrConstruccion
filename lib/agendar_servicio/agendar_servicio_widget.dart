@@ -1,5 +1,3 @@
-import '../carrito/carrito_widget.dart';
-import '../checkout/checkout_widget.dart';
 import '../components/sugerencias_recomendaciones_widget.dart';
 import '../flutter_flow/flutter_flow_calendar.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
@@ -57,7 +55,7 @@ class _AgendarServicioWidgetState extends State<AgendarServicioWidget> {
               size: 30,
             ),
             onPressed: () async {
-              Navigator.pop(context);
+              context.pop();
             },
           ),
         ],
@@ -84,15 +82,7 @@ class _AgendarServicioWidgetState extends State<AgendarServicioWidget> {
                 );
               },
             );
-            await Navigator.push(
-              context,
-              PageTransition(
-                type: PageTransitionType.fade,
-                duration: Duration(milliseconds: 0),
-                reverseDuration: Duration(milliseconds: 0),
-                child: CheckoutWidget(),
-              ),
-            );
+            context.pushNamed('Checkout');
           },
           child: Container(
             decoration: BoxDecoration(
@@ -113,15 +103,7 @@ class _AgendarServicioWidgetState extends State<AgendarServicioWidget> {
               children: [
                 FFButtonWidget(
                   onPressed: () async {
-                    await Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.fade,
-                        duration: Duration(milliseconds: 0),
-                        reverseDuration: Duration(milliseconds: 0),
-                        child: CarritoWidget(),
-                      ),
-                    );
+                    context.pushNamed('Carrito');
                   },
                   text: 'Agendar [\$179.00]',
                   options: FFButtonOptions(
@@ -159,165 +141,294 @@ class _AgendarServicioWidgetState extends State<AgendarServicioWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(20, 10, 20, 0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         'SELECCIONA UNA FECHA',
                         style: FlutterFlowTheme.of(context).bodyText1.override(
                               fontFamily: 'Montserrat',
                               color: Color(0x86FFFFFF),
-                              fontSize: 10,
+                              fontSize: 18,
                               fontWeight: FontWeight.w500,
                             ),
                       ),
                     ],
                   ),
                 ),
-                FlutterFlowCalendar(
-                  color: Color(0xFFECA528),
-                  iconColor: Colors.white,
-                  weekFormat: false,
-                  weekStartsMonday: false,
-                  onChange: (DateTimeRange newSelectedDate) {
-                    setState(() => calendarSelectedDay = newSelectedDate);
-                  },
-                  titleStyle: GoogleFonts.getFont(
-                    'Montserrat',
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 13,
+                Container(
+                  width: 330,
+                  decoration: BoxDecoration(),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                    child: FlutterFlowCalendar(
+                      color: Color(0xFFECA528),
+                      iconColor: Colors.white,
+                      weekFormat: true,
+                      weekStartsMonday: true,
+                      initialDate: getCurrentTimestamp,
+                      onChange: (DateTimeRange newSelectedDate) {
+                        setState(() => calendarSelectedDay = newSelectedDate);
+                      },
+                      titleStyle: GoogleFonts.getFont(
+                        'Montserrat',
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 28,
+                      ),
+                      dayOfWeekStyle: GoogleFonts.getFont(
+                        'Montserrat',
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 15,
+                      ),
+                      dateStyle: GoogleFonts.getFont(
+                        'Montserrat',
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                      selectedDateStyle: GoogleFonts.getFont(
+                        'Montserrat',
+                        fontSize: 20,
+                      ),
+                      inactiveDateStyle: GoogleFonts.getFont(
+                        'Montserrat',
+                        color: Color(0x66FFFFFF),
+                        fontSize: 18,
+                      ),
+                      locale: FFLocalizations.of(context).languageCode,
+                    ),
                   ),
-                  dayOfWeekStyle: GoogleFonts.getFont(
-                    'Montserrat',
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 11,
-                  ),
-                  dateStyle: GoogleFonts.getFont(
-                    'Montserrat',
-                    color: Colors.white,
-                    fontSize: 14,
-                  ),
-                  selectedDateStyle: GoogleFonts.getFont(
-                    'Montserrat',
-                    fontSize: 14,
-                  ),
-                  inactiveDateStyle: TextStyle(
-                    color: Color(0x66FFFFFF),
-                  ),
-                  locale: FFLocalizations.of(context).languageCode,
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(20, 30, 20, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(20, 40, 20, 0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         'SELECCIONA UNA HORA',
                         style: FlutterFlowTheme.of(context).bodyText1.override(
                               fontFamily: 'Montserrat',
                               color: Color(0x88FFFFFF),
-                              fontSize: 10,
+                              fontSize: 18,
                               fontWeight: FontWeight.w500,
                             ),
                       ),
                     ],
                   ),
                 ),
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
-                    child: GridView(
-                      padding: EdgeInsets.zero,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
-                        childAspectRatio: 2.5,
+                if (responsiveVisibility(
+                  context: context,
+                  phone: false,
+                  tablet: false,
+                ))
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 100,
+                    decoration: BoxDecoration(),
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
+                      child: GridView(
+                        padding: EdgeInsets.zero,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 6,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10,
+                          childAspectRatio: 5,
+                        ),
+                        scrollDirection: Axis.vertical,
+                        children: [
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                            child: FFButtonWidget(
+                              onPressed: () {
+                                print('Button pressed ...');
+                              },
+                              text: '8:00 AM',
+                              options: FFButtonOptions(
+                                width: 100,
+                                height: 40,
+                                color: Color(0xFFECA528),
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .subtitle2
+                                    .override(
+                                      fontFamily: 'Montserrat',
+                                      color: Colors.white,
+                                      fontSize: 13,
+                                    ),
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
+                                ),
+                                borderRadius: 5,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                            child: FFButtonWidget(
+                              onPressed: () {
+                                print('Button pressed ...');
+                              },
+                              text: '12:00 PM',
+                              options: FFButtonOptions(
+                                width: 100,
+                                height: 40,
+                                color: Color(0xFFECA528),
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .subtitle2
+                                    .override(
+                                      fontFamily: 'Montserrat',
+                                      color: Colors.white,
+                                      fontSize: 13,
+                                    ),
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
+                                ),
+                                borderRadius: 5,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                            child: FFButtonWidget(
+                              onPressed: () {
+                                print('Button pressed ...');
+                              },
+                              text: '4:00 PM',
+                              options: FFButtonOptions(
+                                width: 100,
+                                height: 40,
+                                color: Color(0xFFECA528),
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .subtitle2
+                                    .override(
+                                      fontFamily: 'Montserrat',
+                                      color: Colors.white,
+                                      fontSize: 13,
+                                    ),
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
+                                ),
+                                borderRadius: 5,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      scrollDirection: Axis.vertical,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
-                          child: FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
-                            },
-                            text: '8:00 AM',
-                            options: FFButtonOptions(
-                              width: 100,
-                              height: 40,
-                              color: Color(0xFFECA528),
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .subtitle2
-                                  .override(
-                                    fontFamily: 'Montserrat',
-                                    color: Colors.white,
-                                    fontSize: 13,
-                                  ),
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1,
-                              ),
-                              borderRadius: 5,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
-                          child: FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
-                            },
-                            text: '12:00 PM',
-                            options: FFButtonOptions(
-                              width: 100,
-                              height: 40,
-                              color: Color(0xFFECA528),
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .subtitle2
-                                  .override(
-                                    fontFamily: 'Montserrat',
-                                    color: Colors.white,
-                                    fontSize: 13,
-                                  ),
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1,
-                              ),
-                              borderRadius: 5,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
-                          child: FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
-                            },
-                            text: '4:00 PM',
-                            options: FFButtonOptions(
-                              width: 100,
-                              height: 40,
-                              color: Color(0xFFECA528),
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .subtitle2
-                                  .override(
-                                    fontFamily: 'Montserrat',
-                                    color: Colors.white,
-                                    fontSize: 13,
-                                  ),
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1,
-                              ),
-                              borderRadius: 5,
-                            ),
-                          ),
-                        ),
-                      ],
                     ),
                   ),
-                ),
+                if (responsiveVisibility(
+                  context: context,
+                  tabletLandscape: false,
+                  desktop: false,
+                ))
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 100,
+                    decoration: BoxDecoration(),
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
+                      child: GridView(
+                        padding: EdgeInsets.zero,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 15,
+                          childAspectRatio: 5,
+                        ),
+                        scrollDirection: Axis.vertical,
+                        children: [
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                            child: FFButtonWidget(
+                              onPressed: () {
+                                print('Button pressed ...');
+                              },
+                              text: '8:00 AM',
+                              options: FFButtonOptions(
+                                width: 100,
+                                height: 40,
+                                color: Color(0xFFECA528),
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .subtitle2
+                                    .override(
+                                      fontFamily: 'Montserrat',
+                                      color: Colors.white,
+                                      fontSize: 13,
+                                    ),
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
+                                ),
+                                borderRadius: 5,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                            child: FFButtonWidget(
+                              onPressed: () {
+                                print('Button pressed ...');
+                              },
+                              text: '12:00 PM',
+                              options: FFButtonOptions(
+                                width: 100,
+                                height: 40,
+                                color: Color(0xFFECA528),
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .subtitle2
+                                    .override(
+                                      fontFamily: 'Montserrat',
+                                      color: Colors.white,
+                                      fontSize: 13,
+                                    ),
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
+                                ),
+                                borderRadius: 5,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                            child: FFButtonWidget(
+                              onPressed: () {
+                                print('Button pressed ...');
+                              },
+                              text: '4:00 PM',
+                              options: FFButtonOptions(
+                                width: 100,
+                                height: 40,
+                                color: Color(0xFFECA528),
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .subtitle2
+                                    .override(
+                                      fontFamily: 'Montserrat',
+                                      color: Colors.white,
+                                      fontSize: 13,
+                                    ),
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
+                                ),
+                                borderRadius: 5,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
               ],
             ),
           ),

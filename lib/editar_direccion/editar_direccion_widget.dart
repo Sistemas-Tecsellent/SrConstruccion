@@ -1,5 +1,4 @@
 import '../auth/auth_util.dart';
-import '../direcciones/direcciones_widget.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_google_map.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
@@ -96,7 +95,7 @@ class _EditarDireccionWidgetState extends State<EditarDireccionWidget> {
             );
             setState(
                 () => FFAppState().userAddresses = updatedAddress.toList());
-            Navigator.pop(context);
+            context.pop();
 
             setState(() {});
           },
@@ -161,6 +160,9 @@ class _EditarDireccionWidgetState extends State<EditarDireccionWidget> {
                         child: Container(
                           width: MediaQuery.of(context).size.width,
                           height: 460,
+                          constraints: BoxConstraints(
+                            maxWidth: 500,
+                          ),
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.only(
@@ -443,17 +445,7 @@ class _EditarDireccionWidgetState extends State<EditarDireccionWidget> {
                                           setState(() =>
                                               FFAppState().userAddresses =
                                                   newupdatedAddress.toList());
-                                          await Navigator.push(
-                                            context,
-                                            PageTransition(
-                                              type: PageTransitionType.fade,
-                                              duration:
-                                                  Duration(milliseconds: 0),
-                                              reverseDuration:
-                                                  Duration(milliseconds: 0),
-                                              child: DireccionesWidget(),
-                                            ),
-                                          );
+                                          context.pushNamed('Direcciones');
 
                                           setState(() {});
                                         },

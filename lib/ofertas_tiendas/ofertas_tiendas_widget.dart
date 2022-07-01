@@ -4,13 +4,6 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../home_alt/home_alt_widget.dart';
-import '../notificaciones/notificaciones_widget.dart';
-import '../ofertas/ofertas_widget.dart';
-import '../ofertas_marcas/ofertas_marcas_widget.dart';
-import '../perfil/perfil_widget.dart';
-import '../product_listing_for_seller/product_listing_for_seller_widget.dart';
-import '../product_page/product_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -45,15 +38,7 @@ class _OfertasTiendasWidgetState extends State<OfertasTiendasWidget> {
             size: 30,
           ),
           onPressed: () async {
-            await Navigator.push(
-              context,
-              PageTransition(
-                type: PageTransitionType.fade,
-                duration: Duration(milliseconds: 0),
-                reverseDuration: Duration(milliseconds: 0),
-                child: HomeAltWidget(),
-              ),
-            );
+            context.pushNamed('HomeAlt');
           },
         ),
         title: Text(
@@ -113,14 +98,15 @@ class _OfertasTiendasWidgetState extends State<OfertasTiendasWidget> {
                           size: 30,
                         ),
                         onPressed: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                              reverseDuration: Duration(milliseconds: 0),
-                              child: PerfilWidget(),
-                            ),
+                          context.pushNamed(
+                            'Perfil',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.fade,
+                                duration: Duration(milliseconds: 0),
+                              ),
+                            },
                           );
                         },
                       ),
@@ -140,14 +126,15 @@ class _OfertasTiendasWidgetState extends State<OfertasTiendasWidget> {
                           size: 30,
                         ),
                         onPressed: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                              reverseDuration: Duration(milliseconds: 0),
-                              child: HomeAltWidget(),
-                            ),
+                          context.pushNamed(
+                            'HomeAlt',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.fade,
+                                duration: Duration(milliseconds: 0),
+                              ),
+                            },
                           );
                         },
                       ),
@@ -165,14 +152,15 @@ class _OfertasTiendasWidgetState extends State<OfertasTiendasWidget> {
                           size: 30,
                         ),
                         onPressed: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                              reverseDuration: Duration(milliseconds: 0),
-                              child: NotificacionesWidget(),
-                            ),
+                          context.pushNamed(
+                            'Notificaciones',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.fade,
+                                duration: Duration(milliseconds: 0),
+                              ),
+                            },
                           );
                         },
                       ),
@@ -252,7 +240,7 @@ class _OfertasTiendasWidgetState extends State<OfertasTiendasWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(20, 10, 20, 20),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
                         width: 100,
@@ -266,15 +254,7 @@ class _OfertasTiendasWidgetState extends State<OfertasTiendasWidget> {
                         ),
                         child: InkWell(
                           onTap: () async {
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                                reverseDuration: Duration(milliseconds: 0),
-                                child: OfertasWidget(),
-                              ),
-                            );
+                            context.pushNamed('Ofertas');
                           },
                           child: Container(
                             width: 100,
@@ -313,61 +293,56 @@ class _OfertasTiendasWidgetState extends State<OfertasTiendasWidget> {
                           ),
                         ),
                       ),
-                      Container(
-                        width: 100,
-                        decoration: BoxDecoration(
-                          color: Color(0x00EEEEEE),
-                          borderRadius: BorderRadius.circular(5),
-                          border: Border.all(
-                            color: Color(0x00FFFFFF),
-                            width: 0,
-                          ),
-                        ),
-                        child: InkWell(
-                          onTap: () async {
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                                reverseDuration: Duration(milliseconds: 0),
-                                child: OfertasMarcasWidget(),
-                              ),
-                            );
-                          },
-                          child: Container(
-                            width: 100,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .primaryBackground,
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 0,
-                                  color: Colors.transparent,
-                                )
-                              ],
-                              borderRadius: BorderRadius.circular(500),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                        child: Container(
+                          width: 100,
+                          decoration: BoxDecoration(
+                            color: Color(0x00EEEEEE),
+                            borderRadius: BorderRadius.circular(5),
+                            border: Border.all(
+                              color: Color(0x00FFFFFF),
+                              width: 0,
                             ),
-                            alignment: AlignmentDirectional(0, 0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 5, 0, 5),
-                                  child: Text(
-                                    'Marcas',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Montserrat',
-                                          color: Colors.black,
-                                          fontSize: 12,
-                                        ),
+                          ),
+                          child: InkWell(
+                            onTap: () async {
+                              context.pushNamed('OfertasMarcas');
+                            },
+                            child: Container(
+                              width: 100,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .primaryBackground,
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 0,
+                                    color: Colors.transparent,
+                                  )
+                                ],
+                                borderRadius: BorderRadius.circular(500),
+                              ),
+                              alignment: AlignmentDirectional(0, 0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 5, 0, 5),
+                                    child: Text(
+                                      'Marcas',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Montserrat',
+                                            color: Colors.black,
+                                            fontSize: 12,
+                                          ),
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -384,15 +359,7 @@ class _OfertasTiendasWidgetState extends State<OfertasTiendasWidget> {
                         ),
                         child: InkWell(
                           onTap: () async {
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                                reverseDuration: Duration(milliseconds: 0),
-                                child: OfertasTiendasWidget(),
-                              ),
-                            );
+                            context.pushNamed('OfertasTiendas');
                           },
                           child: Container(
                             width: 100,
@@ -464,6 +431,7 @@ class _OfertasTiendasWidgetState extends State<OfertasTiendasWidget> {
                           ),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
@@ -532,20 +500,13 @@ class _OfertasTiendasWidgetState extends State<OfertasTiendasWidget> {
                                         children: [
                                           InkWell(
                                             onTap: () async {
-                                              await Navigator.push(
-                                                context,
-                                                PageTransition(
-                                                  type: PageTransitionType.fade,
-                                                  duration:
-                                                      Duration(milliseconds: 0),
-                                                  reverseDuration:
-                                                      Duration(milliseconds: 0),
-                                                  child:
-                                                      ProductListingForSellerWidget(
-                                                    storeId:
-                                                        columnStoresRecord.id,
-                                                  ),
-                                                ),
+                                              context.pushNamed(
+                                                'ProductListingForSeller',
+                                                queryParams: {
+                                                  'storeId': serializeParam(
+                                                      columnStoresRecord.id,
+                                                      ParamType.String),
+                                                }.withoutNulls,
                                               );
                                             },
                                             child: Text(
@@ -764,22 +725,28 @@ class _OfertasTiendasWidgetState extends State<OfertasTiendasWidget> {
                                                                 InkWell(
                                                                   onTap:
                                                                       () async {
-                                                                    await Navigator
-                                                                        .push(
-                                                                      context,
-                                                                      PageTransition(
-                                                                        type: PageTransitionType
-                                                                            .fade,
-                                                                        duration:
-                                                                            Duration(milliseconds: 0),
-                                                                        reverseDuration:
-                                                                            Duration(milliseconds: 0),
-                                                                        child:
-                                                                            ProductPageWidget(
-                                                                          productId:
-                                                                              '',
+                                                                    context
+                                                                        .pushNamed(
+                                                                      'ProductPage',
+                                                                      queryParams:
+                                                                          {
+                                                                        'productId': serializeParam(
+                                                                            '',
+                                                                            ParamType.String),
+                                                                      }.withoutNulls,
+                                                                      extra: <
+                                                                          String,
+                                                                          dynamic>{
+                                                                        kTransitionInfoKey:
+                                                                            TransitionInfo(
+                                                                          hasTransition:
+                                                                              true,
+                                                                          transitionType:
+                                                                              PageTransitionType.fade,
+                                                                          duration:
+                                                                              Duration(milliseconds: 0),
                                                                         ),
-                                                                      ),
+                                                                      },
                                                                     );
                                                                   },
                                                                   child:

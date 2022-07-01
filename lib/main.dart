@@ -9,6 +9,7 @@ import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'flutter_flow/nav/nav.dart';
 import 'index.dart';
 
 import 'backend/stripe/payment_manager.dart';
@@ -37,19 +38,22 @@ class _MyAppState extends State<MyApp> {
   ThemeMode _themeMode = ThemeMode.system;
 
   Stream<SrConstruccionFirebaseUser> userStream;
-  SrConstruccionFirebaseUser initialUser;
-  bool displaySplashImage = true;
+
+  AppStateNotifier _appStateNotifier;
+  GoRouter _router;
 
   final authUserSub = authenticatedUserStream.listen((_) {});
 
   @override
   void initState() {
     super.initState();
+    _appStateNotifier = AppStateNotifier();
+    _router = createRouter(_appStateNotifier);
     userStream = srConstruccionFirebaseUserStream()
-      ..listen((user) => initialUser ?? setState(() => initialUser = user));
+      ..listen((user) => _appStateNotifier.update(user));
     Future.delayed(
       Duration(seconds: 1),
-      () => setState(() => displaySplashImage = false),
+      () => _appStateNotifier.stopShowingSplashImage(),
     );
   }
 
@@ -67,8 +71,8 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'SrConstruccion',
+    return MaterialApp.router(
+      title: 'Sr Construccion',
       localizationsDelegates: [
         FFLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,
@@ -81,19 +85,8 @@ class _MyAppState extends State<MyApp> {
       ],
       theme: ThemeData(brightness: Brightness.light),
       themeMode: _themeMode,
-      home: initialUser == null || displaySplashImage
-          ? Container(
-              color: Colors.transparent,
-              child: Builder(
-                builder: (context) => Image.asset(
-                  'assets/images/Diseo_sin_ttulo.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
-            )
-          : currentUser.loggedIn
-              ? PerfilWidget()
-              : HomeAltWidget(),
+      routeInformationParser: _router.routeInformationParser,
+      routerDelegate: _router.routerDelegate,
     );
   }
 }

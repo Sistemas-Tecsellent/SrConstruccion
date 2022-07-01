@@ -4,7 +4,6 @@ import '../backend/backend.dart';
 import '../components/envio_gratis_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../product_page/product_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -102,8 +101,8 @@ class _ProductsFinalWidgetState extends State<ProductsFinalWidget> {
                             children: [
                               Divider(
                                 thickness: 3,
-                                indent: 150,
-                                endIndent: 150,
+                                indent: 550,
+                                endIndent: 550,
                                 color: Color(0xFFDBE2E7),
                               ),
                               Row(
@@ -150,7 +149,7 @@ class _ProductsFinalWidgetState extends State<ProductsFinalWidget> {
                                   Expanded(
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 4, 16, 0),
+                                          0, 14, 16, 0),
                                       child: Text(
                                         'Detalles de Productos',
                                         style: FlutterFlowTheme.of(context)
@@ -424,22 +423,15 @@ class _ProductsFinalWidgetState extends State<ProductsFinalWidget> {
                                                                 child: InkWell(
                                                                   onTap:
                                                                       () async {
-                                                                    await Navigator
-                                                                        .push(
-                                                                      context,
-                                                                      PageTransition(
-                                                                        type: PageTransitionType
-                                                                            .fade,
-                                                                        duration:
-                                                                            Duration(milliseconds: 0),
-                                                                        reverseDuration:
-                                                                            Duration(milliseconds: 0),
-                                                                        child:
-                                                                            ProductPageWidget(
-                                                                          productId:
-                                                                              cageProductsRecord.id,
-                                                                        ),
-                                                                      ),
+                                                                    context
+                                                                        .pushNamed(
+                                                                      'ProductPage',
+                                                                      queryParams:
+                                                                          {
+                                                                        'productId': serializeParam(
+                                                                            cageProductsRecord.id,
+                                                                            ParamType.String),
+                                                                      }.withoutNulls,
                                                                     );
                                                                   },
                                                                   child:

@@ -81,7 +81,7 @@ class _MiCuentaWidgetState extends State<MiCuentaWidget> {
                 size: 30,
               ),
               onPressed: () async {
-                Navigator.pop(context);
+                context.pop();
               },
             ),
             title: Text(
@@ -457,6 +457,7 @@ class _MiCuentaWidgetState extends State<MiCuentaWidget> {
                                 );
                                 await currentUserReference
                                     .update(usersUpdateData);
+                                context.pushNamed('Perfil');
                               },
                               text: 'Guardar cambios',
                               options: FFButtonOptions(

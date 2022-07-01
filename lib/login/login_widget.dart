@@ -2,8 +2,6 @@ import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../home_alt/home_alt_widget.dart';
-import '../signup/signup_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -100,16 +98,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                 ),
                                 FFButtonWidget(
                                   onPressed: () async {
-                                    await Navigator.push(
-                                      context,
-                                      PageTransition(
-                                        type: PageTransitionType.fade,
-                                        duration: Duration(milliseconds: 0),
-                                        reverseDuration:
-                                            Duration(milliseconds: 0),
-                                        child: SignupWidget(),
-                                      ),
-                                    );
+                                    context.pushNamed('signup');
                                   },
                                   text: 'Regístrate',
                                   options: FFButtonOptions(
@@ -138,7 +127,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                         ),
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.45,
+                        height: 210,
                         child: Stack(
                           alignment:
                               AlignmentDirectional(0, 0.8999999999999999),
@@ -148,6 +137,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                               child: Container(
                                 width: MediaQuery.of(context).size.width * 0.8,
                                 height: 180,
+                                constraints: BoxConstraints(
+                                  maxWidth: 500,
+                                ),
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(10),
@@ -344,6 +336,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                               alignment: AlignmentDirectional(0, 1),
                               child: FFButtonWidget(
                                 onPressed: () async {
+                                  GoRouter.of(context).prepareAuthEvent();
+
                                   final user = await signInWithEmail(
                                     context,
                                     emailAddressController.text,
@@ -353,16 +347,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     return;
                                   }
 
-                                  await Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 0),
-                                      reverseDuration:
-                                          Duration(milliseconds: 0),
-                                      child: HomeAltWidget(),
-                                    ),
-                                  );
+                                  context.pushNamedAuth('HomeAlt', mounted);
                                 },
                                 text: 'Iniciar Sesión',
                                 options: FFButtonOptions(
@@ -420,20 +405,12 @@ class _LoginWidgetState extends State<LoginWidget> {
                             children: [
                               InkWell(
                                 onTap: () async {
+                                  GoRouter.of(context).prepareAuthEvent();
                                   final user = await signInWithGoogle(context);
                                   if (user == null) {
                                     return;
                                   }
-                                  await Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 0),
-                                      reverseDuration:
-                                          Duration(milliseconds: 0),
-                                      child: HomeAltWidget(),
-                                    ),
-                                  );
+                                  context.pushNamedAuth('HomeAlt', mounted);
                                 },
                                 child: Container(
                                   width: 50,
@@ -462,21 +439,13 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                 child: InkWell(
                                   onTap: () async {
+                                    GoRouter.of(context).prepareAuthEvent();
                                     final user =
                                         await signInWithFacebook(context);
                                     if (user == null) {
                                       return;
                                     }
-                                    await Navigator.push(
-                                      context,
-                                      PageTransition(
-                                        type: PageTransitionType.fade,
-                                        duration: Duration(milliseconds: 0),
-                                        reverseDuration:
-                                            Duration(milliseconds: 0),
-                                        child: HomeAltWidget(),
-                                      ),
-                                    );
+                                    context.pushNamedAuth('HomeAlt', mounted);
                                   },
                                   child: Container(
                                     width: 50,

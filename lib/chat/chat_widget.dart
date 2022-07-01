@@ -69,7 +69,7 @@ class _ChatWidgetState extends State<ChatWidget> {
             size: 24,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            context.pop();
           },
         ),
         title: Stack(

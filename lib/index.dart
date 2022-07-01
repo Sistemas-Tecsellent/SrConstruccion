@@ -1,16 +1,16 @@
 // Export pages
-export 'home_alt/home_alt_widget.dart' show HomeAltWidget;
 export 'notificaciones/notificaciones_widget.dart' show NotificacionesWidget;
+export 'home_alt/home_alt_widget.dart' show HomeAltWidget;
 export 'perfil/perfil_widget.dart' show PerfilWidget;
 export 'product_page/product_page_widget.dart' show ProductPageWidget;
 export 'carrito/carrito_widget.dart' show CarritoWidget;
 export 'login/login_widget.dart' show LoginWidget;
 export 'signup/signup_widget.dart' show SignupWidget;
-export 'ajustes/ajustes_widget.dart' show AjustesWidget;
 export 'editar_direccion/editar_direccion_widget.dart'
     show EditarDireccionWidget;
 export 'notificationes_ajustes/notificationes_ajustes_widget.dart'
     show NotificationesAjustesWidget;
+export 'ajustes/ajustes_widget.dart' show AjustesWidget;
 export 'categorias/categorias_widget.dart' show CategoriasWidget;
 export 'mi_cuenta/mi_cuenta_widget.dart' show MiCuentaWidget;
 export 'direcciones/direcciones_widget.dart' show DireccionesWidget;
@@ -63,9 +63,9 @@ export 'devolucion2/devolucion2_widget.dart' show Devolucion2Widget;
 export 'solicitud_devolucion_enviada/solicitud_devolucion_enviada_widget.dart'
     show SolicitudDevolucionEnviadaWidget;
 export 'mis_pedidos/mis_pedidos_widget.dart' show MisPedidosWidget;
-export 'checkout/checkout_widget.dart' show CheckoutWidget;
 export 'solicitud_devolucion_aceptada/solicitud_devolucion_aceptada_widget.dart'
     show SolicitudDevolucionAceptadaWidget;
+export 'checkout/checkout_widget.dart' show CheckoutWidget;
 export 'categoria_single/categoria_single_widget.dart'
     show CategoriaSingleWidget;
 export 'marca_single/marca_single_widget.dart' show MarcaSingleWidget;
@@ -119,3 +119,4 @@ export 'subcategory_product_listing_m_a_r_c_a/subcategory_product_listing_m_a_r_
     show SubcategoryProductListingMARCAWidget;
 export 'calculando_costo_de_envio/calculando_costo_de_envio_widget.dart'
     show CalculandoCostoDeEnvioWidget;
+export 'home_alt_copy/home_alt_copy_widget.dart' show HomeAltCopyWidget;

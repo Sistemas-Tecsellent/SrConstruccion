@@ -4,7 +4,6 @@ import '../backend/backend.dart';
 import '../components/envio_gratis_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../product_page/product_page_widget.dart';
 import '../custom_code/actions/index.dart' as actions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -253,16 +252,13 @@ class _ProductFeedHomeWidgetState extends State<ProductFeedHomeWidget> {
                                     GetOneVariantCall.id(
                                   (stackGetOneVariantResponse?.jsonBody ?? ''),
                                 ).toString());
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                                reverseDuration: Duration(milliseconds: 0),
-                                child: ProductPageWidget(
-                                  productId: gridViewProductsRecord.id,
-                                ),
-                              ),
+                            context.pushNamed(
+                              'ProductPage',
+                              queryParams: {
+                                'productId': serializeParam(
+                                    gridViewProductsRecord.id,
+                                    ParamType.String),
+                              }.withoutNulls,
                             );
                             await actions.productViewed(
                               gridViewProductsRecord.id,

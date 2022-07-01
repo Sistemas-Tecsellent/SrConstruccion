@@ -1,11 +1,9 @@
 import '../backend/backend.dart';
-import '../chats/chats_widget.dart';
 import '../components/productos_pedido_widget.dart';
 import '../flutter_flow/flutter_flow_google_map.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../pedido_programado/pedido_programado_widget.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -260,17 +258,12 @@ class _DetallePedidoProgramadoPickupWidgetState
                                   size: 30,
                                 ),
                                 onPressed: () async {
-                                  await Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 0),
-                                      reverseDuration:
-                                          Duration(milliseconds: 0),
-                                      child: PedidoProgramadoWidget(
-                                        bundleId: widget.bundleId,
-                                      ),
-                                    ),
+                                  context.pushNamed(
+                                    'PedidoProgramado',
+                                    queryParams: {
+                                      'bundleId': serializeParam(
+                                          widget.bundleId, ParamType.String),
+                                    }.withoutNulls,
                                   );
                                 },
                               ),
@@ -322,6 +315,9 @@ class _DetallePedidoProgramadoPickupWidgetState
                                   Container(
                                     width:
                                         MediaQuery.of(context).size.width * 0.9,
+                                    constraints: BoxConstraints(
+                                      maxWidth: 500,
+                                    ),
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       boxShadow: [
@@ -613,45 +609,55 @@ class _DetallePedidoProgramadoPickupWidgetState
                                 ],
                               ),
                             ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(20, 10, 20, 0),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width * 0.8,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 10,
-                                      color: Color(0x14000000),
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Padding(
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      20, 10, 10, 10),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Icon(
-                                        Icons.vpn_key_rounded,
-                                        color: Color(0xFF383838),
-                                        size: 30,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            10, 10, 0, 10),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Código de Entrega',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
+                                      20, 10, 20, 0),
+                                  child: Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.9,
+                                    constraints: BoxConstraints(
+                                      maxWidth: 500,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          blurRadius: 10,
+                                          color: Color(0x14000000),
+                                        )
+                                      ],
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          20, 10, 10, 10),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Icon(
+                                            Icons.vpn_key_rounded,
+                                            color: Color(0xFF383838),
+                                            size: 30,
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    10, 10, 0, 10),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'Código de Entrega',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
                                                       .bodyText1
                                                       .override(
                                                         fontFamily:
@@ -660,43 +666,50 @@ class _DetallePedidoProgramadoPickupWidgetState
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
-                                            ),
-                                            Text(
-                                              columnOrdersForClientsRecord.code,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyText1
-                                                  .override(
-                                                    fontFamily: 'Montserrat',
-                                                    fontWeight: FontWeight.w600,
+                                                ),
+                                                Text(
+                                                  columnOrdersForClientsRecord
+                                                      .code,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyText1
+                                                      .override(
+                                                        fontFamily:
+                                                            'Montserrat',
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 5, 0, 0),
+                                                  child: Text(
+                                                    'Entrega este código hasta que recibas tu \npedido completo como lo pediste.',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              'Montserrat',
+                                                          color:
+                                                              Color(0xFFAEAEAE),
+                                                          fontSize: 11,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                          fontStyle:
+                                                              FontStyle.italic,
+                                                        ),
                                                   ),
+                                                ),
+                                              ],
                                             ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 5, 0, 0),
-                                              child: Text(
-                                                'Entrega este código hasta que recibas tu \npedido completo como lo pediste.',
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyText1
-                                                    .override(
-                                                      fontFamily: 'Montserrat',
-                                                      color: Color(0xFFAEAEAE),
-                                                      fontSize: 11,
-                                                      fontWeight:
-                                                          FontWeight.normal,
-                                                      fontStyle:
-                                                          FontStyle.italic,
-                                                    ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
-                                    ],
+                                    ),
                                   ),
                                 ),
-                              ),
+                              ],
                             ),
                             Padding(
                               padding:
@@ -708,6 +721,9 @@ class _DetallePedidoProgramadoPickupWidgetState
                                   Container(
                                     width:
                                         MediaQuery.of(context).size.width * 0.9,
+                                    constraints: BoxConstraints(
+                                      maxWidth: 500,
+                                    ),
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       boxShadow: [
@@ -818,7 +834,7 @@ class _DetallePedidoProgramadoPickupWidgetState
                             ),
                             Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(20, 10, 0, 0),
+                                  EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                               child: StreamBuilder<List<StoresRecord>>(
                                 stream: queryStoresRecord(
                                   queryBuilder: (storesRecord) =>
@@ -851,205 +867,202 @@ class _DetallePedidoProgramadoPickupWidgetState
                                           : null;
                                   return Row(
                                     mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 5, 0),
-                                        child: Container(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.9,
-                                          decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            boxShadow: [
-                                              BoxShadow(
-                                                blurRadius: 10,
-                                                color: Color(0x14000000),
-                                              )
-                                            ],
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(10, 10, 10, 10),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Container(
-                                                          width: 40,
-                                                          height: 40,
-                                                          clipBehavior:
-                                                              Clip.antiAlias,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            shape:
-                                                                BoxShape.circle,
-                                                          ),
-                                                          child: Image.network(
-                                                            valueOrDefault<
-                                                                String>(
-                                                              productosStoresRecord
-                                                                  .logo,
-                                                              'https://cdn.shopify.com/s/files/1/0590/5045/9343/files/MARCA.png?v=1655401403',
-                                                            ),
+                                      Container(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.9,
+                                        constraints: BoxConstraints(
+                                          maxWidth: 500,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          boxShadow: [
+                                            BoxShadow(
+                                              blurRadius: 10,
+                                              color: Color(0x14000000),
+                                            )
+                                          ],
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(10, 10, 10, 10),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Container(
+                                                        width: 40,
+                                                        height: 40,
+                                                        clipBehavior:
+                                                            Clip.antiAlias,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          shape:
+                                                              BoxShape.circle,
+                                                        ),
+                                                        child: Image.network(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            productosStoresRecord
+                                                                .logo,
+                                                            'https://cdn.shopify.com/s/files/1/0590/5045/9343/files/MARCA.png?v=1655401403',
                                                           ),
                                                         ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(10,
-                                                                      0, 0, 0),
-                                                          child: Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Text(
-                                                                productosStoresRecord
-                                                                    .name,
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .center,
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Montserrat',
-                                                                      fontSize:
-                                                                          17,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w600,
-                                                                    ),
-                                                              ),
-                                                              Text(
-                                                                productosStoresRecord
-                                                                    .locationCity,
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .center,
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Montserrat',
-                                                                      color: Color(
-                                                                          0xFFBCBCBC),
-                                                                      fontSize:
-                                                                          12,
-                                                                    ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    Container(
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              0.2,
-                                                      height: 30,
-                                                      decoration: BoxDecoration(
-                                                        color:
-                                                            Color(0xFFEEEEEE),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(5),
                                                       ),
-                                                      child: InkWell(
-                                                        onTap: () async {
-                                                          await showModalBottomSheet(
-                                                            isScrollControlled:
-                                                                true,
-                                                            backgroundColor:
-                                                                Colors
-                                                                    .transparent,
-                                                            context: context,
-                                                            builder: (context) {
-                                                              return Padding(
-                                                                padding: MediaQuery.of(
-                                                                        context)
-                                                                    .viewInsets,
-                                                                child:
-                                                                    ProductosPedidoWidget(
-                                                                  orderId: widget
-                                                                      .orderId,
-                                                                ),
-                                                              );
-                                                            },
-                                                          );
-                                                        },
-                                                        child: Row(
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(10, 0,
+                                                                    0, 0),
+                                                        child: Column(
                                                           mainAxisSize:
                                                               MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
                                                           children: [
                                                             Text(
-                                                              columnOrdersForClientsRecord
-                                                                  .amountOfProducts
-                                                                  .toString()
-                                                                  .maybeHandleOverflow(
-                                                                      maxChars:
-                                                                          2),
+                                                              productosStoresRecord
+                                                                  .name,
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .bodyText1,
+                                                                  .bodyText1
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Montserrat',
+                                                                    fontSize:
+                                                                        17,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                  ),
                                                             ),
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          5,
-                                                                          0,
-                                                                          0,
-                                                                          0),
-                                                              child: Icon(
-                                                                Icons
-                                                                    .shopping_bag_outlined,
-                                                                color: Colors
-                                                                    .black,
-                                                                size: 17,
-                                                              ),
-                                                            ),
-                                                            Icon(
-                                                              Icons
-                                                                  .keyboard_arrow_right,
-                                                              color:
-                                                                  Colors.black,
-                                                              size: 20,
+                                                            Text(
+                                                              productosStoresRecord
+                                                                  .locationCity,
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText1
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Montserrat',
+                                                                    color: Color(
+                                                                        0xFFBCBCBC),
+                                                                    fontSize:
+                                                                        12,
+                                                                  ),
                                                             ),
                                                           ],
                                                         ),
                                                       ),
+                                                    ],
+                                                  ),
+                                                  Container(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.2,
+                                                    height: 30,
+                                                    constraints: BoxConstraints(
+                                                      maxWidth: 80,
                                                     ),
-                                                  ],
-                                                ),
+                                                    decoration: BoxDecoration(
+                                                      color: Color(0xFFEEEEEE),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                    ),
+                                                    child: InkWell(
+                                                      onTap: () async {
+                                                        await showModalBottomSheet(
+                                                          isScrollControlled:
+                                                              true,
+                                                          backgroundColor:
+                                                              Colors
+                                                                  .transparent,
+                                                          context: context,
+                                                          builder: (context) {
+                                                            return Padding(
+                                                              padding: MediaQuery
+                                                                      .of(context)
+                                                                  .viewInsets,
+                                                              child:
+                                                                  ProductosPedidoWidget(
+                                                                orderId: widget
+                                                                    .orderId,
+                                                              ),
+                                                            );
+                                                          },
+                                                        );
+                                                      },
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Text(
+                                                            columnOrdersForClientsRecord
+                                                                .amountOfProducts
+                                                                .toString()
+                                                                .maybeHandleOverflow(
+                                                                    maxChars:
+                                                                        2),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1,
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        5,
+                                                                        0,
+                                                                        0,
+                                                                        0),
+                                                            child: Icon(
+                                                              Icons
+                                                                  .shopping_bag_outlined,
+                                                              color:
+                                                                  Colors.black,
+                                                              size: 17,
+                                                            ),
+                                                          ),
+                                                          Icon(
+                                                            Icons
+                                                                .keyboard_arrow_right,
+                                                            color: Colors.black,
+                                                            size: 20,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
-                                            ],
-                                          ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ],
@@ -1067,6 +1080,9 @@ class _DetallePedidoProgramadoPickupWidgetState
                                   Container(
                                     width:
                                         MediaQuery.of(context).size.width * 0.9,
+                                    constraints: BoxConstraints(
+                                      maxWidth: 500,
+                                    ),
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       boxShadow: [
@@ -1126,17 +1142,7 @@ class _DetallePedidoProgramadoPickupWidgetState
                                           ),
                                           InkWell(
                                             onTap: () async {
-                                              await Navigator.push(
-                                                context,
-                                                PageTransition(
-                                                  type: PageTransitionType.fade,
-                                                  duration:
-                                                      Duration(milliseconds: 0),
-                                                  reverseDuration:
-                                                      Duration(milliseconds: 0),
-                                                  child: ChatsWidget(),
-                                                ),
-                                              );
+                                              context.pushNamed('Chats');
                                             },
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -1194,6 +1200,9 @@ class _DetallePedidoProgramadoPickupWidgetState
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Container(
+                                    constraints: BoxConstraints(
+                                      maxWidth: 500,
+                                    ),
                                     decoration: BoxDecoration(
                                       boxShadow: [
                                         BoxShadow(

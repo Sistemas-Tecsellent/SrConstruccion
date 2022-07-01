@@ -2,7 +2,6 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../product_page/product_page_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +43,7 @@ class _SearchWidgetState extends State<SearchWidget> {
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            context.pop();
           },
         ),
         title: Text(
@@ -70,11 +69,14 @@ class _SearchWidgetState extends State<SearchWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
                       width: MediaQuery.of(context).size.width * 0.75,
                       height: 40,
+                      constraints: BoxConstraints(
+                        maxWidth: 400,
+                      ),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(5),
@@ -115,7 +117,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 5),
+                      padding: EdgeInsetsDirectional.fromSTEB(10, 5, 0, 5),
                       child: FlutterFlowIconButton(
                         borderColor: Colors.transparent,
                         borderRadius: 4,
@@ -178,16 +180,13 @@ class _SearchWidgetState extends State<SearchWidget> {
                               EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
                           child: InkWell(
                             onTap: () async {
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: ProductPageWidget(
-                                    productId: listViewProductsRecord.id,
-                                  ),
-                                ),
+                              context.pushNamed(
+                                'ProductPage',
+                                queryParams: {
+                                  'productId': serializeParam(
+                                      listViewProductsRecord.id,
+                                      ParamType.String),
+                                }.withoutNulls,
                               );
                             },
                             child: Row(

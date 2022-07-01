@@ -46,6 +46,12 @@ abstract class SellerWiseCheckoutsRecord
   int get pickupInStoreProducts;
 
   @nullable
+  bool get pendingShipmentPrice;
+
+  @nullable
+  String get deliverDate;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -63,7 +69,9 @@ abstract class SellerWiseCheckoutsRecord
         ..totalInCents = 0
         ..expressProducts = 0
         ..normalProducts = 0
-        ..pickupInStoreProducts = 0;
+        ..pickupInStoreProducts = 0
+        ..pendingShipmentPrice = false
+        ..deliverDate = '';
 
   static Query<Map<String, dynamic>> collection([DocumentReference parent]) =>
       parent != null
@@ -105,6 +113,8 @@ Map<String, dynamic> createSellerWiseCheckoutsRecordData({
   int expressProducts,
   int normalProducts,
   int pickupInStoreProducts,
+  bool pendingShipmentPrice,
+  String deliverDate,
 }) =>
     serializers.toFirestore(
         SellerWiseCheckoutsRecord.serializer,
@@ -119,4 +129,6 @@ Map<String, dynamic> createSellerWiseCheckoutsRecordData({
           ..totalInCents = totalInCents
           ..expressProducts = expressProducts
           ..normalProducts = normalProducts
-          ..pickupInStoreProducts = pickupInStoreProducts));
+          ..pickupInStoreProducts = pickupInStoreProducts
+          ..pendingShipmentPrice = pendingShipmentPrice
+          ..deliverDate = deliverDate));

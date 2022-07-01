@@ -3,8 +3,6 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../home_alt/home_alt_widget.dart';
-import '../pedido_programado/pedido_programado_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -37,15 +35,7 @@ class _MisPedidosWidgetState extends State<MisPedidosWidget> {
             size: 30,
           ),
           onPressed: () async {
-            await Navigator.push(
-              context,
-              PageTransition(
-                type: PageTransitionType.fade,
-                duration: Duration(milliseconds: 0),
-                reverseDuration: Duration(milliseconds: 0),
-                child: HomeAltWidget(),
-              ),
-            );
+            context.pushNamed('HomeAlt');
           },
         ),
         title: Text(
@@ -119,6 +109,9 @@ class _MisPedidosWidgetState extends State<MisPedidosWidget> {
                                   return Container(
                                     width:
                                         MediaQuery.of(context).size.width * 0.9,
+                                    constraints: BoxConstraints(
+                                      maxWidth: 500,
+                                    ),
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       boxShadow: [
@@ -405,18 +398,13 @@ class _MisPedidosWidgetState extends State<MisPedidosWidget> {
                                                   0, 0, 0, 10),
                                           child: InkWell(
                                             onTap: () async {
-                                              await Navigator.push(
-                                                context,
-                                                PageTransition(
-                                                  type: PageTransitionType.fade,
-                                                  duration:
-                                                      Duration(milliseconds: 0),
-                                                  reverseDuration:
-                                                      Duration(milliseconds: 0),
-                                                  child: PedidoProgramadoWidget(
-                                                    bundleId: orderBundleItem,
-                                                  ),
-                                                ),
+                                              context.pushNamed(
+                                                'PedidoProgramado',
+                                                queryParams: {
+                                                  'bundleId': serializeParam(
+                                                      orderBundleItem,
+                                                      ParamType.String),
+                                                }.withoutNulls,
                                               );
                                             },
                                             child: Container(

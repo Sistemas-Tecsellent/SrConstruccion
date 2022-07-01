@@ -2,16 +2,12 @@ import '../auth/auth_util.dart';
 import '../auth/firebase_user_provider.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
-import '../checkout/checkout_widget.dart';
-import '../checkout_seller/checkout_seller_widget.dart';
 import '../components/seller_product_widget.dart';
 import '../components/sugerencias_recomendaciones_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../login/login_widget.dart';
-import '../perfil_del_seller/perfil_del_seller_widget.dart';
 import '../custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -76,7 +72,7 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                 size: 30,
               ),
               onPressed: () async {
-                Navigator.pop(context);
+                context.pop();
               },
             ),
             title: Text(
@@ -132,15 +128,7 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                         );
                       },
                     );
-                    await Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.fade,
-                        duration: Duration(milliseconds: 0),
-                        reverseDuration: Duration(milliseconds: 0),
-                        child: CheckoutWidget(),
-                      ),
-                    );
+                    context.pushNamed('Checkout');
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -223,29 +211,15 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                                         'Gastos en General',
                                         widget.storeId,
                                       );
-                                      await Navigator.push(
-                                        context,
-                                        PageTransition(
-                                          type: PageTransitionType.fade,
-                                          duration: Duration(milliseconds: 0),
-                                          reverseDuration:
-                                              Duration(milliseconds: 0),
-                                          child: CheckoutSellerWidget(
-                                            storeId: widget.storeId,
-                                          ),
-                                        ),
+                                      context.pushNamed(
+                                        'CheckoutSeller',
+                                        queryParams: {
+                                          'storeId': serializeParam(
+                                              widget.storeId, ParamType.String),
+                                        }.withoutNulls,
                                       );
                                     } else {
-                                      await Navigator.push(
-                                        context,
-                                        PageTransition(
-                                          type: PageTransitionType.fade,
-                                          duration: Duration(milliseconds: 0),
-                                          reverseDuration:
-                                              Duration(milliseconds: 0),
-                                          child: LoginWidget(),
-                                        ),
-                                      );
+                                      context.pushNamed('login');
                                     }
                                   },
                                   text: GetSellerWiseCartTotalCall.message(
@@ -480,6 +454,9 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                                                                 .size
                                                                 .width *
                                                             0.9,
+                                                    constraints: BoxConstraints(
+                                                      maxWidth: 500,
+                                                    ),
                                                     decoration: BoxDecoration(
                                                       color: Colors.white,
                                                       boxShadow: [
@@ -904,17 +881,14 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                                 uid: currentUserUid,
                                 storeId: widget.storeId,
                               );
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: PerfilDelSellerWidget(
-                                    storeId: widget.storeId,
-                                    calledFromPage: '\"\"',
-                                  ),
-                                ),
+                              context.pushNamed(
+                                'PerfilDelSeller',
+                                queryParams: {
+                                  'storeId': serializeParam(
+                                      widget.storeId, ParamType.String),
+                                  'calledFromPage':
+                                      serializeParam('\"\"', ParamType.String),
+                                }.withoutNulls,
                               );
                             },
                             text: 'Vaciar Carrito',

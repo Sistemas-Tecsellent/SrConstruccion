@@ -4,7 +4,6 @@ import '../components/toggle_like_brand_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../marca_single/marca_single_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -37,7 +36,7 @@ class _WishMarcasWidgetState extends State<WishMarcasWidget> {
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            context.pop();
           },
         ),
         title: Text(
@@ -104,17 +103,13 @@ class _WishMarcasWidgetState extends State<WishMarcasWidget> {
                                   children: [
                                     InkWell(
                                       onTap: () async {
-                                        await Navigator.push(
-                                          context,
-                                          PageTransition(
-                                            type: PageTransitionType.fade,
-                                            duration: Duration(milliseconds: 0),
-                                            reverseDuration:
-                                                Duration(milliseconds: 0),
-                                            child: MarcaSingleWidget(
-                                              brandId: columnBrandsRecord.id,
-                                            ),
-                                          ),
+                                        context.pushNamed(
+                                          'MarcaSingle',
+                                          queryParams: {
+                                            'brandId': serializeParam(
+                                                columnBrandsRecord.id,
+                                                ParamType.String),
+                                          }.withoutNulls,
                                         );
                                       },
                                       child: Container(
@@ -122,6 +117,9 @@ class _WishMarcasWidgetState extends State<WishMarcasWidget> {
                                             MediaQuery.of(context).size.width *
                                                 0.9,
                                         height: 90,
+                                        constraints: BoxConstraints(
+                                          maxWidth: 500,
+                                        ),
                                         decoration: BoxDecoration(
                                           color: Colors.white,
                                           borderRadius:

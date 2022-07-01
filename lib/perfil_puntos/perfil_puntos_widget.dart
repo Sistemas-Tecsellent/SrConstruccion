@@ -35,7 +35,7 @@ class _PerfilPuntosWidgetState extends State<PerfilPuntosWidget> {
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            context.pop();
           },
         ),
         actions: [
@@ -214,6 +214,9 @@ class _PerfilPuntosWidgetState extends State<PerfilPuntosWidget> {
                                     width:
                                         MediaQuery.of(context).size.width * 0.9,
                                     height: 100,
+                                    constraints: BoxConstraints(
+                                      maxWidth: 500,
+                                    ),
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       boxShadow: [

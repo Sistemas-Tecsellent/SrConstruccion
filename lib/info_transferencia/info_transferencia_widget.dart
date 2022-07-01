@@ -1,7 +1,6 @@
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../mis_pedidos/mis_pedidos_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -38,15 +37,7 @@ class _InfoTransferenciaWidgetState extends State<InfoTransferenciaWidget> {
                 size: 30,
               ),
               onPressed: () async {
-                await Navigator.push(
-                  context,
-                  PageTransition(
-                    type: PageTransitionType.fade,
-                    duration: Duration(milliseconds: 0),
-                    reverseDuration: Duration(milliseconds: 0),
-                    child: MisPedidosWidget(),
-                  ),
-                );
+                context.pushNamed('MisPedidos');
               },
             ),
           ],

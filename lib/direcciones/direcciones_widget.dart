@@ -1,13 +1,9 @@
-import '../anadir_direccion/anadir_direccion_widget.dart';
 import '../auth/auth_util.dart';
-import '../checkout/checkout_widget.dart';
 import '../components/sugerencias_recomendaciones_widget.dart';
-import '../editar_direccion/editar_direccion_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../perfil/perfil_widget.dart';
 import '../custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -56,15 +52,7 @@ class _DireccionesWidgetState extends State<DireccionesWidget> {
             size: 30,
           ),
           onPressed: () async {
-            await Navigator.push(
-              context,
-              PageTransition(
-                type: PageTransitionType.fade,
-                duration: Duration(milliseconds: 0),
-                reverseDuration: Duration(milliseconds: 0),
-                child: PerfilWidget(),
-              ),
-            );
+            context.pushNamed('Perfil');
           },
         ),
         title: Text(
@@ -99,15 +87,7 @@ class _DireccionesWidgetState extends State<DireccionesWidget> {
                 );
               },
             );
-            await Navigator.push(
-              context,
-              PageTransition(
-                type: PageTransitionType.fade,
-                duration: Duration(milliseconds: 0),
-                reverseDuration: Duration(milliseconds: 0),
-                child: CheckoutWidget(),
-              ),
-            );
+            context.pushNamed('Checkout');
           },
           child: Container(
             decoration: BoxDecoration(
@@ -128,15 +108,7 @@ class _DireccionesWidgetState extends State<DireccionesWidget> {
               children: [
                 FFButtonWidget(
                   onPressed: () async {
-                    await Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.fade,
-                        duration: Duration(milliseconds: 0),
-                        reverseDuration: Duration(milliseconds: 0),
-                        child: AnadirDireccionWidget(),
-                      ),
-                    );
+                    context.pushNamed('AnadirDireccion');
                   },
                   text: 'Agregar Dirección',
                   options: FFButtonOptions(
@@ -183,39 +155,46 @@ class _DireccionesWidgetState extends State<DireccionesWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 1),
                           child: InkWell(
                             onTap: () async {
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: EditarDireccionWidget(
-                                    addressLine1: getJsonField(
-                                      addressesItem,
-                                      r'''$.addressLine1''',
-                                    ).toString(),
-                                    suburb: getJsonField(
-                                      addressesItem,
-                                      r'''$.suburb''',
-                                    ).toString(),
-                                    postalCode: getJsonField(
-                                      addressesItem,
-                                      r'''$.postalCode''',
-                                    ).toString(),
-                                    city: getJsonField(
-                                      addressesItem,
-                                      r'''$.city''',
-                                    ).toString(),
-                                    state: getJsonField(
-                                      addressesItem,
-                                      r'''$.state''',
-                                    ).toString(),
-                                    name: getJsonField(
-                                      addressesItem,
-                                      r'''$.name''',
-                                    ).toString(),
-                                  ),
-                                ),
+                              context.pushNamed(
+                                'EditarDireccion',
+                                queryParams: {
+                                  'addressLine1': serializeParam(
+                                      getJsonField(
+                                        addressesItem,
+                                        r'''$.addressLine1''',
+                                      ).toString(),
+                                      ParamType.String),
+                                  'suburb': serializeParam(
+                                      getJsonField(
+                                        addressesItem,
+                                        r'''$.suburb''',
+                                      ).toString(),
+                                      ParamType.String),
+                                  'postalCode': serializeParam(
+                                      getJsonField(
+                                        addressesItem,
+                                        r'''$.postalCode''',
+                                      ).toString(),
+                                      ParamType.String),
+                                  'city': serializeParam(
+                                      getJsonField(
+                                        addressesItem,
+                                        r'''$.city''',
+                                      ).toString(),
+                                      ParamType.String),
+                                  'state': serializeParam(
+                                      getJsonField(
+                                        addressesItem,
+                                        r'''$.state''',
+                                      ).toString(),
+                                      ParamType.String),
+                                  'name': serializeParam(
+                                      getJsonField(
+                                        addressesItem,
+                                        r'''$.name''',
+                                      ).toString(),
+                                      ParamType.String),
+                                }.withoutNulls,
                               );
                             },
                             child: Slidable(

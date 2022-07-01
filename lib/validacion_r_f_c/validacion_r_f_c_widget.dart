@@ -2,7 +2,6 @@ import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../signup/signup_widget.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -111,6 +110,9 @@ class _ValidacionRFCWidgetState extends State<ValidacionRFCWidget> {
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width * 0.9,
+                  constraints: BoxConstraints(
+                    maxWidth: 500,
+                  ),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(5),
@@ -430,14 +432,15 @@ class _ValidacionRFCWidgetState extends State<ValidacionRFCWidget> {
                     children: [
                       FFButtonWidget(
                         onPressed: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                              reverseDuration: Duration(milliseconds: 0),
-                              child: SignupWidget(),
-                            ),
+                          context.pushNamed(
+                            'signup',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.fade,
+                                duration: Duration(milliseconds: 0),
+                              ),
+                            },
                           );
                         },
                         text: 'Terminar',

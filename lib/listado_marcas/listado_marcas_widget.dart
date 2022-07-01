@@ -2,8 +2,6 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../marca_single/marca_single_widget.dart';
-import '../search_marca/search_marca_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -36,7 +34,7 @@ class _ListadoMarcasWidgetState extends State<ListadoMarcasWidget> {
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            context.pop();
           },
         ),
         title: Text(
@@ -62,15 +60,7 @@ class _ListadoMarcasWidgetState extends State<ListadoMarcasWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
                 child: InkWell(
                   onTap: () async {
-                    await Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.fade,
-                        duration: Duration(milliseconds: 0),
-                        reverseDuration: Duration(milliseconds: 0),
-                        child: SearchMarcaWidget(),
-                      ),
-                    );
+                    context.pushNamed('searchMarca');
                   },
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
@@ -80,6 +70,9 @@ class _ListadoMarcasWidgetState extends State<ListadoMarcasWidget> {
                       Container(
                         width: MediaQuery.of(context).size.width * 0.9,
                         height: 50,
+                        constraints: BoxConstraints(
+                          maxWidth: 500,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(5),
@@ -165,15 +158,7 @@ class _ListadoMarcasWidgetState extends State<ListadoMarcasWidget> {
                                 EdgeInsetsDirectional.fromSTEB(0, 5, 10, 5),
                             child: InkWell(
                               onTap: () async {
-                                await Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.fade,
-                                    duration: Duration(milliseconds: 0),
-                                    reverseDuration: Duration(milliseconds: 0),
-                                    child: MarcaSingleWidget(),
-                                  ),
-                                );
+                                context.pushNamed('MarcaSingle');
                               },
                               child: Container(
                                 width: 120,
@@ -261,22 +246,21 @@ class _ListadoMarcasWidgetState extends State<ListadoMarcasWidget> {
                               children: [
                                 InkWell(
                                   onTap: () async {
-                                    await Navigator.push(
-                                      context,
-                                      PageTransition(
-                                        type: PageTransitionType.fade,
-                                        duration: Duration(milliseconds: 0),
-                                        reverseDuration:
-                                            Duration(milliseconds: 0),
-                                        child: MarcaSingleWidget(
-                                          brandId: columnBrandsRecord.id,
-                                        ),
-                                      ),
+                                    context.pushNamed(
+                                      'MarcaSingle',
+                                      queryParams: {
+                                        'brandId': serializeParam(
+                                            columnBrandsRecord.id,
+                                            ParamType.String),
+                                      }.withoutNulls,
                                     );
                                   },
                                   child: Container(
                                     width:
                                         MediaQuery.of(context).size.width * 0.9,
+                                    constraints: BoxConstraints(
+                                      maxWidth: 500,
+                                    ),
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(10),

@@ -22,6 +22,9 @@ class _PickupSellerWidgetState extends State<PickupSellerWidget> {
           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
           child: Container(
             width: MediaQuery.of(context).size.width * 0.9,
+            constraints: BoxConstraints(
+              maxWidth: 500,
+            ),
             decoration: BoxDecoration(
               color: Colors.white,
               boxShadow: [

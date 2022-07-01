@@ -87,6 +87,20 @@ class _$CheckoutsRecordSerializer
         ..add('normalProducts')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
+    value = object.pendingShipmentPrice;
+    if (value != null) {
+      result
+        ..add('pendingShipmentPrice')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.deliveryDate;
+    if (value != null) {
+      result
+        ..add('deliveryDate')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.reference;
     if (value != null) {
       result
@@ -150,6 +164,14 @@ class _$CheckoutsRecordSerializer
           result.normalProducts = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
           break;
+        case 'pendingShipmentPrice':
+          result.pendingShipmentPrice = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool;
+          break;
+        case 'deliveryDate':
+          result.deliveryDate = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
                   specifiedType: const FullType(
@@ -185,6 +207,10 @@ class _$CheckoutsRecord extends CheckoutsRecord {
   @override
   final int normalProducts;
   @override
+  final bool pendingShipmentPrice;
+  @override
+  final String deliveryDate;
+  @override
   final DocumentReference<Object> reference;
 
   factory _$CheckoutsRecord([void Function(CheckoutsRecordBuilder) updates]) =>
@@ -201,6 +227,8 @@ class _$CheckoutsRecord extends CheckoutsRecord {
       this.ordersAmount,
       this.expressProducts,
       this.normalProducts,
+      this.pendingShipmentPrice,
+      this.deliveryDate,
       this.reference})
       : super._();
 
@@ -226,6 +254,8 @@ class _$CheckoutsRecord extends CheckoutsRecord {
         ordersAmount == other.ordersAmount &&
         expressProducts == other.expressProducts &&
         normalProducts == other.normalProducts &&
+        pendingShipmentPrice == other.pendingShipmentPrice &&
+        deliveryDate == other.deliveryDate &&
         reference == other.reference;
   }
 
@@ -240,16 +270,20 @@ class _$CheckoutsRecord extends CheckoutsRecord {
                             $jc(
                                 $jc(
                                     $jc(
-                                        $jc($jc(0, id.hashCode),
-                                            message.hashCode),
-                                        paymentMethod.hashCode),
-                                    shipmentTotal.hashCode),
-                                subtotal.hashCode),
-                            total.hashCode),
-                        totalInCents.hashCode),
-                    ordersAmount.hashCode),
-                expressProducts.hashCode),
-            normalProducts.hashCode),
+                                        $jc(
+                                            $jc(
+                                                $jc($jc(0, id.hashCode),
+                                                    message.hashCode),
+                                                paymentMethod.hashCode),
+                                            shipmentTotal.hashCode),
+                                        subtotal.hashCode),
+                                    total.hashCode),
+                                totalInCents.hashCode),
+                            ordersAmount.hashCode),
+                        expressProducts.hashCode),
+                    normalProducts.hashCode),
+                pendingShipmentPrice.hashCode),
+            deliveryDate.hashCode),
         reference.hashCode));
   }
 
@@ -266,6 +300,8 @@ class _$CheckoutsRecord extends CheckoutsRecord {
           ..add('ordersAmount', ordersAmount)
           ..add('expressProducts', expressProducts)
           ..add('normalProducts', normalProducts)
+          ..add('pendingShipmentPrice', pendingShipmentPrice)
+          ..add('deliveryDate', deliveryDate)
           ..add('reference', reference))
         .toString();
   }
@@ -319,6 +355,15 @@ class CheckoutsRecordBuilder
   set normalProducts(int normalProducts) =>
       _$this._normalProducts = normalProducts;
 
+  bool _pendingShipmentPrice;
+  bool get pendingShipmentPrice => _$this._pendingShipmentPrice;
+  set pendingShipmentPrice(bool pendingShipmentPrice) =>
+      _$this._pendingShipmentPrice = pendingShipmentPrice;
+
+  String _deliveryDate;
+  String get deliveryDate => _$this._deliveryDate;
+  set deliveryDate(String deliveryDate) => _$this._deliveryDate = deliveryDate;
+
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
   set reference(DocumentReference<Object> reference) =>
@@ -341,6 +386,8 @@ class CheckoutsRecordBuilder
       _ordersAmount = $v.ordersAmount;
       _expressProducts = $v.expressProducts;
       _normalProducts = $v.normalProducts;
+      _pendingShipmentPrice = $v.pendingShipmentPrice;
+      _deliveryDate = $v.deliveryDate;
       _reference = $v.reference;
       _$v = null;
     }
@@ -372,6 +419,8 @@ class CheckoutsRecordBuilder
             ordersAmount: ordersAmount,
             expressProducts: expressProducts,
             normalProducts: normalProducts,
+            pendingShipmentPrice: pendingShipmentPrice,
+            deliveryDate: deliveryDate,
             reference: reference);
     replace(_$result);
     return _$result;

@@ -1,4 +1,3 @@
-import '../anadir_direccion/anadir_direccion_widget.dart';
 import '../auth/auth_util.dart';
 import '../auth/firebase_user_provider.dart';
 import '../backend/api_requests/api_calls.dart';
@@ -7,15 +6,10 @@ import '../backend/stripe/payment_manager.dart';
 import '../components/cambiar_direccion_widget.dart';
 import '../components/facturacion_widget.dart';
 import '../components/metodo_de_pago_widget.dart';
-import '../detalle_pedido_programado/detalle_pedido_programado_widget.dart';
-import '../detalle_pedido_programado_checkout/detalle_pedido_programado_checkout_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../home_alt/home_alt_widget.dart';
-import '../login/login_widget.dart';
-import '../pago_aceptado/pago_aceptado_widget.dart';
 import '../custom_code/actions/index.dart' as actions;
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -78,7 +72,7 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
         return Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
-            backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             automaticallyImplyLeading: false,
             leading: FlutterFlowIconButton(
               borderColor: Colors.transparent,
@@ -91,7 +85,7 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                 size: 30,
               ),
               onPressed: () async {
-                Navigator.pop(context);
+                context.pop();
               },
             ),
             title: Text(
@@ -107,162 +101,218 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
             elevation: 0,
           ),
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          floatingActionButton: FloatingActionButton.extended(
-            onPressed: () {
-              print('FloatingActionButton pressed ...');
-            },
-            backgroundColor: Color(0x00FDC054),
-            elevation: 0,
-            label: Container(
-              decoration: BoxDecoration(
-                color: Color(0x00FF5963),
-                boxShadow: [
-                  BoxShadow(
-                    blurRadius: 3,
-                    color: Color(0x20000000),
-                  )
-                ],
-                borderRadius: BorderRadius.circular(15),
-              ),
-              alignment: AlignmentDirectional(0, 0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  StreamBuilder<List<SellerWiseCheckoutsRecord>>(
-                    stream: querySellerWiseCheckoutsRecord(
-                      parent: checkoutSellerCheckoutsRecord.reference,
-                      queryBuilder: (sellerWiseCheckoutsRecord) =>
-                          sellerWiseCheckoutsRecord.where('id',
-                              isEqualTo: widget.storeId),
-                      singleRecord: true,
-                    ),
-                    builder: (context, snapshot) {
-                      // Customize what your widget looks like when it's loading.
-                      if (!snapshot.hasData) {
-                        return Center(
-                          child: SizedBox(
-                            width: 50,
-                            height: 50,
-                            child: SpinKitFadingCircle(
-                              color: FlutterFlowTheme.of(context).primaryColor,
-                              size: 50,
-                            ),
-                          ),
-                        );
-                      }
-                      List<SellerWiseCheckoutsRecord>
-                          buttonSellerWiseCheckoutsRecordList = snapshot.data;
-                      // Return an empty Container when the document does not exist.
-                      if (snapshot.data.isEmpty) {
-                        return Container();
-                      }
-                      final buttonSellerWiseCheckoutsRecord =
-                          buttonSellerWiseCheckoutsRecordList.isNotEmpty
-                              ? buttonSellerWiseCheckoutsRecordList.first
-                              : null;
-                      return FFButtonWidget(
-                        onPressed: () async {
-                          if (loggedIn) {
-                            if (functions.compareStrings(
-                                FFAppState().paymentMethod,
-                                'Tarjeta Crédito / Débito')) {
-                              bundleId = await actions.placeOrderBundle(
-                                widget.storeId,
-                              );
-                              final paymentResponse =
-                                  await processStripePayment(
-                                amount: buttonSellerWiseCheckoutsRecord
-                                    .totalInCents,
-                                currency: 'MXN',
-                                customerEmail: currentUserEmail,
-                                customerName: currentUserDisplayName,
-                                description:
-                                    '1x Codigo de Pago No. ${bundleId}',
-                                allowGooglePay: false,
-                                allowApplePay: false,
-                              );
-                              if (paymentResponse.paymentId == null) {
-                                if (paymentResponse.errorMessage != null) {
-                                  showSnackbar(
-                                    context,
-                                    'Error: ${paymentResponse.errorMessage}',
-                                  );
-                                }
-                                return;
-                              }
-                              paymentId = paymentResponse.paymentId;
-
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: PagoAceptadoWidget(
-                                    total:
-                                        buttonSellerWiseCheckoutsRecord.total,
-                                    orderId: bundleId,
-                                  ),
-                                ),
-                              );
-
-                              final usersUpdateData = {
-                                'liveOrders': FieldValue.arrayUnion([bundleId]),
-                              };
-                              await currentUserReference
-                                  .update(usersUpdateData);
-                            } else {
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: HomeAltWidget(),
-                                ),
-                              );
-                            }
-                          } else {
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                                reverseDuration: Duration(milliseconds: 0),
-                                child: LoginWidget(),
-                              ),
-                            );
-                          }
-
-                          setState(() {});
-                        },
-                        text: 'Pagar',
-                        options: FFButtonOptions(
-                          width: 300,
-                          height: 54,
-                          color: FlutterFlowTheme.of(context).primaryColor,
-                          textStyle:
-                              FlutterFlowTheme.of(context).subtitle2.override(
-                                    fontFamily: 'Montserrat',
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                          elevation: 0,
-                          borderSide: BorderSide(
-                            color: Colors.transparent,
-                            width: 1,
-                          ),
-                          borderRadius: 5,
-                        ),
-                      );
-                    },
-                  ),
-                ],
-              ),
+          floatingActionButton: StreamBuilder<List<SellerWiseCheckoutsRecord>>(
+            stream: querySellerWiseCheckoutsRecord(
+              parent: checkoutSellerCheckoutsRecord.reference,
+              queryBuilder: (sellerWiseCheckoutsRecord) =>
+                  sellerWiseCheckoutsRecord.where('id',
+                      isEqualTo: widget.storeId),
+              singleRecord: true,
             ),
+            builder: (context, snapshot) {
+              // Customize what your widget looks like when it's loading.
+              if (!snapshot.hasData) {
+                return Center(
+                  child: SizedBox(
+                    width: 50,
+                    height: 50,
+                    child: SpinKitFadingCircle(
+                      color: FlutterFlowTheme.of(context).primaryColor,
+                      size: 50,
+                    ),
+                  ),
+                );
+              }
+              List<SellerWiseCheckoutsRecord>
+                  floatingActionButtonSellerWiseCheckoutsRecordList =
+                  snapshot.data;
+              // Return an empty Container when the document does not exist.
+              if (snapshot.data.isEmpty) {
+                return Container();
+              }
+              final floatingActionButtonSellerWiseCheckoutsRecord =
+                  floatingActionButtonSellerWiseCheckoutsRecordList.isNotEmpty
+                      ? floatingActionButtonSellerWiseCheckoutsRecordList.first
+                      : null;
+              return FloatingActionButton.extended(
+                onPressed: () {
+                  print('FloatingActionButton pressed ...');
+                },
+                backgroundColor: Color(0x00FDC054),
+                elevation: 0,
+                label: Visibility(
+                  visible: !(floatingActionButtonSellerWiseCheckoutsRecord
+                          .pendingShipmentPrice) ??
+                      true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0x00FF5963),
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 3,
+                          color: Color(0x20000000),
+                        )
+                      ],
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    alignment: AlignmentDirectional(0, 0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        if ((floatingActionButtonSellerWiseCheckoutsRecord
+                                .totalInCents) >
+                            0)
+                          StreamBuilder<List<SellerWiseCheckoutsRecord>>(
+                            stream: querySellerWiseCheckoutsRecord(
+                              parent: checkoutSellerCheckoutsRecord.reference,
+                              queryBuilder: (sellerWiseCheckoutsRecord) =>
+                                  sellerWiseCheckoutsRecord.where('id',
+                                      isEqualTo: widget.storeId),
+                              singleRecord: true,
+                            ),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50,
+                                    height: 50,
+                                    child: SpinKitFadingCircle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                      size: 50,
+                                    ),
+                                  ),
+                                );
+                              }
+                              List<SellerWiseCheckoutsRecord>
+                                  buttonSellerWiseCheckoutsRecordList =
+                                  snapshot.data;
+                              // Return an empty Container when the document does not exist.
+                              if (snapshot.data.isEmpty) {
+                                return Container();
+                              }
+                              final buttonSellerWiseCheckoutsRecord =
+                                  buttonSellerWiseCheckoutsRecordList.isNotEmpty
+                                      ? buttonSellerWiseCheckoutsRecordList
+                                          .first
+                                      : null;
+                              return FFButtonWidget(
+                                onPressed: () async {
+                                  if (loggedIn) {
+                                    if (functions.compareStrings(
+                                        FFAppState().paymentMethod,
+                                        'Tarjeta Crédito / Débito')) {
+                                      bundleId = await actions.placeOrderBundle(
+                                        widget.storeId,
+                                      );
+                                      if (isWeb) {
+                                        await actions.webCheckout(
+                                          widget.storeId,
+                                          bundleId,
+                                        );
+                                      } else {
+                                        final paymentResponse =
+                                            await processStripePayment(
+                                          amount:
+                                              buttonSellerWiseCheckoutsRecord
+                                                  .totalInCents,
+                                          currency: 'MXN',
+                                          customerEmail: currentUserEmail,
+                                          customerName: currentUserDisplayName,
+                                          description:
+                                              '1x Codigo de Pago No. ${bundleId}',
+                                          allowGooglePay: false,
+                                          allowApplePay: false,
+                                        );
+                                        if (paymentResponse.paymentId == null) {
+                                          if (paymentResponse.errorMessage !=
+                                              null) {
+                                            showSnackbar(
+                                              context,
+                                              'Error: ${paymentResponse.errorMessage}',
+                                            );
+                                          }
+                                          return;
+                                        }
+                                        paymentId = paymentResponse.paymentId;
+
+                                        context.pushNamed(
+                                          'PagoAceptado',
+                                          queryParams: {
+                                            'total': serializeParam(
+                                                buttonSellerWiseCheckoutsRecord
+                                                    .total,
+                                                ParamType.double),
+                                            'orderId': serializeParam(
+                                                bundleId, ParamType.String),
+                                          }.withoutNulls,
+                                        );
+
+                                        final usersUpdateData = {
+                                          'liveOrders':
+                                              FieldValue.arrayUnion([bundleId]),
+                                        };
+                                        await currentUserReference
+                                            .update(usersUpdateData);
+                                      }
+                                    } else {
+                                      await showDialog(
+                                        context: context,
+                                        builder: (alertDialogContext) {
+                                          return AlertDialog(
+                                            title: Text('Metodo de pago'),
+                                            content: Text(
+                                                'Por el momento solo se aceptan pogos con tarjeta'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext),
+                                                child: Text('Ok'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    }
+                                  } else {
+                                    context.pushNamed('login');
+                                  }
+
+                                  setState(() {});
+                                },
+                                text: 'Pagar',
+                                options: FFButtonOptions(
+                                  width: 300,
+                                  height: 54,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryColor,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .subtitle2
+                                      .override(
+                                        fontFamily: 'Montserrat',
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                  elevation: 0,
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1,
+                                  ),
+                                  borderRadius: 5,
+                                ),
+                              );
+                            },
+                          ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
           ),
           body: SafeArea(
             child: GestureDetector(
@@ -341,6 +391,51 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                             height: 230,
                                             child: Stack(
                                               children: [
+                                                if (responsiveVisibility(
+                                                  context: context,
+                                                  tabletLandscape: false,
+                                                  desktop: false,
+                                                ))
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            0, -1),
+                                                    child: Container(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width,
+                                                      height: 200,
+                                                      constraints:
+                                                          BoxConstraints(
+                                                        maxWidth: 500,
+                                                      ),
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryColor,
+                                                        borderRadius:
+                                                            BorderRadius.only(
+                                                          bottomLeft:
+                                                              Radius.circular(
+                                                                  20),
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  20),
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                  0),
+                                                          topRight:
+                                                              Radius.circular(
+                                                                  0),
+                                                        ),
+                                                      ),
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0, 0),
+                                                    ),
+                                                  ),
                                                 Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -351,14 +446,22 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                     Container(
                                                       width:
                                                           MediaQuery.of(context)
-                                                              .size
-                                                              .width,
+                                                                  .size
+                                                                  .width *
+                                                              0.95,
                                                       height: 200,
+                                                      constraints:
+                                                          BoxConstraints(
+                                                        maxWidth: 500,
+                                                      ),
                                                       decoration: BoxDecoration(
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryColor,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(20),
                                                       ),
                                                       alignment:
                                                           AlignmentDirectional(
@@ -669,100 +772,99 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                     ),
                                                   ],
                                                 ),
-                                                Align(
-                                                  alignment:
-                                                      AlignmentDirectional(
-                                                          0, 0.85),
-                                                  child: Container(
-                                                    width: 200,
-                                                    height: 50,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      boxShadow: [
-                                                        BoxShadow(
-                                                          blurRadius: 10,
-                                                          color:
-                                                              Color(0x14000000),
-                                                        )
-                                                      ],
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                    ),
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  20, 0, 10, 0),
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0,
-                                                                        10,
-                                                                        0,
-                                                                        10),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .center,
-                                                              children: [
-                                                                Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  children: [
-                                                                    Text(
-                                                                      'Entrega Estimada',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyText1
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Montserrat',
-                                                                            fontSize:
-                                                                                12,
-                                                                          ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  children: [
-                                                                    Text(
-                                                                      '1 mayo 2022   10:00 AM',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyText1
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Montserrat',
-                                                                            fontWeight:
-                                                                                FontWeight.w500,
-                                                                          ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
+                                                if (columnSellerWiseCheckoutsRecord
+                                                        .pendingShipmentPrice ??
+                                                    true)
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            0, 0.85),
+                                                    child: Container(
+                                                      width: 200,
+                                                      height: 50,
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        boxShadow: [
+                                                          BoxShadow(
+                                                            blurRadius: 10,
+                                                            color: Color(
+                                                                0x14000000),
+                                                          )
                                                         ],
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(20, 0,
+                                                                    10, 0),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0,
+                                                                          10,
+                                                                          0,
+                                                                          0),
+                                                              child: Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .center,
+                                                                children: [
+                                                                  Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    children: [
+                                                                      Text(
+                                                                        'Entrega Estimada',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyText1
+                                                                            .override(
+                                                                              fontFamily: 'Montserrat',
+                                                                              fontSize: 12,
+                                                                            ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                  Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    children: [
+                                                                      Text(
+                                                                        columnSellerWiseCheckoutsRecord
+                                                                            .deliverDate
+                                                                            .maybeHandleOverflow(maxChars: 20),
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyText1
+                                                                            .override(
+                                                                              fontFamily: 'Montserrat',
+                                                                              fontWeight: FontWeight.w500,
+                                                                            ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
-                                                ),
                                               ],
                                             ),
                                           ),
@@ -777,6 +879,9 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                         .size
                                                         .width *
                                                     0.95,
+                                                constraints: BoxConstraints(
+                                                  maxWidth: 500,
+                                                ),
                                                 decoration: BoxDecoration(
                                                   color: Colors.white,
                                                   boxShadow: [
@@ -980,6 +1085,9 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                         .size
                                                         .width *
                                                     0.95,
+                                                constraints: BoxConstraints(
+                                                  maxWidth: 500,
+                                                ),
                                                 decoration: BoxDecoration(
                                                   color: Colors.white,
                                                   boxShadow: [
@@ -1193,6 +1301,10 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                   .size
                                                                   .width *
                                                               0.95,
+                                                      constraints:
+                                                          BoxConstraints(
+                                                        maxWidth: 500,
+                                                      ),
                                                       decoration: BoxDecoration(
                                                         color: Colors.white,
                                                         boxShadow: [
@@ -1311,20 +1423,8 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                 FFButtonWidget(
                                                                   onPressed:
                                                                       () async {
-                                                                    await Navigator
-                                                                        .push(
-                                                                      context,
-                                                                      PageTransition(
-                                                                        type: PageTransitionType
-                                                                            .fade,
-                                                                        duration:
-                                                                            Duration(milliseconds: 0),
-                                                                        reverseDuration:
-                                                                            Duration(milliseconds: 0),
-                                                                        child:
-                                                                            AnadirDireccionWidget(),
-                                                                      ),
-                                                                    );
+                                                                    context.pushNamed(
+                                                                        'AnadirDireccion');
                                                                   },
                                                                   text:
                                                                       'Añadir dirección',
@@ -1385,6 +1485,9 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                           .size
                                                           .width *
                                                       0.95,
+                                                  constraints: BoxConstraints(
+                                                    maxWidth: 500,
+                                                  ),
                                                   decoration: BoxDecoration(
                                                     color: Colors.white,
                                                     boxShadow: [
@@ -1615,7 +1718,7 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                                 getJsonField(
                                                                                   (columnGetSellerWiseCheckoutResponse?.jsonBody ?? ''),
                                                                                   r'''$.address.addressLine1''',
-                                                                                ).toString().maybeHandleOverflow(maxChars: 10),
+                                                                                ).toString().maybeHandleOverflow(maxChars: 24),
                                                                                 style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                       fontFamily: 'Montserrat',
                                                                                       fontSize: 13,
@@ -1631,7 +1734,7 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                                 getJsonField(
                                                                                   (columnGetSellerWiseCheckoutResponse?.jsonBody ?? ''),
                                                                                   r'''$.address.suburb''',
-                                                                                ).toString().maybeHandleOverflow(maxChars: 7),
+                                                                                ).toString().maybeHandleOverflow(maxChars: 20),
                                                                                 maxLines: 1,
                                                                                 style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                       fontFamily: 'Montserrat',
@@ -1709,6 +1812,9 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                       .size
                                                       .width *
                                                   0.95,
+                                              constraints: BoxConstraints(
+                                                maxWidth: 500,
+                                              ),
                                               decoration: BoxDecoration(
                                                 color: Colors.white,
                                                 boxShadow: [
@@ -1854,22 +1960,20 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                 0, 0, 0, 10),
                                                     child: InkWell(
                                                       onTap: () async {
-                                                        await Navigator.push(
-                                                          context,
-                                                          PageTransition(
-                                                            type:
-                                                                PageTransitionType
-                                                                    .fade,
-                                                            duration: Duration(
-                                                                milliseconds:
-                                                                    0),
-                                                            reverseDuration:
-                                                                Duration(
-                                                                    milliseconds:
-                                                                        0),
-                                                            child:
-                                                                DetallePedidoProgramadoCheckoutWidget(),
-                                                          ),
+                                                        context.pushNamed(
+                                                          'DetallePedidoProgramadoCheckout',
+                                                          queryParams: {
+                                                            'order': serializeParam(
+                                                                'expressOrder',
+                                                                ParamType
+                                                                    .String),
+                                                            'checkoutId':
+                                                                serializeParam(
+                                                                    widget
+                                                                        .storeId,
+                                                                    ParamType
+                                                                        .String),
+                                                          }.withoutNulls,
                                                         );
                                                       },
                                                       child: Container(
@@ -1878,6 +1982,10 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                 .size
                                                                 .width *
                                                             0.95,
+                                                        constraints:
+                                                            BoxConstraints(
+                                                          maxWidth: 500,
+                                                        ),
                                                         decoration:
                                                             BoxDecoration(
                                                           color: Colors.white,
@@ -2108,6 +2216,9 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                           children: [
                                                                             Container(
                                                                               width: MediaQuery.of(context).size.width * 0.8,
+                                                                              constraints: BoxConstraints(
+                                                                                maxWidth: 400,
+                                                                              ),
                                                                               decoration: BoxDecoration(
                                                                                 color: Color(0x00EEEEEE),
                                                                               ),
@@ -2147,6 +2258,9 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                             Container(
                                                                               width: MediaQuery.of(context).size.width * 0.8,
                                                                               height: 5,
+                                                                              constraints: BoxConstraints(
+                                                                                maxWidth: 400,
+                                                                              ),
                                                                               decoration: BoxDecoration(
                                                                                 color: FlutterFlowTheme.of(context).primaryColor,
                                                                                 borderRadius: BorderRadius.circular(10),
@@ -2413,6 +2527,10 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                   .size
                                                                   .width *
                                                               0.95,
+                                                      constraints:
+                                                          BoxConstraints(
+                                                        maxWidth: 500,
+                                                      ),
                                                       decoration: BoxDecoration(
                                                         color: Colors.white,
                                                         boxShadow: [
@@ -2664,6 +2782,10 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                           Container(
                                                                             width:
                                                                                 MediaQuery.of(context).size.width * 0.8,
+                                                                            constraints:
+                                                                                BoxConstraints(
+                                                                              maxWidth: 400,
+                                                                            ),
                                                                             decoration:
                                                                                 BoxDecoration(
                                                                               color: Color(0x00EEEEEE),
@@ -2692,6 +2814,10 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                                 MediaQuery.of(context).size.width * 0.8,
                                                                             height:
                                                                                 5,
+                                                                            constraints:
+                                                                                BoxConstraints(
+                                                                              maxWidth: 400,
+                                                                            ),
                                                                             decoration:
                                                                                 BoxDecoration(
                                                                               color: FlutterFlowTheme.of(context).primaryColor,
@@ -2706,194 +2832,25 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                               ),
                                                             ],
                                                           ),
-                                                          InkWell(
-                                                            onTap: () async {
-                                                              await Navigator
-                                                                  .push(
-                                                                context,
-                                                                PageTransition(
-                                                                  type:
-                                                                      PageTransitionType
-                                                                          .fade,
-                                                                  duration: Duration(
-                                                                      milliseconds:
-                                                                          0),
-                                                                  reverseDuration:
-                                                                      Duration(
-                                                                          milliseconds:
-                                                                              0),
-                                                                  child:
-                                                                      DetallePedidoProgramadoWidget(),
-                                                                ),
-                                                              );
-                                                            },
-                                                            child: Container(
-                                                              width: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width *
-                                                                  0.9,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: Colors
-                                                                    .white,
-                                                              ),
-                                                              child: Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0,
-                                                                            0,
-                                                                            10,
-                                                                            0),
-                                                                child: Column(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .end,
-                                                                  children: [
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional
-                                                                          .fromSTEB(
-                                                                              20,
-                                                                              10,
-                                                                              10,
-                                                                              0),
-                                                                      child:
-                                                                          Row(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.max,
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.spaceBetween,
-                                                                        children: [
-                                                                          Text(
-                                                                            'Costo de Envío',
-                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                  fontFamily: 'Montserrat',
-                                                                                  color: Color(0xFFA1A1A1),
-                                                                                  fontSize: 11,
-                                                                                ),
-                                                                          ),
-                                                                          Row(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.max,
-                                                                            children: [
-                                                                              Text(
-                                                                                '\$',
-                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                      fontFamily: 'Montserrat',
-                                                                                      color: Color(0xFFA1A1A1),
-                                                                                      fontSize: 11,
-                                                                                    ),
-                                                                              ),
-                                                                              Text(
-                                                                                getJsonField(
-                                                                                  (columnGetSellerWiseCheckoutResponse?.jsonBody ?? ''),
-                                                                                  r'''$.normalOrder.shipmentPrice''',
-                                                                                ).toString(),
-                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                      fontFamily: 'Montserrat',
-                                                                                      color: Color(0xFFA1A1A1),
-                                                                                      fontSize: 11,
-                                                                                    ),
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional
-                                                                          .fromSTEB(
-                                                                              20,
-                                                                              0,
-                                                                              10,
-                                                                              10),
-                                                                      child:
-                                                                          Row(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.max,
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.spaceBetween,
-                                                                        children: [
-                                                                          Text(
-                                                                            'Costo de Productos',
-                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                  fontFamily: 'Montserrat',
-                                                                                  color: Color(0xFFA1A1A1),
-                                                                                  fontSize: 11,
-                                                                                ),
-                                                                          ),
-                                                                          Row(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.max,
-                                                                            children: [
-                                                                              Text(
-                                                                                '\$',
-                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                      fontFamily: 'Montserrat',
-                                                                                      color: Color(0xFFA1A1A1),
-                                                                                      fontSize: 11,
-                                                                                    ),
-                                                                              ),
-                                                                              Text(
-                                                                                getJsonField(
-                                                                                  (columnGetSellerWiseCheckoutResponse?.jsonBody ?? ''),
-                                                                                  r'''$.normalOrder.subtotal''',
-                                                                                ).toString(),
-                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                      fontFamily: 'Montserrat',
-                                                                                      color: Color(0xFFA1A1A1),
-                                                                                      fontSize: 11,
-                                                                                    ),
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ),
+                                                          Container(
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.9,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color:
+                                                                  Colors.white,
                                                             ),
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0,
-                                                                        0,
-                                                                        0,
-                                                                        10),
-                                                            child: Container(
-                                                              width: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width *
-                                                                  0.9,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: Colors
-                                                                    .white,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .only(
-                                                                  bottomLeft: Radius
-                                                                      .circular(
-                                                                          10),
-                                                                  bottomRight: Radius
-                                                                      .circular(
-                                                                          10),
-                                                                  topLeft: Radius
-                                                                      .circular(
+                                                            child: Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0,
+                                                                          0,
+                                                                          10,
                                                                           0),
-                                                                  topRight: Radius
-                                                                      .circular(
-                                                                          0),
-                                                                ),
-                                                              ),
                                                               child: Column(
                                                                 mainAxisSize:
                                                                     MainAxisSize
@@ -2906,7 +2863,7 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                     padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             20,
-                                                                            0,
+                                                                            10,
                                                                             10,
                                                                             0),
                                                                     child: Row(
@@ -2917,31 +2874,200 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                           MainAxisAlignment
                                                                               .spaceBetween,
                                                                       children: [
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0,
-                                                                              0,
-                                                                              0,
-                                                                              10),
-                                                                          child:
-                                                                              Text(
-                                                                            'Ver pedido',
-                                                                            style:
-                                                                                FlutterFlowTheme.of(context).bodyText1,
-                                                                          ),
+                                                                        Text(
+                                                                          'Costo de Envío',
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyText1
+                                                                              .override(
+                                                                                fontFamily: 'Montserrat',
+                                                                                color: Color(0xFFA1A1A1),
+                                                                                fontSize: 11,
+                                                                              ),
                                                                         ),
-                                                                        Icon(
-                                                                          Icons
-                                                                              .keyboard_arrow_right_sharp,
-                                                                          color:
-                                                                              Color(0xFF4B4B4B),
-                                                                          size:
-                                                                              24,
+                                                                        Row(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          children: [
+                                                                            Text(
+                                                                              '\$',
+                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                    fontFamily: 'Montserrat',
+                                                                                    color: Color(0xFFA1A1A1),
+                                                                                    fontSize: 11,
+                                                                                  ),
+                                                                            ),
+                                                                            Text(
+                                                                              getJsonField(
+                                                                                (columnGetSellerWiseCheckoutResponse?.jsonBody ?? ''),
+                                                                                r'''$.normalOrder.shipmentPrice''',
+                                                                              ).toString(),
+                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                    fontFamily: 'Montserrat',
+                                                                                    color: Color(0xFFA1A1A1),
+                                                                                    fontSize: 11,
+                                                                                  ),
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            20,
+                                                                            0,
+                                                                            10,
+                                                                            10),
+                                                                    child: Row(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      children: [
+                                                                        Text(
+                                                                          'Costo de Productos',
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyText1
+                                                                              .override(
+                                                                                fontFamily: 'Montserrat',
+                                                                                color: Color(0xFFA1A1A1),
+                                                                                fontSize: 11,
+                                                                              ),
+                                                                        ),
+                                                                        Row(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          children: [
+                                                                            Text(
+                                                                              '\$',
+                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                    fontFamily: 'Montserrat',
+                                                                                    color: Color(0xFFA1A1A1),
+                                                                                    fontSize: 11,
+                                                                                  ),
+                                                                            ),
+                                                                            Text(
+                                                                              getJsonField(
+                                                                                (columnGetSellerWiseCheckoutResponse?.jsonBody ?? ''),
+                                                                                r'''$.normalOrder.subtotal''',
+                                                                              ).toString(),
+                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                    fontFamily: 'Montserrat',
+                                                                                    color: Color(0xFFA1A1A1),
+                                                                                    fontSize: 11,
+                                                                                  ),
+                                                                            ),
+                                                                          ],
                                                                         ),
                                                                       ],
                                                                     ),
                                                                   ),
                                                                 ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0,
+                                                                        0,
+                                                                        0,
+                                                                        10),
+                                                            child: InkWell(
+                                                              onTap: () async {
+                                                                context
+                                                                    .pushNamed(
+                                                                  'DetallePedidoProgramadoCheckout',
+                                                                  queryParams: {
+                                                                    'order': serializeParam(
+                                                                        'normalOrder',
+                                                                        ParamType
+                                                                            .String),
+                                                                    'checkoutId': serializeParam(
+                                                                        widget
+                                                                            .storeId,
+                                                                        ParamType
+                                                                            .String),
+                                                                  }.withoutNulls,
+                                                                );
+                                                              },
+                                                              child: Container(
+                                                                width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    0.9,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: Colors
+                                                                      .white,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .only(
+                                                                    bottomLeft:
+                                                                        Radius.circular(
+                                                                            10),
+                                                                    bottomRight:
+                                                                        Radius.circular(
+                                                                            10),
+                                                                    topLeft: Radius
+                                                                        .circular(
+                                                                            0),
+                                                                    topRight: Radius
+                                                                        .circular(
+                                                                            0),
+                                                                  ),
+                                                                ),
+                                                                child: Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .end,
+                                                                  children: [
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              20,
+                                                                              0,
+                                                                              10,
+                                                                              0),
+                                                                      child:
+                                                                          Row(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.spaceBetween,
+                                                                        children: [
+                                                                          Padding(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                                0,
+                                                                                0,
+                                                                                0,
+                                                                                10),
+                                                                            child:
+                                                                                Text(
+                                                                              'Ver pedido',
+                                                                              style: FlutterFlowTheme.of(context).bodyText1,
+                                                                            ),
+                                                                          ),
+                                                                          Icon(
+                                                                            Icons.keyboard_arrow_right_sharp,
+                                                                            color:
+                                                                                Color(0xFF4B4B4B),
+                                                                            size:
+                                                                                24,
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
                                                               ),
                                                             ),
                                                           ),
@@ -2973,6 +3099,10 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                   .size
                                                                   .width *
                                                               0.95,
+                                                      constraints:
+                                                          BoxConstraints(
+                                                        maxWidth: 500,
+                                                      ),
                                                       decoration: BoxDecoration(
                                                         color: Colors.white,
                                                         boxShadow: [
@@ -3161,6 +3291,10 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                           Container(
                                                                             width:
                                                                                 MediaQuery.of(context).size.width * 0.8,
+                                                                            constraints:
+                                                                                BoxConstraints(
+                                                                              maxWidth: 400,
+                                                                            ),
                                                                             decoration:
                                                                                 BoxDecoration(
                                                                               color: Color(0x00EEEEEE),
@@ -3192,6 +3326,10 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                                 MediaQuery.of(context).size.width * 0.8,
                                                                             height:
                                                                                 5,
+                                                                            constraints:
+                                                                                BoxConstraints(
+                                                                              maxWidth: 400,
+                                                                            ),
                                                                             decoration:
                                                                                 BoxDecoration(
                                                                               color: FlutterFlowTheme.of(context).primaryColor,
@@ -3208,24 +3346,8 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                           ),
                                                           InkWell(
                                                             onTap: () async {
-                                                              await Navigator
-                                                                  .push(
-                                                                context,
-                                                                PageTransition(
-                                                                  type:
-                                                                      PageTransitionType
-                                                                          .fade,
-                                                                  duration: Duration(
-                                                                      milliseconds:
-                                                                          0),
-                                                                  reverseDuration:
-                                                                      Duration(
-                                                                          milliseconds:
-                                                                              0),
-                                                                  child:
-                                                                      DetallePedidoProgramadoWidget(),
-                                                                ),
-                                                              );
+                                                              context.pushNamed(
+                                                                  'DetallePedidoProgramado');
                                                             },
                                                             child: Container(
                                                               width: MediaQuery.of(
@@ -3314,81 +3436,97 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                         0,
                                                                         0,
                                                                         10),
-                                                            child: Container(
-                                                              width: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width *
-                                                                  0.9,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: Colors
-                                                                    .white,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .only(
-                                                                  bottomLeft: Radius
-                                                                      .circular(
-                                                                          10),
-                                                                  bottomRight: Radius
-                                                                      .circular(
-                                                                          10),
-                                                                  topLeft: Radius
-                                                                      .circular(
-                                                                          0),
-                                                                  topRight: Radius
-                                                                      .circular(
-                                                                          0),
-                                                                ),
-                                                              ),
-                                                              child: Column(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .end,
-                                                                children: [
-                                                                  Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            20,
-                                                                            0,
-                                                                            10,
+                                                            child: InkWell(
+                                                              onTap: () async {
+                                                                context
+                                                                    .pushNamed(
+                                                                  'DetallePedidoProgramadoCheckout',
+                                                                  queryParams: {
+                                                                    'order': serializeParam(
+                                                                        'normal',
+                                                                        ParamType
+                                                                            .String),
+                                                                    'checkoutId': serializeParam(
+                                                                        widget
+                                                                            .storeId,
+                                                                        ParamType
+                                                                            .String),
+                                                                  }.withoutNulls,
+                                                                );
+                                                              },
+                                                              child: Container(
+                                                                width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    0.9,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: Colors
+                                                                      .white,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .only(
+                                                                    bottomLeft:
+                                                                        Radius.circular(
+                                                                            10),
+                                                                    bottomRight:
+                                                                        Radius.circular(
+                                                                            10),
+                                                                    topLeft: Radius
+                                                                        .circular(
                                                                             0),
-                                                                    child: Row(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .spaceBetween,
-                                                                      children: [
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0,
-                                                                              0,
-                                                                              0,
-                                                                              10),
-                                                                          child:
-                                                                              Text(
-                                                                            'Ver pedido',
-                                                                            style:
-                                                                                FlutterFlowTheme.of(context).bodyText1,
-                                                                          ),
-                                                                        ),
-                                                                        Icon(
-                                                                          Icons
-                                                                              .keyboard_arrow_right_sharp,
-                                                                          color:
-                                                                              Color(0xFF4B4B4B),
-                                                                          size:
-                                                                              24,
-                                                                        ),
-                                                                      ],
-                                                                    ),
+                                                                    topRight: Radius
+                                                                        .circular(
+                                                                            0),
                                                                   ),
-                                                                ],
+                                                                ),
+                                                                child: Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .end,
+                                                                  children: [
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              20,
+                                                                              0,
+                                                                              10,
+                                                                              0),
+                                                                      child:
+                                                                          Row(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.spaceBetween,
+                                                                        children: [
+                                                                          Padding(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                                0,
+                                                                                0,
+                                                                                0,
+                                                                                10),
+                                                                            child:
+                                                                                Text(
+                                                                              'Ver pedido',
+                                                                              style: FlutterFlowTheme.of(context).bodyText1,
+                                                                            ),
+                                                                          ),
+                                                                          Icon(
+                                                                            Icons.keyboard_arrow_right_sharp,
+                                                                            color:
+                                                                                Color(0xFF4B4B4B),
+                                                                            size:
+                                                                                24,
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
                                                               ),
                                                             ),
                                                           ),
@@ -3422,6 +3560,10 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                   .size
                                                                   .width *
                                                               0.95,
+                                                      constraints:
+                                                          BoxConstraints(
+                                                        maxWidth: 500,
+                                                      ),
                                                       decoration: BoxDecoration(
                                                         color: Colors.white,
                                                         boxShadow: [
@@ -3663,6 +3805,10 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                           Container(
                                                                             width:
                                                                                 MediaQuery.of(context).size.width * 0.8,
+                                                                            constraints:
+                                                                                BoxConstraints(
+                                                                              maxWidth: 400,
+                                                                            ),
                                                                             decoration:
                                                                                 BoxDecoration(
                                                                               color: Color(0x00EEEEEE),
@@ -3691,6 +3837,10 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                                 MediaQuery.of(context).size.width * 0.8,
                                                                             height:
                                                                                 5,
+                                                                            constraints:
+                                                                                BoxConstraints(
+                                                                              maxWidth: 400,
+                                                                            ),
                                                                             decoration:
                                                                                 BoxDecoration(
                                                                               color: FlutterFlowTheme.of(context).primaryColor,
@@ -3705,144 +3855,25 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                               ),
                                                             ],
                                                           ),
-                                                          InkWell(
-                                                            onTap: () async {
-                                                              await Navigator
-                                                                  .push(
-                                                                context,
-                                                                PageTransition(
-                                                                  type:
-                                                                      PageTransitionType
-                                                                          .fade,
-                                                                  duration: Duration(
-                                                                      milliseconds:
-                                                                          0),
-                                                                  reverseDuration:
-                                                                      Duration(
-                                                                          milliseconds:
-                                                                              0),
-                                                                  child:
-                                                                      DetallePedidoProgramadoWidget(),
-                                                                ),
-                                                              );
-                                                            },
-                                                            child: Container(
-                                                              width: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width *
-                                                                  0.9,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: Colors
-                                                                    .white,
-                                                              ),
-                                                              child: Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0,
-                                                                            0,
-                                                                            10,
-                                                                            0),
-                                                                child: Column(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .end,
-                                                                  children: [
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional
-                                                                          .fromSTEB(
-                                                                              20,
-                                                                              0,
-                                                                              10,
-                                                                              10),
-                                                                      child:
-                                                                          Row(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.max,
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.spaceBetween,
-                                                                        children: [
-                                                                          Text(
-                                                                            'Costo de Productos',
-                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                  fontFamily: 'Montserrat',
-                                                                                  color: Color(0xFFA1A1A1),
-                                                                                  fontSize: 11,
-                                                                                ),
-                                                                          ),
-                                                                          Row(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.max,
-                                                                            children: [
-                                                                              Text(
-                                                                                '\$',
-                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                      fontFamily: 'Montserrat',
-                                                                                      color: Color(0xFFA1A1A1),
-                                                                                      fontSize: 11,
-                                                                                    ),
-                                                                              ),
-                                                                              Text(
-                                                                                getJsonField(
-                                                                                  (columnGetSellerWiseCheckoutResponse?.jsonBody ?? ''),
-                                                                                  r'''$.pickupInStoreOrder.subtotal''',
-                                                                                ).toString(),
-                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                      fontFamily: 'Montserrat',
-                                                                                      color: Color(0xFFA1A1A1),
-                                                                                      fontSize: 11,
-                                                                                    ),
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ),
+                                                          Container(
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.9,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color:
+                                                                  Colors.white,
                                                             ),
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0,
-                                                                        0,
-                                                                        0,
-                                                                        10),
-                                                            child: Container(
-                                                              width: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width *
-                                                                  0.9,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: Colors
-                                                                    .white,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .only(
-                                                                  bottomLeft: Radius
-                                                                      .circular(
-                                                                          10),
-                                                                  bottomRight: Radius
-                                                                      .circular(
-                                                                          10),
-                                                                  topLeft: Radius
-                                                                      .circular(
+                                                            child: Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0,
+                                                                          0,
+                                                                          10,
                                                                           0),
-                                                                  topRight: Radius
-                                                                      .circular(
-                                                                          0),
-                                                                ),
-                                                              ),
                                                               child: Column(
                                                                 mainAxisSize:
                                                                     MainAxisSize
@@ -3857,7 +3888,7 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                             20,
                                                                             0,
                                                                             10,
-                                                                            0),
+                                                                            10),
                                                                     child: Row(
                                                                       mainAxisSize:
                                                                           MainAxisSize
@@ -3866,31 +3897,147 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                           MainAxisAlignment
                                                                               .spaceBetween,
                                                                       children: [
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0,
-                                                                              0,
-                                                                              0,
-                                                                              10),
-                                                                          child:
-                                                                              Text(
-                                                                            'Ver pedido',
-                                                                            style:
-                                                                                FlutterFlowTheme.of(context).bodyText1,
-                                                                          ),
+                                                                        Text(
+                                                                          'Costo de Productos',
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyText1
+                                                                              .override(
+                                                                                fontFamily: 'Montserrat',
+                                                                                color: Color(0xFFA1A1A1),
+                                                                                fontSize: 11,
+                                                                              ),
                                                                         ),
-                                                                        Icon(
-                                                                          Icons
-                                                                              .keyboard_arrow_right_sharp,
-                                                                          color:
-                                                                              Color(0xFF4B4B4B),
-                                                                          size:
-                                                                              24,
+                                                                        Row(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          children: [
+                                                                            Text(
+                                                                              '\$',
+                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                    fontFamily: 'Montserrat',
+                                                                                    color: Color(0xFFA1A1A1),
+                                                                                    fontSize: 11,
+                                                                                  ),
+                                                                            ),
+                                                                            Text(
+                                                                              getJsonField(
+                                                                                (columnGetSellerWiseCheckoutResponse?.jsonBody ?? ''),
+                                                                                r'''$.pickupInStoreOrder.subtotal''',
+                                                                              ).toString(),
+                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                    fontFamily: 'Montserrat',
+                                                                                    color: Color(0xFFA1A1A1),
+                                                                                    fontSize: 11,
+                                                                                  ),
+                                                                            ),
+                                                                          ],
                                                                         ),
                                                                       ],
                                                                     ),
                                                                   ),
                                                                 ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0,
+                                                                        0,
+                                                                        0,
+                                                                        10),
+                                                            child: InkWell(
+                                                              onTap: () async {
+                                                                context
+                                                                    .pushNamed(
+                                                                  'DetallePedidoProgramadoCheckout',
+                                                                  queryParams: {
+                                                                    'order': serializeParam(
+                                                                        'pickupInStoreOrder',
+                                                                        ParamType
+                                                                            .String),
+                                                                    'checkoutId': serializeParam(
+                                                                        widget
+                                                                            .storeId,
+                                                                        ParamType
+                                                                            .String),
+                                                                  }.withoutNulls,
+                                                                );
+                                                              },
+                                                              child: Container(
+                                                                width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    0.9,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: Colors
+                                                                      .white,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .only(
+                                                                    bottomLeft:
+                                                                        Radius.circular(
+                                                                            10),
+                                                                    bottomRight:
+                                                                        Radius.circular(
+                                                                            10),
+                                                                    topLeft: Radius
+                                                                        .circular(
+                                                                            0),
+                                                                    topRight: Radius
+                                                                        .circular(
+                                                                            0),
+                                                                  ),
+                                                                ),
+                                                                child: Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .end,
+                                                                  children: [
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              20,
+                                                                              0,
+                                                                              10,
+                                                                              0),
+                                                                      child:
+                                                                          Row(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.spaceBetween,
+                                                                        children: [
+                                                                          Padding(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                                0,
+                                                                                0,
+                                                                                0,
+                                                                                10),
+                                                                            child:
+                                                                                Text(
+                                                                              'Ver pedido',
+                                                                              style: FlutterFlowTheme.of(context).bodyText1,
+                                                                            ),
+                                                                          ),
+                                                                          Icon(
+                                                                            Icons.keyboard_arrow_right_sharp,
+                                                                            color:
+                                                                                Color(0xFF4B4B4B),
+                                                                            size:
+                                                                                24,
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
                                                               ),
                                                             ),
                                                           ),

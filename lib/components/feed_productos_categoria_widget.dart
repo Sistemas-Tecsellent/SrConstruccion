@@ -1,7 +1,6 @@
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../product_page/product_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -184,16 +183,13 @@ class _FeedProductosCategoriaWidgetState
                           alignment: AlignmentDirectional(0, -0.6),
                           child: InkWell(
                             onTap: () async {
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: ProductPageWidget(
-                                    productId: gridViewProductsRecord.id,
-                                  ),
-                                ),
+                              context.pushNamed(
+                                'ProductPage',
+                                queryParams: {
+                                  'productId': serializeParam(
+                                      gridViewProductsRecord.id,
+                                      ParamType.String),
+                                }.withoutNulls,
                               );
                             },
                             child: ClipRRect(

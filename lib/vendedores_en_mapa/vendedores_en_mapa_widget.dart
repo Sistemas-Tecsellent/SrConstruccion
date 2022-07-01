@@ -59,7 +59,7 @@ class _VendedoresEnMapaWidgetState extends State<VendedoresEnMapaWidget> {
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            context.pop();
           },
         ),
         title: Text(

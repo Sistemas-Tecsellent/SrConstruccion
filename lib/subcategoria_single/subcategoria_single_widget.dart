@@ -5,12 +5,6 @@ import '../components/toggle_like_product_white_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../home_alt/home_alt_widget.dart';
-import '../notificaciones/notificaciones_widget.dart';
-import '../perfil/perfil_widget.dart';
-import '../product_listing_sr_construccion/product_listing_sr_construccion_widget.dart';
-import '../product_page/product_page_widget.dart';
-import '../search/search_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -79,7 +73,7 @@ class _SubcategoriaSingleWidgetState extends State<SubcategoriaSingleWidget> {
                 size: 30,
               ),
               onPressed: () async {
-                Navigator.pop(context);
+                context.pop();
               },
             ),
             title: Text(
@@ -102,15 +96,7 @@ class _SubcategoriaSingleWidgetState extends State<SubcategoriaSingleWidget> {
                   size: 15,
                 ),
                 onPressed: () async {
-                  await Navigator.push(
-                    context,
-                    PageTransition(
-                      type: PageTransitionType.fade,
-                      duration: Duration(milliseconds: 0),
-                      reverseDuration: Duration(milliseconds: 0),
-                      child: SearchWidget(),
-                    ),
-                  );
+                  context.pushNamed('search');
                 },
               ),
             ],
@@ -162,14 +148,15 @@ class _SubcategoriaSingleWidgetState extends State<SubcategoriaSingleWidget> {
                               size: 30,
                             ),
                             onPressed: () async {
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: PerfilWidget(),
-                                ),
+                              context.pushNamed(
+                                'Perfil',
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.fade,
+                                    duration: Duration(milliseconds: 0),
+                                  ),
+                                },
                               );
                             },
                           ),
@@ -190,14 +177,15 @@ class _SubcategoriaSingleWidgetState extends State<SubcategoriaSingleWidget> {
                               size: 30,
                             ),
                             onPressed: () async {
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: HomeAltWidget(),
-                                ),
+                              context.pushNamed(
+                                'HomeAlt',
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.fade,
+                                    duration: Duration(milliseconds: 0),
+                                  ),
+                                },
                               );
                             },
                           ),
@@ -215,14 +203,15 @@ class _SubcategoriaSingleWidgetState extends State<SubcategoriaSingleWidget> {
                               size: 30,
                             ),
                             onPressed: () async {
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: NotificacionesWidget(),
-                                ),
+                              context.pushNamed(
+                                'Notificaciones',
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.fade,
+                                    duration: Duration(milliseconds: 0),
+                                  ),
+                                },
                               );
                             },
                           ),
@@ -349,15 +338,7 @@ class _SubcategoriaSingleWidgetState extends State<SubcategoriaSingleWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
                           child: InkWell(
                             onTap: () async {
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: ProductListingSrConstruccionWidget(),
-                                ),
-                              );
+                              context.pushNamed('ProductListingSrConstruccion');
                             },
                             child: Text(
                               'Ver más',
@@ -455,7 +436,7 @@ class _SubcategoriaSingleWidgetState extends State<SubcategoriaSingleWidget> {
                                                           context)
                                                       .primaryColor,
                                                   borderRadius:
-                                                      BorderRadius.circular(20),
+                                                      BorderRadius.circular(10),
                                                 ),
                                                 alignment: AlignmentDirectional(
                                                     -1, -1),
@@ -653,20 +634,13 @@ class _SubcategoriaSingleWidgetState extends State<SubcategoriaSingleWidget> {
                                                 AlignmentDirectional(-1, 0),
                                             child: InkWell(
                                               onTap: () async {
-                                                await Navigator.push(
-                                                  context,
-                                                  PageTransition(
-                                                    type:
-                                                        PageTransitionType.fade,
-                                                    duration: Duration(
-                                                        milliseconds: 0),
-                                                    reverseDuration: Duration(
-                                                        milliseconds: 0),
-                                                    child: ProductPageWidget(
-                                                      productId:
-                                                          rowProductsRecord.id,
-                                                    ),
-                                                  ),
+                                                context.pushNamed(
+                                                  'ProductPage',
+                                                  queryParams: {
+                                                    'productId': serializeParam(
+                                                        rowProductsRecord.id,
+                                                        ParamType.String),
+                                                  }.withoutNulls,
                                                 );
                                               },
                                               child: Image.network(
@@ -746,15 +720,7 @@ class _SubcategoriaSingleWidgetState extends State<SubcategoriaSingleWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
                           child: InkWell(
                             onTap: () async {
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: ProductListingSrConstruccionWidget(),
-                                ),
-                              );
+                              context.pushNamed('ProductListingSrConstruccion');
                             },
                             child: Text(
                               'Ver más',
@@ -934,26 +900,16 @@ class _SubcategoriaSingleWidgetState extends State<SubcategoriaSingleWidget> {
                                                     ),
                                                     InkWell(
                                                       onTap: () async {
-                                                        await Navigator.push(
-                                                          context,
-                                                          PageTransition(
-                                                            type:
-                                                                PageTransitionType
-                                                                    .fade,
-                                                            duration: Duration(
-                                                                milliseconds:
-                                                                    0),
-                                                            reverseDuration:
-                                                                Duration(
-                                                                    milliseconds:
-                                                                        0),
-                                                            child:
-                                                                ProductPageWidget(
-                                                              productId:
-                                                                  rowProductsRecord
-                                                                      .id,
-                                                            ),
-                                                          ),
+                                                        context.pushNamed(
+                                                          'ProductPage',
+                                                          queryParams: {
+                                                            'productId':
+                                                                serializeParam(
+                                                                    rowProductsRecord
+                                                                        .id,
+                                                                    ParamType
+                                                                        .String),
+                                                          }.withoutNulls,
                                                         );
                                                       },
                                                       child: ClipRRect(
@@ -1202,15 +1158,7 @@ class _SubcategoriaSingleWidgetState extends State<SubcategoriaSingleWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
                           child: InkWell(
                             onTap: () async {
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: ProductListingSrConstruccionWidget(),
-                                ),
-                              );
+                              context.pushNamed('ProductListingSrConstruccion');
                             },
                             child: Text(
                               'Ver más',
@@ -1391,26 +1339,16 @@ class _SubcategoriaSingleWidgetState extends State<SubcategoriaSingleWidget> {
                                                     ),
                                                     InkWell(
                                                       onTap: () async {
-                                                        await Navigator.push(
-                                                          context,
-                                                          PageTransition(
-                                                            type:
-                                                                PageTransitionType
-                                                                    .fade,
-                                                            duration: Duration(
-                                                                milliseconds:
-                                                                    0),
-                                                            reverseDuration:
-                                                                Duration(
-                                                                    milliseconds:
-                                                                        0),
-                                                            child:
-                                                                ProductPageWidget(
-                                                              productId:
-                                                                  rowProductsRecord
-                                                                      .id,
-                                                            ),
-                                                          ),
+                                                        context.pushNamed(
+                                                          'ProductPage',
+                                                          queryParams: {
+                                                            'productId':
+                                                                serializeParam(
+                                                                    rowProductsRecord
+                                                                        .id,
+                                                                    ParamType
+                                                                        .String),
+                                                          }.withoutNulls,
                                                         );
                                                       },
                                                       child: ClipRRect(
@@ -1659,15 +1597,7 @@ class _SubcategoriaSingleWidgetState extends State<SubcategoriaSingleWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
                           child: InkWell(
                             onTap: () async {
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                  reverseDuration: Duration(milliseconds: 0),
-                                  child: ProductListingSrConstruccionWidget(),
-                                ),
-                              );
+                              context.pushNamed('ProductListingSrConstruccion');
                             },
                             child: Text(
                               'Ver más',
@@ -1847,26 +1777,16 @@ class _SubcategoriaSingleWidgetState extends State<SubcategoriaSingleWidget> {
                                                     ),
                                                     InkWell(
                                                       onTap: () async {
-                                                        await Navigator.push(
-                                                          context,
-                                                          PageTransition(
-                                                            type:
-                                                                PageTransitionType
-                                                                    .fade,
-                                                            duration: Duration(
-                                                                milliseconds:
-                                                                    0),
-                                                            reverseDuration:
-                                                                Duration(
-                                                                    milliseconds:
-                                                                        0),
-                                                            child:
-                                                                ProductPageWidget(
-                                                              productId:
-                                                                  rowProductsRecord
-                                                                      .id,
-                                                            ),
-                                                          ),
+                                                        context.pushNamed(
+                                                          'ProductPage',
+                                                          queryParams: {
+                                                            'productId':
+                                                                serializeParam(
+                                                                    rowProductsRecord
+                                                                        .id,
+                                                                    ParamType
+                                                                        .String),
+                                                          }.withoutNulls,
                                                         );
                                                       },
                                                       child: ClipRRect(

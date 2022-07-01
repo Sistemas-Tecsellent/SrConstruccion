@@ -39,7 +39,7 @@ class _NotificationesAjustesWidgetState
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            context.pop();
           },
         ),
         title: Text(

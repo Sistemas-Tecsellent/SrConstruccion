@@ -1,7 +1,5 @@
-import '../categoria_single/categoria_single_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../servicios_single/servicios_single_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -31,15 +29,7 @@ class _SubcategoriasWidgetState extends State<SubcategoriasWidget> {
               children: [
                 InkWell(
                   onTap: () async {
-                    await Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.fade,
-                        duration: Duration(milliseconds: 0),
-                        reverseDuration: Duration(milliseconds: 0),
-                        child: ServiciosSingleWidget(),
-                      ),
-                    );
+                    context.pushNamed('ServiciosSingle');
                   },
                   child: Container(
                     width: 85,
@@ -83,16 +73,12 @@ class _SubcategoriasWidgetState extends State<SubcategoriasWidget> {
               children: [
                 InkWell(
                   onTap: () async {
-                    await Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.fade,
-                        duration: Duration(milliseconds: 0),
-                        reverseDuration: Duration(milliseconds: 0),
-                        child: CategoriaSingleWidget(
-                          categoryId: 'pisosYBanios',
-                        ),
-                      ),
+                    context.pushNamed(
+                      'CategoriaSingle',
+                      queryParams: {
+                        'categoryId':
+                            serializeParam('pisosYBanios', ParamType.String),
+                      }.withoutNulls,
                     );
                   },
                   child: Container(
@@ -137,16 +123,12 @@ class _SubcategoriasWidgetState extends State<SubcategoriasWidget> {
               children: [
                 InkWell(
                   onTap: () async {
-                    await Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.fade,
-                        duration: Duration(milliseconds: 0),
-                        reverseDuration: Duration(milliseconds: 0),
-                        child: CategoriaSingleWidget(
-                          categoryId: 'carpinteria',
-                        ),
-                      ),
+                    context.pushNamed(
+                      'CategoriaSingle',
+                      queryParams: {
+                        'categoryId':
+                            serializeParam('carpinteria', ParamType.String),
+                      }.withoutNulls,
                     );
                   },
                   child: Container(
@@ -191,16 +173,12 @@ class _SubcategoriasWidgetState extends State<SubcategoriasWidget> {
               children: [
                 InkWell(
                   onTap: () async {
-                    await Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.fade,
-                        duration: Duration(milliseconds: 0),
-                        reverseDuration: Duration(milliseconds: 0),
-                        child: CategoriaSingleWidget(
-                          categoryId: 'electrico',
-                        ),
-                      ),
+                    context.pushNamed(
+                      'CategoriaSingle',
+                      queryParams: {
+                        'categoryId':
+                            serializeParam('electrico', ParamType.String),
+                      }.withoutNulls,
                     );
                   },
                   child: Container(
@@ -245,16 +223,12 @@ class _SubcategoriasWidgetState extends State<SubcategoriasWidget> {
               children: [
                 InkWell(
                   onTap: () async {
-                    await Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.fade,
-                        duration: Duration(milliseconds: 0),
-                        reverseDuration: Duration(milliseconds: 0),
-                        child: CategoriaSingleWidget(
-                          categoryId: 'ferreteria',
-                        ),
-                      ),
+                    context.pushNamed(
+                      'CategoriaSingle',
+                      queryParams: {
+                        'categoryId':
+                            serializeParam('ferreteria', ParamType.String),
+                      }.withoutNulls,
                     );
                   },
                   child: Container(
@@ -299,16 +273,12 @@ class _SubcategoriasWidgetState extends State<SubcategoriasWidget> {
               children: [
                 InkWell(
                   onTap: () async {
-                    await Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.fade,
-                        duration: Duration(milliseconds: 0),
-                        reverseDuration: Duration(milliseconds: 0),
-                        child: CategoriaSingleWidget(
-                          categoryId: 'maquinaria',
-                        ),
-                      ),
+                    context.pushNamed(
+                      'CategoriaSingle',
+                      queryParams: {
+                        'categoryId':
+                            serializeParam('maquinaria', ParamType.String),
+                      }.withoutNulls,
                     );
                   },
                   child: Container(
@@ -353,16 +323,12 @@ class _SubcategoriasWidgetState extends State<SubcategoriasWidget> {
               children: [
                 InkWell(
                   onTap: () async {
-                    await Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.fade,
-                        duration: Duration(milliseconds: 0),
-                        reverseDuration: Duration(milliseconds: 0),
-                        child: CategoriaSingleWidget(
-                          categoryId: 'materialesDeConstruccion',
-                        ),
-                      ),
+                    context.pushNamed(
+                      'CategoriaSingle',
+                      queryParams: {
+                        'categoryId': serializeParam(
+                            'materialesDeConstruccion', ParamType.String),
+                      }.withoutNulls,
                     );
                   },
                   child: Container(
@@ -407,16 +373,12 @@ class _SubcategoriasWidgetState extends State<SubcategoriasWidget> {
               children: [
                 InkWell(
                   onTap: () async {
-                    await Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.fade,
-                        duration: Duration(milliseconds: 0),
-                        reverseDuration: Duration(milliseconds: 0),
-                        child: CategoriaSingleWidget(
-                          categoryId: 'pinturas',
-                        ),
-                      ),
+                    context.pushNamed(
+                      'CategoriaSingle',
+                      queryParams: {
+                        'categoryId':
+                            serializeParam('pinturas', ParamType.String),
+                      }.withoutNulls,
                     );
                   },
                   child: Container(
@@ -461,16 +423,12 @@ class _SubcategoriasWidgetState extends State<SubcategoriasWidget> {
               children: [
                 InkWell(
                   onTap: () async {
-                    await Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.fade,
-                        duration: Duration(milliseconds: 0),
-                        reverseDuration: Duration(milliseconds: 0),
-                        child: CategoriaSingleWidget(
-                          categoryId: 'aceros',
-                        ),
-                      ),
+                    context.pushNamed(
+                      'CategoriaSingle',
+                      queryParams: {
+                        'categoryId':
+                            serializeParam('aceros', ParamType.String),
+                      }.withoutNulls,
                     );
                   },
                   child: Container(

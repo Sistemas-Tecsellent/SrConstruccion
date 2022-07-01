@@ -1,11 +1,8 @@
 import '../components/productos_pedido_widget.dart';
 import '../components/products_final_widget.dart';
-import '../devolucion/devolucion_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../reviews_pos_entrega_s_r/reviews_pos_entrega_s_r_widget.dart';
-import '../solicitud_devolucion_enviada/solicitud_devolucion_enviada_widget.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -40,7 +37,7 @@ class _DetallePedidoFinalWidgetState extends State<DetallePedidoFinalWidget> {
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            context.pop();
           },
         ),
         title: Text(
@@ -852,14 +849,15 @@ class _DetallePedidoFinalWidgetState extends State<DetallePedidoFinalWidget> {
                     children: [
                       InkWell(
                         onTap: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                              reverseDuration: Duration(milliseconds: 0),
-                              child: ReviewsPosEntregaSRWidget(),
-                            ),
+                          context.pushNamed(
+                            'ReviewsPosEntregaSR',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.fade,
+                                duration: Duration(milliseconds: 0),
+                              ),
+                            },
                           );
                         },
                         child: Text(
@@ -882,15 +880,7 @@ class _DetallePedidoFinalWidgetState extends State<DetallePedidoFinalWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
                   child: InkWell(
                     onTap: () async {
-                      await Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.fade,
-                          duration: Duration(milliseconds: 0),
-                          reverseDuration: Duration(milliseconds: 0),
-                          child: SolicitudDevolucionEnviadaWidget(),
-                        ),
-                      );
+                      context.pushNamed('SolicitudDevolucionEnviada');
                     },
                     child: ListTile(
                       title: Text(
@@ -915,15 +905,7 @@ class _DetallePedidoFinalWidgetState extends State<DetallePedidoFinalWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(20, 10, 20, 20),
                   child: InkWell(
                     onTap: () async {
-                      await Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.fade,
-                          duration: Duration(milliseconds: 0),
-                          reverseDuration: Duration(milliseconds: 0),
-                          child: DevolucionWidget(),
-                        ),
-                      );
+                      context.pushNamed('Devolucion');
                     },
                     child: ListTile(
                       title: Text(

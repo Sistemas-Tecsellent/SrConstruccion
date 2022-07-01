@@ -1,4 +1,3 @@
-import '../checkout/checkout_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -156,15 +155,7 @@ class _PagoFailedWidgetState extends State<PagoFailedWidget> {
                   children: [
                     FFButtonWidget(
                       onPressed: () async {
-                        await Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.fade,
-                            duration: Duration(milliseconds: 0),
-                            reverseDuration: Duration(milliseconds: 0),
-                            child: CheckoutWidget(),
-                          ),
-                        );
+                        context.pushNamed('Checkout');
                       },
                       text: 'Intentar de nuevo',
                       icon: Icon(

@@ -1,5 +1,4 @@
 import '../backend/backend.dart';
-import '../categoria_single/categoria_single_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -35,7 +34,7 @@ class _CategoriasWidgetState extends State<CategoriasWidget> {
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            context.pop();
           },
         ),
         title: Text(
@@ -88,6 +87,9 @@ class _CategoriasWidgetState extends State<CategoriasWidget> {
                           Container(
                             width: MediaQuery.of(context).size.width * 0.9,
                             height: 90,
+                            constraints: BoxConstraints(
+                              maxWidth: 500,
+                            ),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               boxShadow: [
@@ -118,7 +120,7 @@ class _CategoriasWidgetState extends State<CategoriasWidget> {
                                       child: Image.network(
                                         valueOrDefault<String>(
                                           columnCategoriesRecord.image,
-                                          'https://images.pexels.com/photos/1029243/pexels-photo-1029243.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                          'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
                                         ),
                                         width: 90,
                                         height:
@@ -161,17 +163,13 @@ class _CategoriasWidgetState extends State<CategoriasWidget> {
                                     size: 30,
                                   ),
                                   onPressed: () async {
-                                    await Navigator.push(
-                                      context,
-                                      PageTransition(
-                                        type: PageTransitionType.fade,
-                                        duration: Duration(milliseconds: 0),
-                                        reverseDuration:
-                                            Duration(milliseconds: 0),
-                                        child: CategoriaSingleWidget(
-                                          categoryId: columnCategoriesRecord.id,
-                                        ),
-                                      ),
+                                    context.pushNamed(
+                                      'CategoriaSingle',
+                                      queryParams: {
+                                        'categoryId': serializeParam(
+                                            columnCategoriesRecord.id,
+                                            ParamType.String),
+                                      }.withoutNulls,
                                     );
                                   },
                                 ),
