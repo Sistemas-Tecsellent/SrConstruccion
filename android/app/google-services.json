@@ -187,51 +187,7 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:476470908692:android:7e42847ae91b761a1ed401",
-        "android_client_info": {
-          "package_name": "com.tecsellent.srconstruccionWeb"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "476470908692-rfnrhqvjj6v041uduko9n4r4ja6dfmjr.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.tecsellent.srconstruccionWeb",
-            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
-          }
-        },
-        {
-          "client_id": "476470908692-m0r8diaces9dsmsc6tvguupj5tere2pc.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAVJA7uQr42hxYrLMWwAsm4boIhTcV5GtU"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "476470908692-m0r8diaces9dsmsc6tvguupj5tere2pc.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "476470908692-8uea11u7qp4vb2gm2otilvbm6jfimkgt.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.tecsellent.srconstruccionproveedorWeb"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:476470908692:android:85f11b267479307a1ed401",
+        "mobilesdk_app_id": "1:476470908692:android:8ee2badde80d02651ed401",
         "android_client_info": {
           "package_name": "com.tecsellent.srconstruccionproveedor"
         }
@@ -254,55 +210,19 @@
           }
         },
         {
+          "client_id": "476470908692-c2uk9974mu7tdi2am3kao87odom5n8t7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tecsellent.srconstruccionproveedor",
+            "certificate_hash": "61b6612f5adddc03aa707465e3195f8af8d7a0c9"
+          }
+        },
+        {
           "client_id": "476470908692-h3s8tt8vdbp5640otojhutg6471cnj06.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.tecsellent.srconstruccionproveedor",
             "certificate_hash": "c834ff4a474bcdbf9c62bdcea7055c533b3f2090"
-          }
-        },
-        {
-          "client_id": "476470908692-m0r8diaces9dsmsc6tvguupj5tere2pc.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAVJA7uQr42hxYrLMWwAsm4boIhTcV5GtU"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "476470908692-m0r8diaces9dsmsc6tvguupj5tere2pc.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "476470908692-8uea11u7qp4vb2gm2otilvbm6jfimkgt.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.tecsellent.srconstruccionproveedorWeb"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:476470908692:android:3db35f1fd8a8bcc01ed401",
-        "android_client_info": {
-          "package_name": "com.tecsellent.srconstruccionproveedorWeb"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "476470908692-dofoae2a6ur5acsn9q8aim3ljdrt5fob.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.tecsellent.srconstruccionproveedorWeb",
-            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
           }
         },
         {
@@ -347,6 +267,74 @@
           "android_info": {
             "package_name": "com.tecsellent.srconstruccionsite",
             "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "476470908692-m0r8diaces9dsmsc6tvguupj5tere2pc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVJA7uQr42hxYrLMWwAsm4boIhTcV5GtU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "476470908692-m0r8diaces9dsmsc6tvguupj5tere2pc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "476470908692-8uea11u7qp4vb2gm2otilvbm6jfimkgt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.tecsellent.srconstruccionproveedorWeb"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:476470908692:android:13a25a0f8cba42141ed401",
+        "android_client_info": {
+          "package_name": "com.tecsellent.srconstruccionvendedor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "476470908692-4jh8fitu8kcpul9t8orj4hlrus7fs7vp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tecsellent.srconstruccionvendedor",
+            "certificate_hash": "c834ff4a474bcdbf9c62bdcea7055c533b3f2090"
+          }
+        },
+        {
+          "client_id": "476470908692-6b93cdgnce0coeiqndv0i0221pq3297a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tecsellent.srconstruccionvendedor",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "476470908692-c77dqgvtsfnn25t3vk1oco8u27u2cr3l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tecsellent.srconstruccionvendedor",
+            "certificate_hash": "61b6612f5adddc03aa707465e3195f8af8d7a0c9"
+          }
+        },
+        {
+          "client_id": "476470908692-qvg1kbbnjac9n6k4l5r9vjd3fhg545ib.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tecsellent.srconstruccionvendedor",
+            "certificate_hash": "0a78931638116ab0453a820731bc95efd3916bf5"
           }
         },
         {
