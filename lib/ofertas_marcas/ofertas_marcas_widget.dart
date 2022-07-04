@@ -715,8 +715,7 @@ class _OfertasMarcasWidgetState extends State<OfertasMarcasWidget> {
                                                                     context
                                                                         .pushNamed(
                                                                       'ProductPage',
-                                                                      queryParams:
-                                                                          {
+                                                                      params: {
                                                                         'productId': serializeParam(
                                                                             rowProductsRecord.id,
                                                                             ParamType.String),

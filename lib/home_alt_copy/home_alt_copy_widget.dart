@@ -563,7 +563,7 @@ class _HomeAltCopyWidgetState extends State<HomeAltCopyWidget>
                                                           onTap: () async {
                                                             context.pushNamed(
                                                               'CategoriaSingle',
-                                                              queryParams: {
+                                                              params: {
                                                                 'categoryId':
                                                                     serializeParam(
                                                                         'materialesDeConstruccion',
@@ -706,7 +706,7 @@ class _HomeAltCopyWidgetState extends State<HomeAltCopyWidget>
                                                       onTap: () async {
                                                         context.pushNamed(
                                                           'CategoriaSingle',
-                                                          queryParams: {
+                                                          params: {
                                                             'categoryId':
                                                                 serializeParam(
                                                                     rowCategoriesRecord
@@ -1157,7 +1157,7 @@ class _HomeAltCopyWidgetState extends State<HomeAltCopyWidget>
                                                                 ).toString());
                                                             context.pushNamed(
                                                               'ProductPage',
-                                                              queryParams: {
+                                                              params: {
                                                                 'productId': serializeParam(
                                                                     rowProductsRecord
                                                                         .id,
@@ -1353,7 +1353,7 @@ class _HomeAltCopyWidgetState extends State<HomeAltCopyWidget>
                                             onTap: () async {
                                               context.pushNamed(
                                                 'MarcaSingle',
-                                                queryParams: {
+                                                params: {
                                                   'brandId': serializeParam(
                                                       rowBrandsRecord.id,
                                                       ParamType.String),
@@ -1879,7 +1879,7 @@ class _HomeAltCopyWidgetState extends State<HomeAltCopyWidget>
                                             ).toString());
                                         context.pushNamed(
                                           'ProductPage',
-                                          queryParams: {
+                                          params: {
                                             'productId': serializeParam(
                                                 gridViewProductsRecord.id,
                                                 ParamType.String),

@@ -321,7 +321,7 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                           onTap: () async {
                                             context.pushNamed(
                                               'CategoriaSingleMARCA',
-                                              queryParams: {
+                                              params: {
                                                 'categoryId': serializeParam(
                                                     columnCategoriesRecord.id,
                                                     ParamType.String),
@@ -603,7 +603,7 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                           onTap: () async {
                                             context.pushNamed(
                                               'ProductPage',
-                                              queryParams: {
+                                              params: {
                                                 'productId': serializeParam(
                                                     rowProductsRecord.id,
                                                     ParamType.String),
@@ -1003,7 +1003,7 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                   onTap: () async {
                                                     context.pushNamed(
                                                       'ProductPage',
-                                                      queryParams: {
+                                                      params: {
                                                         'productId':
                                                             serializeParam(
                                                                 rowProductsRecord
@@ -1416,7 +1416,7 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                   onTap: () async {
                                                     context.pushNamed(
                                                       'ProductPage',
-                                                      queryParams: {
+                                                      params: {
                                                         'productId':
                                                             serializeParam(
                                                                 rowProductsRecord
@@ -1835,7 +1835,7 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                   onTap: () async {
                                                     context.pushNamed(
                                                       'ProductPage',
-                                                      queryParams: {
+                                                      params: {
                                                         'productId':
                                                             serializeParam(
                                                                 rowProductsRecord

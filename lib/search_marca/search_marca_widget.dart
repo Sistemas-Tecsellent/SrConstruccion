@@ -181,7 +181,7 @@ class _SearchMarcaWidgetState extends State<SearchMarcaWidget> {
                             onTap: () async {
                               context.pushNamed(
                                 'MarcaSingle',
-                                queryParams: {
+                                params: {
                                   'brandId': serializeParam(
                                       listViewBrandsRecord.id,
                                       ParamType.String),

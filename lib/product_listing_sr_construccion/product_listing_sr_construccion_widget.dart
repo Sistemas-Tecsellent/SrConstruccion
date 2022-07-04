@@ -342,7 +342,7 @@ class _ProductListingSrConstruccionWidgetState
                                                       onTap: () async {
                                                         context.pushNamed(
                                                           'ProductPage',
-                                                          queryParams: {
+                                                          params: {
                                                             'productId':
                                                                 serializeParam(
                                                                     gridViewProductsRecord
@@ -802,7 +802,7 @@ class _ProductListingSrConstruccionWidgetState
                                                       onTap: () async {
                                                         context.pushNamed(
                                                           'ProductPage',
-                                                          queryParams: {
+                                                          params: {
                                                             'productId':
                                                                 serializeParam(
                                                                     gridViewProductsRecord

@@ -998,7 +998,7 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                                         context
                                                                             .pushNamed(
                                                                           'PedidoProgramado',
-                                                                          queryParams:
+                                                                          params:
                                                                               {
                                                                             'bundleId':
                                                                                 serializeParam(liveOrdersItem, ParamType.String),
@@ -1195,8 +1195,7 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                                   context
                                                                       .pushNamed(
                                                                     'CategoriaSingle',
-                                                                    queryParams:
-                                                                        {
+                                                                    params: {
                                                                       'categoryId': serializeParam(
                                                                           'materialesDeConstruccion',
                                                                           ParamType
@@ -1345,7 +1344,7 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                             onTap: () async {
                                                               context.pushNamed(
                                                                 'CategoriaSingle',
-                                                                queryParams: {
+                                                                params: {
                                                                   'categoryId': serializeParam(
                                                                       rowCategoriesRecord
                                                                           .id,
@@ -1789,8 +1788,7 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                                   context
                                                                       .pushNamed(
                                                                     'ProductPage',
-                                                                    queryParams:
-                                                                        {
+                                                                    params: {
                                                                       'productId': serializeParam(
                                                                           rowProductsRecord
                                                                               .id,
@@ -2022,7 +2020,7 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                   onTap: () async {
                                                     context.pushNamed(
                                                       'MarcaSingle',
-                                                      queryParams: {
+                                                      params: {
                                                         'brandId':
                                                             serializeParam(
                                                                 rowBrandsRecord
@@ -2584,7 +2582,7 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                             ).toString());
                                         context.pushNamed(
                                           'ProductPage',
-                                          queryParams: {
+                                          params: {
                                             'productId': serializeParam(
                                                 gridViewProductsRecord.id,
                                                 ParamType.String),

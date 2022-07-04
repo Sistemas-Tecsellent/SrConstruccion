@@ -37,10 +37,10 @@
         <key>CFBundleTypeRole</key>
         <string>Editor</string>
         <key>CFBundleURLName</key>
-        <string>sr_construccion</string>
+        <string>tienda.srconstruccion.com</string>
         <key>CFBundleURLSchemes</key>
         <array>
-        <string>com.tecsellent.srconstruccion</string>
+        <string>http</string>
         </array>
         </dict>
     </array>

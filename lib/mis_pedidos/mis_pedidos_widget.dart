@@ -400,7 +400,7 @@ class _MisPedidosWidgetState extends State<MisPedidosWidget> {
                                             onTap: () async {
                                               context.pushNamed(
                                                 'PedidoProgramado',
-                                                queryParams: {
+                                                params: {
                                                   'bundleId': serializeParam(
                                                       orderBundleItem,
                                                       ParamType.String),
