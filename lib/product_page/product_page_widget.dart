@@ -316,6 +316,8 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                     decoration: BoxDecoration(),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
@@ -323,7 +325,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                           width: MediaQuery.of(context)
                                                   .size
                                                   .width *
-                                              0.5,
+                                              0.48,
                                           height: 500,
                                           decoration: BoxDecoration(),
                                           child: Column(
@@ -441,7 +443,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                           width: MediaQuery.of(context)
                                                   .size
                                                   .width *
-                                              0.5,
+                                              0.48,
                                           height: MediaQuery.of(context)
                                                   .size
                                                   .height *
