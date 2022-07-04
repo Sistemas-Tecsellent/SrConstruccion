@@ -55,7 +55,10 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
       oneVariant = await GetOneVariantCall.call(
         productId: widget.productId,
         userLocation: FFAppState().locationKey,
-        userType: valueOrDefault(currentUserDocument?.type, ''),
+        userType: valueOrDefault<String>(
+          valueOrDefault(currentUserDocument?.type, ''),
+          'public',
+        ),
       );
       setState(() => FFAppState().currentVariant = getJsonField(
             (oneVariant?.jsonBody ?? ''),
