@@ -2692,7 +2692,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                         : null;
                                 return SingleChildScrollView(
                                   child: Column(
-                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Row(
                                         mainAxisSize: MainAxisSize.min,
