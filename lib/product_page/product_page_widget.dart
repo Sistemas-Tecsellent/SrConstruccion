@@ -317,7 +317,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Container(
-                                      width: MediaQuery.of(context).size.width,
+                                      width: 700,
                                       height: 1000,
                                       decoration: BoxDecoration(),
                                       child: Row(
