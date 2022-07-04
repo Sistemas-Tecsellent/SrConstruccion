@@ -315,12 +315,19 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                     height: 1000,
                                     decoration: BoxDecoration(),
                                     child: Row(
-                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Expanded(
-                                          flex: 1,
+                                        Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.48,
+                                          height: 500,
+                                          decoration: BoxDecoration(),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
@@ -432,8 +439,16 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                             ],
                                           ),
                                         ),
-                                        Expanded(
-                                          flex: 1,
+                                        Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.48,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              10,
+                                          decoration: BoxDecoration(),
                                           child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
