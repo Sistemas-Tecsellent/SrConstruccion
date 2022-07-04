@@ -670,7 +670,7 @@ class _CategoriaSingleMARCAWidgetState
                                                                   usersUpdateData);
                                                           context.pushNamed(
                                                             'ProductPage',
-                                                            queryParams: {
+                                                            params: {
                                                               'productId':
                                                                   serializeParam(
                                                                       rowProductsRecord
@@ -1098,7 +1098,7 @@ class _CategoriaSingleMARCAWidgetState
                                                       onTap: () async {
                                                         context.pushNamed(
                                                           'ProductPage',
-                                                          queryParams: {
+                                                          params: {
                                                             'productId':
                                                                 serializeParam(
                                                                     rowProductsRecord
@@ -1572,7 +1572,7 @@ class _CategoriaSingleMARCAWidgetState
                                                           onTap: () async {
                                                             context.pushNamed(
                                                               'ProductPage',
-                                                              queryParams: {
+                                                              params: {
                                                                 'productId': serializeParam(
                                                                     rowProductsRecord
                                                                         .id,
@@ -2011,7 +2011,7 @@ class _CategoriaSingleMARCAWidgetState
                                                           onTap: () async {
                                                             context.pushNamed(
                                                               'ProductPage',
-                                                              queryParams: {
+                                                              params: {
                                                                 'productId': serializeParam(
                                                                     rowProductsRecord
                                                                         .id,

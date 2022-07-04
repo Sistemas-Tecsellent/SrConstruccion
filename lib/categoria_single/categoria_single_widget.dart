@@ -616,7 +616,7 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                                                       .update(usersUpdateData);
                                                   context.pushNamed(
                                                     'ProductPage',
-                                                    queryParams: {
+                                                    params: {
                                                       'productId':
                                                           serializeParam(
                                                               rowProductsRecord
@@ -1188,7 +1188,7 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                                               onTap: () async {
                                                 context.pushNamed(
                                                   'ProductPage',
-                                                  queryParams: {
+                                                  params: {
                                                     'productId': serializeParam(
                                                         rowProductsRecord.id,
                                                         ParamType.String),
@@ -1620,7 +1620,7 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                                                   onTap: () async {
                                                     context.pushNamed(
                                                       'ProductPage',
-                                                      queryParams: {
+                                                      params: {
                                                         'productId':
                                                             serializeParam(
                                                                 rowProductsRecord
@@ -2023,7 +2023,7 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                                                   onTap: () async {
                                                     context.pushNamed(
                                                       'ProductPage',
-                                                      queryParams: {
+                                                      params: {
                                                         'productId':
                                                             serializeParam(
                                                                 rowProductsRecord

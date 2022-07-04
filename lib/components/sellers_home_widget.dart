@@ -54,7 +54,7 @@ class _SellersHomeWidgetState extends State<SellersHomeWidget> {
                     onTap: () async {
                       context.pushNamed(
                         'PerfilDelSeller',
-                        queryParams: {
+                        params: {
                           'storeId': serializeParam(
                               rowStoresRecord.id, ParamType.String),
                         }.withoutNulls,

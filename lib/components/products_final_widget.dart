@@ -426,8 +426,7 @@ class _ProductsFinalWidgetState extends State<ProductsFinalWidget> {
                                                                     context
                                                                         .pushNamed(
                                                                       'ProductPage',
-                                                                      queryParams:
-                                                                          {
+                                                                      params: {
                                                                         'productId': serializeParam(
                                                                             cageProductsRecord.id,
                                                                             ParamType.String),

@@ -75,7 +75,7 @@ class _SubcategoriasWidgetState extends State<SubcategoriasWidget> {
                   onTap: () async {
                     context.pushNamed(
                       'CategoriaSingle',
-                      queryParams: {
+                      params: {
                         'categoryId':
                             serializeParam('pisosYBanios', ParamType.String),
                       }.withoutNulls,
@@ -125,7 +125,7 @@ class _SubcategoriasWidgetState extends State<SubcategoriasWidget> {
                   onTap: () async {
                     context.pushNamed(
                       'CategoriaSingle',
-                      queryParams: {
+                      params: {
                         'categoryId':
                             serializeParam('carpinteria', ParamType.String),
                       }.withoutNulls,
@@ -175,7 +175,7 @@ class _SubcategoriasWidgetState extends State<SubcategoriasWidget> {
                   onTap: () async {
                     context.pushNamed(
                       'CategoriaSingle',
-                      queryParams: {
+                      params: {
                         'categoryId':
                             serializeParam('electrico', ParamType.String),
                       }.withoutNulls,
@@ -225,7 +225,7 @@ class _SubcategoriasWidgetState extends State<SubcategoriasWidget> {
                   onTap: () async {
                     context.pushNamed(
                       'CategoriaSingle',
-                      queryParams: {
+                      params: {
                         'categoryId':
                             serializeParam('ferreteria', ParamType.String),
                       }.withoutNulls,
@@ -275,7 +275,7 @@ class _SubcategoriasWidgetState extends State<SubcategoriasWidget> {
                   onTap: () async {
                     context.pushNamed(
                       'CategoriaSingle',
-                      queryParams: {
+                      params: {
                         'categoryId':
                             serializeParam('maquinaria', ParamType.String),
                       }.withoutNulls,
@@ -325,7 +325,7 @@ class _SubcategoriasWidgetState extends State<SubcategoriasWidget> {
                   onTap: () async {
                     context.pushNamed(
                       'CategoriaSingle',
-                      queryParams: {
+                      params: {
                         'categoryId': serializeParam(
                             'materialesDeConstruccion', ParamType.String),
                       }.withoutNulls,
@@ -375,7 +375,7 @@ class _SubcategoriasWidgetState extends State<SubcategoriasWidget> {
                   onTap: () async {
                     context.pushNamed(
                       'CategoriaSingle',
-                      queryParams: {
+                      params: {
                         'categoryId':
                             serializeParam('pinturas', ParamType.String),
                       }.withoutNulls,
@@ -425,7 +425,7 @@ class _SubcategoriasWidgetState extends State<SubcategoriasWidget> {
                   onTap: () async {
                     context.pushNamed(
                       'CategoriaSingle',
-                      queryParams: {
+                      params: {
                         'categoryId':
                             serializeParam('aceros', ParamType.String),
                       }.withoutNulls,

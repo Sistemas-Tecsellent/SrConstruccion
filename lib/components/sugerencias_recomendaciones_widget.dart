@@ -184,7 +184,7 @@ class _SugerenciasRecomendacionesWidgetState
                                             onTap: () async {
                                               context.pushNamed(
                                                 'ProductPage',
-                                                queryParams: {
+                                                params: {
                                                   'productId': serializeParam(
                                                       rowProductsRecord.id,
                                                       ParamType.String),

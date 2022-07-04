@@ -105,7 +105,7 @@ class _WishMarcasWidgetState extends State<WishMarcasWidget> {
                                       onTap: () async {
                                         context.pushNamed(
                                           'MarcaSingle',
-                                          queryParams: {
+                                          params: {
                                             'brandId': serializeParam(
                                                 columnBrandsRecord.id,
                                                 ParamType.String),

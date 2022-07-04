@@ -117,7 +117,7 @@ class _ProductListingForSellerWidgetState
                           onPressed: () async {
                             context.pushNamed(
                               'CarritoPorSellers',
-                              queryParams: {
+                              params: {
                                 'storeId': serializeParam(
                                     widget.storeId, ParamType.String),
                               }.withoutNulls,
@@ -393,11 +393,13 @@ class _ProductListingForSellerWidgetState
                                                                     context
                                                                         .pushNamed(
                                                                       'PerfilDelSeller',
-                                                                      queryParams:
-                                                                          {
+                                                                      params: {
                                                                         'storeId': serializeParam(
                                                                             widget.storeId,
                                                                             ParamType.String),
+                                                                      }.withoutNulls,
+                                                                      queryParams:
+                                                                          {
                                                                         'calledFromPage': serializeParam(
                                                                             'List',
                                                                             ParamType.String),
@@ -448,7 +450,7 @@ class _ProductListingForSellerWidgetState
                                                           onTap: () async {
                                                             context.pushNamed(
                                                               'ProductPage',
-                                                              queryParams: {
+                                                              params: {
                                                                 'productId': serializeParam(
                                                                     gridViewProductsRecord
                                                                         .id,
@@ -946,11 +948,13 @@ class _ProductListingForSellerWidgetState
                                                                     context
                                                                         .pushNamed(
                                                                       'PerfilDelSeller',
-                                                                      queryParams:
-                                                                          {
+                                                                      params: {
                                                                         'storeId': serializeParam(
                                                                             widget.storeId,
                                                                             ParamType.String),
+                                                                      }.withoutNulls,
+                                                                      queryParams:
+                                                                          {
                                                                         'calledFromPage': serializeParam(
                                                                             'List',
                                                                             ParamType.String),
@@ -1001,7 +1005,7 @@ class _ProductListingForSellerWidgetState
                                                           onTap: () async {
                                                             context.pushNamed(
                                                               'ProductPage',
-                                                              queryParams: {
+                                                              params: {
                                                                 'productId': serializeParam(
                                                                     gridViewProductsRecord
                                                                         .id,

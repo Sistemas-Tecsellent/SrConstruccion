@@ -99,7 +99,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             FFRoute(
               name: 'ProductPage',
-              path: 'product',
+              path: 'product/:productId',
               builder: (context, params) => ProductPageWidget(
                 productId: params.getParam('productId', ParamType.String),
                 variantId: params.getParam('variantId', ParamType.String),
@@ -205,7 +205,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             FFRoute(
               name: 'CheckoutSeller',
-              path: 'vendedor/checkout',
+              path: 'vendedor/checkout/:storeId',
               requireAuth: true,
               builder: (context, params) => CheckoutSellerWidget(
                 storeId: params.getParam('storeId', ParamType.String),
@@ -213,7 +213,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             FFRoute(
               name: 'PedidoProgramado',
-              path: 'mis-pedidos/pedidos-programados',
+              path: 'mis-pedidos/pedidos-programados/:bundleId',
               requireAuth: true,
               builder: (context, params) => PedidoProgramadoWidget(
                 bundleId: params.getParam('bundleId', ParamType.String),
@@ -221,7 +221,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             FFRoute(
               name: 'PerfilDelSeller',
-              path: 'vendedor',
+              path: 'vendedor/:storeId',
               builder: (context, params) => PerfilDelSellerWidget(
                 storeId: params.getParam('storeId', ParamType.String),
                 calledFromPage:
@@ -232,7 +232,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             FFRoute(
               name: 'CarritoPorSellers',
-              path: 'vendedor/carrito',
+              path: 'vendedor/carrito/:storeId',
               requireAuth: true,
               builder: (context, params) => CarritoPorSellersWidget(
                 storeId: params.getParam('storeId', ParamType.String),
@@ -240,7 +240,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             FFRoute(
               name: 'DetallePedidoProgramado',
-              path: 'mis-pedidos/pedido-programado/express',
+              path: 'mis-pedidos/pedido-programado/express/:orderId',
               requireAuth: true,
               builder: (context, params) => DetallePedidoProgramadoWidget(
                 bundleId: params.getParam('bundleId', ParamType.String),
@@ -351,7 +351,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             FFRoute(
               name: 'ProductListingForSeller',
-              path: 'vendedor/listado-de-productos',
+              path: 'vendedor/listado-de-productos/:storeId',
               builder: (context, params) => ProductListingForSellerWidget(
                 storeId: params.getParam('storeId', ParamType.String),
               ),
@@ -388,14 +388,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             FFRoute(
               name: 'CategoriaSingle',
-              path: 'categoria',
+              path: 'categoria/:categoryId',
               builder: (context, params) => CategoriaSingleWidget(
                 categoryId: params.getParam('categoryId', ParamType.String),
               ),
             ),
             FFRoute(
               name: 'MarcaSingle',
-              path: 'marca',
+              path: 'marca/:brandId',
               builder: (context, params) => MarcaSingleWidget(
                 brandId: params.getParam('brandId', ParamType.String),
               ),
@@ -511,14 +511,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => MisServiciosWidget(),
             ),
             FFRoute(
-              name: 'route',
-              path: 'route',
-              requireAuth: true,
-              builder: (context, params) => RouteWidget(
-                orderId: params.getParam('orderId', ParamType.String),
-              ),
-            ),
-            FFRoute(
               name: 'Ofertas',
               path: 'ofertas-categorias',
               builder: (context, params) => OfertasWidget(),
@@ -555,7 +547,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             FFRoute(
               name: 'DetallePedidoProgramado5DIAS',
-              path: 'Pedido-Programado-5DIAS',
+              path: 'Pedido-Programado-5DIAS/:orderId',
               requireAuth: true,
               builder: (context, params) => DetallePedidoProgramado5DIASWidget(
                 orderId: params.getParam('orderId', ParamType.String),
@@ -564,7 +556,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             FFRoute(
               name: 'DetallePedidoProgramadoPickup',
-              path: 'Pedido-Programado-Pickup',
+              path: 'Pedido-Programado-Pickup/:orderId',
               requireAuth: true,
               builder: (context, params) => DetallePedidoProgramadoPickupWidget(
                 bundleId: params.getParam('bundleId', ParamType.String),
@@ -573,7 +565,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             FFRoute(
               name: 'searchMarca',
-              path: 'searchMarca',
+              path: 'buscar-marca',
               requireAuth: true,
               builder: (context, params) => SearchMarcaWidget(),
             ),
@@ -585,7 +577,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             FFRoute(
               name: 'CategoriaSingleMARCA',
-              path: 'marca/categoria',
+              path: 'marca/categoria/:brandId/:categoryId',
               builder: (context, params) => CategoriaSingleMARCAWidget(
                 categoryId: params.getParam('categoryId', ParamType.String),
                 brandId: params.getParam('brandId', ParamType.String),

@@ -165,7 +165,7 @@ class _CategoriasWidgetState extends State<CategoriasWidget> {
                                   onPressed: () async {
                                     context.pushNamed(
                                       'CategoriaSingle',
-                                      queryParams: {
+                                      params: {
                                         'categoryId': serializeParam(
                                             columnCategoriesRecord.id,
                                             ParamType.String),

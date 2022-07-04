@@ -741,7 +741,7 @@ class _SellerProductWidgetState extends State<SellerProductWidget> {
                                           );
                                           context.pushNamed(
                                             'CarritoPorSellers',
-                                            queryParams: {
+                                            params: {
                                               'storeId': serializeParam(
                                                   widget.store,
                                                   ParamType.String),

@@ -283,7 +283,7 @@ class _ProductosPedidoWidgetState extends State<ProductosPedidoWidget> {
                                                                 context
                                                                     .pushNamed(
                                                                   'ProductPage',
-                                                                  queryParams: {
+                                                                  params: {
                                                                     'productId': serializeParam(
                                                                         cageProductsRecord
                                                                             .id,

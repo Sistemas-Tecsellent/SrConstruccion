@@ -213,7 +213,7 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                                       );
                                       context.pushNamed(
                                         'CheckoutSeller',
-                                        queryParams: {
+                                        params: {
                                           'storeId': serializeParam(
                                               widget.storeId, ParamType.String),
                                         }.withoutNulls,
@@ -883,9 +883,11 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                               );
                               context.pushNamed(
                                 'PerfilDelSeller',
-                                queryParams: {
+                                params: {
                                   'storeId': serializeParam(
                                       widget.storeId, ParamType.String),
+                                }.withoutNulls,
+                                queryParams: {
                                   'calledFromPage':
                                       serializeParam('\"\"', ParamType.String),
                                 }.withoutNulls,

@@ -319,7 +319,7 @@ class _WishListProductsWidgetState extends State<WishListProductsWidget> {
                                                       onTap: () async {
                                                         context.pushNamed(
                                                           'ProductPage',
-                                                          queryParams: {
+                                                          params: {
                                                             'productId':
                                                                 serializeParam(
                                                                     gridViewProductsRecord
@@ -712,7 +712,7 @@ class _WishListProductsWidgetState extends State<WishListProductsWidget> {
                                                     onTap: () async {
                                                       context.pushNamed(
                                                         'ProductPage',
-                                                        queryParams: {
+                                                        params: {
                                                           'productId':
                                                               serializeParam(
                                                                   gridViewProductsRecord

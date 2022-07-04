@@ -184,7 +184,7 @@ class _SearchProductsSellerWidgetState
                             onTap: () async {
                               context.pushNamed(
                                 'ProductPage',
-                                queryParams: {
+                                params: {
                                   'productId': serializeParam(
                                       listViewProductsRecord.id,
                                       ParamType.String),
