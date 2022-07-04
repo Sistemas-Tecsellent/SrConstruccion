@@ -2804,23 +2804,27 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                         'IconButton pressed ...');
                                                   },
                                                 ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 0, 20, 0),
-                                                  child: InkWell(
-                                                    onTap: () async {
-                                                      await actions.likeProduct(
-                                                        currentUserUid,
-                                                        widget.productId,
-                                                      );
-                                                    },
-                                                    child:
-                                                        ToggleLikeProductWidget(
-                                                      productId:
+                                                if (loggedIn ?? true)
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                0, 0, 20, 0),
+                                                    child: InkWell(
+                                                      onTap: () async {
+                                                        await actions
+                                                            .likeProduct(
+                                                          currentUserUid,
                                                           widget.productId,
+                                                        );
+                                                      },
+                                                      child:
+                                                          ToggleLikeProductWidget(
+                                                        productId:
+                                                            widget.productId,
+                                                      ),
                                                     ),
                                                   ),
-                                                ),
                                               ],
                                             ),
                                             Row(
