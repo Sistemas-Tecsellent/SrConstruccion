@@ -502,7 +502,7 @@ class _OfertasTiendasWidgetState extends State<OfertasTiendasWidget> {
                                             onTap: () async {
                                               context.pushNamed(
                                                 'ProductListingForSeller',
-                                                queryParams: {
+                                                params: {
                                                   'storeId': serializeParam(
                                                       columnStoresRecord.id,
                                                       ParamType.String),
@@ -728,8 +728,7 @@ class _OfertasTiendasWidgetState extends State<OfertasTiendasWidget> {
                                                                     context
                                                                         .pushNamed(
                                                                       'ProductPage',
-                                                                      queryParams:
-                                                                          {
+                                                                      params: {
                                                                         'productId': serializeParam(
                                                                             '',
                                                                             ParamType.String),

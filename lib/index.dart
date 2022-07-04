@@ -96,7 +96,6 @@ export 'anadir_direccion/anadir_direccion_widget.dart'
 export 'agendar_servicio/agendar_servicio_widget.dart'
     show AgendarServicioWidget;
 export 'mis_servicios/mis_servicios_widget.dart' show MisServiciosWidget;
-export 'route/route_widget.dart' show RouteWidget;
 export 'ofertas/ofertas_widget.dart' show OfertasWidget;
 export 'servicios_single/servicios_single_widget.dart'
     show ServiciosSingleWidget;

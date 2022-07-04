@@ -260,7 +260,7 @@ class _DetallePedidoProgramadoPickupWidgetState
                                 onPressed: () async {
                                   context.pushNamed(
                                     'PedidoProgramado',
-                                    queryParams: {
+                                    params: {
                                       'bundleId': serializeParam(
                                           widget.bundleId, ParamType.String),
                                     }.withoutNulls,

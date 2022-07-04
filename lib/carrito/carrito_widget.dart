@@ -378,7 +378,7 @@ class _CarritoWidgetState extends State<CarritoWidget> {
                                                   onTap: () async {
                                                     context.pushNamed(
                                                       'ProductPage',
-                                                      queryParams: {
+                                                      params: {
                                                         'productId':
                                                             serializeParam(
                                                                 getJsonField(

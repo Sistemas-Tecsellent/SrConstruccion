@@ -2108,8 +2108,10 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                     onTap: () async {
                                                                                       context.pushNamed(
                                                                                         'PerfilDelSeller',
-                                                                                        queryParams: {
+                                                                                        params: {
                                                                                           'storeId': serializeParam(sellerStoresRecord.id, ParamType.String),
+                                                                                        }.withoutNulls,
+                                                                                        queryParams: {
                                                                                           'calledFromPage': serializeParam('productPage', ParamType.String),
                                                                                           'productId': serializeParam(widget.productId, ParamType.String),
                                                                                           'variantId': serializeParam(FFAppState().currentVariant, ParamType.String),
@@ -4635,8 +4637,10 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                               onTap: () async {
                                                                                 context.pushNamed(
                                                                                   'PerfilDelSeller',
-                                                                                  queryParams: {
+                                                                                  params: {
                                                                                     'storeId': serializeParam(sellerStoresRecord.id, ParamType.String),
+                                                                                  }.withoutNulls,
+                                                                                  queryParams: {
                                                                                     'calledFromPage': serializeParam('productPage', ParamType.String),
                                                                                     'productId': serializeParam(widget.productId, ParamType.String),
                                                                                     'variantId': serializeParam(FFAppState().currentVariant, ParamType.String),

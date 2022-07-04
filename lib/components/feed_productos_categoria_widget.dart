@@ -185,7 +185,7 @@ class _FeedProductosCategoriaWidgetState
                             onTap: () async {
                               context.pushNamed(
                                 'ProductPage',
-                                queryParams: {
+                                params: {
                                   'productId': serializeParam(
                                       gridViewProductsRecord.id,
                                       ParamType.String),

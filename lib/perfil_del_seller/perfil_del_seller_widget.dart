@@ -410,7 +410,7 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                                   onPressed: () async {
                                                                                     context.pushNamed(
                                                                                       'CarritoPorSellers',
-                                                                                      queryParams: {
+                                                                                      params: {
                                                                                         'storeId': serializeParam(widget.storeId, ParamType.String),
                                                                                       }.withoutNulls,
                                                                                     );
@@ -1459,7 +1459,7 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                     onTap: () async {
                                                       context.pushNamed(
                                                         'ProductListingForSeller',
-                                                        queryParams: {
+                                                        params: {
                                                           'storeId':
                                                               serializeParam(
                                                                   widget
@@ -2005,7 +2005,7 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                     onTap: () async {
                                                       context.pushNamed(
                                                         'ProductListingForSeller',
-                                                        queryParams: {
+                                                        params: {
                                                           'storeId':
                                                               serializeParam(
                                                                   widget
@@ -2247,8 +2247,10 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                               onTap: () async {
                                                                                 context.pushNamed(
                                                                                   'PerfilDelSeller',
-                                                                                  queryParams: {
+                                                                                  params: {
                                                                                     'storeId': serializeParam(widget.storeId, ParamType.String),
+                                                                                  }.withoutNulls,
+                                                                                  queryParams: {
                                                                                     'calledFromPage': serializeParam('perfil', ParamType.String),
                                                                                     'productId': serializeParam('\"\"', ParamType.String),
                                                                                     'variantId': serializeParam('\"\"', ParamType.String),
@@ -2523,7 +2525,7 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                     onTap: () async {
                                                       context.pushNamed(
                                                         'ProductListingForSeller',
-                                                        queryParams: {
+                                                        params: {
                                                           'storeId':
                                                               serializeParam(
                                                                   widget
@@ -2768,8 +2770,10 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                               onTap: () async {
                                                                                 context.pushNamed(
                                                                                   'PerfilDelSeller',
-                                                                                  queryParams: {
+                                                                                  params: {
                                                                                     'storeId': serializeParam(widget.storeId, ParamType.String),
+                                                                                  }.withoutNulls,
+                                                                                  queryParams: {
                                                                                     'calledFromPage': serializeParam('perfil', ParamType.String),
                                                                                     'productId': serializeParam('l', ParamType.String),
                                                                                     'variantId': serializeParam('l', ParamType.String),
@@ -3044,7 +3048,7 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                     onTap: () async {
                                                       context.pushNamed(
                                                         'ProductListingForSeller',
-                                                        queryParams: {
+                                                        params: {
                                                           'storeId':
                                                               serializeParam(
                                                                   widget
@@ -3557,7 +3561,7 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                     onTap: () async {
                                                       context.pushNamed(
                                                         'ProductListingForSeller',
-                                                        queryParams: {
+                                                        params: {
                                                           'storeId':
                                                               serializeParam(
                                                                   widget

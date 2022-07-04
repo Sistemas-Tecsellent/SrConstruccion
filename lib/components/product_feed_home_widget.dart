@@ -254,7 +254,7 @@ class _ProductFeedHomeWidgetState extends State<ProductFeedHomeWidget> {
                                 ).toString());
                             context.pushNamed(
                               'ProductPage',
-                              queryParams: {
+                              params: {
                                 'productId': serializeParam(
                                     gridViewProductsRecord.id,
                                     ParamType.String),
