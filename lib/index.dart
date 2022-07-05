@@ -3,8 +3,8 @@ export 'notificaciones/notificaciones_widget.dart' show NotificacionesWidget;
 export 'home_alt/home_alt_widget.dart' show HomeAltWidget;
 export 'perfil/perfil_widget.dart' show PerfilWidget;
 export 'product_page/product_page_widget.dart' show ProductPageWidget;
-export 'carrito/carrito_widget.dart' show CarritoWidget;
 export 'login/login_widget.dart' show LoginWidget;
+export 'carrito/carrito_widget.dart' show CarritoWidget;
 export 'signup/signup_widget.dart' show SignupWidget;
 export 'editar_direccion/editar_direccion_widget.dart'
     show EditarDireccionWidget;
@@ -116,6 +116,8 @@ export 'categoria_single_m_a_r_c_a/categoria_single_m_a_r_c_a_widget.dart'
     show CategoriaSingleMARCAWidget;
 export 'subcategory_product_listing_m_a_r_c_a/subcategory_product_listing_m_a_r_c_a_widget.dart'
     show SubcategoryProductListingMARCAWidget;
+export 'home_alt_copy/home_alt_copy_widget.dart' show HomeAltCopyWidget;
 export 'calculando_costo_de_envio/calculando_costo_de_envio_widget.dart'
     show CalculandoCostoDeEnvioWidget;
-export 'home_alt_copy/home_alt_copy_widget.dart' show HomeAltCopyWidget;
+export 'calculando_costo_de_envio_por_seller/calculando_costo_de_envio_por_seller_widget.dart'
+    show CalculandoCostoDeEnvioPorSellerWidget;

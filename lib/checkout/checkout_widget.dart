@@ -727,7 +727,7 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                           ],
                                         ),
                                         if (checkoutCheckoutsRecord
-                                                .pendingShipmentPrice ??
+                                                .hadPricingRequest ??
                                             true)
                                           Align(
                                             alignment:

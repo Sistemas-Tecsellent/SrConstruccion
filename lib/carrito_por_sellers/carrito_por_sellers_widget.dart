@@ -27,6 +27,7 @@ class CarritoPorSellersWidget extends StatefulWidget {
 }
 
 class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
+  ApiCallResponse pendingShipmentPrice;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -211,16 +212,38 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                                         'Gastos en General',
                                         widget.storeId,
                                       );
-                                      context.pushNamed(
-                                        'CheckoutSeller',
-                                        params: {
-                                          'storeId': serializeParam(
-                                              widget.storeId, ParamType.String),
-                                        }.withoutNulls,
+                                      pendingShipmentPrice =
+                                          await GetIfCheckoutIsByTruckCall.call(
+                                        uid: currentUserUid,
+                                        checkoutId: widget.storeId,
                                       );
+                                      if (getJsonField(
+                                        (pendingShipmentPrice?.jsonBody ?? ''),
+                                        r'''$.pendingShipmentPrice''',
+                                      )) {
+                                        context.pushNamed(
+                                          'CalculandoCostoDeEnvioPorSeller',
+                                          queryParams: {
+                                            'checkoutId': serializeParam(
+                                                widget.storeId,
+                                                ParamType.String),
+                                          }.withoutNulls,
+                                        );
+                                      } else {
+                                        context.pushNamed(
+                                          'CheckoutSeller',
+                                          params: {
+                                            'storeId': serializeParam(
+                                                widget.storeId,
+                                                ParamType.String),
+                                          }.withoutNulls,
+                                        );
+                                      }
                                     } else {
                                       context.pushNamed('login');
                                     }
+
+                                    setState(() {});
                                   },
                                   text: GetSellerWiseCartTotalCall.message(
                                     (containerGetSellerWiseCartTotalResponse

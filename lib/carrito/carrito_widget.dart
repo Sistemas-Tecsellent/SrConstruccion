@@ -22,10 +22,11 @@ class CarritoWidget extends StatefulWidget {
 }
 
 class _CarritoWidgetState extends State<CarritoWidget> {
-  String deleteProductResponse;
-  int cartLength;
+  ApiCallResponse pendingShipmentPrice;
   dynamic checkoutResponse;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  String deleteProductResponse;
+  int cartLength;
 
   @override
   Widget build(BuildContext context) {
@@ -173,18 +174,31 @@ class _CarritoWidgetState extends State<CarritoWidget> {
                                   buttonInvoiceProfilesRecord.id,
                                   'Gastos en General',
                                 );
-                                await showModalBottomSheet(
-                                  isScrollControlled: true,
-                                  backgroundColor: Colors.transparent,
-                                  context: context,
-                                  builder: (context) {
-                                    return Padding(
-                                      padding:
-                                          MediaQuery.of(context).viewInsets,
-                                      child: SugerenciasRecomendacionesWidget(),
-                                    );
-                                  },
+                                pendingShipmentPrice =
+                                    await GetIfCheckoutIsByTruckCall.call(
+                                  uid: currentUserUid,
+                                  checkoutId: currentUserUid,
                                 );
+                                if (getJsonField(
+                                  (pendingShipmentPrice?.jsonBody ?? ''),
+                                  r'''$.pendingShipmentPrice''',
+                                )) {
+                                  context.goNamed('CalculandoCostoDeEnvio');
+                                } else {
+                                  await showModalBottomSheet(
+                                    isScrollControlled: true,
+                                    backgroundColor: Colors.transparent,
+                                    context: context,
+                                    builder: (context) {
+                                      return Padding(
+                                        padding:
+                                            MediaQuery.of(context).viewInsets,
+                                        child:
+                                            SugerenciasRecomendacionesWidget(),
+                                      );
+                                    },
+                                  );
+                                }
                               } else {
                                 context.pushNamed('login');
                               }
