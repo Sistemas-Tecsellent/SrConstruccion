@@ -436,7 +436,7 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                                       color: Colors.transparent,
                                                                                       width: 1,
                                                                                     ),
-                                                                                    borderRadius: 25,
+                                                                                    borderRadius: BorderRadius.circular(25),
                                                                                   ),
                                                                                 );
                                                                               },

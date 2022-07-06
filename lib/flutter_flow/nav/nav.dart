@@ -8,16 +8,12 @@ import '../flutter_flow_theme.dart';
 import '../../backend/backend.dart';
 import '../../auth/firebase_user_provider.dart';
 
-import '../../backend/firebase_dynamic_links/firebase_dynamic_links.dart'
-    show DynamicLinksHandler;
 import '../../index.dart';
 import '../../main.dart';
 import 'serialization_util.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
-export '../../backend/firebase_dynamic_links/firebase_dynamic_links.dart'
-    show generateCurrentPageLink;
 
 const kTransitionInfoKey = '__transition_info__';
 
@@ -106,15 +102,15 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
+              name: 'login',
+              path: 'iniciar-sesion',
+              builder: (context, params) => LoginWidget(),
+            ),
+            FFRoute(
               name: 'Carrito',
               path: 'carrito',
               requireAuth: true,
               builder: (context, params) => CarritoWidget(),
-            ),
-            FFRoute(
-              name: 'login',
-              path: 'iniciar-sesion',
-              builder: (context, params) => LoginWidget(),
             ),
             FFRoute(
               name: 'signup',
@@ -595,14 +591,24 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
-              name: 'CalculandoCostoDeEnvio',
-              path: 'calculando',
-              builder: (context, params) => CalculandoCostoDeEnvioWidget(),
-            ),
-            FFRoute(
               name: 'HomeAltCopy',
               path: 'home',
               builder: (context, params) => HomeAltCopyWidget(),
+            ),
+            FFRoute(
+              name: 'CalculandoCostoDeEnvio',
+              path: 'calculando',
+              builder: (context, params) => CalculandoCostoDeEnvioWidget(
+                checkoutId: params.getParam('checkoutId', ParamType.String),
+              ),
+            ),
+            FFRoute(
+              name: 'CalculandoCostoDeEnvioPorSeller',
+              path: 'calculando-por-seller',
+              builder: (context, params) =>
+                  CalculandoCostoDeEnvioPorSellerWidget(
+                checkoutId: params.getParam('checkoutId', ParamType.String),
+              ),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
@@ -774,7 +780,7 @@ class FFRoute {
                     ),
                   ),
                 )
-              : DynamicLinksHandler(child: page);
+              : page;
 
           final transitionInfo = state.transitionInfo;
           return transitionInfo.hasTransition

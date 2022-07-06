@@ -298,7 +298,7 @@ class _HomeAltCopyWidgetState extends State<HomeAltCopyWidget>
                                       color: Colors.transparent,
                                       width: 1,
                                     ),
-                                    borderRadius: 125,
+                                    borderRadius: BorderRadius.circular(125),
                                   ),
                                 ),
                             ],

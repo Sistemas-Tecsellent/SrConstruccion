@@ -211,7 +211,7 @@ class _PagoAceptadoWidgetState extends State<PagoAceptadoWidget> {
                                   color: Colors.transparent,
                                   width: 1,
                                 ),
-                                borderRadius: 5,
+                                borderRadius: BorderRadius.circular(5),
                               ),
                             ),
                           ],

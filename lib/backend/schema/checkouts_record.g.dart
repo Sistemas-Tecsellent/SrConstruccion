@@ -101,6 +101,13 @@ class _$CheckoutsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.hadPricingRequest;
+    if (value != null) {
+      result
+        ..add('hadPricingRequest')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
     value = object.reference;
     if (value != null) {
       result
@@ -172,6 +179,10 @@ class _$CheckoutsRecordSerializer
           result.deliveryDate = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
+        case 'hadPricingRequest':
+          result.hadPricingRequest = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool;
+          break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
                   specifiedType: const FullType(
@@ -211,6 +222,8 @@ class _$CheckoutsRecord extends CheckoutsRecord {
   @override
   final String deliveryDate;
   @override
+  final bool hadPricingRequest;
+  @override
   final DocumentReference<Object> reference;
 
   factory _$CheckoutsRecord([void Function(CheckoutsRecordBuilder) updates]) =>
@@ -229,6 +242,7 @@ class _$CheckoutsRecord extends CheckoutsRecord {
       this.normalProducts,
       this.pendingShipmentPrice,
       this.deliveryDate,
+      this.hadPricingRequest,
       this.reference})
       : super._();
 
@@ -256,6 +270,7 @@ class _$CheckoutsRecord extends CheckoutsRecord {
         normalProducts == other.normalProducts &&
         pendingShipmentPrice == other.pendingShipmentPrice &&
         deliveryDate == other.deliveryDate &&
+        hadPricingRequest == other.hadPricingRequest &&
         reference == other.reference;
   }
 
@@ -272,18 +287,20 @@ class _$CheckoutsRecord extends CheckoutsRecord {
                                     $jc(
                                         $jc(
                                             $jc(
-                                                $jc($jc(0, id.hashCode),
-                                                    message.hashCode),
-                                                paymentMethod.hashCode),
-                                            shipmentTotal.hashCode),
-                                        subtotal.hashCode),
-                                    total.hashCode),
-                                totalInCents.hashCode),
-                            ordersAmount.hashCode),
-                        expressProducts.hashCode),
-                    normalProducts.hashCode),
-                pendingShipmentPrice.hashCode),
-            deliveryDate.hashCode),
+                                                $jc(
+                                                    $jc($jc(0, id.hashCode),
+                                                        message.hashCode),
+                                                    paymentMethod.hashCode),
+                                                shipmentTotal.hashCode),
+                                            subtotal.hashCode),
+                                        total.hashCode),
+                                    totalInCents.hashCode),
+                                ordersAmount.hashCode),
+                            expressProducts.hashCode),
+                        normalProducts.hashCode),
+                    pendingShipmentPrice.hashCode),
+                deliveryDate.hashCode),
+            hadPricingRequest.hashCode),
         reference.hashCode));
   }
 
@@ -302,6 +319,7 @@ class _$CheckoutsRecord extends CheckoutsRecord {
           ..add('normalProducts', normalProducts)
           ..add('pendingShipmentPrice', pendingShipmentPrice)
           ..add('deliveryDate', deliveryDate)
+          ..add('hadPricingRequest', hadPricingRequest)
           ..add('reference', reference))
         .toString();
   }
@@ -364,6 +382,11 @@ class CheckoutsRecordBuilder
   String get deliveryDate => _$this._deliveryDate;
   set deliveryDate(String deliveryDate) => _$this._deliveryDate = deliveryDate;
 
+  bool _hadPricingRequest;
+  bool get hadPricingRequest => _$this._hadPricingRequest;
+  set hadPricingRequest(bool hadPricingRequest) =>
+      _$this._hadPricingRequest = hadPricingRequest;
+
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
   set reference(DocumentReference<Object> reference) =>
@@ -388,6 +411,7 @@ class CheckoutsRecordBuilder
       _normalProducts = $v.normalProducts;
       _pendingShipmentPrice = $v.pendingShipmentPrice;
       _deliveryDate = $v.deliveryDate;
+      _hadPricingRequest = $v.hadPricingRequest;
       _reference = $v.reference;
       _$v = null;
     }
@@ -421,6 +445,7 @@ class CheckoutsRecordBuilder
             normalProducts: normalProducts,
             pendingShipmentPrice: pendingShipmentPrice,
             deliveryDate: deliveryDate,
+            hadPricingRequest: hadPricingRequest,
             reference: reference);
     replace(_$result);
     return _$result;

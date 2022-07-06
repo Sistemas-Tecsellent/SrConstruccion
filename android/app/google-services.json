@@ -306,6 +306,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "476470908692-3inchaphj1s6jp0f75tv298me10bfk7k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tecsellent.srconstruccionvendedor",
+            "certificate_hash": "464ff1e35924caf75e88a36124f6d37ce1bcf7bf"
+          }
+        },
+        {
           "client_id": "476470908692-4jh8fitu8kcpul9t8orj4hlrus7fs7vp.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
