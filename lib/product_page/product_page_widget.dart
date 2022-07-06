@@ -199,40 +199,91 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                FFButtonWidget(
-                  onPressed: () async {
-                    if (loggedIn) {
-                      await actions.addProductToCart(
-                        widget.productId,
-                        FFAppState().currentVariant,
-                        expressCountDValue,
-                        normalShipmentCountDValue,
-                        FFAppState().locationKey,
-                        FFAppState().locationKeyCity,
-                      );
-                      context.pushNamed('Carrito');
-                    } else {
-                      context.pushNamed('login');
-                    }
-                  },
-                  text: 'Agregar al carrito',
-                  options: FFButtonOptions(
-                    width: 300,
-                    height: 54,
-                    color: FlutterFlowTheme.of(context).primaryColor,
-                    textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                          fontFamily: 'Montserrat',
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
+                Stack(
+                  children: [
+                    if (responsiveVisibility(
+                      context: context,
+                      phone: false,
+                      tablet: false,
+                    ))
+                      FFButtonWidget(
+                        onPressed: () async {
+                          if (loggedIn) {
+                            await actions.addProductToCart(
+                              widget.productId,
+                              FFAppState().currentVariant,
+                              expressCountDValue,
+                              normalShipmentCountDValue,
+                              FFAppState().locationKey,
+                              FFAppState().locationKeyCity,
+                            );
+                            context.pushNamed('Carrito');
+                          } else {
+                            context.pushNamed('login');
+                          }
+                        },
+                        text: 'Agregar al carrito',
+                        options: FFButtonOptions(
+                          width: 300,
+                          height: 54,
+                          color: FlutterFlowTheme.of(context).primaryColor,
+                          textStyle:
+                              FlutterFlowTheme.of(context).subtitle2.override(
+                                    fontFamily: 'Montserrat',
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                          elevation: 0,
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.circular(5),
                         ),
-                    elevation: 0,
-                    borderSide: BorderSide(
-                      color: Colors.transparent,
-                      width: 1,
-                    ),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
+                      ),
+                    if (responsiveVisibility(
+                      context: context,
+                      tabletLandscape: false,
+                      desktop: false,
+                    ))
+                      FFButtonWidget(
+                        onPressed: () async {
+                          if (loggedIn) {
+                            await actions.addProductToCart(
+                              widget.productId,
+                              FFAppState().currentVariant,
+                              expressCountValue,
+                              normalShipmentCountValue,
+                              FFAppState().locationKey,
+                              FFAppState().locationKeyCity,
+                            );
+                            context.pushNamed('Carrito');
+                          } else {
+                            context.pushNamed('login');
+                          }
+                        },
+                        text: 'Agregar al carrito',
+                        options: FFButtonOptions(
+                          width: 300,
+                          height: 54,
+                          color: FlutterFlowTheme.of(context).primaryColor,
+                          textStyle:
+                              FlutterFlowTheme.of(context).subtitle2.override(
+                                    fontFamily: 'Montserrat',
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                          elevation: 0,
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                      ),
+                  ],
                 ),
               ],
             ),
@@ -2841,7 +2892,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Row(
-                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       crossAxisAlignment:
