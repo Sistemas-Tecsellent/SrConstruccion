@@ -429,7 +429,8 @@ class _AnadirDireccionWidgetState extends State<AnadirDireccionWidget> {
                                             color: Colors.transparent,
                                             width: 1,
                                           ),
-                                          borderRadius: 5,
+                                          borderRadius:
+                                              BorderRadius.circular(5),
                                         ),
                                       ),
                                     ],

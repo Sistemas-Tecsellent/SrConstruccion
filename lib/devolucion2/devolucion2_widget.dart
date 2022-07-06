@@ -528,7 +528,7 @@ class _Devolucion2WidgetState extends State<Devolucion2Widget> {
                                     color: Colors.transparent,
                                     width: 1,
                                   ),
-                                  borderRadius: 5,
+                                  borderRadius: BorderRadius.circular(5),
                                 ),
                               ),
                             ],

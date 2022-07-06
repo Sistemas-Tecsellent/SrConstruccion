@@ -209,7 +209,7 @@ class _CalculandoCostoDeEnvioPorSellerWidgetState
                                     color: Colors.transparent,
                                     width: 1,
                                   ),
-                                  borderRadius: 12,
+                                  borderRadius: BorderRadius.circular(12),
                                 ),
                               ),
                           ],

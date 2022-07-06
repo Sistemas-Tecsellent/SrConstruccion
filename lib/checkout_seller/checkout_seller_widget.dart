@@ -302,7 +302,7 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                     color: Colors.transparent,
                                     width: 1,
                                   ),
-                                  borderRadius: 5,
+                                  borderRadius: BorderRadius.circular(5),
                                 ),
                               );
                             },
@@ -983,7 +983,6 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                 color: Colors
                                                                     .transparent,
                                                               ),
-                                                              borderRadius: 0,
                                                             ),
                                                           ),
                                                         ],
@@ -1179,7 +1178,6 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                               color: Colors
                                                                   .transparent,
                                                             ),
-                                                            borderRadius: 0,
                                                           ),
                                                         ),
                                                       ],
@@ -1458,7 +1456,8 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                           .transparent,
                                                                     ),
                                                                     borderRadius:
-                                                                        5,
+                                                                        BorderRadius
+                                                                            .circular(5),
                                                                   ),
                                                                 ),
                                                               ],
@@ -1597,7 +1596,6 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                                   color: Colors
                                                                       .transparent,
                                                                 ),
-                                                                borderRadius: 0,
                                                               ),
                                                             ),
                                                           ],
@@ -1933,7 +1931,9 @@ class _CheckoutSellerWidgetState extends State<CheckoutSellerWidget> {
                                                               .transparent,
                                                           width: 1,
                                                         ),
-                                                        borderRadius: 50,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(50),
                                                       ),
                                                     ),
                                                   ],

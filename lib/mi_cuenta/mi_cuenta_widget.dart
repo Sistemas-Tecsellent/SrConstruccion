@@ -477,7 +477,7 @@ class _MiCuentaWidgetState extends State<MiCuentaWidget> {
                                   color: Colors.transparent,
                                   width: 1,
                                 ),
-                                borderRadius: 5,
+                                borderRadius: BorderRadius.circular(5),
                               ),
                             ),
                           ],

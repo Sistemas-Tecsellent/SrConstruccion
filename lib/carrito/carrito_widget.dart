@@ -183,7 +183,13 @@ class _CarritoWidgetState extends State<CarritoWidget> {
                                   (pendingShipmentPrice?.jsonBody ?? ''),
                                   r'''$.pendingShipmentPrice''',
                                 )) {
-                                  context.goNamed('CalculandoCostoDeEnvio');
+                                  context.goNamed(
+                                    'CalculandoCostoDeEnvio',
+                                    queryParams: {
+                                      'checkoutId': serializeParam(
+                                          currentUserUid, ParamType.String),
+                                    }.withoutNulls,
+                                  );
                                 } else {
                                   await showModalBottomSheet(
                                     isScrollControlled: true,
@@ -225,7 +231,7 @@ class _CarritoWidgetState extends State<CarritoWidget> {
                                 color: Colors.transparent,
                                 width: 1,
                               ),
-                              borderRadius: 5,
+                              borderRadius: BorderRadius.circular(5),
                             ),
                           );
                         },

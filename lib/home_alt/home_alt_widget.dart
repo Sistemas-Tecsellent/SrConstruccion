@@ -527,7 +527,8 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                   color: Colors.transparent,
                                                   width: 1,
                                                 ),
-                                                borderRadius: 25,
+                                                borderRadius:
+                                                    BorderRadius.circular(25),
                                               ),
                                             );
                                           },

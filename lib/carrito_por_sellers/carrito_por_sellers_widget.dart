@@ -268,7 +268,7 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                                       color: Colors.transparent,
                                       width: 1,
                                     ),
-                                    borderRadius: 5,
+                                    borderRadius: BorderRadius.circular(5),
                                   ),
                                 );
                               },
@@ -932,7 +932,7 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                                 color: Colors.transparent,
                                 width: 1,
                               ),
-                              borderRadius: 5,
+                              borderRadius: BorderRadius.circular(5),
                             ),
                           ),
                         ),

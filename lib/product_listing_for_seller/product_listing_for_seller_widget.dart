@@ -145,7 +145,7 @@ class _ProductListingForSellerWidgetState
                               color: Colors.transparent,
                               width: 1,
                             ),
-                            borderRadius: 120,
+                            borderRadius: BorderRadius.circular(120),
                           ),
                         );
                       },

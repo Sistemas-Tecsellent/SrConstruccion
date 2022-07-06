@@ -287,7 +287,7 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                     color: Colors.transparent,
                                     width: 1,
                                   ),
-                                  borderRadius: 5,
+                                  borderRadius: BorderRadius.circular(5),
                                 ),
                               );
                             },
@@ -950,7 +950,6 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                             color: Colors
                                                                 .transparent,
                                                           ),
-                                                          borderRadius: 0,
                                                         ),
                                                       ),
                                                     ],
@@ -1139,7 +1138,6 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                     borderSide: BorderSide(
                                                       color: Colors.transparent,
                                                     ),
-                                                    borderRadius: 0,
                                                   ),
                                                 ),
                                               ],
@@ -1365,7 +1363,10 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                               color: Colors
                                                                   .transparent,
                                                             ),
-                                                            borderRadius: 5,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5),
                                                           ),
                                                         ),
                                                       ],
@@ -1519,7 +1520,6 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                               color: Colors
                                                                   .transparent,
                                                             ),
-                                                            borderRadius: 0,
                                                           ),
                                                         ),
                                                       ],
@@ -1862,7 +1862,8 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                   color: Colors.transparent,
                                                   width: 1,
                                                 ),
-                                                borderRadius: 50,
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
                                               ),
                                             ),
                                           ],
@@ -3768,7 +3769,6 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                             color: Colors
                                                                 .transparent,
                                                           ),
-                                                          borderRadius: 0,
                                                         ),
                                                       ),
                                                     ],
