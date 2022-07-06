@@ -88,7 +88,7 @@ class _SolicitudDevolucionAceptadaWidgetState
                           color: Colors.transparent,
                           width: 1,
                         ),
-                        borderRadius: 5,
+                        borderRadius: BorderRadius.circular(5),
                       ),
                     ),
                   ],

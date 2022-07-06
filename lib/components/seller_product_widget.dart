@@ -767,7 +767,8 @@ class _SellerProductWidgetState extends State<SellerProductWidget> {
                                             color: Colors.transparent,
                                             width: 1,
                                           ),
-                                          borderRadius: 5,
+                                          borderRadius:
+                                              BorderRadius.circular(5),
                                         ),
                                       ),
                                     ),

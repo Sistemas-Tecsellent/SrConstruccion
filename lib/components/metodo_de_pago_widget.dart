@@ -173,7 +173,7 @@ class _MetodoDePagoWidgetState extends State<MetodoDePagoWidget> {
                                   color: Colors.transparent,
                                   width: 1,
                                 ),
-                                borderRadius: 5,
+                                borderRadius: BorderRadius.circular(5),
                               ),
                             ),
                           ],

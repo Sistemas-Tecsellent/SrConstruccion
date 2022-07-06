@@ -1,3 +1,4 @@
+import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_rive_controller.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -8,8 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CalculandoCostoDeEnvioWidget extends StatefulWidget {
-  const CalculandoCostoDeEnvioWidget({
+class CalculandoCostoDeEnvioPorSellerWidget extends StatefulWidget {
+  const CalculandoCostoDeEnvioPorSellerWidget({
     Key key,
     this.checkoutId,
   }) : super(key: key);
@@ -17,12 +18,12 @@ class CalculandoCostoDeEnvioWidget extends StatefulWidget {
   final String checkoutId;
 
   @override
-  _CalculandoCostoDeEnvioWidgetState createState() =>
-      _CalculandoCostoDeEnvioWidgetState();
+  _CalculandoCostoDeEnvioPorSellerWidgetState createState() =>
+      _CalculandoCostoDeEnvioPorSellerWidgetState();
 }
 
-class _CalculandoCostoDeEnvioWidgetState
-    extends State<CalculandoCostoDeEnvioWidget> {
+class _CalculandoCostoDeEnvioPorSellerWidgetState
+    extends State<CalculandoCostoDeEnvioPorSellerWidget> {
   final riveAnimationAnimationsList = [
     'Animation 1',
   ];
@@ -58,7 +59,7 @@ class _CalculandoCostoDeEnvioWidgetState
           child: StreamBuilder<List<CheckoutsRecord>>(
             stream: queryCheckoutsRecord(
               queryBuilder: (checkoutsRecord) =>
-                  checkoutsRecord.where('id', isEqualTo: widget.checkoutId),
+                  checkoutsRecord.where('id', isEqualTo: currentUserUid),
               singleRecord: true,
             ),
             builder: (context, snapshot) {
@@ -141,37 +142,79 @@ class _CalculandoCostoDeEnvioWidgetState
                   ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 50),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        if (!(columnCheckoutsRecord.pendingShipmentPrice) ??
-                            true)
-                          FFButtonWidget(
-                            onPressed: () async {
-                              context.goNamed('Checkout');
-                            },
-                            text: 'Continuar',
-                            options: FFButtonOptions(
-                              width: 130,
-                              height: 40,
-                              color: Colors.white,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .subtitle2
-                                  .override(
-                                    fontFamily: 'Montserrat',
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                  ),
-                              elevation: 0,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1,
+                    child: StreamBuilder<List<SellerWiseCheckoutsRecord>>(
+                      stream: querySellerWiseCheckoutsRecord(
+                        parent: columnCheckoutsRecord.reference,
+                        queryBuilder: (sellerWiseCheckoutsRecord) =>
+                            sellerWiseCheckoutsRecord.where('id',
+                                isEqualTo: widget.checkoutId),
+                        singleRecord: true,
+                      ),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: SpinKitFadingCircle(
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                size: 50,
                               ),
-                              borderRadius: BorderRadius.circular(12),
                             ),
-                          ),
-                      ],
+                          );
+                        }
+                        List<SellerWiseCheckoutsRecord>
+                            rowSellerWiseCheckoutsRecordList = snapshot.data;
+                        // Return an empty Container when the document does not exist.
+                        if (snapshot.data.isEmpty) {
+                          return Container();
+                        }
+                        final rowSellerWiseCheckoutsRecord =
+                            rowSellerWiseCheckoutsRecordList.isNotEmpty
+                                ? rowSellerWiseCheckoutsRecordList.first
+                                : null;
+                        return Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            if (!(rowSellerWiseCheckoutsRecord
+                                    .pendingShipmentPrice) ??
+                                true)
+                              FFButtonWidget(
+                                onPressed: () async {
+                                  context.goNamed(
+                                    'CheckoutSeller',
+                                    params: {
+                                      'storeId': serializeParam(
+                                          widget.checkoutId, ParamType.String),
+                                    }.withoutNulls,
+                                  );
+                                },
+                                text: 'Continuar',
+                                options: FFButtonOptions(
+                                  width: 130,
+                                  height: 40,
+                                  color: Colors.white,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .subtitle2
+                                      .override(
+                                        fontFamily: 'Montserrat',
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
+                                      ),
+                                  elevation: 0,
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                          ],
+                        );
+                      },
                     ),
                   ),
                 ],

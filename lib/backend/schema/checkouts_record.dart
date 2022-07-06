@@ -48,6 +48,9 @@ abstract class CheckoutsRecord
   String get deliveryDate;
 
   @nullable
+  bool get hadPricingRequest;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -63,7 +66,8 @@ abstract class CheckoutsRecord
     ..expressProducts = 0
     ..normalProducts = 0
     ..pendingShipmentPrice = false
-    ..deliveryDate = '';
+    ..deliveryDate = ''
+    ..hadPricingRequest = false;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('checkouts');
@@ -99,6 +103,7 @@ Map<String, dynamic> createCheckoutsRecordData({
   int normalProducts,
   bool pendingShipmentPrice,
   String deliveryDate,
+  bool hadPricingRequest,
 }) =>
     serializers.toFirestore(
         CheckoutsRecord.serializer,
@@ -114,4 +119,5 @@ Map<String, dynamic> createCheckoutsRecordData({
           ..expressProducts = expressProducts
           ..normalProducts = normalProducts
           ..pendingShipmentPrice = pendingShipmentPrice
-          ..deliveryDate = deliveryDate));
+          ..deliveryDate = deliveryDate
+          ..hadPricingRequest = hadPricingRequest));

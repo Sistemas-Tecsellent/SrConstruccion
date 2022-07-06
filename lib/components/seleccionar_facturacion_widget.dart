@@ -352,7 +352,7 @@ class _SeleccionarFacturacionWidgetState
                                       color: Colors.transparent,
                                       width: 1,
                                     ),
-                                    borderRadius: 5,
+                                    borderRadius: BorderRadius.circular(5),
                                   ),
                                 ),
                                 Padding(
@@ -411,7 +411,7 @@ class _SeleccionarFacturacionWidgetState
                                         color: Colors.transparent,
                                         width: 1,
                                       ),
-                                      borderRadius: 5,
+                                      borderRadius: BorderRadius.circular(5),
                                     ),
                                   ),
                                 ),

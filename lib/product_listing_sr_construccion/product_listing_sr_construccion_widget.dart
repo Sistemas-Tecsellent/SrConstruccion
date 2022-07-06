@@ -104,7 +104,7 @@ class _ProductListingSrConstruccionWidgetState
                           color: Colors.transparent,
                           width: 1,
                         ),
-                        borderRadius: 100,
+                        borderRadius: BorderRadius.circular(100),
                       ),
                     );
                   },

@@ -452,7 +452,7 @@ class _FiltersWidgetState extends State<FiltersWidget> {
                                   color: Colors.transparent,
                                   width: 1,
                                 ),
-                                borderRadius: 12,
+                                borderRadius: BorderRadius.circular(12),
                               ),
                             ),
                             FFButtonWidget(
@@ -477,7 +477,7 @@ class _FiltersWidgetState extends State<FiltersWidget> {
                                   color: Colors.transparent,
                                   width: 1,
                                 ),
-                                borderRadius: 5,
+                                borderRadius: BorderRadius.circular(5),
                               ),
                             ),
                           ],

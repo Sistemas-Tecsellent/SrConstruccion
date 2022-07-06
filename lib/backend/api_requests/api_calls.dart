@@ -493,3 +493,28 @@ class GetCheckoutInfoCall {
     );
   }
 }
+
+class GetIfCheckoutIsByTruckCall {
+  static Future<ApiCallResponse> call({
+    String uid = '',
+    String checkoutId = '',
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getIfCheckoutIsByTruck',
+      apiUrl:
+          'https://us-central1-srconstruccion-d4663.cloudfunctions.net/getIfCheckoutIsByTruck',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'uid': uid,
+        'checkoutId': checkoutId,
+      },
+      returnBody: true,
+    );
+  }
+
+  static dynamic pendingShipmentPrice(dynamic response) => getJsonField(
+        response,
+        r'''$.pendingShipmentPrice''',
+      );
+}

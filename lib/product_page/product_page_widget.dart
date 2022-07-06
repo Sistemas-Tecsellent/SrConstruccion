@@ -149,7 +149,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                           color: Colors.transparent,
                           width: 1,
                         ),
-                        borderRadius: 25,
+                        borderRadius: BorderRadius.circular(25),
                       ),
                     );
                   },
@@ -231,7 +231,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                       color: Colors.transparent,
                       width: 1,
                     ),
-                    borderRadius: 5,
+                    borderRadius: BorderRadius.circular(5),
                   ),
                 ),
               ],
@@ -887,7 +887,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                               1,
                                                                         ),
                                                                         borderRadius:
-                                                                            500,
+                                                                            BorderRadius.circular(500),
                                                                       ),
                                                                     ),
                                                                   ),
@@ -3393,7 +3393,8 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                       width: 1,
                                                                     ),
                                                                     borderRadius:
-                                                                        500,
+                                                                        BorderRadius.circular(
+                                                                            500),
                                                                   ),
                                                                 ),
                                                               ),

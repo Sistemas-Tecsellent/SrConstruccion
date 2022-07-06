@@ -320,7 +320,7 @@ class _AnadirFacturacionWidgetState extends State<AnadirFacturacionWidget> {
                                   color: Colors.transparent,
                                   width: 1,
                                 ),
-                                borderRadius: 5,
+                                borderRadius: BorderRadius.circular(5),
                               ),
                             ),
                           ],
