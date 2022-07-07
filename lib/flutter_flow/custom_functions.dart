@@ -161,3 +161,10 @@ bool isEqualTo(
   }
   return false;
 }
+
+int substractOne(int value) {
+  if (value <= 0) {
+    return 0;
+  }
+  return value - 1;
+}

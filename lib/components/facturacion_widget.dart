@@ -206,7 +206,7 @@ class _FacturacionWidgetState extends State<FacturacionWidget> {
                                       ).toString(),
                                       'Por Definir',
                                     );
-                                    context.pop();
+                                    Navigator.pop(context);
                                   } else {
                                     await actions
                                         .setCheckoutModifyInvoiceAndUsage(
@@ -217,7 +217,7 @@ class _FacturacionWidgetState extends State<FacturacionWidget> {
                                       ).toString(),
                                       'Por Definir',
                                     );
-                                    context.pop();
+                                    Navigator.pop(context);
                                   }
                                 } else {
                                   await showModalBottomSheet(
