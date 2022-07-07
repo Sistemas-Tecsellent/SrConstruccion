@@ -37,7 +37,7 @@ class _BuscarPorRFCWidgetState extends State<BuscarPorRFCWidget> {
             size: 30,
           ),
           onPressed: () async {
-            context.pushNamed('FacturacionPerfil');
+            context.pop();
           },
         ),
         actions: [],

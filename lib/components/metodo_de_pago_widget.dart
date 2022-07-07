@@ -149,15 +149,13 @@ class _MetodoDePagoWidgetState extends State<MetodoDePagoWidget> {
                                       currentUserUid,
                                       radioButtonValue,
                                     );
-                                    context.pop();
-                                    context.pop();
+                                    Navigator.pop(context);
                                   } else {
                                     await actions.setCheckoutModifyPaymentMet(
                                       widget.storeId,
                                       radioButtonValue,
                                     );
-                                    context.pop();
-                                    context.pop();
+                                    Navigator.pop(context);
                                   }
                                 },
                                 text: 'Seleccionar',
