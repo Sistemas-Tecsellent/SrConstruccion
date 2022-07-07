@@ -496,15 +496,15 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => AgendarServicioWidget(),
             ),
             FFRoute(
+              name: 'Ofertas',
+              path: 'ofertas-categorias',
+              builder: (context, params) => OfertasWidget(),
+            ),
+            FFRoute(
               name: 'MisServicios',
               path: 'mis-servicios',
               requireAuth: true,
               builder: (context, params) => MisServiciosWidget(),
-            ),
-            FFRoute(
-              name: 'Ofertas',
-              path: 'ofertas-categorias',
-              builder: (context, params) => OfertasWidget(),
             ),
             FFRoute(
               name: 'ServiciosSingle',
