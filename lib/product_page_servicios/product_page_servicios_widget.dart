@@ -239,7 +239,7 @@ class _ProductPageServiciosWidgetState
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                                MainAxisAlignment.start,
                                             children: [
                                               Align(
                                                 alignment:
@@ -257,8 +257,10 @@ class _ProductPageServiciosWidgetState
                                                         fontFamily:
                                                             'Montserrat',
                                                         color:
-                                                            Color(0xFF1EEBBD),
-                                                        fontSize: 18,
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                        fontSize: 22,
                                                         fontWeight:
                                                             FontWeight.w600,
                                                       ),
@@ -267,25 +269,29 @@ class _ProductPageServiciosWidgetState
                                               Align(
                                                 alignment:
                                                     AlignmentDirectional(0, 0),
-                                                child: Text(
-                                                  '[P-COMPARACIÓN]',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily:
-                                                            'Montserrat',
-                                                        color:
-                                                            Color(0xFFAEAEAE),
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontStyle:
-                                                            FontStyle.italic,
-                                                        decoration:
-                                                            TextDecoration
-                                                                .lineThrough,
-                                                      ),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(10, 10, 10, 10),
+                                                  child: Text(
+                                                    '[P-COMPARACIÓN]',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              'Montserrat',
+                                                          color:
+                                                              Color(0xFFD6D4D4),
+                                                          fontSize: 16,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          fontStyle:
+                                                              FontStyle.italic,
+                                                          decoration:
+                                                              TextDecoration
+                                                                  .lineThrough,
+                                                        ),
+                                                  ),
                                                 ),
                                               ),
                                             ],

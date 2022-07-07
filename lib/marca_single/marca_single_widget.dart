@@ -638,7 +638,7 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                   child: Text(
                                                     rowProductsRecord.title
                                                         .maybeHandleOverflow(
-                                                      maxChars: 22,
+                                                      maxChars: 40,
                                                       replacement: '…',
                                                     ),
                                                     textAlign: TextAlign.start,
@@ -1074,7 +1074,7 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                   child: Text(
                                                     rowProductsRecord.title
                                                         .maybeHandleOverflow(
-                                                      maxChars: 23,
+                                                      maxChars: 40,
                                                       replacement: '…',
                                                     ),
                                                     textAlign: TextAlign.start,
@@ -1097,17 +1097,21 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                   children: [
                                                     Text(
                                                       '\$',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyText1
-                                                          .override(
-                                                            fontFamily:
-                                                                'Montserrat',
-                                                            color: Color(
-                                                                0xFF1EEBBD),
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Montserrat',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                                fontSize: 22,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                              ),
                                                     ),
                                                     Align(
                                                       alignment:
@@ -1131,8 +1135,10 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                               .override(
                                                                 fontFamily:
                                                                     'Montserrat',
-                                                                color: Color(
-                                                                    0xFF1EEBBD),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                                fontSize: 22,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w600,
@@ -1487,7 +1493,7 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                   child: Text(
                                                     rowProductsRecord.title
                                                         .maybeHandleOverflow(
-                                                      maxChars: 23,
+                                                      maxChars: 40,
                                                       replacement: '…',
                                                     ),
                                                     textAlign: TextAlign.start,
@@ -1521,8 +1527,10 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                                 .override(
                                                                   fontFamily:
                                                                       'Montserrat',
-                                                                  color: Color(
-                                                                      0xFF1EEBBD),
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                                  fontSize: 22,
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .w600,
@@ -1551,8 +1559,10 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                               .override(
                                                                 fontFamily:
                                                                     'Montserrat',
-                                                                color: Color(
-                                                                    0xFF1EEBBD),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                                fontSize: 22,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w600,
@@ -1906,7 +1916,7 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                   child: Text(
                                                     rowProductsRecord.title
                                                         .maybeHandleOverflow(
-                                                      maxChars: 23,
+                                                      maxChars: 40,
                                                       replacement: '…',
                                                     ),
                                                     textAlign: TextAlign.start,
@@ -1944,8 +1954,10 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                               .override(
                                                                 fontFamily:
                                                                     'Montserrat',
-                                                                color: Color(
-                                                                    0xFF1EEBBD),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                                fontSize: 22,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w600,
@@ -1970,8 +1982,10 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                                 .override(
                                                                   fontFamily:
                                                                       'Montserrat',
-                                                                  color: Color(
-                                                                      0xFF1EEBBD),
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                                  fontSize: 22,
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .w600,

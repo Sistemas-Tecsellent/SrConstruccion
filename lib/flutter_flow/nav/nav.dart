@@ -560,16 +560,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
-              name: 'searchMarca',
-              path: 'buscar-marca',
-              requireAuth: true,
-              builder: (context, params) => SearchMarcaWidget(),
-            ),
-            FFRoute(
               name: 'searchProductsSeller',
               path: 'buscar/productos-vendedor',
               requireAuth: true,
               builder: (context, params) => SearchProductsSellerWidget(),
+            ),
+            FFRoute(
+              name: 'searchMarca',
+              path: 'buscar-marca',
+              requireAuth: true,
+              builder: (context, params) => SearchMarcaWidget(),
             ),
             FFRoute(
               name: 'CategoriaSingleMARCA',

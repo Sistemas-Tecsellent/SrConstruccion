@@ -490,7 +490,7 @@ class _SubcategoriaSingleWidgetState extends State<SubcategoriaSingleWidget> {
                                                                       .title
                                                                       .maybeHandleOverflow(
                                                                     maxChars:
-                                                                        22,
+                                                                        40,
                                                                     replacement:
                                                                         '…',
                                                                   ),
@@ -980,7 +980,7 @@ class _SubcategoriaSingleWidgetState extends State<SubcategoriaSingleWidget> {
                                                       child: Text(
                                                         rowProductsRecord.title
                                                             .maybeHandleOverflow(
-                                                          maxChars: 23,
+                                                          maxChars: 40,
                                                           replacement: '…',
                                                         ),
                                                         textAlign:
@@ -1016,8 +1016,13 @@ class _SubcategoriaSingleWidgetState extends State<SubcategoriaSingleWidget> {
                                                                 .override(
                                                                   fontFamily:
                                                                       'Montserrat',
-                                                                  color: Color(
-                                                                      0xFF1EEBBD),
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                                  fontSize: 22,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
                                                                 ),
                                                           ),
                                                         ),
@@ -1025,22 +1030,37 @@ class _SubcategoriaSingleWidgetState extends State<SubcategoriaSingleWidget> {
                                                           alignment:
                                                               AlignmentDirectional(
                                                                   -1, -0.7),
-                                                          child: Text(
-                                                            GetOneVariantCall
-                                                                .price(
-                                                              (cageGetOneVariantResponse
-                                                                      ?.jsonBody ??
-                                                                  ''),
-                                                            ).toString(),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Montserrat',
-                                                                  color: Color(
-                                                                      0xFF1EEBBD),
-                                                                ),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        2,
+                                                                        0,
+                                                                        0,
+                                                                        0),
+                                                            child: Text(
+                                                              GetOneVariantCall
+                                                                  .price(
+                                                                (cageGetOneVariantResponse
+                                                                        ?.jsonBody ??
+                                                                    ''),
+                                                              ).toString(),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText1
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Montserrat',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .alternate,
+                                                                    fontSize:
+                                                                        22,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                  ),
+                                                            ),
                                                           ),
                                                         ),
                                                       ],
@@ -1419,7 +1439,7 @@ class _SubcategoriaSingleWidgetState extends State<SubcategoriaSingleWidget> {
                                                       child: Text(
                                                         rowProductsRecord.title
                                                             .maybeHandleOverflow(
-                                                          maxChars: 23,
+                                                          maxChars: 40,
                                                           replacement: '…',
                                                         ),
                                                         textAlign:
@@ -1455,8 +1475,13 @@ class _SubcategoriaSingleWidgetState extends State<SubcategoriaSingleWidget> {
                                                                 .override(
                                                                   fontFamily:
                                                                       'Montserrat',
-                                                                  color: Color(
-                                                                      0xFF1EEBBD),
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                                  fontSize: 22,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
                                                                 ),
                                                           ),
                                                         ),
@@ -1464,22 +1489,37 @@ class _SubcategoriaSingleWidgetState extends State<SubcategoriaSingleWidget> {
                                                           alignment:
                                                               AlignmentDirectional(
                                                                   -1, -0.7),
-                                                          child: Text(
-                                                            GetOneVariantCall
-                                                                .price(
-                                                              (cageGetOneVariantResponse
-                                                                      ?.jsonBody ??
-                                                                  ''),
-                                                            ).toString(),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Montserrat',
-                                                                  color: Color(
-                                                                      0xFF1EEBBD),
-                                                                ),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        2,
+                                                                        0,
+                                                                        0,
+                                                                        0),
+                                                            child: Text(
+                                                              GetOneVariantCall
+                                                                  .price(
+                                                                (cageGetOneVariantResponse
+                                                                        ?.jsonBody ??
+                                                                    ''),
+                                                              ).toString(),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText1
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Montserrat',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .alternate,
+                                                                    fontSize:
+                                                                        22,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                  ),
+                                                            ),
                                                           ),
                                                         ),
                                                       ],
@@ -1893,8 +1933,13 @@ class _SubcategoriaSingleWidgetState extends State<SubcategoriaSingleWidget> {
                                                                 .override(
                                                                   fontFamily:
                                                                       'Montserrat',
-                                                                  color: Color(
-                                                                      0xFF1EEBBD),
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                                  fontSize: 22,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
                                                                 ),
                                                           ),
                                                         ),
@@ -1902,22 +1947,37 @@ class _SubcategoriaSingleWidgetState extends State<SubcategoriaSingleWidget> {
                                                           alignment:
                                                               AlignmentDirectional(
                                                                   -1, -0.7),
-                                                          child: Text(
-                                                            GetOneVariantCall
-                                                                .price(
-                                                              (cageGetOneVariantResponse
-                                                                      ?.jsonBody ??
-                                                                  ''),
-                                                            ).toString(),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Montserrat',
-                                                                  color: Color(
-                                                                      0xFF1EEBBD),
-                                                                ),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        2,
+                                                                        0,
+                                                                        0,
+                                                                        0),
+                                                            child: Text(
+                                                              GetOneVariantCall
+                                                                  .price(
+                                                                (cageGetOneVariantResponse
+                                                                        ?.jsonBody ??
+                                                                    ''),
+                                                              ).toString(),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText1
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Montserrat',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .alternate,
+                                                                    fontSize:
+                                                                        22,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                  ),
+                                                            ),
                                                           ),
                                                         ),
                                                       ],

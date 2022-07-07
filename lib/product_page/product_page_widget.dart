@@ -377,7 +377,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                   children: [
                                     Container(
                                       width: MediaQuery.of(context).size.width,
-                                      height: 1000,
                                       decoration: BoxDecoration(),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
@@ -529,7 +528,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                       .size
                                                       .width *
                                                   0.49,
-                                              height: 999,
                                               decoration: BoxDecoration(),
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
@@ -538,8 +536,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                   mainAxisSize:
                                                       MainAxisSize.min,
                                                   mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceEvenly,
+                                                      MainAxisAlignment.start,
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
@@ -563,7 +560,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                             padding:
                                                                 EdgeInsetsDirectional
                                                                     .fromSTEB(
-                                                                        25,
+                                                                        20,
                                                                         0,
                                                                         25,
                                                                         0),
@@ -641,7 +638,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                             color:
                                                                                 Color(0xFFE7E7E7),
                                                                             fontSize:
-                                                                                16,
+                                                                                22,
                                                                             fontWeight:
                                                                                 FontWeight.w600,
                                                                             fontStyle:
@@ -662,7 +659,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  25, 5, 25, 0),
+                                                                  20, 5, 25, 0),
                                                       child: Row(
                                                         mainAxisSize:
                                                             MainAxisSize.min,
@@ -736,7 +733,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  20, 10, 0, 0),
+                                                                  20, 0, 0, 0),
                                                       child: Container(
                                                         width: MediaQuery.of(
                                                                     context)
@@ -752,29 +749,35 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                           color:
                                                               Color(0x00EEEEEE),
                                                         ),
-                                                        child: Text(
-                                                          columnProductsRecord
-                                                              .description,
-                                                          textAlign:
-                                                              TextAlign.justify,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Montserrat',
-                                                                fontSize: 14,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .normal,
-                                                              ),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      10, 0, 0),
+                                                          child: Text(
+                                                            columnProductsRecord
+                                                                .description,
+                                                            textAlign: TextAlign
+                                                                .justify,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Montserrat',
+                                                                  fontSize: 14,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                ),
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
                                                     Padding(
                                                       padding:
                                                           EdgeInsetsDirectional
-                                                              .fromSTEB(25, 10,
+                                                              .fromSTEB(20, 10,
                                                                   25, 10),
                                                       child: Row(
                                                         mainAxisSize:
@@ -1660,7 +1663,8 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                       ),
                                                                                       style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                             fontFamily: 'Montserrat',
-                                                                                            color: Color(0xFF1EEBBD),
+                                                                                            color: FlutterFlowTheme.of(context).alternate,
+                                                                                            fontSize: 18,
                                                                                             fontWeight: FontWeight.w600,
                                                                                           ),
                                                                                     ),
@@ -1710,6 +1714,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                                       fontFamily: 'Montserrat',
                                                                                                       color: Color(0xFFAEAEAE),
                                                                                                       fontSize: 11,
+                                                                                                      fontWeight: FontWeight.w600,
                                                                                                     ),
                                                                                               ),
                                                                                               Text(
@@ -1886,7 +1891,9 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                                 ),
                                                                                                 style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                                       fontFamily: 'Montserrat',
-                                                                                                      color: Color(0xFF1EEBBD),
+                                                                                                      color: FlutterFlowTheme.of(context).alternate,
+                                                                                                      fontSize: 18,
+                                                                                                      fontWeight: FontWeight.w600,
                                                                                                     ),
                                                                                               ),
                                                                                             ),
@@ -1901,7 +1908,9 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                                 ),
                                                                                                 style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                                       fontFamily: 'Montserrat',
-                                                                                                      color: Color(0xFF1EEBBD),
+                                                                                                      color: FlutterFlowTheme.of(context).alternate,
+                                                                                                      fontSize: 18,
+                                                                                                      fontWeight: FontWeight.w600,
                                                                                                     ),
                                                                                               ),
                                                                                             ),
@@ -1916,7 +1925,8 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                                 ),
                                                                                                 style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                                       fontFamily: 'Montserrat',
-                                                                                                      color: Color(0xFF1EEBBD),
+                                                                                                      color: FlutterFlowTheme.of(context).alternate,
+                                                                                                      fontSize: 18,
                                                                                                       fontWeight: FontWeight.w600,
                                                                                                     ),
                                                                                               ),
@@ -1931,7 +1941,9 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                               ),
                                                                                               style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                                     fontFamily: 'Montserrat',
-                                                                                                    color: Color(0xFF1EEBBD),
+                                                                                                    color: FlutterFlowTheme.of(context).alternate,
+                                                                                                    fontSize: 18,
+                                                                                                    fontWeight: FontWeight.w600,
                                                                                                   ),
                                                                                             ),
                                                                                         ],
@@ -1950,6 +1962,15 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                           mainAxisSize: MainAxisSize.max,
                                                                                           crossAxisAlignment: CrossAxisAlignment.start,
                                                                                           children: [
+                                                                                            Text(
+                                                                                              '+100',
+                                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                    fontFamily: 'Montserrat',
+                                                                                                    color: Color(0xFFAEAEAE),
+                                                                                                    fontSize: 11,
+                                                                                                    fontWeight: FontWeight.w600,
+                                                                                                  ),
+                                                                                            ),
                                                                                             Text(
                                                                                               'disponible',
                                                                                               style: FlutterFlowTheme.of(context).bodyText1.override(
@@ -2413,9 +2434,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                   .size
                                                   .width,
                                               height: 350,
-                                              constraints: BoxConstraints(
-                                                maxWidth: 5,
-                                              ),
                                               decoration: BoxDecoration(
                                                 color: Colors.white,
                                               ),
@@ -2525,9 +2543,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                           width:
                                               MediaQuery.of(context).size.width,
                                           height: 400,
-                                          constraints: BoxConstraints(
-                                            maxWidth: 500,
-                                          ),
                                           decoration: BoxDecoration(
                                             color: Colors.white,
                                             borderRadius: BorderRadius.only(
@@ -3202,8 +3217,8 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                               ),
                                                                               style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                     fontFamily: 'Montserrat',
-                                                                                    color: Color(0xFF1EEBBD),
-                                                                                    fontSize: 18,
+                                                                                    color: FlutterFlowTheme.of(context).alternate,
+                                                                                    fontSize: 30,
                                                                                     fontWeight: FontWeight.w600,
                                                                                   ),
                                                                             ),
@@ -3232,8 +3247,8 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                               ),
                                                                               style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                     fontFamily: 'Montserrat',
-                                                                                    color: Color(0xFF1EEBBD),
-                                                                                    fontSize: 18,
+                                                                                    color: FlutterFlowTheme.of(context).alternate,
+                                                                                    fontSize: 30,
                                                                                     fontWeight: FontWeight.w600,
                                                                                   ),
                                                                             ),
@@ -3499,56 +3514,46 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                 MainAxisAlignment
                                                                     .end,
                                                             children: [
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0,
-                                                                            0,
-                                                                            5,
-                                                                            0),
-                                                                child:
-                                                                    FFButtonWidget(
-                                                                  onPressed:
-                                                                      () async {
-                                                                    context.pushNamed(
-                                                                        'CotizacionFormulario');
-                                                                  },
-                                                                  text:
-                                                                      'Cotizar',
-                                                                  icon: Icon(
-                                                                    Icons
-                                                                        .forum_rounded,
-                                                                    size: 15,
+                                                              FFButtonWidget(
+                                                                onPressed:
+                                                                    () async {
+                                                                  context.pushNamed(
+                                                                      'CotizacionFormulario');
+                                                                },
+                                                                text: 'Cotizar',
+                                                                icon: Icon(
+                                                                  Icons
+                                                                      .forum_rounded,
+                                                                  size: 15,
+                                                                ),
+                                                                options:
+                                                                    FFButtonOptions(
+                                                                  width: 130,
+                                                                  height: 30,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                                  textStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .subtitle2
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Montserrat',
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            14,
+                                                                      ),
+                                                                  borderSide:
+                                                                      BorderSide(
+                                                                    color: Colors
+                                                                        .transparent,
+                                                                    width: 1,
                                                                   ),
-                                                                  options:
-                                                                      FFButtonOptions(
-                                                                    width: 130,
-                                                                    height: 30,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .alternate,
-                                                                    textStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .subtitle2
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Montserrat',
-                                                                          color:
-                                                                              Colors.white,
-                                                                          fontSize:
-                                                                              14,
-                                                                        ),
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: Colors
-                                                                          .transparent,
-                                                                      width: 1,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            500),
-                                                                  ),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              500),
                                                                 ),
                                                               ),
                                                             ],
@@ -4248,7 +4253,8 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                             ),
                                                                                             style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                                   fontFamily: 'Montserrat',
-                                                                                                  color: Color(0xFF1EEBBD),
+                                                                                                  color: FlutterFlowTheme.of(context).alternate,
+                                                                                                  fontSize: 16,
                                                                                                   fontWeight: FontWeight.w600,
                                                                                                 ),
                                                                                           ),
@@ -4298,6 +4304,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                                             fontFamily: 'Montserrat',
                                                                                                             color: Color(0xFFAEAEAE),
                                                                                                             fontSize: 11,
+                                                                                                            fontWeight: FontWeight.w600,
                                                                                                           ),
                                                                                                     ),
                                                                                                     Text(
@@ -4443,7 +4450,8 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                                       ),
                                                                                                       style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                                             fontFamily: 'Montserrat',
-                                                                                                            color: Color(0xFF1EEBBD),
+                                                                                                            color: FlutterFlowTheme.of(context).alternate,
+                                                                                                            fontSize: 16,
                                                                                                             fontWeight: FontWeight.w600,
                                                                                                           ),
                                                                                                     ),
@@ -4459,7 +4467,8 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                                       ),
                                                                                                       style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                                             fontFamily: 'Montserrat',
-                                                                                                            color: Color(0xFF1EEBBD),
+                                                                                                            color: FlutterFlowTheme.of(context).alternate,
+                                                                                                            fontSize: 16,
                                                                                                             fontWeight: FontWeight.w600,
                                                                                                           ),
                                                                                                     ),
@@ -4475,7 +4484,8 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                                       ),
                                                                                                       style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                                             fontFamily: 'Montserrat',
-                                                                                                            color: Color(0xFF1EEBBD),
+                                                                                                            color: FlutterFlowTheme.of(context).alternate,
+                                                                                                            fontSize: 16,
                                                                                                             fontWeight: FontWeight.w600,
                                                                                                           ),
                                                                                                     ),
@@ -4496,6 +4506,15 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                                 mainAxisSize: MainAxisSize.max,
                                                                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                                                                 children: [
+                                                                                                  Text(
+                                                                                                    '+100',
+                                                                                                    style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                          fontFamily: 'Montserrat',
+                                                                                                          color: Color(0xFFAEAEAE),
+                                                                                                          fontSize: 11,
+                                                                                                          fontWeight: FontWeight.w600,
+                                                                                                        ),
+                                                                                                  ),
                                                                                                   Text(
                                                                                                     'disponible',
                                                                                                     style: FlutterFlowTheme.of(context).bodyText1.override(

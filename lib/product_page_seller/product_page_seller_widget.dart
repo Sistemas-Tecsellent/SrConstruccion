@@ -264,8 +264,10 @@ class _ProductPageSellerWidgetState extends State<ProductPageSellerWidget> {
                                               .bodyText1
                                               .override(
                                                 fontFamily: 'Montserrat',
-                                                color: Color(0xFF1EEBBD),
-                                                fontSize: 16,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                                fontSize: 20,
                                                 fontWeight: FontWeight.w600,
                                               ),
                                         ),
