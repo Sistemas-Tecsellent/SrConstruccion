@@ -393,6 +393,9 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                                   onPressed: () async {
                                                                                     context.pushNamed(
                                                                                       'CarritoPorSellers',
+                                                                                      params: {
+                                                                                        'storeName': serializeParam(perfilDelSellerStoresRecord.name, ParamType.String),
+                                                                                      }.withoutNulls,
                                                                                       queryParams: {
                                                                                         'storeId': serializeParam(widget.storeId, ParamType.String),
                                                                                       }.withoutNulls,

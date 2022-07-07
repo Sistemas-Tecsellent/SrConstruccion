@@ -910,6 +910,11 @@ class _ProductPageSellerWidgetState extends State<ProductPageSellerWidget> {
                                           );
                                           context.pushNamed(
                                             'CarritoPorSellers',
+                                            params: {
+                                              'storeName': serializeParam(
+                                                  columnStoresRecord.name,
+                                                  ParamType.String),
+                                            }.withoutNulls,
                                             queryParams: {
                                               'storeId': serializeParam(
                                                   columnStoresRecord.id,
