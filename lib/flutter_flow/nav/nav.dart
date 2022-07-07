@@ -94,19 +94,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => PerfilWidget(),
             ),
             FFRoute(
-              name: 'ProductPage',
-              path: 'producto/:productId',
-              builder: (context, params) => ProductPageWidget(
-                productId: params.getParam('productId', ParamType.String),
-              ),
-            ),
-            FFRoute(
               name: 'ProductPageSeller',
-              path: ':storeName/:productId',
+              path: 'vendedor/:storeName/:productId',
               requireAuth: true,
               builder: (context, params) => ProductPageSellerWidget(
                 storeId: params.getParam('storeId', ParamType.String),
                 storeName: params.getParam('storeName', ParamType.String),
+                productId: params.getParam('productId', ParamType.String),
+              ),
+            ),
+            FFRoute(
+              name: 'ProductPage',
+              path: 'producto/:productId',
+              builder: (context, params) => ProductPageWidget(
                 productId: params.getParam('productId', ParamType.String),
               ),
             ),
