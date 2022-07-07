@@ -665,7 +665,7 @@ class _SubcategoryProductListingMARCAWidgetState
                               crossAxisCount: 2,
                               crossAxisSpacing: 0,
                               mainAxisSpacing: 0,
-                              childAspectRatio: 0.65,
+                              childAspectRatio: 0.6,
                             ),
                             scrollDirection: Axis.vertical,
                             itemCount: gridViewProductsRecordList.length,
@@ -935,6 +935,7 @@ class _SubcategoryProductListingMARCAWidgetState
                                                                     'Montserrat',
                                                                 color: Color(
                                                                     0xFF1EEBBD),
+                                                                fontSize: 22,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w600,

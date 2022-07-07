@@ -522,3 +522,23 @@ class GetIfCheckoutIsByTruckCall {
         r'''$.pendingShipmentPrice''',
       );
 }
+
+class AddressToLatLngCall {
+  static Future<ApiCallResponse> call({
+    String uid = '',
+    String addressName = '',
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'addressToLatLng',
+      apiUrl:
+          'https://us-central1-srconstruccion-d4663.cloudfunctions.net/addressToLatLng',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'uid': uid,
+        'addressName': addressName,
+      },
+      returnBody: true,
+    );
+  }
+}

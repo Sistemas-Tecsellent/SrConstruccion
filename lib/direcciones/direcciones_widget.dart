@@ -1,12 +1,10 @@
 import '../auth/auth_util.dart';
-import '../components/sugerencias_recomendaciones_widget.dart';
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,20 +17,7 @@ class DireccionesWidget extends StatefulWidget {
 }
 
 class _DireccionesWidgetState extends State<DireccionesWidget> {
-  List<dynamic> userAddresses;
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  @override
-  void initState() {
-    super.initState();
-    // On page load action.
-    SchedulerBinding.instance?.addPostFrameCallback((_) async {
-      userAddresses = await actions.getUserAddresses(
-        currentUserUid,
-      );
-      setState(() => FFAppState().userAddresses = userAddresses.toList());
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +37,7 @@ class _DireccionesWidgetState extends State<DireccionesWidget> {
             size: 30,
           ),
           onPressed: () async {
-            context.pushNamed('Perfil');
+            context.pop();
           },
         ),
         title: Text(
@@ -74,63 +59,47 @@ class _DireccionesWidgetState extends State<DireccionesWidget> {
         },
         backgroundColor: Color(0x00FDC054),
         elevation: 0,
-        label: InkWell(
-          onTap: () async {
-            await showModalBottomSheet(
-              isScrollControlled: true,
-              backgroundColor: Colors.transparent,
-              context: context,
-              builder: (context) {
-                return Padding(
-                  padding: MediaQuery.of(context).viewInsets,
-                  child: SugerenciasRecomendacionesWidget(),
-                );
-              },
-            );
-            context.pushNamed('Checkout');
-          },
-          child: Container(
-            decoration: BoxDecoration(
-              color: Color(0x00FF5963),
-              boxShadow: [
-                BoxShadow(
-                  blurRadius: 3,
-                  color: Color(0x20000000),
-                )
-              ],
-              borderRadius: BorderRadius.circular(15),
-            ),
-            alignment: AlignmentDirectional(0, 0),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                FFButtonWidget(
-                  onPressed: () async {
-                    context.pushNamed('AnadirDireccion');
-                  },
-                  text: 'Agregar Dirección',
-                  options: FFButtonOptions(
-                    width: 300,
-                    height: 54,
-                    color: FlutterFlowTheme.of(context).primaryColor,
-                    textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                          fontFamily: 'Montserrat',
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                    elevation: 0,
-                    borderSide: BorderSide(
-                      color: Colors.transparent,
-                      width: 1,
-                    ),
-                    borderRadius: BorderRadius.circular(5),
+        label: Container(
+          decoration: BoxDecoration(
+            color: Color(0x00FF5963),
+            boxShadow: [
+              BoxShadow(
+                blurRadius: 3,
+                color: Color(0x20000000),
+              )
+            ],
+            borderRadius: BorderRadius.circular(15),
+          ),
+          alignment: AlignmentDirectional(0, 0),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              FFButtonWidget(
+                onPressed: () async {
+                  context.pushNamed('AnadirDireccion');
+                },
+                text: 'Agregar Dirección',
+                options: FFButtonOptions(
+                  width: 300,
+                  height: 54,
+                  color: FlutterFlowTheme.of(context).primaryColor,
+                  textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                        fontFamily: 'Montserrat',
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                  elevation: 0,
+                  borderSide: BorderSide(
+                    color: Colors.transparent,
+                    width: 1,
                   ),
+                  borderRadius: BorderRadius.circular(5),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
@@ -141,16 +110,35 @@ class _DireccionesWidgetState extends State<DireccionesWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Expanded(
-                child: Builder(
-                  builder: (context) {
-                    final addresses =
-                        FFAppState().userAddresses?.toList() ?? [];
+                child: StreamBuilder<List<AddressesRecord>>(
+                  stream: queryAddressesRecord(
+                    parent: currentUserReference,
+                    queryBuilder: (addressesRecord) => addressesRecord
+                        .where('name', isNotEqualTo: 'Sin-Direccion'),
+                  ),
+                  builder: (context, snapshot) {
+                    // Customize what your widget looks like when it's loading.
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: SizedBox(
+                          width: 50,
+                          height: 50,
+                          child: SpinKitFadingCircle(
+                            color: FlutterFlowTheme.of(context).primaryColor,
+                            size: 50,
+                          ),
+                        ),
+                      );
+                    }
+                    List<AddressesRecord> listViewAddressesRecordList =
+                        snapshot.data;
                     return ListView.builder(
                       padding: EdgeInsets.zero,
                       scrollDirection: Axis.vertical,
-                      itemCount: addresses.length,
-                      itemBuilder: (context, addressesIndex) {
-                        final addressesItem = addresses[addressesIndex];
+                      itemCount: listViewAddressesRecordList.length,
+                      itemBuilder: (context, listViewIndex) {
+                        final listViewAddressesRecord =
+                            listViewAddressesRecordList[listViewIndex];
                         return Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 1),
                           child: InkWell(
@@ -158,41 +146,8 @@ class _DireccionesWidgetState extends State<DireccionesWidget> {
                               context.pushNamed(
                                 'EditarDireccion',
                                 queryParams: {
-                                  'addressLine1': serializeParam(
-                                      getJsonField(
-                                        addressesItem,
-                                        r'''$.addressLine1''',
-                                      ).toString(),
-                                      ParamType.String),
-                                  'suburb': serializeParam(
-                                      getJsonField(
-                                        addressesItem,
-                                        r'''$.suburb''',
-                                      ).toString(),
-                                      ParamType.String),
-                                  'postalCode': serializeParam(
-                                      getJsonField(
-                                        addressesItem,
-                                        r'''$.postalCode''',
-                                      ).toString(),
-                                      ParamType.String),
-                                  'city': serializeParam(
-                                      getJsonField(
-                                        addressesItem,
-                                        r'''$.city''',
-                                      ).toString(),
-                                      ParamType.String),
-                                  'state': serializeParam(
-                                      getJsonField(
-                                        addressesItem,
-                                        r'''$.state''',
-                                      ).toString(),
-                                      ParamType.String),
                                   'name': serializeParam(
-                                      getJsonField(
-                                        addressesItem,
-                                        r'''$.name''',
-                                      ).toString(),
+                                      listViewAddressesRecord.name,
                                       ParamType.String),
                                 }.withoutNulls,
                               );
@@ -215,10 +170,7 @@ class _DireccionesWidgetState extends State<DireccionesWidget> {
                                   color: FlutterFlowTheme.of(context).alternate,
                                 ),
                                 title: Text(
-                                  getJsonField(
-                                    addressesItem,
-                                    r'''$.name''',
-                                  ).toString(),
+                                  listViewAddressesRecord.name,
                                   style: FlutterFlowTheme.of(context)
                                       .title3
                                       .override(
@@ -228,10 +180,8 @@ class _DireccionesWidgetState extends State<DireccionesWidget> {
                                       ),
                                 ),
                                 subtitle: Text(
-                                  getJsonField(
-                                    addressesItem,
-                                    r'''$.addressLine1''',
-                                  ).toString(),
+                                  listViewAddressesRecord.addressLine1
+                                      .maybeHandleOverflow(maxChars: 28),
                                   style: FlutterFlowTheme.of(context)
                                       .subtitle2
                                       .override(

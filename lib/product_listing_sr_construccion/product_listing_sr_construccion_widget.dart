@@ -453,8 +453,10 @@ class _ProductListingSrConstruccionWidgetState
                                                               .override(
                                                                 fontFamily:
                                                                     'Montserrat',
-                                                                color: Color(
-                                                                    0xFF1EEBBD),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                                fontSize: 22,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w600,
@@ -473,8 +475,10 @@ class _ProductListingSrConstruccionWidgetState
                                                               .override(
                                                                 fontFamily:
                                                                     'Montserrat',
-                                                                color: Color(
-                                                                    0xFF1EEBBD),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                                fontSize: 22,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w600,
@@ -665,7 +669,7 @@ class _ProductListingSrConstruccionWidgetState
                               crossAxisCount: 2,
                               crossAxisSpacing: 0,
                               mainAxisSpacing: 0,
-                              childAspectRatio: 0.65,
+                              childAspectRatio: 0.6,
                             ),
                             scrollDirection: Axis.vertical,
                             itemCount: gridViewProductsRecordList.length,
@@ -703,6 +707,13 @@ class _ProductListingSrConstruccionWidgetState
                                           snapshot.data;
                                       return Container(
                                         decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          boxShadow: [
+                                            BoxShadow(
+                                              blurRadius: 10,
+                                              color: Color(0x17000000),
+                                            )
+                                          ],
                                           borderRadius:
                                               BorderRadius.circular(5),
                                         ),
@@ -887,7 +898,7 @@ class _ProductListingSrConstruccionWidgetState
                                                         gridViewProductsRecord
                                                             .title
                                                             .maybeHandleOverflow(
-                                                          maxChars: 15,
+                                                          maxChars: 40,
                                                           replacement: '…',
                                                         ),
                                                         maxLines: 1,
@@ -915,8 +926,10 @@ class _ProductListingSrConstruccionWidgetState
                                                               .override(
                                                                 fontFamily:
                                                                     'Montserrat',
-                                                                color: Color(
-                                                                    0xFF1EEBBD),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                                fontSize: 22,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w600,
@@ -935,8 +948,10 @@ class _ProductListingSrConstruccionWidgetState
                                                               .override(
                                                                 fontFamily:
                                                                     'Montserrat',
-                                                                color: Color(
-                                                                    0xFF1EEBBD),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                                fontSize: 22,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w600,

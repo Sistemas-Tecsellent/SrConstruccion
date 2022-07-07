@@ -189,9 +189,6 @@ class _ProductListingForSellerWidgetState
                         ],
                       ),
                     ),
-                    Divider(
-                      thickness: 0.5,
-                    ),
                     if (responsiveVisibility(
                       context: context,
                       phone: false,
@@ -558,8 +555,11 @@ class _ProductListingForSellerWidgetState
                                                                   .override(
                                                                     fontFamily:
                                                                         'Montserrat',
-                                                                    color: Color(
-                                                                        0xFF1EEBBD),
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .alternate,
+                                                                    fontSize:
+                                                                        22,
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .w600,
@@ -586,8 +586,11 @@ class _ProductListingForSellerWidgetState
                                                                     .override(
                                                                       fontFamily:
                                                                           'Montserrat',
-                                                                      color: Color(
-                                                                          0xFF1EEBBD),
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .alternate,
+                                                                      fontSize:
+                                                                          22,
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .w600,
@@ -787,7 +790,7 @@ class _ProductListingForSellerWidgetState
                                   crossAxisCount: 2,
                                   crossAxisSpacing: 0,
                                   mainAxisSpacing: 0,
-                                  childAspectRatio: 0.65,
+                                  childAspectRatio: 0.6,
                                 ),
                                 scrollDirection: Axis.vertical,
                                 itemCount: gridViewProductsRecordList.length,
@@ -826,6 +829,13 @@ class _ProductListingForSellerWidgetState
                                               snapshot.data;
                                           return Container(
                                             decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  blurRadius: 10,
+                                                  color: Color(0x15000000),
+                                                )
+                                              ],
                                               borderRadius:
                                                   BorderRadius.circular(5),
                                             ),
@@ -1089,7 +1099,7 @@ class _ProductListingForSellerWidgetState
                                                             gridViewProductsRecord
                                                                 .title
                                                                 .maybeHandleOverflow(
-                                                              maxChars: 27,
+                                                              maxChars: 40,
                                                               replacement: '…',
                                                             ),
                                                             style: FlutterFlowTheme
@@ -1115,8 +1125,11 @@ class _ProductListingForSellerWidgetState
                                                                   .override(
                                                                     fontFamily:
                                                                         'Montserrat',
-                                                                    color: Color(
-                                                                        0xFF1EEBBD),
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .alternate,
+                                                                    fontSize:
+                                                                        18,
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .w600,
@@ -1143,8 +1156,11 @@ class _ProductListingForSellerWidgetState
                                                                     .override(
                                                                       fontFamily:
                                                                           'Montserrat',
-                                                                      color: Color(
-                                                                          0xFF1EEBBD),
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .alternate,
+                                                                      fontSize:
+                                                                          18,
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .w600,

@@ -672,7 +672,7 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                                                                                 ),
                                                                                 style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                       fontFamily: 'Montserrat',
-                                                                                      color: Color(0xFF1EEBBD),
+                                                                                      color: FlutterFlowTheme.of(context).alternate,
                                                                                       fontSize: 18,
                                                                                       fontWeight: FontWeight.w500,
                                                                                     ),
@@ -699,7 +699,7 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                                                                                 ),
                                                                                 style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                       fontFamily: 'Montserrat',
-                                                                                      color: Color(0xFF1EEBBD),
+                                                                                      color: FlutterFlowTheme.of(context).alternate,
                                                                                       fontSize: 18,
                                                                                       fontWeight: FontWeight.w500,
                                                                                     ),
@@ -726,7 +726,7 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                                                                                 ),
                                                                                 style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                       fontFamily: 'Montserrat',
-                                                                                      color: Color(0xFF1EEBBD),
+                                                                                      color: FlutterFlowTheme.of(context).alternate,
                                                                                       fontSize: 18,
                                                                                       fontWeight: FontWeight.w500,
                                                                                     ),

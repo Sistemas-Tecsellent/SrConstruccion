@@ -6,14 +6,16 @@ export 'product_page/product_page_widget.dart' show ProductPageWidget;
 export 'login/login_widget.dart' show LoginWidget;
 export 'carrito/carrito_widget.dart' show CarritoWidget;
 export 'signup/signup_widget.dart' show SignupWidget;
-export 'editar_direccion/editar_direccion_widget.dart'
-    show EditarDireccionWidget;
 export 'notificationes_ajustes/notificationes_ajustes_widget.dart'
     show NotificationesAjustesWidget;
 export 'ajustes/ajustes_widget.dart' show AjustesWidget;
 export 'categorias/categorias_widget.dart' show CategoriasWidget;
 export 'mi_cuenta/mi_cuenta_widget.dart' show MiCuentaWidget;
 export 'direcciones/direcciones_widget.dart' show DireccionesWidget;
+export 'editar_direccion/editar_direccion_widget.dart'
+    show EditarDireccionWidget;
+export 'anadir_direccion/anadir_direccion_widget.dart'
+    show AnadirDireccionWidget;
 export 'mis_cotizaciones/mis_cotizaciones_widget.dart'
     show MisCotizacionesWidget;
 export 'cotizacion_formulario/cotizacion_formulario_widget.dart'
@@ -91,8 +93,6 @@ export 'cupones/cupones_widget.dart' show CuponesWidget;
 export 'product_page_servicios/product_page_servicios_widget.dart'
     show ProductPageServiciosWidget;
 export 'chats/chats_widget.dart' show ChatsWidget;
-export 'anadir_direccion/anadir_direccion_widget.dart'
-    show AnadirDireccionWidget;
 export 'agendar_servicio/agendar_servicio_widget.dart'
     show AgendarServicioWidget;
 export 'mis_servicios/mis_servicios_widget.dart' show MisServiciosWidget;
