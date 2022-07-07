@@ -300,7 +300,7 @@ class _AnadirFacturacionWidgetState extends State<AnadirFacturacionWidget> {
                                 await PublicInvoiceProfilesRecord.collection
                                     .doc()
                                     .set(publicInvoiceProfilesCreateData);
-                                context.pop();
+                                Navigator.pop(context);
                               },
                               text: 'Añadir',
                               options: FFButtonOptions(

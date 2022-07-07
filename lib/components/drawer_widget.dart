@@ -147,7 +147,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                         size: 30,
                       ),
                       onPressed: () async {
-                        context.pop();
+                        Navigator.pop(context);
                       },
                     ),
                   ),

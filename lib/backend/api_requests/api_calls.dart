@@ -28,7 +28,7 @@ class GetVariantInventoryByStoreCall {
     String productId = '',
     String variantId = '',
     String store = '',
-    String priceType = '',
+    String priceType = 'public',
   }) {
     return ApiManager.instance.makeApiCall(
       callName: 'getVariantInventoryByStore',
@@ -344,6 +344,10 @@ class GetSellerWiseCartTotalCall {
   static dynamic message(dynamic response) => getJsonField(
         response,
         r'''$.total.message''',
+      );
+  static dynamic canPay(dynamic response) => getJsonField(
+        response,
+        r'''$.total.canPay''',
       );
 }
 

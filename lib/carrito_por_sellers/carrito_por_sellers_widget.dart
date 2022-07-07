@@ -3,7 +3,6 @@ import '../auth/firebase_user_provider.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../components/seller_product_widget.dart';
-import '../components/sugerencias_recomendaciones_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -17,9 +16,11 @@ class CarritoPorSellersWidget extends StatefulWidget {
   const CarritoPorSellersWidget({
     Key key,
     this.storeId,
+    this.storeName,
   }) : super(key: key);
 
   final String storeId;
+  final String storeName;
 
   @override
   _CarritoPorSellersWidgetState createState() =>
@@ -116,64 +117,54 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                   );
                 }
                 final containerGetSellerWiseCartTotalResponse = snapshot.data;
-                return InkWell(
-                  onTap: () async {
-                    await showModalBottomSheet(
-                      isScrollControlled: true,
-                      backgroundColor: Colors.transparent,
-                      context: context,
-                      builder: (context) {
-                        return Padding(
-                          padding: MediaQuery.of(context).viewInsets,
-                          child: SugerenciasRecomendacionesWidget(),
-                        );
-                      },
-                    );
-                    context.pushNamed('Checkout');
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Color(0x00FF5963),
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 3,
-                          color: Color(0x20000000),
-                        )
-                      ],
-                      borderRadius: BorderRadius.circular(15),
+                return Container(
+                  decoration: BoxDecoration(
+                    color: Color(0x00FF5963),
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 3,
+                        color: Color(0x20000000),
+                      )
+                    ],
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  alignment: AlignmentDirectional(0, 0),
+                  child: StreamBuilder<List<AddressesRecord>>(
+                    stream: queryAddressesRecord(
+                      parent: currentUserReference,
+                      singleRecord: true,
                     ),
-                    alignment: AlignmentDirectional(0, 0),
-                    child: StreamBuilder<List<AddressesRecord>>(
-                      stream: queryAddressesRecord(
-                        parent: currentUserReference,
-                        singleRecord: true,
-                      ),
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 50,
-                              height: 50,
-                              child: SpinKitFadingCircle(
-                                color:
-                                    FlutterFlowTheme.of(context).primaryColor,
-                                size: 50,
-                              ),
+                    builder: (context, snapshot) {
+                      // Customize what your widget looks like when it's loading.
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: SizedBox(
+                            width: 50,
+                            height: 50,
+                            child: SpinKitFadingCircle(
+                              color: FlutterFlowTheme.of(context).primaryColor,
+                              size: 50,
                             ),
-                          );
-                        }
-                        List<AddressesRecord> rowAddtoCartAddressesRecordList =
-                            snapshot.data;
-                        final rowAddtoCartAddressesRecord =
-                            rowAddtoCartAddressesRecordList.isNotEmpty
-                                ? rowAddtoCartAddressesRecordList.first
-                                : null;
-                        return Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
+                          ),
+                        );
+                      }
+                      List<AddressesRecord> rowAddtoCartAddressesRecordList =
+                          snapshot.data;
+                      final rowAddtoCartAddressesRecord =
+                          rowAddtoCartAddressesRecordList.isNotEmpty
+                              ? rowAddtoCartAddressesRecordList.first
+                              : null;
+                      return Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          if (GetSellerWiseCartTotalCall.canPay(
+                                (containerGetSellerWiseCartTotalResponse
+                                        ?.jsonBody ??
+                                    ''),
+                              ) ??
+                              true)
                             StreamBuilder<List<InvoiceProfilesRecord>>(
                               stream: queryInvoiceProfilesRecord(
                                 parent: currentUserReference,
@@ -273,10 +264,9 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                                 );
                               },
                             ),
-                          ],
-                        );
-                      },
-                    ),
+                        ],
+                      );
+                    },
                   ),
                 );
               },

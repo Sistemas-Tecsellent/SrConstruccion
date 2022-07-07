@@ -328,7 +328,11 @@ class _SeleccionarFacturacionWidgetState
                                         return Padding(
                                           padding:
                                               MediaQuery.of(context).viewInsets,
-                                          child: Facturacion1Widget(),
+                                          child: Facturacion1Widget(
+                                            invoiceProfileId:
+                                                containerPublicInvoiceProfilesRecord
+                                                    .id,
+                                          ),
                                         );
                                       },
                                     );
@@ -374,8 +378,8 @@ class _SeleccionarFacturacionWidgetState
                                           ).toString(),
                                           dropDownValue,
                                         );
-                                        context.pop();
-                                        context.pop();
+                                        Navigator.pop(context);
+                                        Navigator.pop(context);
                                       } else {
                                         await actions
                                             .setCheckoutModifyInvoiceAndUsage(
@@ -386,8 +390,8 @@ class _SeleccionarFacturacionWidgetState
                                           ).toString(),
                                           dropDownValue,
                                         );
-                                        context.pop();
-                                        context.pop();
+                                        Navigator.pop(context);
+                                        Navigator.pop(context);
                                       }
 
                                       setState(() {});
