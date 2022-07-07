@@ -749,7 +749,7 @@ class _CategoriaSingleMARCAWidgetState
                                                                           child:
                                                                               Text(
                                                                             rowProductsRecord.title.maybeHandleOverflow(
-                                                                              maxChars: 22,
+                                                                              maxChars: 40,
                                                                               replacement: '…',
                                                                             ),
                                                                             textAlign:
@@ -1240,8 +1240,14 @@ class _CategoriaSingleMARCAWidgetState
                                                                     .override(
                                                                       fontFamily:
                                                                           'Montserrat',
-                                                                      color: Color(
-                                                                          0xFF1EEBBD),
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .alternate,
+                                                                      fontSize:
+                                                                          22,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
                                                                     ),
                                                               ),
                                                               Align(
@@ -1262,8 +1268,12 @@ class _CategoriaSingleMARCAWidgetState
                                                                       .override(
                                                                         fontFamily:
                                                                             'Montserrat',
-                                                                        color: Color(
-                                                                            0xFF1EEBBD),
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .alternate,
+                                                                        fontSize:
+                                                                            22,
+                                                                        fontWeight:
+                                                                            FontWeight.w600,
                                                                       ),
                                                                 ),
                                                               ),
@@ -1649,7 +1659,7 @@ class _CategoriaSingleMARCAWidgetState
                                                             rowProductsRecord
                                                                 .title
                                                                 .maybeHandleOverflow(
-                                                              maxChars: 23,
+                                                              maxChars: 40,
                                                               replacement: '…',
                                                             ),
                                                             textAlign:
@@ -1681,8 +1691,14 @@ class _CategoriaSingleMARCAWidgetState
                                                                   .override(
                                                                     fontFamily:
                                                                         'Montserrat',
-                                                                    color: Color(
-                                                                        0xFF1EEBBD),
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .alternate,
+                                                                    fontSize:
+                                                                        22,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
                                                                   ),
                                                             ),
                                                             Align(
@@ -1702,8 +1718,14 @@ class _CategoriaSingleMARCAWidgetState
                                                                     .override(
                                                                       fontFamily:
                                                                           'Montserrat',
-                                                                      color: Color(
-                                                                          0xFF1EEBBD),
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .alternate,
+                                                                      fontSize:
+                                                                          22,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
                                                                     ),
                                                               ),
                                                             ),
@@ -2087,7 +2109,7 @@ class _CategoriaSingleMARCAWidgetState
                                                             rowProductsRecord
                                                                 .title
                                                                 .maybeHandleOverflow(
-                                                              maxChars: 23,
+                                                              maxChars: 40,
                                                               replacement: '…',
                                                             ),
                                                             textAlign:
@@ -2119,8 +2141,14 @@ class _CategoriaSingleMARCAWidgetState
                                                                   .override(
                                                                     fontFamily:
                                                                         'Montserrat',
-                                                                    color: Color(
-                                                                        0xFF1EEBBD),
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .alternate,
+                                                                    fontSize:
+                                                                        22,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
                                                                   ),
                                                             ),
                                                             Align(
@@ -2140,8 +2168,14 @@ class _CategoriaSingleMARCAWidgetState
                                                                     .override(
                                                                       fontFamily:
                                                                           'Montserrat',
-                                                                      color: Color(
-                                                                          0xFF1EEBBD),
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .alternate,
+                                                                      fontSize:
+                                                                          22,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
                                                                     ),
                                                               ),
                                                             ),

@@ -894,7 +894,7 @@ class _DetallePedidoProgramadoWidgetState
                                       20, 10, 20, 0),
                                   child: Container(
                                     width:
-                                        MediaQuery.of(context).size.width * 0.8,
+                                        MediaQuery.of(context).size.width * 0.9,
                                     constraints: BoxConstraints(
                                       maxWidth: 500,
                                     ),

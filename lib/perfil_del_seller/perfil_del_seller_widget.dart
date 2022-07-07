@@ -1168,102 +1168,114 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                           ],
                                         ),
                                       ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            20, 20, 0, 0),
-                                        child: StreamBuilder<
-                                            List<StoreBrandsRecord>>(
-                                          stream: queryStoreBrandsRecord(
-                                            parent: perfilDelSellerStoresRecord
-                                                .reference,
-                                            queryBuilder: (storeBrandsRecord) =>
-                                                storeBrandsRecord.where('id',
-                                                    isNotEqualTo:
-                                                        widget.storeId),
-                                          ),
-                                          builder: (context, snapshot) {
-                                            // Customize what your widget looks like when it's loading.
-                                            if (!snapshot.hasData) {
-                                              return Center(
-                                                child: SizedBox(
-                                                  width: 50,
-                                                  height: 50,
-                                                  child: SpinKitFadingCircle(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryColor,
-                                                    size: 50,
+                                      Align(
+                                        alignment: AlignmentDirectional(0, 0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  20, 20, 0, 0),
+                                          child: StreamBuilder<
+                                              List<StoreBrandsRecord>>(
+                                            stream: queryStoreBrandsRecord(
+                                              parent:
+                                                  perfilDelSellerStoresRecord
+                                                      .reference,
+                                              queryBuilder:
+                                                  (storeBrandsRecord) =>
+                                                      storeBrandsRecord.where(
+                                                          'id',
+                                                          isNotEqualTo:
+                                                              widget.storeId),
+                                            ),
+                                            builder: (context, snapshot) {
+                                              // Customize what your widget looks like when it's loading.
+                                              if (!snapshot.hasData) {
+                                                return Center(
+                                                  child: SizedBox(
+                                                    width: 50,
+                                                    height: 50,
+                                                    child: SpinKitFadingCircle(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryColor,
+                                                      size: 50,
+                                                    ),
                                                   ),
+                                                );
+                                              }
+                                              List<StoreBrandsRecord>
+                                                  subcategorasStoreBrandsRecordList =
+                                                  snapshot.data;
+                                              return SingleChildScrollView(
+                                                scrollDirection:
+                                                    Axis.horizontal,
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: List.generate(
+                                                      subcategorasStoreBrandsRecordList
+                                                          .length,
+                                                      (subcategorasIndex) {
+                                                    final subcategorasStoreBrandsRecord =
+                                                        subcategorasStoreBrandsRecordList[
+                                                            subcategorasIndex];
+                                                    return Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 0, 5, 0),
+                                                      child: Container(
+                                                        height: 25,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: Colors.white,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(30),
+                                                          border: Border.all(
+                                                            color: Colors.white,
+                                                            width: 1,
+                                                          ),
+                                                        ),
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                0, 0),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(10,
+                                                                      0, 10, 0),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Text(
+                                                                subcategorasStoreBrandsRecord
+                                                                    .id,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyText1
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Montserrat',
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontSize:
+                                                                          12,
+                                                                    ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  }),
                                                 ),
                                               );
-                                            }
-                                            List<StoreBrandsRecord>
-                                                subcategorasStoreBrandsRecordList =
-                                                snapshot.data;
-                                            return SingleChildScrollView(
-                                              scrollDirection: Axis.horizontal,
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: List.generate(
-                                                    subcategorasStoreBrandsRecordList
-                                                        .length,
-                                                    (subcategorasIndex) {
-                                                  final subcategorasStoreBrandsRecord =
-                                                      subcategorasStoreBrandsRecordList[
-                                                          subcategorasIndex];
-                                                  return Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 0, 5, 0),
-                                                    child: Container(
-                                                      height: 25,
-                                                      decoration: BoxDecoration(
-                                                        color: Colors.white,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(30),
-                                                        border: Border.all(
-                                                          color: Colors.white,
-                                                          width: 1,
-                                                        ),
-                                                      ),
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              0, 0),
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(10, 0,
-                                                                    10, 0),
-                                                        child: Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children: [
-                                                            Text(
-                                                              subcategorasStoreBrandsRecord
-                                                                  .id,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyText1
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Montserrat',
-                                                                    color: Colors
-                                                                        .black,
-                                                                    fontSize:
-                                                                        12,
-                                                                  ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                }),
-                                              ),
-                                            );
-                                          },
+                                            },
+                                          ),
                                         ),
                                       ),
                                       if (loggedIn ?? true)
@@ -1859,7 +1871,7 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
                                                                               child: Text(
                                                                                 rowProductsRecord.title.maybeHandleOverflow(
-                                                                                  maxChars: 23,
+                                                                                  maxChars: 40,
                                                                                   replacement: '…',
                                                                                 ),
                                                                                 textAlign: TextAlign.start,
@@ -1884,7 +1896,9 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                                     '\$',
                                                                                     style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                           fontFamily: 'Montserrat',
-                                                                                          color: Color(0xFF1EEBBD),
+                                                                                          color: FlutterFlowTheme.of(context).alternate,
+                                                                                          fontSize: 22,
+                                                                                          fontWeight: FontWeight.w600,
                                                                                         ),
                                                                                   ),
                                                                                 ),
@@ -1899,7 +1913,9 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                                     ).toString(),
                                                                                     style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                           fontFamily: 'Montserrat',
-                                                                                          color: Color(0xFF1EEBBD),
+                                                                                          color: FlutterFlowTheme.of(context).alternate,
+                                                                                          fontSize: 22,
+                                                                                          fontWeight: FontWeight.w600,
                                                                                         ),
                                                                                   ),
                                                                                 ),
@@ -2377,7 +2393,7 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
                                                                               child: Text(
                                                                                 rowProductsRecord.title.maybeHandleOverflow(
-                                                                                  maxChars: 23,
+                                                                                  maxChars: 40,
                                                                                   replacement: '…',
                                                                                 ),
                                                                                 textAlign: TextAlign.start,
@@ -2402,7 +2418,8 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                                     '\$',
                                                                                     style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                           fontFamily: 'Montserrat',
-                                                                                          color: Color(0xFF1EEBBD),
+                                                                                          color: FlutterFlowTheme.of(context).alternate,
+                                                                                          fontWeight: FontWeight.w600,
                                                                                         ),
                                                                                   ),
                                                                                 ),
@@ -2417,7 +2434,9 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                                     ).toString(),
                                                                                     style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                           fontFamily: 'Montserrat',
-                                                                                          color: Color(0xFF1EEBBD),
+                                                                                          color: FlutterFlowTheme.of(context).alternate,
+                                                                                          fontSize: 22,
+                                                                                          fontWeight: FontWeight.w600,
                                                                                         ),
                                                                                   ),
                                                                                 ),
@@ -2898,7 +2917,7 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
                                                                               child: Text(
                                                                                 rowProductsRecord.title.maybeHandleOverflow(
-                                                                                  maxChars: 23,
+                                                                                  maxChars: 40,
                                                                                   replacement: '…',
                                                                                 ),
                                                                                 textAlign: TextAlign.start,
@@ -2923,7 +2942,9 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                                     '\$',
                                                                                     style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                           fontFamily: 'Montserrat',
-                                                                                          color: Color(0xFF1EEBBD),
+                                                                                          color: FlutterFlowTheme.of(context).alternate,
+                                                                                          fontSize: 22,
+                                                                                          fontWeight: FontWeight.w600,
                                                                                         ),
                                                                                   ),
                                                                                 ),
@@ -2938,7 +2959,9 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                                     ).toString(),
                                                                                     style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                           fontFamily: 'Montserrat',
-                                                                                          color: Color(0xFF1EEBBD),
+                                                                                          color: FlutterFlowTheme.of(context).alternate,
+                                                                                          fontSize: 22,
+                                                                                          fontWeight: FontWeight.w600,
                                                                                         ),
                                                                                   ),
                                                                                 ),
@@ -3411,7 +3434,7 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
                                                                               child: Text(
                                                                                 rowProductsRecord.title.maybeHandleOverflow(
-                                                                                  maxChars: 23,
+                                                                                  maxChars: 40,
                                                                                   replacement: '…',
                                                                                 ),
                                                                                 textAlign: TextAlign.start,
@@ -3436,7 +3459,9 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                                     '\$',
                                                                                     style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                           fontFamily: 'Montserrat',
-                                                                                          color: Color(0xFF1EEBBD),
+                                                                                          color: FlutterFlowTheme.of(context).alternate,
+                                                                                          fontSize: 22,
+                                                                                          fontWeight: FontWeight.w600,
                                                                                         ),
                                                                                   ),
                                                                                 ),
@@ -3451,7 +3476,9 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                                     ).toString(),
                                                                                     style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                           fontFamily: 'Montserrat',
-                                                                                          color: Color(0xFF1EEBBD),
+                                                                                          color: FlutterFlowTheme.of(context).alternate,
+                                                                                          fontSize: 22,
+                                                                                          fontWeight: FontWeight.w600,
                                                                                         ),
                                                                                   ),
                                                                                 ),
@@ -3923,7 +3950,7 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                                 padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
                                                                                 child: Text(
                                                                                   rowProductsRecord.title.maybeHandleOverflow(
-                                                                                    maxChars: 23,
+                                                                                    maxChars: 40,
                                                                                     replacement: '…',
                                                                                   ),
                                                                                   textAlign: TextAlign.start,
@@ -3947,7 +3974,9 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                                       '\$',
                                                                                       style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                             fontFamily: 'Montserrat',
-                                                                                            color: Color(0xFF1EEBBD),
+                                                                                            color: FlutterFlowTheme.of(context).alternate,
+                                                                                            fontSize: 22,
+                                                                                            fontWeight: FontWeight.w600,
                                                                                           ),
                                                                                     ),
                                                                                   ),
@@ -3962,7 +3991,9 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                                       ).toString(),
                                                                                       style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                             fontFamily: 'Montserrat',
-                                                                                            color: Color(0xFF1EEBBD),
+                                                                                            color: FlutterFlowTheme.of(context).alternate,
+                                                                                            fontSize: 22,
+                                                                                            fontWeight: FontWeight.w600,
                                                                                           ),
                                                                                     ),
                                                                                   ),

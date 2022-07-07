@@ -117,19 +117,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => SignupWidget(),
             ),
             FFRoute(
-              name: 'EditarDireccion',
-              path: 'perfil/mis-direcciones/editar-direccion',
-              requireAuth: true,
-              builder: (context, params) => EditarDireccionWidget(
-                name: params.getParam('name', ParamType.String),
-                addressLine1: params.getParam('addressLine1', ParamType.String),
-                suburb: params.getParam('suburb', ParamType.String),
-                postalCode: params.getParam('postalCode', ParamType.String),
-                city: params.getParam('city', ParamType.String),
-                state: params.getParam('state', ParamType.String),
-              ),
-            ),
-            FFRoute(
               name: 'NotificationesAjustes',
               path: 'notificationesAjustes',
               requireAuth: true,
@@ -157,6 +144,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               path: 'perfil/mis-direcciones',
               requireAuth: true,
               builder: (context, params) => DireccionesWidget(),
+            ),
+            FFRoute(
+              name: 'EditarDireccion',
+              path: 'perfil/mis-direcciones/editar-direccion',
+              requireAuth: true,
+              builder: (context, params) => EditarDireccionWidget(
+                name: params.getParam('name', ParamType.String),
+              ),
+            ),
+            FFRoute(
+              name: 'AnadirDireccion',
+              path: 'perfil/mis-direcciones/anadir-direccion',
+              requireAuth: true,
+              builder: (context, params) => AnadirDireccionWidget(),
             ),
             FFRoute(
               name: 'MisCotizaciones',
@@ -488,12 +489,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               path: 'buzon-de-mensajes',
               requireAuth: true,
               builder: (context, params) => ChatsWidget(),
-            ),
-            FFRoute(
-              name: 'AnadirDireccion',
-              path: 'perfil/mis-direcciones/anadir-direccion',
-              requireAuth: true,
-              builder: (context, params) => AnadirDireccionWidget(),
             ),
             FFRoute(
               name: 'AgendarServicio',

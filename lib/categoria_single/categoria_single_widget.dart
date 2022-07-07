@@ -688,7 +688,7 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                                                                         .title
                                                                         .maybeHandleOverflow(
                                                                       maxChars:
-                                                                          22,
+                                                                          40,
                                                                       replacement:
                                                                           '…',
                                                                     ),
@@ -1286,7 +1286,7 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                                                     child: Text(
                                                       rowProductsRecord.title
                                                           .maybeHandleOverflow(
-                                                        maxChars: 23,
+                                                        maxChars: 40,
                                                         replacement: '…',
                                                       ),
                                                       textAlign:
@@ -1317,8 +1317,13 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                                                                 .override(
                                                                   fontFamily:
                                                                       'Montserrat',
-                                                                  color: Color(
-                                                                      0xFF1EEBBD),
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                                  fontSize: 22,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
                                                                 ),
                                                       ),
                                                       Align(
@@ -1338,8 +1343,13 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                                                               .override(
                                                                 fontFamily:
                                                                     'Montserrat',
-                                                                color: Color(
-                                                                    0xFF1EEBBD),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                                fontSize: 22,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
                                                               ),
                                                         ),
                                                       ),
@@ -1691,7 +1701,7 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                                                   child: Text(
                                                     rowProductsRecord.title
                                                         .maybeHandleOverflow(
-                                                      maxChars: 23,
+                                                      maxChars: 40,
                                                       replacement: '…',
                                                     ),
                                                     textAlign: TextAlign.start,
@@ -1721,8 +1731,13 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                                                               .override(
                                                                 fontFamily:
                                                                     'Montserrat',
-                                                                color: Color(
-                                                                    0xFF1EEBBD),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                                fontSize: 22,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
                                                               ),
                                                     ),
                                                     Align(
@@ -1743,8 +1758,13 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                                                                 .override(
                                                                   fontFamily:
                                                                       'Montserrat',
-                                                                  color: Color(
-                                                                      0xFF1EEBBD),
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                                  fontSize: 22,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
                                                                 ),
                                                       ),
                                                     ),
@@ -2094,7 +2114,7 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                                                   child: Text(
                                                     rowProductsRecord.title
                                                         .maybeHandleOverflow(
-                                                      maxChars: 23,
+                                                      maxChars: 40,
                                                       replacement: '…',
                                                     ),
                                                     textAlign: TextAlign.start,
@@ -2124,8 +2144,13 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                                                               .override(
                                                                 fontFamily:
                                                                     'Montserrat',
-                                                                color: Color(
-                                                                    0xFF1EEBBD),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                                fontSize: 22,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
                                                               ),
                                                     ),
                                                     Align(
@@ -2146,8 +2171,13 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                                                                 .override(
                                                                   fontFamily:
                                                                       'Montserrat',
-                                                                  color: Color(
-                                                                      0xFF1EEBBD),
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                                  fontSize: 22,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
                                                                 ),
                                                       ),
                                                     ),

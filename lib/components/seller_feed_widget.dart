@@ -388,7 +388,12 @@ class _SellerFeedWidgetState extends State<SellerFeedWidget> {
                                                         fontFamily:
                                                             'Montserrat',
                                                         color:
-                                                            Color(0xFF1EEBBD),
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                        fontSize: 22,
+                                                        fontWeight:
+                                                            FontWeight.w600,
                                                       ),
                                                 ),
                                               ),
@@ -412,7 +417,12 @@ class _SellerFeedWidgetState extends State<SellerFeedWidget> {
                                                         fontFamily:
                                                             'Montserrat',
                                                         color:
-                                                            Color(0xFF1EEBBD),
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                        fontSize: 22,
+                                                        fontWeight:
+                                                            FontWeight.w600,
                                                       ),
                                                 ),
                                               ),
