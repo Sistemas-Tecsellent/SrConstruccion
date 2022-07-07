@@ -182,7 +182,7 @@ class _WishListProductsWidgetState extends State<WishListProductsWidget> {
                                 crossAxisCount: 6,
                                 crossAxisSpacing: 0,
                                 mainAxisSpacing: 0,
-                                childAspectRatio: 0.6,
+                                childAspectRatio: 0.7,
                               ),
                               scrollDirection: Axis.vertical,
                               itemCount: gridViewProductsRecordList.length,
@@ -219,6 +219,13 @@ class _WishListProductsWidgetState extends State<WishListProductsWidget> {
                                           snapshot.data;
                                       return Container(
                                         decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          boxShadow: [
+                                            BoxShadow(
+                                              blurRadius: 10,
+                                              color: Color(0x10000000),
+                                            )
+                                          ],
                                           borderRadius:
                                               BorderRadius.circular(5),
                                         ),
@@ -440,8 +447,10 @@ class _WishListProductsWidgetState extends State<WishListProductsWidget> {
                                                                 .override(
                                                                   fontFamily:
                                                                       'Montserrat',
-                                                                  color: Color(
-                                                                      0xFF1EEBBD),
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                                  fontSize: 22,
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .w600,
@@ -469,8 +478,11 @@ class _WishListProductsWidgetState extends State<WishListProductsWidget> {
                                                                   .override(
                                                                     fontFamily:
                                                                         'Montserrat',
-                                                                    color: Color(
-                                                                        0xFF1EEBBD),
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .alternate,
+                                                                    fontSize:
+                                                                        22,
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .w600,
@@ -619,6 +631,13 @@ class _WishListProductsWidgetState extends State<WishListProductsWidget> {
                                         snapshot.data;
                                     return Container(
                                       decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            blurRadius: 10,
+                                            color: Color(0x18000000),
+                                          )
+                                        ],
                                         borderRadius: BorderRadius.circular(5),
                                       ),
                                       alignment: AlignmentDirectional(0, 0),

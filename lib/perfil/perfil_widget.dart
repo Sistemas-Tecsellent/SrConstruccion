@@ -62,7 +62,7 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                 size: 30,
               ),
               onPressed: () async {
-                context.pushNamed('HomeAlt');
+                context.pop();
               },
             ),
             actions: [],
