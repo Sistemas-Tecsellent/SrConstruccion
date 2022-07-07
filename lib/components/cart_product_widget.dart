@@ -124,7 +124,7 @@ class _CartProductWidgetState extends State<CartProductWidget> {
                           ),
                         ),
                         Container(
-                          width: 0,
+                          width: 200,
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.only(
