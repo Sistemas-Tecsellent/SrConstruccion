@@ -9,7 +9,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../custom_code/actions/index.dart' as actions;
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -25,8 +25,8 @@ class _CarritoWidgetState extends State<CarritoWidget> {
   ApiCallResponse pendingShipmentPrice;
   dynamic checkoutResponse;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  Completer<ApiCallResponse> _apiRequestCompleter;
   String deleteProductResponse;
-  int cartLength;
 
   @override
   Widget build(BuildContext context) {
@@ -251,9 +251,11 @@ class _CarritoWidgetState extends State<CarritoWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               FutureBuilder<ApiCallResponse>(
-                future: GetCartCall.call(
-                  uid: currentUserUid,
-                ),
+                future: (_apiRequestCompleter ??= Completer<ApiCallResponse>()
+                      ..complete(GetCartCall.call(
+                        uid: currentUserUid,
+                      )))
+                    .future,
                 builder: (context, snapshot) {
                   // Customize what your widget looks like when it's loading.
                   if (!snapshot.hasData) {
@@ -268,7 +270,7 @@ class _CarritoWidgetState extends State<CarritoWidget> {
                       ),
                     );
                   }
-                  final containerGetCartResponse = snapshot.data;
+                  final cartContainerGetCartResponse = snapshot.data;
                   return Container(
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height * 0.8,
@@ -276,7 +278,7 @@ class _CarritoWidgetState extends State<CarritoWidget> {
                     child: Builder(
                       builder: (context) {
                         final productsInCart = getJsonField(
-                              (containerGetCartResponse?.jsonBody ?? ''),
+                              (cartContainerGetCartResponse?.jsonBody ?? ''),
                               r'''$''',
                             )?.toList() ??
                             [];
@@ -362,19 +364,10 @@ class _CarritoWidgetState extends State<CarritoWidget> {
                                                               r'''$.variantId''',
                                                             ).toString(),
                                                           );
-                                                          cartLength = await actions
-                                                              .countItemsInCart(
-                                                            currentUserUid,
-                                                          );
-
-                                                          final usersUpdateData =
-                                                              createUsersRecordData(
-                                                            itemsInCart:
-                                                                cartLength,
-                                                          );
-                                                          await currentUserReference
-                                                              .update(
-                                                                  usersUpdateData);
+                                                          setState(() =>
+                                                              _apiRequestCompleter =
+                                                                  null);
+                                                          await waitForApiRequestCompleter();
 
                                                           setState(() {});
                                                         },
@@ -455,5 +448,20 @@ class _CarritoWidgetState extends State<CarritoWidget> {
         ),
       ),
     );
+  }
+
+  Future waitForApiRequestCompleter({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = _apiRequestCompleter?.isCompleted ?? false;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
   }
 }

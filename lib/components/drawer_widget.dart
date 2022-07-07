@@ -706,7 +706,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                     onPressed: () async {
                       GoRouter.of(context).prepareAuthEvent();
                       await signOut();
-                      context.goNamedAuth('HomeAltCopy', mounted);
+                      context.goNamedAuth('login', mounted);
                     },
                     text: 'Cerrar Sesión',
                     icon: FaIcon(

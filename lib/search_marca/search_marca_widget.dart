@@ -137,7 +137,13 @@ class _SearchMarcaWidgetState extends State<SearchMarcaWidget> {
                   ],
                 ),
               ),
-              Expanded(
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 700,
+                constraints: BoxConstraints(
+                  maxWidth: 500,
+                ),
+                decoration: BoxDecoration(),
                 child: FutureBuilder<List<BrandsRecord>>(
                   future: BrandsRecord.search(
                     term: textController.text,

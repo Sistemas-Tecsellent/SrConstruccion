@@ -36,8 +36,8 @@ export 'carrito_por_sellers/carrito_por_sellers_widget.dart'
 export 'detalle_pedido_programado/detalle_pedido_programado_widget.dart'
     show DetallePedidoProgramadoWidget;
 export 'valoraciones/valoraciones_widget.dart' show ValoracionesWidget;
-export 'profesional/profesional_widget.dart' show ProfesionalWidget;
 export 'onboarding1/onboarding1_widget.dart' show Onboarding1Widget;
+export 'profesional/profesional_widget.dart' show ProfesionalWidget;
 export 'pago_pendiente/pago_pendiente_widget.dart' show PagoPendienteWidget;
 export 'pago_aceptado/pago_aceptado_widget.dart' show PagoAceptadoWidget;
 export 'pago_failed/pago_failed_widget.dart' show PagoFailedWidget;
@@ -116,8 +116,9 @@ export 'categoria_single_m_a_r_c_a/categoria_single_m_a_r_c_a_widget.dart'
     show CategoriaSingleMARCAWidget;
 export 'subcategory_product_listing_m_a_r_c_a/subcategory_product_listing_m_a_r_c_a_widget.dart'
     show SubcategoryProductListingMARCAWidget;
-export 'home_alt_copy/home_alt_copy_widget.dart' show HomeAltCopyWidget;
 export 'calculando_costo_de_envio/calculando_costo_de_envio_widget.dart'
     show CalculandoCostoDeEnvioWidget;
 export 'calculando_costo_de_envio_por_seller/calculando_costo_de_envio_por_seller_widget.dart'
     show CalculandoCostoDeEnvioPorSellerWidget;
+export 'product_page_seller/product_page_seller_widget.dart'
+    show ProductPageSellerWidget;

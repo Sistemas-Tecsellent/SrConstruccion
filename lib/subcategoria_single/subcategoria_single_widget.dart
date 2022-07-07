@@ -239,7 +239,7 @@ class _SubcategoriaSingleWidgetState extends State<SubcategoriaSingleWidget> {
                           children: [
                             Expanded(
                               child: Container(
-                                height: 120,
+                                height: 250,
                                 child: PageView(
                                   controller: pageViewController ??=
                                       PageController(initialPage: 0),
@@ -255,7 +255,7 @@ class _SubcategoriaSingleWidgetState extends State<SubcategoriaSingleWidget> {
                                                   .size
                                                   .width *
                                               0.95,
-                                          height: 100,
+                                          height: 200,
                                           fit: BoxFit.cover,
                                         ),
                                       ),

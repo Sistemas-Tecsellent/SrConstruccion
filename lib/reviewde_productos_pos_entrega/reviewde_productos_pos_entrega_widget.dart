@@ -60,14 +60,17 @@ class _ReviewdeProductosPosEntregaWidgetState
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
-                child: Text(
-                  'Califica tus productos',
-                  style: FlutterFlowTheme.of(context).bodyText1.override(
-                        fontFamily: 'Montserrat',
-                        fontWeight: FontWeight.w600,
-                      ),
+              Align(
+                alignment: AlignmentDirectional(0, 0),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+                  child: Text(
+                    'Califica tus productos',
+                    style: FlutterFlowTheme.of(context).bodyText1.override(
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.w600,
+                        ),
+                  ),
                 ),
               ),
               Padding(

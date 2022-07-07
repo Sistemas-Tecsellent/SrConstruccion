@@ -523,7 +523,7 @@ class _DetallePedidoProgramadoCheckoutWidgetState
                                     width:
                                         MediaQuery.of(context).size.width * 0.9,
                                     constraints: BoxConstraints(
-                                      maxWidth: 500,
+                                      maxWidth: 400,
                                     ),
                                     decoration: BoxDecoration(
                                       color: Colors.white,
@@ -954,7 +954,7 @@ class _DetallePedidoProgramadoCheckoutWidgetState
                           child: Container(
                             width: MediaQuery.of(context).size.width * 0.9,
                             constraints: BoxConstraints(
-                              maxWidth: 500,
+                              maxWidth: 400,
                             ),
                             decoration: BoxDecoration(),
                             child: Builder(

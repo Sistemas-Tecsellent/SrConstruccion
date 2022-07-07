@@ -31,6 +31,9 @@ class _Filters2WidgetState extends State<Filters2Widget> {
         padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
         child: Container(
           width: MediaQuery.of(context).size.width,
+          constraints: BoxConstraints(
+            maxWidth: 500,
+          ),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
@@ -63,8 +66,8 @@ class _Filters2WidgetState extends State<Filters2Widget> {
                       children: [
                         Divider(
                           thickness: 3,
-                          indent: 150,
-                          endIndent: 150,
+                          indent: 180,
+                          endIndent: 180,
                           color: Color(0xFFDBE2E7),
                         ),
                       ],
@@ -617,6 +620,7 @@ class _Filters2WidgetState extends State<Filters2Widget> {
                                           .alternate,
                                       fontSize: 12,
                                     ),
+                                elevation: 0,
                                 borderSide: BorderSide(
                                   color: Colors.transparent,
                                   width: 1,

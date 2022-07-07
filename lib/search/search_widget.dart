@@ -137,7 +137,13 @@ class _SearchWidgetState extends State<SearchWidget> {
                   ],
                 ),
               ),
-              Expanded(
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 700,
+                constraints: BoxConstraints(
+                  maxWidth: 500,
+                ),
+                decoration: BoxDecoration(),
                 child: FutureBuilder<List<ProductsRecord>>(
                   future: ProductsRecord.search(
                     term: textController.text,

@@ -208,163 +208,156 @@ class _ProductPageServiciosWidgetState
                               Expanded(
                                 child: Stack(
                                   children: [
-                                    Container(
-                                      width: MediaQuery.of(context).size.width,
-                                      height: 100,
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        boxShadow: [
-                                          BoxShadow(
-                                            blurRadius: 20,
-                                            color: Color(0x0D000000),
-                                          )
-                                        ],
-                                        borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(0),
-                                          bottomRight: Radius.circular(0),
-                                          topLeft: Radius.circular(20),
-                                          topRight: Radius.circular(20),
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 80, 0, 0),
+                                    Align(
+                                      alignment: AlignmentDirectional(0, 0),
                                       child: Container(
                                         width:
                                             MediaQuery.of(context).size.width,
-                                        height: 50,
+                                        height: 100,
+                                        constraints: BoxConstraints(
+                                          maxWidth: 500,
+                                        ),
                                         decoration: BoxDecoration(
                                           color: Colors.white,
+                                          boxShadow: [
+                                            BoxShadow(
+                                              blurRadius: 20,
+                                              color: Color(0x0D000000),
+                                            )
+                                          ],
+                                          borderRadius: BorderRadius.only(
+                                            bottomLeft: Radius.circular(0),
+                                            bottomRight: Radius.circular(0),
+                                            topLeft: Radius.circular(20),
+                                            topRight: Radius.circular(20),
+                                          ),
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  25, 0, 25, 0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Align(
+                                                alignment:
+                                                    AlignmentDirectional(0, 0),
+                                                child: Text(
+                                                  getJsonField(
+                                                    FFAppState()
+                                                        .currentVariantFormatted,
+                                                    r'''$.publicPrice''',
+                                                  ).toString(),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyText1
+                                                      .override(
+                                                        fontFamily:
+                                                            'Montserrat',
+                                                        color:
+                                                            Color(0xFF1EEBBD),
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
+                                                ),
+                                              ),
+                                              Align(
+                                                alignment:
+                                                    AlignmentDirectional(0, 0),
+                                                child: Text(
+                                                  '[P-COMPARACIÓN]',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyText1
+                                                      .override(
+                                                        fontFamily:
+                                                            'Montserrat',
+                                                        color:
+                                                            Color(0xFFAEAEAE),
+                                                        fontSize: 16,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontStyle:
+                                                            FontStyle.italic,
+                                                        decoration:
+                                                            TextDecoration
+                                                                .lineThrough,
+                                                      ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 20, 0, 0),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            height: 50,
-                                            decoration: BoxDecoration(
-                                              color: Color(0x00FAF1E2),
-                                            ),
+                                    Align(
+                                      alignment: AlignmentDirectional(0, 0),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 80, 0, 0),
+                                        child: Container(
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          constraints: BoxConstraints(
+                                            maxWidth: 500,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                          ),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 20, 0, 0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.min,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceEvenly,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(25, 0, 25, 0),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                0, 0),
-                                                        child: Text(
-                                                          getJsonField(
-                                                            FFAppState()
-                                                                .currentVariantFormatted,
-                                                            r'''$.publicPrice''',
-                                                          ).toString(),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Montserrat',
-                                                                color: Color(
-                                                                    0xFF1EEBBD),
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
+                                                      .fromSTEB(20, 20, 0, 0),
+                                                  child: Text(
+                                                    'Bomba hidroneumática 1/2 HP, 24 litros, -Pretul-20183',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              'Montserrat',
+                                                          fontSize: 18,
+                                                          fontWeight:
+                                                              FontWeight.w500,
                                                         ),
-                                                      ),
-                                                      Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                0, 0),
-                                                        child: Text(
-                                                          '[P-COMPARACIÓN]',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Montserrat',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryColor,
-                                                                fontSize: 16,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                fontStyle:
-                                                                    FontStyle
-                                                                        .italic,
-                                                                decoration:
-                                                                    TextDecoration
-                                                                        .lineThrough,
-                                                              ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(20, 20, 20, 0),
+                                                  child: Text(
+                                                    'Bomba periférica, motor con bobinas de aluminio, Tanque de acero, Manómetro instalado para una revisión continua del desempeño, Manguera interconexión bomba - tanque, Capacitor para mayor potencia al arranque,',
+                                                    textAlign:
+                                                        TextAlign.justify,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              'Montserrat',
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.normal,
                                                         ),
-                                                      ),
-                                                    ],
                                                   ),
                                                 ),
                                               ],
                                             ),
                                           ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    20, 20, 0, 0),
-                                            child: Text(
-                                              'Bomba hidroneumática 1/2 HP, 24 litros, -Pretul-20183',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyText1
-                                                  .override(
-                                                    fontFamily: 'Montserrat',
-                                                    fontSize: 18,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    20, 20, 20, 0),
-                                            child: Text(
-                                              'Bomba periférica, motor con bobinas de aluminio, Tanque de acero, Manómetro instalado para una revisión continua del desempeño, Manguera interconexión bomba - tanque, Capacitor para mayor potencia al arranque,',
-                                              textAlign: TextAlign.justify,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily:
-                                                            'Montserrat',
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                      ),
-                                            ),
-                                          ),
-                                        ],
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -377,6 +370,9 @@ class _ProductPageServiciosWidgetState
                           padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                           child: Container(
                             width: MediaQuery.of(context).size.width,
+                            constraints: BoxConstraints(
+                              maxWidth: 500,
+                            ),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.only(
@@ -467,8 +463,7 @@ class _ProductPageServiciosWidgetState
                                       20, 0, 20, 0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       ClipRRect(
                                         borderRadius: BorderRadius.circular(4),
@@ -479,31 +474,46 @@ class _ProductPageServiciosWidgetState
                                           fit: BoxFit.cover,
                                         ),
                                       ),
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(4),
-                                        child: Image.network(
-                                          'https://picsum.photos/seed/580/600',
-                                          width: 60,
-                                          height: 60,
-                                          fit: BoxFit.cover,
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            10, 0, 10, 0),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                          child: Image.network(
+                                            'https://picsum.photos/seed/580/600',
+                                            width: 60,
+                                            height: 60,
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(4),
-                                        child: Image.network(
-                                          'https://picsum.photos/seed/580/600',
-                                          width: 60,
-                                          height: 60,
-                                          fit: BoxFit.cover,
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 10, 0),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                          child: Image.network(
+                                            'https://picsum.photos/seed/580/600',
+                                            width: 60,
+                                            height: 60,
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(4),
-                                        child: Image.network(
-                                          'https://picsum.photos/seed/580/600',
-                                          width: 60,
-                                          height: 60,
-                                          fit: BoxFit.cover,
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 10, 0),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                          child: Image.network(
+                                            'https://picsum.photos/seed/580/600',
+                                            width: 60,
+                                            height: 60,
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
                                       Container(

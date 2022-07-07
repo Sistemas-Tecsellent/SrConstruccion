@@ -47,8 +47,8 @@ class _PuntosInfoWidgetState extends State<PuntosInfoWidget> {
                       children: [
                         Divider(
                           thickness: 3,
-                          indent: 450,
-                          endIndent: 450,
+                          indent: 180,
+                          endIndent: 180,
                           color: Color(0xFFDBE2E7),
                         ),
                         Row(
