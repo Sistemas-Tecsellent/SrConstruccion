@@ -103,12 +103,16 @@ class _WishListOptionsWidgetState extends State<WishListOptionsWidget> {
                                     ),
                                     Stack(
                                       children: [
-                                        if (functions.isGreaterThanZero(
-                                                (currentUserDocument
-                                                            ?.likedProducts
-                                                            ?.toList() ??
-                                                        [])
-                                                    .length) ??
+                                        if (functions.isGreaterThan(
+                                                valueOrDefault<int>(
+                                                  (currentUserDocument
+                                                              ?.likedProducts
+                                                              ?.toList() ??
+                                                          [])
+                                                      .length,
+                                                  0,
+                                                ),
+                                                1) ??
                                             true)
                                           Padding(
                                             padding:
@@ -134,12 +138,16 @@ class _WishListOptionsWidgetState extends State<WishListOptionsWidget> {
                                               ),
                                             ),
                                           ),
-                                        if (!(functions.isGreaterThanZero(
-                                                (currentUserDocument
-                                                            ?.likedProducts
-                                                            ?.toList() ??
-                                                        [])
-                                                    .length)) ??
+                                        if (functions.isEqualTo(
+                                                valueOrDefault<int>(
+                                                  (currentUserDocument
+                                                              ?.likedProducts
+                                                              ?.toList() ??
+                                                          [])
+                                                      .length,
+                                                  0,
+                                                ),
+                                                1) ??
                                             true)
                                           Padding(
                                             padding:
@@ -197,12 +205,16 @@ class _WishListOptionsWidgetState extends State<WishListOptionsWidget> {
                                     ),
                                     Stack(
                                       children: [
-                                        if (functions.isGreaterThanZero(
-                                                (currentUserDocument
-                                                            ?.likedStores
-                                                            ?.toList() ??
-                                                        [])
-                                                    .length) ??
+                                        if (functions.isGreaterThan(
+                                                valueOrDefault<int>(
+                                                  (currentUserDocument
+                                                              ?.likedStores
+                                                              ?.toList() ??
+                                                          [])
+                                                      .length,
+                                                  0,
+                                                ),
+                                                1) ??
                                             true)
                                           Padding(
                                             padding:
@@ -228,12 +240,16 @@ class _WishListOptionsWidgetState extends State<WishListOptionsWidget> {
                                               ),
                                             ),
                                           ),
-                                        if (!(functions.isGreaterThanZero(
-                                                (currentUserDocument
-                                                            ?.likedStores
-                                                            ?.toList() ??
-                                                        [])
-                                                    .length)) ??
+                                        if (functions.isEqualTo(
+                                                valueOrDefault<int>(
+                                                  (currentUserDocument
+                                                              ?.likedStores
+                                                              ?.toList() ??
+                                                          [])
+                                                      .length,
+                                                  0,
+                                                ),
+                                                1) ??
                                             true)
                                           Padding(
                                             padding:
@@ -289,11 +305,16 @@ class _WishListOptionsWidgetState extends State<WishListOptionsWidget> {
                                   ),
                                   Stack(
                                     children: [
-                                      if (functions.isGreaterThanZero(
-                                              (currentUserDocument?.likedBrands
-                                                          ?.toList() ??
-                                                      [])
-                                                  .length) ??
+                                      if (functions.isGreaterThan(
+                                              valueOrDefault<int>(
+                                                (currentUserDocument
+                                                            ?.likedBrands
+                                                            ?.toList() ??
+                                                        [])
+                                                    .length,
+                                                0,
+                                              ),
+                                              1) ??
                                           true)
                                         Padding(
                                           padding:
@@ -318,11 +339,16 @@ class _WishListOptionsWidgetState extends State<WishListOptionsWidget> {
                                             ),
                                           ),
                                         ),
-                                      if (!(functions.isGreaterThanZero(
-                                              (currentUserDocument?.likedBrands
-                                                          ?.toList() ??
-                                                      [])
-                                                  .length)) ??
+                                      if (functions.isEqualTo(
+                                              valueOrDefault<int>(
+                                                (currentUserDocument
+                                                            ?.likedBrands
+                                                            ?.toList() ??
+                                                        [])
+                                                    .length,
+                                                0,
+                                              ),
+                                              1) ??
                                           true)
                                         Padding(
                                           padding:

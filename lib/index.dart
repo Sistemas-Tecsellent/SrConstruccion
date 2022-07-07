@@ -95,8 +95,8 @@ export 'product_page_servicios/product_page_servicios_widget.dart'
 export 'chats/chats_widget.dart' show ChatsWidget;
 export 'agendar_servicio/agendar_servicio_widget.dart'
     show AgendarServicioWidget;
-export 'mis_servicios/mis_servicios_widget.dart' show MisServiciosWidget;
 export 'ofertas/ofertas_widget.dart' show OfertasWidget;
+export 'mis_servicios/mis_servicios_widget.dart' show MisServiciosWidget;
 export 'servicios_single/servicios_single_widget.dart'
     show ServiciosSingleWidget;
 export 'sobre_sr_construccion/sobre_sr_construccion_widget.dart'

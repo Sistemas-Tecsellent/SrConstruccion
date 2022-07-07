@@ -126,7 +126,7 @@ double getProductForCartSubtotal(
 }
 
 bool isGreaterThanZero(int value) {
-  if (value < 0) {
+  if (value > 0) {
     return true;
   }
   return false;
@@ -140,4 +140,24 @@ double extractLatOrLng(
     return coord.latitude;
   }
   return coord.longitude;
+}
+
+bool isGreaterThan(
+  int value,
+  int than,
+) {
+  if (value > than) {
+    return true;
+  }
+  return false;
+}
+
+bool isEqualTo(
+  int value,
+  int equalTo,
+) {
+  if (value == equalTo) {
+    return true;
+  }
+  return false;
 }
