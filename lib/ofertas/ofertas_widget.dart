@@ -794,7 +794,7 @@ class _OfertasWidgetState extends State<OfertasWidget> {
                                                                         .title
                                                                         .maybeHandleOverflow(
                                                                       maxChars:
-                                                                          20,
+                                                                          40,
                                                                       replacement:
                                                                           '…',
                                                                     ),
@@ -833,7 +833,8 @@ class _OfertasWidgetState extends State<OfertasWidget> {
                                                                             .bodyText1
                                                                             .override(
                                                                               fontFamily: 'Montserrat',
-                                                                              color: Color(0xFF1EEBBD),
+                                                                              color: FlutterFlowTheme.of(context).alternate,
+                                                                              fontSize: 22,
                                                                               fontWeight: FontWeight.w600,
                                                                             ),
                                                                       ),
@@ -861,7 +862,8 @@ class _OfertasWidgetState extends State<OfertasWidget> {
                                                                               .bodyText1
                                                                               .override(
                                                                                 fontFamily: 'Montserrat',
-                                                                                color: Color(0xFF1EEBBD),
+                                                                                color: FlutterFlowTheme.of(context).alternate,
+                                                                                fontSize: 22,
                                                                                 fontWeight: FontWeight.w600,
                                                                               ),
                                                                         ),

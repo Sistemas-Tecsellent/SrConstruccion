@@ -219,7 +219,10 @@ class _SearchMarcaWidgetState extends State<SearchMarcaWidget> {
                                           5, 0, 0, 0),
                                       child: AutoSizeText(
                                         listViewBrandsRecord.id
-                                            .maybeHandleOverflow(maxChars: 10),
+                                            .maybeHandleOverflow(
+                                          maxChars: 40,
+                                          replacement: '…',
+                                        ),
                                         maxLines: 3,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1

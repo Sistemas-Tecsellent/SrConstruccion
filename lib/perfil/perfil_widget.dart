@@ -214,10 +214,42 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                         child: Stack(
                                           alignment: AlignmentDirectional(0, 1),
                                           children: [
-                                            Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Container(
+                                            if (responsiveVisibility(
+                                              context: context,
+                                              tablet: false,
+                                              tabletLandscape: false,
+                                              desktop: false,
+                                            ))
+                                              Align(
+                                                alignment:
+                                                    AlignmentDirectional(0, -1),
+                                                child: Container(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      1.2,
+                                                  height: 300,
+                                                  constraints: BoxConstraints(
+                                                    maxWidth: 500,
+                                                  ),
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryColor,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            0),
+                                                  ),
+                                                ),
+                                              ),
+                                            if (responsiveVisibility(
+                                              context: context,
+                                              phone: false,
+                                            ))
+                                              Align(
+                                                alignment:
+                                                    AlignmentDirectional(0, -1),
+                                                child: Container(
                                                   width: MediaQuery.of(context)
                                                           .size
                                                           .width *
@@ -234,115 +266,165 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                         BorderRadius.circular(
                                                             20),
                                                   ),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceEvenly,
-                                                            children: [
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0,
-                                                                            10,
-                                                                            0,
-                                                                            0),
-                                                                child:
-                                                                    Container(
-                                                                  width: 300,
-                                                                  child: Stack(
-                                                                    children: [
-                                                                      Align(
-                                                                        alignment: AlignmentDirectional(
-                                                                            0,
-                                                                            0),
+                                                ),
+                                              ),
+                                            Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceEvenly,
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0,
+                                                                          10,
+                                                                          0,
+                                                                          0),
+                                                              child: Container(
+                                                                width: 300,
+                                                                child: Stack(
+                                                                  alignment:
+                                                                      AlignmentDirectional(
+                                                                          0, 1),
+                                                                  children: [
+                                                                    Align(
+                                                                      alignment:
+                                                                          AlignmentDirectional(
+                                                                              0,
+                                                                              0),
+                                                                      child:
+                                                                          AuthUserStreamWidget(
                                                                         child:
-                                                                            AuthUserStreamWidget(
+                                                                            Container(
+                                                                          width:
+                                                                              150,
+                                                                          height:
+                                                                              150,
+                                                                          clipBehavior:
+                                                                              Clip.antiAlias,
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            shape:
+                                                                                BoxShape.circle,
+                                                                          ),
                                                                           child:
-                                                                              Container(
-                                                                            width:
-                                                                                150,
-                                                                            height:
-                                                                                150,
-                                                                            clipBehavior:
-                                                                                Clip.antiAlias,
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              shape: BoxShape.circle,
+                                                                              Image.network(
+                                                                            valueOrDefault<String>(
+                                                                              currentUserPhoto,
+                                                                              'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
                                                                             ),
-                                                                            child:
-                                                                                Image.network(
-                                                                              valueOrDefault<String>(
-                                                                                currentUserPhoto,
-                                                                                'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
-                                                                              ),
-                                                                              fit: BoxFit.cover,
-                                                                            ),
+                                                                            fit:
+                                                                                BoxFit.cover,
                                                                           ),
                                                                         ),
                                                                       ),
-                                                                    ],
-                                                                  ),
+                                                                    ),
+                                                                    Align(
+                                                                      alignment:
+                                                                          AlignmentDirectional(
+                                                                              0.5,
+                                                                              1),
+                                                                      child:
+                                                                          InkWell(
+                                                                        onTap:
+                                                                            () async {
+                                                                          context
+                                                                              .pushNamed('miCuenta');
+                                                                        },
+                                                                        child:
+                                                                            Container(
+                                                                          width:
+                                                                              40,
+                                                                          height:
+                                                                              40,
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).alternate,
+                                                                            shape:
+                                                                                BoxShape.circle,
+                                                                          ),
+                                                                          child:
+                                                                              Icon(
+                                                                            Icons.edit_rounded,
+                                                                            color:
+                                                                                Colors.white,
+                                                                            size:
+                                                                                24,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
                                                                 ),
                                                               ),
-                                                            ],
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0,
-                                                                        10,
-                                                                        0,
-                                                                        0),
-                                                            child: InkWell(
-                                                              onTap: () async {
-                                                                context.pushNamed(
-                                                                    'miCuenta');
-                                                              },
-                                                              child: Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .center,
-                                                                children: [
-                                                                  Text(
-                                                                    perfilUsersRecord
-                                                                        .displayName,
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .center,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyText1
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Montserrat',
-                                                                          color:
-                                                                              Colors.white,
-                                                                          fontSize:
-                                                                              16,
-                                                                          fontWeight:
-                                                                              FontWeight.w500,
-                                                                        ),
-                                                                  ),
-                                                                ],
-                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      10, 0, 0),
+                                                          child: InkWell(
+                                                            onTap: () async {
+                                                              context.pushNamed(
+                                                                  'miCuenta');
+                                                            },
+                                                            child: Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                Text(
+                                                                  perfilUsersRecord
+                                                                      .displayName,
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText1
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Montserrat',
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            16,
+                                                                        fontWeight:
+                                                                            FontWeight.w500,
+                                                                      ),
+                                                                ),
+                                                              ],
                                                             ),
                                                           ),
+                                                        ),
+                                                        if (responsiveVisibility(
+                                                          context: context,
+                                                          phone: false,
+                                                          tablet: false,
+                                                          tabletLandscape:
+                                                              false,
+                                                          desktop: false,
+                                                        ))
                                                           Padding(
                                                             padding:
                                                                 EdgeInsetsDirectional
@@ -429,10 +511,9 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                               ),
                                                             ),
                                                           ),
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
+                                                      ],
+                                                    ),
+                                                  ],
                                                 ),
                                               ],
                                             ),
@@ -727,7 +808,7 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                           color: Colors.black,
                                                         ),
                                                         title: Text(
-                                                          'Facturación',
+                                                          'Mis Datos de Facturación',
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .title3
@@ -768,7 +849,7 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                           color: Colors.black,
                                                         ),
                                                         title: Text(
-                                                          'Dirección',
+                                                          'Mis Direcciones',
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .title3

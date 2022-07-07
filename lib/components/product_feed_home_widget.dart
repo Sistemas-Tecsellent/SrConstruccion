@@ -216,7 +216,10 @@ class _ProductFeedHomeWidgetState extends State<ProductFeedHomeWidget> {
                                                   .bodyText1
                                                   .override(
                                                     fontFamily: 'Montserrat',
-                                                    color: Color(0xFF1EEBBD),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .alternate,
+                                                    fontSize: 22,
                                                     fontWeight: FontWeight.w600,
                                                   ),
                                             ),
@@ -225,7 +228,7 @@ class _ProductFeedHomeWidgetState extends State<ProductFeedHomeWidget> {
                                                   -1, -0.7),
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(5, 0, 0, 0),
+                                                    .fromSTEB(2, 0, 0, 0),
                                                 child: Text(
                                                   GetOneVariantCall.price(
                                                     (stackGetOneVariantResponse
@@ -239,7 +242,10 @@ class _ProductFeedHomeWidgetState extends State<ProductFeedHomeWidget> {
                                                         fontFamily:
                                                             'Montserrat',
                                                         color:
-                                                            Color(0xFF1EEBBD),
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                        fontSize: 22,
                                                         fontWeight:
                                                             FontWeight.w600,
                                                       ),

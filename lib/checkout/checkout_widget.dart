@@ -322,6 +322,35 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                     height: 230,
                                     child: Stack(
                                       children: [
+                                        if (responsiveVisibility(
+                                          context: context,
+                                          tablet: false,
+                                          tabletLandscape: false,
+                                          desktop: false,
+                                        ))
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: 200,
+                                            constraints: BoxConstraints(
+                                              maxWidth: 500,
+                                            ),
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryColor,
+                                              borderRadius: BorderRadius.only(
+                                                bottomLeft: Radius.circular(20),
+                                                bottomRight:
+                                                    Radius.circular(20),
+                                                topLeft: Radius.circular(0),
+                                                topRight: Radius.circular(0),
+                                              ),
+                                            ),
+                                            alignment:
+                                                AlignmentDirectional(0, 0),
+                                          ),
                                         Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
@@ -784,22 +813,30 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                                 MainAxisSize
                                                                     .max,
                                                             children: [
-                                                              Text(
-                                                                checkoutCheckoutsRecord
-                                                                    .deliveryDate
-                                                                    .maybeHandleOverflow(
-                                                                        maxChars:
-                                                                            19),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Montserrat',
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500,
-                                                                    ),
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0,
+                                                                            5,
+                                                                            0,
+                                                                            0),
+                                                                child: Text(
+                                                                  checkoutCheckoutsRecord
+                                                                      .deliveryDate
+                                                                      .maybeHandleOverflow(
+                                                                          maxChars:
+                                                                              19),
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText1
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Montserrat',
+                                                                        fontWeight:
+                                                                            FontWeight.w500,
+                                                                      ),
+                                                                ),
                                                               ),
                                                             ],
                                                           ),

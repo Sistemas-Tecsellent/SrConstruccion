@@ -175,6 +175,10 @@ class GetCartTotalCall {
         response,
         r'''$.total.message''',
       );
+  static dynamic canPay(dynamic response) => getJsonField(
+        response,
+        r'''$.total.canPay''',
+      );
 }
 
 class GetOneVariantCall {

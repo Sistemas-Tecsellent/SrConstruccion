@@ -222,7 +222,10 @@ class _SearchProductsSellerWidgetState
                                           10, 0, 0, 0),
                                       child: AutoSizeText(
                                         listViewProductsRecord.title
-                                            .maybeHandleOverflow(maxChars: 10),
+                                            .maybeHandleOverflow(
+                                          maxChars: 40,
+                                          replacement: '…',
+                                        ),
                                         maxLines: 3,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1

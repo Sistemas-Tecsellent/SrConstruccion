@@ -109,9 +109,9 @@ export 'detalle_pedido_programado5_d_i_a_s/detalle_pedido_programado5_d_i_a_s_wi
     show DetallePedidoProgramado5DIASWidget;
 export 'detalle_pedido_programado_pickup/detalle_pedido_programado_pickup_widget.dart'
     show DetallePedidoProgramadoPickupWidget;
-export 'search_marca/search_marca_widget.dart' show SearchMarcaWidget;
 export 'search_products_seller/search_products_seller_widget.dart'
     show SearchProductsSellerWidget;
+export 'search_marca/search_marca_widget.dart' show SearchMarcaWidget;
 export 'categoria_single_m_a_r_c_a/categoria_single_m_a_r_c_a_widget.dart'
     show CategoriaSingleMARCAWidget;
 export 'subcategory_product_listing_m_a_r_c_a/subcategory_product_listing_m_a_r_c_a_widget.dart'

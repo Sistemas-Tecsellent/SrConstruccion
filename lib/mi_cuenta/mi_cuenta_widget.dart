@@ -213,7 +213,7 @@ class _MiCuentaWidgetState extends State<MiCuentaWidget> {
                                       height: 35,
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
-                                            .primaryColor,
+                                            .alternate,
                                         shape: BoxShape.circle,
                                       ),
                                       alignment: AlignmentDirectional(0, 0),
