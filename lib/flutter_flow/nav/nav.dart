@@ -95,7 +95,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             FFRoute(
               name: 'ProductPage',
-              path: 'product/:productId',
+              path: 'producto/:productId',
               builder: (context, params) => ProductPageWidget(
                 productId: params.getParam('productId', ParamType.String),
               ),
