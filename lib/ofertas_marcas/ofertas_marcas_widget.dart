@@ -193,7 +193,7 @@ class _OfertasMarcasWidgetState extends State<OfertasMarcasWidget> {
                                   EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
                               child: Container(
                                 width: double.infinity,
-                                height: 100,
+                                height: 250,
                                 child: PageView(
                                   controller: pageViewController ??=
                                       PageController(initialPage: 0),
@@ -204,7 +204,7 @@ class _OfertasMarcasWidgetState extends State<OfertasMarcasWidget> {
                                       child: Image.asset(
                                         'assets/images/Diseo_sin_ttulo_(16).png',
                                         width: 100,
-                                        height: 100,
+                                        height: 200,
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -793,7 +793,7 @@ class _OfertasMarcasWidgetState extends State<OfertasMarcasWidget> {
                                                                         .title
                                                                         .maybeHandleOverflow(
                                                                       maxChars:
-                                                                          23,
+                                                                          40,
                                                                       replacement:
                                                                           '…',
                                                                     ),
@@ -832,7 +832,8 @@ class _OfertasMarcasWidgetState extends State<OfertasMarcasWidget> {
                                                                             .bodyText1
                                                                             .override(
                                                                               fontFamily: 'Montserrat',
-                                                                              color: Color(0xFF1EEBBD),
+                                                                              color: FlutterFlowTheme.of(context).alternate,
+                                                                              fontSize: 22,
                                                                               fontWeight: FontWeight.w600,
                                                                             ),
                                                                       ),
@@ -860,7 +861,8 @@ class _OfertasMarcasWidgetState extends State<OfertasMarcasWidget> {
                                                                               .bodyText1
                                                                               .override(
                                                                                 fontFamily: 'Montserrat',
-                                                                                color: Color(0xFF1EEBBD),
+                                                                                color: FlutterFlowTheme.of(context).alternate,
+                                                                                fontSize: 22,
                                                                                 fontWeight: FontWeight.w600,
                                                                               ),
                                                                         ),

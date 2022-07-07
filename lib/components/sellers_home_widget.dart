@@ -55,6 +55,10 @@ class _SellersHomeWidgetState extends State<SellersHomeWidget> {
                       context.pushNamed(
                         'PerfilDelSeller',
                         params: {
+                          'storeName': serializeParam(
+                              rowStoresRecord.name, ParamType.String),
+                        }.withoutNulls,
+                        queryParams: {
                           'storeId': serializeParam(
                               rowStoresRecord.id, ParamType.String),
                         }.withoutNulls,

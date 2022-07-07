@@ -121,12 +121,10 @@ class _WishListSellersWidgetState extends State<WishListSellersWidget> {
                                     onTap: () async {
                                       context.pushNamed(
                                         'PerfilDelSeller',
-                                        params: {
+                                        queryParams: {
                                           'storeId': serializeParam(
                                               gridViewStoresRecord.id,
                                               ParamType.String),
-                                        }.withoutNulls,
-                                        queryParams: {
                                           'calledFromPage': serializeParam(
                                               '\"\"', ParamType.String),
                                         }.withoutNulls,
@@ -560,11 +558,14 @@ class _WishListSellersWidgetState extends State<WishListSellersWidget> {
                                       context.pushNamed(
                                         'PerfilDelSeller',
                                         params: {
-                                          'storeId': serializeParam(
-                                              gridViewStoresRecord.id,
+                                          'storeName': serializeParam(
+                                              gridViewStoresRecord.name,
                                               ParamType.String),
                                         }.withoutNulls,
                                         queryParams: {
+                                          'storeId': serializeParam(
+                                              gridViewStoresRecord.id,
+                                              ParamType.String),
                                           'calledFromPage': serializeParam(
                                               '\"\"', ParamType.String),
                                         }.withoutNulls,

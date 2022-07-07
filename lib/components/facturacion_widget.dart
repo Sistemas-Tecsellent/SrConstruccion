@@ -57,8 +57,8 @@ class _FacturacionWidgetState extends State<FacturacionWidget> {
                     children: [
                       Divider(
                         thickness: 3,
-                        indent: 450,
-                        endIndent: 450,
+                        indent: 180,
+                        endIndent: 180,
                         color: Color(0xFFDBE2E7),
                       ),
                       Row(
@@ -111,6 +111,7 @@ class _FacturacionWidgetState extends State<FacturacionWidget> {
                         decoration: BoxDecoration(),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
                               padding:

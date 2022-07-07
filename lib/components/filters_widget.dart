@@ -29,6 +29,9 @@ class _FiltersWidgetState extends State<FiltersWidget> {
         padding: EdgeInsetsDirectional.fromSTEB(4, 160, 4, 0),
         child: Container(
           width: MediaQuery.of(context).size.width,
+          constraints: BoxConstraints(
+            maxWidth: 700,
+          ),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
@@ -61,8 +64,8 @@ class _FiltersWidgetState extends State<FiltersWidget> {
                       children: [
                         Divider(
                           thickness: 3,
-                          indent: 150,
-                          endIndent: 150,
+                          indent: 250,
+                          endIndent: 250,
                           color: Color(0xFFDBE2E7),
                         ),
                       ],

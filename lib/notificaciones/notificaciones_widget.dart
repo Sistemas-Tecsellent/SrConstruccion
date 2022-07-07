@@ -61,76 +61,86 @@ class _NotificacionesWidgetState extends State<NotificacionesWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Expanded(
-                child: StreamBuilder<List<NotificationsRecord>>(
-                  stream: queryNotificationsRecord(
-                    parent: currentUserReference,
+              Align(
+                alignment: AlignmentDirectional(0, 0),
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 600,
+                  constraints: BoxConstraints(
+                    maxWidth: 500,
                   ),
-                  builder: (context, snapshot) {
-                    // Customize what your widget looks like when it's loading.
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: SizedBox(
-                          width: 50,
-                          height: 50,
-                          child: SpinKitFadingCircle(
-                            color: FlutterFlowTheme.of(context).primaryColor,
-                            size: 50,
-                          ),
-                        ),
-                      );
-                    }
-                    List<NotificationsRecord> listViewNotificationsRecordList =
-                        snapshot.data;
-                    return ListView.builder(
-                      padding: EdgeInsets.zero,
-                      scrollDirection: Axis.vertical,
-                      itemCount: listViewNotificationsRecordList.length,
-                      itemBuilder: (context, listViewIndex) {
-                        final listViewNotificationsRecord =
-                            listViewNotificationsRecordList[listViewIndex];
-                        return Slidable(
-                          actionPane: const SlidableScrollActionPane(),
-                          secondaryActions: [
-                            IconSlideAction(
-                              caption: 'Eliminar',
-                              color: Color(0x00FFFFFF),
-                              icon: Icons.clear_outlined,
-                              onTap: () async {
-                                await actions.deleteNotification(
-                                  currentUserUid,
-                                  listViewNotificationsRecord.id,
-                                );
-                              },
+                  decoration: BoxDecoration(),
+                  child: StreamBuilder<List<NotificationsRecord>>(
+                    stream: queryNotificationsRecord(
+                      parent: currentUserReference,
+                    ),
+                    builder: (context, snapshot) {
+                      // Customize what your widget looks like when it's loading.
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: SizedBox(
+                            width: 50,
+                            height: 50,
+                            child: SpinKitFadingCircle(
+                              color: FlutterFlowTheme.of(context).primaryColor,
+                              size: 50,
                             ),
-                          ],
-                          child: ListTile(
-                            title: Text(
-                              listViewNotificationsRecord.title,
-                              style:
-                                  FlutterFlowTheme.of(context).title3.override(
-                                        fontFamily: 'Montserrat',
-                                        color: Color(0xFF787878),
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.normal,
-                                      ),
-                            ),
-                            subtitle: Text(
-                              listViewNotificationsRecord.description,
-                              style: FlutterFlowTheme.of(context)
-                                  .subtitle2
-                                  .override(
-                                    fontFamily: 'Montserrat',
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                            ),
-                            dense: false,
                           ),
                         );
-                      },
-                    );
-                  },
+                      }
+                      List<NotificationsRecord>
+                          listViewNotificationsRecordList = snapshot.data;
+                      return ListView.builder(
+                        padding: EdgeInsets.zero,
+                        scrollDirection: Axis.vertical,
+                        itemCount: listViewNotificationsRecordList.length,
+                        itemBuilder: (context, listViewIndex) {
+                          final listViewNotificationsRecord =
+                              listViewNotificationsRecordList[listViewIndex];
+                          return Slidable(
+                            actionPane: const SlidableScrollActionPane(),
+                            secondaryActions: [
+                              IconSlideAction(
+                                caption: 'Eliminar',
+                                color: Color(0x00FFFFFF),
+                                icon: Icons.clear_outlined,
+                                onTap: () async {
+                                  await actions.deleteNotification(
+                                    currentUserUid,
+                                    listViewNotificationsRecord.id,
+                                  );
+                                },
+                              ),
+                            ],
+                            child: ListTile(
+                              title: Text(
+                                listViewNotificationsRecord.title,
+                                style: FlutterFlowTheme.of(context)
+                                    .title3
+                                    .override(
+                                      fontFamily: 'Montserrat',
+                                      color: Color(0xFF787878),
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                              ),
+                              subtitle: Text(
+                                listViewNotificationsRecord.description,
+                                style: FlutterFlowTheme.of(context)
+                                    .subtitle2
+                                    .override(
+                                      fontFamily: 'Montserrat',
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                              ),
+                              dense: false,
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  ),
                 ),
               ),
             ],

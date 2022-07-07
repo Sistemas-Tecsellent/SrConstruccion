@@ -9,7 +9,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../custom_code/actions/index.dart' as actions;
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -25,8 +25,8 @@ class _CarritoWidgetState extends State<CarritoWidget> {
   ApiCallResponse pendingShipmentPrice;
   dynamic checkoutResponse;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  Completer<ApiCallResponse> _apiRequestCompleter;
   String deleteProductResponse;
-  int cartLength;
 
   @override
   Widget build(BuildContext context) {
@@ -134,108 +134,113 @@ class _CarritoWidgetState extends State<CarritoWidget> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      StreamBuilder<List<InvoiceProfilesRecord>>(
-                        stream: queryInvoiceProfilesRecord(
-                          parent: currentUserReference,
-                          singleRecord: true,
-                        ),
-                        builder: (context, snapshot) {
-                          // Customize what your widget looks like when it's loading.
-                          if (!snapshot.hasData) {
-                            return Center(
-                              child: SizedBox(
-                                width: 50,
-                                height: 50,
-                                child: SpinKitFadingCircle(
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryColor,
-                                  size: 50,
+                      if (GetCartTotalCall.canPay(
+                            (containerGetCartTotalResponse?.jsonBody ?? ''),
+                          ) ??
+                          true)
+                        StreamBuilder<List<InvoiceProfilesRecord>>(
+                          stream: queryInvoiceProfilesRecord(
+                            parent: currentUserReference,
+                            singleRecord: true,
+                          ),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 50,
+                                  height: 50,
+                                  child: SpinKitFadingCircle(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
+                                    size: 50,
+                                  ),
                                 ),
+                              );
+                            }
+                            List<InvoiceProfilesRecord>
+                                buttonInvoiceProfilesRecordList = snapshot.data;
+                            // Return an empty Container when the document does not exist.
+                            if (snapshot.data.isEmpty) {
+                              return Container();
+                            }
+                            final buttonInvoiceProfilesRecord =
+                                buttonInvoiceProfilesRecordList.isNotEmpty
+                                    ? buttonInvoiceProfilesRecordList.first
+                                    : null;
+                            return FFButtonWidget(
+                              onPressed: () async {
+                                if (loggedIn) {
+                                  checkoutResponse =
+                                      await actions.setCheckoutSession(
+                                    rowAddtoCartAddressesRecord.name,
+                                    'Tarjeta Crédito / Débito',
+                                    buttonInvoiceProfilesRecord.id,
+                                    'Gastos en General',
+                                  );
+                                  pendingShipmentPrice =
+                                      await GetIfCheckoutIsByTruckCall.call(
+                                    uid: currentUserUid,
+                                    checkoutId: currentUserUid,
+                                  );
+                                  if (getJsonField(
+                                    (pendingShipmentPrice?.jsonBody ?? ''),
+                                    r'''$.pendingShipmentPrice''',
+                                  )) {
+                                    context.goNamed(
+                                      'CalculandoCostoDeEnvio',
+                                      queryParams: {
+                                        'checkoutId': serializeParam(
+                                            currentUserUid, ParamType.String),
+                                      }.withoutNulls,
+                                    );
+                                  } else {
+                                    await showModalBottomSheet(
+                                      isScrollControlled: true,
+                                      backgroundColor: Colors.transparent,
+                                      context: context,
+                                      builder: (context) {
+                                        return Padding(
+                                          padding:
+                                              MediaQuery.of(context).viewInsets,
+                                          child:
+                                              SugerenciasRecomendacionesWidget(),
+                                        );
+                                      },
+                                    );
+                                  }
+                                } else {
+                                  context.pushNamed('login');
+                                }
+
+                                setState(() {});
+                              },
+                              text: GetCartTotalCall.message(
+                                (containerGetCartTotalResponse?.jsonBody ?? ''),
+                              ).toString(),
+                              options: FFButtonOptions(
+                                width: 300,
+                                height: 54,
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .subtitle2
+                                    .override(
+                                      fontFamily: 'Montserrat',
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                elevation: 0,
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(5),
                               ),
                             );
-                          }
-                          List<InvoiceProfilesRecord>
-                              buttonInvoiceProfilesRecordList = snapshot.data;
-                          // Return an empty Container when the document does not exist.
-                          if (snapshot.data.isEmpty) {
-                            return Container();
-                          }
-                          final buttonInvoiceProfilesRecord =
-                              buttonInvoiceProfilesRecordList.isNotEmpty
-                                  ? buttonInvoiceProfilesRecordList.first
-                                  : null;
-                          return FFButtonWidget(
-                            onPressed: () async {
-                              if (loggedIn) {
-                                checkoutResponse =
-                                    await actions.setCheckoutSession(
-                                  rowAddtoCartAddressesRecord.name,
-                                  'Tarjeta Crédito / Débito',
-                                  buttonInvoiceProfilesRecord.id,
-                                  'Gastos en General',
-                                );
-                                pendingShipmentPrice =
-                                    await GetIfCheckoutIsByTruckCall.call(
-                                  uid: currentUserUid,
-                                  checkoutId: currentUserUid,
-                                );
-                                if (getJsonField(
-                                  (pendingShipmentPrice?.jsonBody ?? ''),
-                                  r'''$.pendingShipmentPrice''',
-                                )) {
-                                  context.goNamed(
-                                    'CalculandoCostoDeEnvio',
-                                    queryParams: {
-                                      'checkoutId': serializeParam(
-                                          currentUserUid, ParamType.String),
-                                    }.withoutNulls,
-                                  );
-                                } else {
-                                  await showModalBottomSheet(
-                                    isScrollControlled: true,
-                                    backgroundColor: Colors.transparent,
-                                    context: context,
-                                    builder: (context) {
-                                      return Padding(
-                                        padding:
-                                            MediaQuery.of(context).viewInsets,
-                                        child:
-                                            SugerenciasRecomendacionesWidget(),
-                                      );
-                                    },
-                                  );
-                                }
-                              } else {
-                                context.pushNamed('login');
-                              }
-
-                              setState(() {});
-                            },
-                            text: GetCartTotalCall.message(
-                              (containerGetCartTotalResponse?.jsonBody ?? ''),
-                            ).toString(),
-                            options: FFButtonOptions(
-                              width: 300,
-                              height: 54,
-                              color: FlutterFlowTheme.of(context).primaryColor,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .subtitle2
-                                  .override(
-                                    fontFamily: 'Montserrat',
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                              elevation: 0,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1,
-                              ),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                          );
-                        },
-                      ),
+                          },
+                        ),
                     ],
                   );
                 },
@@ -247,213 +252,226 @@ class _CarritoWidgetState extends State<CarritoWidget> {
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              FutureBuilder<ApiCallResponse>(
-                future: GetCartCall.call(
-                  uid: currentUserUid,
-                ),
-                builder: (context, snapshot) {
-                  // Customize what your widget looks like when it's loading.
-                  if (!snapshot.hasData) {
-                    return Center(
-                      child: SizedBox(
-                        width: 50,
-                        height: 50,
-                        child: SpinKitFadingCircle(
-                          color: FlutterFlowTheme.of(context).primaryColor,
-                          size: 50,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                FutureBuilder<ApiCallResponse>(
+                  future: (_apiRequestCompleter ??= Completer<ApiCallResponse>()
+                        ..complete(GetCartCall.call(
+                          uid: currentUserUid,
+                        )))
+                      .future,
+                  builder: (context, snapshot) {
+                    // Customize what your widget looks like when it's loading.
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: SizedBox(
+                          width: 50,
+                          height: 50,
+                          child: SpinKitFadingCircle(
+                            color: FlutterFlowTheme.of(context).primaryColor,
+                            size: 50,
+                          ),
                         ),
-                      ),
-                    );
-                  }
-                  final containerGetCartResponse = snapshot.data;
-                  return Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 0.8,
-                    decoration: BoxDecoration(),
-                    child: Builder(
-                      builder: (context) {
-                        final productsInCart = getJsonField(
-                              (containerGetCartResponse?.jsonBody ?? ''),
-                              r'''$''',
-                            )?.toList() ??
-                            [];
-                        return SingleChildScrollView(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: List.generate(productsInCart.length,
-                                (productsInCartIndex) {
-                              final productsInCartItem =
-                                  productsInCart[productsInCartIndex];
-                              return SingleChildScrollView(
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 0, 10),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.95,
-                                            constraints: BoxConstraints(
-                                              maxWidth: 400,
-                                            ),
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  blurRadius: 3,
-                                                  color: Color(0x17000000),
-                                                )
-                                              ],
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                            ),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Container(
-                                                  width: MediaQuery.of(context)
+                      );
+                    }
+                    final cartContainerGetCartResponse = snapshot.data;
+                    return Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height * 0.8,
+                      decoration: BoxDecoration(),
+                      child: Builder(
+                        builder: (context) {
+                          final productsInCart = getJsonField(
+                                (cartContainerGetCartResponse?.jsonBody ?? ''),
+                                r'''$''',
+                              )?.toList() ??
+                              [];
+                          return SingleChildScrollView(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: List.generate(productsInCart.length,
+                                  (productsInCartIndex) {
+                                final productsInCartItem =
+                                    productsInCart[productsInCartIndex];
+                                return SingleChildScrollView(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 0, 10),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Container(
+                                              width: MediaQuery.of(context)
                                                       .size
-                                                      .width,
-                                                  constraints: BoxConstraints(
-                                                    maxWidth: 500,
-                                                  ),
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                      bottomLeft:
-                                                          Radius.circular(0),
-                                                      bottomRight:
-                                                          Radius.circular(0),
-                                                      topLeft:
-                                                          Radius.circular(10),
-                                                      topRight:
-                                                          Radius.circular(10),
+                                                      .width *
+                                                  0.95,
+                                              constraints: BoxConstraints(
+                                                maxWidth: 400,
+                                              ),
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    blurRadius: 3,
+                                                    color: Color(0x17000000),
+                                                  )
+                                                ],
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                              ),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Container(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                            .size
+                                                            .width,
+                                                    constraints: BoxConstraints(
+                                                      maxWidth: 500,
                                                     ),
-                                                  ),
-                                                  child: Align(
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            0.95, 0),
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0, 5, 0, 0),
-                                                      child: InkWell(
-                                                        onTap: () async {
-                                                          deleteProductResponse =
-                                                              await actions
-                                                                  .removeProductFromCart(
-                                                            currentUserUid,
-                                                            getJsonField(
-                                                              productsInCartItem,
-                                                              r'''$.variantId''',
-                                                            ).toString(),
-                                                          );
-                                                          cartLength = await actions
-                                                              .countItemsInCart(
-                                                            currentUserUid,
-                                                          );
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.only(
+                                                        bottomLeft:
+                                                            Radius.circular(0),
+                                                        bottomRight:
+                                                            Radius.circular(0),
+                                                        topLeft:
+                                                            Radius.circular(10),
+                                                        topRight:
+                                                            Radius.circular(10),
+                                                      ),
+                                                    ),
+                                                    child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0.95, 0),
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0, 5, 0, 0),
+                                                        child: InkWell(
+                                                          onTap: () async {
+                                                            deleteProductResponse =
+                                                                await actions
+                                                                    .removeProductFromCart(
+                                                              currentUserUid,
+                                                              getJsonField(
+                                                                productsInCartItem,
+                                                                r'''$.variantId''',
+                                                              ).toString(),
+                                                            );
+                                                            setState(() =>
+                                                                _apiRequestCompleter =
+                                                                    null);
+                                                            await waitForApiRequestCompleter();
 
-                                                          final usersUpdateData =
-                                                              createUsersRecordData(
-                                                            itemsInCart:
-                                                                cartLength,
-                                                          );
-                                                          await currentUserReference
-                                                              .update(
-                                                                  usersUpdateData);
-
-                                                          setState(() {});
-                                                        },
-                                                        child: Text(
-                                                          'Eliminar',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Montserrat',
-                                                                color: Color(
-                                                                    0xFFF60A0A),
-                                                              ),
+                                                            setState(() {});
+                                                          },
+                                                          child: Text(
+                                                            'Eliminar',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Montserrat',
+                                                                  color: Color(
+                                                                      0xFFF60A0A),
+                                                                ),
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
                                                   ),
-                                                ),
-                                                InkWell(
-                                                  onTap: () async {
-                                                    context.pushNamed(
-                                                      'ProductPage',
-                                                      params: {
-                                                        'productId':
-                                                            serializeParam(
-                                                                getJsonField(
-                                                                  productsInCartItem,
-                                                                  r'''$.productId''',
-                                                                ).toString(),
-                                                                ParamType
-                                                                    .String),
-                                                      }.withoutNulls,
-                                                    );
-                                                  },
-                                                  child: CartProductWidget(
-                                                    expressAmount: getJsonField(
-                                                      productsInCartItem,
-                                                      r'''$.expressShipAmount''',
+                                                  InkWell(
+                                                    onTap: () async {
+                                                      context.pushNamed(
+                                                        'ProductPage',
+                                                        params: {
+                                                          'productId':
+                                                              serializeParam(
+                                                                  getJsonField(
+                                                                    productsInCartItem,
+                                                                    r'''$.productId''',
+                                                                  ).toString(),
+                                                                  ParamType
+                                                                      .String),
+                                                        }.withoutNulls,
+                                                      );
+                                                    },
+                                                    child: CartProductWidget(
+                                                      expressAmount:
+                                                          getJsonField(
+                                                        productsInCartItem,
+                                                        r'''$.expressShipAmount''',
+                                                      ),
+                                                      normalAmount:
+                                                          getJsonField(
+                                                        productsInCartItem,
+                                                        r'''$.normalShipAmount''',
+                                                      ),
+                                                      normalPrice: getJsonField(
+                                                        productsInCartItem,
+                                                        r'''$.normalPrice''',
+                                                      ).toString(),
+                                                      productId: getJsonField(
+                                                        productsInCartItem,
+                                                        r'''$.productId''',
+                                                      ).toString(),
+                                                      variantId: getJsonField(
+                                                        productsInCartItem,
+                                                        r'''$.variantId''',
+                                                      ).toString(),
                                                     ),
-                                                    normalAmount: getJsonField(
-                                                      productsInCartItem,
-                                                      r'''$.normalShipAmount''',
-                                                    ),
-                                                    normalPrice: getJsonField(
-                                                      productsInCartItem,
-                                                      r'''$.normalPrice''',
-                                                    ).toString(),
-                                                    productId: getJsonField(
-                                                      productsInCartItem,
-                                                      r'''$.productId''',
-                                                    ).toString(),
-                                                    variantId: getJsonField(
-                                                      productsInCartItem,
-                                                      r'''$.variantId''',
-                                                    ).toString(),
                                                   ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            }),
-                          ),
-                        );
-                      },
-                    ),
-                  );
-                },
-              ),
-            ],
+                                    ],
+                                  ),
+                                );
+                              }),
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
+  }
+
+  Future waitForApiRequestCompleter({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = _apiRequestCompleter?.isCompleted ?? false;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
   }
 }

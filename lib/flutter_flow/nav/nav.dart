@@ -67,13 +67,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, _) =>
-          appStateNotifier.loggedIn ? HomeAltWidget() : HomeAltCopyWidget(),
+          appStateNotifier.loggedIn ? HomeAltWidget() : LoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? HomeAltWidget() : HomeAltCopyWidget(),
+              appStateNotifier.loggedIn ? HomeAltWidget() : LoginWidget(),
           routes: [
             FFRoute(
               name: 'Notificaciones',
@@ -98,7 +98,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               path: 'product/:productId',
               builder: (context, params) => ProductPageWidget(
                 productId: params.getParam('productId', ParamType.String),
-                variantId: params.getParam('variantId', ParamType.String),
               ),
             ),
             FFRoute(
@@ -217,13 +216,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             FFRoute(
               name: 'PerfilDelSeller',
-              path: 'vendedor/:storeId',
+              path: 'vendedor/:storeName',
               builder: (context, params) => PerfilDelSellerWidget(
                 storeId: params.getParam('storeId', ParamType.String),
                 calledFromPage:
                     params.getParam('calledFromPage', ParamType.String),
                 productId: params.getParam('productId', ParamType.String),
                 variantId: params.getParam('variantId', ParamType.String),
+                storeName: params.getParam('storeName', ParamType.String),
               ),
             ),
             FFRoute(
@@ -250,14 +250,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => ValoracionesWidget(),
             ),
             FFRoute(
-              name: 'Profesional',
-              path: 'registro/profesional',
-              builder: (context, params) => ProfesionalWidget(),
-            ),
-            FFRoute(
               name: 'Onboarding1',
               path: 'bienvenido',
               builder: (context, params) => Onboarding1Widget(),
+            ),
+            FFRoute(
+              name: 'Profesional',
+              path: 'registro/profesional',
+              builder: (context, params) => ProfesionalWidget(),
             ),
             FFRoute(
               name: 'PagoPendiente',
@@ -560,16 +560,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
-              name: 'searchMarca',
-              path: 'buscar-marca',
-              requireAuth: true,
-              builder: (context, params) => SearchMarcaWidget(),
-            ),
-            FFRoute(
               name: 'searchProductsSeller',
               path: 'buscar/productos-vendedor',
               requireAuth: true,
               builder: (context, params) => SearchProductsSellerWidget(),
+            ),
+            FFRoute(
+              name: 'searchMarca',
+              path: 'buscar-marca',
+              requireAuth: true,
+              builder: (context, params) => SearchMarcaWidget(),
             ),
             FFRoute(
               name: 'CategoriaSingleMARCA',
@@ -591,11 +591,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
-              name: 'HomeAltCopy',
-              path: 'home',
-              builder: (context, params) => HomeAltCopyWidget(),
-            ),
-            FFRoute(
               name: 'CalculandoCostoDeEnvio',
               path: 'calculando',
               builder: (context, params) => CalculandoCostoDeEnvioWidget(
@@ -609,6 +604,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   CalculandoCostoDeEnvioPorSellerWidget(
                 checkoutId: params.getParam('checkoutId', ParamType.String),
               ),
+            ),
+            FFRoute(
+              name: 'ProductPageSeller',
+              path: 'productPageSeller',
+              requireAuth: true,
+              builder: (context, params) => ProductPageSellerWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
@@ -758,7 +759,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.location);
-            return '/home';
+            return '/iniciar-sesion';
           }
           return null;
         },

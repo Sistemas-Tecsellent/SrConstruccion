@@ -237,7 +237,7 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                       children: [
                         Expanded(
                           child: Container(
-                            height: 120,
+                            height: 250,
                             child: PageView(
                               controller: pageViewController ??=
                                   PageController(initialPage: 0),
@@ -248,10 +248,10 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(10),
                                     child: Image.asset(
-                                      'assets/images/Diseo_sin_ttulo_(16).png',
+                                      'assets/images/Headers.png',
                                       width: MediaQuery.of(context).size.width *
                                           0.95,
-                                      height: 100,
+                                      height: 200,
                                       fit: BoxFit.cover,
                                     ),
                                   ),

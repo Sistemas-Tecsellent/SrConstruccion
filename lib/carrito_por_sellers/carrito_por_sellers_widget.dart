@@ -744,7 +744,7 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                                                         Padding(
                                                           padding:
                                                               EdgeInsetsDirectional
-                                                                  .fromSTEB(20,
+                                                                  .fromSTEB(85,
                                                                       0, 0, 5),
                                                           child: Row(
                                                             mainAxisSize:
@@ -786,7 +786,7 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                                                           padding:
                                                               EdgeInsetsDirectional
                                                                   .fromSTEB(
-                                                                      20,
+                                                                      85,
                                                                       0,
                                                                       20,
                                                                       10),
@@ -906,11 +906,9 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                               );
                               context.pushNamed(
                                 'PerfilDelSeller',
-                                params: {
+                                queryParams: {
                                   'storeId': serializeParam(
                                       widget.storeId, ParamType.String),
-                                }.withoutNulls,
-                                queryParams: {
                                   'calledFromPage':
                                       serializeParam('\"\"', ParamType.String),
                                 }.withoutNulls,

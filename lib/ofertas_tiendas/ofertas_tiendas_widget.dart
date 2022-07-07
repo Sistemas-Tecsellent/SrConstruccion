@@ -193,7 +193,7 @@ class _OfertasTiendasWidgetState extends State<OfertasTiendasWidget> {
                                   EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
                               child: Container(
                                 width: double.infinity,
-                                height: 100,
+                                height: 250,
                                 child: PageView(
                                   controller: pageViewController ??=
                                       PageController(initialPage: 0),
@@ -858,7 +858,8 @@ class _OfertasTiendasWidgetState extends State<OfertasTiendasWidget> {
                                                                             .bodyText1
                                                                             .override(
                                                                               fontFamily: 'Montserrat',
-                                                                              color: Color(0xFF1EEBBD),
+                                                                              color: FlutterFlowTheme.of(context).alternate,
+                                                                              fontSize: 22,
                                                                               fontWeight: FontWeight.w600,
                                                                             ),
                                                                       ),
@@ -886,7 +887,8 @@ class _OfertasTiendasWidgetState extends State<OfertasTiendasWidget> {
                                                                               .bodyText1
                                                                               .override(
                                                                                 fontFamily: 'Montserrat',
-                                                                                color: Color(0xFF1EEBBD),
+                                                                                color: FlutterFlowTheme.of(context).alternate,
+                                                                                fontSize: 22,
                                                                                 fontWeight: FontWeight.w600,
                                                                               ),
                                                                         ),

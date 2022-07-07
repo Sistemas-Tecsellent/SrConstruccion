@@ -18,16 +18,15 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ProductPageWidget extends StatefulWidget {
   const ProductPageWidget({
     Key key,
     this.productId,
-    this.variantId,
   }) : super(key: key);
 
   final String productId;
-  final String variantId;
 
   @override
   _ProductPageWidgetState createState() => _ProductPageWidgetState();
@@ -99,62 +98,68 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
           },
         ),
         actions: [
-          Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              if (loggedIn ?? true)
-                FutureBuilder<ApiCallResponse>(
-                  future: GetCartAmountCall.call(
-                    uid: widget.productId,
-                    cartId: currentUserUid,
-                  ),
-                  builder: (context, snapshot) {
-                    // Customize what your widget looks like when it's loading.
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: SizedBox(
-                          width: 50,
-                          height: 50,
-                          child: SpinKitFadingCircle(
-                            color: FlutterFlowTheme.of(context).primaryColor,
-                            size: 50,
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                if (loggedIn ?? true)
+                  FutureBuilder<ApiCallResponse>(
+                    future: GetCartAmountCall.call(
+                      uid: currentUserUid,
+                      cartId: currentUserUid,
+                    ),
+                    builder: (context, snapshot) {
+                      // Customize what your widget looks like when it's loading.
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: SizedBox(
+                            width: 50,
+                            height: 50,
+                            child: SpinKitFadingCircle(
+                              color: FlutterFlowTheme.of(context).primaryColor,
+                              size: 50,
+                            ),
                           ),
+                        );
+                      }
+                      final buttonGetCartAmountResponse = snapshot.data;
+                      return FFButtonWidget(
+                        onPressed: () async {
+                          context.pushNamed('Carrito');
+                        },
+                        text: valueOrDefault<String>(
+                          GetCartAmountCall.amount(
+                            (buttonGetCartAmountResponse?.jsonBody ?? ''),
+                          ).toString(),
+                          '0',
+                        ),
+                        icon: Icon(
+                          Icons.shopping_bag_outlined,
+                          size: 30,
+                        ),
+                        options: FFButtonOptions(
+                          width: 120,
+                          height: 40,
+                          color: Color(0xFF1EEBBD),
+                          textStyle:
+                              FlutterFlowTheme.of(context).subtitle2.override(
+                                    fontFamily: 'Montserrat',
+                                    color: Colors.white,
+                                  ),
+                          elevation: 2,
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.circular(25),
                         ),
                       );
-                    }
-                    final buttonGetCartAmountResponse = snapshot.data;
-                    return FFButtonWidget(
-                      onPressed: () async {
-                        context.pushNamed('Carrito');
-                      },
-                      text: GetCartAmountCall.amount(
-                        (buttonGetCartAmountResponse?.jsonBody ?? ''),
-                      ).toString(),
-                      icon: Icon(
-                        Icons.shopping_bag_outlined,
-                        size: 30,
-                      ),
-                      options: FFButtonOptions(
-                        width: 120,
-                        height: 40,
-                        color: Color(0xFF1EEBBD),
-                        textStyle:
-                            FlutterFlowTheme.of(context).subtitle2.override(
-                                  fontFamily: 'Montserrat',
-                                  color: Colors.white,
-                                ),
-                        elevation: 2,
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                    );
-                  },
-                ),
-            ],
+                    },
+                  ),
+              ],
+            ),
           ),
         ],
         centerTitle: true,
@@ -199,40 +204,91 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                FFButtonWidget(
-                  onPressed: () async {
-                    if (loggedIn) {
-                      await actions.addProductToCart(
-                        widget.productId,
-                        FFAppState().currentVariant,
-                        expressCountDValue,
-                        normalShipmentCountDValue,
-                        FFAppState().locationKey,
-                        FFAppState().locationKeyCity,
-                      );
-                      context.pushNamed('Carrito');
-                    } else {
-                      context.pushNamed('login');
-                    }
-                  },
-                  text: 'Agregar al carrito',
-                  options: FFButtonOptions(
-                    width: 300,
-                    height: 54,
-                    color: FlutterFlowTheme.of(context).primaryColor,
-                    textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                          fontFamily: 'Montserrat',
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
+                Stack(
+                  children: [
+                    if (responsiveVisibility(
+                      context: context,
+                      phone: false,
+                      tablet: false,
+                    ))
+                      FFButtonWidget(
+                        onPressed: () async {
+                          if (loggedIn) {
+                            await actions.addProductToCart(
+                              widget.productId,
+                              FFAppState().currentVariant,
+                              expressCountDValue,
+                              normalShipmentCountDValue,
+                              FFAppState().locationKey,
+                              FFAppState().locationKeyCity,
+                            );
+                            context.pushNamed('Carrito');
+                          } else {
+                            context.pushNamed('login');
+                          }
+                        },
+                        text: 'Agregar al carrito',
+                        options: FFButtonOptions(
+                          width: 300,
+                          height: 54,
+                          color: FlutterFlowTheme.of(context).primaryColor,
+                          textStyle:
+                              FlutterFlowTheme.of(context).subtitle2.override(
+                                    fontFamily: 'Montserrat',
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                          elevation: 0,
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.circular(5),
                         ),
-                    elevation: 0,
-                    borderSide: BorderSide(
-                      color: Colors.transparent,
-                      width: 1,
-                    ),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
+                      ),
+                    if (responsiveVisibility(
+                      context: context,
+                      tabletLandscape: false,
+                      desktop: false,
+                    ))
+                      FFButtonWidget(
+                        onPressed: () async {
+                          if (loggedIn) {
+                            await actions.addProductToCart(
+                              widget.productId,
+                              FFAppState().currentVariant,
+                              expressCountValue,
+                              normalShipmentCountValue,
+                              FFAppState().locationKey,
+                              FFAppState().locationKeyCity,
+                            );
+                            context.pushNamed('Carrito');
+                          } else {
+                            context.pushNamed('login');
+                          }
+                        },
+                        text: 'Agregar al carrito',
+                        options: FFButtonOptions(
+                          width: 300,
+                          height: 54,
+                          color: FlutterFlowTheme.of(context).primaryColor,
+                          textStyle:
+                              FlutterFlowTheme.of(context).subtitle2.override(
+                                    fontFamily: 'Montserrat',
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                          elevation: 0,
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                      ),
+                  ],
                 ),
               ],
             ),
@@ -321,7 +377,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                   children: [
                                     Container(
                                       width: MediaQuery.of(context).size.width,
-                                      height: 1000,
                                       decoration: BoxDecoration(),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
@@ -360,7 +415,15 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                         child: InkWell(
                                                           onTap: () async {
                                                             context.pushNamed(
-                                                                'MarcaSingle');
+                                                              'MarcaSingle',
+                                                              params: {
+                                                                'brandId': serializeParam(
+                                                                    columnProductsRecord
+                                                                        .brand,
+                                                                    ParamType
+                                                                        .String),
+                                                              }.withoutNulls,
+                                                            );
                                                           },
                                                           child: Container(
                                                             width: 50,
@@ -465,7 +528,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                       .size
                                                       .width *
                                                   0.49,
-                                              height: 999,
                                               decoration: BoxDecoration(),
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
@@ -474,8 +536,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                   mainAxisSize:
                                                       MainAxisSize.min,
                                                   mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceEvenly,
+                                                      MainAxisAlignment.start,
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
@@ -499,7 +560,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                             padding:
                                                                 EdgeInsetsDirectional
                                                                     .fromSTEB(
-                                                                        25,
+                                                                        20,
                                                                         0,
                                                                         25,
                                                                         0),
@@ -537,9 +598,9 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                           fontFamily:
                                                                               'Montserrat',
                                                                           color:
-                                                                              Color(0xFF1EEBBD),
+                                                                              FlutterFlowTheme.of(context).alternate,
                                                                           fontSize:
-                                                                              18,
+                                                                              28,
                                                                           fontWeight:
                                                                               FontWeight.w600,
                                                                         ),
@@ -577,7 +638,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                             color:
                                                                                 Color(0xFFE7E7E7),
                                                                             fontSize:
-                                                                                16,
+                                                                                22,
                                                                             fontWeight:
                                                                                 FontWeight.w600,
                                                                             fontStyle:
@@ -598,7 +659,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  25, 5, 25, 0),
+                                                                  20, 5, 25, 0),
                                                       child: Row(
                                                         mainAxisSize:
                                                             MainAxisSize.min,
@@ -672,41 +733,51 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  20, 10, 0, 0),
+                                                                  20, 0, 0, 0),
                                                       child: Container(
                                                         width: MediaQuery.of(
                                                                     context)
                                                                 .size
                                                                 .width *
                                                             0.9,
+                                                        constraints:
+                                                            BoxConstraints(
+                                                          maxWidth: 550,
+                                                        ),
                                                         decoration:
                                                             BoxDecoration(
                                                           color:
                                                               Color(0x00EEEEEE),
                                                         ),
-                                                        child: Text(
-                                                          columnProductsRecord
-                                                              .description,
-                                                          textAlign:
-                                                              TextAlign.justify,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Montserrat',
-                                                                fontSize: 14,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .normal,
-                                                              ),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      10, 0, 0),
+                                                          child: Text(
+                                                            columnProductsRecord
+                                                                .description,
+                                                            textAlign: TextAlign
+                                                                .justify,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Montserrat',
+                                                                  fontSize: 14,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                ),
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
                                                     Padding(
                                                       padding:
                                                           EdgeInsetsDirectional
-                                                              .fromSTEB(25, 10,
+                                                              .fromSTEB(20, 10,
                                                                   25, 10),
                                                       child: Row(
                                                         mainAxisSize:
@@ -715,6 +786,81 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                             MainAxisAlignment
                                                                 .start,
                                                         children: [
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0,
+                                                                        0,
+                                                                        20,
+                                                                        0),
+                                                            child: InkWell(
+                                                              onTap: () async {
+                                                                context.pushNamed(
+                                                                    'CotizacionFormulario');
+                                                              },
+                                                              child: Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .min,
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .end,
+                                                                children: [
+                                                                  Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0,
+                                                                            0,
+                                                                            5,
+                                                                            0),
+                                                                    child:
+                                                                        FFButtonWidget(
+                                                                      onPressed:
+                                                                          () async {
+                                                                        await launchURL(
+                                                                            'http://tienda.srconstruccion.com');
+                                                                      },
+                                                                      text:
+                                                                          'Cotizar',
+                                                                      icon:
+                                                                          Icon(
+                                                                        Icons
+                                                                            .forum_rounded,
+                                                                        size:
+                                                                            15,
+                                                                      ),
+                                                                      options:
+                                                                          FFButtonOptions(
+                                                                        width:
+                                                                            130,
+                                                                        height:
+                                                                            30,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .alternate,
+                                                                        textStyle: FlutterFlowTheme.of(context)
+                                                                            .subtitle2
+                                                                            .override(
+                                                                              fontFamily: 'Montserrat',
+                                                                              color: Colors.white,
+                                                                              fontSize: 14,
+                                                                            ),
+                                                                        borderSide:
+                                                                            BorderSide(
+                                                                          color:
+                                                                              Colors.transparent,
+                                                                          width:
+                                                                              1,
+                                                                        ),
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(500),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
                                                           if (productoVariantsRecord
                                                                   .tags
                                                                   .toList()
@@ -820,81 +966,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                 ],
                                                               ),
                                                             ),
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        20,
-                                                                        0,
-                                                                        20,
-                                                                        0),
-                                                            child: InkWell(
-                                                              onTap: () async {
-                                                                context.pushNamed(
-                                                                    'CotizacionFormulario');
-                                                              },
-                                                              child: Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .min,
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .end,
-                                                                children: [
-                                                                  Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0,
-                                                                            0,
-                                                                            5,
-                                                                            0),
-                                                                    child:
-                                                                        FFButtonWidget(
-                                                                      onPressed:
-                                                                          () async {
-                                                                        await launchURL(
-                                                                            'http://tienda.srconstruccion.com');
-                                                                      },
-                                                                      text:
-                                                                          'Cotizar',
-                                                                      icon:
-                                                                          Icon(
-                                                                        Icons
-                                                                            .forum_rounded,
-                                                                        size:
-                                                                            15,
-                                                                      ),
-                                                                      options:
-                                                                          FFButtonOptions(
-                                                                        width:
-                                                                            130,
-                                                                        height:
-                                                                            30,
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .alternate,
-                                                                        textStyle: FlutterFlowTheme.of(context)
-                                                                            .subtitle2
-                                                                            .override(
-                                                                              fontFamily: 'Montserrat',
-                                                                              color: Colors.white,
-                                                                              fontSize: 14,
-                                                                            ),
-                                                                        borderSide:
-                                                                            BorderSide(
-                                                                          color:
-                                                                              Colors.transparent,
-                                                                          width:
-                                                                              1,
-                                                                        ),
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(500),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          ),
                                                         ],
                                                       ),
                                                     ),
@@ -1536,6 +1607,8 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                       Row(
                                                                         mainAxisSize:
                                                                             MainAxisSize.max,
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.start,
                                                                         children: [
                                                                           FaIcon(
                                                                             FontAwesomeIcons.bolt,
@@ -1590,7 +1663,8 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                       ),
                                                                                       style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                             fontFamily: 'Montserrat',
-                                                                                            color: Color(0xFF1EEBBD),
+                                                                                            color: FlutterFlowTheme.of(context).alternate,
+                                                                                            fontSize: 18,
                                                                                             fontWeight: FontWeight.w600,
                                                                                           ),
                                                                                     ),
@@ -1640,6 +1714,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                                       fontFamily: 'Montserrat',
                                                                                                       color: Color(0xFFAEAEAE),
                                                                                                       fontSize: 11,
+                                                                                                      fontWeight: FontWeight.w600,
                                                                                                     ),
                                                                                               ),
                                                                                               Text(
@@ -1768,6 +1843,8 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                         Row(
                                                                           mainAxisSize:
                                                                               MainAxisSize.max,
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.start,
                                                                           children: [
                                                                             FaIcon(
                                                                               FontAwesomeIcons.clock,
@@ -1814,7 +1891,9 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                                 ),
                                                                                                 style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                                       fontFamily: 'Montserrat',
-                                                                                                      color: Color(0xFF1EEBBD),
+                                                                                                      color: FlutterFlowTheme.of(context).alternate,
+                                                                                                      fontSize: 18,
+                                                                                                      fontWeight: FontWeight.w600,
                                                                                                     ),
                                                                                               ),
                                                                                             ),
@@ -1829,7 +1908,9 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                                 ),
                                                                                                 style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                                       fontFamily: 'Montserrat',
-                                                                                                      color: Color(0xFF1EEBBD),
+                                                                                                      color: FlutterFlowTheme.of(context).alternate,
+                                                                                                      fontSize: 18,
+                                                                                                      fontWeight: FontWeight.w600,
                                                                                                     ),
                                                                                               ),
                                                                                             ),
@@ -1844,7 +1925,8 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                                 ),
                                                                                                 style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                                       fontFamily: 'Montserrat',
-                                                                                                      color: Color(0xFF1EEBBD),
+                                                                                                      color: FlutterFlowTheme.of(context).alternate,
+                                                                                                      fontSize: 18,
                                                                                                       fontWeight: FontWeight.w600,
                                                                                                     ),
                                                                                               ),
@@ -1859,7 +1941,9 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                               ),
                                                                                               style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                                     fontFamily: 'Montserrat',
-                                                                                                    color: Color(0xFF1EEBBD),
+                                                                                                    color: FlutterFlowTheme.of(context).alternate,
+                                                                                                    fontSize: 18,
+                                                                                                    fontWeight: FontWeight.w600,
                                                                                                   ),
                                                                                             ),
                                                                                         ],
@@ -1878,6 +1962,15 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                           mainAxisSize: MainAxisSize.max,
                                                                                           crossAxisAlignment: CrossAxisAlignment.start,
                                                                                           children: [
+                                                                                            Text(
+                                                                                              '+100',
+                                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                    fontFamily: 'Montserrat',
+                                                                                                    color: Color(0xFFAEAEAE),
+                                                                                                    fontSize: 11,
+                                                                                                    fontWeight: FontWeight.w600,
+                                                                                                  ),
+                                                                                            ),
                                                                                             Text(
                                                                                               'disponible',
                                                                                               style: FlutterFlowTheme.of(context).bodyText1.override(
@@ -2148,10 +2241,8 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                     onTap: () async {
                                                                                       context.pushNamed(
                                                                                         'PerfilDelSeller',
-                                                                                        params: {
-                                                                                          'storeId': serializeParam(sellerStoresRecord.id, ParamType.String),
-                                                                                        }.withoutNulls,
                                                                                         queryParams: {
+                                                                                          'storeId': serializeParam(sellerStoresRecord.id, ParamType.String),
                                                                                           'calledFromPage': serializeParam('productPage', ParamType.String),
                                                                                           'productId': serializeParam(widget.productId, ParamType.String),
                                                                                           'variantId': serializeParam(FFAppState().currentVariant, ParamType.String),
@@ -2557,8 +2648,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
+                                                      MainAxisAlignment.start,
                                                   children: [
                                                     ClipRRect(
                                                       borderRadius:
@@ -2571,37 +2661,55 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                         fit: BoxFit.cover,
                                                       ),
                                                     ),
-                                                    ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              4),
-                                                      child: Image.network(
-                                                        'https://picsum.photos/seed/580/600',
-                                                        width: 60,
-                                                        height: 60,
-                                                        fit: BoxFit.cover,
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  10, 0, 0, 0),
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(4),
+                                                        child: Image.network(
+                                                          'https://picsum.photos/seed/580/600',
+                                                          width: 60,
+                                                          height: 60,
+                                                          fit: BoxFit.cover,
+                                                        ),
                                                       ),
                                                     ),
-                                                    ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              4),
-                                                      child: Image.network(
-                                                        'https://picsum.photos/seed/580/600',
-                                                        width: 60,
-                                                        height: 60,
-                                                        fit: BoxFit.cover,
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  10, 0, 10, 0),
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(4),
+                                                        child: Image.network(
+                                                          'https://picsum.photos/seed/580/600',
+                                                          width: 60,
+                                                          height: 60,
+                                                          fit: BoxFit.cover,
+                                                        ),
                                                       ),
                                                     ),
-                                                    ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              4),
-                                                      child: Image.network(
-                                                        'https://picsum.photos/seed/580/600',
-                                                        width: 60,
-                                                        height: 60,
-                                                        fit: BoxFit.cover,
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 0, 10, 0),
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(4),
+                                                        child: Image.network(
+                                                          'https://picsum.photos/seed/580/600',
+                                                          width: 60,
+                                                          height: 60,
+                                                          fit: BoxFit.cover,
+                                                        ),
                                                       ),
                                                     ),
                                                     Container(
@@ -2841,7 +2949,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Row(
-                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       crossAxisAlignment:
@@ -2883,8 +2991,9 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                 .primaryColor,
                                             size: 25,
                                           ),
-                                          onPressed: () {
-                                            print('IconButton pressed ...');
+                                          onPressed: () async {
+                                            await Share.share(
+                                                'http://tienda.srconstruccion.com${GoRouter.of(context).location}');
                                           },
                                         ),
                                         Padding(
@@ -2947,35 +3056,33 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                           Expanded(
                                             child: Stack(
                                               children: [
-                                                if (loggedIn ?? true)
-                                                  Container(
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                            .size
-                                                            .width,
-                                                    height: 100,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      boxShadow: [
-                                                        BoxShadow(
-                                                          blurRadius: 20,
-                                                          color:
-                                                              Color(0x0D000000),
-                                                        )
-                                                      ],
-                                                      borderRadius:
-                                                          BorderRadius.only(
-                                                        bottomLeft:
-                                                            Radius.circular(0),
-                                                        bottomRight:
-                                                            Radius.circular(0),
-                                                        topLeft:
-                                                            Radius.circular(20),
-                                                        topRight:
-                                                            Radius.circular(20),
-                                                      ),
+                                                Container(
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
+                                                  height: 100,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        blurRadius: 20,
+                                                        color:
+                                                            Color(0x0D000000),
+                                                      )
+                                                    ],
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                      bottomLeft:
+                                                          Radius.circular(0),
+                                                      bottomRight:
+                                                          Radius.circular(0),
+                                                      topLeft:
+                                                          Radius.circular(20),
+                                                      topRight:
+                                                          Radius.circular(20),
                                                     ),
                                                   ),
+                                                ),
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(0, 80, 0, 0),
@@ -3085,37 +3192,98 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                     MainAxisAlignment
                                                                         .start,
                                                                 children: [
-                                                                  Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
+                                                                  Stack(
                                                                     children: [
-                                                                      Align(
-                                                                        alignment: AlignmentDirectional(
-                                                                            0,
-                                                                            0),
-                                                                        child:
-                                                                            Text(
-                                                                          valueOrDefault<
-                                                                              String>(
-                                                                            formatNumber(
-                                                                              productoVariantsRecord.publicPrice,
-                                                                              formatType: FormatType.decimal,
-                                                                              decimalType: DecimalType.periodDecimal,
-                                                                              currency: '',
-                                                                            ),
-                                                                            'Cotizar',
-                                                                          ),
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyText1
-                                                                              .override(
-                                                                                fontFamily: 'Montserrat',
-                                                                                color: Color(0xFF1EEBBD),
-                                                                                fontSize: 18,
-                                                                                fontWeight: FontWeight.w600,
+                                                                      if ((valueOrDefault(
+                                                                              currentUserDocument?.type,
+                                                                              '')) ==
+                                                                          'public')
+                                                                        Align(
+                                                                          alignment: AlignmentDirectional(
+                                                                              0,
+                                                                              0),
+                                                                          child:
+                                                                              AuthUserStreamWidget(
+                                                                            child:
+                                                                                Text(
+                                                                              valueOrDefault<String>(
+                                                                                formatNumber(
+                                                                                  productoVariantsRecord.publicPrice,
+                                                                                  formatType: FormatType.decimal,
+                                                                                  decimalType: DecimalType.periodDecimal,
+                                                                                  currency: '',
+                                                                                ),
+                                                                                'Cotizar',
                                                                               ),
+                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                    fontFamily: 'Montserrat',
+                                                                                    color: FlutterFlowTheme.of(context).alternate,
+                                                                                    fontSize: 30,
+                                                                                    fontWeight: FontWeight.w600,
+                                                                                  ),
+                                                                            ),
+                                                                          ),
                                                                         ),
-                                                                      ),
+                                                                      if ((valueOrDefault(
+                                                                              currentUserDocument?.type,
+                                                                              '')) ==
+                                                                          'wholesale')
+                                                                        Align(
+                                                                          alignment: AlignmentDirectional(
+                                                                              0,
+                                                                              0),
+                                                                          child:
+                                                                              AuthUserStreamWidget(
+                                                                            child:
+                                                                                Text(
+                                                                              valueOrDefault<String>(
+                                                                                formatNumber(
+                                                                                  productoVariantsRecord.wholesalePrice,
+                                                                                  formatType: FormatType.decimal,
+                                                                                  decimalType: DecimalType.periodDecimal,
+                                                                                  currency: '',
+                                                                                ),
+                                                                                'Cotizar',
+                                                                              ),
+                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                    fontFamily: 'Montserrat',
+                                                                                    color: FlutterFlowTheme.of(context).alternate,
+                                                                                    fontSize: 30,
+                                                                                    fontWeight: FontWeight.w600,
+                                                                                  ),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      if ((valueOrDefault(
+                                                                              currentUserDocument?.type,
+                                                                              '')) ==
+                                                                          'megaWholesale')
+                                                                        Align(
+                                                                          alignment: AlignmentDirectional(
+                                                                              0,
+                                                                              0),
+                                                                          child:
+                                                                              AuthUserStreamWidget(
+                                                                            child:
+                                                                                Text(
+                                                                              valueOrDefault<String>(
+                                                                                formatNumber(
+                                                                                  productoVariantsRecord.megaWholesalePrice,
+                                                                                  formatType: FormatType.decimal,
+                                                                                  decimalType: DecimalType.periodDecimal,
+                                                                                  currency: '',
+                                                                                ),
+                                                                                'Cotizar',
+                                                                              ),
+                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                    fontFamily: 'Montserrat',
+                                                                                    color: FlutterFlowTheme.of(context).alternate,
+                                                                                    fontSize: 30,
+                                                                                    fontWeight: FontWeight.w600,
+                                                                                  ),
+                                                                            ),
+                                                                          ),
+                                                                        ),
                                                                     ],
                                                                   ),
                                                                   Align(
@@ -3148,7 +3316,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                             .override(
                                                                               fontFamily: 'Montserrat',
                                                                               color: Color(0xFFE7E7E7),
-                                                                              fontSize: 16,
+                                                                              fontSize: 22,
                                                                               fontWeight: FontWeight.w600,
                                                                               fontStyle: FontStyle.italic,
                                                                               decoration: TextDecoration.lineThrough,
@@ -3346,56 +3514,46 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                 MainAxisAlignment
                                                                     .end,
                                                             children: [
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0,
-                                                                            0,
-                                                                            5,
-                                                                            0),
-                                                                child:
-                                                                    FFButtonWidget(
-                                                                  onPressed:
-                                                                      () async {
-                                                                    await launchURL(
-                                                                        'http://tienda.srconstruccion.com');
-                                                                  },
-                                                                  text:
-                                                                      'Cotizar',
-                                                                  icon: Icon(
-                                                                    Icons
-                                                                        .forum_rounded,
-                                                                    size: 15,
+                                                              FFButtonWidget(
+                                                                onPressed:
+                                                                    () async {
+                                                                  context.pushNamed(
+                                                                      'CotizacionFormulario');
+                                                                },
+                                                                text: 'Cotizar',
+                                                                icon: Icon(
+                                                                  Icons
+                                                                      .forum_rounded,
+                                                                  size: 15,
+                                                                ),
+                                                                options:
+                                                                    FFButtonOptions(
+                                                                  width: 130,
+                                                                  height: 30,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                                  textStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .subtitle2
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Montserrat',
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            14,
+                                                                      ),
+                                                                  borderSide:
+                                                                      BorderSide(
+                                                                    color: Colors
+                                                                        .transparent,
+                                                                    width: 1,
                                                                   ),
-                                                                  options:
-                                                                      FFButtonOptions(
-                                                                    width: 130,
-                                                                    height: 30,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .alternate,
-                                                                    textStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .subtitle2
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Montserrat',
-                                                                          color:
-                                                                              Colors.white,
-                                                                          fontSize:
-                                                                              14,
-                                                                        ),
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: Colors
-                                                                          .transparent,
-                                                                      width: 1,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            500),
-                                                                  ),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              500),
                                                                 ),
                                                               ),
                                                             ],
@@ -4095,7 +4253,8 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                             ),
                                                                                             style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                                   fontFamily: 'Montserrat',
-                                                                                                  color: Color(0xFF1EEBBD),
+                                                                                                  color: FlutterFlowTheme.of(context).alternate,
+                                                                                                  fontSize: 16,
                                                                                                   fontWeight: FontWeight.w600,
                                                                                                 ),
                                                                                           ),
@@ -4145,6 +4304,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                                             fontFamily: 'Montserrat',
                                                                                                             color: Color(0xFFAEAEAE),
                                                                                                             fontSize: 11,
+                                                                                                            fontWeight: FontWeight.w600,
                                                                                                           ),
                                                                                                     ),
                                                                                                     Text(
@@ -4290,7 +4450,8 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                                       ),
                                                                                                       style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                                             fontFamily: 'Montserrat',
-                                                                                                            color: Color(0xFF1EEBBD),
+                                                                                                            color: FlutterFlowTheme.of(context).alternate,
+                                                                                                            fontSize: 16,
                                                                                                             fontWeight: FontWeight.w600,
                                                                                                           ),
                                                                                                     ),
@@ -4306,7 +4467,8 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                                       ),
                                                                                                       style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                                             fontFamily: 'Montserrat',
-                                                                                                            color: Color(0xFF1EEBBD),
+                                                                                                            color: FlutterFlowTheme.of(context).alternate,
+                                                                                                            fontSize: 16,
                                                                                                             fontWeight: FontWeight.w600,
                                                                                                           ),
                                                                                                     ),
@@ -4322,7 +4484,8 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                                       ),
                                                                                                       style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                                             fontFamily: 'Montserrat',
-                                                                                                            color: Color(0xFF1EEBBD),
+                                                                                                            color: FlutterFlowTheme.of(context).alternate,
+                                                                                                            fontSize: 16,
                                                                                                             fontWeight: FontWeight.w600,
                                                                                                           ),
                                                                                                     ),
@@ -4343,6 +4506,15 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                                 mainAxisSize: MainAxisSize.max,
                                                                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                                                                 children: [
+                                                                                                  Text(
+                                                                                                    '+100',
+                                                                                                    style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                          fontFamily: 'Montserrat',
+                                                                                                          color: Color(0xFFAEAEAE),
+                                                                                                          fontSize: 11,
+                                                                                                          fontWeight: FontWeight.w600,
+                                                                                                        ),
+                                                                                                  ),
                                                                                                   Text(
                                                                                                     'disponible',
                                                                                                     style: FlutterFlowTheme.of(context).bodyText1.override(
@@ -4598,9 +4770,10 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                         context.pushNamed(
                                                                                           'PerfilDelSeller',
                                                                                           params: {
-                                                                                            'storeId': serializeParam(sellerStoresRecord.id, ParamType.String),
+                                                                                            'storeName': serializeParam(sellerStoresRecord.name, ParamType.String),
                                                                                           }.withoutNulls,
                                                                                           queryParams: {
+                                                                                            'storeId': serializeParam(sellerStoresRecord.id, ParamType.String),
                                                                                             'calledFromPage': serializeParam('productPage', ParamType.String),
                                                                                             'productId': serializeParam(widget.productId, ParamType.String),
                                                                                             'variantId': serializeParam(FFAppState().currentVariant, ParamType.String),
@@ -4886,17 +5059,102 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                             topRight: Radius.circular(0),
                                           ),
                                         ),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(20, 0, 10, 0),
-                                              child: InkWell(
-                                                onTap: () async {
-                                                  context.pushNamed(
-                                                      'Valoraciones');
-                                                },
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 0, 50),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(20, 0, 10, 0),
+                                                child: InkWell(
+                                                  onTap: () async {
+                                                    context.pushNamed(
+                                                        'Valoraciones');
+                                                  },
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Text(
+                                                        'Valoraciones',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Montserrat',
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                      ),
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          RatingBar.builder(
+                                                            onRatingUpdate: (newValue) =>
+                                                                setState(() =>
+                                                                    ratingBarValue3 =
+                                                                        newValue),
+                                                            itemBuilder:
+                                                                (context,
+                                                                        index) =>
+                                                                    Icon(
+                                                              Icons
+                                                                  .star_rounded,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryColor,
+                                                            ),
+                                                            direction:
+                                                                Axis.horizontal,
+                                                            initialRating:
+                                                                ratingBarValue3 ??=
+                                                                    3,
+                                                            unratedColor: Color(
+                                                                0xFFDDDDDD),
+                                                            itemCount: 5,
+                                                            itemSize: 15,
+                                                            glowColor: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryColor,
+                                                          ),
+                                                          FlutterFlowIconButton(
+                                                            borderColor: Colors
+                                                                .transparent,
+                                                            borderRadius: 30,
+                                                            borderWidth: 1,
+                                                            buttonSize: 50,
+                                                            icon: Icon(
+                                                              Icons
+                                                                  .keyboard_arrow_right_rounded,
+                                                              color:
+                                                                  Colors.black,
+                                                              size: 30,
+                                                            ),
+                                                            onPressed:
+                                                                () async {
+                                                              context.pushNamed(
+                                                                  'Valoraciones');
+                                                            },
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(20, 0, 20, 0),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -4904,297 +5162,229 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
-                                                    Text(
-                                                      'Valoraciones',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyText1
-                                                          .override(
-                                                            fontFamily:
-                                                                'Montserrat',
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
+                                                    ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              4),
+                                                      child: Image.network(
+                                                        'https://picsum.photos/seed/580/600',
+                                                        width: 60,
+                                                        height: 60,
+                                                        fit: BoxFit.cover,
+                                                      ),
                                                     ),
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        RatingBar.builder(
-                                                          onRatingUpdate: (newValue) =>
-                                                              setState(() =>
-                                                                  ratingBarValue3 =
-                                                                      newValue),
-                                                          itemBuilder: (context,
-                                                                  index) =>
-                                                              Icon(
-                                                            Icons.star_rounded,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryColor,
-                                                          ),
-                                                          direction:
-                                                              Axis.horizontal,
-                                                          initialRating:
-                                                              ratingBarValue3 ??=
-                                                                  3,
-                                                          unratedColor:
-                                                              Color(0xFFDDDDDD),
-                                                          itemCount: 5,
-                                                          itemSize: 15,
-                                                          glowColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .secondaryColor,
+                                                    ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              4),
+                                                      child: Image.network(
+                                                        'https://picsum.photos/seed/580/600',
+                                                        width: 60,
+                                                        height: 60,
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                    ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              4),
+                                                      child: Image.network(
+                                                        'https://picsum.photos/seed/580/600',
+                                                        width: 60,
+                                                        height: 60,
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                    ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              4),
+                                                      child: Image.network(
+                                                        'https://picsum.photos/seed/580/600',
+                                                        width: 60,
+                                                        height: 60,
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      width: 30,
+                                                      height: 60,
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5),
+                                                        border: Border.all(
+                                                          color: Colors.black,
                                                         ),
-                                                        FlutterFlowIconButton(
-                                                          borderColor: Colors
-                                                              .transparent,
-                                                          borderRadius: 30,
-                                                          borderWidth: 1,
-                                                          buttonSize: 50,
-                                                          icon: Icon(
-                                                            Icons
-                                                                .keyboard_arrow_right_rounded,
-                                                            color: Colors.black,
-                                                            size: 30,
-                                                          ),
-                                                          onPressed: () async {
-                                                            context.pushNamed(
-                                                                'Valoraciones');
-                                                          },
-                                                        ),
-                                                      ],
+                                                      ),
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0, -0.55),
+                                                      child: Text(
+                                                        '...',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Montserrat',
+                                                                  fontSize: 25,
+                                                                ),
+                                                      ),
                                                     ),
                                                   ],
                                                 ),
                                               ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(20, 0, 20, 0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            4),
-                                                    child: Image.network(
-                                                      'https://picsum.photos/seed/580/600',
-                                                      width: 60,
-                                                      height: 60,
-                                                      fit: BoxFit.cover,
-                                                    ),
-                                                  ),
-                                                  ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            4),
-                                                    child: Image.network(
-                                                      'https://picsum.photos/seed/580/600',
-                                                      width: 60,
-                                                      height: 60,
-                                                      fit: BoxFit.cover,
-                                                    ),
-                                                  ),
-                                                  ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            4),
-                                                    child: Image.network(
-                                                      'https://picsum.photos/seed/580/600',
-                                                      width: 60,
-                                                      height: 60,
-                                                      fit: BoxFit.cover,
-                                                    ),
-                                                  ),
-                                                  ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            4),
-                                                    child: Image.network(
-                                                      'https://picsum.photos/seed/580/600',
-                                                      width: 60,
-                                                      height: 60,
-                                                      fit: BoxFit.cover,
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    width: 30,
-                                                    height: 60,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5),
-                                                      border: Border.all(
-                                                        color: Colors.black,
-                                                      ),
-                                                    ),
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            0, -0.55),
-                                                    child: Text(
-                                                      '...',
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Montserrat',
-                                                                fontSize: 25,
-                                                              ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 20, 0, 10),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                20, 0, 30, 10),
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Align(
-                                                          alignment:
-                                                              AlignmentDirectional(
-                                                                  1, -0.55),
-                                                          child: Text(
-                                                            '[date]',
-                                                            textAlign:
-                                                                TextAlign.end,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1,
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 20, 0, 10),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(20, 0,
+                                                                  30, 10),
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Align(
+                                                            alignment:
+                                                                AlignmentDirectional(
+                                                                    1, -0.55),
+                                                            child: Text(
+                                                              '[date]',
+                                                              textAlign:
+                                                                  TextAlign.end,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText1,
+                                                            ),
                                                           ),
-                                                        ),
-                                                        Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Text(
-                                                                  '[User Name]',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyText1
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Montserrat',
-                                                                        fontWeight:
-                                                                            FontWeight.w500,
-                                                                      ),
-                                                                ),
-                                                                RatingBar
-                                                                    .builder(
-                                                                  onRatingUpdate:
-                                                                      (newValue) =>
-                                                                          setState(() =>
-                                                                              ratingBarValue4 = newValue),
-                                                                  itemBuilder:
-                                                                      (context,
-                                                                              index) =>
-                                                                          Icon(
-                                                                    Icons
-                                                                        .star_rounded,
-                                                                    color: FlutterFlowTheme.of(
+                                                          Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Text(
+                                                                    '[User Name]',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyText1
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Montserrat',
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
+                                                                        ),
+                                                                  ),
+                                                                  RatingBar
+                                                                      .builder(
+                                                                    onRatingUpdate:
+                                                                        (newValue) =>
+                                                                            setState(() =>
+                                                                                ratingBarValue4 = newValue),
+                                                                    itemBuilder:
+                                                                        (context,
+                                                                                index) =>
+                                                                            Icon(
+                                                                      Icons
+                                                                          .star_rounded,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryColor,
+                                                                    ),
+                                                                    direction: Axis
+                                                                        .horizontal,
+                                                                    initialRating:
+                                                                        ratingBarValue4 ??=
+                                                                            3,
+                                                                    unratedColor:
+                                                                        Color(
+                                                                            0xFFE9E9E9),
+                                                                    itemCount:
+                                                                        5,
+                                                                    itemSize:
+                                                                        20,
+                                                                    glowColor: FlutterFlowTheme.of(
                                                                             context)
                                                                         .secondaryColor,
                                                                   ),
-                                                                  direction: Axis
-                                                                      .horizontal,
-                                                                  initialRating:
-                                                                      ratingBarValue4 ??=
-                                                                          3,
-                                                                  unratedColor:
-                                                                      Color(
-                                                                          0xFFE9E9E9),
-                                                                  itemCount: 5,
-                                                                  itemSize: 20,
-                                                                  glowColor: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryColor,
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children: [
-                                                            Expanded(
-                                                              child: Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0,
-                                                                            10,
-                                                                            0,
-                                                                            0),
-                                                                child: Text(
-                                                                  'Aquí va reseña completa tras haber comprando',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyText1
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Montserrat',
-                                                                        fontSize:
-                                                                            12,
-                                                                      ),
+                                                                ],
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Expanded(
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0,
+                                                                          10,
+                                                                          0,
+                                                                          0),
+                                                                  child: Text(
+                                                                    'Aquí va reseña completa tras haber comprando',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyText1
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Montserrat',
+                                                                          fontSize:
+                                                                              12,
+                                                                        ),
+                                                                  ),
                                                                 ),
                                                               ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ],
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 20, 0, 0),
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  color: Colors.white,
+                                                  ],
                                                 ),
-                                                alignment: AlignmentDirectional(
-                                                    0.8500000000000001, 0),
                                               ),
-                                            ),
-                                          ],
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 20, 0, 0),
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                  ),
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0.8500000000000001,
+                                                          0),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),

@@ -284,8 +284,11 @@ class _Devolucion2WidgetState extends State<Devolucion2Widget> {
                                 ),
                               ),
                               Container(
-                                width: 130,
+                                width: MediaQuery.of(context).size.width * 0.45,
                                 height: 250,
+                                constraints: BoxConstraints(
+                                  maxWidth: 300,
+                                ),
                                 decoration: BoxDecoration(
                                   color: Color(0x00FFFFFF),
                                 ),
@@ -301,7 +304,8 @@ class _Devolucion2WidgetState extends State<Devolucion2Widget> {
                                       ],
                                       onChanged: (val) =>
                                           setState(() => dropDownValue = val),
-                                      width: 130,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.4,
                                       height: 50,
                                       textStyle: FlutterFlowTheme.of(context)
                                           .bodyText1
@@ -324,7 +328,12 @@ class _Devolucion2WidgetState extends State<Devolucion2Widget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0, 10, 0, 0),
                                       child: Container(
-                                        width: 130,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.8,
+                                        constraints: BoxConstraints(
+                                          maxWidth: 300,
+                                        ),
                                         decoration: BoxDecoration(
                                           color: Colors.white,
                                           borderRadius:
@@ -382,6 +391,9 @@ class _Devolucion2WidgetState extends State<Devolucion2Widget> {
                           padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 10),
                           child: Container(
                             width: MediaQuery.of(context).size.width * 0.9,
+                            constraints: BoxConstraints(
+                              maxWidth: 470,
+                            ),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(5),
