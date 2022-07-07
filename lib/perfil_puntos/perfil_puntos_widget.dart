@@ -38,22 +38,7 @@ class _PerfilPuntosWidgetState extends State<PerfilPuntosWidget> {
             context.pop();
           },
         ),
-        actions: [
-          FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30,
-            borderWidth: 1,
-            buttonSize: 60,
-            icon: Icon(
-              Icons.info_outlined,
-              color: Color(0xFF9B9B9B),
-              size: 30,
-            ),
-            onPressed: () {
-              print('IconButton pressed ...');
-            },
-          ),
-        ],
+        actions: [],
         centerTitle: true,
         elevation: 0,
       ),
@@ -64,6 +49,7 @@ class _PerfilPuntosWidgetState extends State<PerfilPuntosWidget> {
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SingleChildScrollView(
                   child: Column(

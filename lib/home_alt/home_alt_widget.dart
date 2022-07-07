@@ -138,6 +138,12 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                   height: 50,
                   decoration: BoxDecoration(
                     color: Colors.white,
+                    image: DecorationImage(
+                      fit: BoxFit.fitHeight,
+                      image: Image.asset(
+                        'assets/images/Diseo_sin_ttulo_(5).png',
+                      ).image,
+                    ),
                     boxShadow: [
                       BoxShadow(
                         blurRadius: 10,
@@ -147,6 +153,26 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                     borderRadius: BorderRadius.circular(100),
                   ),
                 ),
+                if (responsiveVisibility(
+                  context: context,
+                  tablet: false,
+                  tabletLandscape: false,
+                  desktop: false,
+                ))
+                  Container(
+                    width: 300,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 10,
+                          color: Color(0x28000000),
+                        )
+                      ],
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                  ),
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -237,72 +263,68 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                           ).animated([
                             animationsMap['iconButtonOnActionTriggerAnimation1']
                           ]),
-                          if (loggedIn ?? true)
-                            StreamBuilder<List<NotificationsRecord>>(
-                              stream: queryNotificationsRecord(
-                                parent: currentUserReference,
-                                queryBuilder: (notificationsRecord) =>
-                                    notificationsRecord.where('isRead',
-                                        isEqualTo: false),
-                                singleRecord: true,
-                              ),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50,
-                                      height: 50,
-                                      child: SpinKitFadingCircle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryColor,
-                                        size: 50,
-                                      ),
-                                    ),
-                                  );
-                                }
-                                List<NotificationsRecord>
-                                    iconButtonNotificationsRecordList =
-                                    snapshot.data;
-                                // Return an empty Container when the document does not exist.
-                                if (snapshot.data.isEmpty) {
-                                  return Container();
-                                }
-                                final iconButtonNotificationsRecord =
-                                    iconButtonNotificationsRecordList.isNotEmpty
-                                        ? iconButtonNotificationsRecordList
-                                            .first
-                                        : null;
-                                return FlutterFlowIconButton(
-                                  borderColor: Colors.transparent,
-                                  borderRadius: 30,
-                                  borderWidth: 1,
-                                  buttonSize: 60,
-                                  icon: Icon(
-                                    Icons.notifications_active,
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    size: 30,
-                                  ),
-                                  onPressed: () async {
-                                    context.pushNamed(
-                                      'Notificaciones',
-                                      extra: <String, dynamic>{
-                                        kTransitionInfoKey: TransitionInfo(
-                                          hasTransition: true,
-                                          transitionType:
-                                              PageTransitionType.fade,
-                                          duration: Duration(milliseconds: 0),
-                                        ),
-                                      },
-                                    );
-                                  },
-                                ).animated([
-                                  animationsMap[
-                                      'iconButtonOnActionTriggerAnimation2']
-                                ]);
-                              },
+                          StreamBuilder<List<NotificationsRecord>>(
+                            stream: queryNotificationsRecord(
+                              parent: currentUserReference,
+                              queryBuilder: (notificationsRecord) =>
+                                  notificationsRecord.where('isRead',
+                                      isEqualTo: false),
+                              singleRecord: true,
                             ),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50,
+                                    height: 50,
+                                    child: SpinKitFadingCircle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                      size: 50,
+                                    ),
+                                  ),
+                                );
+                              }
+                              List<NotificationsRecord>
+                                  iconButtonNotificationsRecordList =
+                                  snapshot.data;
+                              // Return an empty Container when the document does not exist.
+                              if (snapshot.data.isEmpty) {
+                                return Container();
+                              }
+                              final iconButtonNotificationsRecord =
+                                  iconButtonNotificationsRecordList.isNotEmpty
+                                      ? iconButtonNotificationsRecordList.first
+                                      : null;
+                              return FlutterFlowIconButton(
+                                borderColor: Colors.transparent,
+                                borderRadius: 30,
+                                borderWidth: 1,
+                                buttonSize: 60,
+                                icon: Icon(
+                                  Icons.notifications_active,
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  size: 30,
+                                ),
+                                onPressed: () async {
+                                  context.pushNamed(
+                                    'Notificaciones',
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                      ),
+                                    },
+                                  );
+                                },
+                              ).animated([
+                                animationsMap[
+                                    'iconButtonOnActionTriggerAnimation2']
+                              ]);
+                            },
+                          ),
                           StreamBuilder<List<NotificationsRecord>>(
                             stream: queryNotificationsRecord(
                               parent: currentUserReference,
@@ -421,13 +443,6 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primaryColor,
-                      ),
-                    ),
                     Container(
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).primaryColor,
@@ -551,7 +566,7 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                           decoration: BoxDecoration(
                             color: Color(0xFFEEEEEE),
                             image: DecorationImage(
-                              fit: BoxFit.cover,
+                              fit: BoxFit.fitWidth,
                               image: Image.asset(
                                 'assets/images/Headers.png',
                               ).image,
@@ -569,69 +584,74 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                       10, 0, 0, 0),
                                   child: Container(
                                     decoration: BoxDecoration(),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional(-0.85, 0.3),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    5, 0, 0, 0),
-                                            child: Text(
-                                              'Bienvenid@',
-                                              textAlign: TextAlign.start,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyText1
-                                                  .override(
-                                                    fontFamily: 'Montserrat',
-                                                    color: Colors.black,
-                                                    fontSize: 17,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                            ),
-                                          ),
-                                        ),
-                                        Container(
-                                          decoration: BoxDecoration(
-                                            color: Color(0x00EEEEEE),
-                                          ),
-                                          child: Align(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          50, 0, 0, 0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Align(
                                             alignment: AlignmentDirectional(
                                                 -0.85, 0.3),
                                             child: Padding(
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(5, 0, 0, 0),
-                                              child: AuthUserStreamWidget(
-                                                child: Text(
-                                                  currentUserDisplayName,
-                                                  textAlign: TextAlign.start,
-                                                  maxLines: 2,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily:
-                                                            'Montserrat',
-                                                        color: Colors.black,
-                                                        fontSize: 17,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
+                                              child: Text(
+                                                'Bienvenid@',
+                                                textAlign: TextAlign.start,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              'Montserrat',
+                                                          color: Colors.black,
+                                                          fontSize: 17,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            decoration: BoxDecoration(
+                                              color: Color(0x00EEEEEE),
+                                            ),
+                                            child: Align(
+                                              alignment: AlignmentDirectional(
+                                                  -0.85, 0.3),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(5, 0, 0, 0),
+                                                child: AuthUserStreamWidget(
+                                                  child: Text(
+                                                    currentUserDisplayName,
+                                                    textAlign: TextAlign.start,
+                                                    maxLines: 2,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              'Montserrat',
+                                                          color: Colors.black,
+                                                          fontSize: 17,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                  ),
                                                 ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(-0.85, 0.3),
+                                alignment: AlignmentDirectional(-0.88, 0.3),
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 10),
@@ -962,7 +982,7 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                                   constraints:
                                                                       BoxConstraints(
                                                                     maxWidth:
-                                                                        500,
+                                                                        400,
                                                                   ),
                                                                   decoration:
                                                                       BoxDecoration(
@@ -1123,6 +1143,8 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                     ),
                                   Column(
                                     mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -1198,7 +1220,8 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                                     'CategoriaSingle',
                                                                     params: {
                                                                       'categoryId': serializeParam(
-                                                                          'materialesDeConstruccion',
+                                                                          rowCategoriesRecord
+                                                                              .id,
                                                                           ParamType
                                                                               .String),
                                                                     }.withoutNulls,
@@ -1289,7 +1312,7 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                         child: Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  10, 0, 0, 0),
+                                                  20, 0, 0, 0),
                                           child: StreamBuilder<
                                               List<CategoriesRecord>>(
                                             stream: queryCategoriesRecord(),
@@ -1605,187 +1628,9 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                                           5,
                                                                           10,
                                                                           5),
-                                                              child: Container(
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  color: Colors
-                                                                      .white,
-                                                                  boxShadow: [
-                                                                    BoxShadow(
-                                                                      blurRadius:
-                                                                          5,
-                                                                      color: Color(
-                                                                          0x17000000),
-                                                                    )
-                                                                  ],
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              15),
-                                                                ),
-                                                                alignment:
-                                                                    AlignmentDirectional(
-                                                                        0, 0),
-                                                                child: Align(
-                                                                  alignment:
-                                                                      AlignmentDirectional(
-                                                                          -1,
-                                                                          0),
-                                                                  child:
-                                                                      Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            10,
-                                                                            150,
-                                                                            10,
-                                                                            0),
-                                                                    child: StreamBuilder<
-                                                                        List<
-                                                                            VariantsRecord>>(
-                                                                      stream:
-                                                                          queryVariantsRecord(
-                                                                        parent:
-                                                                            rowProductsRecord.reference,
-                                                                        queryBuilder: (variantsRecord) => variantsRecord.where(
-                                                                            'id',
-                                                                            isEqualTo:
-                                                                                GetOneVariantCall.id(
-                                                                              (stackGetOneVariantResponse?.jsonBody ?? ''),
-                                                                            ).toString()),
-                                                                        singleRecord:
-                                                                            true,
-                                                                      ),
-                                                                      builder:
-                                                                          (context,
-                                                                              snapshot) {
-                                                                        // Customize what your widget looks like when it's loading.
-                                                                        if (!snapshot
-                                                                            .hasData) {
-                                                                          return Center(
-                                                                            child:
-                                                                                SizedBox(
-                                                                              width: 50,
-                                                                              height: 50,
-                                                                              child: SpinKitFadingCircle(
-                                                                                color: FlutterFlowTheme.of(context).primaryColor,
-                                                                                size: 50,
-                                                                              ),
-                                                                            ),
-                                                                          );
-                                                                        }
-                                                                        List<VariantsRecord>
-                                                                            columnVariantsRecordList =
-                                                                            snapshot.data;
-                                                                        final columnVariantsRecord = columnVariantsRecordList.isNotEmpty
-                                                                            ? columnVariantsRecordList.first
-                                                                            : null;
-                                                                        return Column(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.max,
-                                                                          mainAxisAlignment:
-                                                                              MainAxisAlignment.spaceEvenly,
-                                                                          crossAxisAlignment:
-                                                                              CrossAxisAlignment.start,
-                                                                          children: [
-                                                                            if (columnVariantsRecord.tags.toList()?.contains('Oferta') ??
-                                                                                true)
-                                                                              Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
-                                                                                child: Row(
-                                                                                  mainAxisSize: MainAxisSize.max,
-                                                                                  children: [
-                                                                                    FaIcon(
-                                                                                      FontAwesomeIcons.tag,
-                                                                                      color: FlutterFlowTheme.of(context).alternate,
-                                                                                      size: 10,
-                                                                                    ),
-                                                                                    Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-                                                                                      child: Text(
-                                                                                        'Oferta',
-                                                                                        style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                              fontFamily: 'Montserrat',
-                                                                                              color: FlutterFlowTheme.of(context).alternate,
-                                                                                              fontSize: 10,
-                                                                                            ),
-                                                                                      ),
-                                                                                    ),
-                                                                                  ],
-                                                                                ),
-                                                                              ),
-                                                                            Align(
-                                                                              alignment: AlignmentDirectional(-1, -0.45),
-                                                                              child: Text(
-                                                                                rowProductsRecord.title.maybeHandleOverflow(
-                                                                                  maxChars: 40,
-                                                                                  replacement: '…',
-                                                                                ),
-                                                                                textAlign: TextAlign.start,
-                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                      fontFamily: 'Montserrat',
-                                                                                      color: Colors.black,
-                                                                                      fontSize: 13,
-                                                                                      fontWeight: FontWeight.w500,
-                                                                                    ),
-                                                                              ),
-                                                                            ),
-                                                                            Row(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              children: [
-                                                                                Text(
-                                                                                  '\$',
-                                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                        fontFamily: 'Montserrat',
-                                                                                        color: Color(0xFF1EEBBD),
-                                                                                        fontWeight: FontWeight.w600,
-                                                                                      ),
-                                                                                ),
-                                                                                Align(
-                                                                                  alignment: AlignmentDirectional(-1, -0.7),
-                                                                                  child: Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-                                                                                    child: Text(
-                                                                                      GetOneVariantCall.price(
-                                                                                        (stackGetOneVariantResponse?.jsonBody ?? ''),
-                                                                                      ).toString(),
-                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                            fontFamily: 'Montserrat',
-                                                                                            color: Color(0xFF1EEBBD),
-                                                                                            fontSize: 13,
-                                                                                            fontWeight: FontWeight.w600,
-                                                                                          ),
-                                                                                    ),
-                                                                                  ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                            if (columnVariantsRecord.tags.toList()?.contains('Envio Gratis') ??
-                                                                                true)
-                                                                              EnvioGratisWidget(),
-                                                                          ],
-                                                                        );
-                                                                      },
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            Align(
-                                                              alignment:
-                                                                  AlignmentDirectional(
-                                                                      -0.35,
-                                                                      -0.45),
                                                               child: InkWell(
                                                                 onTap:
                                                                     () async {
-                                                                  setState(() =>
-                                                                      FFAppState()
-                                                                              .currentVariant =
-                                                                          GetOneVariantCall
-                                                                              .id(
-                                                                        (stackGetOneVariantResponse?.jsonBody ??
-                                                                            ''),
-                                                                      ).toString());
                                                                   context
                                                                       .pushNamed(
                                                                     'ProductPage',
@@ -1797,44 +1642,191 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                                               .String),
                                                                     }.withoutNulls,
                                                                   );
-                                                                  await actions
-                                                                      .productViewed(
-                                                                    rowProductsRecord
-                                                                        .id,
-                                                                  );
-
-                                                                  final usersUpdateData =
-                                                                      {
-                                                                    'recentlyViewed':
-                                                                        FieldValue
-                                                                            .arrayUnion([
-                                                                      rowProductsRecord
-                                                                          .id
-                                                                    ]),
-                                                                  };
-                                                                  await currentUserReference
-                                                                      .update(
-                                                                          usersUpdateData);
                                                                 },
                                                                 child:
-                                                                    ClipRRect(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              10),
-                                                                  child: Image
-                                                                      .network(
-                                                                    valueOrDefault<
-                                                                        String>(
-                                                                      rowProductsRecord
-                                                                          .mainImage,
-                                                                      'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
-                                                                    ),
-                                                                    width: 150,
-                                                                    height: 120,
-                                                                    fit: BoxFit
-                                                                        .contain,
+                                                                    Container(
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: Colors
+                                                                        .white,
+                                                                    boxShadow: [
+                                                                      BoxShadow(
+                                                                        blurRadius:
+                                                                            5,
+                                                                        color: Color(
+                                                                            0x17000000),
+                                                                      )
+                                                                    ],
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            15),
                                                                   ),
+                                                                  alignment:
+                                                                      AlignmentDirectional(
+                                                                          0, 0),
+                                                                  child: Align(
+                                                                    alignment:
+                                                                        AlignmentDirectional(
+                                                                            -1,
+                                                                            0),
+                                                                    child:
+                                                                        Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              10,
+                                                                              150,
+                                                                              10,
+                                                                              0),
+                                                                      child: StreamBuilder<
+                                                                          List<
+                                                                              VariantsRecord>>(
+                                                                        stream:
+                                                                            queryVariantsRecord(
+                                                                          parent:
+                                                                              rowProductsRecord.reference,
+                                                                          queryBuilder: (variantsRecord) => variantsRecord.where(
+                                                                              'id',
+                                                                              isEqualTo: GetOneVariantCall.id(
+                                                                                (stackGetOneVariantResponse?.jsonBody ?? ''),
+                                                                              ).toString()),
+                                                                          singleRecord:
+                                                                              true,
+                                                                        ),
+                                                                        builder:
+                                                                            (context,
+                                                                                snapshot) {
+                                                                          // Customize what your widget looks like when it's loading.
+                                                                          if (!snapshot
+                                                                              .hasData) {
+                                                                            return Center(
+                                                                              child: SizedBox(
+                                                                                width: 50,
+                                                                                height: 50,
+                                                                                child: SpinKitFadingCircle(
+                                                                                  color: FlutterFlowTheme.of(context).primaryColor,
+                                                                                  size: 50,
+                                                                                ),
+                                                                              ),
+                                                                            );
+                                                                          }
+                                                                          List<VariantsRecord>
+                                                                              columnVariantsRecordList =
+                                                                              snapshot.data;
+                                                                          final columnVariantsRecord = columnVariantsRecordList.isNotEmpty
+                                                                              ? columnVariantsRecordList.first
+                                                                              : null;
+                                                                          return Column(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.max,
+                                                                            mainAxisAlignment:
+                                                                                MainAxisAlignment.spaceEvenly,
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.start,
+                                                                            children: [
+                                                                              if (columnVariantsRecord.tags.toList()?.contains('Oferta') ?? true)
+                                                                                Padding(
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
+                                                                                  child: Row(
+                                                                                    mainAxisSize: MainAxisSize.max,
+                                                                                    children: [
+                                                                                      FaIcon(
+                                                                                        FontAwesomeIcons.tag,
+                                                                                        color: FlutterFlowTheme.of(context).alternate,
+                                                                                        size: 10,
+                                                                                      ),
+                                                                                      Padding(
+                                                                                        padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                                                                        child: Text(
+                                                                                          'Oferta',
+                                                                                          style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                fontFamily: 'Montserrat',
+                                                                                                color: FlutterFlowTheme.of(context).alternate,
+                                                                                                fontSize: 10,
+                                                                                              ),
+                                                                                        ),
+                                                                                      ),
+                                                                                    ],
+                                                                                  ),
+                                                                                ),
+                                                                              Align(
+                                                                                alignment: AlignmentDirectional(-1, -0.45),
+                                                                                child: Text(
+                                                                                  rowProductsRecord.title.maybeHandleOverflow(
+                                                                                    maxChars: 40,
+                                                                                    replacement: '…',
+                                                                                  ),
+                                                                                  textAlign: TextAlign.start,
+                                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                        fontFamily: 'Montserrat',
+                                                                                        color: Colors.black,
+                                                                                        fontSize: 13,
+                                                                                        fontWeight: FontWeight.w500,
+                                                                                      ),
+                                                                                ),
+                                                                              ),
+                                                                              Row(
+                                                                                mainAxisSize: MainAxisSize.max,
+                                                                                children: [
+                                                                                  Text(
+                                                                                    '\$',
+                                                                                    style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                          fontFamily: 'Montserrat',
+                                                                                          color: Color(0xFF1EEBBD),
+                                                                                          fontWeight: FontWeight.w600,
+                                                                                        ),
+                                                                                  ),
+                                                                                  Align(
+                                                                                    alignment: AlignmentDirectional(-1, -0.7),
+                                                                                    child: Padding(
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                                                                      child: Text(
+                                                                                        GetOneVariantCall.price(
+                                                                                          (stackGetOneVariantResponse?.jsonBody ?? ''),
+                                                                                        ).toString(),
+                                                                                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                              fontFamily: 'Montserrat',
+                                                                                              color: Color(0xFF1EEBBD),
+                                                                                              fontSize: 13,
+                                                                                              fontWeight: FontWeight.w600,
+                                                                                            ),
+                                                                                      ),
+                                                                                    ),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                              if (columnVariantsRecord.tags.toList()?.contains('Envio Gratis') ?? true)
+                                                                                EnvioGratisWidget(),
+                                                                            ],
+                                                                          );
+                                                                        },
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            Align(
+                                                              alignment:
+                                                                  AlignmentDirectional(
+                                                                      -0.35,
+                                                                      -0.45),
+                                                              child: ClipRRect(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            10),
+                                                                child: Image
+                                                                    .network(
+                                                                  valueOrDefault<
+                                                                      String>(
+                                                                    rowProductsRecord
+                                                                        .mainImage,
+                                                                    'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
+                                                                  ),
+                                                                  width: 150,
+                                                                  height: 120,
+                                                                  fit: BoxFit
+                                                                      .contain,
                                                                 ),
                                                               ),
                                                             ),
@@ -2330,7 +2322,7 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                     return GridView.builder(
                       padding: EdgeInsets.zero,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 6,
+                        crossAxisCount: 7,
                         crossAxisSpacing: 0,
                         mainAxisSpacing: 0,
                         childAspectRatio: 0.58,

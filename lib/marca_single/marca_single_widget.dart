@@ -199,7 +199,7 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                       children: [
                         Expanded(
                           child: Container(
-                            height: 120,
+                            height: 250,
                             child: PageView(
                               controller: pageViewController ??=
                                   PageController(initialPage: 0),
@@ -213,7 +213,7 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                       'assets/images/Diseo_sin_ttulo_(17).png',
                                       width: MediaQuery.of(context).size.width *
                                           0.95,
-                                      height: 100,
+                                      height: 200,
                                       fit: BoxFit.cover,
                                     ),
                                   ),

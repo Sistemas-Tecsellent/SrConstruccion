@@ -230,7 +230,7 @@ class _ServiciosSingleWidgetState extends State<ServiciosSingleWidget> {
                       children: [
                         Expanded(
                           child: Container(
-                            height: 120,
+                            height: 250,
                             child: PageView(
                               controller: pageViewController ??=
                                   PageController(initialPage: 0),
@@ -244,7 +244,7 @@ class _ServiciosSingleWidgetState extends State<ServiciosSingleWidget> {
                                       'assets/images/Diseo_sin_ttulo_(18).png',
                                       width: MediaQuery.of(context).size.width *
                                           0.95,
-                                      height: 100,
+                                      height: 200,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -353,7 +353,7 @@ class _ServiciosSingleWidgetState extends State<ServiciosSingleWidget> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 5, 10, 5),
                         child: Container(
-                          width: MediaQuery.of(context).size.width * 0.8,
+                          width: 250,
                           height: 220,
                           decoration: BoxDecoration(
                             color: Colors.white,
@@ -374,37 +374,10 @@ class _ServiciosSingleWidgetState extends State<ServiciosSingleWidget> {
                               borderRadius: BorderRadius.circular(10),
                               child: Image.asset(
                                 'assets/images/servicios_big_banners_(2).png',
-                                width: MediaQuery.of(context).size.width * 0.8,
+                                width: 250,
                                 height: 250,
                                 fit: BoxFit.cover,
                               ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 5, 10, 5),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.8,
-                          height: 220,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 10,
-                                color: Color(0x10000000),
-                              )
-                            ],
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          alignment: AlignmentDirectional(0, 0),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.asset(
-                              'assets/images/servicios_big_banners_(1).png',
-                              width: MediaQuery.of(context).size.width * 0.8,
-                              height: 250,
-                              fit: BoxFit.cover,
                             ),
                           ),
                         ),
@@ -495,8 +468,8 @@ class _ServiciosSingleWidgetState extends State<ServiciosSingleWidget> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 5, 10, 5),
                         child: Container(
-                          width: MediaQuery.of(context).size.width * 0.8,
-                          height: 220,
+                          width: 250,
+                          height: 250,
                           decoration: BoxDecoration(
                             color: Colors.white,
                             boxShadow: [
@@ -512,33 +485,6 @@ class _ServiciosSingleWidgetState extends State<ServiciosSingleWidget> {
                             borderRadius: BorderRadius.circular(10),
                             child: Image.asset(
                               'assets/images/servicios_big_banners_(1).png',
-                              width: MediaQuery.of(context).size.width * 0.8,
-                              height: 250,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 5, 10, 5),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.8,
-                          height: 220,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 10,
-                                color: Color(0x10000000),
-                              )
-                            ],
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          alignment: AlignmentDirectional(0, 0),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.asset(
-                              'assets/images/servicios_big_banners_(2).png',
                               width: MediaQuery.of(context).size.width * 0.8,
                               height: 250,
                               fit: BoxFit.cover,

@@ -393,13 +393,11 @@ class _ProductListingForSellerWidgetState
                                                                     context
                                                                         .pushNamed(
                                                                       'PerfilDelSeller',
-                                                                      params: {
+                                                                      queryParams:
+                                                                          {
                                                                         'storeId': serializeParam(
                                                                             widget.storeId,
                                                                             ParamType.String),
-                                                                      }.withoutNulls,
-                                                                      queryParams:
-                                                                          {
                                                                         'calledFromPage': serializeParam(
                                                                             'List',
                                                                             ParamType.String),
@@ -948,13 +946,11 @@ class _ProductListingForSellerWidgetState
                                                                     context
                                                                         .pushNamed(
                                                                       'PerfilDelSeller',
-                                                                      params: {
+                                                                      queryParams:
+                                                                          {
                                                                         'storeId': serializeParam(
                                                                             widget.storeId,
                                                                             ParamType.String),
-                                                                      }.withoutNulls,
-                                                                      queryParams:
-                                                                          {
                                                                         'calledFromPage': serializeParam(
                                                                             'List',
                                                                             ParamType.String),

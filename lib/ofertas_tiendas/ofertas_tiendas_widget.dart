@@ -193,7 +193,7 @@ class _OfertasTiendasWidgetState extends State<OfertasTiendasWidget> {
                                   EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
                               child: Container(
                                 width: double.infinity,
-                                height: 100,
+                                height: 250,
                                 child: PageView(
                                   controller: pageViewController ??=
                                       PageController(initialPage: 0),

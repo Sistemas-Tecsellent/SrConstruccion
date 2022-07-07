@@ -48,7 +48,7 @@ class _PerfilWidgetState extends State<PerfilWidget> {
         return Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
-            backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             iconTheme: IconThemeData(color: Colors.white),
             automaticallyImplyLeading: false,
             leading: FlutterFlowIconButton(
@@ -209,183 +209,163 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                   Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      Stack(
-                                        alignment:
-                                            AlignmentDirectional(0, -0.4),
-                                        children: [
-                                          Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Container(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    1.2,
-                                                height: 300,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryColor,
-                                                  borderRadius:
-                                                      BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(20),
-                                                    bottomRight:
-                                                        Radius.circular(20),
-                                                    topLeft: Radius.circular(0),
-                                                    topRight:
-                                                        Radius.circular(0),
+                                      Container(
+                                        height: 380,
+                                        child: Stack(
+                                          alignment: AlignmentDirectional(0, 1),
+                                          children: [
+                                            Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Container(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      1.2,
+                                                  height: 300,
+                                                  constraints: BoxConstraints(
+                                                    maxWidth: 500,
                                                   ),
-                                                ),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceEvenly,
-                                                          children: [
-                                                            Container(
-                                                              width:
-                                                                  MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width,
-                                                              child: Stack(
-                                                                children: [
-                                                                  Align(
-                                                                    alignment:
-                                                                        AlignmentDirectional(
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryColor,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20),
+                                                  ),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceEvenly,
+                                                            children: [
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0,
+                                                                            10,
                                                                             0,
                                                                             0),
-                                                                    child:
-                                                                        AuthUserStreamWidget(
-                                                                      child:
-                                                                          Container(
-                                                                        width:
-                                                                            150,
-                                                                        height:
-                                                                            150,
-                                                                        clipBehavior:
-                                                                            Clip.antiAlias,
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                          shape:
-                                                                              BoxShape.circle,
-                                                                        ),
-                                                                        child: Image
-                                                                            .network(
-                                                                          valueOrDefault<
-                                                                              String>(
-                                                                            currentUserPhoto,
-                                                                            'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
+                                                                child:
+                                                                    Container(
+                                                                  width: 300,
+                                                                  child: Stack(
+                                                                    children: [
+                                                                      Align(
+                                                                        alignment: AlignmentDirectional(
+                                                                            0,
+                                                                            0),
+                                                                        child:
+                                                                            AuthUserStreamWidget(
+                                                                          child:
+                                                                              Container(
+                                                                            width:
+                                                                                150,
+                                                                            height:
+                                                                                150,
+                                                                            clipBehavior:
+                                                                                Clip.antiAlias,
+                                                                            decoration:
+                                                                                BoxDecoration(
+                                                                              shape: BoxShape.circle,
+                                                                            ),
+                                                                            child:
+                                                                                Image.network(
+                                                                              valueOrDefault<String>(
+                                                                                currentUserPhoto,
+                                                                                'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
+                                                                              ),
+                                                                              fit: BoxFit.cover,
+                                                                            ),
                                                                           ),
-                                                                          fit: BoxFit
-                                                                              .cover,
                                                                         ),
                                                                       ),
-                                                                    ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0,
+                                                                        10,
+                                                                        0,
+                                                                        0),
+                                                            child: InkWell(
+                                                              onTap: () async {
+                                                                context.pushNamed(
+                                                                    'miCuenta');
+                                                              },
+                                                              child: Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .center,
+                                                                children: [
+                                                                  Text(
+                                                                    perfilUsersRecord
+                                                                        .displayName,
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyText1
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Montserrat',
+                                                                          color:
+                                                                              Colors.white,
+                                                                          fontSize:
+                                                                              16,
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
+                                                                        ),
                                                                   ),
                                                                 ],
                                                               ),
                                                             ),
-                                                          ],
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(0,
-                                                                      10, 0, 0),
-                                                          child: InkWell(
-                                                            onTap: () async {
-                                                              context.pushNamed(
-                                                                  'miCuenta');
-                                                            },
-                                                            child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              children: [
-                                                                Text(
-                                                                  perfilUsersRecord
-                                                                      .displayName,
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyText1
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Montserrat',
-                                                                        color: Colors
-                                                                            .white,
-                                                                        fontSize:
-                                                                            16,
-                                                                        fontWeight:
-                                                                            FontWeight.w500,
-                                                                      ),
-                                                                ),
-                                                              ],
-                                                            ),
                                                           ),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(0,
-                                                                      10, 0, 0),
-                                                          child: InkWell(
-                                                            onTap: () async {
-                                                              context.pushNamed(
-                                                                  'PerfilPuntos');
-                                                            },
-                                                            child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              children: [
-                                                                Text(
-                                                                  '[User Level]',
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyText1
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Montserrat',
-                                                                        color: Colors
-                                                                            .white,
-                                                                        fontSize:
-                                                                            13,
-                                                                        fontWeight:
-                                                                            FontWeight.w500,
-                                                                      ),
-                                                                ),
-                                                                Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          5,
-                                                                          0,
-                                                                          0,
-                                                                          0),
-                                                                  child: Text(
-                                                                    '[User Points]',
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0,
+                                                                        10,
+                                                                        0,
+                                                                        0),
+                                                            child: InkWell(
+                                                              onTap: () async {
+                                                                context.pushNamed(
+                                                                    'PerfilPuntos');
+                                                              },
+                                                              child: Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .center,
+                                                                children: [
+                                                                  Text(
+                                                                    '[User Level]',
                                                                     textAlign:
                                                                         TextAlign
                                                                             .center,
@@ -400,88 +380,381 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                                           fontSize:
                                                                               13,
                                                                           fontWeight:
-                                                                              FontWeight.w300,
+                                                                              FontWeight.w500,
                                                                         ),
                                                                   ),
-                                                                ),
-                                                                Padding(
-                                                                  padding: EdgeInsetsDirectional
+                                                                  Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            5,
+                                                                            0,
+                                                                            0,
+                                                                            0),
+                                                                    child: Text(
+                                                                      '[User Points]',
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .center,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyText1
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Montserrat',
+                                                                            color:
+                                                                                Colors.white,
+                                                                            fontSize:
+                                                                                13,
+                                                                            fontWeight:
+                                                                                FontWeight.w300,
+                                                                          ),
+                                                                    ),
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            5,
+                                                                            0,
+                                                                            0,
+                                                                            0),
+                                                                    child: Icon(
+                                                                      Icons
+                                                                          .keyboard_arrow_right_rounded,
+                                                                      color: Colors
+                                                                          .white,
+                                                                      size: 20,
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Align(
+                                              alignment:
+                                                  AlignmentDirectional(0, 0.1),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 30, 0, 0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceEvenly,
+                                                  children: [
+                                                    Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0, 1),
+                                                      child: Container(
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.9,
+                                                        height: 150,
+                                                        constraints:
+                                                            BoxConstraints(
+                                                          maxWidth: 330,
+                                                        ),
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: Colors.white,
+                                                          boxShadow: [
+                                                            BoxShadow(
+                                                              blurRadius: 0,
+                                                              color: Color(
+                                                                  0x43000000),
+                                                              offset:
+                                                                  Offset(0, 0),
+                                                            )
+                                                          ],
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(10),
+                                                        ),
+                                                        child: Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5,
                                                                           0,
-                                                                          0,
-                                                                          0),
-                                                                  child: Icon(
-                                                                    Icons
-                                                                        .keyboard_arrow_right_rounded,
-                                                                    color: Colors
-                                                                        .white,
-                                                                    size: 20,
+                                                                          5,
+                                                                          10),
+                                                              child: Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceAround,
+                                                                children: [
+                                                                  Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    children: [
+                                                                      FlutterFlowIconButton(
+                                                                        borderColor:
+                                                                            Colors.transparent,
+                                                                        borderRadius:
+                                                                            30,
+                                                                        borderWidth:
+                                                                            1,
+                                                                        buttonSize:
+                                                                            50,
+                                                                        icon:
+                                                                            Icon(
+                                                                          Icons
+                                                                              .local_shipping_outlined,
+                                                                          color:
+                                                                              Colors.black,
+                                                                          size:
+                                                                              30,
+                                                                        ),
+                                                                        onPressed:
+                                                                            () async {
+                                                                          context
+                                                                              .pushNamed('MisPedidos');
+                                                                        },
+                                                                      ),
+                                                                      Text(
+                                                                        'Pedidos',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyText1
+                                                                            .override(
+                                                                              fontFamily: 'Montserrat',
+                                                                              color: Colors.black,
+                                                                              fontSize: 12,
+                                                                              fontWeight: FontWeight.normal,
+                                                                            ),
+                                                                      ),
+                                                                    ],
                                                                   ),
-                                                                ),
-                                                              ],
+                                                                  Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    children: [
+                                                                      FlutterFlowIconButton(
+                                                                        borderColor:
+                                                                            Colors.transparent,
+                                                                        borderRadius:
+                                                                            30,
+                                                                        borderWidth:
+                                                                            1,
+                                                                        buttonSize:
+                                                                            50,
+                                                                        icon:
+                                                                            Icon(
+                                                                          Icons
+                                                                              .insert_drive_file_outlined,
+                                                                          color:
+                                                                              Colors.black,
+                                                                          size:
+                                                                              25,
+                                                                        ),
+                                                                        onPressed:
+                                                                            () async {
+                                                                          context
+                                                                              .pushNamed('MisCotizaciones');
+                                                                        },
+                                                                      ),
+                                                                      Text(
+                                                                        'Cotizaciones',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyText1
+                                                                            .override(
+                                                                              fontFamily: 'Montserrat',
+                                                                              color: Colors.black,
+                                                                              fontSize: 12,
+                                                                              fontWeight: FontWeight.normal,
+                                                                            ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                  Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    children: [
+                                                                      FlutterFlowIconButton(
+                                                                        borderColor:
+                                                                            Colors.transparent,
+                                                                        borderRadius:
+                                                                            30,
+                                                                        borderWidth:
+                                                                            1,
+                                                                        buttonSize:
+                                                                            50,
+                                                                        icon:
+                                                                            Icon(
+                                                                          Icons
+                                                                              .work_outline_outlined,
+                                                                          color:
+                                                                              Colors.black,
+                                                                          size:
+                                                                              30,
+                                                                        ),
+                                                                        onPressed:
+                                                                            () async {
+                                                                          context
+                                                                              .pushNamed('MisServicios');
+                                                                        },
+                                                                      ),
+                                                                      Text(
+                                                                        'Servicios',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyText1
+                                                                            .override(
+                                                                              fontFamily: 'Montserrat',
+                                                                              color: Colors.black,
+                                                                              fontSize: 12,
+                                                                              fontWeight: FontWeight.normal,
+                                                                            ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                  Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    children: [
+                                                                      FlutterFlowIconButton(
+                                                                        borderColor:
+                                                                            Colors.transparent,
+                                                                        borderRadius:
+                                                                            30,
+                                                                        borderWidth:
+                                                                            1,
+                                                                        buttonSize:
+                                                                            50,
+                                                                        icon:
+                                                                            Icon(
+                                                                          Icons
+                                                                              .favorite_border,
+                                                                          color:
+                                                                              Colors.black,
+                                                                          size:
+                                                                              30,
+                                                                        ),
+                                                                        onPressed:
+                                                                            () async {
+                                                                          await showModalBottomSheet(
+                                                                            isScrollControlled:
+                                                                                true,
+                                                                            backgroundColor:
+                                                                                Colors.transparent,
+                                                                            context:
+                                                                                context,
+                                                                            builder:
+                                                                                (context) {
+                                                                              return Padding(
+                                                                                padding: MediaQuery.of(context).viewInsets,
+                                                                                child: WishListOptionsWidget(),
+                                                                              );
+                                                                            },
+                                                                          );
+                                                                        },
+                                                                      ),
+                                                                      Text(
+                                                                        'Favoritos',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyText1
+                                                                            .override(
+                                                                              fontFamily: 'Montserrat',
+                                                                              color: Colors.black,
+                                                                              fontSize: 12,
+                                                                              fontWeight: FontWeight.normal,
+                                                                            ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ],
+                                                              ),
                                                             ),
-                                                          ),
+                                                          ],
                                                         ),
-                                                      ],
+                                                      ),
                                                     ),
                                                   ],
                                                 ),
                                               ),
-                                              SingleChildScrollView(
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      SingleChildScrollView(
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Container(
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              constraints: BoxConstraints(
+                                                maxWidth: 500,
+                                              ),
+                                              decoration: BoxDecoration(),
+                                              child: SingleChildScrollView(
                                                 child: Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0, 100, 0, 0),
-                                                      child: InkWell(
-                                                        onTap: () async {
-                                                          context.pushNamed(
-                                                              'FacturacionPerfil');
-                                                        },
-                                                        child: ListTile(
-                                                          leading: FaIcon(
-                                                            FontAwesomeIcons
-                                                                .calculator,
-                                                            color: Colors.black,
-                                                          ),
-                                                          title: Text(
-                                                            'Facturación',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .title3
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Montserrat',
-                                                                  color: Colors
-                                                                      .black,
-                                                                  fontSize: 18,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                ),
-                                                          ),
-                                                          trailing: Icon(
-                                                            Icons
-                                                                .arrow_forward_ios,
-                                                            color: Colors.black,
-                                                            size: 20,
-                                                          ),
-                                                          tileColor:
-                                                              Color(0x00F6F6F6),
-                                                          dense: false,
-                                                          contentPadding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      20,
-                                                                      20,
-                                                                      20,
-                                                                      20),
+                                                    InkWell(
+                                                      onTap: () async {
+                                                        context.pushNamed(
+                                                            'FacturacionPerfil');
+                                                      },
+                                                      child: ListTile(
+                                                        leading: FaIcon(
+                                                          FontAwesomeIcons
+                                                              .calculator,
+                                                          color: Colors.black,
                                                         ),
+                                                        title: Text(
+                                                          'Facturación',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .title3
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Montserrat',
+                                                                color: Colors
+                                                                    .black,
+                                                                fontSize: 18,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                              ),
+                                                        ),
+                                                        trailing: Icon(
+                                                          Icons
+                                                              .arrow_forward_ios,
+                                                          color: Colors.black,
+                                                          size: 20,
+                                                        ),
+                                                        tileColor:
+                                                            Color(0x00F6F6F6),
+                                                        dense: false,
+                                                        contentPadding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(20,
+                                                                    20, 20, 20),
                                                       ),
                                                     ),
                                                     InkWell(
@@ -639,274 +912,9 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                   ],
                                                 ),
                                               ),
-                                            ],
-                                          ),
-                                          Align(
-                                            alignment:
-                                                AlignmentDirectional(0, 0),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 10, 0, 0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.min,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceEvenly,
-                                                children: [
-                                                  Container(
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.9,
-                                                    height: 150,
-                                                    constraints: BoxConstraints(
-                                                      maxWidth: 330,
-                                                    ),
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      boxShadow: [
-                                                        BoxShadow(
-                                                          blurRadius: 0,
-                                                          color:
-                                                              Color(0x43000000),
-                                                          offset: Offset(0, 0),
-                                                        )
-                                                      ],
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                    ),
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(5,
-                                                                      0, 5, 10),
-                                                          child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceAround,
-                                                            children: [
-                                                              Column(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                children: [
-                                                                  FlutterFlowIconButton(
-                                                                    borderColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    borderRadius:
-                                                                        30,
-                                                                    borderWidth:
-                                                                        1,
-                                                                    buttonSize:
-                                                                        50,
-                                                                    icon: Icon(
-                                                                      Icons
-                                                                          .local_shipping_outlined,
-                                                                      color: Colors
-                                                                          .black,
-                                                                      size: 30,
-                                                                    ),
-                                                                    onPressed:
-                                                                        () async {
-                                                                      context.pushNamed(
-                                                                          'MisPedidos');
-                                                                    },
-                                                                  ),
-                                                                  Text(
-                                                                    'Pedidos',
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyText1
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Montserrat',
-                                                                          color:
-                                                                              Colors.black,
-                                                                          fontSize:
-                                                                              12,
-                                                                          fontWeight:
-                                                                              FontWeight.normal,
-                                                                        ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                              Column(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                children: [
-                                                                  FlutterFlowIconButton(
-                                                                    borderColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    borderRadius:
-                                                                        30,
-                                                                    borderWidth:
-                                                                        1,
-                                                                    buttonSize:
-                                                                        50,
-                                                                    icon: Icon(
-                                                                      Icons
-                                                                          .insert_drive_file_outlined,
-                                                                      color: Colors
-                                                                          .black,
-                                                                      size: 25,
-                                                                    ),
-                                                                    onPressed:
-                                                                        () async {
-                                                                      context.pushNamed(
-                                                                          'MisCotizaciones');
-                                                                    },
-                                                                  ),
-                                                                  Text(
-                                                                    'Cotizaciones',
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyText1
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Montserrat',
-                                                                          color:
-                                                                              Colors.black,
-                                                                          fontSize:
-                                                                              12,
-                                                                          fontWeight:
-                                                                              FontWeight.normal,
-                                                                        ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                              Column(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                children: [
-                                                                  FlutterFlowIconButton(
-                                                                    borderColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    borderRadius:
-                                                                        30,
-                                                                    borderWidth:
-                                                                        1,
-                                                                    buttonSize:
-                                                                        50,
-                                                                    icon: Icon(
-                                                                      Icons
-                                                                          .work_outline_outlined,
-                                                                      color: Colors
-                                                                          .black,
-                                                                      size: 30,
-                                                                    ),
-                                                                    onPressed:
-                                                                        () async {
-                                                                      context.pushNamed(
-                                                                          'MisServicios');
-                                                                    },
-                                                                  ),
-                                                                  Text(
-                                                                    'Servicios',
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyText1
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Montserrat',
-                                                                          color:
-                                                                              Colors.black,
-                                                                          fontSize:
-                                                                              12,
-                                                                          fontWeight:
-                                                                              FontWeight.normal,
-                                                                        ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                              Column(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                children: [
-                                                                  FlutterFlowIconButton(
-                                                                    borderColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    borderRadius:
-                                                                        30,
-                                                                    borderWidth:
-                                                                        1,
-                                                                    buttonSize:
-                                                                        50,
-                                                                    icon: Icon(
-                                                                      Icons
-                                                                          .favorite_border,
-                                                                      color: Colors
-                                                                          .black,
-                                                                      size: 30,
-                                                                    ),
-                                                                    onPressed:
-                                                                        () async {
-                                                                      await showModalBottomSheet(
-                                                                        isScrollControlled:
-                                                                            true,
-                                                                        backgroundColor:
-                                                                            Colors.transparent,
-                                                                        context:
-                                                                            context,
-                                                                        builder:
-                                                                            (context) {
-                                                                          return Padding(
-                                                                            padding:
-                                                                                MediaQuery.of(context).viewInsets,
-                                                                            child:
-                                                                                WishListOptionsWidget(),
-                                                                          );
-                                                                        },
-                                                                      );
-                                                                    },
-                                                                  ),
-                                                                  Text(
-                                                                    'Favoritos',
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyText1
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Montserrat',
-                                                                          color:
-                                                                              Colors.black,
-                                                                          fontSize:
-                                                                              12,
-                                                                          fontWeight:
-                                                                              FontWeight.normal,
-                                                                        ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ],
                                   ),

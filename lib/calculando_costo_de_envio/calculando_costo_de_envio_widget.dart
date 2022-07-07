@@ -143,7 +143,7 @@ class _CalculandoCostoDeEnvioWidgetState
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 50),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         if (!(columnCheckoutsRecord.pendingShipmentPrice) ??
                             true)

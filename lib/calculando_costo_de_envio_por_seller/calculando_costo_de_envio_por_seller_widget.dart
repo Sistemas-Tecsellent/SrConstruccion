@@ -177,7 +177,7 @@ class _CalculandoCostoDeEnvioPorSellerWidgetState
                                 : null;
                         return Row(
                           mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             if (!(rowSellerWiseCheckoutsRecord
                                     .pendingShipmentPrice) ??

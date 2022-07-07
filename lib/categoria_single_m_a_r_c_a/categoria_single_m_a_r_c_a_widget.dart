@@ -292,7 +292,7 @@ class _CategoriaSingleMARCAWidgetState
                               children: [
                                 Expanded(
                                   child: Container(
-                                    height: 120,
+                                    height: 250,
                                     child: PageView(
                                       controller: pageViewController ??=
                                           PageController(initialPage: 0),
@@ -310,7 +310,7 @@ class _CategoriaSingleMARCAWidgetState
                                                       .size
                                                       .width *
                                                   0.95,
-                                              height: 100,
+                                              height: 200,
                                               fit: BoxFit.cover,
                                             ),
                                           ),

@@ -120,7 +120,7 @@ class _ListadoSellersWidgetState extends State<ListadoSellersWidget> {
                                       onTap: () async {
                                         context.pushNamed(
                                           'PerfilDelSeller',
-                                          params: {
+                                          queryParams: {
                                             'storeId': serializeParam(
                                                 gridViewStoresRecord.id,
                                                 ParamType.String),
@@ -633,7 +633,7 @@ class _ListadoSellersWidgetState extends State<ListadoSellersWidget> {
                                       onTap: () async {
                                         context.pushNamed(
                                           'PerfilDelSeller',
-                                          params: {
+                                          queryParams: {
                                             'storeId': serializeParam(
                                                 gridViewStoresRecord.id,
                                                 ParamType.String),

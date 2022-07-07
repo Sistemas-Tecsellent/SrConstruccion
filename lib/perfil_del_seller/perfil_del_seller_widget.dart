@@ -26,12 +26,14 @@ class PerfilDelSellerWidget extends StatefulWidget {
     this.calledFromPage,
     this.productId,
     this.variantId,
+    this.storeName,
   }) : super(key: key);
 
   final String storeId;
   final String calledFromPage;
   final String productId;
   final String variantId;
+  final String storeName;
 
   @override
   _PerfilDelSellerWidgetState createState() => _PerfilDelSellerWidgetState();
@@ -2247,10 +2249,8 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                               onTap: () async {
                                                                                 context.pushNamed(
                                                                                   'PerfilDelSeller',
-                                                                                  params: {
-                                                                                    'storeId': serializeParam(widget.storeId, ParamType.String),
-                                                                                  }.withoutNulls,
                                                                                   queryParams: {
+                                                                                    'storeId': serializeParam(widget.storeId, ParamType.String),
                                                                                     'calledFromPage': serializeParam('perfil', ParamType.String),
                                                                                     'productId': serializeParam('\"\"', ParamType.String),
                                                                                     'variantId': serializeParam('\"\"', ParamType.String),
@@ -2770,10 +2770,8 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                               onTap: () async {
                                                                                 context.pushNamed(
                                                                                   'PerfilDelSeller',
-                                                                                  params: {
-                                                                                    'storeId': serializeParam(widget.storeId, ParamType.String),
-                                                                                  }.withoutNulls,
                                                                                   queryParams: {
+                                                                                    'storeId': serializeParam(widget.storeId, ParamType.String),
                                                                                     'calledFromPage': serializeParam('perfil', ParamType.String),
                                                                                     'productId': serializeParam('l', ParamType.String),
                                                                                     'variantId': serializeParam('l', ParamType.String),

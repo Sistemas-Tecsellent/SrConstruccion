@@ -223,7 +223,7 @@ class _SellerFeedWidgetState extends State<SellerFeedWidget> {
                                                 onTap: () async {
                                                   context.pushNamed(
                                                     'PerfilDelSeller',
-                                                    params: {
+                                                    queryParams: {
                                                       'storeId': serializeParam(
                                                           widget.storeId,
                                                           ParamType.String),

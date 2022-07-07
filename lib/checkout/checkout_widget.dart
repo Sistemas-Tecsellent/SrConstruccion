@@ -71,7 +71,7 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
         return Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
-            backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             automaticallyImplyLeading: false,
             leading: FlutterFlowIconButton(
               borderColor: Colors.transparent,
@@ -371,8 +371,9 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                         : null;
                                                 return Container(
                                                   width: MediaQuery.of(context)
-                                                      .size
-                                                      .width,
+                                                          .size
+                                                          .width *
+                                                      0.95,
                                                   height: 200,
                                                   constraints: BoxConstraints(
                                                     maxWidth: 500,
@@ -382,16 +383,8 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                             context)
                                                         .primaryColor,
                                                     borderRadius:
-                                                        BorderRadius.only(
-                                                      bottomLeft:
-                                                          Radius.circular(20),
-                                                      bottomRight:
-                                                          Radius.circular(20),
-                                                      topLeft:
-                                                          Radius.circular(0),
-                                                      topRight:
-                                                          Radius.circular(0),
-                                                    ),
+                                                        BorderRadius.circular(
+                                                            20),
                                                   ),
                                                   alignment:
                                                       AlignmentDirectional(
