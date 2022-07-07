@@ -2,9 +2,9 @@
 export 'notificaciones/notificaciones_widget.dart' show NotificacionesWidget;
 export 'home_alt/home_alt_widget.dart' show HomeAltWidget;
 export 'perfil/perfil_widget.dart' show PerfilWidget;
-export 'product_page/product_page_widget.dart' show ProductPageWidget;
 export 'product_page_seller/product_page_seller_widget.dart'
     show ProductPageSellerWidget;
+export 'product_page/product_page_widget.dart' show ProductPageWidget;
 export 'login/login_widget.dart' show LoginWidget;
 export 'carrito/carrito_widget.dart' show CarritoWidget;
 export 'signup/signup_widget.dart' show SignupWidget;
