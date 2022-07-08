@@ -186,14 +186,34 @@ class _SearchWidgetState extends State<SearchWidget> {
                               EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
                           child: InkWell(
                             onTap: () async {
-                              context.pushNamed(
-                                'ProductPage',
-                                params: {
-                                  'productId': serializeParam(
-                                      listViewProductsRecord.id,
-                                      ParamType.String),
-                                }.withoutNulls,
-                              );
+                              if ((listViewProductsRecord.owner) ==
+                                  'srconstruccion') {
+                                context.pushNamed(
+                                  'ProductPage',
+                                  params: {
+                                    'productId': serializeParam(
+                                        listViewProductsRecord.id,
+                                        ParamType.String),
+                                  }.withoutNulls,
+                                );
+                              } else {
+                                context.pushNamed(
+                                  'ProductPageSeller',
+                                  params: {
+                                    'storeName': serializeParam(
+                                        listViewProductsRecord.ownerName,
+                                        ParamType.String),
+                                    'productId': serializeParam(
+                                        listViewProductsRecord.id,
+                                        ParamType.String),
+                                  }.withoutNulls,
+                                  queryParams: {
+                                    'storeId': serializeParam(
+                                        listViewProductsRecord.owner,
+                                        ParamType.String),
+                                  }.withoutNulls,
+                                );
+                              }
                             },
                             child: Row(
                               mainAxisSize: MainAxisSize.max,

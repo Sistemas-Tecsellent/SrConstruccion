@@ -595,17 +595,46 @@ class _OfertasWidgetState extends State<OfertasWidget> {
                                                       snapshot.data;
                                                   return InkWell(
                                                     onTap: () async {
-                                                      context.pushNamed(
-                                                        'ProductPage',
-                                                        params: {
-                                                          'productId':
-                                                              serializeParam(
-                                                                  rowProductsRecord
-                                                                      .id,
-                                                                  ParamType
-                                                                      .String),
-                                                        }.withoutNulls,
-                                                      );
+                                                      if ((rowProductsRecord
+                                                              .owner) ==
+                                                          'srconstruccion') {
+                                                        context.pushNamed(
+                                                          'ProductPage',
+                                                          params: {
+                                                            'productId':
+                                                                serializeParam(
+                                                                    rowProductsRecord
+                                                                        .id,
+                                                                    ParamType
+                                                                        .String),
+                                                          }.withoutNulls,
+                                                        );
+                                                      } else {
+                                                        context.pushNamed(
+                                                          'ProductPageSeller',
+                                                          params: {
+                                                            'storeName': serializeParam(
+                                                                rowProductsRecord
+                                                                    .ownerName,
+                                                                ParamType
+                                                                    .String),
+                                                            'productId':
+                                                                serializeParam(
+                                                                    rowProductsRecord
+                                                                        .id,
+                                                                    ParamType
+                                                                        .String),
+                                                          }.withoutNulls,
+                                                          queryParams: {
+                                                            'storeId':
+                                                                serializeParam(
+                                                                    rowProductsRecord
+                                                                        .owner,
+                                                                    ParamType
+                                                                        .String),
+                                                          }.withoutNulls,
+                                                        );
+                                                      }
                                                     },
                                                     child: Container(
                                                       width: 170,

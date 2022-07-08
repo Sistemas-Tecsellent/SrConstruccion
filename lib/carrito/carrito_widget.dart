@@ -394,46 +394,27 @@ class _CarritoWidgetState extends State<CarritoWidget> {
                                                       ),
                                                     ),
                                                   ),
-                                                  InkWell(
-                                                    onTap: () async {
-                                                      context.pushNamed(
-                                                        'ProductPage',
-                                                        params: {
-                                                          'productId':
-                                                              serializeParam(
-                                                                  getJsonField(
-                                                                    productsInCartItem,
-                                                                    r'''$.productId''',
-                                                                  ).toString(),
-                                                                  ParamType
-                                                                      .String),
-                                                        }.withoutNulls,
-                                                      );
-                                                    },
-                                                    child: CartProductWidget(
-                                                      expressAmount:
-                                                          getJsonField(
-                                                        productsInCartItem,
-                                                        r'''$.expressShipAmount''',
-                                                      ),
-                                                      normalAmount:
-                                                          getJsonField(
-                                                        productsInCartItem,
-                                                        r'''$.normalShipAmount''',
-                                                      ),
-                                                      normalPrice: getJsonField(
-                                                        productsInCartItem,
-                                                        r'''$.normalPrice''',
-                                                      ).toString(),
-                                                      productId: getJsonField(
-                                                        productsInCartItem,
-                                                        r'''$.productId''',
-                                                      ).toString(),
-                                                      variantId: getJsonField(
-                                                        productsInCartItem,
-                                                        r'''$.variantId''',
-                                                      ).toString(),
+                                                  CartProductWidget(
+                                                    expressAmount: getJsonField(
+                                                      productsInCartItem,
+                                                      r'''$.expressShipAmount''',
                                                     ),
+                                                    normalAmount: getJsonField(
+                                                      productsInCartItem,
+                                                      r'''$.normalShipAmount''',
+                                                    ),
+                                                    normalPrice: getJsonField(
+                                                      productsInCartItem,
+                                                      r'''$.normalPrice''',
+                                                    ).toString(),
+                                                    productId: getJsonField(
+                                                      productsInCartItem,
+                                                      r'''$.productId''',
+                                                    ).toString(),
+                                                    variantId: getJsonField(
+                                                      productsInCartItem,
+                                                      r'''$.variantId''',
+                                                    ).toString(),
                                                   ),
                                                 ],
                                               ),

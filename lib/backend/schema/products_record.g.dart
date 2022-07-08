@@ -197,6 +197,13 @@ class _$ProductsRecordSerializer
             specifiedType:
                 const FullType(BuiltList, const [const FullType(String)])));
     }
+    value = object.ownerName;
+    if (value != null) {
+      result
+        ..add('ownerName')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.reference;
     if (value != null) {
       result
@@ -328,6 +335,10 @@ class _$ProductsRecordSerializer
                       const FullType(BuiltList, const [const FullType(String)]))
               as BuiltList<Object>);
           break;
+        case 'ownerName':
+          result.ownerName = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
                   specifiedType: const FullType(
@@ -393,6 +404,8 @@ class _$ProductsRecord extends ProductsRecord {
   @override
   final BuiltList<String> subcategories;
   @override
+  final String ownerName;
+  @override
   final DocumentReference<Object> reference;
 
   factory _$ProductsRecord([void Function(ProductsRecordBuilder) updates]) =>
@@ -424,6 +437,7 @@ class _$ProductsRecord extends ProductsRecord {
       this.isWeekFavorite,
       this.code,
       this.subcategories,
+      this.ownerName,
       this.reference})
       : super._();
 
@@ -464,6 +478,7 @@ class _$ProductsRecord extends ProductsRecord {
         isWeekFavorite == other.isWeekFavorite &&
         code == other.code &&
         subcategories == other.subcategories &&
+        ownerName == other.ownerName &&
         reference == other.reference;
   }
 
@@ -487,25 +502,25 @@ class _$ProductsRecord extends ProductsRecord {
                                                                 $jc(
                                                                     $jc(
                                                                         $jc(
-                                                                            $jc($jc($jc($jc($jc($jc($jc($jc(0, id.hashCode), title.hashCode), description.hashCode), sku.hashCode), brand.hashCode), category.hashCode), categoryId.hashCode),
-                                                                                mainImage.hashCode),
-                                                                            images.hashCode),
-                                                                        views.hashCode),
-                                                                    likes.hashCode),
-                                                                satDesc.hashCode),
-                                                            highShift.hashCode),
-                                                        brandLogo.hashCode),
-                                                    owner.hashCode),
-                                                sellers.hashCode),
-                                            sales.hashCode),
-                                        isInSale.hashCode),
-                                    saleImage.hashCode),
-                                stores.hashCode),
-                            createdDate.hashCode),
-                        isMostSold.hashCode),
-                    isWeekFavorite.hashCode),
-                code.hashCode),
-            subcategories.hashCode),
+                                                                            $jc($jc($jc($jc($jc($jc($jc($jc($jc(0, id.hashCode), title.hashCode), description.hashCode), sku.hashCode), brand.hashCode), category.hashCode), categoryId.hashCode), mainImage.hashCode),
+                                                                                images.hashCode),
+                                                                            views.hashCode),
+                                                                        likes.hashCode),
+                                                                    satDesc.hashCode),
+                                                                highShift.hashCode),
+                                                            brandLogo.hashCode),
+                                                        owner.hashCode),
+                                                    sellers.hashCode),
+                                                sales.hashCode),
+                                            isInSale.hashCode),
+                                        saleImage.hashCode),
+                                    stores.hashCode),
+                                createdDate.hashCode),
+                            isMostSold.hashCode),
+                        isWeekFavorite.hashCode),
+                    code.hashCode),
+                subcategories.hashCode),
+            ownerName.hashCode),
         reference.hashCode));
   }
 
@@ -537,6 +552,7 @@ class _$ProductsRecord extends ProductsRecord {
           ..add('isWeekFavorite', isWeekFavorite)
           ..add('code', code)
           ..add('subcategories', subcategories)
+          ..add('ownerName', ownerName)
           ..add('reference', reference))
         .toString();
   }
@@ -652,6 +668,10 @@ class ProductsRecordBuilder
   set subcategories(ListBuilder<String> subcategories) =>
       _$this._subcategories = subcategories;
 
+  String _ownerName;
+  String get ownerName => _$this._ownerName;
+  set ownerName(String ownerName) => _$this._ownerName = ownerName;
+
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
   set reference(DocumentReference<Object> reference) =>
@@ -689,6 +709,7 @@ class ProductsRecordBuilder
       _isWeekFavorite = $v.isWeekFavorite;
       _code = $v.code;
       _subcategories = $v.subcategories?.toBuilder();
+      _ownerName = $v.ownerName;
       _reference = $v.reference;
       _$v = null;
     }
@@ -737,6 +758,7 @@ class ProductsRecordBuilder
               isWeekFavorite: isWeekFavorite,
               code: code,
               subcategories: _subcategories?.build(),
+              ownerName: ownerName,
               reference: reference);
     } catch (_) {
       String _$failedField;

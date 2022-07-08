@@ -384,16 +384,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => SolicitudDevolucionEnviadaWidget(),
             ),
             FFRoute(
-              name: 'MisPedidos',
-              path: 'mis-pedidos',
-              requireAuth: true,
-              builder: (context, params) => MisPedidosWidget(),
-            ),
-            FFRoute(
               name: 'SolicitudDevolucionAceptada',
               path: 'solicitudDevolucionAceptada',
               requireAuth: true,
               builder: (context, params) => SolicitudDevolucionAceptadaWidget(),
+            ),
+            FFRoute(
+              name: 'MisPedidos',
+              path: 'mis-pedidos',
+              requireAuth: true,
+              builder: (context, params) => MisPedidosWidget(),
             ),
             FFRoute(
               name: 'CategoriaSingle',
@@ -617,6 +617,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   CalculandoCostoDeEnvioPorSellerWidget(
                 checkoutId: params.getParam('checkoutId', ParamType.String),
               ),
+            ),
+            FFRoute(
+              name: 'MisPedidosHistorial',
+              path: 'mis-pedidos-historial',
+              requireAuth: true,
+              builder: (context, params) => MisPedidosHistorialWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

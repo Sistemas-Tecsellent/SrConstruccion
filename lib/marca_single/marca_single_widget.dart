@@ -515,14 +515,34 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                     snapshot.data;
                                 return InkWell(
                                   onTap: () async {
-                                    context.pushNamed(
-                                      'ProductPage',
-                                      params: {
-                                        'productId': serializeParam(
-                                            rowProductsRecord.id,
-                                            ParamType.String),
-                                      }.withoutNulls,
-                                    );
+                                    if ((rowProductsRecord.owner) ==
+                                        'srconstruccion') {
+                                      context.pushNamed(
+                                        'ProductPage',
+                                        params: {
+                                          'productId': serializeParam(
+                                              rowProductsRecord.id,
+                                              ParamType.String),
+                                        }.withoutNulls,
+                                      );
+                                    } else {
+                                      context.pushNamed(
+                                        'ProductPageSeller',
+                                        params: {
+                                          'storeName': serializeParam(
+                                              rowProductsRecord.ownerName,
+                                              ParamType.String),
+                                          'productId': serializeParam(
+                                              rowProductsRecord.id,
+                                              ParamType.String),
+                                        }.withoutNulls,
+                                        queryParams: {
+                                          'storeId': serializeParam(
+                                              rowProductsRecord.owner,
+                                              ParamType.String),
+                                        }.withoutNulls,
+                                      );
+                                    }
                                   },
                                   child: Container(
                                     width: 210,
@@ -971,14 +991,34 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                       snapshot.data;
                                   return InkWell(
                                     onTap: () async {
-                                      context.pushNamed(
-                                        'ProductPage',
-                                        params: {
-                                          'productId': serializeParam(
-                                              rowProductsRecord.id,
-                                              ParamType.String),
-                                        }.withoutNulls,
-                                      );
+                                      if ((rowProductsRecord.owner) ==
+                                          'srconstruccion') {
+                                        context.pushNamed(
+                                          'ProductPage',
+                                          params: {
+                                            'productId': serializeParam(
+                                                rowProductsRecord.id,
+                                                ParamType.String),
+                                          }.withoutNulls,
+                                        );
+                                      } else {
+                                        context.pushNamed(
+                                          'ProductPageSeller',
+                                          params: {
+                                            'storeName': serializeParam(
+                                                rowProductsRecord.ownerName,
+                                                ParamType.String),
+                                            'productId': serializeParam(
+                                                rowProductsRecord.id,
+                                                ParamType.String),
+                                          }.withoutNulls,
+                                          queryParams: {
+                                            'storeId': serializeParam(
+                                                rowProductsRecord.owner,
+                                                ParamType.String),
+                                          }.withoutNulls,
+                                        );
+                                      }
                                     },
                                     child: Container(
                                       width: 150,
@@ -1410,14 +1450,34 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                       snapshot.data;
                                   return InkWell(
                                     onTap: () async {
-                                      context.pushNamed(
-                                        'ProductPage',
-                                        params: {
-                                          'productId': serializeParam(
-                                              rowProductsRecord.id,
-                                              ParamType.String),
-                                        }.withoutNulls,
-                                      );
+                                      if ((rowProductsRecord.owner) ==
+                                          'srconstruccion') {
+                                        context.pushNamed(
+                                          'ProductPage',
+                                          params: {
+                                            'productId': serializeParam(
+                                                rowProductsRecord.id,
+                                                ParamType.String),
+                                          }.withoutNulls,
+                                        );
+                                      } else {
+                                        context.pushNamed(
+                                          'ProductPageSeller',
+                                          params: {
+                                            'storeName': serializeParam(
+                                                rowProductsRecord.ownerName,
+                                                ParamType.String),
+                                            'productId': serializeParam(
+                                                rowProductsRecord.id,
+                                                ParamType.String),
+                                          }.withoutNulls,
+                                          queryParams: {
+                                            'storeId': serializeParam(
+                                                rowProductsRecord.owner,
+                                                ParamType.String),
+                                          }.withoutNulls,
+                                        );
+                                      }
                                     },
                                     child: Container(
                                       width: 150,
@@ -1838,14 +1898,34 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                       snapshot.data;
                                   return InkWell(
                                     onTap: () async {
-                                      context.pushNamed(
-                                        'ProductPage',
-                                        params: {
-                                          'productId': serializeParam(
-                                              rowProductsRecord.id,
-                                              ParamType.String),
-                                        }.withoutNulls,
-                                      );
+                                      if ((rowProductsRecord.owner) ==
+                                          'srconstruccion') {
+                                        context.pushNamed(
+                                          'ProductPage',
+                                          params: {
+                                            'productId': serializeParam(
+                                                rowProductsRecord.id,
+                                                ParamType.String),
+                                          }.withoutNulls,
+                                        );
+                                      } else {
+                                        context.pushNamed(
+                                          'ProductPageSeller',
+                                          params: {
+                                            'storeName': serializeParam(
+                                                rowProductsRecord.ownerName,
+                                                ParamType.String),
+                                            'productId': serializeParam(
+                                                rowProductsRecord.id,
+                                                ParamType.String),
+                                          }.withoutNulls,
+                                          queryParams: {
+                                            'storeId': serializeParam(
+                                                rowProductsRecord.owner,
+                                                ParamType.String),
+                                          }.withoutNulls,
+                                        );
+                                      }
                                     },
                                     child: Container(
                                       width: 150,
