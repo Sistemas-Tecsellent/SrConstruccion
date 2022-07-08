@@ -123,6 +123,23 @@ class _ProductFeedHomeWidgetState extends State<ProductFeedHomeWidget> {
                                           ParamType.String),
                                     }.withoutNulls,
                                   );
+                                } else {
+                                  context.pushNamed(
+                                    'ProductPageSeller',
+                                    params: {
+                                      'storeName': serializeParam(
+                                          gridViewProductsRecord.ownerName,
+                                          ParamType.String),
+                                      'productId': serializeParam(
+                                          gridViewProductsRecord.id,
+                                          ParamType.String),
+                                    }.withoutNulls,
+                                    queryParams: {
+                                      'storeId': serializeParam(
+                                          gridViewProductsRecord.owner,
+                                          ParamType.String),
+                                    }.withoutNulls,
+                                  );
                                 }
                               },
                               child: Container(
