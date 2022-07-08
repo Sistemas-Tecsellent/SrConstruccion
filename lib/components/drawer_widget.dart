@@ -703,7 +703,6 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    width: 200,
                     height: 40,
                     decoration: BoxDecoration(
                       color: Color(0x00FDC054),
