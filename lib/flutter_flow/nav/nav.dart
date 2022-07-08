@@ -239,7 +239,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             FFRoute(
               name: 'CarritoPorSellers',
-              path: 'vendedor/carrito/:storeName',
+              path: 'carrito/:storeName',
               requireAuth: true,
               builder: (context, params) => CarritoPorSellersWidget(
                 storeId: params.getParam('storeId', ParamType.String),
