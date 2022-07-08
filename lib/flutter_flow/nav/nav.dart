@@ -396,17 +396,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => SolicitudDevolucionAceptadaWidget(),
             ),
             FFRoute(
-              name: 'Checkout',
-              path: 'checkout',
-              requireAuth: true,
-              builder: (context, params) => CheckoutWidget(),
-            ),
-            FFRoute(
               name: 'CategoriaSingle',
               path: 'categoria/:categoryId',
               builder: (context, params) => CategoriaSingleWidget(
                 categoryId: params.getParam('categoryId', ParamType.String),
               ),
+            ),
+            FFRoute(
+              name: 'Checkout',
+              path: 'checkout',
+              requireAuth: true,
+              builder: (context, params) => CheckoutWidget(),
             ),
             FFRoute(
               name: 'MarcaSingle',
