@@ -60,6 +60,9 @@ abstract class PricingRequestsRecord
   String get store;
 
   @nullable
+  String get storeName;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -79,7 +82,8 @@ abstract class PricingRequestsRecord
         ..productsTotal = 0.0
         ..active = false
         ..status = ''
-        ..store = '';
+        ..store = ''
+        ..storeName = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('pricingRequests');
@@ -119,6 +123,7 @@ Map<String, dynamic> createPricingRequestsRecordData({
   bool active,
   String status,
   String store,
+  String storeName,
 }) =>
     serializers.toFirestore(
         PricingRequestsRecord.serializer,
@@ -138,4 +143,5 @@ Map<String, dynamic> createPricingRequestsRecordData({
           ..createdDate = createdDate
           ..active = active
           ..status = status
-          ..store = store));
+          ..store = store
+          ..storeName = storeName));
