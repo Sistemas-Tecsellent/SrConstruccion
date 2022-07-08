@@ -546,3 +546,21 @@ class AddressToLatLngCall {
     );
   }
 }
+
+class CheckoutPricingRequestCall {
+  static Future<ApiCallResponse> call({
+    String requestId = '',
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'checkoutPricingRequest',
+      apiUrl:
+          'https://us-central1-srconstruccion-d4663.cloudfunctions.net/checkoutPricingRequest',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'requestId': requestId,
+      },
+      returnBody: true,
+    );
+  }
+}

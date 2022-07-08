@@ -186,7 +186,7 @@ class _CalculandoCostoDeEnvioPorSellerWidgetState
                                 onPressed: () async {
                                   context.goNamed(
                                     'CheckoutSeller',
-                                    params: {
+                                    queryParams: {
                                       'storeId': serializeParam(
                                           widget.checkoutId, ParamType.String),
                                     }.withoutNulls,

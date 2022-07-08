@@ -22,9 +22,11 @@ class CheckoutSellerWidget extends StatefulWidget {
   const CheckoutSellerWidget({
     Key key,
     this.storeId,
+    this.storeName,
   }) : super(key: key);
 
   final String storeId;
+  final String storeName;
 
   @override
   _CheckoutSellerWidgetState createState() => _CheckoutSellerWidgetState();
