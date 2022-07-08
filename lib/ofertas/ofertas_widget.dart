@@ -608,8 +608,8 @@ class _OfertasWidgetState extends State<OfertasWidget> {
                                                       );
                                                     },
                                                     child: Container(
-                                                      width: 150,
-                                                      height: 250,
+                                                      width: 170,
+                                                      height: 270,
                                                       decoration: BoxDecoration(
                                                         color: Colors.white,
                                                         boxShadow: [
@@ -702,24 +702,37 @@ class _OfertasWidgetState extends State<OfertasWidget> {
                                                                 children: [
                                                                   Stack(
                                                                     children: [
-                                                                      Container(
-                                                                        width:
-                                                                            30,
-                                                                        height:
-                                                                            30,
-                                                                        clipBehavior:
-                                                                            Clip.antiAlias,
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                          shape:
-                                                                              BoxShape.circle,
-                                                                        ),
-                                                                        child: Image
-                                                                            .network(
-                                                                          valueOrDefault<
-                                                                              String>(
-                                                                            rowProductsRecord.brandLogo,
-                                                                            'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
+                                                                      InkWell(
+                                                                        onTap:
+                                                                            () async {
+                                                                          context
+                                                                              .pushNamed(
+                                                                            'MarcaSingle',
+                                                                            params:
+                                                                                {
+                                                                              'brandId': serializeParam(rowProductsRecord.brand, ParamType.String),
+                                                                            }.withoutNulls,
+                                                                          );
+                                                                        },
+                                                                        child:
+                                                                            Container(
+                                                                          width:
+                                                                              30,
+                                                                          height:
+                                                                              30,
+                                                                          clipBehavior:
+                                                                              Clip.antiAlias,
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            shape:
+                                                                                BoxShape.circle,
+                                                                          ),
+                                                                          child:
+                                                                              Image.network(
+                                                                            valueOrDefault<String>(
+                                                                              rowProductsRecord.brandLogo,
+                                                                              'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
+                                                                            ),
                                                                           ),
                                                                         ),
                                                                       ),
@@ -799,6 +812,8 @@ class _OfertasWidgetState extends State<OfertasWidget> {
                                                                       textAlign:
                                                                           TextAlign
                                                                               .start,
+                                                                      maxLines:
+                                                                          2,
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
                                                                           .bodyText1

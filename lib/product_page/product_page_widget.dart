@@ -495,7 +495,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                         MediaQuery.of(context)
                                                             .size
                                                             .width,
-                                                    height: 380,
+                                                    height: 480,
                                                     child: PageView(
                                                       controller:
                                                           imagenPVController ??=
@@ -512,7 +512,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                 .mainImage,
                                                             'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
                                                           ),
-                                                          fit: BoxFit.scaleDown,
+                                                          fit: BoxFit.contain,
                                                         ),
                                                       ],
                                                     ),
@@ -3471,7 +3471,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                       context)
                                                                   .size
                                                                   .width *
-                                                              0.9,
+                                                              0.87,
                                                           decoration:
                                                               BoxDecoration(
                                                             color: Color(

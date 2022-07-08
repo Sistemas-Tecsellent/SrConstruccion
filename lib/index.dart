@@ -75,10 +75,10 @@ export 'categoria_single/categoria_single_widget.dart'
     show CategoriaSingleWidget;
 export 'checkout/checkout_widget.dart' show CheckoutWidget;
 export 'marca_single/marca_single_widget.dart' show MarcaSingleWidget;
-export 'subcategoria_single/subcategoria_single_widget.dart'
-    show SubcategoriaSingleWidget;
 export 'detalle_devolucion/detalle_devolucion_widget.dart'
     show DetalleDevolucionWidget;
+export 'subcategoria_single/subcategoria_single_widget.dart'
+    show SubcategoriaSingleWidget;
 export 'solicitud_devolucion_enviado/solicitud_devolucion_enviado_widget.dart'
     show SolicitudDevolucionEnviadoWidget;
 export 'wish_list_products/wish_list_products_widget.dart'

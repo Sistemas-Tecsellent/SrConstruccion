@@ -219,7 +219,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                                       child: AutoSizeText(
                                         listViewProductsRecord.title
                                             .maybeHandleOverflow(
-                                          maxChars: 40,
+                                          maxChars: 50,
                                           replacement: '…',
                                         ),
                                         maxLines: 3,
