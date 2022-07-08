@@ -84,96 +84,111 @@ class _CategoriasWidgetState extends State<CategoriasWidget> {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.9,
-                            height: 90,
-                            constraints: BoxConstraints(
-                              maxWidth: 500,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 3,
-                                  color: Color(0x32000000),
-                                  offset: Offset(0, 1),
-                                )
-                              ],
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(10),
-                                        bottomRight: Radius.circular(0),
-                                        topLeft: Radius.circular(10),
-                                        topRight: Radius.circular(0),
-                                      ),
-                                      child: Image.network(
-                                        valueOrDefault<String>(
-                                          columnCategoriesRecord.image,
-                                          'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
+                          InkWell(
+                            onTap: () async {
+                              context.pushNamed(
+                                'CategoriaSingle',
+                                params: {
+                                  'categoryId': serializeParam(
+                                      columnCategoriesRecord.title,
+                                      ParamType.String),
+                                }.withoutNulls,
+                              );
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.9,
+                              height: 90,
+                              constraints: BoxConstraints(
+                                maxWidth: 500,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 3,
+                                    color: Color(0x32000000),
+                                    offset: Offset(0, 1),
+                                  )
+                                ],
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.only(
+                                          bottomLeft: Radius.circular(10),
+                                          bottomRight: Radius.circular(0),
+                                          topLeft: Radius.circular(10),
+                                          topRight: Radius.circular(0),
                                         ),
-                                        width: 90,
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.9,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 170,
-                                      decoration: BoxDecoration(
-                                        color: Color(0x00EEEEEE),
-                                      ),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            10, 0, 0, 0),
-                                        child: Text(
-                                          columnCategoriesRecord.title,
-                                          style: FlutterFlowTheme.of(context)
-                                              .title3
-                                              .override(
-                                                fontFamily: 'Montserrat',
-                                                color: Color(0xFF090F13),
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w500,
-                                              ),
+                                        child: Image.network(
+                                          valueOrDefault<String>(
+                                            columnCategoriesRecord.image,
+                                            'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
+                                          ),
+                                          width: 90,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.9,
+                                          fit: BoxFit.cover,
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                                FlutterFlowIconButton(
-                                  borderColor: Colors.transparent,
-                                  borderRadius: 30,
-                                  borderWidth: 1,
-                                  buttonSize: 60,
-                                  icon: Icon(
-                                    Icons.keyboard_arrow_right,
-                                    color: Colors.black,
-                                    size: 30,
+                                      Container(
+                                        width: 170,
+                                        decoration: BoxDecoration(
+                                          color: Color(0x00EEEEEE),
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10, 0, 0, 0),
+                                          child: Text(
+                                            columnCategoriesRecord.title,
+                                            style: FlutterFlowTheme.of(context)
+                                                .title3
+                                                .override(
+                                                  fontFamily: 'Montserrat',
+                                                  color: Color(0xFF090F13),
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  onPressed: () async {
-                                    context.pushNamed(
-                                      'CategoriaSingle',
-                                      queryParams: {
-                                        'categoryId': serializeParam(
-                                            columnCategoriesRecord.id,
-                                            ParamType.String),
-                                      }.withoutNulls,
-                                    );
-                                  },
-                                ),
-                              ],
+                                  FlutterFlowIconButton(
+                                    borderColor: Colors.transparent,
+                                    borderRadius: 30,
+                                    borderWidth: 1,
+                                    buttonSize: 60,
+                                    icon: Icon(
+                                      Icons.keyboard_arrow_right,
+                                      color: Colors.black,
+                                      size: 30,
+                                    ),
+                                    onPressed: () async {
+                                      context.pushNamed(
+                                        'CategoriaSingle',
+                                        params: {
+                                          'categoryId': serializeParam(
+                                              columnCategoriesRecord.id,
+                                              ParamType.String),
+                                        }.withoutNulls,
+                                      );
+                                    },
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ],

@@ -149,7 +149,7 @@ class _VendedoresEnMapaWidgetState extends State<VendedoresEnMapaWidget> {
                     ),
                   ),
                   Align(
-                    alignment: AlignmentDirectional(0, 0.55),
+                    alignment: AlignmentDirectional(0, 0.95),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: 180,

@@ -147,7 +147,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                         size: 30,
                       ),
                       onPressed: () async {
-                        context.pop();
+                        Navigator.pop(context);
                       },
                     ),
                   ),
@@ -697,6 +697,60 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               ),
             ),
             Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: Color(0x00FDC054),
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(20),
+                        bottomRight: Radius.circular(0),
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(0),
+                      ),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(40, 0, 0, 0),
+                      child: InkWell(
+                        onTap: () async {
+                          context.pushNamed('CotizacionesDeEnvio');
+                        },
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            FaIcon(
+                              FontAwesomeIcons.truck,
+                              color: Colors.white,
+                              size: 22,
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(30, 0, 10, 0),
+                              child: Text(
+                                'Cotizaciónes de Envío',
+                                textAlign: TextAlign.start,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Montserrat',
+                                      color: Colors.white,
+                                    ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 20, 20, 20),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
@@ -706,7 +760,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                     onPressed: () async {
                       GoRouter.of(context).prepareAuthEvent();
                       await signOut();
-                      context.goNamedAuth('HomeAltCopy', mounted);
+                      context.goNamedAuth('login', mounted);
                     },
                     text: 'Cerrar Sesión',
                     icon: FaIcon(
@@ -729,7 +783,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                         color: Colors.transparent,
                         width: 1,
                       ),
-                      borderRadius: 5,
+                      borderRadius: BorderRadius.circular(5),
                     ),
                   ),
                 ],

@@ -137,7 +137,13 @@ class _SearchWidgetState extends State<SearchWidget> {
                   ],
                 ),
               ),
-              Expanded(
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 700,
+                constraints: BoxConstraints(
+                  maxWidth: 500,
+                ),
+                decoration: BoxDecoration(),
                 child: FutureBuilder<List<ProductsRecord>>(
                   future: ProductsRecord.search(
                     term: textController.text,
@@ -182,7 +188,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                             onTap: () async {
                               context.pushNamed(
                                 'ProductPage',
-                                queryParams: {
+                                params: {
                                   'productId': serializeParam(
                                       listViewProductsRecord.id,
                                       ParamType.String),
@@ -212,7 +218,10 @@ class _SearchWidgetState extends State<SearchWidget> {
                                           10, 0, 0, 0),
                                       child: AutoSizeText(
                                         listViewProductsRecord.title
-                                            .maybeHandleOverflow(maxChars: 15),
+                                            .maybeHandleOverflow(
+                                          maxChars: 50,
+                                          replacement: '…',
+                                        ),
                                         maxLines: 3,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1
@@ -234,7 +243,10 @@ class _SearchWidgetState extends State<SearchWidget> {
                                           10, 0, 0, 0),
                                       child: AutoSizeText(
                                         listViewProductsRecord.code
-                                            .maybeHandleOverflow(maxChars: 10),
+                                            .maybeHandleOverflow(
+                                          maxChars: 10,
+                                          replacement: '…',
+                                        ),
                                         maxLines: 2,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1

@@ -111,6 +111,13 @@ class _$SellerWiseCheckoutsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.hadPricingRequest;
+    if (value != null) {
+      result
+        ..add('hadPricingRequest')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
     value = object.reference;
     if (value != null) {
       result
@@ -186,6 +193,10 @@ class _$SellerWiseCheckoutsRecordSerializer
           result.deliverDate = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
+        case 'hadPricingRequest':
+          result.hadPricingRequest = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool;
+          break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
                   specifiedType: const FullType(
@@ -227,6 +238,8 @@ class _$SellerWiseCheckoutsRecord extends SellerWiseCheckoutsRecord {
   @override
   final String deliverDate;
   @override
+  final bool hadPricingRequest;
+  @override
   final DocumentReference<Object> reference;
 
   factory _$SellerWiseCheckoutsRecord(
@@ -247,6 +260,7 @@ class _$SellerWiseCheckoutsRecord extends SellerWiseCheckoutsRecord {
       this.pickupInStoreProducts,
       this.pendingShipmentPrice,
       this.deliverDate,
+      this.hadPricingRequest,
       this.reference})
       : super._();
 
@@ -276,6 +290,7 @@ class _$SellerWiseCheckoutsRecord extends SellerWiseCheckoutsRecord {
         pickupInStoreProducts == other.pickupInStoreProducts &&
         pendingShipmentPrice == other.pendingShipmentPrice &&
         deliverDate == other.deliverDate &&
+        hadPricingRequest == other.hadPricingRequest &&
         reference == other.reference;
   }
 
@@ -293,19 +308,21 @@ class _$SellerWiseCheckoutsRecord extends SellerWiseCheckoutsRecord {
                                         $jc(
                                             $jc(
                                                 $jc(
-                                                    $jc($jc(0, id.hashCode),
-                                                        message.hashCode),
-                                                    ordersAmount.hashCode),
-                                                paymentMethod.hashCode),
-                                            shipmentTotal.hashCode),
-                                        subtotal.hashCode),
-                                    total.hashCode),
-                                totalInCents.hashCode),
-                            expressProducts.hashCode),
-                        normalProducts.hashCode),
-                    pickupInStoreProducts.hashCode),
-                pendingShipmentPrice.hashCode),
-            deliverDate.hashCode),
+                                                    $jc(
+                                                        $jc($jc(0, id.hashCode),
+                                                            message.hashCode),
+                                                        ordersAmount.hashCode),
+                                                    paymentMethod.hashCode),
+                                                shipmentTotal.hashCode),
+                                            subtotal.hashCode),
+                                        total.hashCode),
+                                    totalInCents.hashCode),
+                                expressProducts.hashCode),
+                            normalProducts.hashCode),
+                        pickupInStoreProducts.hashCode),
+                    pendingShipmentPrice.hashCode),
+                deliverDate.hashCode),
+            hadPricingRequest.hashCode),
         reference.hashCode));
   }
 
@@ -325,6 +342,7 @@ class _$SellerWiseCheckoutsRecord extends SellerWiseCheckoutsRecord {
           ..add('pickupInStoreProducts', pickupInStoreProducts)
           ..add('pendingShipmentPrice', pendingShipmentPrice)
           ..add('deliverDate', deliverDate)
+          ..add('hadPricingRequest', hadPricingRequest)
           ..add('reference', reference))
         .toString();
   }
@@ -393,6 +411,11 @@ class SellerWiseCheckoutsRecordBuilder
   String get deliverDate => _$this._deliverDate;
   set deliverDate(String deliverDate) => _$this._deliverDate = deliverDate;
 
+  bool _hadPricingRequest;
+  bool get hadPricingRequest => _$this._hadPricingRequest;
+  set hadPricingRequest(bool hadPricingRequest) =>
+      _$this._hadPricingRequest = hadPricingRequest;
+
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
   set reference(DocumentReference<Object> reference) =>
@@ -418,6 +441,7 @@ class SellerWiseCheckoutsRecordBuilder
       _pickupInStoreProducts = $v.pickupInStoreProducts;
       _pendingShipmentPrice = $v.pendingShipmentPrice;
       _deliverDate = $v.deliverDate;
+      _hadPricingRequest = $v.hadPricingRequest;
       _reference = $v.reference;
       _$v = null;
     }
@@ -452,6 +476,7 @@ class SellerWiseCheckoutsRecordBuilder
             pickupInStoreProducts: pickupInStoreProducts,
             pendingShipmentPrice: pendingShipmentPrice,
             deliverDate: deliverDate,
+            hadPricingRequest: hadPricingRequest,
             reference: reference);
     replace(_$result);
     return _$result;

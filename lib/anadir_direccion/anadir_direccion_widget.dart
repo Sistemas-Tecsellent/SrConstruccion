@@ -20,14 +20,12 @@ class AnadirDireccionWidget extends StatefulWidget {
 class _AnadirDireccionWidgetState extends State<AnadirDireccionWidget> {
   LatLng googleMapsCenter;
   final googleMapsController = Completer<GoogleMapController>();
-  List<dynamic> newupdatedAddress;
   String dropDownValue;
   TextEditingController textController1;
   TextEditingController textController2;
   TextEditingController textController3;
   TextEditingController textController4;
   TextEditingController textController5;
-  List<dynamic> updatedAddress;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
   LatLng currentUserLocationValue;
@@ -75,14 +73,7 @@ class _AnadirDireccionWidgetState extends State<AnadirDireccionWidget> {
             size: 30,
           ),
           onPressed: () async {
-            updatedAddress = await actions.getUserAddresses(
-              currentUserUid,
-            );
-            setState(
-                () => FFAppState().userAddresses = updatedAddress.toList());
             context.pop();
-
-            setState(() {});
           },
         ),
         title: Text(
@@ -204,6 +195,16 @@ class _AnadirDireccionWidgetState extends State<AnadirDireccionWidget> {
                                                 fontFamily: 'Montserrat',
                                                 color: Color(0xFF525252),
                                               ),
+                                          validator: (val) {
+                                            if (val == null || val.isEmpty) {
+                                              return 'Field is required';
+                                            }
+                                            if (val.length < 4) {
+                                              return 'Debe contener mas de 4 letras';
+                                            }
+
+                                            return null;
+                                          },
                                         ),
                                       ),
                                       Padding(
@@ -248,6 +249,16 @@ class _AnadirDireccionWidgetState extends State<AnadirDireccionWidget> {
                                               ),
                                           keyboardType:
                                               TextInputType.streetAddress,
+                                          validator: (val) {
+                                            if (val == null || val.isEmpty) {
+                                              return 'Field is required';
+                                            }
+                                            if (val.length < 5) {
+                                              return 'Debe contener mas de 5 letras';
+                                            }
+
+                                            return null;
+                                          },
                                         ),
                                       ),
                                       Padding(
@@ -286,6 +297,16 @@ class _AnadirDireccionWidgetState extends State<AnadirDireccionWidget> {
                                               ),
                                           keyboardType:
                                               TextInputType.streetAddress,
+                                          validator: (val) {
+                                            if (val == null || val.isEmpty) {
+                                              return 'Field is required';
+                                            }
+                                            if (val.length < 3) {
+                                              return 'Debe contener mas de 3 letras';
+                                            }
+
+                                            return null;
+                                          },
                                         ),
                                       ),
                                       Padding(
@@ -323,6 +344,16 @@ class _AnadirDireccionWidgetState extends State<AnadirDireccionWidget> {
                                                 color: Color(0xFF525252),
                                               ),
                                           keyboardType: TextInputType.number,
+                                          validator: (val) {
+                                            if (val == null || val.isEmpty) {
+                                              return 'Field is required';
+                                            }
+                                            if (val.length < 4) {
+                                              return 'Debe contener mas de 4 números';
+                                            }
+
+                                            return null;
+                                          },
                                         ),
                                       ),
                                       Padding(
@@ -359,6 +390,16 @@ class _AnadirDireccionWidgetState extends State<AnadirDireccionWidget> {
                                                 fontFamily: 'Montserrat',
                                                 color: Color(0xFF525252),
                                               ),
+                                          validator: (val) {
+                                            if (val == null || val.isEmpty) {
+                                              return 'Field is required';
+                                            }
+                                            if (val.length < 4) {
+                                              return 'Debe contenet mas de 4 letras';
+                                            }
+
+                                            return null;
+                                          },
                                         ),
                                       ),
                                       FlutterFlowDropDown(
@@ -399,16 +440,7 @@ class _AnadirDireccionWidgetState extends State<AnadirDireccionWidget> {
                                             dropDownValue,
                                             currentUserUid,
                                           );
-                                          newupdatedAddress =
-                                              await actions.getUserAddresses(
-                                            currentUserUid,
-                                          );
-                                          setState(() =>
-                                              FFAppState().userAddresses =
-                                                  newupdatedAddress.toList());
-                                          context.pushNamed('Direcciones');
-
-                                          setState(() {});
+                                          context.pop();
                                         },
                                         text: 'Guardar',
                                         options: FFButtonOptions(
@@ -429,7 +461,8 @@ class _AnadirDireccionWidgetState extends State<AnadirDireccionWidget> {
                                             color: Colors.transparent,
                                             width: 1,
                                           ),
-                                          borderRadius: 5,
+                                          borderRadius:
+                                              BorderRadius.circular(5),
                                         ),
                                       ),
                                     ],

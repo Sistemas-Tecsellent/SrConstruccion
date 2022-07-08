@@ -162,7 +162,7 @@ class _PagoPendienteWidgetState extends State<PagoPendienteWidget> {
                           color: Colors.transparent,
                           width: 1,
                         ),
-                        borderRadius: 5,
+                        borderRadius: BorderRadius.circular(5),
                       ),
                     ),
                   ],

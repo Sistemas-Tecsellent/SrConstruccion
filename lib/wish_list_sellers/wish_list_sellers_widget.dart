@@ -121,6 +121,11 @@ class _WishListSellersWidgetState extends State<WishListSellersWidget> {
                                     onTap: () async {
                                       context.pushNamed(
                                         'PerfilDelSeller',
+                                        params: {
+                                          'storeName': serializeParam(
+                                              gridViewStoresRecord.name,
+                                              ParamType.String),
+                                        }.withoutNulls,
                                         queryParams: {
                                           'storeId': serializeParam(
                                               gridViewStoresRecord.id,
@@ -557,6 +562,11 @@ class _WishListSellersWidgetState extends State<WishListSellersWidget> {
                                     onTap: () async {
                                       context.pushNamed(
                                         'PerfilDelSeller',
+                                        params: {
+                                          'storeName': serializeParam(
+                                              gridViewStoresRecord.name,
+                                              ParamType.String),
+                                        }.withoutNulls,
                                         queryParams: {
                                           'storeId': serializeParam(
                                               gridViewStoresRecord.id,

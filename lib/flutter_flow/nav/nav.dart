@@ -8,16 +8,12 @@ import '../flutter_flow_theme.dart';
 import '../../backend/backend.dart';
 import '../../auth/firebase_user_provider.dart';
 
-import '../../backend/firebase_dynamic_links/firebase_dynamic_links.dart'
-    show DynamicLinksHandler;
 import '../../index.dart';
 import '../../main.dart';
 import 'serialization_util.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
-export '../../backend/firebase_dynamic_links/firebase_dynamic_links.dart'
-    show generateCurrentPageLink;
 
 const kTransitionInfoKey = '__transition_info__';
 
@@ -71,13 +67,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, _) =>
-          appStateNotifier.loggedIn ? HomeAltWidget() : HomeAltCopyWidget(),
+          appStateNotifier.loggedIn ? HomeAltWidget() : LoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? HomeAltWidget() : HomeAltCopyWidget(),
+              appStateNotifier.loggedIn ? HomeAltWidget() : LoginWidget(),
           routes: [
             FFRoute(
               name: 'Notificaciones',
@@ -98,12 +94,32 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => PerfilWidget(),
             ),
             FFRoute(
+              name: 'CotizacionesDeEnvio',
+              path: 'cotizaciones-de-envio',
+              requireAuth: true,
+              builder: (context, params) => CotizacionesDeEnvioWidget(),
+            ),
+            FFRoute(
+              name: 'ProductPageSeller',
+              path: 'vendedor/:storeName/:productId',
+              requireAuth: true,
+              builder: (context, params) => ProductPageSellerWidget(
+                storeId: params.getParam('storeId', ParamType.String),
+                storeName: params.getParam('storeName', ParamType.String),
+                productId: params.getParam('productId', ParamType.String),
+              ),
+            ),
+            FFRoute(
               name: 'ProductPage',
-              path: 'product',
+              path: 'producto/:productId',
               builder: (context, params) => ProductPageWidget(
                 productId: params.getParam('productId', ParamType.String),
-                variantId: params.getParam('variantId', ParamType.String),
               ),
+            ),
+            FFRoute(
+              name: 'login',
+              path: 'iniciar-sesion',
+              builder: (context, params) => LoginWidget(),
             ),
             FFRoute(
               name: 'Carrito',
@@ -112,27 +128,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => CarritoWidget(),
             ),
             FFRoute(
-              name: 'login',
-              path: 'iniciar-sesion',
-              builder: (context, params) => LoginWidget(),
-            ),
-            FFRoute(
               name: 'signup',
               path: 'registro',
               builder: (context, params) => SignupWidget(),
-            ),
-            FFRoute(
-              name: 'EditarDireccion',
-              path: 'perfil/mis-direcciones/editar-direccion',
-              requireAuth: true,
-              builder: (context, params) => EditarDireccionWidget(
-                name: params.getParam('name', ParamType.String),
-                addressLine1: params.getParam('addressLine1', ParamType.String),
-                suburb: params.getParam('suburb', ParamType.String),
-                postalCode: params.getParam('postalCode', ParamType.String),
-                city: params.getParam('city', ParamType.String),
-                state: params.getParam('state', ParamType.String),
-              ),
             ),
             FFRoute(
               name: 'NotificationesAjustes',
@@ -162,6 +160,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               path: 'perfil/mis-direcciones',
               requireAuth: true,
               builder: (context, params) => DireccionesWidget(),
+            ),
+            FFRoute(
+              name: 'EditarDireccion',
+              path: 'perfil/mis-direcciones/editar-direccion',
+              requireAuth: true,
+              builder: (context, params) => EditarDireccionWidget(
+                name: params.getParam('name', ParamType.String),
+              ),
+            ),
+            FFRoute(
+              name: 'AnadirDireccion',
+              path: 'perfil/mis-direcciones/anadir-direccion',
+              requireAuth: true,
+              builder: (context, params) => AnadirDireccionWidget(),
             ),
             FFRoute(
               name: 'MisCotizaciones',
@@ -205,15 +217,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             FFRoute(
               name: 'CheckoutSeller',
-              path: 'vendedor/checkout',
+              path: 'checkout/:storeName',
               requireAuth: true,
               builder: (context, params) => CheckoutSellerWidget(
                 storeId: params.getParam('storeId', ParamType.String),
+                storeName: params.getParam('storeName', ParamType.String),
               ),
             ),
             FFRoute(
               name: 'PedidoProgramado',
-              path: 'mis-pedidos/pedidos-programados',
+              path: 'mis-pedidos/pedidos-programados/:bundleId',
               requireAuth: true,
               builder: (context, params) => PedidoProgramadoWidget(
                 bundleId: params.getParam('bundleId', ParamType.String),
@@ -221,26 +234,28 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             FFRoute(
               name: 'PerfilDelSeller',
-              path: 'vendedor',
+              path: 'vendedor/:storeName',
               builder: (context, params) => PerfilDelSellerWidget(
                 storeId: params.getParam('storeId', ParamType.String),
                 calledFromPage:
                     params.getParam('calledFromPage', ParamType.String),
                 productId: params.getParam('productId', ParamType.String),
                 variantId: params.getParam('variantId', ParamType.String),
+                storeName: params.getParam('storeName', ParamType.String),
               ),
             ),
             FFRoute(
               name: 'CarritoPorSellers',
-              path: 'vendedor/carrito',
+              path: 'carrito/:storeName',
               requireAuth: true,
               builder: (context, params) => CarritoPorSellersWidget(
                 storeId: params.getParam('storeId', ParamType.String),
+                storeName: params.getParam('storeName', ParamType.String),
               ),
             ),
             FFRoute(
               name: 'DetallePedidoProgramado',
-              path: 'mis-pedidos/pedido-programado/express',
+              path: 'mis-pedidos/pedido-programado/express/:orderId',
               requireAuth: true,
               builder: (context, params) => DetallePedidoProgramadoWidget(
                 bundleId: params.getParam('bundleId', ParamType.String),
@@ -254,14 +269,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => ValoracionesWidget(),
             ),
             FFRoute(
-              name: 'Profesional',
-              path: 'registro/profesional',
-              builder: (context, params) => ProfesionalWidget(),
-            ),
-            FFRoute(
               name: 'Onboarding1',
               path: 'bienvenido',
               builder: (context, params) => Onboarding1Widget(),
+            ),
+            FFRoute(
+              name: 'Profesional',
+              path: 'registro/profesional',
+              builder: (context, params) => ProfesionalWidget(),
             ),
             FFRoute(
               name: 'PagoPendiente',
@@ -351,7 +366,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             FFRoute(
               name: 'ProductListingForSeller',
-              path: 'vendedor/listado-de-productos',
+              path: 'vendedor/listado-de-productos/:storeId',
               builder: (context, params) => ProductListingForSellerWidget(
                 storeId: params.getParam('storeId', ParamType.String),
               ),
@@ -381,24 +396,30 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => SolicitudDevolucionAceptadaWidget(),
             ),
             FFRoute(
+              name: 'CategoriaSingle',
+              path: 'categoria/:categoryId',
+              builder: (context, params) => CategoriaSingleWidget(
+                categoryId: params.getParam('categoryId', ParamType.String),
+              ),
+            ),
+            FFRoute(
               name: 'Checkout',
               path: 'checkout',
               requireAuth: true,
               builder: (context, params) => CheckoutWidget(),
             ),
             FFRoute(
-              name: 'CategoriaSingle',
-              path: 'categoria',
-              builder: (context, params) => CategoriaSingleWidget(
-                categoryId: params.getParam('categoryId', ParamType.String),
-              ),
-            ),
-            FFRoute(
               name: 'MarcaSingle',
-              path: 'marca',
+              path: 'marca/:brandId',
               builder: (context, params) => MarcaSingleWidget(
                 brandId: params.getParam('brandId', ParamType.String),
               ),
+            ),
+            FFRoute(
+              name: 'DetalleDevolucion',
+              path: 'detalleDevolucion',
+              requireAuth: true,
+              builder: (context, params) => DetalleDevolucionWidget(),
             ),
             FFRoute(
               name: 'subcategoriaSingle',
@@ -408,12 +429,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 subcategoryId:
                     params.getParam('subcategoryId', ParamType.String),
               ),
-            ),
-            FFRoute(
-              name: 'DetalleDevolucion',
-              path: 'detalleDevolucion',
-              requireAuth: true,
-              builder: (context, params) => DetalleDevolucionWidget(),
             ),
             FFRoute(
               name: 'SolicitudDevolucionEnviado',
@@ -494,34 +509,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => ChatsWidget(),
             ),
             FFRoute(
-              name: 'AnadirDireccion',
-              path: 'perfil/mis-direcciones/anadir-direccion',
-              requireAuth: true,
-              builder: (context, params) => AnadirDireccionWidget(),
-            ),
-            FFRoute(
               name: 'AgendarServicio',
               path: 'servicios/servicio/agendar-servicio',
               builder: (context, params) => AgendarServicioWidget(),
+            ),
+            FFRoute(
+              name: 'Ofertas',
+              path: 'ofertas-categorias',
+              builder: (context, params) => OfertasWidget(),
             ),
             FFRoute(
               name: 'MisServicios',
               path: 'mis-servicios',
               requireAuth: true,
               builder: (context, params) => MisServiciosWidget(),
-            ),
-            FFRoute(
-              name: 'route',
-              path: 'route',
-              requireAuth: true,
-              builder: (context, params) => RouteWidget(
-                orderId: params.getParam('orderId', ParamType.String),
-              ),
-            ),
-            FFRoute(
-              name: 'Ofertas',
-              path: 'ofertas-categorias',
-              builder: (context, params) => OfertasWidget(),
             ),
             FFRoute(
               name: 'ServiciosSingle',
@@ -555,7 +556,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             FFRoute(
               name: 'DetallePedidoProgramado5DIAS',
-              path: 'Pedido-Programado-5DIAS',
+              path: 'Pedido-Programado-5DIAS/:orderId',
               requireAuth: true,
               builder: (context, params) => DetallePedidoProgramado5DIASWidget(
                 orderId: params.getParam('orderId', ParamType.String),
@@ -564,18 +565,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             FFRoute(
               name: 'DetallePedidoProgramadoPickup',
-              path: 'Pedido-Programado-Pickup',
+              path: 'Pedido-Programado-Pickup/:orderId',
               requireAuth: true,
               builder: (context, params) => DetallePedidoProgramadoPickupWidget(
                 bundleId: params.getParam('bundleId', ParamType.String),
                 orderId: params.getParam('orderId', ParamType.String),
               ),
-            ),
-            FFRoute(
-              name: 'searchMarca',
-              path: 'searchMarca',
-              requireAuth: true,
-              builder: (context, params) => SearchMarcaWidget(),
             ),
             FFRoute(
               name: 'searchProductsSeller',
@@ -584,8 +579,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => SearchProductsSellerWidget(),
             ),
             FFRoute(
+              name: 'searchMarca',
+              path: 'buscar-marca',
+              requireAuth: true,
+              builder: (context, params) => SearchMarcaWidget(),
+            ),
+            FFRoute(
               name: 'CategoriaSingleMARCA',
-              path: 'marca/categoria',
+              path: 'marca/categoria/:brandId/:categoryId',
               builder: (context, params) => CategoriaSingleMARCAWidget(
                 categoryId: params.getParam('categoryId', ParamType.String),
                 brandId: params.getParam('brandId', ParamType.String),
@@ -605,12 +606,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'CalculandoCostoDeEnvio',
               path: 'calculando',
-              builder: (context, params) => CalculandoCostoDeEnvioWidget(),
+              builder: (context, params) => CalculandoCostoDeEnvioWidget(
+                checkoutId: params.getParam('checkoutId', ParamType.String),
+              ),
             ),
             FFRoute(
-              name: 'HomeAltCopy',
-              path: 'home',
-              builder: (context, params) => HomeAltCopyWidget(),
+              name: 'CalculandoCostoDeEnvioPorSeller',
+              path: 'calculando-por-seller',
+              builder: (context, params) =>
+                  CalculandoCostoDeEnvioPorSellerWidget(
+                checkoutId: params.getParam('checkoutId', ParamType.String),
+              ),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
@@ -760,7 +766,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.location);
-            return '/home';
+            return '/iniciar-sesion';
           }
           return null;
         },
@@ -782,7 +788,7 @@ class FFRoute {
                     ),
                   ),
                 )
-              : DynamicLinksHandler(child: page);
+              : page;
 
           final transitionInfo = state.transitionInfo;
           return transitionInfo.hasTransition

@@ -248,7 +248,7 @@ class _ListadoMarcasWidgetState extends State<ListadoMarcasWidget> {
                                   onTap: () async {
                                     context.pushNamed(
                                       'MarcaSingle',
-                                      queryParams: {
+                                      params: {
                                         'brandId': serializeParam(
                                             columnBrandsRecord.id,
                                             ParamType.String),

@@ -269,8 +269,11 @@ class _DetalleDevolucionWidgetState extends State<DetalleDevolucionWidget> {
                                 ),
                               ),
                               Container(
-                                width: 160,
+                                width: MediaQuery.of(context).size.width * 0.4,
                                 height: 250,
+                                constraints: BoxConstraints(
+                                  maxWidth: 300,
+                                ),
                                 decoration: BoxDecoration(
                                   color: Color(0x00FFFFFF),
                                 ),
@@ -279,8 +282,12 @@ class _DetalleDevolucionWidgetState extends State<DetalleDevolucionWidget> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
-                                      width: 170,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.4,
                                       height: 50,
+                                      constraints: BoxConstraints(
+                                        maxWidth: 300,
+                                      ),
                                       decoration: BoxDecoration(
                                         color: Colors.white,
                                         borderRadius: BorderRadius.only(
@@ -315,6 +322,9 @@ class _DetalleDevolucionWidgetState extends State<DetalleDevolucionWidget> {
                                                   .width *
                                               0.8,
                                           height: 185,
+                                          constraints: BoxConstraints(
+                                            maxWidth: 300,
+                                          ),
                                           decoration: BoxDecoration(
                                             color: Colors.white,
                                             borderRadius:
@@ -350,6 +360,9 @@ class _DetalleDevolucionWidgetState extends State<DetalleDevolucionWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 10),
                           child: Container(
                             width: MediaQuery.of(context).size.width * 0.9,
+                            constraints: BoxConstraints(
+                              maxWidth: 470,
+                            ),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(5),
@@ -527,7 +540,7 @@ class _DetalleDevolucionWidgetState extends State<DetalleDevolucionWidget> {
                                     color: Colors.transparent,
                                     width: 1,
                                   ),
-                                  borderRadius: 5,
+                                  borderRadius: BorderRadius.circular(5),
                                 ),
                               ),
                             ],
@@ -571,7 +584,7 @@ class _DetalleDevolucionWidgetState extends State<DetalleDevolucionWidget> {
                                     color: Colors.transparent,
                                     width: 1,
                                   ),
-                                  borderRadius: 5,
+                                  borderRadius: BorderRadius.circular(5),
                                 ),
                               ),
                             ],

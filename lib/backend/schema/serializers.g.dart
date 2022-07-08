@@ -19,6 +19,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(NotificationsRecord.serializer)
       ..add(OrderBundlesRecord.serializer)
       ..add(OrdersForClientsRecord.serializer)
+      ..add(PricingRequestsRecord.serializer)
       ..add(ProductsRecord.serializer)
       ..add(PublicInvoiceProfilesRecord.serializer)
       ..add(SellerWiseCheckoutsRecord.serializer)
@@ -38,6 +39,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
             const FullType(DocumentReference, const [const FullType(Object)])
           ]),
           () => new ListBuilder<DocumentReference<Object>>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())

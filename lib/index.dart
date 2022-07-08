@@ -2,18 +2,24 @@
 export 'notificaciones/notificaciones_widget.dart' show NotificacionesWidget;
 export 'home_alt/home_alt_widget.dart' show HomeAltWidget;
 export 'perfil/perfil_widget.dart' show PerfilWidget;
+export 'cotizaciones_de_envio/cotizaciones_de_envio_widget.dart'
+    show CotizacionesDeEnvioWidget;
+export 'product_page_seller/product_page_seller_widget.dart'
+    show ProductPageSellerWidget;
 export 'product_page/product_page_widget.dart' show ProductPageWidget;
-export 'carrito/carrito_widget.dart' show CarritoWidget;
 export 'login/login_widget.dart' show LoginWidget;
+export 'carrito/carrito_widget.dart' show CarritoWidget;
 export 'signup/signup_widget.dart' show SignupWidget;
-export 'editar_direccion/editar_direccion_widget.dart'
-    show EditarDireccionWidget;
 export 'notificationes_ajustes/notificationes_ajustes_widget.dart'
     show NotificationesAjustesWidget;
 export 'ajustes/ajustes_widget.dart' show AjustesWidget;
 export 'categorias/categorias_widget.dart' show CategoriasWidget;
 export 'mi_cuenta/mi_cuenta_widget.dart' show MiCuentaWidget;
 export 'direcciones/direcciones_widget.dart' show DireccionesWidget;
+export 'editar_direccion/editar_direccion_widget.dart'
+    show EditarDireccionWidget;
+export 'anadir_direccion/anadir_direccion_widget.dart'
+    show AnadirDireccionWidget;
 export 'mis_cotizaciones/mis_cotizaciones_widget.dart'
     show MisCotizacionesWidget;
 export 'cotizacion_formulario/cotizacion_formulario_widget.dart'
@@ -36,8 +42,8 @@ export 'carrito_por_sellers/carrito_por_sellers_widget.dart'
 export 'detalle_pedido_programado/detalle_pedido_programado_widget.dart'
     show DetallePedidoProgramadoWidget;
 export 'valoraciones/valoraciones_widget.dart' show ValoracionesWidget;
-export 'profesional/profesional_widget.dart' show ProfesionalWidget;
 export 'onboarding1/onboarding1_widget.dart' show Onboarding1Widget;
+export 'profesional/profesional_widget.dart' show ProfesionalWidget;
 export 'pago_pendiente/pago_pendiente_widget.dart' show PagoPendienteWidget;
 export 'pago_aceptado/pago_aceptado_widget.dart' show PagoAceptadoWidget;
 export 'pago_failed/pago_failed_widget.dart' show PagoFailedWidget;
@@ -65,14 +71,14 @@ export 'solicitud_devolucion_enviada/solicitud_devolucion_enviada_widget.dart'
 export 'mis_pedidos/mis_pedidos_widget.dart' show MisPedidosWidget;
 export 'solicitud_devolucion_aceptada/solicitud_devolucion_aceptada_widget.dart'
     show SolicitudDevolucionAceptadaWidget;
-export 'checkout/checkout_widget.dart' show CheckoutWidget;
 export 'categoria_single/categoria_single_widget.dart'
     show CategoriaSingleWidget;
+export 'checkout/checkout_widget.dart' show CheckoutWidget;
 export 'marca_single/marca_single_widget.dart' show MarcaSingleWidget;
-export 'subcategoria_single/subcategoria_single_widget.dart'
-    show SubcategoriaSingleWidget;
 export 'detalle_devolucion/detalle_devolucion_widget.dart'
     show DetalleDevolucionWidget;
+export 'subcategoria_single/subcategoria_single_widget.dart'
+    show SubcategoriaSingleWidget;
 export 'solicitud_devolucion_enviado/solicitud_devolucion_enviado_widget.dart'
     show SolicitudDevolucionEnviadoWidget;
 export 'wish_list_products/wish_list_products_widget.dart'
@@ -91,13 +97,10 @@ export 'cupones/cupones_widget.dart' show CuponesWidget;
 export 'product_page_servicios/product_page_servicios_widget.dart'
     show ProductPageServiciosWidget;
 export 'chats/chats_widget.dart' show ChatsWidget;
-export 'anadir_direccion/anadir_direccion_widget.dart'
-    show AnadirDireccionWidget;
 export 'agendar_servicio/agendar_servicio_widget.dart'
     show AgendarServicioWidget;
-export 'mis_servicios/mis_servicios_widget.dart' show MisServiciosWidget;
-export 'route/route_widget.dart' show RouteWidget;
 export 'ofertas/ofertas_widget.dart' show OfertasWidget;
+export 'mis_servicios/mis_servicios_widget.dart' show MisServiciosWidget;
 export 'servicios_single/servicios_single_widget.dart'
     show ServiciosSingleWidget;
 export 'sobre_sr_construccion/sobre_sr_construccion_widget.dart'
@@ -110,13 +113,14 @@ export 'detalle_pedido_programado5_d_i_a_s/detalle_pedido_programado5_d_i_a_s_wi
     show DetallePedidoProgramado5DIASWidget;
 export 'detalle_pedido_programado_pickup/detalle_pedido_programado_pickup_widget.dart'
     show DetallePedidoProgramadoPickupWidget;
-export 'search_marca/search_marca_widget.dart' show SearchMarcaWidget;
 export 'search_products_seller/search_products_seller_widget.dart'
     show SearchProductsSellerWidget;
+export 'search_marca/search_marca_widget.dart' show SearchMarcaWidget;
 export 'categoria_single_m_a_r_c_a/categoria_single_m_a_r_c_a_widget.dart'
     show CategoriaSingleMARCAWidget;
 export 'subcategory_product_listing_m_a_r_c_a/subcategory_product_listing_m_a_r_c_a_widget.dart'
     show SubcategoryProductListingMARCAWidget;
 export 'calculando_costo_de_envio/calculando_costo_de_envio_widget.dart'
     show CalculandoCostoDeEnvioWidget;
-export 'home_alt_copy/home_alt_copy_widget.dart' show HomeAltCopyWidget;
+export 'calculando_costo_de_envio_por_seller/calculando_costo_de_envio_por_seller_widget.dart'
+    show CalculandoCostoDeEnvioPorSellerWidget;

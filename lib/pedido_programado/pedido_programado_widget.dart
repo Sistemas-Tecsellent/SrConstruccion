@@ -232,12 +232,13 @@ class _PedidoProgramadoWidgetState extends State<PedidoProgramadoWidget> {
                                                                 .override(
                                                                   fontFamily:
                                                                       'Montserrat',
-                                                                  color: Color(
-                                                                      0xFF1EEBBD),
-                                                                  fontSize: 14,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                                  fontSize: 18,
                                                                   fontWeight:
                                                                       FontWeight
-                                                                          .w500,
+                                                                          .w600,
                                                                 ),
                                                           ),
                                                         ],
@@ -536,13 +537,15 @@ class _PedidoProgramadoWidgetState extends State<PedidoProgramadoWidget> {
                                           onTap: () async {
                                             context.pushNamed(
                                               'DetallePedidoProgramado',
-                                              queryParams: {
-                                                'bundleId': serializeParam(
-                                                    widget.bundleId,
-                                                    ParamType.String),
+                                              params: {
                                                 'orderId': serializeParam(
                                                     pedidoExpressOrdersForClientsRecord
                                                         .id,
+                                                    ParamType.String),
+                                              }.withoutNulls,
+                                              queryParams: {
+                                                'bundleId': serializeParam(
+                                                    widget.bundleId,
                                                     ParamType.String),
                                               }.withoutNulls,
                                             );
@@ -766,10 +769,12 @@ class _PedidoProgramadoWidgetState extends State<PedidoProgramadoWidget> {
                                                         fontFamily:
                                                             'Montserrat',
                                                         color:
-                                                            Color(0xFF1EEBBD),
-                                                        fontSize: 14,
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                        fontSize: 18,
                                                         fontWeight:
-                                                            FontWeight.w500,
+                                                            FontWeight.w600,
                                                       ),
                                                 ),
                                                 Row(
@@ -999,11 +1004,13 @@ class _PedidoProgramadoWidgetState extends State<PedidoProgramadoWidget> {
                                           onTap: () async {
                                             context.pushNamed(
                                               'DetallePedidoProgramado5DIAS',
-                                              queryParams: {
+                                              params: {
                                                 'orderId': serializeParam(
                                                     pedido15diasOrdersForClientsRecord
                                                         .id,
                                                     ParamType.String),
+                                              }.withoutNulls,
+                                              queryParams: {
                                                 'bundleId': serializeParam(
                                                     widget.bundleId,
                                                     ParamType.String),
@@ -1248,12 +1255,13 @@ class _PedidoProgramadoWidgetState extends State<PedidoProgramadoWidget> {
                                                               .override(
                                                                 fontFamily:
                                                                     'Montserrat',
-                                                                color: Color(
-                                                                    0xFF1EEBBD),
-                                                                fontSize: 14,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                                fontSize: 18,
                                                                 fontWeight:
                                                                     FontWeight
-                                                                        .w500,
+                                                                        .w600,
                                                               ),
                                                         ),
                                                         Text(
@@ -1273,12 +1281,13 @@ class _PedidoProgramadoWidgetState extends State<PedidoProgramadoWidget> {
                                                               .override(
                                                                 fontFamily:
                                                                     'Montserrat',
-                                                                color: Color(
-                                                                    0xFF1EEBBD),
-                                                                fontSize: 14,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                                fontSize: 18,
                                                                 fontWeight:
                                                                     FontWeight
-                                                                        .w500,
+                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
@@ -1502,13 +1511,15 @@ class _PedidoProgramadoWidgetState extends State<PedidoProgramadoWidget> {
                                           onTap: () async {
                                             context.pushNamed(
                                               'DetallePedidoProgramadoPickup',
-                                              queryParams: {
-                                                'bundleId': serializeParam(
-                                                    widget.bundleId,
-                                                    ParamType.String),
+                                              params: {
                                                 'orderId': serializeParam(
                                                     pedido5diasOrdersForClientsRecord
                                                         .id,
+                                                    ParamType.String),
+                                              }.withoutNulls,
+                                              queryParams: {
+                                                'bundleId': serializeParam(
+                                                    widget.bundleId,
                                                     ParamType.String),
                                               }.withoutNulls,
                                             );

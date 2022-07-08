@@ -137,7 +137,13 @@ class _SearchMarcaWidgetState extends State<SearchMarcaWidget> {
                   ],
                 ),
               ),
-              Expanded(
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 700,
+                constraints: BoxConstraints(
+                  maxWidth: 500,
+                ),
+                decoration: BoxDecoration(),
                 child: FutureBuilder<List<BrandsRecord>>(
                   future: BrandsRecord.search(
                     term: textController.text,
@@ -181,7 +187,7 @@ class _SearchMarcaWidgetState extends State<SearchMarcaWidget> {
                             onTap: () async {
                               context.pushNamed(
                                 'MarcaSingle',
-                                queryParams: {
+                                params: {
                                   'brandId': serializeParam(
                                       listViewBrandsRecord.id,
                                       ParamType.String),
@@ -213,7 +219,10 @@ class _SearchMarcaWidgetState extends State<SearchMarcaWidget> {
                                           5, 0, 0, 0),
                                       child: AutoSizeText(
                                         listViewBrandsRecord.id
-                                            .maybeHandleOverflow(maxChars: 10),
+                                            .maybeHandleOverflow(
+                                          maxChars: 40,
+                                          replacement: '…',
+                                        ),
                                         maxLines: 3,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1

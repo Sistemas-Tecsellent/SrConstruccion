@@ -1,10 +1,12 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/seleccionar_facturacion_widget.dart';
+import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_radio_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,6 +25,7 @@ class FacturacionWidget extends StatefulWidget {
 
 class _FacturacionWidgetState extends State<FacturacionWidget> {
   String radioButtonValue;
+  dynamic newInvoiceProfile;
 
   @override
   Widget build(BuildContext context) {
@@ -55,11 +58,52 @@ class _FacturacionWidgetState extends State<FacturacionWidget> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Divider(
-                        thickness: 3,
-                        indent: 450,
-                        endIndent: 450,
-                        color: Color(0xFFDBE2E7),
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          if (responsiveVisibility(
+                            context: context,
+                            phone: false,
+                          ))
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                FlutterFlowIconButton(
+                                  borderColor: Colors.transparent,
+                                  borderRadius: 30,
+                                  borderWidth: 1,
+                                  buttonSize: 40,
+                                  icon: Icon(
+                                    Icons.close_rounded,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 20,
+                                  ),
+                                  onPressed: () async {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ],
+                            ),
+                          if (responsiveVisibility(
+                            context: context,
+                            tablet: false,
+                            tabletLandscape: false,
+                            desktop: false,
+                          ))
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
+                              child: Container(
+                                width: 100,
+                                height: 3,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFEEEEEE),
+                                ),
+                              ),
+                            ),
+                        ],
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
@@ -111,6 +155,7 @@ class _FacturacionWidgetState extends State<FacturacionWidget> {
                         decoration: BoxDecoration(),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
                               padding:
@@ -188,21 +233,53 @@ class _FacturacionWidgetState extends State<FacturacionWidget> {
                           children: [
                             FFButtonWidget(
                               onPressed: () async {
-                                await showModalBottomSheet(
-                                  isScrollControlled: true,
-                                  backgroundColor: Colors.transparent,
-                                  context: context,
-                                  builder: (context) {
-                                    return Padding(
-                                      padding:
-                                          MediaQuery.of(context).viewInsets,
-                                      child: SeleccionarFacturacionWidget(
-                                        invoiceProfileName: radioButtonValue,
-                                        storeId: widget.storeId,
-                                      ),
+                                if ((radioButtonValue) == 'Sin factura') {
+                                  newInvoiceProfile =
+                                      await actions.getInvoiceProfileById(
+                                    'JHGjhghjGJHGJGHJVHjn',
+                                  );
+                                  if ((widget.storeId) == '\"\"') {
+                                    await actions
+                                        .setCheckoutModifyInvoiceAndUsage(
+                                      currentUserUid,
+                                      getJsonField(
+                                        newInvoiceProfile,
+                                        r'''$.id''',
+                                      ).toString(),
+                                      'Por Definir',
                                     );
-                                  },
-                                );
+                                    Navigator.pop(context);
+                                  } else {
+                                    await actions
+                                        .setCheckoutModifyInvoiceAndUsage(
+                                      widget.storeId,
+                                      getJsonField(
+                                        newInvoiceProfile,
+                                        r'''$.id''',
+                                      ).toString(),
+                                      'Por Definir',
+                                    );
+                                    Navigator.pop(context);
+                                  }
+                                } else {
+                                  await showModalBottomSheet(
+                                    isScrollControlled: true,
+                                    backgroundColor: Colors.transparent,
+                                    context: context,
+                                    builder: (context) {
+                                      return Padding(
+                                        padding:
+                                            MediaQuery.of(context).viewInsets,
+                                        child: SeleccionarFacturacionWidget(
+                                          invoiceProfileName: radioButtonValue,
+                                          storeId: widget.storeId,
+                                        ),
+                                      );
+                                    },
+                                  );
+                                }
+
+                                setState(() {});
                               },
                               text: 'Confirmar Datos',
                               options: FFButtonOptions(
@@ -222,7 +299,7 @@ class _FacturacionWidgetState extends State<FacturacionWidget> {
                                   color: Colors.transparent,
                                   width: 1,
                                 ),
-                                borderRadius: 5,
+                                borderRadius: BorderRadius.circular(5),
                               ),
                             ),
                           ],

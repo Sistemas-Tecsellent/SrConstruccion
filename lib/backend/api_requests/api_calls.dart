@@ -28,7 +28,7 @@ class GetVariantInventoryByStoreCall {
     String productId = '',
     String variantId = '',
     String store = '',
-    String priceType = '',
+    String priceType = 'public',
   }) {
     return ApiManager.instance.makeApiCall(
       callName: 'getVariantInventoryByStore',
@@ -174,6 +174,10 @@ class GetCartTotalCall {
   static dynamic message(dynamic response) => getJsonField(
         response,
         r'''$.total.message''',
+      );
+  static dynamic canPay(dynamic response) => getJsonField(
+        response,
+        r'''$.total.canPay''',
       );
 }
 
@@ -341,6 +345,10 @@ class GetSellerWiseCartTotalCall {
         response,
         r'''$.total.message''',
       );
+  static dynamic canPay(dynamic response) => getJsonField(
+        response,
+        r'''$.total.canPay''',
+      );
 }
 
 class GetSellerWiseCheckoutCall {
@@ -488,6 +496,69 @@ class GetCheckoutInfoCall {
         'uid': uid,
         'checkoutId': checkoutId,
         'object': object,
+      },
+      returnBody: true,
+    );
+  }
+}
+
+class GetIfCheckoutIsByTruckCall {
+  static Future<ApiCallResponse> call({
+    String uid = '',
+    String checkoutId = '',
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getIfCheckoutIsByTruck',
+      apiUrl:
+          'https://us-central1-srconstruccion-d4663.cloudfunctions.net/getIfCheckoutIsByTruck',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'uid': uid,
+        'checkoutId': checkoutId,
+      },
+      returnBody: true,
+    );
+  }
+
+  static dynamic pendingShipmentPrice(dynamic response) => getJsonField(
+        response,
+        r'''$.pendingShipmentPrice''',
+      );
+}
+
+class AddressToLatLngCall {
+  static Future<ApiCallResponse> call({
+    String uid = '',
+    String addressName = '',
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'addressToLatLng',
+      apiUrl:
+          'https://us-central1-srconstruccion-d4663.cloudfunctions.net/addressToLatLng',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'uid': uid,
+        'addressName': addressName,
+      },
+      returnBody: true,
+    );
+  }
+}
+
+class CheckoutPricingRequestCall {
+  static Future<ApiCallResponse> call({
+    String requestId = '',
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'checkoutPricingRequest',
+      apiUrl:
+          'https://us-central1-srconstruccion-d4663.cloudfunctions.net/checkoutPricingRequest',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'requestId': requestId,
       },
       returnBody: true,
     );

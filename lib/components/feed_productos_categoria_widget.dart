@@ -126,10 +126,11 @@ class _FeedProductosCategoriaWidgetState
                                       child: Text(
                                         gridViewProductsRecord.title
                                             .maybeHandleOverflow(
-                                          maxChars: 23,
+                                          maxChars: 40,
                                           replacement: '…',
                                         ),
                                         textAlign: TextAlign.start,
+                                        maxLines: 2,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1
                                             .override(
@@ -185,7 +186,7 @@ class _FeedProductosCategoriaWidgetState
                             onTap: () async {
                               context.pushNamed(
                                 'ProductPage',
-                                queryParams: {
+                                params: {
                                   'productId': serializeParam(
                                       gridViewProductsRecord.id,
                                       ParamType.String),
@@ -210,17 +211,22 @@ class _FeedProductosCategoriaWidgetState
                           alignment: AlignmentDirectional(-0.9, -0.98),
                           child: Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
-                            child: Container(
-                              width: 30,
-                              height: 30,
-                              clipBehavior: Clip.antiAlias,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                              ),
-                              child: Image.network(
-                                valueOrDefault<String>(
-                                  gridViewProductsRecord.brandLogo,
-                                  'https://cdn.shopify.com/s/files/1/0590/5045/9343/files/MARCA.png?v=1655401403',
+                            child: InkWell(
+                              onTap: () async {
+                                context.pushNamed('MarcaSingle');
+                              },
+                              child: Container(
+                                width: 30,
+                                height: 30,
+                                clipBehavior: Clip.antiAlias,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Image.network(
+                                  valueOrDefault<String>(
+                                    gridViewProductsRecord.brandLogo,
+                                    'https://cdn.shopify.com/s/files/1/0590/5045/9343/files/MARCA.png?v=1655401403',
+                                  ),
                                 ),
                               ),
                             ),

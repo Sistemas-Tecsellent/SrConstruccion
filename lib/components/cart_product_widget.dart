@@ -62,7 +62,7 @@ class _CartProductWidgetState extends State<CartProductWidget> {
                       : null;
               return Container(
                 width: MediaQuery.of(context).size.width * 0.95,
-                height: 120,
+                height: 125,
                 constraints: BoxConstraints(
                   maxWidth: 400,
                 ),
@@ -124,9 +124,11 @@ class _CartProductWidgetState extends State<CartProductWidget> {
                           ),
                         ),
                         Container(
-                          width: 220,
+                          width: MediaQuery.of(context).size.width * 0.65,
+                          constraints: BoxConstraints(
+                            maxWidth: 290,
+                          ),
                           decoration: BoxDecoration(
-                            color: Colors.white,
                             borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(0),
                               bottomRight: Radius.circular(10),
@@ -149,15 +151,27 @@ class _CartProductWidgetState extends State<CartProductWidget> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Container(
-                                      width: 200,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.62,
+                                      constraints: BoxConstraints(
+                                        maxWidth: 280,
+                                      ),
                                       decoration: BoxDecoration(
                                         color: Color(0x00EEEEEE),
                                       ),
-                                      child: Text(
-                                        containerProductsRecord.title
-                                            .maybeHandleOverflow(maxChars: 25),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 0, 5),
+                                        child: Text(
+                                          containerProductsRecord.title
+                                              .maybeHandleOverflow(
+                                            maxChars: 55,
+                                            replacement: '…',
+                                          ),
+                                          maxLines: 2,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1,
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -481,9 +495,7 @@ class _CartProductWidgetState extends State<CartProductWidget> {
                                     ],
                                   ),
                                 ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 20, 0),
+                                Expanded(
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.end,
@@ -508,8 +520,10 @@ class _CartProductWidgetState extends State<CartProductWidget> {
                                               .bodyText1
                                               .override(
                                                 fontFamily: 'Montserrat',
-                                                color: Color(0xFFFDC054),
-                                                fontSize: 11,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                                fontSize: 16,
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
@@ -535,9 +549,9 @@ class _CartProductWidgetState extends State<CartProductWidget> {
                                                     fontFamily: 'Montserrat',
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .primaryColor,
-                                                    fontSize: 11,
-                                                    fontWeight: FontWeight.w500,
+                                                        .alternate,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w600,
                                                   ),
                                             ),
                                           if ((widget.normalPrice) ==
@@ -559,9 +573,9 @@ class _CartProductWidgetState extends State<CartProductWidget> {
                                                     fontFamily: 'Montserrat',
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .primaryColor,
-                                                    fontSize: 11,
-                                                    fontWeight: FontWeight.w500,
+                                                        .alternate,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w600,
                                                   ),
                                             ),
                                           if ((widget.normalPrice) ==
@@ -583,9 +597,9 @@ class _CartProductWidgetState extends State<CartProductWidget> {
                                                     fontFamily: 'Montserrat',
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .primaryColor,
-                                                    fontSize: 11,
-                                                    fontWeight: FontWeight.w500,
+                                                        .alternate,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w600,
                                                   ),
                                             ),
                                         ],

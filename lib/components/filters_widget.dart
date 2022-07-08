@@ -1,3 +1,4 @@
+import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -29,6 +30,9 @@ class _FiltersWidgetState extends State<FiltersWidget> {
         padding: EdgeInsetsDirectional.fromSTEB(4, 160, 4, 0),
         child: Container(
           width: MediaQuery.of(context).size.width,
+          constraints: BoxConstraints(
+            maxWidth: 700,
+          ),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
@@ -59,12 +63,47 @@ class _FiltersWidgetState extends State<FiltersWidget> {
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Divider(
-                          thickness: 3,
-                          indent: 150,
-                          endIndent: 150,
-                          color: Color(0xFFDBE2E7),
-                        ),
+                        if (responsiveVisibility(
+                          context: context,
+                          phone: false,
+                        ))
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              FlutterFlowIconButton(
+                                borderColor: Colors.transparent,
+                                borderRadius: 30,
+                                borderWidth: 1,
+                                buttonSize: 30,
+                                icon: Icon(
+                                  Icons.close_rounded,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 20,
+                                ),
+                                onPressed: () async {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ],
+                          ),
+                        if (responsiveVisibility(
+                          context: context,
+                          tablet: false,
+                          tabletLandscape: false,
+                          desktop: false,
+                        ))
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
+                            child: Container(
+                              width: 100,
+                              height: 3,
+                              decoration: BoxDecoration(
+                                color: Color(0xFFEEEEEE),
+                              ),
+                            ),
+                          ),
                       ],
                     ),
                   ),
@@ -452,7 +491,7 @@ class _FiltersWidgetState extends State<FiltersWidget> {
                                   color: Colors.transparent,
                                   width: 1,
                                 ),
-                                borderRadius: 12,
+                                borderRadius: BorderRadius.circular(12),
                               ),
                             ),
                             FFButtonWidget(
@@ -477,7 +516,7 @@ class _FiltersWidgetState extends State<FiltersWidget> {
                                   color: Colors.transparent,
                                   width: 1,
                                 ),
-                                borderRadius: 5,
+                                borderRadius: BorderRadius.circular(5),
                               ),
                             ),
                           ],

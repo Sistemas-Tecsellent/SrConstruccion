@@ -104,7 +104,7 @@ class _SubcategoryProductListingMARCAWidgetState
                           color: Colors.transparent,
                           width: 1,
                         ),
-                        borderRadius: 100,
+                        borderRadius: BorderRadius.circular(100),
                       ),
                     );
                   },
@@ -311,22 +311,37 @@ class _SubcategoryProductListingMARCAWidgetState
                                                           MainAxisAlignment
                                                               .spaceBetween,
                                                       children: [
-                                                        Container(
-                                                          width: 30,
-                                                          height: 30,
-                                                          clipBehavior:
-                                                              Clip.antiAlias,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            shape:
-                                                                BoxShape.circle,
-                                                          ),
-                                                          child: Image.network(
-                                                            valueOrDefault<
-                                                                String>(
-                                                              gridViewProductsRecord
-                                                                  .brandLogo,
-                                                              'https://cdn.shopify.com/s/files/1/0590/5045/9343/files/MARCA.png?v=1655401403',
+                                                        InkWell(
+                                                          onTap: () async {
+                                                            context.pushNamed(
+                                                              'MarcaSingle',
+                                                              params: {
+                                                                'brandId':
+                                                                    serializeParam(
+                                                                        '',
+                                                                        ParamType
+                                                                            .String),
+                                                              }.withoutNulls,
+                                                            );
+                                                          },
+                                                          child: Container(
+                                                            width: 30,
+                                                            height: 30,
+                                                            clipBehavior:
+                                                                Clip.antiAlias,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              shape: BoxShape
+                                                                  .circle,
+                                                            ),
+                                                            child:
+                                                                Image.network(
+                                                              valueOrDefault<
+                                                                  String>(
+                                                                gridViewProductsRecord
+                                                                    .brandLogo,
+                                                                'https://cdn.shopify.com/s/files/1/0590/5045/9343/files/MARCA.png?v=1655401403',
+                                                              ),
                                                             ),
                                                           ),
                                                         ),
@@ -342,7 +357,7 @@ class _SubcategoryProductListingMARCAWidgetState
                                                       onTap: () async {
                                                         context.pushNamed(
                                                           'ProductPage',
-                                                          queryParams: {
+                                                          params: {
                                                             'productId':
                                                                 serializeParam(
                                                                     gridViewProductsRecord
@@ -453,8 +468,10 @@ class _SubcategoryProductListingMARCAWidgetState
                                                               .override(
                                                                 fontFamily:
                                                                     'Montserrat',
-                                                                color: Color(
-                                                                    0xFF1EEBBD),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                                fontSize: 22,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w600,
@@ -473,8 +490,10 @@ class _SubcategoryProductListingMARCAWidgetState
                                                               .override(
                                                                 fontFamily:
                                                                     'Montserrat',
-                                                                color: Color(
-                                                                    0xFF1EEBBD),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                                fontSize: 22,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w600,
@@ -665,7 +684,7 @@ class _SubcategoryProductListingMARCAWidgetState
                               crossAxisCount: 2,
                               crossAxisSpacing: 0,
                               mainAxisSpacing: 0,
-                              childAspectRatio: 0.65,
+                              childAspectRatio: 0.6,
                             ),
                             scrollDirection: Axis.vertical,
                             itemCount: gridViewProductsRecordList.length,
@@ -703,6 +722,13 @@ class _SubcategoryProductListingMARCAWidgetState
                                           snapshot.data;
                                       return Container(
                                         decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          boxShadow: [
+                                            BoxShadow(
+                                              blurRadius: 10,
+                                              color: Color(0x14000000),
+                                            )
+                                          ],
                                           borderRadius:
                                               BorderRadius.circular(5),
                                         ),
@@ -802,7 +828,7 @@ class _SubcategoryProductListingMARCAWidgetState
                                                       onTap: () async {
                                                         context.pushNamed(
                                                           'ProductPage',
-                                                          queryParams: {
+                                                          params: {
                                                             'productId':
                                                                 serializeParam(
                                                                     gridViewProductsRecord
@@ -913,8 +939,10 @@ class _SubcategoryProductListingMARCAWidgetState
                                                               .override(
                                                                 fontFamily:
                                                                     'Montserrat',
-                                                                color: Color(
-                                                                    0xFF1EEBBD),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                                fontSize: 22,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w600,
@@ -933,8 +961,10 @@ class _SubcategoryProductListingMARCAWidgetState
                                                               .override(
                                                                 fontFamily:
                                                                     'Montserrat',
-                                                                color: Color(
-                                                                    0xFF1EEBBD),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                                fontSize: 22,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w600,

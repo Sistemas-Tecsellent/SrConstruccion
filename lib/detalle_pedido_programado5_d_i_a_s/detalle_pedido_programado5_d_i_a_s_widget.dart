@@ -256,7 +256,7 @@ class _DetallePedidoProgramado5DIASWidgetState
                                 onPressed: () async {
                                   context.pushNamed(
                                     'PedidoProgramado',
-                                    queryParams: {
+                                    params: {
                                       'bundleId': serializeParam(
                                           widget.bundleId, ParamType.String),
                                     }.withoutNulls,

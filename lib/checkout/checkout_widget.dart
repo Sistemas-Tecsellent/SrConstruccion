@@ -71,7 +71,7 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
         return Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
-            backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             automaticallyImplyLeading: false,
             leading: FlutterFlowIconButton(
               borderColor: Colors.transparent,
@@ -287,7 +287,7 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                     color: Colors.transparent,
                                     width: 1,
                                   ),
-                                  borderRadius: 5,
+                                  borderRadius: BorderRadius.circular(5),
                                 ),
                               );
                             },
@@ -322,6 +322,35 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                     height: 230,
                                     child: Stack(
                                       children: [
+                                        if (responsiveVisibility(
+                                          context: context,
+                                          tablet: false,
+                                          tabletLandscape: false,
+                                          desktop: false,
+                                        ))
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: 200,
+                                            constraints: BoxConstraints(
+                                              maxWidth: 500,
+                                            ),
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryColor,
+                                              borderRadius: BorderRadius.only(
+                                                bottomLeft: Radius.circular(20),
+                                                bottomRight:
+                                                    Radius.circular(20),
+                                                topLeft: Radius.circular(0),
+                                                topRight: Radius.circular(0),
+                                              ),
+                                            ),
+                                            alignment:
+                                                AlignmentDirectional(0, 0),
+                                          ),
                                         Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
@@ -371,8 +400,9 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                         : null;
                                                 return Container(
                                                   width: MediaQuery.of(context)
-                                                      .size
-                                                      .width,
+                                                          .size
+                                                          .width *
+                                                      0.95,
                                                   height: 200,
                                                   constraints: BoxConstraints(
                                                     maxWidth: 500,
@@ -382,16 +412,8 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                             context)
                                                         .primaryColor,
                                                     borderRadius:
-                                                        BorderRadius.only(
-                                                      bottomLeft:
-                                                          Radius.circular(20),
-                                                      bottomRight:
-                                                          Radius.circular(20),
-                                                      topLeft:
-                                                          Radius.circular(0),
-                                                      topRight:
-                                                          Radius.circular(0),
-                                                    ),
+                                                        BorderRadius.circular(
+                                                            20),
                                                   ),
                                                   alignment:
                                                       AlignmentDirectional(
@@ -727,7 +749,7 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                           ],
                                         ),
                                         if (checkoutCheckoutsRecord
-                                                .pendingShipmentPrice ??
+                                                .hadPricingRequest ??
                                             true)
                                           Align(
                                             alignment:
@@ -791,22 +813,30 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                                 MainAxisSize
                                                                     .max,
                                                             children: [
-                                                              Text(
-                                                                checkoutCheckoutsRecord
-                                                                    .deliveryDate
-                                                                    .maybeHandleOverflow(
-                                                                        maxChars:
-                                                                            19),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Montserrat',
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500,
-                                                                    ),
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0,
+                                                                            5,
+                                                                            0,
+                                                                            0),
+                                                                child: Text(
+                                                                  checkoutCheckoutsRecord
+                                                                      .deliveryDate
+                                                                      .maybeHandleOverflow(
+                                                                          maxChars:
+                                                                              19),
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText1
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Montserrat',
+                                                                        fontWeight:
+                                                                            FontWeight.w500,
+                                                                      ),
+                                                                ),
                                                               ),
                                                             ],
                                                           ),
@@ -950,7 +980,6 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                             color: Colors
                                                                 .transparent,
                                                           ),
-                                                          borderRadius: 0,
                                                         ),
                                                       ),
                                                     ],
@@ -1139,7 +1168,6 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                     borderSide: BorderSide(
                                                       color: Colors.transparent,
                                                     ),
-                                                    borderRadius: 0,
                                                   ),
                                                 ),
                                               ],
@@ -1365,7 +1393,10 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                               color: Colors
                                                                   .transparent,
                                                             ),
-                                                            borderRadius: 5,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5),
                                                           ),
                                                         ),
                                                       ],
@@ -1519,7 +1550,6 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                               color: Colors
                                                                   .transparent,
                                                             ),
-                                                            borderRadius: 0,
                                                           ),
                                                         ),
                                                       ],
@@ -1862,7 +1892,8 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                   color: Colors.transparent,
                                                   width: 1,
                                                 ),
-                                                borderRadius: 50,
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
                                               ),
                                             ),
                                           ],
@@ -3768,7 +3799,6 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                             color: Colors
                                                                 .transparent,
                                                           ),
-                                                          borderRadius: 0,
                                                         ),
                                                       ),
                                                     ],

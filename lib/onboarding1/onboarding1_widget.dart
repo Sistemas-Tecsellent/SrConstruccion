@@ -30,6 +30,10 @@ class _Onboarding1WidgetState extends State<Onboarding1Widget> {
           height: MediaQuery.of(context).size.height * 1,
           decoration: BoxDecoration(
             color: Color(0xFFEEEEEE),
+            border: Border.all(
+              color: FlutterFlowTheme.of(context).primaryColor,
+              width: 0,
+            ),
           ),
           child: Align(
             alignment: AlignmentDirectional(0, 0),
@@ -124,7 +128,7 @@ class _Onboarding1WidgetState extends State<Onboarding1Widget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   20, 20, 20, 0),
                                           child: Text(
-                                            'La primera app de delivery de la industria de la construcción',
+                                            'La primera app de delivery para la industria de la construcción',
                                             textAlign: TextAlign.center,
                                             style: FlutterFlowTheme.of(context)
                                                 .subtitle2

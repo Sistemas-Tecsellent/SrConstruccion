@@ -1,12 +1,11 @@
 import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../components/facturacion1_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../custom_code/actions/index.dart' as actions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -19,21 +18,7 @@ class FacturacionPerfilWidget extends StatefulWidget {
 }
 
 class _FacturacionPerfilWidgetState extends State<FacturacionPerfilWidget> {
-  List<dynamic> invoiceProfilesResponse;
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  @override
-  void initState() {
-    super.initState();
-    // On page load action.
-    SchedulerBinding.instance?.addPostFrameCallback((_) async {
-      invoiceProfilesResponse = await actions.getInvoiceProfiles(
-        currentUserUid,
-      );
-      setState(() =>
-          FFAppState().invoiceProfiles = invoiceProfilesResponse.toList());
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +38,7 @@ class _FacturacionPerfilWidgetState extends State<FacturacionPerfilWidget> {
             size: 30,
           ),
           onPressed: () async {
-            context.pushNamed('Perfil');
+            context.pop();
           },
         ),
         title: Text(
@@ -80,47 +65,67 @@ class _FacturacionPerfilWidgetState extends State<FacturacionPerfilWidget> {
                 Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    InkWell(
-                      onTap: () async {
-                        context.pushNamed('BuscarPorRFC');
-                      },
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        InkWell(
+                          onTap: () async {
+                            context.pushNamed('BuscarPorRFC');
+                          },
+                          child: Text(
                             'Añadir',
                             style: FlutterFlowTheme.of(context).bodyText1,
                           ),
-                          FlutterFlowIconButton(
-                            borderColor: Colors.transparent,
-                            borderRadius: 30,
-                            borderWidth: 1,
-                            buttonSize: 60,
-                            icon: Icon(
-                              Icons.add,
-                              color: Colors.black,
-                              size: 25,
-                            ),
-                            onPressed: () async {
-                              context.pushNamed('BuscarPorRFC');
-                            },
+                        ),
+                        FlutterFlowIconButton(
+                          borderColor: Colors.transparent,
+                          borderRadius: 30,
+                          borderWidth: 1,
+                          buttonSize: 60,
+                          icon: Icon(
+                            Icons.add,
+                            color: Colors.black,
+                            size: 25,
                           ),
-                        ],
-                      ),
+                          onPressed: () async {
+                            context.pushNamed('BuscarPorRFC');
+                          },
+                        ),
+                      ],
                     ),
                   ],
                 ),
-                Builder(
-                  builder: (context) {
-                    final invoiceProfiles =
-                        FFAppState().invoiceProfiles?.toList() ?? [];
+                StreamBuilder<List<InvoiceProfilesRecord>>(
+                  stream: queryInvoiceProfilesRecord(
+                    parent: currentUserReference,
+                    queryBuilder: (invoiceProfilesRecord) =>
+                        invoiceProfilesRecord.where('id',
+                            isNotEqualTo: 'JHGjhghjGJHGJGHJVHjn'),
+                  ),
+                  builder: (context, snapshot) {
+                    // Customize what your widget looks like when it's loading.
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: SizedBox(
+                          width: 50,
+                          height: 50,
+                          child: SpinKitFadingCircle(
+                            color: FlutterFlowTheme.of(context).primaryColor,
+                            size: 50,
+                          ),
+                        ),
+                      );
+                    }
+                    List<InvoiceProfilesRecord>
+                        columnInvoiceProfilesRecordList = snapshot.data;
                     return Column(
                       mainAxisSize: MainAxisSize.max,
-                      children: List.generate(invoiceProfiles.length,
-                          (invoiceProfilesIndex) {
-                        final invoiceProfilesItem =
-                            invoiceProfiles[invoiceProfilesIndex];
+                      children:
+                          List.generate(columnInvoiceProfilesRecordList.length,
+                              (columnIndex) {
+                        final columnInvoiceProfilesRecord =
+                            columnInvoiceProfilesRecordList[columnIndex];
                         return Padding(
                           padding:
                               EdgeInsetsDirectional.fromSTEB(10, 0, 10, 10),
@@ -134,10 +139,8 @@ class _FacturacionPerfilWidgetState extends State<FacturacionPerfilWidget> {
                                   return Padding(
                                     padding: MediaQuery.of(context).viewInsets,
                                     child: Facturacion1Widget(
-                                      invoiceProfileId: getJsonField(
-                                        invoiceProfilesItem,
-                                        r'''$.id''',
-                                      ).toString(),
+                                      invoiceProfileId:
+                                          columnInvoiceProfilesRecord.id,
                                     ),
                                   );
                                 },
@@ -177,10 +180,7 @@ class _FacturacionPerfilWidgetState extends State<FacturacionPerfilWidget> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              getJsonField(
-                                                invoiceProfilesItem,
-                                                r'''$.name''',
-                                              ).toString(),
+                                              columnInvoiceProfilesRecord.name,
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .subtitle1
@@ -195,15 +195,12 @@ class _FacturacionPerfilWidgetState extends State<FacturacionPerfilWidget> {
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(0, 4, 8, 0),
                                               child: AutoSizeText(
-                                                getJsonField(
-                                                  invoiceProfilesItem,
-                                                  r'''$.address''',
-                                                )
-                                                    .toString()
+                                                columnInvoiceProfilesRecord
+                                                    .address
                                                     .maybeHandleOverflow(
-                                                      maxChars: 70,
-                                                      replacement: '…',
-                                                    ),
+                                                  maxChars: 27,
+                                                  replacement: '…',
+                                                ),
                                                 textAlign: TextAlign.start,
                                                 style: FlutterFlowTheme.of(
                                                         context)
