@@ -225,6 +225,12 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                                       } else {
                                         context.pushNamed(
                                           'CheckoutSeller',
+                                          params: {
+                                            'storeName': serializeParam(
+                                                carritoPorSellersStoresRecord
+                                                    .name,
+                                                ParamType.String),
+                                          }.withoutNulls,
                                           queryParams: {
                                             'storeId': serializeParam(
                                                 widget.storeId,
