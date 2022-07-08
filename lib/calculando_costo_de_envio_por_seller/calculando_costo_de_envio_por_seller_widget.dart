@@ -114,9 +114,14 @@ class _CalculandoCostoDeEnvioPorSellerWidgetState
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        'Esto podría tardar varios minutos...',
-                        style: FlutterFlowTheme.of(context).bodyText1,
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        decoration: BoxDecoration(),
+                        child: Text(
+                          'Esto podría tardar varios minutos...\nPuedes seguir comprando en lo que esperas que se calcule el costo del envío de este pedido.',
+                          textAlign: TextAlign.center,
+                          style: FlutterFlowTheme.of(context).bodyText1,
+                        ),
                       ),
                     ],
                   ),
@@ -184,17 +189,10 @@ class _CalculandoCostoDeEnvioPorSellerWidgetState
                                 true)
                               FFButtonWidget(
                                 onPressed: () async {
-                                  context.goNamed(
-                                    'CheckoutSeller',
-                                    queryParams: {
-                                      'storeId': serializeParam(
-                                          widget.checkoutId, ParamType.String),
-                                    }.withoutNulls,
-                                  );
+                                  context.goNamed('HomeAlt');
                                 },
-                                text: 'Continuar',
+                                text: 'Seguir Comprando',
                                 options: FFButtonOptions(
-                                  width: 130,
                                   height: 40,
                                   color: Colors.white,
                                   textStyle: FlutterFlowTheme.of(context)
