@@ -149,7 +149,6 @@ class _CartProductWidgetState extends State<CartProductWidget> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Container(
-                                      width: 200,
                                       decoration: BoxDecoration(
                                         color: Color(0x00EEEEEE),
                                       ),
