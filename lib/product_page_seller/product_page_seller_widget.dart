@@ -732,100 +732,144 @@ class _ProductPageSellerWidgetState extends State<ProductPageSellerWidget> {
                                                               ),
                                                             ],
                                                           ),
-                                                          Container(
-                                                            width:
-                                                                MediaQuery.of(
+                                                          FutureBuilder<
+                                                              ApiCallResponse>(
+                                                            future:
+                                                                CheckIfProductInCartCall
+                                                                    .call(
+                                                              uid:
+                                                                  currentUserUid,
+                                                              variantId:
+                                                                  columnVariantsRecord
+                                                                      .id,
+                                                              cartId:
+                                                                  columnStoresRecord
+                                                                      .id,
+                                                            ),
+                                                            builder: (context,
+                                                                snapshot) {
+                                                              // Customize what your widget looks like when it's loading.
+                                                              if (!snapshot
+                                                                  .hasData) {
+                                                                return Center(
+                                                                  child:
+                                                                      SizedBox(
+                                                                    width: 50,
+                                                                    height: 50,
+                                                                    child:
+                                                                        SpinKitFadingCircle(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryColor,
+                                                                      size: 50,
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              }
+                                                              final containerCheckIfProductInCartResponse =
+                                                                  snapshot.data;
+                                                              return Container(
+                                                                width: MediaQuery.of(
                                                                         context)
                                                                     .size
                                                                     .width,
-                                                            height: 50,
-                                                            constraints:
-                                                                BoxConstraints(
-                                                              maxWidth: 200,
-                                                            ),
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: Color(
-                                                                  0xFFEEEEEE),
-                                                            ),
-                                                            child: Container(
-                                                              width: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width *
-                                                                  0.4,
-                                                              height: 50,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: Colors
-                                                                    .white,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            4),
-                                                                shape: BoxShape
-                                                                    .rectangle,
-                                                                border:
-                                                                    Border.all(
+                                                                height: 50,
+                                                                constraints:
+                                                                    BoxConstraints(
+                                                                  maxWidth: 200,
+                                                                ),
+                                                                decoration:
+                                                                    BoxDecoration(
                                                                   color: Color(
-                                                                      0xFFE9E9E9),
-                                                                  width: 1,
+                                                                      0xFFEEEEEE),
                                                                 ),
-                                                              ),
-                                                              child:
-                                                                  FlutterFlowCountController(
-                                                                decrementIconBuilder:
-                                                                    (enabled) =>
-                                                                        FaIcon(
-                                                                  FontAwesomeIcons
-                                                                      .minus,
-                                                                  color: enabled
-                                                                      ? Color(
-                                                                          0xDD000000)
-                                                                      : Color(
-                                                                          0xFFEEEEEE),
-                                                                  size: 20,
-                                                                ),
-                                                                incrementIconBuilder:
-                                                                    (enabled) =>
-                                                                        FaIcon(
-                                                                  FontAwesomeIcons
-                                                                      .plus,
-                                                                  color: enabled
-                                                                      ? Color(
-                                                                          0xFF1EEBBD)
-                                                                      : Color(
-                                                                          0xFFEEEEEE),
-                                                                  size: 20,
-                                                                ),
-                                                                countBuilder:
-                                                                    (count) =>
-                                                                        Text(
-                                                                  count
-                                                                      .toString(),
-                                                                  style: GoogleFonts
-                                                                      .getFont(
-                                                                    'Roboto',
+                                                                child:
+                                                                    Container(
+                                                                  width: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width *
+                                                                      0.4,
+                                                                  height: 50,
+                                                                  decoration:
+                                                                      BoxDecoration(
                                                                     color: Colors
-                                                                        .black,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                    fontSize:
-                                                                        16,
+                                                                        .white,
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(4),
+                                                                    shape: BoxShape
+                                                                        .rectangle,
+                                                                    border:
+                                                                        Border
+                                                                            .all(
+                                                                      color: Color(
+                                                                          0xFFE9E9E9),
+                                                                      width: 1,
+                                                                    ),
+                                                                  ),
+                                                                  child:
+                                                                      FlutterFlowCountController(
+                                                                    decrementIconBuilder:
+                                                                        (enabled) =>
+                                                                            FaIcon(
+                                                                      FontAwesomeIcons
+                                                                          .minus,
+                                                                      color: enabled
+                                                                          ? Color(
+                                                                              0xDD000000)
+                                                                          : Color(
+                                                                              0xFFEEEEEE),
+                                                                      size: 20,
+                                                                    ),
+                                                                    incrementIconBuilder:
+                                                                        (enabled) =>
+                                                                            FaIcon(
+                                                                      FontAwesomeIcons
+                                                                          .plus,
+                                                                      color: enabled
+                                                                          ? Color(
+                                                                              0xFF1EEBBD)
+                                                                          : Color(
+                                                                              0xFFEEEEEE),
+                                                                      size: 20,
+                                                                    ),
+                                                                    countBuilder:
+                                                                        (count) =>
+                                                                            Text(
+                                                                      count
+                                                                          .toString(),
+                                                                      style: GoogleFonts
+                                                                          .getFont(
+                                                                        'Roboto',
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontWeight:
+                                                                            FontWeight.w600,
+                                                                        fontSize:
+                                                                            16,
+                                                                      ),
+                                                                    ),
+                                                                    count: countControllerValue ??=
+                                                                        valueOrDefault<
+                                                                            int>(
+                                                                      CheckIfProductInCartCall
+                                                                          .amount(
+                                                                        (containerCheckIfProductInCartResponse?.jsonBody ??
+                                                                            ''),
+                                                                      ),
+                                                                      0,
+                                                                    ),
+                                                                    updateCount:
+                                                                        (count) =>
+                                                                            setState(() =>
+                                                                                countControllerValue = count),
+                                                                    stepSize: 1,
+                                                                    minimum: 0,
                                                                   ),
                                                                 ),
-                                                                count:
-                                                                    countControllerValue ??=
-                                                                        0,
-                                                                updateCount: (count) =>
-                                                                    setState(() =>
-                                                                        countControllerValue =
-                                                                            count),
-                                                                stepSize: 1,
-                                                                minimum: 0,
-                                                              ),
-                                                            ),
+                                                              );
+                                                            },
                                                           ),
                                                         ],
                                                       ),
@@ -904,7 +948,10 @@ class _ProductPageSellerWidgetState extends State<ProductPageSellerWidget> {
                                               .addProductSellerWiseCart(
                                             containerProductsRecord.id,
                                             columnVariantsRecord.id,
-                                            radioButtonValue,
+                                            valueOrDefault<String>(
+                                              radioButtonValue,
+                                              'Recoger en Tienda',
+                                            ),
                                             countControllerValue,
                                             columnStoresRecord.id,
                                           );

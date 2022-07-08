@@ -94,6 +94,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => PerfilWidget(),
             ),
             FFRoute(
+              name: 'CotizacionesDeEnvio',
+              path: 'cotizaciones-de-envio',
+              requireAuth: true,
+              builder: (context, params) => CotizacionesDeEnvioWidget(),
+            ),
+            FFRoute(
               name: 'ProductPageSeller',
               path: 'vendedor/:storeName/:productId',
               requireAuth: true,
@@ -211,10 +217,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             FFRoute(
               name: 'CheckoutSeller',
-              path: 'vendedor/checkout/:storeId',
+              path: 'checkout/:storeName',
               requireAuth: true,
               builder: (context, params) => CheckoutSellerWidget(
                 storeId: params.getParam('storeId', ParamType.String),
+                storeName: params.getParam('storeName', ParamType.String),
               ),
             ),
             FFRoute(

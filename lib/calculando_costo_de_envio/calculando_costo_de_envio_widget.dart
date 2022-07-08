@@ -113,9 +113,14 @@ class _CalculandoCostoDeEnvioWidgetState
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        'Esto podría tardar varios minutos...',
-                        style: FlutterFlowTheme.of(context).bodyText1,
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        decoration: BoxDecoration(),
+                        child: Text(
+                          'Esto podría tardar varios minutos...\nPuedes seguir comprando en lo que esperas que se calcule el costo del envío de este pedido.',
+                          textAlign: TextAlign.center,
+                          style: FlutterFlowTheme.of(context).bodyText1,
+                        ),
                       ),
                     ],
                   ),
@@ -151,9 +156,8 @@ class _CalculandoCostoDeEnvioWidgetState
                             onPressed: () async {
                               context.goNamed('Checkout');
                             },
-                            text: 'Continuar',
+                            text: 'Seguir comprando',
                             options: FFButtonOptions(
-                              width: 130,
                               height: 40,
                               color: Colors.white,
                               textStyle: FlutterFlowTheme.of(context)
