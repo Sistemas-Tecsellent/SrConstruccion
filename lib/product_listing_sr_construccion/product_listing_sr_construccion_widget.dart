@@ -243,14 +243,36 @@ class _ProductListingSrConstruccionWidgetState
                                           snapshot.data;
                                       return InkWell(
                                         onTap: () async {
-                                          context.pushNamed(
-                                            'ProductPage',
-                                            params: {
-                                              'productId': serializeParam(
-                                                  gridViewProductsRecord.id,
-                                                  ParamType.String),
-                                            }.withoutNulls,
-                                          );
+                                          if ((gridViewProductsRecord.owner) ==
+                                              'srconstruccion') {
+                                            context.pushNamed(
+                                              'ProductPage',
+                                              params: {
+                                                'productId': serializeParam(
+                                                    gridViewProductsRecord.id,
+                                                    ParamType.String),
+                                              }.withoutNulls,
+                                            );
+                                          } else {
+                                            context.pushNamed(
+                                              'ProductPageSeller',
+                                              params: {
+                                                'storeName': serializeParam(
+                                                    gridViewProductsRecord
+                                                        .ownerName,
+                                                    ParamType.String),
+                                                'productId': serializeParam(
+                                                    gridViewProductsRecord.id,
+                                                    ParamType.String),
+                                              }.withoutNulls,
+                                              queryParams: {
+                                                'storeId': serializeParam(
+                                                    gridViewProductsRecord
+                                                        .owner,
+                                                    ParamType.String),
+                                              }.withoutNulls,
+                                            );
+                                          }
                                         },
                                         child: Container(
                                           decoration: BoxDecoration(
@@ -367,35 +389,20 @@ class _ProductListingSrConstruccionWidgetState
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0, 0, 0, 5),
-                                                      child: InkWell(
-                                                        onTap: () async {
-                                                          context.pushNamed(
-                                                            'ProductPage',
-                                                            params: {
-                                                              'productId':
-                                                                  serializeParam(
-                                                                      gridViewProductsRecord
-                                                                          .id,
-                                                                      ParamType
-                                                                          .String),
-                                                            }.withoutNulls,
-                                                          );
-                                                        },
-                                                        child: ClipRRect(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(10),
-                                                          child: Image.network(
-                                                            valueOrDefault<
-                                                                String>(
-                                                              gridViewProductsRecord
-                                                                  .mainImage,
-                                                              'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
-                                                            ),
-                                                            width: 100,
-                                                            height: 100,
-                                                            fit: BoxFit.contain,
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                        child: Image.network(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            gridViewProductsRecord
+                                                                .mainImage,
+                                                            'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
                                                           ),
+                                                          width: 100,
+                                                          height: 100,
+                                                          fit: BoxFit.contain,
                                                         ),
                                                       ),
                                                     ),
@@ -750,14 +757,36 @@ class _ProductListingSrConstruccionWidgetState
                                           snapshot.data;
                                       return InkWell(
                                         onTap: () async {
-                                          context.pushNamed(
-                                            'ProductPage',
-                                            params: {
-                                              'productId': serializeParam(
-                                                  gridViewProductsRecord.id,
-                                                  ParamType.String),
-                                            }.withoutNulls,
-                                          );
+                                          if ((gridViewProductsRecord.owner) ==
+                                              'srconstruccion') {
+                                            context.pushNamed(
+                                              'ProductPage',
+                                              params: {
+                                                'productId': serializeParam(
+                                                    gridViewProductsRecord.id,
+                                                    ParamType.String),
+                                              }.withoutNulls,
+                                            );
+                                          } else {
+                                            context.pushNamed(
+                                              'ProductPageSeller',
+                                              params: {
+                                                'storeName': serializeParam(
+                                                    gridViewProductsRecord
+                                                        .ownerName,
+                                                    ParamType.String),
+                                                'productId': serializeParam(
+                                                    gridViewProductsRecord.id,
+                                                    ParamType.String),
+                                              }.withoutNulls,
+                                              queryParams: {
+                                                'storeId': serializeParam(
+                                                    gridViewProductsRecord
+                                                        .owner,
+                                                    ParamType.String),
+                                              }.withoutNulls,
+                                            );
+                                          }
                                         },
                                         child: Container(
                                           decoration: BoxDecoration(
@@ -881,35 +910,20 @@ class _ProductListingSrConstruccionWidgetState
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0, 0, 0, 5),
-                                                      child: InkWell(
-                                                        onTap: () async {
-                                                          context.pushNamed(
-                                                            'ProductPage',
-                                                            params: {
-                                                              'productId':
-                                                                  serializeParam(
-                                                                      gridViewProductsRecord
-                                                                          .id,
-                                                                      ParamType
-                                                                          .String),
-                                                            }.withoutNulls,
-                                                          );
-                                                        },
-                                                        child: ClipRRect(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(10),
-                                                          child: Image.network(
-                                                            valueOrDefault<
-                                                                String>(
-                                                              gridViewProductsRecord
-                                                                  .mainImage,
-                                                              'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
-                                                            ),
-                                                            width: 100,
-                                                            height: 100,
-                                                            fit: BoxFit.contain,
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                        child: Image.network(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            gridViewProductsRecord
+                                                                .mainImage,
+                                                            'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
                                                           ),
+                                                          width: 100,
+                                                          height: 100,
+                                                          fit: BoxFit.contain,
                                                         ),
                                                       ),
                                                     ),

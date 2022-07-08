@@ -2,7 +2,6 @@ import '../auth/auth_util.dart';
 import '../auth/firebase_user_provider.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
-import '../components/seller_product_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -560,34 +559,29 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                                                                       10,
                                                                       0),
                                                           child: InkWell(
-                                                            onTap: () async {
-                                                              await showModalBottomSheet(
-                                                                isScrollControlled:
-                                                                    true,
-                                                                backgroundColor:
-                                                                    Colors
-                                                                        .transparent,
-                                                                context:
-                                                                    context,
-                                                                builder:
-                                                                    (context) {
-                                                                  return Padding(
-                                                                    padding: MediaQuery.of(
-                                                                            context)
-                                                                        .viewInsets,
-                                                                    child:
-                                                                        SellerProductWidget(
-                                                                      store: widget
-                                                                          .storeId,
-                                                                      productId:
-                                                                          rowProductsRecord
-                                                                              .id,
-                                                                      variantId:
-                                                                          containerVariantsRecord
-                                                                              .id,
-                                                                    ),
-                                                                  );
-                                                                },
+                                                            onLongPress:
+                                                                () async {
+                                                              context.pushNamed(
+                                                                'ProductPageSeller',
+                                                                params: {
+                                                                  'storeName': serializeParam(
+                                                                      rowProductsRecord
+                                                                          .ownerName,
+                                                                      ParamType
+                                                                          .String),
+                                                                  'productId': serializeParam(
+                                                                      rowProductsRecord
+                                                                          .id,
+                                                                      ParamType
+                                                                          .String),
+                                                                }.withoutNulls,
+                                                                queryParams: {
+                                                                  'storeId': serializeParam(
+                                                                      rowProductsRecord
+                                                                          .owner,
+                                                                      ParamType
+                                                                          .String),
+                                                                }.withoutNulls,
                                                               );
                                                             },
                                                             child: Row(

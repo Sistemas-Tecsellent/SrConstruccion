@@ -68,9 +68,9 @@ export 'product_listing_for_seller/product_listing_for_seller_widget.dart'
 export 'devolucion2/devolucion2_widget.dart' show Devolucion2Widget;
 export 'solicitud_devolucion_enviada/solicitud_devolucion_enviada_widget.dart'
     show SolicitudDevolucionEnviadaWidget;
-export 'mis_pedidos/mis_pedidos_widget.dart' show MisPedidosWidget;
 export 'solicitud_devolucion_aceptada/solicitud_devolucion_aceptada_widget.dart'
     show SolicitudDevolucionAceptadaWidget;
+export 'mis_pedidos/mis_pedidos_widget.dart' show MisPedidosWidget;
 export 'categoria_single/categoria_single_widget.dart'
     show CategoriaSingleWidget;
 export 'checkout/checkout_widget.dart' show CheckoutWidget;
@@ -124,3 +124,5 @@ export 'calculando_costo_de_envio/calculando_costo_de_envio_widget.dart'
     show CalculandoCostoDeEnvioWidget;
 export 'calculando_costo_de_envio_por_seller/calculando_costo_de_envio_por_seller_widget.dart'
     show CalculandoCostoDeEnvioPorSellerWidget;
+export 'mis_pedidos_historial/mis_pedidos_historial_widget.dart'
+    show MisPedidosHistorialWidget;

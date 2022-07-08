@@ -358,7 +358,7 @@ class _ProductosPedidoWidgetState extends State<ProductosPedidoWidget> {
                                                                     valueOrDefault<
                                                                         String>(
                                                                       cageProductsRecord
-                                                                          .brandLogo,
+                                                                          .mainImage,
                                                                       'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
                                                                     ),
                                                                     width: 250,
