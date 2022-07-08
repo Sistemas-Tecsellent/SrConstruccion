@@ -4768,15 +4768,13 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                     child: InkWell(
                                                                                       onTap: () async {
                                                                                         context.pushNamed(
-                                                                                          'PerfilDelSeller',
+                                                                                          'ProductPageSeller',
                                                                                           params: {
+                                                                                            'productId': serializeParam(widget.productId, ParamType.String),
                                                                                             'storeName': serializeParam(sellerStoresRecord.name, ParamType.String),
                                                                                           }.withoutNulls,
                                                                                           queryParams: {
                                                                                             'storeId': serializeParam(sellerStoresRecord.id, ParamType.String),
-                                                                                            'calledFromPage': serializeParam('productPage', ParamType.String),
-                                                                                            'productId': serializeParam(widget.productId, ParamType.String),
-                                                                                            'variantId': serializeParam(FFAppState().currentVariant, ParamType.String),
                                                                                           }.withoutNulls,
                                                                                         );
                                                                                       },

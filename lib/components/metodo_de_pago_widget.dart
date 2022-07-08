@@ -147,17 +147,21 @@ class _MetodoDePagoWidgetState extends State<MetodoDePagoWidget> {
                                   if ((widget.storeId) == '\"\"') {
                                     await actions.setCheckoutModifyPaymentMet(
                                       currentUserUid,
-                                      radioButtonValue,
+                                      valueOrDefault<String>(
+                                        radioButtonValue,
+                                        'Tarjeta Crédito / Débito',
+                                      ),
                                     );
-                                    context.pop();
-                                    context.pop();
+                                    Navigator.pop(context);
                                   } else {
                                     await actions.setCheckoutModifyPaymentMet(
                                       widget.storeId,
-                                      radioButtonValue,
+                                      valueOrDefault<String>(
+                                        radioButtonValue,
+                                        'Tarjeta Crédito / Débito',
+                                      ),
                                     );
-                                    context.pop();
-                                    context.pop();
+                                    Navigator.pop(context);
                                   }
                                 },
                                 text: 'Seleccionar',

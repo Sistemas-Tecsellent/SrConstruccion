@@ -28,7 +28,7 @@ class GetVariantInventoryByStoreCall {
     String productId = '',
     String variantId = '',
     String store = '',
-    String priceType = '',
+    String priceType = 'public',
   }) {
     return ApiManager.instance.makeApiCall(
       callName: 'getVariantInventoryByStore',
@@ -345,6 +345,10 @@ class GetSellerWiseCartTotalCall {
         response,
         r'''$.total.message''',
       );
+  static dynamic canPay(dynamic response) => getJsonField(
+        response,
+        r'''$.total.canPay''',
+      );
 }
 
 class GetSellerWiseCheckoutCall {
@@ -537,6 +541,24 @@ class AddressToLatLngCall {
       params: {
         'uid': uid,
         'addressName': addressName,
+      },
+      returnBody: true,
+    );
+  }
+}
+
+class CheckoutPricingRequestCall {
+  static Future<ApiCallResponse> call({
+    String requestId = '',
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'checkoutPricingRequest',
+      apiUrl:
+          'https://us-central1-srconstruccion-d4663.cloudfunctions.net/checkoutPricingRequest',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'requestId': requestId,
       },
       returnBody: true,
     );

@@ -94,8 +94,24 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => PerfilWidget(),
             ),
             FFRoute(
+              name: 'CotizacionesDeEnvio',
+              path: 'cotizaciones-de-envio',
+              requireAuth: true,
+              builder: (context, params) => CotizacionesDeEnvioWidget(),
+            ),
+            FFRoute(
+              name: 'ProductPageSeller',
+              path: 'vendedor/:storeName/:productId',
+              requireAuth: true,
+              builder: (context, params) => ProductPageSellerWidget(
+                storeId: params.getParam('storeId', ParamType.String),
+                storeName: params.getParam('storeName', ParamType.String),
+                productId: params.getParam('productId', ParamType.String),
+              ),
+            ),
+            FFRoute(
               name: 'ProductPage',
-              path: 'product/:productId',
+              path: 'producto/:productId',
               builder: (context, params) => ProductPageWidget(
                 productId: params.getParam('productId', ParamType.String),
               ),
@@ -201,10 +217,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             FFRoute(
               name: 'CheckoutSeller',
-              path: 'vendedor/checkout/:storeId',
+              path: 'checkout/:storeName',
               requireAuth: true,
               builder: (context, params) => CheckoutSellerWidget(
                 storeId: params.getParam('storeId', ParamType.String),
+                storeName: params.getParam('storeName', ParamType.String),
               ),
             ),
             FFRoute(
@@ -229,10 +246,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             FFRoute(
               name: 'CarritoPorSellers',
-              path: 'vendedor/carrito/:storeId',
+              path: 'carrito/:storeName',
               requireAuth: true,
               builder: (context, params) => CarritoPorSellersWidget(
                 storeId: params.getParam('storeId', ParamType.String),
+                storeName: params.getParam('storeName', ParamType.String),
               ),
             ),
             FFRoute(
@@ -599,12 +617,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   CalculandoCostoDeEnvioPorSellerWidget(
                 checkoutId: params.getParam('checkoutId', ParamType.String),
               ),
-            ),
-            FFRoute(
-              name: 'ProductPageSeller',
-              path: 'productPageSeller',
-              requireAuth: true,
-              builder: (context, params) => ProductPageSellerWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

@@ -120,12 +120,20 @@ class _WishListOptionsWidgetState extends State<WishListOptionsWidget> {
                                                     10, 0, 0, 0),
                                             child: AuthUserStreamWidget(
                                               child: Text(
-                                                (currentUserDocument
-                                                            ?.likedProducts
-                                                            ?.toList() ??
-                                                        [])
-                                                    .length
-                                                    .toString(),
+                                                valueOrDefault<String>(
+                                                  functions
+                                                      .substractOne(
+                                                          valueOrDefault<int>(
+                                                        (currentUserDocument
+                                                                    ?.likedProducts
+                                                                    ?.toList() ??
+                                                                [])
+                                                            .length,
+                                                        0,
+                                                      ))
+                                                      .toString(),
+                                                  '0',
+                                                ),
                                                 style: FlutterFlowTheme.of(
                                                         context)
                                                     .bodyText1
@@ -222,12 +230,20 @@ class _WishListOptionsWidgetState extends State<WishListOptionsWidget> {
                                                     10, 0, 0, 0),
                                             child: AuthUserStreamWidget(
                                               child: Text(
-                                                (currentUserDocument
-                                                            ?.likedStores
-                                                            ?.toList() ??
-                                                        [])
-                                                    .length
-                                                    .toString(),
+                                                valueOrDefault<String>(
+                                                  functions
+                                                      .substractOne(
+                                                          valueOrDefault<int>(
+                                                        (currentUserDocument
+                                                                    ?.likedStores
+                                                                    ?.toList() ??
+                                                                [])
+                                                            .length,
+                                                        0,
+                                                      ))
+                                                      .toString(),
+                                                  '0',
+                                                ),
                                                 style: FlutterFlowTheme.of(
                                                         context)
                                                     .bodyText1
@@ -322,11 +338,20 @@ class _WishListOptionsWidgetState extends State<WishListOptionsWidget> {
                                                   10, 0, 0, 0),
                                           child: AuthUserStreamWidget(
                                             child: Text(
-                                              (currentUserDocument?.likedBrands
-                                                          ?.toList() ??
-                                                      [])
-                                                  .length
-                                                  .toString(),
+                                              valueOrDefault<String>(
+                                                functions
+                                                    .substractOne(
+                                                        valueOrDefault<int>(
+                                                      (currentUserDocument
+                                                                  ?.likedBrands
+                                                                  ?.toList() ??
+                                                              [])
+                                                          .length,
+                                                      0,
+                                                    ))
+                                                    .toString(),
+                                                '0',
+                                              ),
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .bodyText1

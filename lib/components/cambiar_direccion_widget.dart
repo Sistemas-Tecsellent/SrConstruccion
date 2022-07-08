@@ -235,13 +235,13 @@ class _CambiarDireccionWidgetState extends State<CambiarDireccionWidget> {
                                       currentUserUid,
                                       columnAddressesRecord.name,
                                     );
-                                    context.pop();
+                                    Navigator.pop(context);
                                   } else {
                                     await actions.setCheckoutModifyAddress(
                                       widget.storeId,
                                       columnAddressesRecord.name,
                                     );
-                                    context.pop();
+                                    Navigator.pop(context);
                                   }
                                 },
                               ),

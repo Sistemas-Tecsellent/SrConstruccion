@@ -117,7 +117,7 @@ class _ProductListingForSellerWidgetState
                           onPressed: () async {
                             context.pushNamed(
                               'CarritoPorSellers',
-                              params: {
+                              queryParams: {
                                 'storeId': serializeParam(
                                     widget.storeId, ParamType.String),
                               }.withoutNulls,

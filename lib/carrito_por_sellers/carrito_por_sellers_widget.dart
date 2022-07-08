@@ -3,12 +3,12 @@ import '../auth/firebase_user_provider.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../components/seller_product_widget.dart';
-import '../components/sugerencias_recomendaciones_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../custom_code/actions/index.dart' as actions;
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,9 +17,11 @@ class CarritoPorSellersWidget extends StatefulWidget {
   const CarritoPorSellersWidget({
     Key key,
     this.storeId,
+    this.storeName,
   }) : super(key: key);
 
   final String storeId;
+  final String storeName;
 
   @override
   _CarritoPorSellersWidgetState createState() =>
@@ -28,6 +30,7 @@ class CarritoPorSellersWidget extends StatefulWidget {
 
 class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
   ApiCallResponse pendingShipmentPrice;
+  Completer<ApiCallResponse> _apiRequestCompleter;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -116,64 +119,54 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                   );
                 }
                 final containerGetSellerWiseCartTotalResponse = snapshot.data;
-                return InkWell(
-                  onTap: () async {
-                    await showModalBottomSheet(
-                      isScrollControlled: true,
-                      backgroundColor: Colors.transparent,
-                      context: context,
-                      builder: (context) {
-                        return Padding(
-                          padding: MediaQuery.of(context).viewInsets,
-                          child: SugerenciasRecomendacionesWidget(),
-                        );
-                      },
-                    );
-                    context.pushNamed('Checkout');
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Color(0x00FF5963),
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 3,
-                          color: Color(0x20000000),
-                        )
-                      ],
-                      borderRadius: BorderRadius.circular(15),
+                return Container(
+                  decoration: BoxDecoration(
+                    color: Color(0x00FF5963),
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 3,
+                        color: Color(0x20000000),
+                      )
+                    ],
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  alignment: AlignmentDirectional(0, 0),
+                  child: StreamBuilder<List<AddressesRecord>>(
+                    stream: queryAddressesRecord(
+                      parent: currentUserReference,
+                      singleRecord: true,
                     ),
-                    alignment: AlignmentDirectional(0, 0),
-                    child: StreamBuilder<List<AddressesRecord>>(
-                      stream: queryAddressesRecord(
-                        parent: currentUserReference,
-                        singleRecord: true,
-                      ),
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 50,
-                              height: 50,
-                              child: SpinKitFadingCircle(
-                                color:
-                                    FlutterFlowTheme.of(context).primaryColor,
-                                size: 50,
-                              ),
+                    builder: (context, snapshot) {
+                      // Customize what your widget looks like when it's loading.
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: SizedBox(
+                            width: 50,
+                            height: 50,
+                            child: SpinKitFadingCircle(
+                              color: FlutterFlowTheme.of(context).primaryColor,
+                              size: 50,
                             ),
-                          );
-                        }
-                        List<AddressesRecord> rowAddtoCartAddressesRecordList =
-                            snapshot.data;
-                        final rowAddtoCartAddressesRecord =
-                            rowAddtoCartAddressesRecordList.isNotEmpty
-                                ? rowAddtoCartAddressesRecordList.first
-                                : null;
-                        return Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
+                          ),
+                        );
+                      }
+                      List<AddressesRecord> rowAddtoCartAddressesRecordList =
+                          snapshot.data;
+                      final rowAddtoCartAddressesRecord =
+                          rowAddtoCartAddressesRecordList.isNotEmpty
+                              ? rowAddtoCartAddressesRecordList.first
+                              : null;
+                      return Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          if (GetSellerWiseCartTotalCall.canPay(
+                                (containerGetSellerWiseCartTotalResponse
+                                        ?.jsonBody ??
+                                    ''),
+                              ) ??
+                              true)
                             StreamBuilder<List<InvoiceProfilesRecord>>(
                               stream: queryInvoiceProfilesRecord(
                                 parent: currentUserReference,
@@ -233,6 +226,12 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                                         context.pushNamed(
                                           'CheckoutSeller',
                                           params: {
+                                            'storeName': serializeParam(
+                                                carritoPorSellersStoresRecord
+                                                    .name,
+                                                ParamType.String),
+                                          }.withoutNulls,
+                                          queryParams: {
                                             'storeId': serializeParam(
                                                 widget.storeId,
                                                 ParamType.String),
@@ -273,10 +272,9 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                                 );
                               },
                             ),
-                          ],
-                        );
-                      },
-                    ),
+                        ],
+                      );
+                    },
                   ),
                 );
               },
@@ -286,10 +284,12 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
             child: GestureDetector(
               onTap: () => FocusScope.of(context).unfocus(),
               child: FutureBuilder<ApiCallResponse>(
-                future: GetSellerWiseCartCall.call(
-                  uid: currentUserUid,
-                  storeId: widget.storeId,
-                ),
+                future: (_apiRequestCompleter ??= Completer<ApiCallResponse>()
+                      ..complete(GetSellerWiseCartCall.call(
+                        uid: currentUserUid,
+                        storeId: widget.storeId,
+                      )))
+                    .future,
                 builder: (context, snapshot) {
                   // Customize what your widget looks like when it's loading.
                   if (!snapshot.hasData) {
@@ -529,6 +529,10 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                                                                       containerVariantsRecord
                                                                           .id,
                                                                     );
+                                                                    setState(() =>
+                                                                        _apiRequestCompleter =
+                                                                            null);
+                                                                    await waitForApiRequestCompleter();
                                                                   },
                                                                   child: Text(
                                                                     'Eliminar ',
@@ -623,119 +627,108 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                                                                     ),
                                                                   ),
                                                                 ),
-                                                                Column(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .center,
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
-                                                                  children: [
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional
-                                                                          .fromSTEB(
+                                                                Expanded(
+                                                                  child: Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .center,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      Container(
+                                                                        width: MediaQuery.of(context)
+                                                                            .size
+                                                                            .width,
+                                                                        decoration:
+                                                                            BoxDecoration(),
+                                                                        child:
+                                                                            Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               6,
                                                                               0,
                                                                               0,
                                                                               0),
-                                                                      child:
-                                                                          Text(
-                                                                        rowProductsRecord
-                                                                            .title
-                                                                            .maybeHandleOverflow(maxChars: 25),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyText1,
+                                                                          child:
+                                                                              Text(
+                                                                            rowProductsRecord.title,
+                                                                            style:
+                                                                                FlutterFlowTheme.of(context).bodyText1,
+                                                                          ),
+                                                                        ),
                                                                       ),
-                                                                    ),
-                                                                    Stack(
-                                                                      children: [
-                                                                        if ((valueOrDefault(currentUserDocument?.type,
-                                                                                '')) ==
-                                                                            'public')
-                                                                          Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
-                                                                                6,
-                                                                                0,
-                                                                                0,
-                                                                                0),
-                                                                            child:
-                                                                                AuthUserStreamWidget(
-                                                                              child: Text(
-                                                                                formatNumber(
-                                                                                  containerVariantsRecord.publicPrice,
-                                                                                  formatType: FormatType.decimal,
-                                                                                  decimalType: DecimalType.periodDecimal,
-                                                                                  currency: '',
+                                                                      Stack(
+                                                                        children: [
+                                                                          if ((valueOrDefault(currentUserDocument?.type, '')) ==
+                                                                              'public')
+                                                                            Padding(
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(6, 0, 0, 0),
+                                                                              child: AuthUserStreamWidget(
+                                                                                child: Text(
+                                                                                  formatNumber(
+                                                                                    containerVariantsRecord.publicPrice,
+                                                                                    formatType: FormatType.decimal,
+                                                                                    decimalType: DecimalType.periodDecimal,
+                                                                                    currency: '',
+                                                                                  ),
+                                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                        fontFamily: 'Montserrat',
+                                                                                        color: FlutterFlowTheme.of(context).alternate,
+                                                                                        fontSize: 18,
+                                                                                        fontWeight: FontWeight.w500,
+                                                                                      ),
                                                                                 ),
-                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                      fontFamily: 'Montserrat',
-                                                                                      color: FlutterFlowTheme.of(context).alternate,
-                                                                                      fontSize: 18,
-                                                                                      fontWeight: FontWeight.w500,
-                                                                                    ),
                                                                               ),
                                                                             ),
-                                                                          ),
-                                                                        if ((valueOrDefault(currentUserDocument?.type,
-                                                                                '')) ==
-                                                                            'wholesale')
-                                                                          Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
-                                                                                6,
-                                                                                0,
-                                                                                0,
-                                                                                0),
-                                                                            child:
-                                                                                AuthUserStreamWidget(
-                                                                              child: Text(
-                                                                                formatNumber(
-                                                                                  containerVariantsRecord.wholesalePrice,
-                                                                                  formatType: FormatType.decimal,
-                                                                                  decimalType: DecimalType.periodDecimal,
-                                                                                  currency: '',
+                                                                          if ((valueOrDefault(currentUserDocument?.type, '')) ==
+                                                                              'wholesale')
+                                                                            Padding(
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(6, 0, 0, 0),
+                                                                              child: AuthUserStreamWidget(
+                                                                                child: Text(
+                                                                                  formatNumber(
+                                                                                    containerVariantsRecord.wholesalePrice,
+                                                                                    formatType: FormatType.decimal,
+                                                                                    decimalType: DecimalType.periodDecimal,
+                                                                                    currency: '',
+                                                                                  ),
+                                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                        fontFamily: 'Montserrat',
+                                                                                        color: FlutterFlowTheme.of(context).alternate,
+                                                                                        fontSize: 18,
+                                                                                        fontWeight: FontWeight.w500,
+                                                                                      ),
                                                                                 ),
-                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                      fontFamily: 'Montserrat',
-                                                                                      color: FlutterFlowTheme.of(context).alternate,
-                                                                                      fontSize: 18,
-                                                                                      fontWeight: FontWeight.w500,
-                                                                                    ),
                                                                               ),
                                                                             ),
-                                                                          ),
-                                                                        if ((valueOrDefault(currentUserDocument?.type,
-                                                                                '')) ==
-                                                                            'megaWholesale')
-                                                                          Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
-                                                                                6,
-                                                                                0,
-                                                                                0,
-                                                                                0),
-                                                                            child:
-                                                                                AuthUserStreamWidget(
-                                                                              child: Text(
-                                                                                formatNumber(
-                                                                                  containerVariantsRecord.megaWholesalePrice,
-                                                                                  formatType: FormatType.decimal,
-                                                                                  decimalType: DecimalType.periodDecimal,
-                                                                                  currency: '',
+                                                                          if ((valueOrDefault(currentUserDocument?.type, '')) ==
+                                                                              'megaWholesale')
+                                                                            Padding(
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(6, 0, 0, 0),
+                                                                              child: AuthUserStreamWidget(
+                                                                                child: Text(
+                                                                                  formatNumber(
+                                                                                    containerVariantsRecord.megaWholesalePrice,
+                                                                                    formatType: FormatType.decimal,
+                                                                                    decimalType: DecimalType.periodDecimal,
+                                                                                    currency: '',
+                                                                                  ),
+                                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                        fontFamily: 'Montserrat',
+                                                                                        color: FlutterFlowTheme.of(context).alternate,
+                                                                                        fontSize: 18,
+                                                                                        fontWeight: FontWeight.w500,
+                                                                                      ),
                                                                                 ),
-                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                      fontFamily: 'Montserrat',
-                                                                                      color: FlutterFlowTheme.of(context).alternate,
-                                                                                      fontSize: 18,
-                                                                                      fontWeight: FontWeight.w500,
-                                                                                    ),
                                                                               ),
                                                                             ),
-                                                                          ),
-                                                                      ],
-                                                                    ),
-                                                                  ],
+                                                                        ],
+                                                                      ),
+                                                                    ],
+                                                                  ),
                                                                 ),
                                                               ],
                                                             ),
@@ -944,5 +937,20 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
         );
       },
     );
+  }
+
+  Future waitForApiRequestCompleter({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = _apiRequestCompleter?.isCompleted ?? false;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
   }
 }

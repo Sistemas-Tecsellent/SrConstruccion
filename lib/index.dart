@@ -2,6 +2,10 @@
 export 'notificaciones/notificaciones_widget.dart' show NotificacionesWidget;
 export 'home_alt/home_alt_widget.dart' show HomeAltWidget;
 export 'perfil/perfil_widget.dart' show PerfilWidget;
+export 'cotizaciones_de_envio/cotizaciones_de_envio_widget.dart'
+    show CotizacionesDeEnvioWidget;
+export 'product_page_seller/product_page_seller_widget.dart'
+    show ProductPageSellerWidget;
 export 'product_page/product_page_widget.dart' show ProductPageWidget;
 export 'login/login_widget.dart' show LoginWidget;
 export 'carrito/carrito_widget.dart' show CarritoWidget;
@@ -120,5 +124,3 @@ export 'calculando_costo_de_envio/calculando_costo_de_envio_widget.dart'
     show CalculandoCostoDeEnvioWidget;
 export 'calculando_costo_de_envio_por_seller/calculando_costo_de_envio_por_seller_widget.dart'
     show CalculandoCostoDeEnvioPorSellerWidget;
-export 'product_page_seller/product_page_seller_widget.dart'
-    show ProductPageSellerWidget;

@@ -5,6 +5,7 @@ import '../flutter_flow/flutter_flow_radio_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,6 +24,7 @@ class FacturacionWidget extends StatefulWidget {
 
 class _FacturacionWidgetState extends State<FacturacionWidget> {
   String radioButtonValue;
+  dynamic newInvoiceProfile;
 
   @override
   Widget build(BuildContext context) {
@@ -189,21 +191,53 @@ class _FacturacionWidgetState extends State<FacturacionWidget> {
                           children: [
                             FFButtonWidget(
                               onPressed: () async {
-                                await showModalBottomSheet(
-                                  isScrollControlled: true,
-                                  backgroundColor: Colors.transparent,
-                                  context: context,
-                                  builder: (context) {
-                                    return Padding(
-                                      padding:
-                                          MediaQuery.of(context).viewInsets,
-                                      child: SeleccionarFacturacionWidget(
-                                        invoiceProfileName: radioButtonValue,
-                                        storeId: widget.storeId,
-                                      ),
+                                if ((radioButtonValue) == 'Sin factura') {
+                                  newInvoiceProfile =
+                                      await actions.getInvoiceProfileById(
+                                    'JHGjhghjGJHGJGHJVHjn',
+                                  );
+                                  if ((widget.storeId) == '\"\"') {
+                                    await actions
+                                        .setCheckoutModifyInvoiceAndUsage(
+                                      currentUserUid,
+                                      getJsonField(
+                                        newInvoiceProfile,
+                                        r'''$.id''',
+                                      ).toString(),
+                                      'Por Definir',
                                     );
-                                  },
-                                );
+                                    Navigator.pop(context);
+                                  } else {
+                                    await actions
+                                        .setCheckoutModifyInvoiceAndUsage(
+                                      widget.storeId,
+                                      getJsonField(
+                                        newInvoiceProfile,
+                                        r'''$.id''',
+                                      ).toString(),
+                                      'Por Definir',
+                                    );
+                                    Navigator.pop(context);
+                                  }
+                                } else {
+                                  await showModalBottomSheet(
+                                    isScrollControlled: true,
+                                    backgroundColor: Colors.transparent,
+                                    context: context,
+                                    builder: (context) {
+                                      return Padding(
+                                        padding:
+                                            MediaQuery.of(context).viewInsets,
+                                        child: SeleccionarFacturacionWidget(
+                                          invoiceProfileName: radioButtonValue,
+                                          storeId: widget.storeId,
+                                        ),
+                                      );
+                                    },
+                                  );
+                                }
+
+                                setState(() {});
                               },
                               text: 'Confirmar Datos',
                               options: FFButtonOptions(

@@ -101,7 +101,7 @@ class _FacturacionPerfilWidgetState extends State<FacturacionPerfilWidget> {
                     parent: currentUserReference,
                     queryBuilder: (invoiceProfilesRecord) =>
                         invoiceProfilesRecord.where('id',
-                            isEqualTo: 'JHGjhghjGJHGJGHJVHjn'),
+                            isNotEqualTo: 'JHGjhghjGJHGJGHJVHjn'),
                   ),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
