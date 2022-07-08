@@ -754,6 +754,8 @@ class _CategoriaSingleMARCAWidgetState
                                                                             ),
                                                                             textAlign:
                                                                                 TextAlign.start,
+                                                                            maxLines:
+                                                                                2,
                                                                             style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                   fontFamily: 'Montserrat',
                                                                                   color: Colors.white,
@@ -764,85 +766,118 @@ class _CategoriaSingleMARCAWidgetState
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                    Align(
-                                                                      alignment:
-                                                                          AlignmentDirectional(
-                                                                              1,
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              0,
+                                                                              10,
+                                                                              0,
                                                                               0),
                                                                       child:
+                                                                          Row(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.spaceBetween,
+                                                                        children: [
                                                                           Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0,
-                                                                            10,
-                                                                            0,
-                                                                            0),
-                                                                        child:
-                                                                            Container(
-                                                                          width:
-                                                                              150,
-                                                                          height:
-                                                                              40,
-                                                                          decoration:
-                                                                              BoxDecoration(
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).alternate,
-                                                                            borderRadius:
-                                                                                BorderRadius.only(
-                                                                              bottomLeft: Radius.circular(10),
-                                                                              bottomRight: Radius.circular(0),
-                                                                              topLeft: Radius.circular(10),
-                                                                              topRight: Radius.circular(0),
-                                                                            ),
-                                                                          ),
-                                                                          child:
-                                                                              Padding(
                                                                             padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 10,
                                                                                 0,
                                                                                 0,
                                                                                 0),
                                                                             child:
-                                                                                Row(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              children: [
-                                                                                Align(
-                                                                                  alignment: AlignmentDirectional(1, 0),
-                                                                                  child: Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
-                                                                                    child: Text(
-                                                                                      '\$',
-                                                                                      textAlign: TextAlign.end,
-                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                            fontFamily: 'Montserrat',
-                                                                                            color: Colors.white,
-                                                                                            fontSize: 18,
-                                                                                            fontWeight: FontWeight.w500,
-                                                                                          ),
-                                                                                    ),
+                                                                                Container(
+                                                                              width: 35,
+                                                                              height: 35,
+                                                                              decoration: BoxDecoration(
+                                                                                color: Color(0xFFEEEEEE),
+                                                                                shape: BoxShape.circle,
+                                                                              ),
+                                                                              child: InkWell(
+                                                                                onTap: () async {
+                                                                                  context.pushNamed(
+                                                                                    'MarcaSingle',
+                                                                                    params: {
+                                                                                      'brandId': serializeParam(rowProductsRecord.brand, ParamType.String),
+                                                                                    }.withoutNulls,
+                                                                                  );
+                                                                                },
+                                                                                child: Container(
+                                                                                  width: 120,
+                                                                                  height: 120,
+                                                                                  clipBehavior: Clip.antiAlias,
+                                                                                  decoration: BoxDecoration(
+                                                                                    shape: BoxShape.circle,
+                                                                                  ),
+                                                                                  child: Image.network(
+                                                                                    rowProductsRecord.brandLogo,
                                                                                   ),
                                                                                 ),
-                                                                                Align(
-                                                                                  alignment: AlignmentDirectional(1, 0),
-                                                                                  child: Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
-                                                                                    child: Text(
-                                                                                      GetOneVariantCall.price(
-                                                                                        (stackGetOneVariantResponse?.jsonBody ?? ''),
-                                                                                      ).toString(),
-                                                                                      textAlign: TextAlign.end,
-                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                            fontFamily: 'Montserrat',
-                                                                                            color: Colors.white,
-                                                                                            fontSize: 18,
-                                                                                            fontWeight: FontWeight.w500,
-                                                                                          ),
-                                                                                    ),
-                                                                                  ),
-                                                                                ),
-                                                                              ],
+                                                                              ),
                                                                             ),
                                                                           ),
-                                                                        ),
+                                                                          Align(
+                                                                            alignment:
+                                                                                AlignmentDirectional(1, 0),
+                                                                            child:
+                                                                                Container(
+                                                                              width: 120,
+                                                                              height: 40,
+                                                                              decoration: BoxDecoration(
+                                                                                color: FlutterFlowTheme.of(context).alternate,
+                                                                                borderRadius: BorderRadius.only(
+                                                                                  bottomLeft: Radius.circular(10),
+                                                                                  bottomRight: Radius.circular(0),
+                                                                                  topLeft: Radius.circular(10),
+                                                                                  topRight: Radius.circular(0),
+                                                                                ),
+                                                                              ),
+                                                                              child: Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                                                                child: Row(
+                                                                                  mainAxisSize: MainAxisSize.max,
+                                                                                  children: [
+                                                                                    Align(
+                                                                                      alignment: AlignmentDirectional(1, 0),
+                                                                                      child: Padding(
+                                                                                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 2, 0),
+                                                                                        child: Text(
+                                                                                          '\$',
+                                                                                          textAlign: TextAlign.end,
+                                                                                          style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                fontFamily: 'Montserrat',
+                                                                                                color: Colors.white,
+                                                                                                fontSize: 18,
+                                                                                                fontWeight: FontWeight.w500,
+                                                                                              ),
+                                                                                        ),
+                                                                                      ),
+                                                                                    ),
+                                                                                    Align(
+                                                                                      alignment: AlignmentDirectional(1, 0),
+                                                                                      child: Padding(
+                                                                                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                                                                                        child: Text(
+                                                                                          GetOneVariantCall.price(
+                                                                                            (stackGetOneVariantResponse?.jsonBody ?? ''),
+                                                                                          ).toString(),
+                                                                                          textAlign: TextAlign.end,
+                                                                                          style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                fontFamily: 'Montserrat',
+                                                                                                color: Colors.white,
+                                                                                                fontSize: 18,
+                                                                                                fontWeight: FontWeight.w500,
+                                                                                              ),
+                                                                                        ),
+                                                                                      ),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ],
                                                                       ),
                                                                     ),
                                                                   ],
@@ -1025,243 +1060,245 @@ class _CategoriaSingleMARCAWidgetState
                                           }
                                           final cageGetOneVariantResponse =
                                               snapshot.data;
-                                          return Container(
-                                            width: 150,
-                                            height: 250,
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  blurRadius: 10,
-                                                  color: Color(0x10000000),
-                                                )
-                                              ],
-                                              borderRadius:
-                                                  BorderRadius.circular(15),
-                                            ),
-                                            alignment:
-                                                AlignmentDirectional(0, 0),
-                                            child: Align(
+                                          return InkWell(
+                                            onTap: () async {
+                                              context.pushNamed(
+                                                'ProductPage',
+                                                params: {
+                                                  'productId': serializeParam(
+                                                      rowProductsRecord.id,
+                                                      ParamType.String),
+                                                }.withoutNulls,
+                                              );
+                                            },
+                                            child: Container(
+                                              width: 150,
+                                              height: 250,
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    blurRadius: 10,
+                                                    color: Color(0x10000000),
+                                                  )
+                                                ],
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                              ),
                                               alignment:
                                                   AlignmentDirectional(0, 0),
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(10, 0, 10, 0),
-                                                child: StreamBuilder<
-                                                    List<VariantsRecord>>(
-                                                  stream: queryVariantsRecord(
-                                                    parent: rowProductsRecord
-                                                        .reference,
-                                                    queryBuilder: (variantsRecord) =>
-                                                        variantsRecord.where(
-                                                            'id',
-                                                            isEqualTo:
-                                                                GetOneVariantCall
-                                                                    .id(
-                                                              (cageGetOneVariantResponse
-                                                                      ?.jsonBody ??
-                                                                  ''),
-                                                            ).toString()),
-                                                    singleRecord: true,
-                                                  ),
-                                                  builder: (context, snapshot) {
-                                                    // Customize what your widget looks like when it's loading.
-                                                    if (!snapshot.hasData) {
-                                                      return Center(
-                                                        child: SizedBox(
-                                                          width: 50,
-                                                          height: 50,
-                                                          child:
-                                                              SpinKitFadingCircle(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryColor,
-                                                            size: 50,
-                                                          ),
-                                                        ),
-                                                      );
-                                                    }
-                                                    List<VariantsRecord>
-                                                        columnVariantsRecordList =
-                                                        snapshot.data;
-                                                    // Return an empty Container when the document does not exist.
-                                                    if (snapshot.data.isEmpty) {
-                                                      return Container();
-                                                    }
-                                                    final columnVariantsRecord =
-                                                        columnVariantsRecordList
-                                                                .isNotEmpty
-                                                            ? columnVariantsRecordList
-                                                                .first
-                                                            : null;
-                                                    return InkWell(
-                                                      onTap: () async {
-                                                        context.pushNamed(
-                                                          'ProductPage',
-                                                          params: {
-                                                            'productId':
-                                                                serializeParam(
-                                                                    rowProductsRecord
-                                                                        .id,
-                                                                    ParamType
-                                                                        .String),
-                                                          }.withoutNulls,
-                                                        );
-                                                      },
-                                                      child: Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceEvenly,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Stack(
-                                                            children: [
-                                                              Container(
-                                                                width: 30,
-                                                                height: 30,
-                                                                clipBehavior: Clip
-                                                                    .antiAlias,
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  shape: BoxShape
-                                                                      .circle,
-                                                                ),
-                                                                child: Image
-                                                                    .network(
-                                                                  rowProductsRecord
-                                                                      .brandLogo,
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        5),
+                                              child: Align(
+                                                alignment:
+                                                    AlignmentDirectional(0, 0),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(10, 0, 10, 0),
+                                                  child: StreamBuilder<
+                                                      List<VariantsRecord>>(
+                                                    stream: queryVariantsRecord(
+                                                      parent: rowProductsRecord
+                                                          .reference,
+                                                      queryBuilder: (variantsRecord) =>
+                                                          variantsRecord.where(
+                                                              'id',
+                                                              isEqualTo:
+                                                                  GetOneVariantCall
+                                                                      .id(
+                                                                (cageGetOneVariantResponse
+                                                                        ?.jsonBody ??
+                                                                    ''),
+                                                              ).toString()),
+                                                      singleRecord: true,
+                                                    ),
+                                                    builder:
+                                                        (context, snapshot) {
+                                                      // Customize what your widget looks like when it's loading.
+                                                      if (!snapshot.hasData) {
+                                                        return Center(
+                                                          child: SizedBox(
+                                                            width: 50,
+                                                            height: 50,
                                                             child:
-                                                                Image.network(
-                                                              rowProductsRecord
-                                                                  .mainImage,
-                                                              width: 200,
-                                                              height: 100,
-                                                              fit: BoxFit
-                                                                  .contain,
+                                                                SpinKitFadingCircle(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryColor,
+                                                              size: 50,
                                                             ),
                                                           ),
-                                                          if (columnVariantsRecord
-                                                                  .tags
-                                                                  .toList()
-                                                                  ?.contains(
-                                                                      'Oferta') ??
-                                                              true)
-                                                            Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
+                                                        );
+                                                      }
+                                                      List<VariantsRecord>
+                                                          columnVariantsRecordList =
+                                                          snapshot.data;
+                                                      // Return an empty Container when the document does not exist.
+                                                      if (snapshot
+                                                          .data.isEmpty) {
+                                                        return Container();
+                                                      }
+                                                      final columnVariantsRecord =
+                                                          columnVariantsRecordList
+                                                                  .isNotEmpty
+                                                              ? columnVariantsRecordList
+                                                                  .first
+                                                              : null;
+                                                      return InkWell(
+                                                        onTap: () async {
+                                                          context.pushNamed(
+                                                            'ProductPage',
+                                                            params: {
+                                                              'productId':
+                                                                  serializeParam(
+                                                                      rowProductsRecord
+                                                                          .id,
+                                                                      ParamType
+                                                                          .String),
+                                                            }.withoutNulls,
+                                                          );
+                                                        },
+                                                        child: Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceEvenly,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Stack(
                                                               children: [
-                                                                FaIcon(
-                                                                  FontAwesomeIcons
-                                                                      .tag,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .alternate,
-                                                                  size: 13,
-                                                                ),
-                                                                Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          5,
-                                                                          0,
-                                                                          0,
-                                                                          0),
-                                                                  child: Text(
-                                                                    'Oferta',
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyText1
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Montserrat',
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).alternate,
-                                                                          fontSize:
-                                                                              13,
-                                                                        ),
+                                                                InkWell(
+                                                                  onTap:
+                                                                      () async {
+                                                                    context
+                                                                        .pushNamed(
+                                                                      'MarcaSingle',
+                                                                      params: {
+                                                                        'brandId': serializeParam(
+                                                                            rowProductsRecord.brand,
+                                                                            ParamType.String),
+                                                                      }.withoutNulls,
+                                                                    );
+                                                                  },
+                                                                  child:
+                                                                      Container(
+                                                                    width: 30,
+                                                                    height: 30,
+                                                                    clipBehavior:
+                                                                        Clip.antiAlias,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      shape: BoxShape
+                                                                          .circle,
+                                                                    ),
+                                                                    child: Image
+                                                                        .network(
+                                                                      rowProductsRecord
+                                                                          .brandLogo,
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ],
                                                             ),
-                                                          Align(
-                                                            alignment:
-                                                                AlignmentDirectional(
-                                                                    -1, -0.45),
-                                                            child: Text(
-                                                              rowProductsRecord
-                                                                  .title
-                                                                  .maybeHandleOverflow(
-                                                                maxChars: 23,
-                                                                replacement:
-                                                                    '…',
+                                                            ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          5),
+                                                              child:
+                                                                  Image.network(
+                                                                rowProductsRecord
+                                                                    .mainImage,
+                                                                width: 200,
+                                                                height: 100,
+                                                                fit: BoxFit
+                                                                    .contain,
                                                               ),
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .start,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyText1
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Montserrat',
-                                                                    color: Colors
-                                                                        .black,
-                                                                    fontSize:
-                                                                        13,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
-                                                                  ),
                                                             ),
-                                                          ),
-                                                          Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            children: [
-                                                              Text(
-                                                                '\$',
+                                                            if (columnVariantsRecord
+                                                                    .tags
+                                                                    .toList()
+                                                                    ?.contains(
+                                                                        'Oferta') ??
+                                                                true)
+                                                              Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                children: [
+                                                                  FaIcon(
+                                                                    FontAwesomeIcons
+                                                                        .tag,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .alternate,
+                                                                    size: 13,
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            5,
+                                                                            0,
+                                                                            0,
+                                                                            0),
+                                                                    child: Text(
+                                                                      'Oferta',
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyText1
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Montserrat',
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).alternate,
+                                                                            fontSize:
+                                                                                13,
+                                                                          ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            Align(
+                                                              alignment:
+                                                                  AlignmentDirectional(
+                                                                      -1,
+                                                                      -0.45),
+                                                              child: Text(
+                                                                rowProductsRecord
+                                                                    .title
+                                                                    .maybeHandleOverflow(
+                                                                  maxChars: 40,
+                                                                  replacement:
+                                                                      '…',
+                                                                ),
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .start,
+                                                                maxLines: 2,
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyText1
                                                                     .override(
                                                                       fontFamily:
                                                                           'Montserrat',
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .alternate,
+                                                                      color: Colors
+                                                                          .black,
                                                                       fontSize:
-                                                                          22,
+                                                                          13,
                                                                       fontWeight:
                                                                           FontWeight
-                                                                              .w600,
+                                                                              .w500,
                                                                     ),
                                                               ),
-                                                              Align(
-                                                                alignment:
-                                                                    AlignmentDirectional(
-                                                                        -1,
-                                                                        -0.7),
-                                                                child: Text(
-                                                                  getJsonField(
-                                                                    (cageGetOneVariantResponse
-                                                                            ?.jsonBody ??
-                                                                        ''),
-                                                                    r'''$.price''',
-                                                                  ).toString(),
+                                                            ),
+                                                            Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: [
+                                                                Text(
+                                                                  '\$',
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyText1
@@ -1276,36 +1313,18 @@ class _CategoriaSingleMARCAWidgetState
                                                                             FontWeight.w600,
                                                                       ),
                                                                 ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          if (columnVariantsRecord
-                                                                  .tags
-                                                                  .toList()
-                                                                  ?.contains(
-                                                                      'Envio Gratis') ??
-                                                              true)
-                                                            Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                FaIcon(
-                                                                  FontAwesomeIcons
-                                                                      .shippingFast,
-                                                                  color: Color(
-                                                                      0xFF5AE93E),
-                                                                  size: 11,
-                                                                ),
-                                                                Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          5,
-                                                                          0,
-                                                                          0,
-                                                                          0),
+                                                                Align(
+                                                                  alignment:
+                                                                      AlignmentDirectional(
+                                                                          -1,
+                                                                          -0.7),
                                                                   child: Text(
-                                                                    'Envio Gratis',
+                                                                    getJsonField(
+                                                                      (cageGetOneVariantResponse
+                                                                              ?.jsonBody ??
+                                                                          ''),
+                                                                      r'''$.price''',
+                                                                    ).toString(),
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyText1
@@ -1313,18 +1332,63 @@ class _CategoriaSingleMARCAWidgetState
                                                                           fontFamily:
                                                                               'Montserrat',
                                                                           color:
-                                                                              Color(0xFF5AE93E),
+                                                                              FlutterFlowTheme.of(context).alternate,
                                                                           fontSize:
-                                                                              11,
+                                                                              22,
+                                                                          fontWeight:
+                                                                              FontWeight.w600,
                                                                         ),
                                                                   ),
                                                                 ),
                                                               ],
                                                             ),
-                                                        ],
-                                                      ),
-                                                    );
-                                                  },
+                                                            if (columnVariantsRecord
+                                                                    .tags
+                                                                    .toList()
+                                                                    ?.contains(
+                                                                        'Envio Gratis') ??
+                                                                true)
+                                                              Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                children: [
+                                                                  FaIcon(
+                                                                    FontAwesomeIcons
+                                                                        .shippingFast,
+                                                                    color: Color(
+                                                                        0xFF5AE93E),
+                                                                    size: 11,
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            5,
+                                                                            0,
+                                                                            0,
+                                                                            0),
+                                                                    child: Text(
+                                                                      'Envio Gratis',
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyText1
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Montserrat',
+                                                                            color:
+                                                                                Color(0xFF5AE93E),
+                                                                            fontSize:
+                                                                                11,
+                                                                          ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                          ],
+                                                        ),
+                                                      );
+                                                    },
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -1483,235 +1547,241 @@ class _CategoriaSingleMARCAWidgetState
                                           }
                                           final cageGetOneVariantResponse =
                                               snapshot.data;
-                                          return Container(
-                                            width: 150,
-                                            height: 250,
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  blurRadius: 10,
-                                                  color: Color(0x10000000),
-                                                )
-                                              ],
-                                              borderRadius:
-                                                  BorderRadius.circular(15),
-                                            ),
-                                            alignment:
-                                                AlignmentDirectional(0, 0),
-                                            child: Align(
+                                          return InkWell(
+                                            onTap: () async {
+                                              context.pushNamed(
+                                                'ProductPage',
+                                                params: {
+                                                  'productId': serializeParam(
+                                                      rowProductsRecord.id,
+                                                      ParamType.String),
+                                                }.withoutNulls,
+                                              );
+                                            },
+                                            child: Container(
+                                              width: 150,
+                                              height: 250,
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    blurRadius: 10,
+                                                    color: Color(0x10000000),
+                                                  )
+                                                ],
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                              ),
                                               alignment:
                                                   AlignmentDirectional(0, 0),
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(10, 0, 10, 0),
-                                                child: StreamBuilder<
-                                                    List<VariantsRecord>>(
-                                                  stream: queryVariantsRecord(
-                                                    parent: rowProductsRecord
-                                                        .reference,
-                                                    queryBuilder: (variantsRecord) =>
-                                                        variantsRecord.where(
-                                                            'id',
-                                                            isEqualTo:
-                                                                GetOneVariantCall
-                                                                    .id(
-                                                              (cageGetOneVariantResponse
-                                                                      ?.jsonBody ??
-                                                                  ''),
-                                                            ).toString()),
-                                                    singleRecord: true,
-                                                  ),
-                                                  builder: (context, snapshot) {
-                                                    // Customize what your widget looks like when it's loading.
-                                                    if (!snapshot.hasData) {
-                                                      return Center(
-                                                        child: SizedBox(
-                                                          width: 50,
-                                                          height: 50,
-                                                          child:
-                                                              SpinKitFadingCircle(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryColor,
-                                                            size: 50,
-                                                          ),
-                                                        ),
-                                                      );
-                                                    }
-                                                    List<VariantsRecord>
-                                                        columnVariantsRecordList =
-                                                        snapshot.data;
-                                                    final columnVariantsRecord =
-                                                        columnVariantsRecordList
-                                                                .isNotEmpty
-                                                            ? columnVariantsRecordList
-                                                                .first
-                                                            : null;
-                                                    return Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceEvenly,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Stack(
-                                                          children: [
-                                                            Container(
-                                                              width: 30,
-                                                              height: 30,
-                                                              clipBehavior: Clip
-                                                                  .antiAlias,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                shape: BoxShape
-                                                                    .circle,
-                                                              ),
-                                                              child:
-                                                                  Image.network(
-                                                                rowProductsRecord
-                                                                    .brandLogo,
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        InkWell(
-                                                          onTap: () async {
-                                                            context.pushNamed(
-                                                              'ProductPage',
-                                                              params: {
-                                                                'productId': serializeParam(
-                                                                    rowProductsRecord
-                                                                        .id,
-                                                                    ParamType
-                                                                        .String),
-                                                              }.withoutNulls,
-                                                            );
-                                                          },
-                                                          child: ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        5),
+                                              child: Align(
+                                                alignment:
+                                                    AlignmentDirectional(0, 0),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(10, 0, 10, 0),
+                                                  child: StreamBuilder<
+                                                      List<VariantsRecord>>(
+                                                    stream: queryVariantsRecord(
+                                                      parent: rowProductsRecord
+                                                          .reference,
+                                                      queryBuilder: (variantsRecord) =>
+                                                          variantsRecord.where(
+                                                              'id',
+                                                              isEqualTo:
+                                                                  GetOneVariantCall
+                                                                      .id(
+                                                                (cageGetOneVariantResponse
+                                                                        ?.jsonBody ??
+                                                                    ''),
+                                                              ).toString()),
+                                                      singleRecord: true,
+                                                    ),
+                                                    builder:
+                                                        (context, snapshot) {
+                                                      // Customize what your widget looks like when it's loading.
+                                                      if (!snapshot.hasData) {
+                                                        return Center(
+                                                          child: SizedBox(
+                                                            width: 50,
+                                                            height: 50,
                                                             child:
-                                                                Image.network(
-                                                              rowProductsRecord
-                                                                  .mainImage,
-                                                              width: 200,
-                                                              height: 100,
-                                                              fit: BoxFit
-                                                                  .contain,
+                                                                SpinKitFadingCircle(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryColor,
+                                                              size: 50,
                                                             ),
                                                           ),
-                                                        ),
-                                                        if (columnVariantsRecord
-                                                                .tags
-                                                                .toList()
-                                                                ?.contains(
-                                                                    'Oferta') ??
-                                                            true)
-                                                          Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
+                                                        );
+                                                      }
+                                                      List<VariantsRecord>
+                                                          columnVariantsRecordList =
+                                                          snapshot.data;
+                                                      final columnVariantsRecord =
+                                                          columnVariantsRecordList
+                                                                  .isNotEmpty
+                                                              ? columnVariantsRecordList
+                                                                  .first
+                                                              : null;
+                                                      return Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceEvenly,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Stack(
                                                             children: [
-                                                              FaIcon(
-                                                                FontAwesomeIcons
-                                                                    .tag,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .alternate,
-                                                                size: 13,
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            5,
-                                                                            0,
-                                                                            0,
-                                                                            0),
-                                                                child: Text(
-                                                                  'Oferta',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyText1
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Montserrat',
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .alternate,
-                                                                        fontSize:
-                                                                            13,
-                                                                      ),
+                                                              InkWell(
+                                                                onTap:
+                                                                    () async {
+                                                                  context
+                                                                      .pushNamed(
+                                                                    'MarcaSingle',
+                                                                    params: {
+                                                                      'brandId': serializeParam(
+                                                                          rowProductsRecord
+                                                                              .brand,
+                                                                          ParamType
+                                                                              .String),
+                                                                    }.withoutNulls,
+                                                                  );
+                                                                },
+                                                                child:
+                                                                    Container(
+                                                                  width: 30,
+                                                                  height: 30,
+                                                                  clipBehavior:
+                                                                      Clip.antiAlias,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    shape: BoxShape
+                                                                        .circle,
+                                                                  ),
+                                                                  child: Image
+                                                                      .network(
+                                                                    rowProductsRecord
+                                                                        .brandLogo,
+                                                                  ),
                                                                 ),
                                                               ),
                                                             ],
                                                           ),
-                                                        Align(
-                                                          alignment:
-                                                              AlignmentDirectional(
-                                                                  -1, -0.45),
-                                                          child: Text(
-                                                            rowProductsRecord
-                                                                .title
-                                                                .maybeHandleOverflow(
-                                                              maxChars: 40,
-                                                              replacement: '…',
+                                                          InkWell(
+                                                            onTap: () async {
+                                                              context.pushNamed(
+                                                                'ProductPage',
+                                                                params: {
+                                                                  'productId': serializeParam(
+                                                                      rowProductsRecord
+                                                                          .id,
+                                                                      ParamType
+                                                                          .String),
+                                                                }.withoutNulls,
+                                                              );
+                                                            },
+                                                            child: ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          5),
+                                                              child:
+                                                                  Image.network(
+                                                                rowProductsRecord
+                                                                    .mainImage,
+                                                                width: 200,
+                                                                height: 100,
+                                                                fit: BoxFit
+                                                                    .contain,
+                                                              ),
                                                             ),
-                                                            textAlign:
-                                                                TextAlign.start,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Montserrat',
-                                                                  color: Colors
-                                                                      .black,
-                                                                  fontSize: 13,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                ),
                                                           ),
-                                                        ),
-                                                        Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children: [
-                                                            Text(
-                                                              '\$',
+                                                          if (columnVariantsRecord
+                                                                  .tags
+                                                                  .toList()
+                                                                  ?.contains(
+                                                                      'Oferta') ??
+                                                              true)
+                                                            Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: [
+                                                                FaIcon(
+                                                                  FontAwesomeIcons
+                                                                      .tag,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                                  size: 13,
+                                                                ),
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          5,
+                                                                          0,
+                                                                          0,
+                                                                          0),
+                                                                  child: Text(
+                                                                    'Oferta',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyText1
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Montserrat',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).alternate,
+                                                                          fontSize:
+                                                                              13,
+                                                                        ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          Align(
+                                                            alignment:
+                                                                AlignmentDirectional(
+                                                                    -1, -0.45),
+                                                            child: Text(
+                                                              rowProductsRecord
+                                                                  .title
+                                                                  .maybeHandleOverflow(
+                                                                maxChars: 40,
+                                                                replacement:
+                                                                    '…',
+                                                              ),
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .start,
+                                                              maxLines: 2,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyText1
                                                                   .override(
                                                                     fontFamily:
                                                                         'Montserrat',
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .alternate,
+                                                                    color: Colors
+                                                                        .black,
                                                                     fontSize:
-                                                                        22,
+                                                                        13,
                                                                     fontWeight:
                                                                         FontWeight
-                                                                            .w600,
+                                                                            .w500,
                                                                   ),
                                                             ),
-                                                            Align(
-                                                              alignment:
-                                                                  AlignmentDirectional(
-                                                                      -1, -0.7),
-                                                              child: Text(
-                                                                getJsonField(
-                                                                  (cageGetOneVariantResponse
-                                                                          ?.jsonBody ??
-                                                                      ''),
-                                                                  r'''$.price''',
-                                                                ).toString(),
+                                                          ),
+                                                          Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Text(
+                                                                '\$',
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyText1
@@ -1728,55 +1798,81 @@ class _CategoriaSingleMARCAWidgetState
                                                                               .w600,
                                                                     ),
                                                               ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        if (columnVariantsRecord
-                                                                .tags
-                                                                .toList()
-                                                                ?.contains(
-                                                                    'Envio Gratis') ??
-                                                            true)
-                                                          Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            children: [
-                                                              FaIcon(
-                                                                FontAwesomeIcons
-                                                                    .shippingFast,
-                                                                color: Color(
-                                                                    0xFF5AE93E),
-                                                                size: 11,
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            5,
-                                                                            0,
-                                                                            0,
-                                                                            0),
+                                                              Align(
+                                                                alignment:
+                                                                    AlignmentDirectional(
+                                                                        -1,
+                                                                        -0.7),
                                                                 child: Text(
-                                                                  'Envio Gratis',
+                                                                  getJsonField(
+                                                                    (cageGetOneVariantResponse
+                                                                            ?.jsonBody ??
+                                                                        ''),
+                                                                    r'''$.price''',
+                                                                  ).toString(),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyText1
                                                                       .override(
                                                                         fontFamily:
                                                                             'Montserrat',
-                                                                        color: Color(
-                                                                            0xFF5AE93E),
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .alternate,
                                                                         fontSize:
-                                                                            11,
+                                                                            22,
+                                                                        fontWeight:
+                                                                            FontWeight.w600,
                                                                       ),
                                                                 ),
                                                               ),
                                                             ],
                                                           ),
-                                                      ],
-                                                    );
-                                                  },
+                                                          if (columnVariantsRecord
+                                                                  .tags
+                                                                  .toList()
+                                                                  ?.contains(
+                                                                      'Envio Gratis') ??
+                                                              true)
+                                                            Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: [
+                                                                FaIcon(
+                                                                  FontAwesomeIcons
+                                                                      .shippingFast,
+                                                                  color: Color(
+                                                                      0xFF5AE93E),
+                                                                  size: 11,
+                                                                ),
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          5,
+                                                                          0,
+                                                                          0,
+                                                                          0),
+                                                                  child: Text(
+                                                                    'Envio Gratis',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyText1
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Montserrat',
+                                                                          color:
+                                                                              Color(0xFF5AE93E),
+                                                                          fontSize:
+                                                                              11,
+                                                                        ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -1934,234 +2030,241 @@ class _CategoriaSingleMARCAWidgetState
                                           }
                                           final cageGetOneVariantResponse =
                                               snapshot.data;
-                                          return Container(
-                                            width: 150,
-                                            height: 250,
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  blurRadius: 10,
-                                                  color: Color(0x10000000),
-                                                )
-                                              ],
-                                              borderRadius:
-                                                  BorderRadius.circular(15),
-                                            ),
-                                            alignment:
-                                                AlignmentDirectional(0, 0),
-                                            child: Align(
+                                          return InkWell(
+                                            onTap: () async {
+                                              context.pushNamed(
+                                                'ProductPage',
+                                                params: {
+                                                  'productId': serializeParam(
+                                                      rowProductsRecord.id,
+                                                      ParamType.String),
+                                                }.withoutNulls,
+                                              );
+                                            },
+                                            child: Container(
+                                              width: 150,
+                                              height: 250,
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    blurRadius: 10,
+                                                    color: Color(0x10000000),
+                                                  )
+                                                ],
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                              ),
                                               alignment:
                                                   AlignmentDirectional(0, 0),
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(10, 0, 10, 0),
-                                                child: StreamBuilder<
-                                                    List<VariantsRecord>>(
-                                                  stream: queryVariantsRecord(
-                                                    parent: rowProductsRecord
-                                                        .reference,
-                                                    queryBuilder: (variantsRecord) =>
-                                                        variantsRecord.where(
-                                                            'id',
-                                                            isEqualTo:
-                                                                GetOneVariantCall
-                                                                    .id(
-                                                              (cageGetOneVariantResponse
-                                                                      ?.jsonBody ??
-                                                                  ''),
-                                                            ).toString()),
-                                                    singleRecord: true,
-                                                  ),
-                                                  builder: (context, snapshot) {
-                                                    // Customize what your widget looks like when it's loading.
-                                                    if (!snapshot.hasData) {
-                                                      return Center(
-                                                        child: SizedBox(
-                                                          width: 50,
-                                                          height: 50,
-                                                          child:
-                                                              SpinKitFadingCircle(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryColor,
-                                                            size: 50,
-                                                          ),
-                                                        ),
-                                                      );
-                                                    }
-                                                    List<VariantsRecord>
-                                                        columnVariantsRecordList =
-                                                        snapshot.data;
-                                                    final columnVariantsRecord =
-                                                        columnVariantsRecordList
-                                                                .isNotEmpty
-                                                            ? columnVariantsRecordList
-                                                                .first
-                                                            : null;
-                                                    return Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceEvenly,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Stack(
-                                                          children: [
-                                                            Container(
-                                                              width: 30,
-                                                              height: 30,
-                                                              clipBehavior: Clip
-                                                                  .antiAlias,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                shape: BoxShape
-                                                                    .circle,
-                                                              ),
-                                                              child:
-                                                                  Image.network(
-                                                                rowProductsRecord
-                                                                    .brandLogo,
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        InkWell(
-                                                          onTap: () async {
-                                                            context.pushNamed(
-                                                              'ProductPage',
-                                                              params: {
-                                                                'productId': serializeParam(
-                                                                    rowProductsRecord
-                                                                        .id,
-                                                                    ParamType
-                                                                        .String),
-                                                              }.withoutNulls,
-                                                            );
-                                                          },
-                                                          child: ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        5),
+                                              child: Align(
+                                                alignment:
+                                                    AlignmentDirectional(0, 0),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(10, 0, 10, 0),
+                                                  child: StreamBuilder<
+                                                      List<VariantsRecord>>(
+                                                    stream: queryVariantsRecord(
+                                                      parent: rowProductsRecord
+                                                          .reference,
+                                                      queryBuilder: (variantsRecord) =>
+                                                          variantsRecord.where(
+                                                              'id',
+                                                              isEqualTo:
+                                                                  GetOneVariantCall
+                                                                      .id(
+                                                                (cageGetOneVariantResponse
+                                                                        ?.jsonBody ??
+                                                                    ''),
+                                                              ).toString()),
+                                                      singleRecord: true,
+                                                    ),
+                                                    builder:
+                                                        (context, snapshot) {
+                                                      // Customize what your widget looks like when it's loading.
+                                                      if (!snapshot.hasData) {
+                                                        return Center(
+                                                          child: SizedBox(
+                                                            width: 50,
+                                                            height: 50,
                                                             child:
-                                                                Image.network(
-                                                              rowProductsRecord
-                                                                  .mainImage,
-                                                              width: 200,
-                                                              height: 100,
-                                                              fit: BoxFit.cover,
+                                                                SpinKitFadingCircle(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryColor,
+                                                              size: 50,
                                                             ),
                                                           ),
-                                                        ),
-                                                        if (columnVariantsRecord
-                                                                .tags
-                                                                .toList()
-                                                                ?.contains(
-                                                                    'Oferta') ??
-                                                            true)
-                                                          Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
+                                                        );
+                                                      }
+                                                      List<VariantsRecord>
+                                                          columnVariantsRecordList =
+                                                          snapshot.data;
+                                                      final columnVariantsRecord =
+                                                          columnVariantsRecordList
+                                                                  .isNotEmpty
+                                                              ? columnVariantsRecordList
+                                                                  .first
+                                                              : null;
+                                                      return Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceEvenly,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Stack(
                                                             children: [
-                                                              FaIcon(
-                                                                FontAwesomeIcons
-                                                                    .tag,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .alternate,
-                                                                size: 13,
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            5,
-                                                                            0,
-                                                                            0,
-                                                                            0),
-                                                                child: Text(
-                                                                  'Oferta',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyText1
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Montserrat',
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .alternate,
-                                                                        fontSize:
-                                                                            13,
-                                                                      ),
+                                                              InkWell(
+                                                                onTap:
+                                                                    () async {
+                                                                  context
+                                                                      .pushNamed(
+                                                                    'MarcaSingle',
+                                                                    params: {
+                                                                      'brandId': serializeParam(
+                                                                          rowProductsRecord
+                                                                              .brand,
+                                                                          ParamType
+                                                                              .String),
+                                                                    }.withoutNulls,
+                                                                  );
+                                                                },
+                                                                child:
+                                                                    Container(
+                                                                  width: 30,
+                                                                  height: 30,
+                                                                  clipBehavior:
+                                                                      Clip.antiAlias,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    shape: BoxShape
+                                                                        .circle,
+                                                                  ),
+                                                                  child: Image
+                                                                      .network(
+                                                                    rowProductsRecord
+                                                                        .brandLogo,
+                                                                  ),
                                                                 ),
                                                               ),
                                                             ],
                                                           ),
-                                                        Align(
-                                                          alignment:
-                                                              AlignmentDirectional(
-                                                                  -1, -0.45),
-                                                          child: Text(
-                                                            rowProductsRecord
-                                                                .title
-                                                                .maybeHandleOverflow(
-                                                              maxChars: 40,
-                                                              replacement: '…',
+                                                          InkWell(
+                                                            onTap: () async {
+                                                              context.pushNamed(
+                                                                'ProductPage',
+                                                                params: {
+                                                                  'productId': serializeParam(
+                                                                      rowProductsRecord
+                                                                          .id,
+                                                                      ParamType
+                                                                          .String),
+                                                                }.withoutNulls,
+                                                              );
+                                                            },
+                                                            child: ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          5),
+                                                              child:
+                                                                  Image.network(
+                                                                rowProductsRecord
+                                                                    .mainImage,
+                                                                width: 200,
+                                                                height: 100,
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                              ),
                                                             ),
-                                                            textAlign:
-                                                                TextAlign.start,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Montserrat',
-                                                                  color: Colors
-                                                                      .black,
-                                                                  fontSize: 13,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                ),
                                                           ),
-                                                        ),
-                                                        Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children: [
-                                                            Text(
-                                                              '\$',
+                                                          if (columnVariantsRecord
+                                                                  .tags
+                                                                  .toList()
+                                                                  ?.contains(
+                                                                      'Oferta') ??
+                                                              true)
+                                                            Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: [
+                                                                FaIcon(
+                                                                  FontAwesomeIcons
+                                                                      .tag,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                                  size: 13,
+                                                                ),
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          5,
+                                                                          0,
+                                                                          0,
+                                                                          0),
+                                                                  child: Text(
+                                                                    'Oferta',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyText1
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Montserrat',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).alternate,
+                                                                          fontSize:
+                                                                              13,
+                                                                        ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          Align(
+                                                            alignment:
+                                                                AlignmentDirectional(
+                                                                    -1, -0.45),
+                                                            child: Text(
+                                                              rowProductsRecord
+                                                                  .title
+                                                                  .maybeHandleOverflow(
+                                                                maxChars: 40,
+                                                                replacement:
+                                                                    '…',
+                                                              ),
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .start,
+                                                              maxLines: 2,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyText1
                                                                   .override(
                                                                     fontFamily:
                                                                         'Montserrat',
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .alternate,
+                                                                    color: Colors
+                                                                        .black,
                                                                     fontSize:
-                                                                        22,
+                                                                        13,
                                                                     fontWeight:
                                                                         FontWeight
-                                                                            .w600,
+                                                                            .w500,
                                                                   ),
                                                             ),
-                                                            Align(
-                                                              alignment:
-                                                                  AlignmentDirectional(
-                                                                      -1, -0.7),
-                                                              child: Text(
-                                                                getJsonField(
-                                                                  (cageGetOneVariantResponse
-                                                                          ?.jsonBody ??
-                                                                      ''),
-                                                                  r'''$.price''',
-                                                                ).toString(),
+                                                          ),
+                                                          Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Text(
+                                                                '\$',
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyText1
@@ -2178,55 +2281,81 @@ class _CategoriaSingleMARCAWidgetState
                                                                               .w600,
                                                                     ),
                                                               ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        if (columnVariantsRecord
-                                                                .tags
-                                                                .toList()
-                                                                ?.contains(
-                                                                    'Envio Gratis') ??
-                                                            true)
-                                                          Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            children: [
-                                                              FaIcon(
-                                                                FontAwesomeIcons
-                                                                    .shippingFast,
-                                                                color: Color(
-                                                                    0xFF5AE93E),
-                                                                size: 11,
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            5,
-                                                                            0,
-                                                                            0,
-                                                                            0),
+                                                              Align(
+                                                                alignment:
+                                                                    AlignmentDirectional(
+                                                                        -1,
+                                                                        -0.7),
                                                                 child: Text(
-                                                                  'Envio Gratis',
+                                                                  getJsonField(
+                                                                    (cageGetOneVariantResponse
+                                                                            ?.jsonBody ??
+                                                                        ''),
+                                                                    r'''$.price''',
+                                                                  ).toString(),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyText1
                                                                       .override(
                                                                         fontFamily:
                                                                             'Montserrat',
-                                                                        color: Color(
-                                                                            0xFF5AE93E),
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .alternate,
                                                                         fontSize:
-                                                                            11,
+                                                                            22,
+                                                                        fontWeight:
+                                                                            FontWeight.w600,
                                                                       ),
                                                                 ),
                                                               ),
                                                             ],
                                                           ),
-                                                      ],
-                                                    );
-                                                  },
+                                                          if (columnVariantsRecord
+                                                                  .tags
+                                                                  .toList()
+                                                                  ?.contains(
+                                                                      'Envio Gratis') ??
+                                                              true)
+                                                            Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: [
+                                                                FaIcon(
+                                                                  FontAwesomeIcons
+                                                                      .shippingFast,
+                                                                  color: Color(
+                                                                      0xFF5AE93E),
+                                                                  size: 11,
+                                                                ),
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          5,
+                                                                          0,
+                                                                          0,
+                                                                          0),
+                                                                  child: Text(
+                                                                    'Envio Gratis',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyText1
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Montserrat',
+                                                                          color:
+                                                                              Color(0xFF5AE93E),
+                                                                          fontSize:
+                                                                              11,
+                                                                        ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  ),
                                                 ),
                                               ),
                                             ),

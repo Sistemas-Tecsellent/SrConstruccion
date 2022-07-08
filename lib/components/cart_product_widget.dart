@@ -62,7 +62,7 @@ class _CartProductWidgetState extends State<CartProductWidget> {
                       : null;
               return Container(
                 width: MediaQuery.of(context).size.width * 0.95,
-                height: 120,
+                height: 125,
                 constraints: BoxConstraints(
                   maxWidth: 400,
                 ),
@@ -124,9 +124,11 @@ class _CartProductWidgetState extends State<CartProductWidget> {
                           ),
                         ),
                         Container(
-                          width: 200,
+                          width: MediaQuery.of(context).size.width * 0.65,
+                          constraints: BoxConstraints(
+                            maxWidth: 290,
+                          ),
                           decoration: BoxDecoration(
-                            color: Colors.white,
                             borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(0),
                               bottomRight: Radius.circular(10),
@@ -149,14 +151,27 @@ class _CartProductWidgetState extends State<CartProductWidget> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.62,
+                                      constraints: BoxConstraints(
+                                        maxWidth: 280,
+                                      ),
                                       decoration: BoxDecoration(
                                         color: Color(0x00EEEEEE),
                                       ),
-                                      child: Text(
-                                        containerProductsRecord.title
-                                            .maybeHandleOverflow(maxChars: 23),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 0, 5),
+                                        child: Text(
+                                          containerProductsRecord.title
+                                              .maybeHandleOverflow(
+                                            maxChars: 55,
+                                            replacement: '…',
+                                          ),
+                                          maxLines: 2,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1,
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -480,110 +495,117 @@ class _CartProductWidgetState extends State<CartProductWidget> {
                                     ],
                                   ),
                                 ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      'Subtotal: ',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1
-                                          .override(
-                                            fontFamily: 'Montserrat',
-                                            color: Color(0xFFAEAEAE),
-                                            fontSize: 11,
-                                            fontWeight: FontWeight.normal,
-                                          ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 2, 0),
-                                      child: Text(
-                                        '\$',
+                                Expanded(
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        'Subtotal: ',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Montserrat',
-                                              color: Color(0xFFFDC054),
+                                              color: Color(0xFFAEAEAE),
                                               fontSize: 11,
-                                              fontWeight: FontWeight.w500,
+                                              fontWeight: FontWeight.normal,
                                             ),
                                       ),
-                                    ),
-                                    Stack(
-                                      children: [
-                                        if ((widget.normalPrice) ==
-                                            'publicPrice')
-                                          Text(
-                                            functions
-                                                .getProductForCartSubtotal(
-                                                    rowVariantsRecord
-                                                        .publicPrice,
-                                                    rowVariantsRecord
-                                                        .publicPrice,
-                                                    widget.expressAmount,
-                                                    widget.normalAmount)
-                                                .toString(),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyText1
-                                                .override(
-                                                  fontFamily: 'Montserrat',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryColor,
-                                                  fontSize: 11,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                          ),
-                                        if ((widget.normalPrice) ==
-                                            'wholesalePrice')
-                                          Text(
-                                            functions
-                                                .getProductForCartSubtotal(
-                                                    rowVariantsRecord
-                                                        .publicPrice,
-                                                    rowVariantsRecord
-                                                        .wholesalePrice,
-                                                    widget.expressAmount,
-                                                    widget.normalAmount)
-                                                .toString(),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyText1
-                                                .override(
-                                                  fontFamily: 'Montserrat',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryColor,
-                                                  fontSize: 11,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                          ),
-                                        if ((widget.normalPrice) ==
-                                            'megaWholesalePrice')
-                                          Text(
-                                            functions
-                                                .getProductForCartSubtotal(
-                                                    rowVariantsRecord
-                                                        .publicPrice,
-                                                    rowVariantsRecord
-                                                        .megaWholesalePrice,
-                                                    widget.expressAmount,
-                                                    widget.normalAmount)
-                                                .toString(),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyText1
-                                                .override(
-                                                  fontFamily: 'Montserrat',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryColor,
-                                                  fontSize: 11,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                          ),
-                                      ],
-                                    ),
-                                  ],
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 2, 0),
+                                        child: Text(
+                                          '\$',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1
+                                              .override(
+                                                fontFamily: 'Montserrat',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
+                                      ),
+                                      Stack(
+                                        children: [
+                                          if ((widget.normalPrice) ==
+                                              'publicPrice')
+                                            Text(
+                                              functions
+                                                  .getProductForCartSubtotal(
+                                                      rowVariantsRecord
+                                                          .publicPrice,
+                                                      rowVariantsRecord
+                                                          .publicPrice,
+                                                      widget.expressAmount,
+                                                      widget.normalAmount)
+                                                  .toString(),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyText1
+                                                  .override(
+                                                    fontFamily: 'Montserrat',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .alternate,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                            ),
+                                          if ((widget.normalPrice) ==
+                                              'wholesalePrice')
+                                            Text(
+                                              functions
+                                                  .getProductForCartSubtotal(
+                                                      rowVariantsRecord
+                                                          .publicPrice,
+                                                      rowVariantsRecord
+                                                          .wholesalePrice,
+                                                      widget.expressAmount,
+                                                      widget.normalAmount)
+                                                  .toString(),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyText1
+                                                  .override(
+                                                    fontFamily: 'Montserrat',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .alternate,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                            ),
+                                          if ((widget.normalPrice) ==
+                                              'megaWholesalePrice')
+                                            Text(
+                                              functions
+                                                  .getProductForCartSubtotal(
+                                                      rowVariantsRecord
+                                                          .publicPrice,
+                                                      rowVariantsRecord
+                                                          .megaWholesalePrice,
+                                                      widget.expressAmount,
+                                                      widget.normalAmount)
+                                                  .toString(),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyText1
+                                                  .override(
+                                                    fontFamily: 'Montserrat',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .alternate,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                            ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),

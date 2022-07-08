@@ -619,9 +619,10 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                                                                             .mainImage,
                                                                         'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
                                                                       ),
-                                                                      width: 70,
+                                                                      width:
+                                                                          100,
                                                                       height:
-                                                                          70,
+                                                                          100,
                                                                       fit: BoxFit
                                                                           .contain,
                                                                     ),
@@ -646,189 +647,142 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                                                                         decoration:
                                                                             BoxDecoration(),
                                                                         child:
-                                                                            Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              6,
-                                                                              0,
-                                                                              0,
-                                                                              0),
-                                                                          child:
-                                                                              Text(
-                                                                            rowProductsRecord.title,
-                                                                            style:
-                                                                                FlutterFlowTheme.of(context).bodyText1,
-                                                                          ),
+                                                                            Text(
+                                                                          rowProductsRecord
+                                                                              .title,
+                                                                          style:
+                                                                              FlutterFlowTheme.of(context).bodyText1,
                                                                         ),
                                                                       ),
                                                                       Stack(
                                                                         children: [
                                                                           if ((valueOrDefault(currentUserDocument?.type, '')) ==
                                                                               'public')
-                                                                            Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(6, 0, 0, 0),
-                                                                              child: AuthUserStreamWidget(
-                                                                                child: Text(
-                                                                                  formatNumber(
-                                                                                    containerVariantsRecord.publicPrice,
-                                                                                    formatType: FormatType.decimal,
-                                                                                    decimalType: DecimalType.periodDecimal,
-                                                                                    currency: '',
-                                                                                  ),
-                                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                        fontFamily: 'Montserrat',
-                                                                                        color: FlutterFlowTheme.of(context).alternate,
-                                                                                        fontSize: 18,
-                                                                                        fontWeight: FontWeight.w500,
-                                                                                      ),
+                                                                            AuthUserStreamWidget(
+                                                                              child: Text(
+                                                                                formatNumber(
+                                                                                  containerVariantsRecord.publicPrice,
+                                                                                  formatType: FormatType.decimal,
+                                                                                  decimalType: DecimalType.periodDecimal,
+                                                                                  currency: '',
                                                                                 ),
+                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                      fontFamily: 'Montserrat',
+                                                                                      color: FlutterFlowTheme.of(context).alternate,
+                                                                                      fontSize: 18,
+                                                                                      fontWeight: FontWeight.w500,
+                                                                                    ),
                                                                               ),
                                                                             ),
                                                                           if ((valueOrDefault(currentUserDocument?.type, '')) ==
                                                                               'wholesale')
-                                                                            Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(6, 0, 0, 0),
-                                                                              child: AuthUserStreamWidget(
-                                                                                child: Text(
-                                                                                  formatNumber(
-                                                                                    containerVariantsRecord.wholesalePrice,
-                                                                                    formatType: FormatType.decimal,
-                                                                                    decimalType: DecimalType.periodDecimal,
-                                                                                    currency: '',
-                                                                                  ),
-                                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                        fontFamily: 'Montserrat',
-                                                                                        color: FlutterFlowTheme.of(context).alternate,
-                                                                                        fontSize: 18,
-                                                                                        fontWeight: FontWeight.w500,
-                                                                                      ),
+                                                                            AuthUserStreamWidget(
+                                                                              child: Text(
+                                                                                formatNumber(
+                                                                                  containerVariantsRecord.wholesalePrice,
+                                                                                  formatType: FormatType.decimal,
+                                                                                  decimalType: DecimalType.periodDecimal,
+                                                                                  currency: '',
                                                                                 ),
+                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                      fontFamily: 'Montserrat',
+                                                                                      color: FlutterFlowTheme.of(context).alternate,
+                                                                                      fontSize: 18,
+                                                                                      fontWeight: FontWeight.w500,
+                                                                                    ),
                                                                               ),
                                                                             ),
                                                                           if ((valueOrDefault(currentUserDocument?.type, '')) ==
                                                                               'megaWholesale')
-                                                                            Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(6, 0, 0, 0),
-                                                                              child: AuthUserStreamWidget(
-                                                                                child: Text(
-                                                                                  formatNumber(
-                                                                                    containerVariantsRecord.megaWholesalePrice,
-                                                                                    formatType: FormatType.decimal,
-                                                                                    decimalType: DecimalType.periodDecimal,
-                                                                                    currency: '',
-                                                                                  ),
-                                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                        fontFamily: 'Montserrat',
-                                                                                        color: FlutterFlowTheme.of(context).alternate,
-                                                                                        fontSize: 18,
-                                                                                        fontWeight: FontWeight.w500,
-                                                                                      ),
+                                                                            AuthUserStreamWidget(
+                                                                              child: Text(
+                                                                                formatNumber(
+                                                                                  containerVariantsRecord.megaWholesalePrice,
+                                                                                  formatType: FormatType.decimal,
+                                                                                  decimalType: DecimalType.periodDecimal,
+                                                                                  currency: '',
                                                                                 ),
+                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                      fontFamily: 'Montserrat',
+                                                                                      color: FlutterFlowTheme.of(context).alternate,
+                                                                                      fontSize: 18,
+                                                                                      fontWeight: FontWeight.w500,
+                                                                                    ),
                                                                               ),
                                                                             ),
                                                                         ],
+                                                                      ),
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0,
+                                                                            5,
+                                                                            0,
+                                                                            0),
+                                                                        child:
+                                                                            Row(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.start,
+                                                                          children: [
+                                                                            Text(
+                                                                              getJsonField(
+                                                                                productsInCartItem,
+                                                                                r'''$.amount''',
+                                                                              ).toString(),
+                                                                              style: FlutterFlowTheme.of(context).bodyText1,
+                                                                            ),
+                                                                            Padding(
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(2, 0, 0, 0),
+                                                                              child: Text(
+                                                                                containerVariantsRecord.unit,
+                                                                                style: FlutterFlowTheme.of(context).bodyText1,
+                                                                              ),
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                      ),
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0,
+                                                                            0,
+                                                                            0,
+                                                                            10),
+                                                                        child:
+                                                                            Row(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          children: [
+                                                                            Text(
+                                                                              'Tipo de Envío',
+                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                    fontFamily: 'Montserrat',
+                                                                                    color: Color(0xFFAEAEAE),
+                                                                                    fontSize: 12,
+                                                                                  ),
+                                                                            ),
+                                                                            Padding(
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                                                              child: Text(
+                                                                                getJsonField(
+                                                                                  productsInCartItem,
+                                                                                  r'''$.deliveryType''',
+                                                                                ).toString(),
+                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                      fontFamily: 'Montserrat',
+                                                                                      fontSize: 12,
+                                                                                      fontWeight: FontWeight.w500,
+                                                                                    ),
+                                                                              ),
+                                                                            ),
+                                                                          ],
+                                                                        ),
                                                                       ),
                                                                     ],
                                                                   ),
                                                                 ),
                                                               ],
                                                             ),
-                                                          ),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(85,
-                                                                      0, 0, 5),
-                                                          child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Text(
-                                                                getJsonField(
-                                                                  productsInCartItem,
-                                                                  r'''$.amount''',
-                                                                ).toString(),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1,
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            2,
-                                                                            0,
-                                                                            0,
-                                                                            0),
-                                                                child: Text(
-                                                                  containerVariantsRecord
-                                                                      .unit,
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyText1,
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      85,
-                                                                      0,
-                                                                      20,
-                                                                      10),
-                                                          child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            children: [
-                                                              Text(
-                                                                'Tipo de Envío',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Montserrat',
-                                                                      color: Color(
-                                                                          0xFFAEAEAE),
-                                                                      fontSize:
-                                                                          12,
-                                                                    ),
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            5,
-                                                                            0,
-                                                                            0,
-                                                                            0),
-                                                                child: Text(
-                                                                  getJsonField(
-                                                                    productsInCartItem,
-                                                                    r'''$.deliveryType''',
-                                                                  ).toString(),
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyText1
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Montserrat',
-                                                                        fontSize:
-                                                                            12,
-                                                                        fontWeight:
-                                                                            FontWeight.w500,
-                                                                      ),
-                                                                ),
-                                                              ),
-                                                            ],
                                                           ),
                                                         ),
                                                         Padding(

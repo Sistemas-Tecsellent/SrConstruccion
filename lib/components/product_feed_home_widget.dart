@@ -192,10 +192,11 @@ class _ProductFeedHomeWidgetState extends State<ProductFeedHomeWidget> {
                                           child: Text(
                                             gridViewProductsRecord.title
                                                 .maybeHandleOverflow(
-                                              maxChars: 40,
+                                              maxChars: 50,
                                               replacement: '…',
                                             ),
                                             textAlign: TextAlign.start,
+                                            maxLines: 2,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1
                                                 .override(
@@ -285,19 +286,31 @@ class _ProductFeedHomeWidgetState extends State<ProductFeedHomeWidget> {
                       ),
                       Align(
                         alignment: AlignmentDirectional(-0.8, -0.93),
-                        child: Container(
-                          width: 30,
-                          height: 30,
-                          clipBehavior: Clip.antiAlias,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                          child: Image.network(
-                            valueOrDefault<String>(
-                              gridViewProductsRecord.brandLogo,
-                              'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
+                        child: InkWell(
+                          onTap: () async {
+                            context.pushNamed(
+                              'MarcaSingle',
+                              params: {
+                                'brandId': serializeParam(
+                                    gridViewProductsRecord.brand,
+                                    ParamType.String),
+                              }.withoutNulls,
+                            );
+                          },
+                          child: Container(
+                            width: 30,
+                            height: 30,
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
                             ),
-                            fit: BoxFit.contain,
+                            child: Image.network(
+                              valueOrDefault<String>(
+                                gridViewProductsRecord.brandLogo,
+                                'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
+                              ),
+                              fit: BoxFit.contain,
+                            ),
                           ),
                         ),
                       ),
