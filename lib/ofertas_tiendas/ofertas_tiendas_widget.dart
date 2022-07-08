@@ -607,30 +607,60 @@ class _OfertasTiendasWidgetState extends State<OfertasTiendasWidget> {
                                                       snapshot.data;
                                                   return InkWell(
                                                     onTap: () async {
-                                                      context.pushNamed(
-                                                        'ProductPage',
-                                                        params: {
-                                                          'productId':
-                                                              serializeParam(
-                                                                  rowProductsRecord
-                                                                      .id,
-                                                                  ParamType
-                                                                      .String),
-                                                        }.withoutNulls,
-                                                        extra: <String,
-                                                            dynamic>{
-                                                          kTransitionInfoKey:
-                                                              TransitionInfo(
-                                                            hasTransition: true,
-                                                            transitionType:
-                                                                PageTransitionType
-                                                                    .fade,
-                                                            duration: Duration(
-                                                                milliseconds:
-                                                                    0),
-                                                          ),
-                                                        },
-                                                      );
+                                                      if ((rowProductsRecord
+                                                              .owner) ==
+                                                          'srconstruccion') {
+                                                        context.pushNamed(
+                                                          'ProductPage',
+                                                          params: {
+                                                            'productId':
+                                                                serializeParam(
+                                                                    rowProductsRecord
+                                                                        .id,
+                                                                    ParamType
+                                                                        .String),
+                                                          }.withoutNulls,
+                                                          extra: <String,
+                                                              dynamic>{
+                                                            kTransitionInfoKey:
+                                                                TransitionInfo(
+                                                              hasTransition:
+                                                                  true,
+                                                              transitionType:
+                                                                  PageTransitionType
+                                                                      .fade,
+                                                              duration: Duration(
+                                                                  milliseconds:
+                                                                      0),
+                                                            ),
+                                                          },
+                                                        );
+                                                      } else {
+                                                        context.pushNamed(
+                                                          'ProductPageSeller',
+                                                          params: {
+                                                            'storeName': serializeParam(
+                                                                rowProductsRecord
+                                                                    .ownerName,
+                                                                ParamType
+                                                                    .String),
+                                                            'productId':
+                                                                serializeParam(
+                                                                    rowProductsRecord
+                                                                        .id,
+                                                                    ParamType
+                                                                        .String),
+                                                          }.withoutNulls,
+                                                          queryParams: {
+                                                            'storeId':
+                                                                serializeParam(
+                                                                    rowProductsRecord
+                                                                        .owner,
+                                                                    ParamType
+                                                                        .String),
+                                                          }.withoutNulls,
+                                                        );
+                                                      }
                                                     },
                                                     child: Container(
                                                       width: 170,

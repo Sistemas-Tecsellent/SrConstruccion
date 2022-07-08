@@ -87,6 +87,9 @@ abstract class ProductsRecord
   BuiltList<String> get subcategories;
 
   @nullable
+  String get ownerName;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -114,7 +117,8 @@ abstract class ProductsRecord
     ..isMostSold = false
     ..isWeekFavorite = false
     ..code = ''
-    ..subcategories = ListBuilder();
+    ..subcategories = ListBuilder()
+    ..ownerName = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('products');
@@ -157,6 +161,7 @@ abstract class ProductsRecord
           ..code = snapshot.data['code']
           ..subcategories =
               safeGet(() => ListBuilder(snapshot.data['subcategories']))
+          ..ownerName = snapshot.data['ownerName']
           ..reference = ProductsRecord.collection.doc(snapshot.objectID),
       );
 
@@ -207,6 +212,7 @@ Map<String, dynamic> createProductsRecordData({
   bool isMostSold,
   bool isWeekFavorite,
   String code,
+  String ownerName,
 }) =>
     serializers.toFirestore(
         ProductsRecord.serializer,
@@ -235,4 +241,5 @@ Map<String, dynamic> createProductsRecordData({
           ..isMostSold = isMostSold
           ..isWeekFavorite = isWeekFavorite
           ..code = code
-          ..subcategories = null));
+          ..subcategories = null
+          ..ownerName = ownerName));

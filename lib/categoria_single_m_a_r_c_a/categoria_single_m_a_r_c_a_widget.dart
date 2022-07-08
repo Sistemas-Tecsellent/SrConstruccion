@@ -5,8 +5,6 @@ import '../components/toggle_like_product_white_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../custom_code/actions/index.dart' as actions;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -592,95 +590,100 @@ class _CategoriaSingleMARCAWidgetState
                                         }
                                         final stackGetOneVariantResponse =
                                             snapshot.data;
-                                        return Container(
-                                          width: 190,
-                                          child: Stack(
-                                            alignment:
-                                                AlignmentDirectional(-0.35, -1),
-                                            children: [
-                                              Align(
-                                                alignment:
-                                                    AlignmentDirectional(1, 0),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 20, 0, 0),
-                                                  child: StreamBuilder<
-                                                      List<VariantsRecord>>(
-                                                    stream: queryVariantsRecord(
-                                                      parent: rowProductsRecord
-                                                          .reference,
-                                                      queryBuilder: (variantsRecord) =>
-                                                          variantsRecord.where(
-                                                              'id',
-                                                              isEqualTo:
-                                                                  GetOneVariantCall
-                                                                      .id(
-                                                                (stackGetOneVariantResponse
-                                                                        ?.jsonBody ??
-                                                                    ''),
-                                                              ).toString()),
-                                                      singleRecord: true,
-                                                    ),
-                                                    builder:
-                                                        (context, snapshot) {
-                                                      // Customize what your widget looks like when it's loading.
-                                                      if (!snapshot.hasData) {
-                                                        return Center(
-                                                          child: SizedBox(
-                                                            width: 50,
-                                                            height: 50,
-                                                            child:
-                                                                SpinKitFadingCircle(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primaryColor,
-                                                              size: 50,
-                                                            ),
-                                                          ),
-                                                        );
-                                                      }
-                                                      List<VariantsRecord>
-                                                          containerVariantsRecordList =
-                                                          snapshot.data;
-                                                      final containerVariantsRecord =
-                                                          containerVariantsRecordList
-                                                                  .isNotEmpty
-                                                              ? containerVariantsRecordList
-                                                                  .first
-                                                              : null;
-                                                      return InkWell(
-                                                        onTap: () async {
-                                                          await actions
-                                                              .productViewed(
+                                        return InkWell(
+                                          onTap: () async {
+                                            if ((rowProductsRecord.owner) ==
+                                                'srconstruccion') {
+                                              context.pushNamed(
+                                                'ProductPage',
+                                                params: {
+                                                  'productId': serializeParam(
+                                                      rowProductsRecord.id,
+                                                      ParamType.String),
+                                                }.withoutNulls,
+                                              );
+                                            } else {
+                                              context.pushNamed(
+                                                'ProductPageSeller',
+                                                params: {
+                                                  'storeName': serializeParam(
+                                                      rowProductsRecord
+                                                          .ownerName,
+                                                      ParamType.String),
+                                                  'productId': serializeParam(
+                                                      rowProductsRecord.id,
+                                                      ParamType.String),
+                                                }.withoutNulls,
+                                                queryParams: {
+                                                  'storeId': serializeParam(
+                                                      rowProductsRecord.owner,
+                                                      ParamType.String),
+                                                }.withoutNulls,
+                                              );
+                                            }
+                                          },
+                                          child: Container(
+                                            width: 190,
+                                            child: Stack(
+                                              alignment: AlignmentDirectional(
+                                                  -0.35, -1),
+                                              children: [
+                                                Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          1, 0),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                0, 20, 0, 0),
+                                                    child: StreamBuilder<
+                                                        List<VariantsRecord>>(
+                                                      stream:
+                                                          queryVariantsRecord(
+                                                        parent:
                                                             rowProductsRecord
-                                                                .id,
+                                                                .reference,
+                                                        queryBuilder: (variantsRecord) =>
+                                                            variantsRecord.where(
+                                                                'id',
+                                                                isEqualTo:
+                                                                    GetOneVariantCall
+                                                                        .id(
+                                                                  (stackGetOneVariantResponse
+                                                                          ?.jsonBody ??
+                                                                      ''),
+                                                                ).toString()),
+                                                        singleRecord: true,
+                                                      ),
+                                                      builder:
+                                                          (context, snapshot) {
+                                                        // Customize what your widget looks like when it's loading.
+                                                        if (!snapshot.hasData) {
+                                                          return Center(
+                                                            child: SizedBox(
+                                                              width: 50,
+                                                              height: 50,
+                                                              child:
+                                                                  SpinKitFadingCircle(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryColor,
+                                                                size: 50,
+                                                              ),
+                                                            ),
                                                           );
-
-                                                          final usersUpdateData =
-                                                              {
-                                                            'recentlyViewed':
-                                                                FieldValue
-                                                                    .arrayUnion([
-                                                              rowProductsRecord
-                                                                  .id
-                                                            ]),
-                                                          };
-                                                          await currentUserReference
-                                                              .update(
-                                                                  usersUpdateData);
-                                                          context.pushNamed(
-                                                            'ProductPage',
-                                                            params: {
-                                                              'productId':
-                                                                  serializeParam(
-                                                                      rowProductsRecord
-                                                                          .id,
-                                                                      ParamType
-                                                                          .String),
-                                                            }.withoutNulls,
-                                                          );
-                                                        },
-                                                        child: Container(
+                                                        }
+                                                        List<VariantsRecord>
+                                                            containerVariantsRecordList =
+                                                            snapshot.data;
+                                                        final containerVariantsRecord =
+                                                            containerVariantsRecordList
+                                                                    .isNotEmpty
+                                                                ? containerVariantsRecordList
+                                                                    .first
+                                                                : null;
+                                                        return Container(
                                                           width: 170,
                                                           height: 255,
                                                           decoration:
@@ -885,26 +888,28 @@ class _CategoriaSingleMARCAWidgetState
                                                               ),
                                                             ],
                                                           ),
-                                                        ),
-                                                      );
-                                                    },
+                                                        );
+                                                      },
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                              Align(
-                                                alignment: AlignmentDirectional(
-                                                    -0.65, 0),
-                                                child: Image.network(
-                                                  valueOrDefault<String>(
-                                                    rowProductsRecord.saleImage,
-                                                    'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FDise%C3%B1o%20sin%20t%C3%ADtulo%20(1).png?alt=media&token=96c985a1-8023-4ffe-b992-4d534a2e3767',
+                                                Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          -0.65, 0),
+                                                  child: Image.network(
+                                                    valueOrDefault<String>(
+                                                      rowProductsRecord
+                                                          .saleImage,
+                                                      'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FDise%C3%B1o%20sin%20t%C3%ADtulo%20(1).png?alt=media&token=96c985a1-8023-4ffe-b992-4d534a2e3767',
+                                                    ),
+                                                    width: 150,
+                                                    height: 170,
+                                                    fit: BoxFit.contain,
                                                   ),
-                                                  width: 150,
-                                                  height: 170,
-                                                  fit: BoxFit.contain,
                                                 ),
-                                              ),
-                                            ],
+                                              ],
+                                            ),
                                           ),
                                         );
                                       },
@@ -1062,14 +1067,35 @@ class _CategoriaSingleMARCAWidgetState
                                               snapshot.data;
                                           return InkWell(
                                             onTap: () async {
-                                              context.pushNamed(
-                                                'ProductPage',
-                                                params: {
-                                                  'productId': serializeParam(
-                                                      rowProductsRecord.id,
-                                                      ParamType.String),
-                                                }.withoutNulls,
-                                              );
+                                              if ((rowProductsRecord.owner) ==
+                                                  'srconstruccion') {
+                                                context.pushNamed(
+                                                  'ProductPage',
+                                                  params: {
+                                                    'productId': serializeParam(
+                                                        rowProductsRecord.id,
+                                                        ParamType.String),
+                                                  }.withoutNulls,
+                                                );
+                                              } else {
+                                                context.pushNamed(
+                                                  'ProductPageSeller',
+                                                  params: {
+                                                    'storeName': serializeParam(
+                                                        rowProductsRecord
+                                                            .ownerName,
+                                                        ParamType.String),
+                                                    'productId': serializeParam(
+                                                        rowProductsRecord.id,
+                                                        ParamType.String),
+                                                  }.withoutNulls,
+                                                  queryParams: {
+                                                    'storeId': serializeParam(
+                                                        rowProductsRecord.owner,
+                                                        ParamType.String),
+                                                  }.withoutNulls,
+                                                );
+                                              }
                                             },
                                             child: Container(
                                               width: 150,
@@ -1142,163 +1168,178 @@ class _CategoriaSingleMARCAWidgetState
                                                               ? columnVariantsRecordList
                                                                   .first
                                                               : null;
-                                                      return InkWell(
-                                                        onTap: () async {
-                                                          context.pushNamed(
-                                                            'ProductPage',
-                                                            params: {
-                                                              'productId':
-                                                                  serializeParam(
-                                                                      rowProductsRecord
-                                                                          .id,
-                                                                      ParamType
-                                                                          .String),
-                                                            }.withoutNulls,
-                                                          );
-                                                        },
-                                                        child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceEvenly,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Stack(
+                                                      return Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceEvenly,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Stack(
+                                                            children: [
+                                                              InkWell(
+                                                                onTap:
+                                                                    () async {
+                                                                  context
+                                                                      .pushNamed(
+                                                                    'MarcaSingle',
+                                                                    params: {
+                                                                      'brandId': serializeParam(
+                                                                          rowProductsRecord
+                                                                              .brand,
+                                                                          ParamType
+                                                                              .String),
+                                                                    }.withoutNulls,
+                                                                  );
+                                                                },
+                                                                child:
+                                                                    Container(
+                                                                  width: 30,
+                                                                  height: 30,
+                                                                  clipBehavior:
+                                                                      Clip.antiAlias,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    shape: BoxShape
+                                                                        .circle,
+                                                                  ),
+                                                                  child: Image
+                                                                      .network(
+                                                                    rowProductsRecord
+                                                                        .brandLogo,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5),
+                                                            child:
+                                                                Image.network(
+                                                              rowProductsRecord
+                                                                  .mainImage,
+                                                              width: 200,
+                                                              height: 100,
+                                                              fit: BoxFit
+                                                                  .contain,
+                                                            ),
+                                                          ),
+                                                          if (columnVariantsRecord
+                                                                  .tags
+                                                                  .toList()
+                                                                  ?.contains(
+                                                                      'Oferta') ??
+                                                              true)
+                                                            Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
                                                               children: [
-                                                                InkWell(
-                                                                  onTap:
-                                                                      () async {
-                                                                    context
-                                                                        .pushNamed(
-                                                                      'MarcaSingle',
-                                                                      params: {
-                                                                        'brandId': serializeParam(
-                                                                            rowProductsRecord.brand,
-                                                                            ParamType.String),
-                                                                      }.withoutNulls,
-                                                                    );
-                                                                  },
-                                                                  child:
-                                                                      Container(
-                                                                    width: 30,
-                                                                    height: 30,
-                                                                    clipBehavior:
-                                                                        Clip.antiAlias,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      shape: BoxShape
-                                                                          .circle,
-                                                                    ),
-                                                                    child: Image
-                                                                        .network(
-                                                                      rowProductsRecord
-                                                                          .brandLogo,
-                                                                    ),
+                                                                FaIcon(
+                                                                  FontAwesomeIcons
+                                                                      .tag,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                                  size: 13,
+                                                                ),
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          5,
+                                                                          0,
+                                                                          0,
+                                                                          0),
+                                                                  child: Text(
+                                                                    'Oferta',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyText1
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Montserrat',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).alternate,
+                                                                          fontSize:
+                                                                              13,
+                                                                        ),
                                                                   ),
                                                                 ),
                                                               ],
                                                             ),
-                                                            ClipRRect(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          5),
-                                                              child:
-                                                                  Image.network(
-                                                                rowProductsRecord
-                                                                    .mainImage,
-                                                                width: 200,
-                                                                height: 100,
-                                                                fit: BoxFit
-                                                                    .contain,
+                                                          Align(
+                                                            alignment:
+                                                                AlignmentDirectional(
+                                                                    -1, -0.45),
+                                                            child: Text(
+                                                              rowProductsRecord
+                                                                  .title
+                                                                  .maybeHandleOverflow(
+                                                                maxChars: 40,
+                                                                replacement:
+                                                                    '…',
                                                               ),
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .start,
+                                                              maxLines: 2,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText1
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Montserrat',
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontSize:
+                                                                        13,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                  ),
                                                             ),
-                                                            if (columnVariantsRecord
-                                                                    .tags
-                                                                    .toList()
-                                                                    ?.contains(
-                                                                        'Oferta') ??
-                                                                true)
-                                                              Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                children: [
-                                                                  FaIcon(
-                                                                    FontAwesomeIcons
-                                                                        .tag,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .alternate,
-                                                                    size: 13,
-                                                                  ),
-                                                                  Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            5,
-                                                                            0,
-                                                                            0,
-                                                                            0),
-                                                                    child: Text(
-                                                                      'Oferta',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyText1
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Montserrat',
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).alternate,
-                                                                            fontSize:
-                                                                                13,
-                                                                          ),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            Align(
-                                                              alignment:
-                                                                  AlignmentDirectional(
-                                                                      -1,
-                                                                      -0.45),
-                                                              child: Text(
-                                                                rowProductsRecord
-                                                                    .title
-                                                                    .maybeHandleOverflow(
-                                                                  maxChars: 40,
-                                                                  replacement:
-                                                                      '…',
-                                                                ),
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .start,
-                                                                maxLines: 2,
+                                                          ),
+                                                          Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Text(
+                                                                '\$',
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyText1
                                                                     .override(
                                                                       fontFamily:
                                                                           'Montserrat',
-                                                                      color: Colors
-                                                                          .black,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .alternate,
                                                                       fontSize:
-                                                                          13,
+                                                                          22,
                                                                       fontWeight:
                                                                           FontWeight
-                                                                              .w500,
+                                                                              .w600,
                                                                     ),
                                                               ),
-                                                            ),
-                                                            Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                Text(
-                                                                  '\$',
+                                                              Align(
+                                                                alignment:
+                                                                    AlignmentDirectional(
+                                                                        -1,
+                                                                        -0.7),
+                                                                child: Text(
+                                                                  getJsonField(
+                                                                    (cageGetOneVariantResponse
+                                                                            ?.jsonBody ??
+                                                                        ''),
+                                                                    r'''$.price''',
+                                                                  ).toString(),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyText1
@@ -1313,18 +1354,36 @@ class _CategoriaSingleMARCAWidgetState
                                                                             FontWeight.w600,
                                                                       ),
                                                                 ),
-                                                                Align(
-                                                                  alignment:
-                                                                      AlignmentDirectional(
-                                                                          -1,
-                                                                          -0.7),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          if (columnVariantsRecord
+                                                                  .tags
+                                                                  .toList()
+                                                                  ?.contains(
+                                                                      'Envio Gratis') ??
+                                                              true)
+                                                            Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: [
+                                                                FaIcon(
+                                                                  FontAwesomeIcons
+                                                                      .shippingFast,
+                                                                  color: Color(
+                                                                      0xFF5AE93E),
+                                                                  size: 11,
+                                                                ),
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          5,
+                                                                          0,
+                                                                          0,
+                                                                          0),
                                                                   child: Text(
-                                                                    getJsonField(
-                                                                      (cageGetOneVariantResponse
-                                                                              ?.jsonBody ??
-                                                                          ''),
-                                                                      r'''$.price''',
-                                                                    ).toString(),
+                                                                    'Envio Gratis',
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyText1
@@ -1332,60 +1391,15 @@ class _CategoriaSingleMARCAWidgetState
                                                                           fontFamily:
                                                                               'Montserrat',
                                                                           color:
-                                                                              FlutterFlowTheme.of(context).alternate,
+                                                                              Color(0xFF5AE93E),
                                                                           fontSize:
-                                                                              22,
-                                                                          fontWeight:
-                                                                              FontWeight.w600,
+                                                                              11,
                                                                         ),
                                                                   ),
                                                                 ),
                                                               ],
                                                             ),
-                                                            if (columnVariantsRecord
-                                                                    .tags
-                                                                    .toList()
-                                                                    ?.contains(
-                                                                        'Envio Gratis') ??
-                                                                true)
-                                                              Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                children: [
-                                                                  FaIcon(
-                                                                    FontAwesomeIcons
-                                                                        .shippingFast,
-                                                                    color: Color(
-                                                                        0xFF5AE93E),
-                                                                    size: 11,
-                                                                  ),
-                                                                  Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            5,
-                                                                            0,
-                                                                            0,
-                                                                            0),
-                                                                    child: Text(
-                                                                      'Envio Gratis',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyText1
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Montserrat',
-                                                                            color:
-                                                                                Color(0xFF5AE93E),
-                                                                            fontSize:
-                                                                                11,
-                                                                          ),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                          ],
-                                                        ),
+                                                        ],
                                                       );
                                                     },
                                                   ),
@@ -1549,14 +1563,35 @@ class _CategoriaSingleMARCAWidgetState
                                               snapshot.data;
                                           return InkWell(
                                             onTap: () async {
-                                              context.pushNamed(
-                                                'ProductPage',
-                                                params: {
-                                                  'productId': serializeParam(
-                                                      rowProductsRecord.id,
-                                                      ParamType.String),
-                                                }.withoutNulls,
-                                              );
+                                              if ((rowProductsRecord.owner) ==
+                                                  'srconstruccion') {
+                                                context.pushNamed(
+                                                  'ProductPage',
+                                                  params: {
+                                                    'productId': serializeParam(
+                                                        rowProductsRecord.id,
+                                                        ParamType.String),
+                                                  }.withoutNulls,
+                                                );
+                                              } else {
+                                                context.pushNamed(
+                                                  'ProductPageSeller',
+                                                  params: {
+                                                    'storeName': serializeParam(
+                                                        rowProductsRecord
+                                                            .ownerName,
+                                                        ParamType.String),
+                                                    'productId': serializeParam(
+                                                        rowProductsRecord.id,
+                                                        ParamType.String),
+                                                  }.withoutNulls,
+                                                  queryParams: {
+                                                    'storeId': serializeParam(
+                                                        rowProductsRecord.owner,
+                                                        ParamType.String),
+                                                  }.withoutNulls,
+                                                );
+                                              }
                                             },
                                             child: Container(
                                               width: 150,
@@ -1671,33 +1706,19 @@ class _CategoriaSingleMARCAWidgetState
                                                               ),
                                                             ],
                                                           ),
-                                                          InkWell(
-                                                            onTap: () async {
-                                                              context.pushNamed(
-                                                                'ProductPage',
-                                                                params: {
-                                                                  'productId': serializeParam(
-                                                                      rowProductsRecord
-                                                                          .id,
-                                                                      ParamType
-                                                                          .String),
-                                                                }.withoutNulls,
-                                                              );
-                                                            },
-                                                            child: ClipRRect(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          5),
-                                                              child:
-                                                                  Image.network(
-                                                                rowProductsRecord
-                                                                    .mainImage,
-                                                                width: 200,
-                                                                height: 100,
-                                                                fit: BoxFit
-                                                                    .contain,
-                                                              ),
+                                                          ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5),
+                                                            child:
+                                                                Image.network(
+                                                              rowProductsRecord
+                                                                  .mainImage,
+                                                              width: 200,
+                                                              height: 100,
+                                                              fit: BoxFit
+                                                                  .contain,
                                                             ),
                                                           ),
                                                           if (columnVariantsRecord
@@ -2032,14 +2053,35 @@ class _CategoriaSingleMARCAWidgetState
                                               snapshot.data;
                                           return InkWell(
                                             onTap: () async {
-                                              context.pushNamed(
-                                                'ProductPage',
-                                                params: {
-                                                  'productId': serializeParam(
-                                                      rowProductsRecord.id,
-                                                      ParamType.String),
-                                                }.withoutNulls,
-                                              );
+                                              if ((rowProductsRecord.owner) ==
+                                                  'srconstruccion') {
+                                                context.pushNamed(
+                                                  'ProductPage',
+                                                  params: {
+                                                    'productId': serializeParam(
+                                                        rowProductsRecord.id,
+                                                        ParamType.String),
+                                                  }.withoutNulls,
+                                                );
+                                              } else {
+                                                context.pushNamed(
+                                                  'ProductPageSeller',
+                                                  params: {
+                                                    'storeName': serializeParam(
+                                                        rowProductsRecord
+                                                            .ownerName,
+                                                        ParamType.String),
+                                                    'productId': serializeParam(
+                                                        rowProductsRecord.id,
+                                                        ParamType.String),
+                                                  }.withoutNulls,
+                                                  queryParams: {
+                                                    'storeId': serializeParam(
+                                                        rowProductsRecord.owner,
+                                                        ParamType.String),
+                                                  }.withoutNulls,
+                                                );
+                                              }
                                             },
                                             child: Container(
                                               width: 150,
@@ -2154,33 +2196,18 @@ class _CategoriaSingleMARCAWidgetState
                                                               ),
                                                             ],
                                                           ),
-                                                          InkWell(
-                                                            onTap: () async {
-                                                              context.pushNamed(
-                                                                'ProductPage',
-                                                                params: {
-                                                                  'productId': serializeParam(
-                                                                      rowProductsRecord
-                                                                          .id,
-                                                                      ParamType
-                                                                          .String),
-                                                                }.withoutNulls,
-                                                              );
-                                                            },
-                                                            child: ClipRRect(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          5),
-                                                              child:
-                                                                  Image.network(
-                                                                rowProductsRecord
-                                                                    .mainImage,
-                                                                width: 200,
-                                                                height: 100,
-                                                                fit: BoxFit
-                                                                    .cover,
-                                                              ),
+                                                          ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5),
+                                                            child:
+                                                                Image.network(
+                                                              rowProductsRecord
+                                                                  .mainImage,
+                                                              width: 200,
+                                                              height: 100,
+                                                              fit: BoxFit.cover,
                                                             ),
                                                           ),
                                                           if (columnVariantsRecord
