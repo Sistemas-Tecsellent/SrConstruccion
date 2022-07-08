@@ -1,4 +1,5 @@
 import '../backend/backend.dart';
+import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +53,7 @@ class _SellerDetailsWidgetState extends State<SellerDetailsWidget> {
                   : null;
               return Container(
                 width: MediaQuery.of(context).size.width,
-                height: 500,
+                height: 550,
                 constraints: BoxConstraints(
                   maxWidth: 700,
                 ),
@@ -70,6 +71,46 @@ class _SellerDetailsWidgetState extends State<SellerDetailsWidget> {
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
+                      if (responsiveVisibility(
+                        context: context,
+                        tablet: false,
+                        tabletLandscape: false,
+                        desktop: false,
+                      ))
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
+                          child: Container(
+                            width: 100,
+                            height: 3,
+                            decoration: BoxDecoration(
+                              color: Color(0xFFEEEEEE),
+                            ),
+                          ),
+                        ),
+                      if (responsiveVisibility(
+                        context: context,
+                        phone: false,
+                      ))
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            FlutterFlowIconButton(
+                              borderColor: Colors.transparent,
+                              borderRadius: 30,
+                              borderWidth: 1,
+                              buttonSize: 40,
+                              icon: Icon(
+                                Icons.close_rounded,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 20,
+                              ),
+                              onPressed: () async {
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        ),
                       Expanded(
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(20, 8, 20, 0),
@@ -79,12 +120,6 @@ class _SellerDetailsWidgetState extends State<SellerDetailsWidget> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Divider(
-                                  thickness: 3,
-                                  indent: 250,
-                                  endIndent: 250,
-                                  color: Color(0xFFDBE2E7),
-                                ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment:

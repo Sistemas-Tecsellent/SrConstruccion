@@ -44,12 +44,14 @@ class _CalculandoCostoDeEnvioWidgetState
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      appBar: AppBar(
-        backgroundColor: Color(0x00FFFFFF),
-        automaticallyImplyLeading: false,
-        actions: [],
-        centerTitle: true,
-        elevation: 0,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(0),
+        child: AppBar(
+          backgroundColor: Color(0x00FFFFFF),
+          automaticallyImplyLeading: false,
+          actions: [],
+          elevation: 0,
+        ),
       ),
       backgroundColor: Colors.white,
       body: SafeArea(

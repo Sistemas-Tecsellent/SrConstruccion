@@ -416,6 +416,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
+              name: 'DetalleDevolucion',
+              path: 'detalleDevolucion',
+              requireAuth: true,
+              builder: (context, params) => DetalleDevolucionWidget(),
+            ),
+            FFRoute(
               name: 'subcategoriaSingle',
               path: 'categoria/subcategoria',
               builder: (context, params) => SubcategoriaSingleWidget(
@@ -423,12 +429,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 subcategoryId:
                     params.getParam('subcategoryId', ParamType.String),
               ),
-            ),
-            FFRoute(
-              name: 'DetalleDevolucion',
-              path: 'detalleDevolucion',
-              requireAuth: true,
-              builder: (context, params) => DetalleDevolucionWidget(),
             ),
             FFRoute(
               name: 'SolicitudDevolucionEnviado',

@@ -46,215 +46,282 @@ class _CambiarDireccionWidgetState extends State<CambiarDireccionWidget> {
             topRight: Radius.circular(16),
           ),
         ),
-        child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
-          child: StreamBuilder<List<AddressesRecord>>(
-            stream: queryAddressesRecord(
-              parent: currentUserReference,
-            ),
-            builder: (context, snapshot) {
-              // Customize what your widget looks like when it's loading.
-              if (!snapshot.hasData) {
-                return Center(
-                  child: SizedBox(
-                    width: 50,
-                    height: 50,
-                    child: SpinKitFadingCircle(
-                      color: FlutterFlowTheme.of(context).primaryColor,
-                      size: 50,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                if (responsiveVisibility(
+                  context: context,
+                  phone: false,
+                ))
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      FlutterFlowIconButton(
+                        borderColor: Colors.transparent,
+                        borderRadius: 30,
+                        borderWidth: 1,
+                        buttonSize: 40,
+                        icon: Icon(
+                          Icons.close_rounded,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          size: 20,
+                        ),
+                        onPressed: () async {
+                          Navigator.pop(context);
+                        },
+                      ),
+                    ],
+                  ),
+                if (responsiveVisibility(
+                  context: context,
+                  tablet: false,
+                  tabletLandscape: false,
+                  desktop: false,
+                ))
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
+                    child: Container(
+                      width: 100,
+                      height: 3,
+                      decoration: BoxDecoration(
+                        color: Color(0xFFEEEEEE),
+                      ),
                     ),
                   ),
-                );
-              }
-              List<AddressesRecord> columnAddressesRecordList = snapshot.data;
-              return SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: List.generate(columnAddressesRecordList.length,
-                      (columnIndex) {
-                    final columnAddressesRecord =
-                        columnAddressesRecordList[columnIndex];
-                    return Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 5),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                          color: Color(0x00EEEEEE),
-                          borderRadius: BorderRadius.circular(10),
+              ],
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
+              child: StreamBuilder<List<AddressesRecord>>(
+                stream: queryAddressesRecord(
+                  parent: currentUserReference,
+                ),
+                builder: (context, snapshot) {
+                  // Customize what your widget looks like when it's loading.
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: SizedBox(
+                        width: 50,
+                        height: 50,
+                        child: SpinKitFadingCircle(
+                          color: FlutterFlowTheme.of(context).primaryColor,
+                          size: 50,
                         ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
+                      ),
+                    );
+                  }
+                  List<AddressesRecord> columnAddressesRecordList =
+                      snapshot.data;
+                  return SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: List.generate(columnAddressesRecordList.length,
+                          (columnIndex) {
+                        final columnAddressesRecord =
+                            columnAddressesRecordList[columnIndex];
+                        return Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 5),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            decoration: BoxDecoration(
+                              color: Color(0x00EEEEEE),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Row(
                               mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Icon(
-                                  Icons.location_on,
-                                  color: FlutterFlowTheme.of(context).alternate,
-                                  size: 20,
-                                ),
-                                Container(
-                                  width: 240,
-                                  decoration: BoxDecoration(
-                                    color: Color(0x00EEEEEE),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        10, 0, 10, 0),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 0, 5),
-                                          child: Text(
-                                            columnAddressesRecord.name,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyText1
-                                                .override(
-                                                  fontFamily: 'Montserrat',
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                          ),
-                                        ),
-                                        Row(
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.location_on,
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                      size: 20,
+                                    ),
+                                    Container(
+                                      width: 240,
+                                      decoration: BoxDecoration(
+                                        color: Color(0x00EEEEEE),
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            10, 0, 10, 0),
+                                        child: Column(
                                           mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
-                                            Column(
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 0, 5),
+                                              child: Text(
+                                                columnAddressesRecord.name,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              'Montserrat',
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                              ),
+                                            ),
+                                            Row(
                                               mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
                                               children: [
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 0, 0, 5),
-                                                  child: Text(
-                                                    columnAddressesRecord
-                                                        .addressLine1
-                                                        .maybeHandleOverflow(
-                                                            maxChars: 28),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily:
-                                                              'Montserrat',
-                                                          fontSize: 12,
-                                                        ),
-                                                  ),
+                                                Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 0, 0, 5),
+                                                      child: Text(
+                                                        columnAddressesRecord
+                                                            .addressLine1
+                                                            .maybeHandleOverflow(
+                                                                maxChars: 28),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Montserrat',
+                                                                  fontSize: 12,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 0, 0, 5),
+                                                      child: Text(
+                                                        columnAddressesRecord
+                                                            .suburb,
+                                                        maxLines: 1,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Montserrat',
+                                                                  fontSize: 12,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 0, 0, 5),
-                                                  child: Text(
-                                                    columnAddressesRecord
-                                                        .suburb,
-                                                    maxLines: 1,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily:
-                                                              'Montserrat',
-                                                          fontSize: 12,
-                                                        ),
-                                                  ),
+                                              ],
+                                            ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Text(
+                                                  columnAddressesRecord.city,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyText1
+                                                      .override(
+                                                        fontFamily:
+                                                            'Montserrat',
+                                                        color:
+                                                            Color(0xFFAEAEAE),
+                                                        fontSize: 11,
+                                                      ),
+                                                ),
+                                                Text(
+                                                  ', ',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyText1
+                                                      .override(
+                                                        fontFamily:
+                                                            'Montserrat',
+                                                        color:
+                                                            Color(0xFFAEAEAE),
+                                                      ),
+                                                ),
+                                                Text(
+                                                  columnAddressesRecord.state,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyText1
+                                                      .override(
+                                                        fontFamily:
+                                                            'Montserrat',
+                                                        color:
+                                                            Color(0xFFAEAEAE),
+                                                        fontSize: 11,
+                                                      ),
                                                 ),
                                               ],
                                             ),
                                           ],
                                         ),
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Text(
-                                              columnAddressesRecord.city,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyText1
-                                                  .override(
-                                                    fontFamily: 'Montserrat',
-                                                    color: Color(0xFFAEAEAE),
-                                                    fontSize: 11,
-                                                  ),
-                                            ),
-                                            Text(
-                                              ', ',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyText1
-                                                  .override(
-                                                    fontFamily: 'Montserrat',
-                                                    color: Color(0xFFAEAEAE),
-                                                  ),
-                                            ),
-                                            Text(
-                                              columnAddressesRecord.state,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyText1
-                                                  .override(
-                                                    fontFamily: 'Montserrat',
-                                                    color: Color(0xFFAEAEAE),
-                                                    fontSize: 11,
-                                                  ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
+                                      ),
                                     ),
+                                  ],
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: Color(0x00EEEEEE),
+                                  ),
+                                  child: FlutterFlowIconButton(
+                                    borderColor: Colors.transparent,
+                                    borderRadius: 30,
+                                    borderWidth: 1,
+                                    buttonSize: 50,
+                                    icon: Icon(
+                                      Icons.add_rounded,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                      size: 30,
+                                    ),
+                                    onPressed: () async {
+                                      if ((widget.storeId) == '\"\"') {
+                                        await actions.setCheckoutModifyAddress(
+                                          currentUserUid,
+                                          columnAddressesRecord.name,
+                                        );
+                                        Navigator.pop(context);
+                                      } else {
+                                        await actions.setCheckoutModifyAddress(
+                                          widget.storeId,
+                                          columnAddressesRecord.name,
+                                        );
+                                        Navigator.pop(context);
+                                      }
+                                    },
                                   ),
                                 ),
                               ],
                             ),
-                            Container(
-                              decoration: BoxDecoration(
-                                color: Color(0x00EEEEEE),
-                              ),
-                              child: FlutterFlowIconButton(
-                                borderColor: Colors.transparent,
-                                borderRadius: 30,
-                                borderWidth: 1,
-                                buttonSize: 50,
-                                icon: Icon(
-                                  Icons.add_rounded,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryColor,
-                                  size: 30,
-                                ),
-                                onPressed: () async {
-                                  if ((widget.storeId) == '\"\"') {
-                                    await actions.setCheckoutModifyAddress(
-                                      currentUserUid,
-                                      columnAddressesRecord.name,
-                                    );
-                                    Navigator.pop(context);
-                                  } else {
-                                    await actions.setCheckoutModifyAddress(
-                                      widget.storeId,
-                                      columnAddressesRecord.name,
-                                    );
-                                    Navigator.pop(context);
-                                  }
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  }),
-                ),
-              );
-            },
-          ),
+                          ),
+                        );
+                      }),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );

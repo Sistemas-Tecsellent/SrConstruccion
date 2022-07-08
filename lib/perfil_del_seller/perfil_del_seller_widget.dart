@@ -1697,22 +1697,29 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                         mainAxisAlignment:
                                                                             MainAxisAlignment.spaceBetween,
                                                                         children: [
-                                                                          Container(
-                                                                            width:
-                                                                                30,
-                                                                            height:
-                                                                                30,
-                                                                            clipBehavior:
-                                                                                Clip.antiAlias,
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              shape: BoxShape.circle,
-                                                                            ),
+                                                                          InkWell(
+                                                                            onTap:
+                                                                                () async {
+                                                                              context.pushNamed(
+                                                                                'MarcaSingle',
+                                                                                params: {
+                                                                                  'brandId': serializeParam(rowProductsRecord.brand, ParamType.String),
+                                                                                }.withoutNulls,
+                                                                              );
+                                                                            },
                                                                             child:
-                                                                                Image.network(
-                                                                              valueOrDefault<String>(
-                                                                                rowProductsRecord.brandLogo,
-                                                                                'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
+                                                                                Container(
+                                                                              width: 30,
+                                                                              height: 30,
+                                                                              clipBehavior: Clip.antiAlias,
+                                                                              decoration: BoxDecoration(
+                                                                                shape: BoxShape.circle,
+                                                                              ),
+                                                                              child: Image.network(
+                                                                                valueOrDefault<String>(
+                                                                                  rowProductsRecord.brandLogo,
+                                                                                  'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
+                                                                                ),
                                                                               ),
                                                                             ),
                                                                           ),
@@ -1852,6 +1859,7 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                                     replacement: '…',
                                                                                   ),
                                                                                   textAlign: TextAlign.start,
+                                                                                  maxLines: 2,
                                                                                   style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                         fontFamily: 'Montserrat',
                                                                                         color: Colors.black,
@@ -2230,22 +2238,29 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                         mainAxisAlignment:
                                                                             MainAxisAlignment.spaceBetween,
                                                                         children: [
-                                                                          Container(
-                                                                            width:
-                                                                                30,
-                                                                            height:
-                                                                                30,
-                                                                            clipBehavior:
-                                                                                Clip.antiAlias,
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              shape: BoxShape.circle,
-                                                                            ),
+                                                                          InkWell(
+                                                                            onTap:
+                                                                                () async {
+                                                                              context.pushNamed(
+                                                                                'MarcaSingle',
+                                                                                params: {
+                                                                                  'brandId': serializeParam(rowProductsRecord.brand, ParamType.String),
+                                                                                }.withoutNulls,
+                                                                              );
+                                                                            },
                                                                             child:
-                                                                                Image.network(
-                                                                              valueOrDefault<String>(
-                                                                                rowProductsRecord.brandLogo,
-                                                                                'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
+                                                                                Container(
+                                                                              width: 30,
+                                                                              height: 30,
+                                                                              clipBehavior: Clip.antiAlias,
+                                                                              decoration: BoxDecoration(
+                                                                                shape: BoxShape.circle,
+                                                                              ),
+                                                                              child: Image.network(
+                                                                                valueOrDefault<String>(
+                                                                                  rowProductsRecord.brandLogo,
+                                                                                  'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
+                                                                                ),
                                                                               ),
                                                                             ),
                                                                           ),
@@ -2366,6 +2381,7 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                                     replacement: '…',
                                                                                   ),
                                                                                   textAlign: TextAlign.start,
+                                                                                  maxLines: 2,
                                                                                   style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                         fontFamily: 'Montserrat',
                                                                                         color: Colors.black,
@@ -2746,22 +2762,29 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                         mainAxisAlignment:
                                                                             MainAxisAlignment.spaceBetween,
                                                                         children: [
-                                                                          Container(
-                                                                            width:
-                                                                                30,
-                                                                            height:
-                                                                                30,
-                                                                            clipBehavior:
-                                                                                Clip.antiAlias,
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              shape: BoxShape.circle,
-                                                                            ),
+                                                                          InkWell(
+                                                                            onTap:
+                                                                                () async {
+                                                                              context.pushNamed(
+                                                                                'MarcaSingle',
+                                                                                params: {
+                                                                                  'brandId': serializeParam(rowProductsRecord.brand, ParamType.String),
+                                                                                }.withoutNulls,
+                                                                              );
+                                                                            },
                                                                             child:
-                                                                                Image.network(
-                                                                              valueOrDefault<String>(
-                                                                                rowProductsRecord.brandLogo,
-                                                                                'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
+                                                                                Container(
+                                                                              width: 30,
+                                                                              height: 30,
+                                                                              clipBehavior: Clip.antiAlias,
+                                                                              decoration: BoxDecoration(
+                                                                                shape: BoxShape.circle,
+                                                                              ),
+                                                                              child: Image.network(
+                                                                                valueOrDefault<String>(
+                                                                                  rowProductsRecord.brandLogo,
+                                                                                  'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
+                                                                                ),
                                                                               ),
                                                                             ),
                                                                           ),
@@ -2882,6 +2905,7 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                                     replacement: '…',
                                                                                   ),
                                                                                   textAlign: TextAlign.start,
+                                                                                  maxLines: 2,
                                                                                   style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                         fontFamily: 'Montserrat',
                                                                                         color: Colors.black,
@@ -3263,22 +3287,29 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                         mainAxisAlignment:
                                                                             MainAxisAlignment.spaceBetween,
                                                                         children: [
-                                                                          Container(
-                                                                            width:
-                                                                                30,
-                                                                            height:
-                                                                                30,
-                                                                            clipBehavior:
-                                                                                Clip.antiAlias,
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              shape: BoxShape.circle,
-                                                                            ),
+                                                                          InkWell(
+                                                                            onTap:
+                                                                                () async {
+                                                                              context.pushNamed(
+                                                                                'MarcaSingle',
+                                                                                params: {
+                                                                                  'brandId': serializeParam(rowProductsRecord.brand, ParamType.String),
+                                                                                }.withoutNulls,
+                                                                              );
+                                                                            },
                                                                             child:
-                                                                                Image.network(
-                                                                              valueOrDefault<String>(
-                                                                                rowProductsRecord.brandLogo,
-                                                                                'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
+                                                                                Container(
+                                                                              width: 30,
+                                                                              height: 30,
+                                                                              clipBehavior: Clip.antiAlias,
+                                                                              decoration: BoxDecoration(
+                                                                                shape: BoxShape.circle,
+                                                                              ),
+                                                                              child: Image.network(
+                                                                                valueOrDefault<String>(
+                                                                                  rowProductsRecord.brandLogo,
+                                                                                  'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
+                                                                                ),
                                                                               ),
                                                                             ),
                                                                           ),
@@ -3391,6 +3422,7 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                                     replacement: '…',
                                                                                   ),
                                                                                   textAlign: TextAlign.start,
+                                                                                  maxLines: 2,
                                                                                   style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                         fontFamily: 'Montserrat',
                                                                                         color: Colors.black,
@@ -3776,17 +3808,27 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                           mainAxisAlignment:
                                                                               MainAxisAlignment.spaceBetween,
                                                                           children: [
-                                                                            Container(
-                                                                              width: 30,
-                                                                              height: 30,
-                                                                              clipBehavior: Clip.antiAlias,
-                                                                              decoration: BoxDecoration(
-                                                                                shape: BoxShape.circle,
-                                                                              ),
-                                                                              child: Image.network(
-                                                                                valueOrDefault<String>(
-                                                                                  rowProductsRecord.brandLogo,
-                                                                                  'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
+                                                                            InkWell(
+                                                                              onTap: () async {
+                                                                                context.pushNamed(
+                                                                                  'MarcaSingle',
+                                                                                  params: {
+                                                                                    'brandId': serializeParam(rowProductsRecord.brand, ParamType.String),
+                                                                                  }.withoutNulls,
+                                                                                );
+                                                                              },
+                                                                              child: Container(
+                                                                                width: 30,
+                                                                                height: 30,
+                                                                                clipBehavior: Clip.antiAlias,
+                                                                                decoration: BoxDecoration(
+                                                                                  shape: BoxShape.circle,
+                                                                                ),
+                                                                                child: Image.network(
+                                                                                  valueOrDefault<String>(
+                                                                                    rowProductsRecord.brandLogo,
+                                                                                    'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
+                                                                                  ),
                                                                                 ),
                                                                               ),
                                                                             ),
@@ -3893,6 +3935,7 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                                                       replacement: '…',
                                                                                     ),
                                                                                     textAlign: TextAlign.start,
+                                                                                    maxLines: 2,
                                                                                     style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                           fontFamily: 'Montserrat',
                                                                                           color: Colors.black,

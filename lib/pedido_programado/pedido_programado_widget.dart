@@ -238,7 +238,7 @@ class _PedidoProgramadoWidgetState extends State<PedidoProgramadoWidget> {
                                                                   fontSize: 18,
                                                                   fontWeight:
                                                                       FontWeight
-                                                                          .w500,
+                                                                          .w600,
                                                                 ),
                                                           ),
                                                         ],
@@ -774,7 +774,7 @@ class _PedidoProgramadoWidgetState extends State<PedidoProgramadoWidget> {
                                                                 .alternate,
                                                         fontSize: 18,
                                                         fontWeight:
-                                                            FontWeight.w500,
+                                                            FontWeight.w600,
                                                       ),
                                                 ),
                                                 Row(
@@ -1261,7 +1261,7 @@ class _PedidoProgramadoWidgetState extends State<PedidoProgramadoWidget> {
                                                                 fontSize: 18,
                                                                 fontWeight:
                                                                     FontWeight
-                                                                        .w500,
+                                                                        .w600,
                                                               ),
                                                         ),
                                                         Text(
@@ -1287,7 +1287,7 @@ class _PedidoProgramadoWidgetState extends State<PedidoProgramadoWidget> {
                                                                 fontSize: 18,
                                                                 fontWeight:
                                                                     FontWeight
-                                                                        .w500,
+                                                                        .w600,
                                                               ),
                                                         ),
                                                       ],
