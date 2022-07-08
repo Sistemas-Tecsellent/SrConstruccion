@@ -8,6 +8,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../custom_code/actions/index.dart' as actions;
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -29,6 +30,7 @@ class CarritoPorSellersWidget extends StatefulWidget {
 
 class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
   ApiCallResponse pendingShipmentPrice;
+  Completer<ApiCallResponse> _apiRequestCompleter;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -276,10 +278,12 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
             child: GestureDetector(
               onTap: () => FocusScope.of(context).unfocus(),
               child: FutureBuilder<ApiCallResponse>(
-                future: GetSellerWiseCartCall.call(
-                  uid: currentUserUid,
-                  storeId: widget.storeId,
-                ),
+                future: (_apiRequestCompleter ??= Completer<ApiCallResponse>()
+                      ..complete(GetSellerWiseCartCall.call(
+                        uid: currentUserUid,
+                        storeId: widget.storeId,
+                      )))
+                    .future,
                 builder: (context, snapshot) {
                   // Customize what your widget looks like when it's loading.
                   if (!snapshot.hasData) {
@@ -519,6 +523,10 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                                                                       containerVariantsRecord
                                                                           .id,
                                                                     );
+                                                                    setState(() =>
+                                                                        _apiRequestCompleter =
+                                                                            null);
+                                                                    await waitForApiRequestCompleter();
                                                                   },
                                                                   child: Text(
                                                                     'Eliminar ',
@@ -934,5 +942,20 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
         );
       },
     );
+  }
+
+  Future waitForApiRequestCompleter({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = _apiRequestCompleter?.isCompleted ?? false;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
   }
 }
