@@ -150,31 +150,28 @@ class _CalculandoCostoDeEnvioWidgetState
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        if (!(columnCheckoutsRecord.pendingShipmentPrice) ??
-                            true)
-                          FFButtonWidget(
-                            onPressed: () async {
-                              context.goNamed('Checkout');
-                            },
-                            text: 'Seguir comprando',
-                            options: FFButtonOptions(
-                              height: 40,
-                              color: Colors.white,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .subtitle2
-                                  .override(
-                                    fontFamily: 'Montserrat',
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                  ),
-                              elevation: 0,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1,
-                              ),
-                              borderRadius: BorderRadius.circular(12),
+                        FFButtonWidget(
+                          onPressed: () async {
+                            context.goNamed('HomeAlt');
+                          },
+                          text: 'Seguir comprando',
+                          options: FFButtonOptions(
+                            height: 40,
+                            color: Colors.white,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .subtitle2
+                                .override(
+                                  fontFamily: 'Montserrat',
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                ),
+                            elevation: 0,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1,
                             ),
+                            borderRadius: BorderRadius.circular(12),
                           ),
+                        ),
                       ],
                     ),
                   ),

@@ -155,7 +155,7 @@ class _CartProductWidgetState extends State<CartProductWidget> {
                                       ),
                                       child: Text(
                                         containerProductsRecord.title
-                                            .maybeHandleOverflow(maxChars: 25),
+                                            .maybeHandleOverflow(maxChars: 23),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1,
                                       ),
