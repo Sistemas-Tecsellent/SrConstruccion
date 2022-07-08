@@ -105,108 +105,71 @@ class _CotizacionesDeEnvioWidgetState extends State<CotizacionesDeEnvioWidget> {
                             final listViewPricingRequestsRecord =
                                 listViewPricingRequestsRecordList[
                                     listViewIndex];
-                            return StreamBuilder<List<StoresRecord>>(
-                              stream: queryStoresRecord(
-                                queryBuilder: (storesRecord) =>
-                                    storesRecord.where('id',
-                                        isEqualTo: listViewPricingRequestsRecord
-                                            .store),
-                                singleRecord: true,
-                              ),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50,
-                                      height: 50,
-                                      child: SpinKitFadingCircle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryColor,
-                                        size: 50,
-                                      ),
-                                    ),
+                            return InkWell(
+                              onTap: () async {
+                                await CheckoutPricingRequestCall.call(
+                                  requestId: listViewPricingRequestsRecord.id,
+                                );
+                                if ((listViewPricingRequestsRecord.store) ==
+                                    'srconstruccion') {
+                                  context.pushNamed('Checkout');
+                                } else {
+                                  context.pushNamed(
+                                    'CheckoutSeller',
+                                    params: {
+                                      'storeName': serializeParam(
+                                          listViewPricingRequestsRecord
+                                              .storeName,
+                                          ParamType.String),
+                                    }.withoutNulls,
+                                    queryParams: {
+                                      'storeId': serializeParam(
+                                          listViewPricingRequestsRecord.store,
+                                          ParamType.String),
+                                    }.withoutNulls,
                                   );
                                 }
-                                List<StoresRecord> listTileStoresRecordList =
-                                    snapshot.data;
-                                // Return an empty Container when the document does not exist.
-                                if (snapshot.data.isEmpty) {
-                                  return Container();
-                                }
-                                final listTileStoresRecord =
-                                    listTileStoresRecordList.isNotEmpty
-                                        ? listTileStoresRecordList.first
-                                        : null;
-                                return InkWell(
-                                  onTap: () async {
-                                    await CheckoutPricingRequestCall.call(
-                                      requestId:
-                                          listViewPricingRequestsRecord.id,
-                                    );
-                                    if ((listViewPricingRequestsRecord.store) ==
-                                        'srconstruccion') {
-                                      context.pushNamed('Checkout');
-                                    } else {
-                                      context.pushNamed(
-                                        'CheckoutSeller',
-                                        params: {
-                                          'storeName': serializeParam(
-                                              listTileStoresRecord.name,
-                                              ParamType.String),
-                                        }.withoutNulls,
-                                        queryParams: {
-                                          'storeId': serializeParam(
-                                              listViewPricingRequestsRecord
-                                                  .store,
-                                              ParamType.String),
-                                        }.withoutNulls,
-                                      );
-                                    }
-                                  },
-                                  child: Slidable(
-                                    actionPane:
-                                        const SlidableScrollActionPane(),
-                                    secondaryActions: [
-                                      IconSlideAction(
-                                        caption: 'Eliminar',
-                                        color: Color(0x00FFFFFF),
-                                        icon: Icons.clear_outlined,
-                                        onTap: () async {
-                                          await actions.deleteNotification(
-                                            currentUserUid,
-                                            listViewPricingRequestsRecord.id,
-                                          );
-                                        },
-                                      ),
-                                    ],
-                                    child: ListTile(
-                                      title: Text(
-                                        listViewPricingRequestsRecord.id,
-                                        style: FlutterFlowTheme.of(context)
-                                            .title3
-                                            .override(
-                                              fontFamily: 'Montserrat',
-                                              color: Color(0xFF787878),
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                      ),
-                                      subtitle: Text(
-                                        listViewPricingRequestsRecord.status,
-                                        style: FlutterFlowTheme.of(context)
-                                            .subtitle2
-                                            .override(
-                                              fontFamily: 'Montserrat',
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                      ),
-                                      dense: false,
-                                    ),
-                                  ),
-                                );
                               },
+                              child: Slidable(
+                                actionPane: const SlidableScrollActionPane(),
+                                secondaryActions: [
+                                  IconSlideAction(
+                                    caption: 'Eliminar',
+                                    color: Color(0x00FFFFFF),
+                                    icon: Icons.clear_outlined,
+                                    onTap: () async {
+                                      await actions.deleteNotification(
+                                        currentUserUid,
+                                        listViewPricingRequestsRecord.id,
+                                      );
+                                    },
+                                  ),
+                                ],
+                                child: ListTile(
+                                  title: Text(
+                                    listViewPricingRequestsRecord.id,
+                                    style: FlutterFlowTheme.of(context)
+                                        .title3
+                                        .override(
+                                          fontFamily: 'Montserrat',
+                                          color: Color(0xFF787878),
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                  ),
+                                  subtitle: Text(
+                                    listViewPricingRequestsRecord.status,
+                                    style: FlutterFlowTheme.of(context)
+                                        .subtitle2
+                                        .override(
+                                          fontFamily: 'Montserrat',
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                  ),
+                                  dense: false,
+                                ),
+                              ),
                             );
                           },
                         );

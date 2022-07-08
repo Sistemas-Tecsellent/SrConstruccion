@@ -138,6 +138,13 @@ class _$PricingRequestsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.storeName;
+    if (value != null) {
+      result
+        ..add('storeName')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.reference;
     if (value != null) {
       result
@@ -227,6 +234,10 @@ class _$PricingRequestsRecordSerializer
           result.store = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
+        case 'storeName':
+          result.storeName = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
                   specifiedType: const FullType(
@@ -274,6 +285,8 @@ class _$PricingRequestsRecord extends PricingRequestsRecord {
   @override
   final String store;
   @override
+  final String storeName;
+  @override
   final DocumentReference<Object> reference;
 
   factory _$PricingRequestsRecord(
@@ -297,6 +310,7 @@ class _$PricingRequestsRecord extends PricingRequestsRecord {
       this.active,
       this.status,
       this.store,
+      this.storeName,
       this.reference})
       : super._();
 
@@ -329,6 +343,7 @@ class _$PricingRequestsRecord extends PricingRequestsRecord {
         active == other.active &&
         status == other.status &&
         store == other.store &&
+        storeName == other.storeName &&
         reference == other.reference;
   }
 
@@ -351,25 +366,30 @@ class _$PricingRequestsRecord extends PricingRequestsRecord {
                                                             $jc(
                                                                 $jc(
                                                                     $jc(
-                                                                        0,
-                                                                        id
+                                                                        $jc(
+                                                                            0,
+                                                                            id
+                                                                                .hashCode),
+                                                                        checkoutId
                                                                             .hashCode),
-                                                                    checkoutId
+                                                                    owner
                                                                         .hashCode),
-                                                                owner.hashCode),
-                                                            ownerName.hashCode),
-                                                        ownerAddress.hashCode),
-                                                    ownerPhone.hashCode),
-                                                shipmentPrice.hashCode),
-                                            assignedTo.hashCode),
-                                        deliveryDate.hashCode),
-                                    deliveryTime.hashCode),
-                                totalSuppliersIds.hashCode),
-                            productsTotal.hashCode),
-                        createdDate.hashCode),
-                    active.hashCode),
-                status.hashCode),
-            store.hashCode),
+                                                                ownerName
+                                                                    .hashCode),
+                                                            ownerAddress
+                                                                .hashCode),
+                                                        ownerPhone.hashCode),
+                                                    shipmentPrice.hashCode),
+                                                assignedTo.hashCode),
+                                            deliveryDate.hashCode),
+                                        deliveryTime.hashCode),
+                                    totalSuppliersIds.hashCode),
+                                productsTotal.hashCode),
+                            createdDate.hashCode),
+                        active.hashCode),
+                    status.hashCode),
+                store.hashCode),
+            storeName.hashCode),
         reference.hashCode));
   }
 
@@ -392,6 +412,7 @@ class _$PricingRequestsRecord extends PricingRequestsRecord {
           ..add('active', active)
           ..add('status', status)
           ..add('store', store)
+          ..add('storeName', storeName)
           ..add('reference', reference))
         .toString();
   }
@@ -469,6 +490,10 @@ class PricingRequestsRecordBuilder
   String get store => _$this._store;
   set store(String store) => _$this._store = store;
 
+  String _storeName;
+  String get storeName => _$this._storeName;
+  set storeName(String storeName) => _$this._storeName = storeName;
+
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
   set reference(DocumentReference<Object> reference) =>
@@ -497,6 +522,7 @@ class PricingRequestsRecordBuilder
       _active = $v.active;
       _status = $v.status;
       _store = $v.store;
+      _storeName = $v.storeName;
       _reference = $v.reference;
       _$v = null;
     }
@@ -536,6 +562,7 @@ class PricingRequestsRecordBuilder
               active: active,
               status: status,
               store: store,
+              storeName: storeName,
               reference: reference);
     } catch (_) {
       String _$failedField;
