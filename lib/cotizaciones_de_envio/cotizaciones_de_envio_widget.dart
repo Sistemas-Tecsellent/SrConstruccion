@@ -76,8 +76,9 @@ class _CotizacionesDeEnvioWidgetState extends State<CotizacionesDeEnvioWidget> {
                     child: StreamBuilder<List<PricingRequestsRecord>>(
                       stream: queryPricingRequestsRecord(
                         queryBuilder: (pricingRequestsRecord) =>
-                            pricingRequestsRecord.where('owner',
-                                isEqualTo: currentUserUid),
+                            pricingRequestsRecord
+                                .where('owner', isEqualTo: currentUserUid)
+                                .where('active', isEqualTo: true),
                       ),
                       builder: (context, snapshot) {
                         // Customize what your widget looks like when it's loading.
