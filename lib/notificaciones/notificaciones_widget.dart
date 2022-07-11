@@ -62,16 +62,17 @@ class _NotificacionesWidgetState extends State<NotificacionesWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Stack(
+                alignment: AlignmentDirectional(0, -1),
                 children: [
                   if ((FFAppState().notifications.length) == 0)
                     Container(
-                      width: MediaQuery.of(context).size.width,
+                      width: MediaQuery.of(context).size.width * 0.3,
                       decoration: BoxDecoration(
                         color: Color(0xFFEEEEEE),
                       ),
                       child: Image.asset(
                         'assets/images/No_tienes_ninguna_notificacin.png',
-                        width: 100,
+                        width: MediaQuery.of(context).size.width * 0.5,
                         fit: BoxFit.cover,
                       ),
                     ),

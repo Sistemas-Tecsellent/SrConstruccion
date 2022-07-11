@@ -351,7 +351,7 @@ class _HomeProductDestacadosWidgetState
                                                                         padding: EdgeInsetsDirectional.fromSTEB(
                                                                             10,
                                                                             0,
-                                                                            5,
+                                                                            2,
                                                                             0),
                                                                         child:
                                                                             Text(
@@ -761,7 +761,7 @@ class _HomeProductDestacadosWidgetState
                                                                         padding: EdgeInsetsDirectional.fromSTEB(
                                                                             10,
                                                                             0,
-                                                                            5,
+                                                                            2,
                                                                             0),
                                                                         child:
                                                                             Text(
@@ -1171,7 +1171,7 @@ class _HomeProductDestacadosWidgetState
                                                                         padding: EdgeInsetsDirectional.fromSTEB(
                                                                             10,
                                                                             0,
-                                                                            5,
+                                                                            2,
                                                                             0),
                                                                         child:
                                                                             Text(
