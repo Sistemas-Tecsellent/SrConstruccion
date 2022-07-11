@@ -1094,6 +1094,7 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                               children: [
                                                                                 Stack(
+                                                                                  alignment: AlignmentDirectional(0, 0),
                                                                                   children: [
                                                                                     Image.asset(
                                                                                       'assets/images/Trailer.png',
@@ -1112,6 +1113,20 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                                                       width: 60,
                                                                                       height: 60,
                                                                                       fit: BoxFit.contain,
+                                                                                    ),
+                                                                                    Align(
+                                                                                      alignment: AlignmentDirectional(0, 0),
+                                                                                      child: Container(
+                                                                                        width: 50,
+                                                                                        height: 50,
+                                                                                        clipBehavior: Clip.antiAlias,
+                                                                                        decoration: BoxDecoration(
+                                                                                          shape: BoxShape.circle,
+                                                                                        ),
+                                                                                        child: Image.network(
+                                                                                          'https://picsum.photos/seed/733/600',
+                                                                                        ),
+                                                                                      ),
                                                                                     ),
                                                                                   ],
                                                                                 ),

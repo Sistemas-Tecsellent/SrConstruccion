@@ -230,48 +230,92 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          child: Container(
-                            height: 250,
-                            child: PageView(
-                              controller: pageViewController ??=
-                                  PageController(initialPage: 0),
-                              scrollDirection: Axis.horizontal,
-                              children: [
-                                Align(
-                                  alignment: AlignmentDirectional(0, -1),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(10),
-                                    child: Image.asset(
-                                      'assets/images/Headers.png',
-                                      width: MediaQuery.of(context).size.width *
-                                          0.95,
-                                      height: 200,
-                                      fit: BoxFit.cover,
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.9,
+                              height: 200,
+                              child: PageView(
+                                controller: pageViewController ??=
+                                    PageController(initialPage: 0),
+                                scrollDirection: Axis.horizontal,
+                                children: [
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.9,
+                                    height: 200,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFFEEEEEE),
+                                    ),
+                                    child: Stack(
+                                      children: [
+                                        if (responsiveVisibility(
+                                          context: context,
+                                          phone: false,
+                                        ))
+                                          ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            child: Image.asset(
+                                              'assets/images/Diseo_sin_ttulo_(8).png',
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  1,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        if (responsiveVisibility(
+                                          context: context,
+                                          tablet: false,
+                                          tabletLandscape: false,
+                                          desktop: false,
+                                        ))
+                                          ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            child: Image.network(
+                                              'https://picsum.photos/seed/19/600',
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  1,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                      ],
                                     ),
                                   ),
-                                ),
-                                Align(
-                                  alignment: AlignmentDirectional(0, -1),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(10),
-                                    child: Image.network(
-                                      'https://img.freepik.com/foto-gratis/banner-tienda-pintura-composicion-pinceles-carta-colores-contenedores-pintura_162490-10.jpg',
-                                      width: MediaQuery.of(context).size.width *
-                                          0.95,
-                                      height: 100,
-                                      fit: BoxFit.cover,
+                                  Align(
+                                    alignment: AlignmentDirectional(0, -1),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: Image.network(
+                                        'https://img.freepik.com/foto-gratis/banner-tienda-pintura-composicion-pinceles-carta-colores-contenedores-pintura_162490-10.jpg',
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.95,
+                                        height: 100,
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ],
                 ),
