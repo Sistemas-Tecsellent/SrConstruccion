@@ -374,74 +374,56 @@ class _LoginWidgetState extends State<LoginWidget> {
                           ],
                         ),
                       ),
-                      Align(
-                        alignment: AlignmentDirectional(-0.1, 0.4),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Iniciar Sesión con',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: 'Montserrat',
-                                      color: Color(0xA9000000),
-                                    ),
-                              ),
-                            ],
+                      if (responsiveVisibility(
+                        context: context,
+                        phone: false,
+                        tablet: false,
+                        tabletLandscape: false,
+                        desktop: false,
+                      ))
+                        Align(
+                          alignment: AlignmentDirectional(-0.1, 0.4),
+                          child: Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Iniciar Sesión con',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Montserrat',
+                                        color: Color(0xA9000000),
+                                      ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Align(
-                        alignment: AlignmentDirectional(0, 0.8),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              InkWell(
-                                onTap: () async {
-                                  GoRouter.of(context).prepareAuthEvent();
-                                  final user = await signInWithGoogle(context);
-                                  if (user == null) {
-                                    return;
-                                  }
-                                  context.pushNamedAuth('HomeAlt', mounted);
-                                },
-                                child: Container(
-                                  width: 50,
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFF090F13),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        blurRadius: 5,
-                                        color: Color(0x3314181B),
-                                        offset: Offset(0, 2),
-                                      )
-                                    ],
-                                    shape: BoxShape.circle,
-                                  ),
-                                  alignment: AlignmentDirectional(0, 0),
-                                  child: FaIcon(
-                                    FontAwesomeIcons.google,
-                                    color: Colors.white,
-                                    size: 24,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                                child: InkWell(
+                      if (responsiveVisibility(
+                        context: context,
+                        phone: false,
+                        tablet: false,
+                        tabletLandscape: false,
+                        desktop: false,
+                      ))
+                        Align(
+                          alignment: AlignmentDirectional(0, 0.8),
+                          child: Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                InkWell(
                                   onTap: () async {
                                     GoRouter.of(context).prepareAuthEvent();
                                     final user =
-                                        await signInWithFacebook(context);
+                                        await signInWithGoogle(context);
                                     if (user == null) {
                                       return;
                                     }
@@ -463,17 +445,52 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     ),
                                     alignment: AlignmentDirectional(0, 0),
                                     child: FaIcon(
-                                      FontAwesomeIcons.facebookF,
+                                      FontAwesomeIcons.google,
                                       color: Colors.white,
                                       size: 24,
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      10, 0, 0, 0),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      GoRouter.of(context).prepareAuthEvent();
+                                      final user =
+                                          await signInWithFacebook(context);
+                                      if (user == null) {
+                                        return;
+                                      }
+                                      context.pushNamedAuth('HomeAlt', mounted);
+                                    },
+                                    child: Container(
+                                      width: 50,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFF090F13),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            blurRadius: 5,
+                                            color: Color(0x3314181B),
+                                            offset: Offset(0, 2),
+                                          )
+                                        ],
+                                        shape: BoxShape.circle,
+                                      ),
+                                      alignment: AlignmentDirectional(0, 0),
+                                      child: FaIcon(
+                                        FontAwesomeIcons.facebookF,
+                                        color: Colors.white,
+                                        size: 24,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
                       Align(
                         alignment: AlignmentDirectional(-0.1, 0.4),
                         child: Padding(

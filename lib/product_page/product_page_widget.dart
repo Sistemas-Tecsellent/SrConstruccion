@@ -340,7 +340,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                           visible: responsiveVisibility(
                             context: context,
                             phone: false,
-                            tablet: false,
                           ),
                           child: StreamBuilder<List<VariantsRecord>>(
                             stream: queryVariantsRecord(
@@ -387,125 +386,153 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                         children: [
                                           Expanded(
                                             flex: 1,
-                                            child: Container(
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.49,
-                                              height: 500,
-                                              decoration: BoxDecoration(),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: [
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(20, 0,
-                                                                    0, 0),
-                                                        child: InkWell(
-                                                          onTap: () async {
-                                                            context.pushNamed(
-                                                              'MarcaSingle',
-                                                              params: {
-                                                                'brandId': serializeParam(
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(20, 0, 0, 0),
+                                              child: Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.45,
+                                                height: 660,
+                                                decoration: BoxDecoration(),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 0, 0, 20),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        20,
+                                                                        0,
+                                                                        0,
+                                                                        0),
+                                                            child: InkWell(
+                                                              onTap: () async {
+                                                                context
+                                                                    .pushNamed(
+                                                                  'MarcaSingle',
+                                                                  params: {
+                                                                    'brandId': serializeParam(
+                                                                        columnProductsRecord
+                                                                            .brand,
+                                                                        ParamType
+                                                                            .String),
+                                                                  }.withoutNulls,
+                                                                );
+                                                              },
+                                                              child: Container(
+                                                                width: 50,
+                                                                height: 50,
+                                                                clipBehavior: Clip
+                                                                    .antiAlias,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  shape: BoxShape
+                                                                      .circle,
+                                                                ),
+                                                                child: Image
+                                                                    .network(
+                                                                  valueOrDefault<
+                                                                      String>(
                                                                     columnProductsRecord
-                                                                        .brand,
-                                                                    ParamType
-                                                                        .String),
-                                                              }.withoutNulls,
-                                                            );
-                                                          },
-                                                          child: Container(
-                                                            width: 50,
-                                                            height: 50,
-                                                            clipBehavior:
-                                                                Clip.antiAlias,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              shape: BoxShape
-                                                                  .circle,
-                                                            ),
-                                                            child:
-                                                                Image.network(
-                                                              valueOrDefault<
-                                                                  String>(
-                                                                columnProductsRecord
-                                                                    .brandLogo,
-                                                                'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
+                                                                        .brandLogo,
+                                                                    'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
+                                                                  ),
+                                                                ),
                                                               ),
                                                             ),
                                                           ),
-                                                        ),
-                                                      ),
-                                                      FlutterFlowIconButton(
-                                                        borderColor:
-                                                            Colors.transparent,
-                                                        borderRadius: 30,
-                                                        borderWidth: 1,
-                                                        buttonSize: 60,
-                                                        icon: FaIcon(
-                                                          FontAwesomeIcons
-                                                              .share,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryColor,
-                                                          size: 25,
-                                                        ),
-                                                        onPressed: () {
-                                                          print(
-                                                              'IconButton pressed ...');
-                                                        },
-                                                      ),
-                                                      if (loggedIn ?? true)
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(0,
-                                                                      0, 20, 0),
-                                                          child: InkWell(
-                                                            onTap: () async {
-                                                              await actions
-                                                                  .likeProduct(
-                                                                currentUserUid,
-                                                                widget
-                                                                    .productId,
-                                                              );
-                                                            },
-                                                            child:
-                                                                ToggleLikeProductWidget(
-                                                              productId: widget
-                                                                  .productId,
+                                                          FlutterFlowIconButton(
+                                                            borderColor: Colors
+                                                                .transparent,
+                                                            borderRadius: 30,
+                                                            borderWidth: 1,
+                                                            buttonSize: 60,
+                                                            icon: FaIcon(
+                                                              FontAwesomeIcons
+                                                                  .share,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryColor,
+                                                              size: 25,
                                                             ),
+                                                            onPressed: () {
+                                                              print(
+                                                                  'IconButton pressed ...');
+                                                            },
                                                           ),
-                                                        ),
-                                                    ],
-                                                  ),
-                                                  Container(
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                            .size
-                                                            .width,
-                                                    height: 480,
-                                                    child: PageView(
-                                                      controller:
-                                                          imagenPVController ??=
-                                                              PageController(
-                                                                  initialPage:
-                                                                      0),
-                                                      scrollDirection:
-                                                          Axis.horizontal,
-                                                      children: [
-                                                        Image.network(
+                                                          if (loggedIn ?? true)
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0,
+                                                                          0,
+                                                                          20,
+                                                                          0),
+                                                              child: InkWell(
+                                                                onTap:
+                                                                    () async {
+                                                                  await actions
+                                                                      .likeProduct(
+                                                                    currentUserUid,
+                                                                    widget
+                                                                        .productId,
+                                                                  );
+                                                                },
+                                                                child:
+                                                                    ToggleLikeProductWidget(
+                                                                  productId: widget
+                                                                      .productId,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.5,
+                                                      height: 660,
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        boxShadow: [
+                                                          BoxShadow(
+                                                            blurRadius: 10,
+                                                            color: Color(
+                                                                0x1C000000),
+                                                          )
+                                                        ],
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(10,
+                                                                    10, 10, 10),
+                                                        child: Image.network(
                                                           valueOrDefault<
                                                               String>(
                                                             columnProductsRecord
@@ -514,10 +541,29 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                           ),
                                                           fit: BoxFit.contain,
                                                         ),
-                                                      ],
+                                                      ),
                                                     ),
-                                                  ),
-                                                ],
+                                                    Container(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width,
+                                                      height: 480,
+                                                      child: PageView(
+                                                        controller:
+                                                            imagenPVController ??=
+                                                                PageController(
+                                                                    initialPage:
+                                                                        0),
+                                                        scrollDirection:
+                                                            Axis.horizontal,
+                                                        children: [
+                                                          Container(),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -1972,7 +2018,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                                   ),
                                                                                             ),
                                                                                             Text(
-                                                                                              'disponible',
+                                                                                              'disponibles',
                                                                                               style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                                     fontFamily: 'Montserrat',
                                                                                                     color: Color(0xFFAEAEAE),
@@ -4516,7 +4562,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                                         ),
                                                                                                   ),
                                                                                                   Text(
-                                                                                                    'disponible',
+                                                                                                    'disponibles',
                                                                                                     style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                                           fontFamily: 'Montserrat',
                                                                                                           color: Color(0xFFAEAEAE),
