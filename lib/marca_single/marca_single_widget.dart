@@ -210,7 +210,7 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(10),
                                     child: Image.asset(
-                                      'assets/images/Truper_Banner.png',
+                                      'assets/images/Truper_Expert.png',
                                       width: MediaQuery.of(context).size.width *
                                           0.95,
                                       height: 200,
