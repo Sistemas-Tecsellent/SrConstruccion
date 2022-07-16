@@ -510,42 +510,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                     Container(
                                                       width:
                                                           MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              0.5,
-                                                      height: 660,
-                                                      decoration: BoxDecoration(
-                                                        color: Colors.white,
-                                                        boxShadow: [
-                                                          BoxShadow(
-                                                            blurRadius: 10,
-                                                            color: Color(
-                                                                0x1C000000),
-                                                          )
-                                                        ],
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10),
-                                                      ),
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(10,
-                                                                    10, 10, 10),
-                                                        child: Image.network(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            columnProductsRecord
-                                                                .mainImage,
-                                                            'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
-                                                          ),
-                                                          fit: BoxFit.contain,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Container(
-                                                      width:
-                                                          MediaQuery.of(context)
                                                               .size
                                                               .width,
                                                       height: 480,
@@ -558,7 +522,60 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                         scrollDirection:
                                                             Axis.horizontal,
                                                         children: [
-                                                          Container(),
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        20,
+                                                                        20,
+                                                                        20,
+                                                                        20),
+                                                            child: Container(
+                                                              width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.4,
+                                                              height: 660,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                color: Colors
+                                                                    .white,
+                                                                boxShadow: [
+                                                                  BoxShadow(
+                                                                    blurRadius:
+                                                                        10,
+                                                                    color: Color(
+                                                                        0x1C000000),
+                                                                  )
+                                                                ],
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            10),
+                                                              ),
+                                                              child: Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            10,
+                                                                            10,
+                                                                            10,
+                                                                            10),
+                                                                child: Image
+                                                                    .network(
+                                                                  valueOrDefault<
+                                                                      String>(
+                                                                    columnProductsRecord
+                                                                        .mainImage,
+                                                                    'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
+                                                                  ),
+                                                                  fit: BoxFit
+                                                                      .contain,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
                                                         ],
                                                       ),
                                                     ),
@@ -1591,274 +1608,46 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                             MainAxisAlignment
                                                                 .spaceEvenly,
                                                         children: [
-                                                          Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .min,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceEvenly,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            20,
-                                                                            0,
-                                                                            0,
-                                                                            20),
-                                                                child: Text(
-                                                                  'Ordenar por tiempo de entrega',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyText1
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Montserrat',
-                                                                        fontWeight:
-                                                                            FontWeight.w500,
-                                                                      ),
-                                                                ),
-                                                              ),
-                                                              Container(
-                                                                width: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .width *
-                                                                    0.45,
-                                                                height: 50,
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  color: Colors
-                                                                      .white,
-                                                                ),
-                                                                child: Padding(
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        20,
+                                                                        0,
+                                                                        0,
+                                                                        0),
+                                                            child: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .min,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceEvenly,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Padding(
                                                                   padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          20,
                                                                           0,
-                                                                          20,
-                                                                          0),
-                                                                  child: Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceBetween,
-                                                                    children: [
-                                                                      Row(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.max,
-                                                                        crossAxisAlignment:
-                                                                            CrossAxisAlignment.start,
-                                                                        children: [
-                                                                          FaIcon(
-                                                                            FontAwesomeIcons.bolt,
-                                                                            color:
-                                                                                Color(0xFF76E735),
-                                                                            size:
-                                                                                24,
-                                                                          ),
-                                                                          Container(
-                                                                            width:
-                                                                                68,
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              color: Color(0x00EEEEEE),
-                                                                            ),
-                                                                            child:
-                                                                                Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-                                                                              child: Text(
-                                                                                'Express\n30 min.',
-                                                                                textAlign: TextAlign.end,
-                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                      fontFamily: 'Montserrat',
-                                                                                      color: Color(0xFF76E735),
-                                                                                      fontSize: 13,
-                                                                                      fontWeight: FontWeight.w600,
-                                                                                      fontStyle: FontStyle.italic,
-                                                                                    ),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                          Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
-                                                                                10,
-                                                                                0,
-                                                                                0,
-                                                                                0),
-                                                                            child:
-                                                                                Column(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                                                              children: [
-                                                                                Row(
-                                                                                  mainAxisSize: MainAxisSize.max,
-                                                                                  children: [
-                                                                                    Text(
-                                                                                      formatNumber(
-                                                                                        productoVariantsRecord.publicPrice,
-                                                                                        formatType: FormatType.decimal,
-                                                                                        decimalType: DecimalType.periodDecimal,
-                                                                                        currency: '',
-                                                                                      ),
-                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                            fontFamily: 'Montserrat',
-                                                                                            color: FlutterFlowTheme.of(context).alternate,
-                                                                                            fontSize: 18,
-                                                                                            fontWeight: FontWeight.w600,
-                                                                                          ),
-                                                                                    ),
-                                                                                  ],
-                                                                                ),
-                                                                                Row(
-                                                                                  mainAxisSize: MainAxisSize.max,
-                                                                                  children: [
-                                                                                    FutureBuilder<ApiCallResponse>(
-                                                                                      future: GetVariantInventoryCall.call(
-                                                                                        productId: widget.productId,
-                                                                                        variantId: productoVariantsRecord.id,
-                                                                                        userLocationState: FFAppState().locationKey,
-                                                                                        userLocationCity: FFAppState().locationKeyCity,
-                                                                                        priceType: 'public',
-                                                                                      ),
-                                                                                      builder: (context, snapshot) {
-                                                                                        // Customize what your widget looks like when it's loading.
-                                                                                        if (!snapshot.hasData) {
-                                                                                          return Center(
-                                                                                            child: SizedBox(
-                                                                                              width: 50,
-                                                                                              height: 50,
-                                                                                              child: SpinKitFadingCircle(
-                                                                                                color: FlutterFlowTheme.of(context).primaryColor,
-                                                                                                size: 50,
-                                                                                              ),
-                                                                                            ),
-                                                                                          );
-                                                                                        }
-                                                                                        final containerGetVariantInventoryResponse = snapshot.data;
-                                                                                        return Container(
-                                                                                          width: 89,
-                                                                                          decoration: BoxDecoration(
-                                                                                            color: Color(0x00EEEEEE),
-                                                                                          ),
-                                                                                          child: Column(
-                                                                                            mainAxisSize: MainAxisSize.max,
-                                                                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                            children: [
-                                                                                              Text(
-                                                                                                getJsonField(
-                                                                                                  (containerGetVariantInventoryResponse?.jsonBody ?? ''),
-                                                                                                  r'''$.inventory''',
-                                                                                                ).toString(),
-                                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                                      fontFamily: 'Montserrat',
-                                                                                                      color: Color(0xFFAEAEAE),
-                                                                                                      fontSize: 11,
-                                                                                                      fontWeight: FontWeight.w600,
-                                                                                                    ),
-                                                                                              ),
-                                                                                              Text(
-                                                                                                'disponibles',
-                                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                                      fontFamily: 'Montserrat',
-                                                                                                      color: Color(0xFFAEAEAE),
-                                                                                                      fontSize: 10,
-                                                                                                    ),
-                                                                                              ),
-                                                                                            ],
-                                                                                          ),
-                                                                                        );
-                                                                                      },
-                                                                                    ),
-                                                                                  ],
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                      Container(
-                                                                        width:
-                                                                            130,
-                                                                        height:
-                                                                            50,
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                          color:
-                                                                              Colors.white,
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(4),
-                                                                          shape:
-                                                                              BoxShape.rectangle,
-                                                                          border:
-                                                                              Border.all(
-                                                                            color:
-                                                                                Color(0xFFE9E9E9),
-                                                                            width:
-                                                                                1,
-                                                                          ),
+                                                                          0,
+                                                                          0,
+                                                                          20),
+                                                                  child: Text(
+                                                                    'Ordenar por tiempo de entrega',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyText1
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Montserrat',
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
                                                                         ),
-                                                                        child:
-                                                                            FlutterFlowCountController(
-                                                                          decrementIconBuilder: (enabled) =>
-                                                                              FaIcon(
-                                                                            FontAwesomeIcons.minus,
-                                                                            color: enabled
-                                                                                ? Color(0xDD000000)
-                                                                                : Color(0xFFEEEEEE),
-                                                                            size:
-                                                                                20,
-                                                                          ),
-                                                                          incrementIconBuilder: (enabled) =>
-                                                                              FaIcon(
-                                                                            FontAwesomeIcons.plus,
-                                                                            color: enabled
-                                                                                ? FlutterFlowTheme.of(context).primaryColor
-                                                                                : Color(0xFFEEEEEE),
-                                                                            size:
-                                                                                20,
-                                                                          ),
-                                                                          countBuilder: (count) =>
-                                                                              Text(
-                                                                            count.toString(),
-                                                                            style:
-                                                                                GoogleFonts.getFont(
-                                                                              'Roboto',
-                                                                              color: Colors.black,
-                                                                              fontWeight: FontWeight.w600,
-                                                                              fontSize: 16,
-                                                                            ),
-                                                                          ),
-                                                                          count: expressCountDValue ??=
-                                                                              0,
-                                                                          updateCount: (count) =>
-                                                                              setState(() => expressCountDValue = count),
-                                                                          stepSize:
-                                                                              1,
-                                                                          minimum:
-                                                                              0,
-                                                                        ),
-                                                                      ),
-                                                                    ],
                                                                   ),
                                                                 ),
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0,
-                                                                            10,
-                                                                            0,
-                                                                            20),
-                                                                child:
-                                                                    Container(
+                                                                Container(
                                                                   width: MediaQuery.of(
                                                                               context)
                                                                           .size
@@ -1893,9 +1682,9 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                               CrossAxisAlignment.start,
                                                                           children: [
                                                                             FaIcon(
-                                                                              FontAwesomeIcons.clock,
-                                                                              color: Colors.black,
-                                                                              size: 20,
+                                                                              FontAwesomeIcons.bolt,
+                                                                              color: Color(0xFF76E735),
+                                                                              size: 24,
                                                                             ),
                                                                             Container(
                                                                               width: 68,
@@ -1905,12 +1694,14 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                               child: Padding(
                                                                                 padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
                                                                                 child: Text(
-                                                                                  'Estándar\n1-5 días',
+                                                                                  'Express\n30 min.',
                                                                                   textAlign: TextAlign.end,
                                                                                   style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                         fontFamily: 'Montserrat',
+                                                                                        color: Color(0xFF76E735),
                                                                                         fontSize: 13,
                                                                                         fontWeight: FontWeight.w600,
+                                                                                        fontStyle: FontStyle.italic,
                                                                                       ),
                                                                                 ),
                                                                               ),
@@ -1924,109 +1715,81 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
                                                                                     children: [
-                                                                                      Stack(
-                                                                                        children: [
-                                                                                          if ((valueOrDefault(currentUserDocument?.type, '')) == 'public')
-                                                                                            AuthUserStreamWidget(
-                                                                                              child: Text(
-                                                                                                formatNumber(
-                                                                                                  productoVariantsRecord.publicPrice,
-                                                                                                  formatType: FormatType.decimal,
-                                                                                                  decimalType: DecimalType.periodDecimal,
-                                                                                                  currency: '',
-                                                                                                ),
-                                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                                      fontFamily: 'Montserrat',
-                                                                                                      color: FlutterFlowTheme.of(context).alternate,
-                                                                                                      fontSize: 18,
-                                                                                                      fontWeight: FontWeight.w600,
-                                                                                                    ),
-                                                                                              ),
+                                                                                      Text(
+                                                                                        formatNumber(
+                                                                                          productoVariantsRecord.publicPrice,
+                                                                                          formatType: FormatType.decimal,
+                                                                                          decimalType: DecimalType.periodDecimal,
+                                                                                          currency: '',
+                                                                                        ),
+                                                                                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                              fontFamily: 'Montserrat',
+                                                                                              color: FlutterFlowTheme.of(context).alternate,
+                                                                                              fontSize: 18,
+                                                                                              fontWeight: FontWeight.w600,
                                                                                             ),
-                                                                                          if ((valueOrDefault(currentUserDocument?.type, '')) == 'wholesale')
-                                                                                            AuthUserStreamWidget(
-                                                                                              child: Text(
-                                                                                                formatNumber(
-                                                                                                  productoVariantsRecord.wholesalePrice,
-                                                                                                  formatType: FormatType.decimal,
-                                                                                                  decimalType: DecimalType.periodDecimal,
-                                                                                                  currency: '',
-                                                                                                ),
-                                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                                      fontFamily: 'Montserrat',
-                                                                                                      color: FlutterFlowTheme.of(context).alternate,
-                                                                                                      fontSize: 18,
-                                                                                                      fontWeight: FontWeight.w600,
-                                                                                                    ),
-                                                                                              ),
-                                                                                            ),
-                                                                                          if ((valueOrDefault(currentUserDocument?.type, '')) == 'megaWholesale')
-                                                                                            AuthUserStreamWidget(
-                                                                                              child: Text(
-                                                                                                formatNumber(
-                                                                                                  productoVariantsRecord.megaWholesalePrice,
-                                                                                                  formatType: FormatType.decimal,
-                                                                                                  decimalType: DecimalType.periodDecimal,
-                                                                                                  currency: '',
-                                                                                                ),
-                                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                                      fontFamily: 'Montserrat',
-                                                                                                      color: FlutterFlowTheme.of(context).alternate,
-                                                                                                      fontSize: 18,
-                                                                                                      fontWeight: FontWeight.w600,
-                                                                                                    ),
-                                                                                              ),
-                                                                                            ),
-                                                                                          if (!(loggedIn) ?? true)
-                                                                                            Text(
-                                                                                              formatNumber(
-                                                                                                productoVariantsRecord.publicPrice,
-                                                                                                formatType: FormatType.decimal,
-                                                                                                decimalType: DecimalType.periodDecimal,
-                                                                                                currency: '',
-                                                                                              ),
-                                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                                    fontFamily: 'Montserrat',
-                                                                                                    color: FlutterFlowTheme.of(context).alternate,
-                                                                                                    fontSize: 18,
-                                                                                                    fontWeight: FontWeight.w600,
-                                                                                                  ),
-                                                                                            ),
-                                                                                        ],
                                                                                       ),
                                                                                     ],
                                                                                   ),
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
                                                                                     children: [
-                                                                                      Container(
-                                                                                        width: 89,
-                                                                                        decoration: BoxDecoration(
-                                                                                          color: Color(0x00EEEEEE),
+                                                                                      FutureBuilder<ApiCallResponse>(
+                                                                                        future: GetVariantInventoryCall.call(
+                                                                                          productId: widget.productId,
+                                                                                          variantId: productoVariantsRecord.id,
+                                                                                          userLocationState: FFAppState().locationKey,
+                                                                                          userLocationCity: FFAppState().locationKeyCity,
+                                                                                          priceType: 'public',
                                                                                         ),
-                                                                                        child: Column(
-                                                                                          mainAxisSize: MainAxisSize.max,
-                                                                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                          children: [
-                                                                                            Text(
-                                                                                              '+100',
-                                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                                    fontFamily: 'Montserrat',
-                                                                                                    color: Color(0xFFAEAEAE),
-                                                                                                    fontSize: 11,
-                                                                                                    fontWeight: FontWeight.w600,
-                                                                                                  ),
+                                                                                        builder: (context, snapshot) {
+                                                                                          // Customize what your widget looks like when it's loading.
+                                                                                          if (!snapshot.hasData) {
+                                                                                            return Center(
+                                                                                              child: SizedBox(
+                                                                                                width: 50,
+                                                                                                height: 50,
+                                                                                                child: SpinKitFadingCircle(
+                                                                                                  color: FlutterFlowTheme.of(context).primaryColor,
+                                                                                                  size: 50,
+                                                                                                ),
+                                                                                              ),
+                                                                                            );
+                                                                                          }
+                                                                                          final containerGetVariantInventoryResponse = snapshot.data;
+                                                                                          return Container(
+                                                                                            width: 89,
+                                                                                            decoration: BoxDecoration(
+                                                                                              color: Color(0x00EEEEEE),
                                                                                             ),
-                                                                                            Text(
-                                                                                              'disponibles',
-                                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                                    fontFamily: 'Montserrat',
-                                                                                                    color: Color(0xFFAEAEAE),
-                                                                                                    fontSize: 11,
-                                                                                                  ),
+                                                                                            child: Column(
+                                                                                              mainAxisSize: MainAxisSize.max,
+                                                                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                              children: [
+                                                                                                Text(
+                                                                                                  getJsonField(
+                                                                                                    (containerGetVariantInventoryResponse?.jsonBody ?? ''),
+                                                                                                    r'''$.inventory''',
+                                                                                                  ).toString(),
+                                                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                        fontFamily: 'Montserrat',
+                                                                                                        color: Color(0xFFAEAEAE),
+                                                                                                        fontSize: 11,
+                                                                                                        fontWeight: FontWeight.w600,
+                                                                                                      ),
+                                                                                                ),
+                                                                                                Text(
+                                                                                                  'disponibles',
+                                                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                        fontFamily: 'Montserrat',
+                                                                                                        color: Color(0xFFAEAEAE),
+                                                                                                        fontSize: 10,
+                                                                                                      ),
+                                                                                                ),
+                                                                                              ],
                                                                                             ),
-                                                                                          ],
-                                                                                        ),
+                                                                                          );
+                                                                                        },
                                                                                       ),
                                                                                     ],
                                                                                   ),
@@ -2078,10 +1841,10 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                 fontSize: 16,
                                                                               ),
                                                                             ),
-                                                                            count: normalShipmentCountDValue ??=
+                                                                            count: expressCountDValue ??=
                                                                                 0,
                                                                             updateCount: (count) =>
-                                                                                setState(() => normalShipmentCountDValue = count),
+                                                                                setState(() => expressCountDValue = count),
                                                                             stepSize:
                                                                                 1,
                                                                             minimum:
@@ -2092,8 +1855,238 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                     ),
                                                                   ),
                                                                 ),
-                                                              ),
-                                                            ],
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0,
+                                                                          10,
+                                                                          0,
+                                                                          20),
+                                                                  child:
+                                                                      Container(
+                                                                    width: MediaQuery.of(context)
+                                                                            .size
+                                                                            .width *
+                                                                        0.45,
+                                                                    height: 50,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color: Colors
+                                                                          .white,
+                                                                    ),
+                                                                    child:
+                                                                        Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              20,
+                                                                              0,
+                                                                              20,
+                                                                              0),
+                                                                      child:
+                                                                          Row(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.spaceBetween,
+                                                                        children: [
+                                                                          Row(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.max,
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.start,
+                                                                            children: [
+                                                                              FaIcon(
+                                                                                FontAwesomeIcons.clock,
+                                                                                color: Colors.black,
+                                                                                size: 20,
+                                                                              ),
+                                                                              Container(
+                                                                                width: 68,
+                                                                                decoration: BoxDecoration(
+                                                                                  color: Color(0x00EEEEEE),
+                                                                                ),
+                                                                                child: Padding(
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                                                                  child: Text(
+                                                                                    'Estándar\n1-5 días',
+                                                                                    textAlign: TextAlign.end,
+                                                                                    style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                          fontFamily: 'Montserrat',
+                                                                                          fontSize: 13,
+                                                                                          fontWeight: FontWeight.w600,
+                                                                                        ),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                              Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                                                                child: Column(
+                                                                                  mainAxisSize: MainAxisSize.max,
+                                                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                  children: [
+                                                                                    Row(
+                                                                                      mainAxisSize: MainAxisSize.max,
+                                                                                      children: [
+                                                                                        Stack(
+                                                                                          children: [
+                                                                                            if ((valueOrDefault(currentUserDocument?.type, '')) == 'public')
+                                                                                              AuthUserStreamWidget(
+                                                                                                child: Text(
+                                                                                                  formatNumber(
+                                                                                                    productoVariantsRecord.publicPrice,
+                                                                                                    formatType: FormatType.decimal,
+                                                                                                    decimalType: DecimalType.periodDecimal,
+                                                                                                    currency: '',
+                                                                                                  ),
+                                                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                        fontFamily: 'Montserrat',
+                                                                                                        color: FlutterFlowTheme.of(context).alternate,
+                                                                                                        fontSize: 18,
+                                                                                                        fontWeight: FontWeight.w600,
+                                                                                                      ),
+                                                                                                ),
+                                                                                              ),
+                                                                                            if ((valueOrDefault(currentUserDocument?.type, '')) == 'wholesale')
+                                                                                              AuthUserStreamWidget(
+                                                                                                child: Text(
+                                                                                                  formatNumber(
+                                                                                                    productoVariantsRecord.wholesalePrice,
+                                                                                                    formatType: FormatType.decimal,
+                                                                                                    decimalType: DecimalType.periodDecimal,
+                                                                                                    currency: '',
+                                                                                                  ),
+                                                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                        fontFamily: 'Montserrat',
+                                                                                                        color: FlutterFlowTheme.of(context).alternate,
+                                                                                                        fontSize: 18,
+                                                                                                        fontWeight: FontWeight.w600,
+                                                                                                      ),
+                                                                                                ),
+                                                                                              ),
+                                                                                            if ((valueOrDefault(currentUserDocument?.type, '')) == 'megaWholesale')
+                                                                                              AuthUserStreamWidget(
+                                                                                                child: Text(
+                                                                                                  formatNumber(
+                                                                                                    productoVariantsRecord.megaWholesalePrice,
+                                                                                                    formatType: FormatType.decimal,
+                                                                                                    decimalType: DecimalType.periodDecimal,
+                                                                                                    currency: '',
+                                                                                                  ),
+                                                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                        fontFamily: 'Montserrat',
+                                                                                                        color: FlutterFlowTheme.of(context).alternate,
+                                                                                                        fontSize: 18,
+                                                                                                        fontWeight: FontWeight.w600,
+                                                                                                      ),
+                                                                                                ),
+                                                                                              ),
+                                                                                            if (!(loggedIn) ?? true)
+                                                                                              Text(
+                                                                                                formatNumber(
+                                                                                                  productoVariantsRecord.publicPrice,
+                                                                                                  formatType: FormatType.decimal,
+                                                                                                  decimalType: DecimalType.periodDecimal,
+                                                                                                  currency: '',
+                                                                                                ),
+                                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                      fontFamily: 'Montserrat',
+                                                                                                      color: FlutterFlowTheme.of(context).alternate,
+                                                                                                      fontSize: 18,
+                                                                                                      fontWeight: FontWeight.w600,
+                                                                                                    ),
+                                                                                              ),
+                                                                                          ],
+                                                                                        ),
+                                                                                      ],
+                                                                                    ),
+                                                                                    Row(
+                                                                                      mainAxisSize: MainAxisSize.max,
+                                                                                      children: [
+                                                                                        Container(
+                                                                                          width: 89,
+                                                                                          decoration: BoxDecoration(
+                                                                                            color: Color(0x00EEEEEE),
+                                                                                          ),
+                                                                                          child: Column(
+                                                                                            mainAxisSize: MainAxisSize.max,
+                                                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                            children: [
+                                                                                              Text(
+                                                                                                '+100',
+                                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                      fontFamily: 'Montserrat',
+                                                                                                      color: Color(0xFFAEAEAE),
+                                                                                                      fontSize: 11,
+                                                                                                      fontWeight: FontWeight.w600,
+                                                                                                    ),
+                                                                                              ),
+                                                                                              Text(
+                                                                                                'disponibles',
+                                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                      fontFamily: 'Montserrat',
+                                                                                                      color: Color(0xFFAEAEAE),
+                                                                                                      fontSize: 11,
+                                                                                                    ),
+                                                                                              ),
+                                                                                            ],
+                                                                                          ),
+                                                                                        ),
+                                                                                      ],
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                          Container(
+                                                                            width:
+                                                                                130,
+                                                                            height:
+                                                                                50,
+                                                                            decoration:
+                                                                                BoxDecoration(
+                                                                              color: Colors.white,
+                                                                              borderRadius: BorderRadius.circular(4),
+                                                                              shape: BoxShape.rectangle,
+                                                                              border: Border.all(
+                                                                                color: Color(0xFFE9E9E9),
+                                                                                width: 1,
+                                                                              ),
+                                                                            ),
+                                                                            child:
+                                                                                FlutterFlowCountController(
+                                                                              decrementIconBuilder: (enabled) => FaIcon(
+                                                                                FontAwesomeIcons.minus,
+                                                                                color: enabled ? Color(0xDD000000) : Color(0xFFEEEEEE),
+                                                                                size: 20,
+                                                                              ),
+                                                                              incrementIconBuilder: (enabled) => FaIcon(
+                                                                                FontAwesomeIcons.plus,
+                                                                                color: enabled ? FlutterFlowTheme.of(context).primaryColor : Color(0xFFEEEEEE),
+                                                                                size: 20,
+                                                                              ),
+                                                                              countBuilder: (count) => Text(
+                                                                                count.toString(),
+                                                                                style: GoogleFonts.getFont(
+                                                                                  'Roboto',
+                                                                                  color: Colors.black,
+                                                                                  fontWeight: FontWeight.w600,
+                                                                                  fontSize: 16,
+                                                                                ),
+                                                                              ),
+                                                                              count: normalShipmentCountDValue ??= 0,
+                                                                              updateCount: (count) => setState(() => normalShipmentCountDValue = count),
+                                                                              stepSize: 1,
+                                                                              minimum: 0,
+                                                                            ),
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
                                                           ),
                                                         ],
                                                       ),
@@ -2156,7 +2149,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  0, 10, 0, 0),
+                                                                  10, 10, 0, 0),
                                                       child: Builder(
                                                         builder: (context) {
                                                           final store = FFAppState()
@@ -2471,7 +2464,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                     ))
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 30, 0, 0),
+                                            0, 40, 0, 0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [

@@ -478,6 +478,10 @@ class CheckIfProductInCartCall {
         response,
         r'''$.amount''',
       );
+  static dynamic pickupInStoreAmount(dynamic response) => getJsonField(
+        response,
+        r'''$.pickupInStoreAmount''',
+      );
 }
 
 class GetCheckoutInfoCall {
