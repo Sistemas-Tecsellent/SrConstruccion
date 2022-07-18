@@ -2987,72 +2987,78 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  20, 0, 0, 0),
-                                          child: InkWell(
-                                            onTap: () async {
-                                              context.pushNamed('MarcaSingle');
-                                            },
-                                            child: Container(
-                                              width: 50,
-                                              height: 50,
-                                              clipBehavior: Clip.antiAlias,
-                                              decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                              ),
-                                              child: Image.network(
-                                                valueOrDefault<String>(
-                                                  columnProductsRecord
-                                                      .brandLogo,
-                                                  'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
+                                    Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height: 70,
+                                      decoration: BoxDecoration(),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    20, 0, 0, 0),
+                                            child: InkWell(
+                                              onTap: () async {
+                                                context
+                                                    .pushNamed('MarcaSingle');
+                                              },
+                                              child: Container(
+                                                width: 50,
+                                                height: 50,
+                                                clipBehavior: Clip.antiAlias,
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: Image.network(
+                                                  valueOrDefault<String>(
+                                                    columnProductsRecord
+                                                        .brandLogo,
+                                                    'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
+                                                  ),
                                                 ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                        FlutterFlowIconButton(
-                                          borderColor: Colors.transparent,
-                                          borderRadius: 30,
-                                          borderWidth: 1,
-                                          buttonSize: 60,
-                                          icon: FaIcon(
-                                            FontAwesomeIcons.share,
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryColor,
-                                            size: 25,
+                                          FlutterFlowIconButton(
+                                            borderColor: Colors.transparent,
+                                            borderRadius: 30,
+                                            borderWidth: 1,
+                                            buttonSize: 60,
+                                            icon: FaIcon(
+                                              FontAwesomeIcons.share,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryColor,
+                                              size: 25,
+                                            ),
+                                            onPressed: () async {
+                                              await Share.share(
+                                                  'http://tienda.srconstruccion.com${GoRouter.of(context).location}');
+                                            },
                                           ),
-                                          onPressed: () async {
-                                            await Share.share(
-                                                'http://tienda.srconstruccion.com${GoRouter.of(context).location}');
-                                          },
-                                        ),
-                                        if (loggedIn ?? true)
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0, 0, 20, 0),
-                                            child: InkWell(
-                                              onTap: () async {
-                                                await actions.likeProduct(
-                                                  currentUserUid,
-                                                  widget.productId,
-                                                );
-                                              },
-                                              child: ToggleLikeProductWidget(
-                                                productId: widget.productId,
+                                          if (loggedIn ?? true)
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 20, 0),
+                                              child: InkWell(
+                                                onTap: () async {
+                                                  await actions.likeProduct(
+                                                    currentUserUid,
+                                                    widget.productId,
+                                                  );
+                                                },
+                                                child: ToggleLikeProductWidget(
+                                                  productId: widget.productId,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                     Row(
                                       mainAxisSize: MainAxisSize.max,
