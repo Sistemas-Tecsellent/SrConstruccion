@@ -1169,7 +1169,7 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                                                                               Text(
                                                                                 valueOrDefault<String>(
                                                                                   getJsonField(
-                                                                                    (columnGetSellerWiseCartResponse?.jsonBody ?? ''),
+                                                                                    productsInCartItem,
                                                                                     r'''$.subtotal''',
                                                                                   ).toString(),
                                                                                   '0',

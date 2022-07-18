@@ -753,65 +753,64 @@ class _ProductPageSellerWidgetState extends State<ProductPageSellerWidget> {
                                                                         mainAxisSize:
                                                                             MainAxisSize.max,
                                                                         children: [
-                                                                          FutureBuilder<
-                                                                              ApiCallResponse>(
-                                                                            future:
-                                                                                GetVariantInventoryCall.call(
-                                                                              productId: widget.productId,
-                                                                              variantId: columnVariantsRecord.id,
-                                                                              userLocationState: FFAppState().locationKey,
-                                                                              userLocationCity: FFAppState().locationKeyCity,
-                                                                              priceType: 'public',
-                                                                            ),
-                                                                            builder:
-                                                                                (context, snapshot) {
-                                                                              // Customize what your widget looks like when it's loading.
-                                                                              if (!snapshot.hasData) {
-                                                                                return Center(
-                                                                                  child: SizedBox(
-                                                                                    width: 50,
-                                                                                    height: 50,
-                                                                                    child: SpinKitFadingCircle(
-                                                                                      color: FlutterFlowTheme.of(context).primaryColor,
-                                                                                      size: 50,
+                                                                          AuthUserStreamWidget(
+                                                                            child:
+                                                                                FutureBuilder<ApiCallResponse>(
+                                                                              future: GetVariantInventoryByStoreCall.call(
+                                                                                productId: containerProductsRecord.id,
+                                                                                variantId: columnVariantsRecord.id,
+                                                                                store: columnStoresRecord.id,
+                                                                                priceType: valueOrDefault(currentUserDocument?.type, ''),
+                                                                              ),
+                                                                              builder: (context, snapshot) {
+                                                                                // Customize what your widget looks like when it's loading.
+                                                                                if (!snapshot.hasData) {
+                                                                                  return Center(
+                                                                                    child: SizedBox(
+                                                                                      width: 50,
+                                                                                      height: 50,
+                                                                                      child: SpinKitFadingCircle(
+                                                                                        color: FlutterFlowTheme.of(context).primaryColor,
+                                                                                        size: 50,
+                                                                                      ),
                                                                                     ),
+                                                                                  );
+                                                                                }
+                                                                                final containerGetVariantInventoryByStoreResponse = snapshot.data;
+                                                                                return Container(
+                                                                                  width: 89,
+                                                                                  decoration: BoxDecoration(
+                                                                                    color: Color(0x00EEEEEE),
+                                                                                  ),
+                                                                                  child: Column(
+                                                                                    mainAxisSize: MainAxisSize.max,
+                                                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                    children: [
+                                                                                      Text(
+                                                                                        getJsonField(
+                                                                                          (containerGetVariantInventoryByStoreResponse?.jsonBody ?? ''),
+                                                                                          r'''$.inventory''',
+                                                                                        ).toString(),
+                                                                                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                              fontFamily: 'Montserrat',
+                                                                                              color: Color(0xFFAEAEAE),
+                                                                                              fontSize: 11,
+                                                                                              fontWeight: FontWeight.w600,
+                                                                                            ),
+                                                                                      ),
+                                                                                      Text(
+                                                                                        'disponibles',
+                                                                                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                              fontFamily: 'Montserrat',
+                                                                                              color: Color(0xFFAEAEAE),
+                                                                                              fontSize: 10,
+                                                                                            ),
+                                                                                      ),
+                                                                                    ],
                                                                                   ),
                                                                                 );
-                                                                              }
-                                                                              final containerGetVariantInventoryResponse = snapshot.data;
-                                                                              return Container(
-                                                                                width: 89,
-                                                                                decoration: BoxDecoration(
-                                                                                  color: Color(0x00EEEEEE),
-                                                                                ),
-                                                                                child: Column(
-                                                                                  mainAxisSize: MainAxisSize.max,
-                                                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                  children: [
-                                                                                    Text(
-                                                                                      getJsonField(
-                                                                                        (containerGetVariantInventoryResponse?.jsonBody ?? ''),
-                                                                                        r'''$.inventory''',
-                                                                                      ).toString(),
-                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                            fontFamily: 'Montserrat',
-                                                                                            color: Color(0xFFAEAEAE),
-                                                                                            fontSize: 11,
-                                                                                            fontWeight: FontWeight.w600,
-                                                                                          ),
-                                                                                    ),
-                                                                                    Text(
-                                                                                      'disponibles',
-                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                            fontFamily: 'Montserrat',
-                                                                                            color: Color(0xFFAEAEAE),
-                                                                                            fontSize: 10,
-                                                                                          ),
-                                                                                    ),
-                                                                                  ],
-                                                                                ),
-                                                                              );
-                                                                            },
+                                                                              },
+                                                                            ),
                                                                           ),
                                                                         ],
                                                                       ),
@@ -1340,14 +1339,45 @@ class _ProductPageSellerWidgetState extends State<ProductPageSellerWidget> {
                                                                               mainAxisSize: MainAxisSize.max,
                                                                               crossAxisAlignment: CrossAxisAlignment.start,
                                                                               children: [
-                                                                                Text(
-                                                                                  '+100',
-                                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                        fontFamily: 'Montserrat',
-                                                                                        color: Color(0xFFAEAEAE),
-                                                                                        fontSize: 11,
-                                                                                        fontWeight: FontWeight.w600,
-                                                                                      ),
+                                                                                AuthUserStreamWidget(
+                                                                                  child: FutureBuilder<ApiCallResponse>(
+                                                                                    future: GetVariantInventoryByStoreCall.call(
+                                                                                      productId: containerProductsRecord.id,
+                                                                                      variantId: columnVariantsRecord.id,
+                                                                                      store: columnStoresRecord.id,
+                                                                                      priceType: valueOrDefault(currentUserDocument?.type, ''),
+                                                                                    ),
+                                                                                    builder: (context, snapshot) {
+                                                                                      // Customize what your widget looks like when it's loading.
+                                                                                      if (!snapshot.hasData) {
+                                                                                        return Center(
+                                                                                          child: SizedBox(
+                                                                                            width: 50,
+                                                                                            height: 50,
+                                                                                            child: SpinKitFadingCircle(
+                                                                                              color: FlutterFlowTheme.of(context).primaryColor,
+                                                                                              size: 50,
+                                                                                            ),
+                                                                                          ),
+                                                                                        );
+                                                                                      }
+                                                                                      final textGetVariantInventoryByStoreResponse = snapshot.data;
+                                                                                      return Text(
+                                                                                        valueOrDefault<String>(
+                                                                                          GetVariantInventoryByStoreCall.inventory(
+                                                                                            (textGetVariantInventoryByStoreResponse?.jsonBody ?? ''),
+                                                                                          ).toString(),
+                                                                                          '0',
+                                                                                        ),
+                                                                                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                              fontFamily: 'Montserrat',
+                                                                                              color: Color(0xFFAEAEAE),
+                                                                                              fontSize: 11,
+                                                                                              fontWeight: FontWeight.w600,
+                                                                                            ),
+                                                                                      );
+                                                                                    },
+                                                                                  ),
                                                                                 ),
                                                                                 Text(
                                                                                   'disponibles',
