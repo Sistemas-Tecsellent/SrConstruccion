@@ -1,7 +1,5 @@
-
 // @JS()
 // library stripe;
-
 
 // Automatic FlutterFlow imports
 import '../../backend/backend.dart';
@@ -12,45 +10,21 @@ import '../../flutter_flow/custom_functions.dart'; // Imports custom functions
 import 'package:flutter/material.dart';
 // Begin custom action code
 
-
 // import 'package:js/js.dart';
 // import 'package:cloud_functions/cloud_functions.dart';
-
 
 Future<String> webCheckout(
   String checkoutId,
   String bundleId,
 ) async {
-  HttpsCallable createStripeProduct =
-      FirebaseFunctions.instance.httpsCallable('createStripeProduct');
-  final response = await createStripeProduct
-      .call(<String, dynamic>{'checkoutId': checkoutId, 'bundleId': bundleId});
+  // HttpsCallable createStripeProduct =
+  //     FirebaseFunctions.instance.httpsCallable('createStripeProduct');
+  // final response = await createStripeProduct
+  //     .call(<String, dynamic>{'checkoutId': checkoutId, 'bundleId': bundleId});
 
-  var res = response.data;
-  var productId = res['id'];
-  var productName = res['name'];
-
-  var result = Stripe(
-          'pk_live_51KeQUnBmz2HhZ6eyQglZ73HPFGbxY1ztVm4EHqFV95Bw78Imz4JSXevSzV3yWcPvJA5Gv5H78fzcXu0siZMJwT6800CuYmmuME')
-      .redirectToCheckout(CheckoutOptions(
-    lineItems: [
-      LineItem(
-        price: productId,
-        quantity: 1,
-      )
-    ],
-    mode: 'payment',
-    successUrl: 'http://tienda.srconstruccion.com',
-    cancelUrl: 'http://tienda.srconstruccion.com',
-  ));
-
-  return productName;
-}
-
-@JS()
-class Stripe {
-  external Stripe(String key);
-
+  // var res = response.data;
+  // var productId = res['id'];
+  // var productName = res['name'];
 
   // var result = Stripe(
   //         'pk_live_51KeQUnBmz2HhZ6eyQglZ73HPFGbxY1ztVm4EHqFV95Bw78Imz4JSXevSzV3yWcPvJA5Gv5H78fzcXu0siZMJwT6800CuYmmuME')
