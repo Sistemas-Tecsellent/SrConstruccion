@@ -126,7 +126,11 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                     final buttonGetCartAmountResponse = snapshot.data;
                     return FFButtonWidget(
                       onPressed: () async {
-                        context.pushNamed('Carrito');
+                        if (loggedIn) {
+                          context.pushNamed('Carrito');
+                        } else {
+                          context.pushNamed('login');
+                        }
                       },
                       text: valueOrDefault<String>(
                         GetCartAmountCall.amount(
@@ -3009,23 +3013,21 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                 ),
                                               ),
                                             ),
-                                            if (loggedIn ?? true)
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 0, 20, 0),
-                                                child: InkWell(
-                                                  onTap: () async {
-                                                    await actions.likeProduct(
-                                                      currentUserUid,
-                                                      widget.productId,
-                                                    );
-                                                  },
-                                                  child:
-                                                      ToggleLikeProductWidget(
-                                                    productId: widget.productId,
-                                                  ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 20, 0),
+                                              child: InkWell(
+                                                onTap: () async {
+                                                  await actions.likeProduct(
+                                                    currentUserUid,
+                                                    widget.productId,
+                                                  );
+                                                },
+                                                child: ToggleLikeProductWidget(
+                                                  productId: widget.productId,
                                                 ),
                                               ),
+                                            ),
                                           ],
                                         ),
                                       ),
