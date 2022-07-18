@@ -58,7 +58,10 @@ class _ProductFeedHomeWidgetState extends State<ProductFeedHomeWidget> {
                 future: GetOneVariantCall.call(
                   productId: gridViewProductsRecord.id,
                   userLocation: FFAppState().locationKey,
-                  userType: valueOrDefault(currentUserDocument?.type, ''),
+                  userType: valueOrDefault<String>(
+                    valueOrDefault(currentUserDocument?.type, ''),
+                    'public',
+                  ),
                 ),
                 builder: (context, snapshot) {
                   // Customize what your widget looks like when it's loading.
@@ -168,41 +171,60 @@ class _ProductFeedHomeWidgetState extends State<ProductFeedHomeWidget> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        if (cageVariantsRecord.tags
-                                                .toList()
-                                                ?.contains('Oferta') ??
-                                            true)
-                                          Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              FaIcon(
-                                                FontAwesomeIcons.tag,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .alternate,
-                                                size: 13,
-                                              ),
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            if (cageVariantsRecord.tags
+                                                    .toList()
+                                                    ?.contains('Oferta') ??
+                                                true)
                                               Padding(
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(5, 0, 0, 0),
-                                                child: Text(
-                                                  'Oferta',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily:
-                                                            'Montserrat',
-                                                        color:
+                                                    .fromSTEB(0, 0, 10, 0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: [
+                                                    FaIcon(
+                                                      FontAwesomeIcons.tag,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .alternate,
+                                                      size: 9,
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  2, 0, 0, 0),
+                                                      child: Text(
+                                                        'Oferta',
+                                                        style:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .alternate,
-                                                        fontSize: 13,
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Montserrat',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                                  fontSize: 9,
+                                                                ),
                                                       ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
-                                            ],
-                                          ),
+                                            if (cageVariantsRecord.tags
+                                                    .toList()
+                                                    ?.contains(
+                                                        'Envio Gratis') ??
+                                                true)
+                                              EnvioGratisWidget(),
+                                          ],
+                                        ),
                                         Align(
                                           alignment:
                                               AlignmentDirectional(-1, -0.45),
@@ -224,6 +246,55 @@ class _ProductFeedHomeWidgetState extends State<ProductFeedHomeWidget> {
                                                 ),
                                           ),
                                         ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-1, -0.45),
+                                          child: Text(
+                                            gridViewProductsRecord.sku
+                                                .maybeHandleOverflow(
+                                              maxChars: 50,
+                                              replacement: '…',
+                                            ),
+                                            textAlign: TextAlign.start,
+                                            maxLines: 2,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Montserrat',
+                                                  color: Color(0xFF909090),
+                                                  fontSize: 11,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                          ),
+                                        ),
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Container(
+                                              width: 50,
+                                              height: 15,
+                                              decoration: BoxDecoration(
+                                                color: Color(0xFFEEEEEE),
+                                                borderRadius:
+                                                    BorderRadius.circular(40),
+                                              ),
+                                              alignment:
+                                                  AlignmentDirectional(0, 0),
+                                              child: Text(
+                                                '[unit]',
+                                                textAlign: TextAlign.center,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              'Montserrat',
+                                                          fontSize: 9,
+                                                        ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                         Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -237,7 +308,7 @@ class _ProductFeedHomeWidgetState extends State<ProductFeedHomeWidget> {
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .alternate,
-                                                    fontSize: 22,
+                                                    fontSize: 18,
                                                     fontWeight: FontWeight.w600,
                                                   ),
                                             ),
@@ -263,7 +334,7 @@ class _ProductFeedHomeWidgetState extends State<ProductFeedHomeWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .alternate,
-                                                        fontSize: 22,
+                                                        fontSize: 18,
                                                         fontWeight:
                                                             FontWeight.w600,
                                                       ),
@@ -272,11 +343,6 @@ class _ProductFeedHomeWidgetState extends State<ProductFeedHomeWidget> {
                                             ),
                                           ],
                                         ),
-                                        if (cageVariantsRecord.tags
-                                                .toList()
-                                                ?.contains('Envio Gratis') ??
-                                            true)
-                                          EnvioGratisWidget(),
                                       ],
                                     ),
                                   ),

@@ -7,9 +7,11 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../custom_code/actions/index.dart' as actions;
+import '../flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CarritoPorSellersWidget extends StatefulWidget {
@@ -553,11 +555,8 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                                                         Padding(
                                                           padding:
                                                               EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      10,
-                                                                      10,
-                                                                      10,
-                                                                      0),
+                                                                  .fromSTEB(10,
+                                                                      5, 10, 0),
                                                           child: InkWell(
                                                             onLongPress:
                                                                 () async {
@@ -634,143 +633,557 @@ class _CarritoPorSellersWidgetState extends State<CarritoPorSellersWidget> {
                                                                         CrossAxisAlignment
                                                                             .start,
                                                                     children: [
-                                                                      Container(
-                                                                        width: MediaQuery.of(context)
-                                                                            .size
-                                                                            .width,
-                                                                        decoration:
-                                                                            BoxDecoration(),
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0,
+                                                                            0,
+                                                                            0,
+                                                                            5),
                                                                         child:
-                                                                            Text(
-                                                                          rowProductsRecord
-                                                                              .title,
-                                                                          style:
-                                                                              FlutterFlowTheme.of(context).bodyText1,
+                                                                            Container(
+                                                                          width: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width,
+                                                                          decoration:
+                                                                              BoxDecoration(),
+                                                                          child:
+                                                                              Text(
+                                                                            rowProductsRecord.title,
+                                                                            maxLines:
+                                                                                2,
+                                                                            style:
+                                                                                FlutterFlowTheme.of(context).bodyText1,
+                                                                          ),
                                                                         ),
                                                                       ),
-                                                                      Stack(
-                                                                        children: [
-                                                                          if ((valueOrDefault(currentUserDocument?.type, '')) ==
-                                                                              'public')
-                                                                            AuthUserStreamWidget(
-                                                                              child: Text(
-                                                                                formatNumber(
-                                                                                  containerVariantsRecord.publicPrice,
-                                                                                  formatType: FormatType.decimal,
-                                                                                  decimalType: DecimalType.periodDecimal,
-                                                                                  currency: '',
-                                                                                ),
-                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                      fontFamily: 'Montserrat',
-                                                                                      color: FlutterFlowTheme.of(context).alternate,
-                                                                                      fontSize: 18,
-                                                                                      fontWeight: FontWeight.w500,
-                                                                                    ),
-                                                                              ),
+                                                                      if (functions
+                                                                              .isGreaterThanZero(valueOrDefault<int>(
+                                                                            getJsonField(
+                                                                              productsInCartItem,
+                                                                              r'''$.expressShipAmount''',
                                                                             ),
-                                                                          if ((valueOrDefault(currentUserDocument?.type, '')) ==
-                                                                              'wholesale')
-                                                                            AuthUserStreamWidget(
-                                                                              child: Text(
-                                                                                formatNumber(
-                                                                                  containerVariantsRecord.wholesalePrice,
-                                                                                  formatType: FormatType.decimal,
-                                                                                  decimalType: DecimalType.periodDecimal,
-                                                                                  currency: '',
+                                                                            0,
+                                                                          )) ??
+                                                                          true)
+                                                                        Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0,
+                                                                              0,
+                                                                              10,
+                                                                              5),
+                                                                          child:
+                                                                              Row(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.min,
+                                                                            mainAxisAlignment:
+                                                                                MainAxisAlignment.start,
+                                                                            children: [
+                                                                              Container(
+                                                                                width: 60,
+                                                                                decoration: BoxDecoration(
+                                                                                  color: Color(0x00EEEEEE),
                                                                                 ),
-                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                      fontFamily: 'Montserrat',
-                                                                                      color: FlutterFlowTheme.of(context).alternate,
-                                                                                      fontSize: 18,
-                                                                                      fontWeight: FontWeight.w500,
+                                                                                child: Row(
+                                                                                  mainAxisSize: MainAxisSize.max,
+                                                                                  mainAxisAlignment: MainAxisAlignment.start,
+                                                                                  children: [
+                                                                                    Padding(
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
+                                                                                      child: FaIcon(
+                                                                                        FontAwesomeIcons.bolt,
+                                                                                        color: Color(0xFF6CD554),
+                                                                                        size: 14,
+                                                                                      ),
                                                                                     ),
-                                                                              ),
-                                                                            ),
-                                                                          if ((valueOrDefault(currentUserDocument?.type, '')) ==
-                                                                              'megaWholesale')
-                                                                            AuthUserStreamWidget(
-                                                                              child: Text(
-                                                                                formatNumber(
-                                                                                  containerVariantsRecord.megaWholesalePrice,
-                                                                                  formatType: FormatType.decimal,
-                                                                                  decimalType: DecimalType.periodDecimal,
-                                                                                  currency: '',
+                                                                                    Text(
+                                                                                      'Express\n30 min.',
+                                                                                      textAlign: TextAlign.end,
+                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                            fontFamily: 'Montserrat',
+                                                                                            color: Color(0xFF6CD554),
+                                                                                            fontSize: 10,
+                                                                                            fontWeight: FontWeight.w600,
+                                                                                            fontStyle: FontStyle.italic,
+                                                                                          ),
+                                                                                    ),
+                                                                                  ],
                                                                                 ),
-                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                      fontFamily: 'Montserrat',
-                                                                                      color: FlutterFlowTheme.of(context).alternate,
-                                                                                      fontSize: 18,
-                                                                                      fontWeight: FontWeight.w500,
-                                                                                    ),
                                                                               ),
+                                                                              Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(15, 0, 5, 0),
+                                                                                child: Text(
+                                                                                  formatNumber(
+                                                                                    containerVariantsRecord.publicPrice,
+                                                                                    formatType: FormatType.decimal,
+                                                                                    decimalType: DecimalType.periodDecimal,
+                                                                                    currency: '',
+                                                                                  ),
+                                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                        fontFamily: 'Montserrat',
+                                                                                        color: Color(0xFF1EEBBD),
+                                                                                        fontSize: 12,
+                                                                                        fontWeight: FontWeight.w600,
+                                                                                      ),
+                                                                                ),
+                                                                              ),
+                                                                              Container(
+                                                                                width: 50,
+                                                                                decoration: BoxDecoration(
+                                                                                  color: Color(0x00EEEEEE),
+                                                                                ),
+                                                                                child: Row(
+                                                                                  mainAxisSize: MainAxisSize.min,
+                                                                                  mainAxisAlignment: MainAxisAlignment.start,
+                                                                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                                                                  children: [
+                                                                                    Text(
+                                                                                      'x',
+                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                            fontFamily: 'Montserrat',
+                                                                                            color: Color(0xFFAEAEAE),
+                                                                                            fontSize: 12,
+                                                                                          ),
+                                                                                    ),
+                                                                                    Text(
+                                                                                      valueOrDefault<String>(
+                                                                                        getJsonField(
+                                                                                          productsInCartItem,
+                                                                                          r'''$.expressShipAmount''',
+                                                                                        ).toString(),
+                                                                                        '0',
+                                                                                      ),
+                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                            fontFamily: 'Montserrat',
+                                                                                            color: Color(0xFFAEAEAE),
+                                                                                            fontSize: 12,
+                                                                                          ),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                      if (functions
+                                                                              .isGreaterThanZero(valueOrDefault<int>(
+                                                                            getJsonField(
+                                                                              productsInCartItem,
+                                                                              r'''$.normalShipAmount''',
                                                                             ),
-                                                                        ],
-                                                                      ),
+                                                                            0,
+                                                                          )) ??
+                                                                          true)
+                                                                        Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0,
+                                                                              0,
+                                                                              10,
+                                                                              5),
+                                                                          child:
+                                                                              Row(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.min,
+                                                                            mainAxisAlignment:
+                                                                                MainAxisAlignment.start,
+                                                                            children: [
+                                                                              Row(
+                                                                                mainAxisSize: MainAxisSize.max,
+                                                                                children: [
+                                                                                  Container(
+                                                                                    width: 64,
+                                                                                    decoration: BoxDecoration(
+                                                                                      color: Color(0x00EEEEEE),
+                                                                                    ),
+                                                                                    child: Row(
+                                                                                      mainAxisSize: MainAxisSize.max,
+                                                                                      mainAxisAlignment: MainAxisAlignment.start,
+                                                                                      children: [
+                                                                                        Icon(
+                                                                                          Icons.access_time_outlined,
+                                                                                          color: Colors.black,
+                                                                                          size: 12,
+                                                                                        ),
+                                                                                        Padding(
+                                                                                          padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                                                                          child: Text(
+                                                                                            'Estándar',
+                                                                                            textAlign: TextAlign.end,
+                                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                  fontFamily: 'Montserrat',
+                                                                                                  color: Colors.black,
+                                                                                                  fontSize: 10,
+                                                                                                  fontWeight: FontWeight.w600,
+                                                                                                ),
+                                                                                          ),
+                                                                                        ),
+                                                                                      ],
+                                                                                    ),
+                                                                                  ),
+                                                                                  Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(15, 0, 5, 0),
+                                                                                    child: Stack(
+                                                                                      children: [
+                                                                                        if (functions.areStringsEqual(
+                                                                                                getJsonField(
+                                                                                                  productsInCartItem,
+                                                                                                  r'''$.price''',
+                                                                                                ).toString(),
+                                                                                                'publicPrice') ??
+                                                                                            true)
+                                                                                          Text(
+                                                                                            formatNumber(
+                                                                                              containerVariantsRecord.publicPrice,
+                                                                                              formatType: FormatType.decimal,
+                                                                                              decimalType: DecimalType.periodDecimal,
+                                                                                              currency: '',
+                                                                                            ),
+                                                                                            maxLines: 2,
+                                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                  fontFamily: 'Montserrat',
+                                                                                                  color: Color(0xFF1EEBBD),
+                                                                                                  fontSize: 12,
+                                                                                                  fontWeight: FontWeight.w600,
+                                                                                                ),
+                                                                                          ),
+                                                                                        if (functions.areStringsEqual(
+                                                                                                getJsonField(
+                                                                                                  productsInCartItem,
+                                                                                                  r'''$.price''',
+                                                                                                ).toString(),
+                                                                                                'wholesalePrice') ??
+                                                                                            true)
+                                                                                          Text(
+                                                                                            formatNumber(
+                                                                                              containerVariantsRecord.wholesalePrice,
+                                                                                              formatType: FormatType.decimal,
+                                                                                              decimalType: DecimalType.periodDecimal,
+                                                                                              currency: '',
+                                                                                            ),
+                                                                                            maxLines: 2,
+                                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                  fontFamily: 'Montserrat',
+                                                                                                  color: Color(0xFF1EEBBD),
+                                                                                                  fontSize: 12,
+                                                                                                  fontWeight: FontWeight.w600,
+                                                                                                ),
+                                                                                          ),
+                                                                                        if (functions.areStringsEqual(
+                                                                                                getJsonField(
+                                                                                                  productsInCartItem,
+                                                                                                  r'''$.price''',
+                                                                                                ).toString(),
+                                                                                                'megaWholesalePrice') ??
+                                                                                            true)
+                                                                                          Text(
+                                                                                            formatNumber(
+                                                                                              containerVariantsRecord.megaWholesalePrice,
+                                                                                              formatType: FormatType.decimal,
+                                                                                              decimalType: DecimalType.periodDecimal,
+                                                                                              currency: '',
+                                                                                            ),
+                                                                                            maxLines: 2,
+                                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                  fontFamily: 'Montserrat',
+                                                                                                  color: Color(0xFF1EEBBD),
+                                                                                                  fontSize: 12,
+                                                                                                  fontWeight: FontWeight.w600,
+                                                                                                ),
+                                                                                          ),
+                                                                                      ],
+                                                                                    ),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                              Container(
+                                                                                width: 50,
+                                                                                decoration: BoxDecoration(
+                                                                                  color: Color(0x00EEEEEE),
+                                                                                ),
+                                                                                child: Row(
+                                                                                  mainAxisSize: MainAxisSize.min,
+                                                                                  mainAxisAlignment: MainAxisAlignment.start,
+                                                                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                                                                  children: [
+                                                                                    Text(
+                                                                                      'x',
+                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                            fontFamily: 'Montserrat',
+                                                                                            color: Color(0xFFAEAEAE),
+                                                                                            fontSize: 12,
+                                                                                          ),
+                                                                                    ),
+                                                                                    Text(
+                                                                                      valueOrDefault<String>(
+                                                                                        getJsonField(
+                                                                                          productsInCartItem,
+                                                                                          r'''$.normalShipAmount''',
+                                                                                        ).toString(),
+                                                                                        '0',
+                                                                                      ),
+                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                            fontFamily: 'Montserrat',
+                                                                                            color: Color(0xFFAEAEAE),
+                                                                                            fontSize: 12,
+                                                                                          ),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                      if (functions
+                                                                              .isGreaterThanZero(valueOrDefault<int>(
+                                                                            getJsonField(
+                                                                              productsInCartItem,
+                                                                              r'''$.pickupInStoreAmount''',
+                                                                            ),
+                                                                            0,
+                                                                          )) ??
+                                                                          true)
+                                                                        Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0,
+                                                                              0,
+                                                                              10,
+                                                                              0),
+                                                                          child:
+                                                                              Row(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.min,
+                                                                            mainAxisAlignment:
+                                                                                MainAxisAlignment.start,
+                                                                            children: [
+                                                                              Row(
+                                                                                mainAxisSize: MainAxisSize.max,
+                                                                                children: [
+                                                                                  Container(
+                                                                                    width: 64,
+                                                                                    decoration: BoxDecoration(
+                                                                                      color: Color(0x00EEEEEE),
+                                                                                    ),
+                                                                                    child: Row(
+                                                                                      mainAxisSize: MainAxisSize.max,
+                                                                                      mainAxisAlignment: MainAxisAlignment.start,
+                                                                                      children: [
+                                                                                        Icon(
+                                                                                          Icons.storefront,
+                                                                                          color: Colors.black,
+                                                                                          size: 12,
+                                                                                        ),
+                                                                                        Padding(
+                                                                                          padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                                                                          child: Text(
+                                                                                            'Recoger',
+                                                                                            textAlign: TextAlign.end,
+                                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                  fontFamily: 'Montserrat',
+                                                                                                  color: Colors.black,
+                                                                                                  fontSize: 10,
+                                                                                                  fontWeight: FontWeight.w600,
+                                                                                                ),
+                                                                                          ),
+                                                                                        ),
+                                                                                      ],
+                                                                                    ),
+                                                                                  ),
+                                                                                  Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(15, 0, 5, 0),
+                                                                                    child: Stack(
+                                                                                      children: [
+                                                                                        if (functions.areStringsEqual(
+                                                                                                getJsonField(
+                                                                                                  productsInCartItem,
+                                                                                                  r'''$.price''',
+                                                                                                ).toString(),
+                                                                                                'publicPrice') ??
+                                                                                            true)
+                                                                                          Text(
+                                                                                            formatNumber(
+                                                                                              containerVariantsRecord.publicPrice,
+                                                                                              formatType: FormatType.decimal,
+                                                                                              decimalType: DecimalType.periodDecimal,
+                                                                                              currency: '',
+                                                                                            ),
+                                                                                            maxLines: 2,
+                                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                  fontFamily: 'Montserrat',
+                                                                                                  color: Color(0xFF1EEBBD),
+                                                                                                  fontSize: 12,
+                                                                                                  fontWeight: FontWeight.w600,
+                                                                                                ),
+                                                                                          ),
+                                                                                        if (functions.areStringsEqual(
+                                                                                                getJsonField(
+                                                                                                  productsInCartItem,
+                                                                                                  r'''$.price''',
+                                                                                                ).toString(),
+                                                                                                'wholesalePrice') ??
+                                                                                            true)
+                                                                                          Text(
+                                                                                            formatNumber(
+                                                                                              containerVariantsRecord.wholesalePrice,
+                                                                                              formatType: FormatType.decimal,
+                                                                                              decimalType: DecimalType.periodDecimal,
+                                                                                              currency: '',
+                                                                                            ),
+                                                                                            maxLines: 2,
+                                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                  fontFamily: 'Montserrat',
+                                                                                                  color: Color(0xFF1EEBBD),
+                                                                                                  fontSize: 12,
+                                                                                                  fontWeight: FontWeight.w600,
+                                                                                                ),
+                                                                                          ),
+                                                                                        if (functions.areStringsEqual(
+                                                                                                getJsonField(
+                                                                                                  productsInCartItem,
+                                                                                                  r'''$.price''',
+                                                                                                ).toString(),
+                                                                                                'megaWholesalePrice') ??
+                                                                                            true)
+                                                                                          Text(
+                                                                                            formatNumber(
+                                                                                              containerVariantsRecord.megaWholesalePrice,
+                                                                                              formatType: FormatType.decimal,
+                                                                                              decimalType: DecimalType.periodDecimal,
+                                                                                              currency: '',
+                                                                                            ),
+                                                                                            maxLines: 2,
+                                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                  fontFamily: 'Montserrat',
+                                                                                                  color: Color(0xFF1EEBBD),
+                                                                                                  fontSize: 12,
+                                                                                                  fontWeight: FontWeight.w600,
+                                                                                                ),
+                                                                                          ),
+                                                                                      ],
+                                                                                    ),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                              Container(
+                                                                                width: 50,
+                                                                                decoration: BoxDecoration(
+                                                                                  color: Color(0x00EEEEEE),
+                                                                                ),
+                                                                                child: Row(
+                                                                                  mainAxisSize: MainAxisSize.min,
+                                                                                  mainAxisAlignment: MainAxisAlignment.start,
+                                                                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                                                                  children: [
+                                                                                    Text(
+                                                                                      'x',
+                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                            fontFamily: 'Montserrat',
+                                                                                            color: Color(0xFFAEAEAE),
+                                                                                            fontSize: 12,
+                                                                                          ),
+                                                                                    ),
+                                                                                    Text(
+                                                                                      valueOrDefault<String>(
+                                                                                        getJsonField(
+                                                                                          productsInCartItem,
+                                                                                          r'''$.pickupInStoreAmount''',
+                                                                                        ).toString(),
+                                                                                        '0',
+                                                                                      ),
+                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                            fontFamily: 'Montserrat',
+                                                                                            color: Color(0xFFAEAEAE),
+                                                                                            fontSize: 12,
+                                                                                          ),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ),
                                                                       Padding(
                                                                         padding: EdgeInsetsDirectional.fromSTEB(
                                                                             0,
                                                                             5,
                                                                             0,
-                                                                            0),
-                                                                        child:
-                                                                            Row(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.max,
-                                                                          mainAxisAlignment:
-                                                                              MainAxisAlignment.start,
-                                                                          children: [
-                                                                            Text(
-                                                                              getJsonField(
-                                                                                productsInCartItem,
-                                                                                r'''$.amount''',
-                                                                              ).toString(),
-                                                                              style: FlutterFlowTheme.of(context).bodyText1,
-                                                                            ),
-                                                                            Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(2, 0, 0, 0),
-                                                                              child: Text(
-                                                                                containerVariantsRecord.unit,
-                                                                                style: FlutterFlowTheme.of(context).bodyText1,
-                                                                              ),
-                                                                            ),
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                      Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0,
-                                                                            0,
-                                                                            0,
-                                                                            10),
+                                                                            5),
                                                                         child:
                                                                             Row(
                                                                           mainAxisSize:
                                                                               MainAxisSize.max,
                                                                           children: [
                                                                             Text(
-                                                                              'Tipo de Envío',
+                                                                              'Unidad: ',
                                                                               style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                     fontFamily: 'Montserrat',
                                                                                     color: Color(0xFFAEAEAE),
-                                                                                    fontSize: 12,
+                                                                                    fontSize: 11,
                                                                                   ),
                                                                             ),
-                                                                            Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                                                            Expanded(
                                                                               child: Text(
-                                                                                getJsonField(
-                                                                                  productsInCartItem,
-                                                                                  r'''$.deliveryType''',
-                                                                                ).toString(),
+                                                                                containerVariantsRecord.unit,
                                                                                 style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                       fontFamily: 'Montserrat',
-                                                                                      fontSize: 12,
-                                                                                      fontWeight: FontWeight.w500,
+                                                                                      fontSize: 11,
+                                                                                      fontWeight: FontWeight.w600,
                                                                                     ),
                                                                               ),
                                                                             ),
                                                                           ],
                                                                         ),
+                                                                      ),
+                                                                      Row(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.end,
+                                                                        children: [
+                                                                          Text(
+                                                                            'Subtotal: ',
+                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                  fontFamily: 'Montserrat',
+                                                                                  color: Color(0xFFAEAEAE),
+                                                                                  fontSize: 11,
+                                                                                  fontWeight: FontWeight.normal,
+                                                                                ),
+                                                                          ),
+                                                                          Padding(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                                0,
+                                                                                0,
+                                                                                2,
+                                                                                0),
+                                                                            child:
+                                                                                Text(
+                                                                              '\$',
+                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                    fontFamily: 'Montserrat',
+                                                                                    color: FlutterFlowTheme.of(context).alternate,
+                                                                                    fontSize: 16,
+                                                                                    fontWeight: FontWeight.w500,
+                                                                                  ),
+                                                                            ),
+                                                                          ),
+                                                                          Stack(
+                                                                            children: [
+                                                                              Text(
+                                                                                valueOrDefault<String>(
+                                                                                  getJsonField(
+                                                                                    productsInCartItem,
+                                                                                    r'''$.subtotal''',
+                                                                                  ).toString(),
+                                                                                  '0',
+                                                                                ),
+                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                      fontFamily: 'Montserrat',
+                                                                                      color: FlutterFlowTheme.of(context).alternate,
+                                                                                      fontSize: 16,
+                                                                                      fontWeight: FontWeight.w600,
+                                                                                    ),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ],
                                                                       ),
                                                                     ],
                                                                   ),
