@@ -1,4 +1,5 @@
 import '../auth/auth_util.dart';
+import '../auth/firebase_user_provider.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_count_controller.dart';
@@ -177,10 +178,6 @@ class _ProductPageSellerWidgetState extends State<ProductPageSellerWidget> {
                               }
                               List<VariantsRecord> columnVariantsRecordList =
                                   snapshot.data;
-                              // Return an empty Container when the document does not exist.
-                              if (snapshot.data.isEmpty) {
-                                return Container();
-                              }
                               final columnVariantsRecord =
                                   columnVariantsRecordList.isNotEmpty
                                       ? columnVariantsRecordList.first
@@ -416,6 +413,35 @@ class _ProductPageSellerWidgetState extends State<ProductPageSellerWidget> {
                                                                         .w600,
                                                               ),
                                                     ),
+                                                  ),
+                                                ),
+                                              if (!(loggedIn) ?? true)
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 0, 10),
+                                                  child: Text(
+                                                    formatNumber(
+                                                      columnVariantsRecord
+                                                          .publicPrice,
+                                                      formatType:
+                                                          FormatType.decimal,
+                                                      decimalType: DecimalType
+                                                          .periodDecimal,
+                                                      currency: '',
+                                                    ),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              'Montserrat',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .alternate,
+                                                          fontSize: 20,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                        ),
                                                   ),
                                                 ),
                                             ],
