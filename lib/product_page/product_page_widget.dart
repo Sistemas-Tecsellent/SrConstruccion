@@ -298,34 +298,36 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
-          child: StreamBuilder<List<ProductsRecord>>(
-            stream: queryProductsRecord(
-              queryBuilder: (productsRecord) =>
-                  productsRecord.where('id', isEqualTo: widget.productId),
-              singleRecord: true,
-            ),
-            builder: (context, snapshot) {
-              // Customize what your widget looks like when it's loading.
-              if (!snapshot.hasData) {
-                return Center(
-                  child: SizedBox(
-                    width: 50,
-                    height: 50,
-                    child: SpinKitFadingCircle(
-                      color: FlutterFlowTheme.of(context).primaryColor,
-                      size: 50,
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * 0.99,
+            decoration: BoxDecoration(),
+            child: StreamBuilder<List<ProductsRecord>>(
+              stream: queryProductsRecord(
+                queryBuilder: (productsRecord) =>
+                    productsRecord.where('id', isEqualTo: widget.productId),
+                singleRecord: true,
+              ),
+              builder: (context, snapshot) {
+                // Customize what your widget looks like when it's loading.
+                if (!snapshot.hasData) {
+                  return Center(
+                    child: SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: SpinKitFadingCircle(
+                        color: FlutterFlowTheme.of(context).primaryColor,
+                        size: 50,
+                      ),
                     ),
-                  ),
-                );
-              }
-              List<ProductsRecord> columnProductsRecordList = snapshot.data;
-              final columnProductsRecord = columnProductsRecordList.isNotEmpty
-                  ? columnProductsRecordList.first
-                  : null;
-              return SingleChildScrollView(
-                primary: false,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
+                  );
+                }
+                List<ProductsRecord> columnProductsRecordList = snapshot.data;
+                final columnProductsRecord = columnProductsRecordList.isNotEmpty
+                    ? columnProductsRecordList.first
+                    : null;
+                return Column(
+                  mainAxisSize: MainAxisSize.max,
                   children: [
                     if (responsiveVisibility(
                       context: context,
@@ -2946,7 +2948,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                     ))
                       Container(
                         width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height * 1,
+                        height: MediaQuery.of(context).size.height * 0.99,
                         decoration: BoxDecoration(),
                         child: Visibility(
                           visible: responsiveVisibility(
@@ -2985,7 +2987,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                       : null;
                               return SingleChildScrollView(
                                 child: Column(
-                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Container(
                                       width: MediaQuery.of(context).size.width,
@@ -2998,6 +3000,23 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         children: [
+                                          FlutterFlowIconButton(
+                                            borderColor: Colors.transparent,
+                                            borderRadius: 30,
+                                            borderWidth: 1,
+                                            buttonSize: 60,
+                                            icon: FaIcon(
+                                              FontAwesomeIcons.share,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryColor,
+                                              size: 25,
+                                            ),
+                                            onPressed: () async {
+                                              await Share.share(
+                                                  'http://tienda.srconstruccion.com${GoRouter.of(context).location}');
+                                            },
+                                          ),
                                           Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
@@ -3023,23 +3042,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                          FlutterFlowIconButton(
-                                            borderColor: Colors.transparent,
-                                            borderRadius: 30,
-                                            borderWidth: 1,
-                                            buttonSize: 60,
-                                            icon: FaIcon(
-                                              FontAwesomeIcons.share,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryColor,
-                                              size: 25,
-                                            ),
-                                            onPressed: () async {
-                                              await Share.share(
-                                                  'http://tienda.srconstruccion.com${GoRouter.of(context).location}');
-                                            },
                                           ),
                                           if (loggedIn ?? true)
                                             Padding(
@@ -3084,7 +3086,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                   width: MediaQuery.of(context)
                                                       .size
                                                       .width,
-                                                  height: 0,
                                                   fit: BoxFit.contain,
                                                 ),
                                               ],
@@ -5440,9 +5441,9 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                         ),
                       ),
                   ],
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
         ),
       ),

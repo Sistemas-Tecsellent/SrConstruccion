@@ -10,6 +10,7 @@ import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../flutter_flow/flutter_flow_widgets.dart';
 import '../custom_code/actions/index.dart' as actions;
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
@@ -242,6 +243,59 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                       height: 90,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).primaryColor,
+                      ),
+                      child: Visibility(
+                        visible: loggedIn ?? true,
+                        child: Align(
+                          alignment: AlignmentDirectional(0.85, 0),
+                          child: FutureBuilder<ApiCallResponse>(
+                            future: GetCartAmountCall.call(
+                              uid: currentUserUid,
+                              cartId: currentUserUid,
+                            ),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50,
+                                    height: 50,
+                                    child: SpinKitFadingCircle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                      size: 50,
+                                    ),
+                                  ),
+                                );
+                              }
+                              final buttonGetCartAmountResponse = snapshot.data;
+                              return FFButtonWidget(
+                                onPressed: () async {
+                                  context.pushNamed('Carrito');
+                                },
+                                text: 'Iniciar Sesión',
+                                options: FFButtonOptions(
+                                  width: 150,
+                                  height: 40,
+                                  color: Color(0xFF1EEBBD),
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .subtitle2
+                                      .override(
+                                        fontFamily: 'Montserrat',
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                      ),
+                                  elevation: 2,
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(25),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
                       ),
                     ),
                     Column(
