@@ -199,7 +199,7 @@ class _AjustesWidgetState extends State<AjustesWidget> {
                   GoRouter.of(context).prepareAuthEvent();
                   await signOut();
                   await deleteUser(context);
-                  context.goNamedAuth('login', mounted);
+                  context.goNamedAuth('Home', mounted);
                 },
                 text: 'Eliminar mi cuenta',
                 options: FFButtonOptions(

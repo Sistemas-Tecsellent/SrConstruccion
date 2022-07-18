@@ -67,13 +67,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, _) =>
-          appStateNotifier.loggedIn ? HomeAltWidget() : LoginWidget(),
+          appStateNotifier.loggedIn ? HomeAltWidget() : HomeWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? HomeAltWidget() : LoginWidget(),
+              appStateNotifier.loggedIn ? HomeAltWidget() : HomeWidget(),
           routes: [
             FFRoute(
               name: 'Notificaciones',
@@ -100,9 +100,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => CotizacionesDeEnvioWidget(),
             ),
             FFRoute(
+              name: 'Home',
+              path: 'home',
+              builder: (context, params) => HomeWidget(),
+            ),
+            FFRoute(
               name: 'ProductPageSeller',
               path: 'vendedor/:storeName/:productId',
-              requireAuth: true,
               builder: (context, params) => ProductPageSellerWidget(
                 storeId: params.getParam('storeId', ParamType.String),
                 storeName: params.getParam('storeName', ParamType.String),
@@ -245,21 +249,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
-              name: 'CarritoPorSellers',
-              path: 'carrito/:storeName',
-              requireAuth: true,
-              builder: (context, params) => CarritoPorSellersWidget(
-                storeId: params.getParam('storeId', ParamType.String),
-                storeName: params.getParam('storeName', ParamType.String),
-              ),
-            ),
-            FFRoute(
               name: 'DetallePedidoProgramado',
               path: 'mis-pedidos/pedido-programado/express/:orderId',
               requireAuth: true,
               builder: (context, params) => DetallePedidoProgramadoWidget(
                 bundleId: params.getParam('bundleId', ParamType.String),
                 orderId: params.getParam('orderId', ParamType.String),
+              ),
+            ),
+            FFRoute(
+              name: 'CarritoPorSellers',
+              path: 'carrito/:storeName',
+              requireAuth: true,
+              builder: (context, params) => CarritoPorSellersWidget(
+                storeId: params.getParam('storeId', ParamType.String),
+                storeName: params.getParam('storeName', ParamType.String),
               ),
             ),
             FFRoute(
@@ -772,7 +776,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.location);
-            return '/iniciar-sesion';
+            return '/home';
           }
           return null;
         },

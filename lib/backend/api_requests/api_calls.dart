@@ -103,7 +103,7 @@ class GetVariantInventoryCall {
     String variantId = '',
     String userLocationState = '',
     String userLocationCity = '',
-    String priceType = '',
+    String priceType = 'public',
   }) {
     return ApiManager.instance.makeApiCall(
       callName: 'getVariantInventory',
@@ -185,7 +185,7 @@ class GetOneVariantCall {
   static Future<ApiCallResponse> call({
     String productId = '',
     String userLocation = '',
-    String userType = '',
+    String userType = 'public',
   }) {
     return ApiManager.instance.makeApiCall(
       callName: 'getOneVariant',
@@ -431,9 +431,9 @@ class GetCartAmountCall {
 
 class CheckIfProductInCartCall {
   static Future<ApiCallResponse> call({
-    String uid = '',
-    String variantId = '',
-    String cartId = '',
+    String uid = 'o',
+    String variantId = 'o',
+    String cartId = 'o',
   }) {
     return ApiManager.instance.makeApiCall(
       callName: 'checkIfProductInCart',

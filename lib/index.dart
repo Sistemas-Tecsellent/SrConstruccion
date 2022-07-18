@@ -4,6 +4,7 @@ export 'perfil/perfil_widget.dart' show PerfilWidget;
 export 'home_alt/home_alt_widget.dart' show HomeAltWidget;
 export 'cotizaciones_de_envio/cotizaciones_de_envio_widget.dart'
     show CotizacionesDeEnvioWidget;
+export 'home/home_widget.dart' show HomeWidget;
 export 'product_page_seller/product_page_seller_widget.dart'
     show ProductPageSellerWidget;
 export 'login/login_widget.dart' show LoginWidget;
@@ -37,10 +38,10 @@ export 'pedido_programado/pedido_programado_widget.dart'
     show PedidoProgramadoWidget;
 export 'perfil_del_seller/perfil_del_seller_widget.dart'
     show PerfilDelSellerWidget;
-export 'carrito_por_sellers/carrito_por_sellers_widget.dart'
-    show CarritoPorSellersWidget;
 export 'detalle_pedido_programado/detalle_pedido_programado_widget.dart'
     show DetallePedidoProgramadoWidget;
+export 'carrito_por_sellers/carrito_por_sellers_widget.dart'
+    show CarritoPorSellersWidget;
 export 'valoraciones/valoraciones_widget.dart' show ValoracionesWidget;
 export 'onboarding1/onboarding1_widget.dart' show Onboarding1Widget;
 export 'profesional/profesional_widget.dart' show ProfesionalWidget;

@@ -3035,22 +3035,23 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                 'http://tienda.srconstruccion.com${GoRouter.of(context).location}');
                                           },
                                         ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 20, 0),
-                                          child: InkWell(
-                                            onTap: () async {
-                                              await actions.likeProduct(
-                                                currentUserUid,
-                                                widget.productId,
-                                              );
-                                            },
-                                            child: ToggleLikeProductWidget(
-                                              productId: widget.productId,
+                                        if (loggedIn ?? true)
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 20, 0),
+                                            child: InkWell(
+                                              onTap: () async {
+                                                await actions.likeProduct(
+                                                  currentUserUid,
+                                                  widget.productId,
+                                                );
+                                              },
+                                              child: ToggleLikeProductWidget(
+                                                productId: widget.productId,
+                                              ),
                                             ),
                                           ),
-                                        ),
                                       ],
                                     ),
                                     Row(

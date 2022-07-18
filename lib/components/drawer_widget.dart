@@ -760,7 +760,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                     onPressed: () async {
                       GoRouter.of(context).prepareAuthEvent();
                       await signOut();
-                      context.goNamedAuth('login', mounted);
+                      context.goNamedAuth('Home', mounted);
                     },
                     text: 'Cerrar Sesión',
                     icon: FaIcon(
