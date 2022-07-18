@@ -279,32 +279,6 @@ class _ProductPageSellerWidgetState extends State<ProductPageSellerWidget> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.89,
-                                            constraints: BoxConstraints(
-                                              maxWidth: 500,
-                                            ),
-                                            decoration: BoxDecoration(),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 0, 10),
-                                              child: Text(
-                                                containerProductsRecord.title,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily:
-                                                              'Montserrat',
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                              ),
-                                            ),
-                                          ),
                                           Stack(
                                             children: [
                                               if ((valueOrDefault(
@@ -445,6 +419,60 @@ class _ProductPageSellerWidgetState extends State<ProductPageSellerWidget> {
                                                   ),
                                                 ),
                                             ],
+                                          ),
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.89,
+                                            constraints: BoxConstraints(
+                                              maxWidth: 500,
+                                            ),
+                                            decoration: BoxDecoration(),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 0, 10),
+                                              child: Text(
+                                                containerProductsRecord.title,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              'Montserrat',
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.89,
+                                            constraints: BoxConstraints(
+                                              maxWidth: 500,
+                                            ),
+                                            decoration: BoxDecoration(),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 0, 10),
+                                              child: Text(
+                                                containerProductsRecord
+                                                    .description,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              'Montserrat',
+                                                          fontSize: 12,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                        ),
+                                              ),
+                                            ),
                                           ),
                                         ],
                                       ),
@@ -1521,30 +1549,34 @@ class _ProductPageSellerWidgetState extends State<ProductPageSellerWidget> {
                                             0, 20, 0, 20),
                                         child: FFButtonWidget(
                                           onPressed: () async {
-                                            await actions
-                                                .addProductSellerWiseCart(
-                                              containerProductsRecord.id,
-                                              columnVariantsRecord.id,
-                                              '\"\"',
-                                              expressCountValue,
-                                              columnStoresRecord.id,
-                                              expressCountValue,
-                                              normalShipmentCountValue,
-                                              pickupShipmentCountValue,
-                                            );
-                                            context.pushNamed(
-                                              'CarritoPorSellers',
-                                              params: {
-                                                'storeName': serializeParam(
-                                                    columnStoresRecord.name,
-                                                    ParamType.String),
-                                              }.withoutNulls,
-                                              queryParams: {
-                                                'storeId': serializeParam(
-                                                    columnStoresRecord.id,
-                                                    ParamType.String),
-                                              }.withoutNulls,
-                                            );
+                                            if (loggedIn) {
+                                              await actions
+                                                  .addProductSellerWiseCart(
+                                                containerProductsRecord.id,
+                                                columnVariantsRecord.id,
+                                                '\"\"',
+                                                expressCountValue,
+                                                columnStoresRecord.id,
+                                                expressCountValue,
+                                                normalShipmentCountValue,
+                                                pickupShipmentCountValue,
+                                              );
+                                              context.pushNamed(
+                                                'CarritoPorSellers',
+                                                params: {
+                                                  'storeName': serializeParam(
+                                                      columnStoresRecord.name,
+                                                      ParamType.String),
+                                                }.withoutNulls,
+                                                queryParams: {
+                                                  'storeId': serializeParam(
+                                                      columnStoresRecord.id,
+                                                      ParamType.String),
+                                                }.withoutNulls,
+                                              );
+                                            } else {
+                                              context.pushNamed('login');
+                                            }
                                           },
                                           text: 'Agregar al carrito',
                                           options: FFButtonOptions(

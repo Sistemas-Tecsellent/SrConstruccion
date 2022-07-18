@@ -421,7 +421,7 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                         color: FlutterFlowTheme.of(context).primaryColor,
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(20, 50, 20, 10),
+                        padding: EdgeInsetsDirectional.fromSTEB(20, 70, 20, 10),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
