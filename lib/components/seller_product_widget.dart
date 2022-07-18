@@ -6,7 +6,6 @@ import '../flutter_flow/flutter_flow_radio_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -745,26 +744,8 @@ class _SellerProductWidgetState extends State<SellerProductWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0, 20, 0, 20),
                                       child: FFButtonWidget(
-                                        onPressed: () async {
-                                          await actions
-                                              .addProductSellerWiseCart(
-                                            columnProductsRecord.id,
-                                            columnVariantsRecord.id,
-                                            valueOrDefault<String>(
-                                              radioButtonValue,
-                                              'Recoger en Tienda',
-                                            ),
-                                            countControllerValue,
-                                            containerStoresRecord.id,
-                                          );
-                                          context.pushNamed(
-                                            'CarritoPorSellers',
-                                            queryParams: {
-                                              'storeId': serializeParam(
-                                                  widget.store,
-                                                  ParamType.String),
-                                            }.withoutNulls,
-                                          );
+                                        onPressed: () {
+                                          print('Button pressed ...');
                                         },
                                         text: 'Agregar al carrito',
                                         options: FFButtonOptions(

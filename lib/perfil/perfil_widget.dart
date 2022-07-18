@@ -806,6 +806,7 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                           FontAwesomeIcons
                                                               .calculator,
                                                           color: Colors.black,
+                                                          size: 20,
                                                         ),
                                                         title: Text(
                                                           'Mis Datos de Facturación',
@@ -817,7 +818,7 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                                     'Montserrat',
                                                                 color: Colors
                                                                     .black,
-                                                                fontSize: 18,
+                                                                fontSize: 15,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .normal,
@@ -827,7 +828,7 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                           Icons
                                                               .arrow_forward_ios,
                                                           color: Colors.black,
-                                                          size: 20,
+                                                          size: 15,
                                                         ),
                                                         tileColor:
                                                             Color(0x00F6F6F6),
@@ -847,6 +848,7 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                         leading: Icon(
                                                           Icons.location_pin,
                                                           color: Colors.black,
+                                                          size: 20,
                                                         ),
                                                         title: Text(
                                                           'Mis Direcciones',
@@ -858,7 +860,7 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                                     'Montserrat',
                                                                 color: Colors
                                                                     .black,
-                                                                fontSize: 18,
+                                                                fontSize: 15,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .normal,
@@ -868,7 +870,7 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                           Icons
                                                               .arrow_forward_ios,
                                                           color: Colors.black,
-                                                          size: 20,
+                                                          size: 15,
                                                         ),
                                                         tileColor:
                                                             Color(0x00F6F6F6),
@@ -888,6 +890,7 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                         leading: Icon(
                                                           Icons.settings,
                                                           color: Colors.black,
+                                                          size: 20,
                                                         ),
                                                         title: Text(
                                                           'Ajustes',
@@ -899,7 +902,7 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                                     'Montserrat',
                                                                 color: Colors
                                                                     .black,
-                                                                fontSize: 18,
+                                                                fontSize: 15,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .normal,
@@ -909,7 +912,7 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                           Icons
                                                               .arrow_forward_ios,
                                                           color: Colors.black,
-                                                          size: 20,
+                                                          size: 15,
                                                         ),
                                                         tileColor:
                                                             Color(0x00F6F6F6),
@@ -925,6 +928,7 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                         Icons
                                                             .headset_mic_outlined,
                                                         color: Colors.black,
+                                                        size: 20,
                                                       ),
                                                       title: Text(
                                                         'Ayuda y Soporte',
@@ -936,7 +940,7 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                                   'Montserrat',
                                                               color:
                                                                   Colors.black,
-                                                              fontSize: 18,
+                                                              fontSize: 15,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .normal,
@@ -945,7 +949,7 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                       trailing: Icon(
                                                         Icons.arrow_forward_ios,
                                                         color: Colors.black,
-                                                        size: 20,
+                                                        size: 15,
                                                       ),
                                                       tileColor:
                                                           Color(0x00F6F6F6),
@@ -960,6 +964,7 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                         Icons
                                                             .help_outline_outlined,
                                                         color: Colors.black,
+                                                        size: 20,
                                                       ),
                                                       title: Text(
                                                         'FAQ',
@@ -971,7 +976,7 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                                   'Montserrat',
                                                               color:
                                                                   Colors.black,
-                                                              fontSize: 18,
+                                                              fontSize: 15,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .normal,
@@ -980,7 +985,7 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                       trailing: Icon(
                                                         Icons.arrow_forward_ios,
                                                         color: Colors.black,
-                                                        size: 20,
+                                                        size: 15,
                                                       ),
                                                       tileColor:
                                                           Color(0x00F6F6F6),

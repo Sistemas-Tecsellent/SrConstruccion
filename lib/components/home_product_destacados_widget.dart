@@ -1,4 +1,5 @@
 import '../auth/auth_util.dart';
+import '../auth/firebase_user_provider.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../components/toggle_like_product_white_widget.dart';
@@ -424,13 +425,14 @@ class _HomeProductDestacadosWidgetState
                                           ),
                                         ),
                                       ),
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(0.85, -0.85),
-                                        child: ToggleLikeProductWhiteWidget(
-                                          productId: rowProductsRecord.id,
+                                      if (loggedIn ?? true)
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(0.85, -0.85),
+                                          child: ToggleLikeProductWhiteWidget(
+                                            productId: rowProductsRecord.id,
+                                          ),
                                         ),
-                                      ),
                                     ],
                                   ),
                                 ),
@@ -818,13 +820,14 @@ class _HomeProductDestacadosWidgetState
                                           ),
                                         ),
                                       ),
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(0.85, -0.85),
-                                        child: ToggleLikeProductWhiteWidget(
-                                          productId: rowProductsRecord.id,
+                                      if (loggedIn ?? true)
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(0.85, -0.85),
+                                          child: ToggleLikeProductWhiteWidget(
+                                            productId: rowProductsRecord.id,
+                                          ),
                                         ),
-                                      ),
                                       Align(
                                         alignment: AlignmentDirectional(-1, -1),
                                         child: ClipRRect(

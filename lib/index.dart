@@ -1,13 +1,14 @@
 // Export pages
 export 'notificaciones/notificaciones_widget.dart' show NotificacionesWidget;
-export 'home_alt/home_alt_widget.dart' show HomeAltWidget;
 export 'perfil/perfil_widget.dart' show PerfilWidget;
+export 'home_alt/home_alt_widget.dart' show HomeAltWidget;
 export 'cotizaciones_de_envio/cotizaciones_de_envio_widget.dart'
     show CotizacionesDeEnvioWidget;
+export 'home/home_widget.dart' show HomeWidget;
+export 'login/login_widget.dart' show LoginWidget;
 export 'product_page_seller/product_page_seller_widget.dart'
     show ProductPageSellerWidget;
 export 'product_page/product_page_widget.dart' show ProductPageWidget;
-export 'login/login_widget.dart' show LoginWidget;
 export 'carrito/carrito_widget.dart' show CarritoWidget;
 export 'signup/signup_widget.dart' show SignupWidget;
 export 'notificationes_ajustes/notificationes_ajustes_widget.dart'
@@ -37,10 +38,10 @@ export 'pedido_programado/pedido_programado_widget.dart'
     show PedidoProgramadoWidget;
 export 'perfil_del_seller/perfil_del_seller_widget.dart'
     show PerfilDelSellerWidget;
-export 'carrito_por_sellers/carrito_por_sellers_widget.dart'
-    show CarritoPorSellersWidget;
 export 'detalle_pedido_programado/detalle_pedido_programado_widget.dart'
     show DetallePedidoProgramadoWidget;
+export 'carrito_por_sellers/carrito_por_sellers_widget.dart'
+    show CarritoPorSellersWidget;
 export 'valoraciones/valoraciones_widget.dart' show ValoracionesWidget;
 export 'onboarding1/onboarding1_widget.dart' show Onboarding1Widget;
 export 'profesional/profesional_widget.dart' show ProfesionalWidget;
@@ -55,13 +56,13 @@ export 'reviews_pos_entrega_s_r/reviews_pos_entrega_s_r_widget.dart'
     show ReviewsPosEntregaSRWidget;
 export 'detalle_pedido_final/detalle_pedido_final_widget.dart'
     show DetallePedidoFinalWidget;
-export 'reviewde_productos_pos_entrega/reviewde_productos_pos_entrega_widget.dart'
-    show ReviewdeProductosPosEntregaWidget;
 export 'detalle_pedido_programado_checkout/detalle_pedido_programado_checkout_widget.dart'
     show DetallePedidoProgramadoCheckoutWidget;
+export 'reviewde_productos_pos_entrega/reviewde_productos_pos_entrega_widget.dart'
+    show ReviewdeProductosPosEntregaWidget;
 export 'empresa/empresa_widget.dart' show EmpresaWidget;
-export 'listado_sellers/listado_sellers_widget.dart' show ListadoSellersWidget;
 export 'listado_marcas/listado_marcas_widget.dart' show ListadoMarcasWidget;
+export 'listado_sellers/listado_sellers_widget.dart' show ListadoSellersWidget;
 export 'devolucion/devolucion_widget.dart' show DevolucionWidget;
 export 'product_listing_for_seller/product_listing_for_seller_widget.dart'
     show ProductListingForSellerWidget;

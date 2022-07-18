@@ -64,7 +64,7 @@ class _ProfesionalWidgetState extends State<ProfesionalWidget> {
                               businessModel: 'profesional',
                             );
                             await currentUserReference.update(usersUpdateData);
-                            context.pushNamed('HomeAlt');
+                            context.goNamed('HomeAlt');
                           },
                           child: Container(
                             width: 100,
@@ -127,7 +127,7 @@ class _ProfesionalWidgetState extends State<ProfesionalWidget> {
                               );
                               await currentUserReference
                                   .update(usersUpdateData);
-                              context.pushNamed('HomeAlt');
+                              context.goNamed('HomeAlt');
                             },
                             child: Container(
                               width: 100,
@@ -189,7 +189,7 @@ class _ProfesionalWidgetState extends State<ProfesionalWidget> {
                               businessModel: 'profesional',
                             );
                             await currentUserReference.update(usersUpdateData);
-                            context.pushNamed('HomeAlt');
+                            context.goNamed('HomeAlt');
                           },
                           child: Container(
                             width: 100,
@@ -260,7 +260,7 @@ class _ProfesionalWidgetState extends State<ProfesionalWidget> {
                               businessModel: 'profesional',
                             );
                             await currentUserReference.update(usersUpdateData);
-                            context.pushNamed('HomeAlt');
+                            context.goNamed('HomeAlt');
                           },
                           child: Container(
                             width: 100,
@@ -323,7 +323,7 @@ class _ProfesionalWidgetState extends State<ProfesionalWidget> {
                               );
                               await currentUserReference
                                   .update(usersUpdateData);
-                              context.pushNamed('HomeAlt');
+                              context.goNamed('HomeAlt');
                             },
                             child: Container(
                               width: 100,
@@ -349,7 +349,7 @@ class _ProfesionalWidgetState extends State<ProfesionalWidget> {
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(20),
                                       child: Image.asset(
-                                        'assets/images/Plomero.png',
+                                        'assets/images/3D_Elements.png',
                                         width: 80,
                                         height: 80,
                                         fit: BoxFit.cover,
@@ -385,7 +385,7 @@ class _ProfesionalWidgetState extends State<ProfesionalWidget> {
                               businessModel: 'profesional',
                             );
                             await currentUserReference.update(usersUpdateData);
-                            context.pushNamed('HomeAlt');
+                            context.goNamed('HomeAlt');
                           },
                           child: Container(
                             width: 100,
@@ -456,7 +456,7 @@ class _ProfesionalWidgetState extends State<ProfesionalWidget> {
                               businessModel: 'profesional',
                             );
                             await currentUserReference.update(usersUpdateData);
-                            context.pushNamed('HomeAlt');
+                            context.goNamed('HomeAlt');
                           },
                           child: Container(
                             width: 100,

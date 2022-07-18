@@ -84,9 +84,9 @@ class _Onboarding1WidgetState extends State<Onboarding1Widget> {
                                 child: Container(
                                   width: 300,
                                   height:
-                                      MediaQuery.of(context).size.height * 0.4,
+                                      MediaQuery.of(context).size.height * 0.42,
                                   constraints: BoxConstraints(
-                                    maxHeight: 200,
+                                    maxHeight: 210,
                                   ),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
@@ -127,7 +127,7 @@ class _Onboarding1WidgetState extends State<Onboarding1Widget> {
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  20, 10, 20, 0),
+                                                  20, 5, 20, 0),
                                           child: Text(
                                             'La primera app de delivery para la industria de la construcción',
                                             textAlign: TextAlign.center,
@@ -144,7 +144,7 @@ class _Onboarding1WidgetState extends State<Onboarding1Widget> {
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  20, 0, 20, 0),
+                                                  20, 5, 20, 0),
                                           child: Text(
                                             'Somos el mejor aliado en cualquier obra y proyecto de construcción',
                                             textAlign: TextAlign.center,
@@ -153,7 +153,7 @@ class _Onboarding1WidgetState extends State<Onboarding1Widget> {
                                                 .override(
                                                   fontFamily: 'Montserrat',
                                                   color: Color(0x99000000),
-                                                  fontSize: 11,
+                                                  fontSize: 10,
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                           ),
@@ -178,7 +178,7 @@ class _Onboarding1WidgetState extends State<Onboarding1Widget> {
                                                 },
                                                 text: 'Siguiente',
                                                 options: FFButtonOptions(
-                                                  width: 130,
+                                                  width: 100,
                                                   height: 30,
                                                   color: FlutterFlowTheme.of(
                                                           context)
@@ -193,6 +193,7 @@ class _Onboarding1WidgetState extends State<Onboarding1Widget> {
                                                             color: Colors.white,
                                                             fontSize: 12,
                                                           ),
+                                                  elevation: 0,
                                                   borderSide: BorderSide(
                                                     color: Colors.transparent,
                                                     width: 1,

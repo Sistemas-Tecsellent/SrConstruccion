@@ -168,3 +168,13 @@ int substractOne(int value) {
   }
   return value - 1;
 }
+
+bool areStringsEqual(
+  String value,
+  String compareTo,
+) {
+  if (value == compareTo) {
+    return true;
+  }
+  return false;
+}

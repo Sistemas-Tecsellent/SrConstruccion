@@ -21,16 +21,16 @@ class _EnvioGratisWidgetState extends State<EnvioGratisWidget> {
         FaIcon(
           FontAwesomeIcons.shippingFast,
           color: Color(0xFF5AE93E),
-          size: 13,
+          size: 9,
         ),
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+          padding: EdgeInsetsDirectional.fromSTEB(2, 0, 0, 0),
           child: Text(
             'Envio Gratis',
             style: FlutterFlowTheme.of(context).bodyText1.override(
                   fontFamily: 'Montserrat',
                   color: Color(0xFF5AE93E),
-                  fontSize: 13,
+                  fontSize: 9,
                 ),
           ),
         ),
