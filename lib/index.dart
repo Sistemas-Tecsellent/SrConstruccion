@@ -5,9 +5,9 @@ export 'home_alt/home_alt_widget.dart' show HomeAltWidget;
 export 'cotizaciones_de_envio/cotizaciones_de_envio_widget.dart'
     show CotizacionesDeEnvioWidget;
 export 'home/home_widget.dart' show HomeWidget;
+export 'login/login_widget.dart' show LoginWidget;
 export 'product_page_seller/product_page_seller_widget.dart'
     show ProductPageSellerWidget;
-export 'login/login_widget.dart' show LoginWidget;
 export 'product_page/product_page_widget.dart' show ProductPageWidget;
 export 'carrito/carrito_widget.dart' show CarritoWidget;
 export 'signup/signup_widget.dart' show SignupWidget;

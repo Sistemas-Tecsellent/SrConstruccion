@@ -476,34 +476,26 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                     'IconButton pressed ...');
                                                               },
                                                             ),
-                                                            if (loggedIn ??
-                                                                true)
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0,
-                                                                            0,
-                                                                            20,
-                                                                            0),
-                                                                child: InkWell(
-                                                                  onTap:
-                                                                      () async {
-                                                                    await actions
-                                                                        .likeProduct(
-                                                                      currentUserUid,
-                                                                      widget
-                                                                          .productId,
-                                                                    );
-                                                                  },
-                                                                  child:
-                                                                      ToggleLikeProductWidget(
-                                                                    productId:
-                                                                        widget
-                                                                            .productId,
-                                                                  ),
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0,
+                                                                          0,
+                                                                          15,
+                                                                          0),
+                                                              child: Container(
+                                                                width: 50,
+                                                                height: 50,
+                                                                decoration:
+                                                                    BoxDecoration(),
+                                                                child:
+                                                                    ToggleLikeProductWidget(
+                                                                  productId: widget
+                                                                      .productId,
                                                                 ),
                                                               ),
+                                                            ),
                                                           ],
                                                         ),
                                                       ),
@@ -636,40 +628,94 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                     MainAxisAlignment
                                                                         .start,
                                                                 children: [
-                                                                  Align(
-                                                                    alignment:
-                                                                        AlignmentDirectional(
-                                                                            0,
-                                                                            0),
-                                                                    child: Text(
-                                                                      valueOrDefault<
-                                                                          String>(
-                                                                        formatNumber(
-                                                                          productoVariantsRecord
-                                                                              .publicPrice,
-                                                                          formatType:
-                                                                              FormatType.decimal,
-                                                                          decimalType:
-                                                                              DecimalType.periodDecimal,
-                                                                          currency:
-                                                                              '',
-                                                                        ),
-                                                                        'Cotizar',
-                                                                      ),
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyText1
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Montserrat',
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).alternate,
-                                                                            fontSize:
-                                                                                28,
-                                                                            fontWeight:
-                                                                                FontWeight.w600,
+                                                                  Stack(
+                                                                    children: [
+                                                                      if (!(loggedIn) ??
+                                                                          true)
+                                                                        Align(
+                                                                          alignment: AlignmentDirectional(
+                                                                              0,
+                                                                              0),
+                                                                          child:
+                                                                              Text(
+                                                                            valueOrDefault<String>(
+                                                                              formatNumber(
+                                                                                productoVariantsRecord.publicPrice,
+                                                                                formatType: FormatType.decimal,
+                                                                                decimalType: DecimalType.periodDecimal,
+                                                                                currency: '',
+                                                                              ),
+                                                                              'Cotizar',
+                                                                            ),
+                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                  fontFamily: 'Montserrat',
+                                                                                  color: FlutterFlowTheme.of(context).alternate,
+                                                                                  fontSize: 28,
+                                                                                  fontWeight: FontWeight.w600,
+                                                                                ),
                                                                           ),
-                                                                    ),
+                                                                        ),
+                                                                      if ((valueOrDefault(
+                                                                              currentUserDocument?.type,
+                                                                              '')) ==
+                                                                          'public')
+                                                                        Align(
+                                                                          alignment: AlignmentDirectional(
+                                                                              0,
+                                                                              0),
+                                                                          child:
+                                                                              AuthUserStreamWidget(
+                                                                            child:
+                                                                                Text(
+                                                                              valueOrDefault<String>(
+                                                                                formatNumber(
+                                                                                  productoVariantsRecord.publicPrice,
+                                                                                  formatType: FormatType.decimal,
+                                                                                  decimalType: DecimalType.periodDecimal,
+                                                                                  currency: '',
+                                                                                ),
+                                                                                'Cotizar',
+                                                                              ),
+                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                    fontFamily: 'Montserrat',
+                                                                                    color: FlutterFlowTheme.of(context).alternate,
+                                                                                    fontSize: 28,
+                                                                                    fontWeight: FontWeight.w600,
+                                                                                  ),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      if ((valueOrDefault(
+                                                                              currentUserDocument?.type,
+                                                                              '')) ==
+                                                                          'wholesale')
+                                                                        Align(
+                                                                          alignment: AlignmentDirectional(
+                                                                              0,
+                                                                              0),
+                                                                          child:
+                                                                              AuthUserStreamWidget(
+                                                                            child:
+                                                                                Text(
+                                                                              valueOrDefault<String>(
+                                                                                formatNumber(
+                                                                                  productoVariantsRecord.wholesalePrice,
+                                                                                  formatType: FormatType.decimal,
+                                                                                  decimalType: DecimalType.periodDecimal,
+                                                                                  currency: '',
+                                                                                ),
+                                                                                'Cotizar',
+                                                                              ),
+                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                    fontFamily: 'Montserrat',
+                                                                                    color: FlutterFlowTheme.of(context).alternate,
+                                                                                    fontSize: 28,
+                                                                                    fontWeight: FontWeight.w600,
+                                                                                  ),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                    ],
                                                                   ),
                                                                   Align(
                                                                     alignment:
@@ -2970,28 +3016,22 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                   'http://tienda.srconstruccion.com${GoRouter.of(context).location}');
                                             },
                                           ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    20, 0, 0, 0),
-                                            child: InkWell(
-                                              onTap: () async {
-                                                context
-                                                    .pushNamed('MarcaSingle');
-                                              },
-                                              child: Container(
-                                                width: 50,
-                                                height: 50,
-                                                clipBehavior: Clip.antiAlias,
-                                                decoration: BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                ),
-                                                child: Image.network(
-                                                  valueOrDefault<String>(
-                                                    columnProductsRecord
-                                                        .brandLogo,
-                                                    'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
-                                                  ),
+                                          InkWell(
+                                            onTap: () async {
+                                              context.pushNamed('MarcaSingle');
+                                            },
+                                            child: Container(
+                                              width: 50,
+                                              height: 50,
+                                              clipBehavior: Clip.antiAlias,
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: Image.network(
+                                                valueOrDefault<String>(
+                                                  columnProductsRecord
+                                                      .brandLogo,
+                                                  'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
                                                 ),
                                               ),
                                             ),
@@ -2999,16 +3039,21 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                           Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    0, 0, 20, 0),
-                                            child: InkWell(
-                                              onTap: () async {
-                                                await actions.likeProduct(
-                                                  currentUserUid,
-                                                  widget.productId,
-                                                );
-                                              },
-                                              child: ToggleLikeProductWidget(
-                                                productId: widget.productId,
+                                                    0, 0, 15, 0),
+                                            child: Container(
+                                              width: 50,
+                                              height: 50,
+                                              decoration: BoxDecoration(),
+                                              child: InkWell(
+                                                onTap: () async {
+                                                  await actions.likeProduct(
+                                                    currentUserUid,
+                                                    widget.productId,
+                                                  );
+                                                },
+                                                child: ToggleLikeProductWidget(
+                                                  productId: widget.productId,
+                                                ),
                                               ),
                                             ),
                                           ),

@@ -105,6 +105,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => HomeWidget(),
             ),
             FFRoute(
+              name: 'login',
+              path: 'iniciar-sesion',
+              builder: (context, params) => LoginWidget(),
+            ),
+            FFRoute(
               name: 'ProductPageSeller',
               path: 'vendedor/:storeName/:productId',
               builder: (context, params) => ProductPageSellerWidget(
@@ -112,11 +117,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 storeName: params.getParam('storeName', ParamType.String),
                 productId: params.getParam('productId', ParamType.String),
               ),
-            ),
-            FFRoute(
-              name: 'login',
-              path: 'iniciar-sesion',
-              builder: (context, params) => LoginWidget(),
             ),
             FFRoute(
               name: 'ProductPage',
