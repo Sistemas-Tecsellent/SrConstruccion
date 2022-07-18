@@ -58,7 +58,10 @@ class _ProductFeedHomeWidgetState extends State<ProductFeedHomeWidget> {
                 future: GetOneVariantCall.call(
                   productId: gridViewProductsRecord.id,
                   userLocation: FFAppState().locationKey,
-                  userType: valueOrDefault(currentUserDocument?.type, ''),
+                  userType: valueOrDefault<String>(
+                    valueOrDefault(currentUserDocument?.type, ''),
+                    'public',
+                  ),
                 ),
                 builder: (context, snapshot) {
                   // Customize what your widget looks like when it's loading.
