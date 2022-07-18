@@ -209,8 +209,8 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                   alignment: AlignmentDirectional(0, -1),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(10),
-                                    child: Image.asset(
-                                      'assets/images/Truper_Banner.png',
+                                    child: Image.network(
+                                      'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/Assets%20Marcas%2FVolteck%20Banner.png?alt=media&token=dc06d651-b3f3-434f-897a-5aa15a04b5e8',
                                       width: MediaQuery.of(context).size.width *
                                           0.95,
                                       height: 200,

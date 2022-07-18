@@ -26,6 +26,9 @@ abstract class BrandsRecord
   BuiltList<String> get subcategories;
 
   @nullable
+  String get banner;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -34,7 +37,8 @@ abstract class BrandsRecord
     ..logo = ''
     ..categories = ListBuilder()
     ..isTop = false
-    ..subcategories = ListBuilder();
+    ..subcategories = ListBuilder()
+    ..banner = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('brands');
@@ -56,6 +60,7 @@ abstract class BrandsRecord
           ..isTop = snapshot.data['isTop']
           ..subcategories =
               safeGet(() => ListBuilder(snapshot.data['subcategories']))
+          ..banner = snapshot.data['banner']
           ..reference = BrandsRecord.collection.doc(snapshot.objectID),
       );
 
@@ -88,6 +93,7 @@ Map<String, dynamic> createBrandsRecordData({
   String id,
   String logo,
   bool isTop,
+  String banner,
 }) =>
     serializers.toFirestore(
         BrandsRecord.serializer,
@@ -96,4 +102,5 @@ Map<String, dynamic> createBrandsRecordData({
           ..logo = logo
           ..categories = null
           ..isTop = isTop
-          ..subcategories = null));
+          ..subcategories = null
+          ..banner = banner));

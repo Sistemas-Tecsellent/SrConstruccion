@@ -57,6 +57,13 @@ class _$BrandsRecordSerializer implements StructuredSerializer<BrandsRecord> {
             specifiedType:
                 const FullType(BuiltList, const [const FullType(String)])));
     }
+    value = object.banner;
+    if (value != null) {
+      result
+        ..add('banner')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.reference;
     if (value != null) {
       result
@@ -103,6 +110,10 @@ class _$BrandsRecordSerializer implements StructuredSerializer<BrandsRecord> {
                       const FullType(BuiltList, const [const FullType(String)]))
               as BuiltList<Object>);
           break;
+        case 'banner':
+          result.banner = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
                   specifiedType: const FullType(
@@ -128,6 +139,8 @@ class _$BrandsRecord extends BrandsRecord {
   @override
   final BuiltList<String> subcategories;
   @override
+  final String banner;
+  @override
   final DocumentReference<Object> reference;
 
   factory _$BrandsRecord([void Function(BrandsRecordBuilder) updates]) =>
@@ -139,6 +152,7 @@ class _$BrandsRecord extends BrandsRecord {
       this.categories,
       this.isTop,
       this.subcategories,
+      this.banner,
       this.reference})
       : super._();
 
@@ -158,6 +172,7 @@ class _$BrandsRecord extends BrandsRecord {
         categories == other.categories &&
         isTop == other.isTop &&
         subcategories == other.subcategories &&
+        banner == other.banner &&
         reference == other.reference;
   }
 
@@ -166,10 +181,12 @@ class _$BrandsRecord extends BrandsRecord {
     return $jf($jc(
         $jc(
             $jc(
-                $jc($jc($jc(0, id.hashCode), logo.hashCode),
-                    categories.hashCode),
-                isTop.hashCode),
-            subcategories.hashCode),
+                $jc(
+                    $jc($jc($jc(0, id.hashCode), logo.hashCode),
+                        categories.hashCode),
+                    isTop.hashCode),
+                subcategories.hashCode),
+            banner.hashCode),
         reference.hashCode));
   }
 
@@ -181,6 +198,7 @@ class _$BrandsRecord extends BrandsRecord {
           ..add('categories', categories)
           ..add('isTop', isTop)
           ..add('subcategories', subcategories)
+          ..add('banner', banner)
           ..add('reference', reference))
         .toString();
   }
@@ -214,6 +232,10 @@ class BrandsRecordBuilder
   set subcategories(ListBuilder<String> subcategories) =>
       _$this._subcategories = subcategories;
 
+  String _banner;
+  String get banner => _$this._banner;
+  set banner(String banner) => _$this._banner = banner;
+
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
   set reference(DocumentReference<Object> reference) =>
@@ -231,6 +253,7 @@ class BrandsRecordBuilder
       _categories = $v.categories?.toBuilder();
       _isTop = $v.isTop;
       _subcategories = $v.subcategories?.toBuilder();
+      _banner = $v.banner;
       _reference = $v.reference;
       _$v = null;
     }
@@ -259,6 +282,7 @@ class BrandsRecordBuilder
               categories: _categories?.build(),
               isTop: isTop,
               subcategories: _subcategories?.build(),
+              banner: banner,
               reference: reference);
     } catch (_) {
       String _$failedField;
