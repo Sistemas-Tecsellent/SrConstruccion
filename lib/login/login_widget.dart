@@ -347,7 +347,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     return;
                                   }
 
-                                  context.pushNamedAuth('HomeAlt', mounted);
+                                  context.goNamedAuth('HomeAlt', mounted);
                                 },
                                 text: 'Iniciar Sesión',
                                 options: FFButtonOptions(
@@ -410,7 +410,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                   if (user == null) {
                                     return;
                                   }
-                                  context.pushNamedAuth('HomeAlt', mounted);
+                                  context.goNamedAuth('HomeAlt', mounted);
                                 },
                                 child: Container(
                                   width: 50,
@@ -445,7 +445,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     if (user == null) {
                                       return;
                                     }
-                                    context.pushNamedAuth('HomeAlt', mounted);
+                                    context.goNamedAuth('HomeAlt', mounted);
                                   },
                                   child: Container(
                                     width: 50,
