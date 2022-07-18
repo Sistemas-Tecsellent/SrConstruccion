@@ -30,6 +30,7 @@ class FFAppState {
         _userAddresses;
     _paymentMethod = prefs.getString('ff_paymentMethod') ?? _paymentMethod;
     _paymentId = prefs.getString('ff_paymentId') ?? _paymentId;
+    _token = prefs.getBool('ff_token') ?? _token;
   }
 
   SharedPreferences prefs;
@@ -124,6 +125,13 @@ class FFAppState {
   String currentVariant = '';
 
   List<String> brandsFilter = [];
+
+  bool _token = false;
+  bool get token => _token;
+  set token(bool _value) {
+    _token = _value;
+    prefs.setBool('ff_token', _value);
+  }
 }
 
 LatLng _latLngFromString(String val) {
