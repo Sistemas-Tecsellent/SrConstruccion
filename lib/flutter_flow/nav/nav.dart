@@ -82,16 +82,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => NotificacionesWidget(),
             ),
             FFRoute(
-              name: 'HomeAlt',
-              path: 'home-login',
-              requireAuth: true,
-              builder: (context, params) => HomeAltWidget(),
-            ),
-            FFRoute(
               name: 'Perfil',
               path: 'perfil',
               requireAuth: true,
               builder: (context, params) => PerfilWidget(),
+            ),
+            FFRoute(
+              name: 'HomeAlt',
+              path: 'home-login',
+              requireAuth: true,
+              builder: (context, params) => HomeAltWidget(),
             ),
             FFRoute(
               name: 'CotizacionesDeEnvio',
@@ -110,16 +110,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
+              name: 'login',
+              path: 'iniciar-sesion',
+              builder: (context, params) => LoginWidget(),
+            ),
+            FFRoute(
               name: 'ProductPage',
               path: 'producto/:productId',
               builder: (context, params) => ProductPageWidget(
                 productId: params.getParam('productId', ParamType.String),
               ),
-            ),
-            FFRoute(
-              name: 'login',
-              path: 'iniciar-sesion',
-              builder: (context, params) => LoginWidget(),
             ),
             FFRoute(
               name: 'Carrito',
@@ -328,12 +328,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => DetallePedidoFinalWidget(),
             ),
             FFRoute(
-              name: 'ReviewdeProductosPosEntrega',
-              path: 'reviewdeProductosPosEntrega',
-              requireAuth: true,
-              builder: (context, params) => ReviewdeProductosPosEntregaWidget(),
-            ),
-            FFRoute(
               name: 'DetallePedidoProgramadoCheckout',
               path: 'mis-pedidos/historial/terminado',
               requireAuth: true,
@@ -344,19 +338,25 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
+              name: 'ReviewdeProductosPosEntrega',
+              path: 'reviewdeProductosPosEntrega',
+              requireAuth: true,
+              builder: (context, params) => ReviewdeProductosPosEntregaWidget(),
+            ),
+            FFRoute(
               name: 'Empresa',
               path: 'registro/empresa',
               builder: (context, params) => EmpresaWidget(),
             ),
             FFRoute(
-              name: 'listadoSellers',
-              path: 'vendedores',
-              builder: (context, params) => ListadoSellersWidget(),
-            ),
-            FFRoute(
               name: 'ListadoMarcas',
               path: 'marcas',
               builder: (context, params) => ListadoMarcasWidget(),
+            ),
+            FFRoute(
+              name: 'listadoSellers',
+              path: 'vendedores',
+              builder: (context, params) => ListadoSellersWidget(),
             ),
             FFRoute(
               name: 'Devolucion',

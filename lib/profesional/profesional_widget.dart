@@ -349,7 +349,7 @@ class _ProfesionalWidgetState extends State<ProfesionalWidget> {
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(20),
                                       child: Image.asset(
-                                        'assets/images/Plomero.png',
+                                        'assets/images/3D_Elements.png',
                                         width: 80,
                                         height: 80,
                                         fit: BoxFit.cover,

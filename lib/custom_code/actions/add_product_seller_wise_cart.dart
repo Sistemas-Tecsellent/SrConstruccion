@@ -14,14 +14,18 @@ Future<bool> addProductSellerWiseCart(
   String deliveryType,
   int amount,
   String storeId,
+  int expressShipAmount,
+  int normalShipAmount,
+  int pickupInStoreAmount,
 ) async {
   HttpsCallable addProductToSellerWiseCart =
       FirebaseFunctions.instance.httpsCallable('addProductToSellerWiseCart');
   var response = await addProductToSellerWiseCart.call(<String, dynamic>{
     'productId': productId,
     'variantId': variantId,
-    'deliveryType': deliveryType,
-    'amount': amount,
+    'normalShipAmount': normalShipAmount,
+    'expressShipAmount': expressShipAmount,
+    'pickupInStoreAmount': pickupInStoreAmount,
     'storeId': storeId,
   });
   return response.data['hasInventory'];
