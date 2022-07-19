@@ -621,118 +621,135 @@ class _SignupWidgetState extends State<SignupWidget> {
                           ],
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                        child: Row(
+                      if (responsiveVisibility(
+                        context: context,
+                        phone: false,
+                        tablet: false,
+                        tabletLandscape: false,
+                        desktop: false,
+                      ))
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              AutoSizeText(
+                                'Usa una red social para crear una cuenta',
+                                textAlign: TextAlign.center,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText2
+                                    .override(
+                                      fontFamily: 'Montserrat',
+                                      color: Colors.black,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      if (responsiveVisibility(
+                        context: context,
+                        phone: false,
+                        tablet: false,
+                        tabletLandscape: false,
+                        desktop: false,
+                      ))
+                        Row(
                           mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            AutoSizeText(
-                              'Usa una red social para crear una cuenta',
-                              textAlign: TextAlign.center,
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyText2
-                                  .override(
-                                    fontFamily: 'Montserrat',
-                                    color: Colors.black,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.normal,
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+                              child: InkWell(
+                                onTap: () async {
+                                  GoRouter.of(context).prepareAuthEvent();
+                                  final user =
+                                      await signInWithFacebook(context);
+                                  if (user == null) {
+                                    return;
+                                  }
+
+                                  final usersUpdateData = createUsersRecordData(
+                                    createdTime: getCurrentTimestamp,
+                                  );
+                                  await currentUserReference
+                                      .update(usersUpdateData);
+                                  context.pushNamedAuth('Onboarding1', mounted);
+                                },
+                                child: Card(
+                                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                                  color: Color(0xFF090F13),
+                                  elevation: 3,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50),
                                   ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        2, 2, 2, 2),
+                                    child: Container(
+                                      width: 50,
+                                      height: 50,
+                                      clipBehavior: Clip.antiAlias,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: SvgPicture.asset(
+                                        'assets/images/social_facebook.svg',
+                                        fit: BoxFit.none,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+                              child: InkWell(
+                                onTap: () async {
+                                  GoRouter.of(context).prepareAuthEvent();
+                                  final user = await signInWithGoogle(context);
+                                  if (user == null) {
+                                    return;
+                                  }
+
+                                  final usersUpdateData = createUsersRecordData(
+                                    createdTime: getCurrentTimestamp,
+                                  );
+                                  await currentUserReference
+                                      .update(usersUpdateData);
+                                  context.pushNamedAuth('Onboarding1', mounted);
+                                },
+                                child: Card(
+                                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                                  color: Color(0xFF090F13),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        2, 2, 2, 2),
+                                    child: Container(
+                                      width: 50,
+                                      height: 50,
+                                      clipBehavior: Clip.antiAlias,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: SvgPicture.asset(
+                                        'assets/images/social_GoogleWhite.svg',
+                                        fit: BoxFit.none,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
                         ),
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
-                            child: InkWell(
-                              onTap: () async {
-                                GoRouter.of(context).prepareAuthEvent();
-                                final user = await signInWithFacebook(context);
-                                if (user == null) {
-                                  return;
-                                }
-
-                                final usersUpdateData = createUsersRecordData(
-                                  createdTime: getCurrentTimestamp,
-                                );
-                                await currentUserReference
-                                    .update(usersUpdateData);
-                                context.pushNamedAuth('Onboarding1', mounted);
-                              },
-                              child: Card(
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                color: Color(0xFF090F13),
-                                elevation: 3,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      2, 2, 2, 2),
-                                  child: Container(
-                                    width: 50,
-                                    height: 50,
-                                    clipBehavior: Clip.antiAlias,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: SvgPicture.asset(
-                                      'assets/images/social_facebook.svg',
-                                      fit: BoxFit.none,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
-                            child: InkWell(
-                              onTap: () async {
-                                GoRouter.of(context).prepareAuthEvent();
-                                final user = await signInWithGoogle(context);
-                                if (user == null) {
-                                  return;
-                                }
-
-                                final usersUpdateData = createUsersRecordData(
-                                  createdTime: getCurrentTimestamp,
-                                );
-                                await currentUserReference
-                                    .update(usersUpdateData);
-                                context.pushNamedAuth('Onboarding1', mounted);
-                              },
-                              child: Card(
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                color: Color(0xFF090F13),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      2, 2, 2, 2),
-                                  child: Container(
-                                    width: 50,
-                                    height: 50,
-                                    clipBehavior: Clip.antiAlias,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: SvgPicture.asset(
-                                      'assets/images/social_GoogleWhite.svg',
-                                      fit: BoxFit.none,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
                     ],
                   ),
                 ),
