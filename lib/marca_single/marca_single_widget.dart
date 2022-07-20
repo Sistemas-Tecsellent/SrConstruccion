@@ -1213,7 +1213,8 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                             AlignmentDirectional(
                                                                 0, 0),
                                                         child: Text(
-                                                          '[unit]',
+                                                          columnVariantsRecord
+                                                              .unit,
                                                           textAlign:
                                                               TextAlign.center,
                                                           style: FlutterFlowTheme
@@ -1742,7 +1743,8 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                             AlignmentDirectional(
                                                                 0, 0),
                                                         child: Text(
-                                                          '[unit]',
+                                                          columnVariantsRecord
+                                                              .unit,
                                                           textAlign:
                                                               TextAlign.center,
                                                           style: FlutterFlowTheme
@@ -2274,7 +2276,8 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                             AlignmentDirectional(
                                                                 0, 0),
                                                         child: Text(
-                                                          '[unit]',
+                                                          columnVariantsRecord
+                                                              .unit,
                                                           textAlign:
                                                               TextAlign.center,
                                                           style: FlutterFlowTheme

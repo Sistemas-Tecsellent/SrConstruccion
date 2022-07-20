@@ -1887,7 +1887,7 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                                                     ),
                                                                                     alignment: AlignmentDirectional(0, 0),
                                                                                     child: Text(
-                                                                                      '[unit]',
+                                                                                      columnVariantsRecord.unit,
                                                                                       textAlign: TextAlign.center,
                                                                                       style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                             fontFamily: 'Montserrat',

@@ -562,24 +562,81 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                           BorderRadius.circular(
                                                                               10),
                                                                     ),
-                                                                    child:
+                                                                    child: Row(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      children: [
+                                                                        FlutterFlowIconButton(
+                                                                          borderColor:
+                                                                              Colors.transparent,
+                                                                          borderRadius:
+                                                                              30,
+                                                                          borderWidth:
+                                                                              1,
+                                                                          buttonSize:
+                                                                              60,
+                                                                          icon:
+                                                                              Icon(
+                                                                            Icons.keyboard_arrow_left,
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).primaryText,
+                                                                            size:
+                                                                                30,
+                                                                          ),
+                                                                          onPressed:
+                                                                              () async {
+                                                                            await imagenPVController.previousPage(
+                                                                              duration: Duration(milliseconds: 300),
+                                                                              curve: Curves.ease,
+                                                                            );
+                                                                          },
+                                                                        ),
                                                                         Padding(
-                                                                      padding: EdgeInsetsDirectional
-                                                                          .fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               10,
                                                                               10,
                                                                               10,
                                                                               10),
-                                                                      child: Image
-                                                                          .network(
-                                                                        valueOrDefault<
-                                                                            String>(
-                                                                          imagesDesktopItem,
-                                                                          'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
+                                                                          child:
+                                                                              Image.network(
+                                                                            valueOrDefault<String>(
+                                                                              imagesDesktopItem,
+                                                                              'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
+                                                                            ),
+                                                                            fit:
+                                                                                BoxFit.contain,
+                                                                          ),
                                                                         ),
-                                                                        fit: BoxFit
-                                                                            .contain,
-                                                                      ),
+                                                                        FlutterFlowIconButton(
+                                                                          borderColor:
+                                                                              Colors.transparent,
+                                                                          borderRadius:
+                                                                              30,
+                                                                          borderWidth:
+                                                                              1,
+                                                                          buttonSize:
+                                                                              60,
+                                                                          icon:
+                                                                              Icon(
+                                                                            Icons.keyboard_arrow_right,
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).primaryText,
+                                                                            size:
+                                                                                30,
+                                                                          ),
+                                                                          onPressed:
+                                                                              () async {
+                                                                            await imagenPVController.nextPage(
+                                                                              duration: Duration(milliseconds: 300),
+                                                                              curve: Curves.ease,
+                                                                            );
+                                                                          },
+                                                                        ),
+                                                                      ],
                                                                     ),
                                                                   ),
                                                                 );

@@ -40,9 +40,9 @@ export 'perfil_del_seller/perfil_del_seller_widget.dart'
     show PerfilDelSellerWidget;
 export 'detalle_pedido_programado/detalle_pedido_programado_widget.dart'
     show DetallePedidoProgramadoWidget;
+export 'valoraciones/valoraciones_widget.dart' show ValoracionesWidget;
 export 'carrito_por_sellers/carrito_por_sellers_widget.dart'
     show CarritoPorSellersWidget;
-export 'valoraciones/valoraciones_widget.dart' show ValoracionesWidget;
 export 'onboarding1/onboarding1_widget.dart' show Onboarding1Widget;
 export 'profesional/profesional_widget.dart' show ProfesionalWidget;
 export 'pago_pendiente/pago_pendiente_widget.dart' show PagoPendienteWidget;
@@ -64,9 +64,9 @@ export 'empresa/empresa_widget.dart' show EmpresaWidget;
 export 'listado_marcas/listado_marcas_widget.dart' show ListadoMarcasWidget;
 export 'listado_sellers/listado_sellers_widget.dart' show ListadoSellersWidget;
 export 'devolucion/devolucion_widget.dart' show DevolucionWidget;
+export 'devolucion2/devolucion2_widget.dart' show Devolucion2Widget;
 export 'product_listing_for_seller/product_listing_for_seller_widget.dart'
     show ProductListingForSellerWidget;
-export 'devolucion2/devolucion2_widget.dart' show Devolucion2Widget;
 export 'solicitud_devolucion_enviada/solicitud_devolucion_enviada_widget.dart'
     show SolicitudDevolucionEnviadaWidget;
 export 'solicitud_devolucion_aceptada/solicitud_devolucion_aceptada_widget.dart'
@@ -78,10 +78,10 @@ export 'checkout/checkout_widget.dart' show CheckoutWidget;
 export 'marca_single/marca_single_widget.dart' show MarcaSingleWidget;
 export 'detalle_devolucion/detalle_devolucion_widget.dart'
     show DetalleDevolucionWidget;
-export 'subcategoria_single/subcategoria_single_widget.dart'
-    show SubcategoriaSingleWidget;
 export 'solicitud_devolucion_enviado/solicitud_devolucion_enviado_widget.dart'
     show SolicitudDevolucionEnviadoWidget;
+export 'subcategoria_single/subcategoria_single_widget.dart'
+    show SubcategoriaSingleWidget;
 export 'wish_list_products/wish_list_products_widget.dart'
     show WishListProductsWidget;
 export 'info_transferencia/info_transferencia_widget.dart'
