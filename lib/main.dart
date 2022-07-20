@@ -21,6 +21,7 @@ void main() async {
   FFAppState(); // Initialize FFAppState
 
   await initializeStripe();
+
   runApp(MyApp());
 }
 
