@@ -22,7 +22,6 @@ void main() async {
   FFAppState(); // Initialize FFAppState
 
   await initializeStripe();
-  setPathUrlStrategy();
   runApp(MyApp());
 }
 

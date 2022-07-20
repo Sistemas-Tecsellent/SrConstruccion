@@ -499,76 +499,94 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                           ],
                                                         ),
                                                       ),
-                                                      Container(
-                                                        width: MediaQuery.of(
-                                                                context)
-                                                            .size
-                                                            .width,
-                                                        height: 480,
-                                                        child: PageView(
-                                                          controller:
-                                                              imagenPVController ??=
+                                                      Builder(
+                                                        builder: (context) {
+                                                          final imagesDesktop =
+                                                              columnProductsRecord
+                                                                      .images
+                                                                      .toList()
+                                                                      ?.toList() ??
+                                                                  [];
+                                                          return Container(
+                                                            width:
+                                                                MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width,
+                                                            height: 480,
+                                                            child: PageView
+                                                                .builder(
+                                                              controller: imagenPVController ??=
                                                                   PageController(
-                                                                      initialPage:
-                                                                          0),
-                                                          scrollDirection:
-                                                              Axis.horizontal,
-                                                          children: [
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
+                                                                      initialPage: min(
+                                                                          0,
+                                                                          imagesDesktop.length -
+                                                                              1)),
+                                                              scrollDirection:
+                                                                  Axis.horizontal,
+                                                              itemCount:
+                                                                  imagesDesktop
+                                                                      .length,
+                                                              itemBuilder: (context,
+                                                                  imagesDesktopIndex) {
+                                                                final imagesDesktopItem =
+                                                                    imagesDesktop[
+                                                                        imagesDesktopIndex];
+                                                                return Padding(
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           20,
                                                                           20,
                                                                           20,
                                                                           20),
-                                                              child: Container(
-                                                                width: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .width *
-                                                                    0.4,
-                                                                height: 660,
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  color: Colors
-                                                                      .white,
-                                                                  boxShadow: [
-                                                                    BoxShadow(
-                                                                      blurRadius:
-                                                                          10,
-                                                                      color: Color(
-                                                                          0x1C000000),
-                                                                    )
-                                                                  ],
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
+                                                                  child:
+                                                                      Container(
+                                                                    width: MediaQuery.of(context)
+                                                                            .size
+                                                                            .width *
+                                                                        0.4,
+                                                                    height: 660,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color: Colors
+                                                                          .white,
+                                                                      boxShadow: [
+                                                                        BoxShadow(
+                                                                          blurRadius:
+                                                                              10,
+                                                                          color:
+                                                                              Color(0x1C000000),
+                                                                        )
+                                                                      ],
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
                                                                               10),
-                                                                ),
-                                                                child: Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          10,
-                                                                          10,
-                                                                          10,
-                                                                          10),
-                                                                  child: Image
-                                                                      .network(
-                                                                    valueOrDefault<
-                                                                        String>(
-                                                                      columnProductsRecord
-                                                                          .mainImage,
-                                                                      'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
                                                                     ),
-                                                                    fit: BoxFit
-                                                                        .contain,
+                                                                    child:
+                                                                        Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              10,
+                                                                              10,
+                                                                              10,
+                                                                              10),
+                                                                      child: Image
+                                                                          .network(
+                                                                        valueOrDefault<
+                                                                            String>(
+                                                                          imagesDesktopItem,
+                                                                          'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
+                                                                        ),
+                                                                        fit: BoxFit
+                                                                            .contain,
+                                                                      ),
+                                                                    ),
                                                                   ),
-                                                                ),
-                                                              ),
+                                                                );
+                                                              },
                                                             ),
-                                                          ],
-                                                        ),
+                                                          );
+                                                        },
                                                       ),
                                                     ],
                                                   ),
@@ -3064,31 +3082,51 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Expanded(
-                                          child: Container(
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            height: 380,
-                                            child: PageView(
-                                              controller:
-                                                  pageViewImagePhoneController ??=
-                                                      PageController(
-                                                          initialPage: 0),
-                                              scrollDirection: Axis.horizontal,
-                                              children: [
-                                                Image.network(
-                                                  valueOrDefault<String>(
-                                                    columnProductsRecord
-                                                        .mainImage,
-                                                    'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
-                                                  ),
-                                                  width: MediaQuery.of(context)
-                                                      .size
-                                                      .width,
-                                                  fit: BoxFit.contain,
+                                          child: Builder(
+                                            builder: (context) {
+                                              final imagesMobile =
+                                                  columnProductsRecord.images
+                                                          .toList()
+                                                          ?.toList() ??
+                                                      [];
+                                              return Container(
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
+                                                height: 380,
+                                                child: PageView.builder(
+                                                  controller:
+                                                      pageViewImagePhoneController ??=
+                                                          PageController(
+                                                              initialPage: min(
+                                                                  0,
+                                                                  imagesMobile
+                                                                          .length -
+                                                                      1)),
+                                                  scrollDirection:
+                                                      Axis.horizontal,
+                                                  itemCount:
+                                                      imagesMobile.length,
+                                                  itemBuilder: (context,
+                                                      imagesMobileIndex) {
+                                                    final imagesMobileItem =
+                                                        imagesMobile[
+                                                            imagesMobileIndex];
+                                                    return Image.network(
+                                                      valueOrDefault<String>(
+                                                        imagesMobileItem,
+                                                        'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
+                                                      ),
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width,
+                                                      fit: BoxFit.contain,
+                                                    );
+                                                  },
                                                 ),
-                                              ],
-                                            ),
+                                              );
+                                            },
                                           ),
                                         ),
                                       ],
