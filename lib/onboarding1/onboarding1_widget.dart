@@ -158,53 +158,59 @@ class _Onboarding1WidgetState extends State<Onboarding1Widget> {
                                                 ),
                                           ),
                                         ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 10, 0, 20),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              FFButtonWidget(
-                                                onPressed: () async {
-                                                  await pageViewController
-                                                      .nextPage(
-                                                    duration: Duration(
-                                                        milliseconds: 300),
-                                                    curve: Curves.ease,
-                                                  );
-                                                },
-                                                text: 'Siguiente',
-                                                options: FFButtonOptions(
-                                                  width: 100,
-                                                  height: 30,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryColor,
-                                                  textStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .subtitle2
-                                                          .override(
-                                                            fontFamily:
-                                                                'Montserrat',
-                                                            color: Colors.white,
-                                                            fontSize: 12,
-                                                          ),
-                                                  elevation: 0,
-                                                  borderSide: BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 1,
+                                        if (responsiveVisibility(
+                                          context: context,
+                                          phone: false,
+                                          tablet: false,
+                                          tabletLandscape: false,
+                                        ))
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 10, 0, 20),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                FFButtonWidget(
+                                                  onPressed: () async {
+                                                    await pageViewController
+                                                        .nextPage(
+                                                      duration: Duration(
+                                                          milliseconds: 300),
+                                                      curve: Curves.ease,
+                                                    );
+                                                  },
+                                                  text: 'Siguiente',
+                                                  options: FFButtonOptions(
+                                                    width: 100,
+                                                    height: 30,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryColor,
+                                                    textStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .subtitle2
+                                                        .override(
+                                                          fontFamily:
+                                                              'Montserrat',
+                                                          color: Colors.white,
+                                                          fontSize: 12,
+                                                        ),
+                                                    elevation: 0,
+                                                    borderSide: BorderSide(
+                                                      color: Colors.transparent,
+                                                      width: 1,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            40),
                                                   ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(40),
                                                 ),
-                                              ),
-                                            ],
+                                              ],
+                                            ),
                                           ),
-                                        ),
                                       ],
                                     ),
                                   ),
