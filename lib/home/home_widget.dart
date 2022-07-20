@@ -240,12 +240,12 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                   children: [
                     Container(
                       width: MediaQuery.of(context).size.width,
-                      height: 90,
+                      height: 100,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).primaryColor,
                       ),
                       child: Align(
-                        alignment: AlignmentDirectional(0.85, 0),
+                        alignment: AlignmentDirectional(0.85, 0.7),
                         child: FutureBuilder<ApiCallResponse>(
                           future: GetCartAmountCall.call(
                             uid: currentUserUid,
