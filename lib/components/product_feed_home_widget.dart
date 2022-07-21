@@ -78,74 +78,70 @@ class _ProductFeedHomeWidgetState extends State<ProductFeedHomeWidget> {
                     );
                   }
                   final stackGetOneVariantResponse = snapshot.data;
-                  return Stack(
-                    children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(10, 5, 0, 5),
-                        child: StreamBuilder<List<VariantsRecord>>(
-                          stream: queryVariantsRecord(
-                            parent: gridViewProductsRecord.reference,
-                            queryBuilder: (variantsRecord) =>
-                                variantsRecord.where('id',
-                                    isEqualTo: GetOneVariantCall.id(
-                                      (stackGetOneVariantResponse?.jsonBody ??
-                                          ''),
-                                    ).toString()),
-                            singleRecord: true,
-                          ),
-                          builder: (context, snapshot) {
-                            // Customize what your widget looks like when it's loading.
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: SpinKitFadingCircle(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
-                                    size: 50,
+                  return InkWell(
+                    onTap: () async {
+                      if ((gridViewProductsRecord.owner) == 'srconstruccion') {
+                        context.pushNamed(
+                          'ProductPage',
+                          params: {
+                            'productId': serializeParam(
+                                gridViewProductsRecord.id, ParamType.String),
+                          }.withoutNulls,
+                        );
+                      } else {
+                        context.pushNamed(
+                          'ProductPageSeller',
+                          params: {
+                            'storeName': serializeParam(
+                                gridViewProductsRecord.ownerName,
+                                ParamType.String),
+                            'productId': serializeParam(
+                                gridViewProductsRecord.id, ParamType.String),
+                          }.withoutNulls,
+                          queryParams: {
+                            'storeId': serializeParam(
+                                gridViewProductsRecord.owner, ParamType.String),
+                          }.withoutNulls,
+                        );
+                      }
+                    },
+                    child: Stack(
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(10, 5, 0, 5),
+                          child: StreamBuilder<List<VariantsRecord>>(
+                            stream: queryVariantsRecord(
+                              parent: gridViewProductsRecord.reference,
+                              queryBuilder: (variantsRecord) =>
+                                  variantsRecord.where('id',
+                                      isEqualTo: GetOneVariantCall.id(
+                                        (stackGetOneVariantResponse?.jsonBody ??
+                                            ''),
+                                      ).toString()),
+                              singleRecord: true,
+                            ),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50,
+                                    height: 50,
+                                    child: SpinKitFadingCircle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                      size: 50,
+                                    ),
                                   ),
-                                ),
-                              );
-                            }
-                            List<VariantsRecord> cageVariantsRecordList =
-                                snapshot.data;
-                            final cageVariantsRecord =
-                                cageVariantsRecordList.isNotEmpty
-                                    ? cageVariantsRecordList.first
-                                    : null;
-                            return InkWell(
-                              onTap: () async {
-                                if ((gridViewProductsRecord.owner) ==
-                                    'srconstruccion') {
-                                  context.pushNamed(
-                                    'ProductPage',
-                                    params: {
-                                      'productId': serializeParam(
-                                          gridViewProductsRecord.id,
-                                          ParamType.String),
-                                    }.withoutNulls,
-                                  );
-                                } else {
-                                  context.pushNamed(
-                                    'ProductPageSeller',
-                                    params: {
-                                      'storeName': serializeParam(
-                                          gridViewProductsRecord.ownerName,
-                                          ParamType.String),
-                                      'productId': serializeParam(
-                                          gridViewProductsRecord.id,
-                                          ParamType.String),
-                                    }.withoutNulls,
-                                    queryParams: {
-                                      'storeId': serializeParam(
-                                          gridViewProductsRecord.owner,
-                                          ParamType.String),
-                                    }.withoutNulls,
-                                  );
-                                }
-                              },
-                              child: Container(
+                                );
+                              }
+                              List<VariantsRecord> cageVariantsRecordList =
+                                  snapshot.data;
+                              final cageVariantsRecord =
+                                  cageVariantsRecordList.isNotEmpty
+                                      ? cageVariantsRecordList.first
+                                      : null;
+                              return Container(
                                 width: MediaQuery.of(context).size.width,
                                 height:
                                     MediaQuery.of(context).size.height * 1.2,
@@ -281,7 +277,7 @@ class _ProductFeedHomeWidgetState extends State<ProductFeedHomeWidget> {
                                               alignment:
                                                   AlignmentDirectional(0, 0),
                                               child: Text(
-                                                '[unit]',
+                                                cageVariantsRecord.unit,
                                                 textAlign: TextAlign.center,
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -347,57 +343,57 @@ class _ProductFeedHomeWidgetState extends State<ProductFeedHomeWidget> {
                                     ),
                                   ),
                                 ),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                      Align(
-                        alignment: AlignmentDirectional(0.2, -0.5),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.network(
-                            valueOrDefault<String>(
-                              gridViewProductsRecord.mainImage,
-                              'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
-                            ),
-                            width: 150,
-                            height: 150,
-                            fit: BoxFit.contain,
+                              );
+                            },
                           ),
                         ),
-                      ),
-                      Align(
-                        alignment: AlignmentDirectional(-0.8, -0.93),
-                        child: InkWell(
-                          onTap: () async {
-                            context.pushNamed(
-                              'MarcaSingle',
-                              params: {
-                                'brandId': serializeParam(
-                                    gridViewProductsRecord.brand,
-                                    ParamType.String),
-                              }.withoutNulls,
-                            );
-                          },
-                          child: Container(
-                            width: 30,
-                            height: 30,
-                            clipBehavior: Clip.antiAlias,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                            ),
+                        Align(
+                          alignment: AlignmentDirectional(0.2, -0.5),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
                             child: Image.network(
                               valueOrDefault<String>(
-                                gridViewProductsRecord.brandLogo,
-                                'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
+                                gridViewProductsRecord.mainImage,
+                                'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
                               ),
+                              width: 150,
+                              height: 150,
                               fit: BoxFit.contain,
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                        Align(
+                          alignment: AlignmentDirectional(-0.8, -0.93),
+                          child: InkWell(
+                            onTap: () async {
+                              context.pushNamed(
+                                'MarcaSingle',
+                                params: {
+                                  'brandId': serializeParam(
+                                      gridViewProductsRecord.brand,
+                                      ParamType.String),
+                                }.withoutNulls,
+                              );
+                            },
+                            child: Container(
+                              width: 30,
+                              height: 30,
+                              clipBehavior: Clip.antiAlias,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                              ),
+                              child: Image.network(
+                                valueOrDefault<String>(
+                                  gridViewProductsRecord.brandLogo,
+                                  'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
+                                ),
+                                fit: BoxFit.contain,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   );
                 },
               ),

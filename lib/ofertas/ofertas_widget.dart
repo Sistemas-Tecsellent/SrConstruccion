@@ -877,7 +877,8 @@ class _OfertasWidgetState extends State<OfertasWidget> {
                                                                             0),
                                                                         child:
                                                                             Text(
-                                                                          '[unit]',
+                                                                          columnVariantsRecord
+                                                                              .unit,
                                                                           textAlign:
                                                                               TextAlign.center,
                                                                           style: FlutterFlowTheme.of(context)

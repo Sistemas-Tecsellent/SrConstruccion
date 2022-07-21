@@ -21,6 +21,9 @@ abstract class SubcategoriesRecord
   String get parentCategory;
 
   @nullable
+  String get banner;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -29,7 +32,8 @@ abstract class SubcategoriesRecord
   static void _initializeBuilder(SubcategoriesRecordBuilder builder) => builder
     ..id = ''
     ..image = ''
-    ..parentCategory = '';
+    ..parentCategory = ''
+    ..banner = '';
 
   static Query<Map<String, dynamic>> collection([DocumentReference parent]) =>
       parent != null
@@ -62,10 +66,12 @@ Map<String, dynamic> createSubcategoriesRecordData({
   String id,
   String image,
   String parentCategory,
+  String banner,
 }) =>
     serializers.toFirestore(
         SubcategoriesRecord.serializer,
         SubcategoriesRecord((s) => s
           ..id = id
           ..image = image
-          ..parentCategory = parentCategory));
+          ..parentCategory = parentCategory
+          ..banner = banner));

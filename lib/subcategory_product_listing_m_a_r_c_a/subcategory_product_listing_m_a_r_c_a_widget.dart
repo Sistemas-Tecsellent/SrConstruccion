@@ -1085,7 +1085,8 @@ class _SubcategoryProductListingMARCAWidgetState
                                                                 AlignmentDirectional(
                                                                     0, 0),
                                                             child: Text(
-                                                              '[unit]',
+                                                              columnVariantsRecord
+                                                                  .unit,
                                                               textAlign:
                                                                   TextAlign
                                                                       .center,
