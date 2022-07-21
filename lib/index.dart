@@ -80,10 +80,10 @@ export 'detalle_devolucion/detalle_devolucion_widget.dart'
     show DetalleDevolucionWidget;
 export 'solicitud_devolucion_enviado/solicitud_devolucion_enviado_widget.dart'
     show SolicitudDevolucionEnviadoWidget;
-export 'subcategoria_single/subcategoria_single_widget.dart'
-    show SubcategoriaSingleWidget;
 export 'wish_list_products/wish_list_products_widget.dart'
     show WishListProductsWidget;
+export 'subcategoria_single/subcategoria_single_widget.dart'
+    show SubcategoriaSingleWidget;
 export 'info_transferencia/info_transferencia_widget.dart'
     show InfoTransferenciaWidget;
 export 'validacion_r_f_c/validacion_r_f_c_widget.dart' show ValidacionRFCWidget;

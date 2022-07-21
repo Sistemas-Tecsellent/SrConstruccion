@@ -49,6 +49,13 @@ class _$CategoriesRecordSerializer
         ..add(
             serializers.serialize(value, specifiedType: const FullType(bool)));
     }
+    value = object.banner;
+    if (value != null) {
+      result
+        ..add('banner')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.reference;
     if (value != null) {
       result
@@ -88,6 +95,10 @@ class _$CategoriesRecordSerializer
           result.isTop = serializers.deserialize(value,
               specifiedType: const FullType(bool)) as bool;
           break;
+        case 'banner':
+          result.banner = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
                   specifiedType: const FullType(
@@ -111,6 +122,8 @@ class _$CategoriesRecord extends CategoriesRecord {
   @override
   final bool isTop;
   @override
+  final String banner;
+  @override
   final DocumentReference<Object> reference;
 
   factory _$CategoriesRecord(
@@ -118,7 +131,12 @@ class _$CategoriesRecord extends CategoriesRecord {
       (new CategoriesRecordBuilder()..update(updates)).build();
 
   _$CategoriesRecord._(
-      {this.title, this.id, this.image, this.isTop, this.reference})
+      {this.title,
+      this.id,
+      this.image,
+      this.isTop,
+      this.banner,
+      this.reference})
       : super._();
 
   @override
@@ -137,14 +155,17 @@ class _$CategoriesRecord extends CategoriesRecord {
         id == other.id &&
         image == other.image &&
         isTop == other.isTop &&
+        banner == other.banner &&
         reference == other.reference;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc($jc(0, title.hashCode), id.hashCode), image.hashCode),
-            isTop.hashCode),
+        $jc(
+            $jc($jc($jc($jc(0, title.hashCode), id.hashCode), image.hashCode),
+                isTop.hashCode),
+            banner.hashCode),
         reference.hashCode));
   }
 
@@ -155,6 +176,7 @@ class _$CategoriesRecord extends CategoriesRecord {
           ..add('id', id)
           ..add('image', image)
           ..add('isTop', isTop)
+          ..add('banner', banner)
           ..add('reference', reference))
         .toString();
   }
@@ -180,6 +202,10 @@ class CategoriesRecordBuilder
   bool get isTop => _$this._isTop;
   set isTop(bool isTop) => _$this._isTop = isTop;
 
+  String _banner;
+  String get banner => _$this._banner;
+  set banner(String banner) => _$this._banner = banner;
+
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
   set reference(DocumentReference<Object> reference) =>
@@ -196,6 +222,7 @@ class CategoriesRecordBuilder
       _id = $v.id;
       _image = $v.image;
       _isTop = $v.isTop;
+      _banner = $v.banner;
       _reference = $v.reference;
       _$v = null;
     }
@@ -221,6 +248,7 @@ class CategoriesRecordBuilder
             id: id,
             image: image,
             isTop: isTop,
+            banner: banner,
             reference: reference);
     replace(_$result);
     return _$result;

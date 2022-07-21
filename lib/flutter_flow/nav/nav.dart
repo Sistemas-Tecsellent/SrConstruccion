@@ -432,6 +432,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => SolicitudDevolucionEnviadoWidget(),
             ),
             FFRoute(
+              name: 'WishListProducts',
+              path: 'wish/productos',
+              requireAuth: true,
+              builder: (context, params) => WishListProductsWidget(),
+            ),
+            FFRoute(
               name: 'subcategoriaSingle',
               path: 'categoria/subcategoria',
               builder: (context, params) => SubcategoriaSingleWidget(
@@ -439,12 +445,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 subcategoryId:
                     params.getParam('subcategoryId', ParamType.String),
               ),
-            ),
-            FFRoute(
-              name: 'WishListProducts',
-              path: 'wish/productos',
-              requireAuth: true,
-              builder: (context, params) => WishListProductsWidget(),
             ),
             FFRoute(
               name: 'InfoTransferencia',
