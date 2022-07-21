@@ -1323,7 +1323,8 @@ class _ProductListingForSellerWidgetState
                                                                   AlignmentDirectional(
                                                                       0, 0),
                                                               child: Text(
-                                                                '[unit]',
+                                                                columnVariantsRecord
+                                                                    .unit,
                                                                 textAlign:
                                                                     TextAlign
                                                                         .center,

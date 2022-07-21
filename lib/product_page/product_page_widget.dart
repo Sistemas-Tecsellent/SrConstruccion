@@ -562,24 +562,81 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                           BorderRadius.circular(
                                                                               10),
                                                                     ),
-                                                                    child:
+                                                                    child: Row(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      children: [
+                                                                        FlutterFlowIconButton(
+                                                                          borderColor:
+                                                                              Colors.transparent,
+                                                                          borderRadius:
+                                                                              30,
+                                                                          borderWidth:
+                                                                              1,
+                                                                          buttonSize:
+                                                                              60,
+                                                                          icon:
+                                                                              Icon(
+                                                                            Icons.keyboard_arrow_left,
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).primaryText,
+                                                                            size:
+                                                                                30,
+                                                                          ),
+                                                                          onPressed:
+                                                                              () async {
+                                                                            await imagenPVController.previousPage(
+                                                                              duration: Duration(milliseconds: 300),
+                                                                              curve: Curves.ease,
+                                                                            );
+                                                                          },
+                                                                        ),
                                                                         Padding(
-                                                                      padding: EdgeInsetsDirectional
-                                                                          .fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               10,
                                                                               10,
                                                                               10,
                                                                               10),
-                                                                      child: Image
-                                                                          .network(
-                                                                        valueOrDefault<
-                                                                            String>(
-                                                                          imagesDesktopItem,
-                                                                          'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
+                                                                          child:
+                                                                              Image.network(
+                                                                            valueOrDefault<String>(
+                                                                              imagesDesktopItem,
+                                                                              'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
+                                                                            ),
+                                                                            fit:
+                                                                                BoxFit.contain,
+                                                                          ),
                                                                         ),
-                                                                        fit: BoxFit
-                                                                            .contain,
-                                                                      ),
+                                                                        FlutterFlowIconButton(
+                                                                          borderColor:
+                                                                              Colors.transparent,
+                                                                          borderRadius:
+                                                                              30,
+                                                                          borderWidth:
+                                                                              1,
+                                                                          buttonSize:
+                                                                              60,
+                                                                          icon:
+                                                                              Icon(
+                                                                            Icons.keyboard_arrow_right,
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).primaryText,
+                                                                            size:
+                                                                                30,
+                                                                          ),
+                                                                          onPressed:
+                                                                              () async {
+                                                                            await imagenPVController.nextPage(
+                                                                              duration: Duration(milliseconds: 300),
+                                                                              curve: Curves.ease,
+                                                                            );
+                                                                          },
+                                                                        ),
+                                                                      ],
                                                                     ),
                                                                   ),
                                                                 );
@@ -3010,126 +3067,140 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                       width: MediaQuery.of(context).size.width,
                                       height: 70,
                                       decoration: BoxDecoration(),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            20, 0, 0, 0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            InkWell(
+                                              onTap: () async {
+                                                context
+                                                    .pushNamed('MarcaSingle');
+                                              },
+                                              child: Container(
+                                                width: 50,
+                                                height: 50,
+                                                clipBehavior: Clip.antiAlias,
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: Image.network(
+                                                  valueOrDefault<String>(
+                                                    columnProductsRecord
+                                                        .brandLogo,
+                                                    'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            FlutterFlowIconButton(
+                                              borderColor: Colors.transparent,
+                                              borderRadius: 30,
+                                              borderWidth: 1,
+                                              buttonSize: 60,
+                                              icon: FaIcon(
+                                                FontAwesomeIcons.share,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryColor,
+                                                size: 25,
+                                              ),
+                                              onPressed: () async {
+                                                await Share.share(
+                                                    'http://tienda.srconstruccion.com${GoRouter.of(context).location}');
+                                              },
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 15, 0),
+                                              child: Container(
+                                                width: 50,
+                                                height: 50,
+                                                decoration: BoxDecoration(),
+                                                child: InkWell(
+                                                  onTap: () async {
+                                                    await actions.likeProduct(
+                                                      currentUserUid,
+                                                      widget.productId,
+                                                    );
+                                                  },
+                                                  child:
+                                                      ToggleLikeProductWidget(
+                                                    productId: widget.productId,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.32,
+                                      decoration: BoxDecoration(
+                                        color: Color(0x00F1F4F8),
+                                      ),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
                                         children: [
-                                          FlutterFlowIconButton(
-                                            borderColor: Colors.transparent,
-                                            borderRadius: 30,
-                                            borderWidth: 1,
-                                            buttonSize: 60,
-                                            icon: FaIcon(
-                                              FontAwesomeIcons.share,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryColor,
-                                              size: 25,
-                                            ),
-                                            onPressed: () async {
-                                              await Share.share(
-                                                  'http://tienda.srconstruccion.com${GoRouter.of(context).location}');
-                                            },
-                                          ),
-                                          InkWell(
-                                            onTap: () async {
-                                              context.pushNamed('MarcaSingle');
-                                            },
-                                            child: Container(
-                                              width: 50,
-                                              height: 50,
-                                              clipBehavior: Clip.antiAlias,
-                                              decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                              ),
-                                              child: Image.network(
-                                                valueOrDefault<String>(
-                                                  columnProductsRecord
-                                                      .brandLogo,
-                                                  'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0, 0, 15, 0),
-                                            child: Container(
-                                              width: 50,
-                                              height: 50,
-                                              decoration: BoxDecoration(),
-                                              child: InkWell(
-                                                onTap: () async {
-                                                  await actions.likeProduct(
-                                                    currentUserUid,
-                                                    widget.productId,
-                                                  );
-                                                },
-                                                child: ToggleLikeProductWidget(
-                                                  productId: widget.productId,
-                                                ),
-                                              ),
+                                          Expanded(
+                                            child: Builder(
+                                              builder: (context) {
+                                                final imagesMobile =
+                                                    columnProductsRecord.images
+                                                            .toList()
+                                                            ?.toList() ??
+                                                        [];
+                                                return Container(
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
+                                                  height: 380,
+                                                  child: PageView.builder(
+                                                    controller:
+                                                        pageViewImagePhoneController ??=
+                                                            PageController(
+                                                                initialPage: min(
+                                                                    0,
+                                                                    imagesMobile
+                                                                            .length -
+                                                                        1)),
+                                                    scrollDirection:
+                                                        Axis.horizontal,
+                                                    itemCount:
+                                                        imagesMobile.length,
+                                                    itemBuilder: (context,
+                                                        imagesMobileIndex) {
+                                                      final imagesMobileItem =
+                                                          imagesMobile[
+                                                              imagesMobileIndex];
+                                                      return Image.network(
+                                                        valueOrDefault<String>(
+                                                          imagesMobileItem,
+                                                          'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
+                                                        ),
+                                                        width: MediaQuery.of(
+                                                                context)
+                                                            .size
+                                                            .width,
+                                                        fit: BoxFit.contain,
+                                                      );
+                                                    },
+                                                  ),
+                                                );
+                                              },
                                             ),
                                           ),
                                         ],
                                       ),
-                                    ),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Expanded(
-                                          child: Builder(
-                                            builder: (context) {
-                                              final imagesMobile =
-                                                  columnProductsRecord.images
-                                                          .toList()
-                                                          ?.toList() ??
-                                                      [];
-                                              return Container(
-                                                width: MediaQuery.of(context)
-                                                    .size
-                                                    .width,
-                                                height: 380,
-                                                child: PageView.builder(
-                                                  controller:
-                                                      pageViewImagePhoneController ??=
-                                                          PageController(
-                                                              initialPage: min(
-                                                                  0,
-                                                                  imagesMobile
-                                                                          .length -
-                                                                      1)),
-                                                  scrollDirection:
-                                                      Axis.horizontal,
-                                                  itemCount:
-                                                      imagesMobile.length,
-                                                  itemBuilder: (context,
-                                                      imagesMobileIndex) {
-                                                    final imagesMobileItem =
-                                                        imagesMobile[
-                                                            imagesMobileIndex];
-                                                    return Image.network(
-                                                      valueOrDefault<String>(
-                                                        imagesMobileItem,
-                                                        'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
-                                                      ),
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                              .size
-                                                              .width,
-                                                      fit: BoxFit.contain,
-                                                    );
-                                                  },
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                        ),
-                                      ],
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(

@@ -46,6 +46,13 @@ class _$SubcategoriesRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.banner;
+    if (value != null) {
+      result
+        ..add('banner')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.reference;
     if (value != null) {
       result
@@ -81,6 +88,10 @@ class _$SubcategoriesRecordSerializer
           result.parentCategory = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
+        case 'banner':
+          result.banner = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
         case 'Document__Reference__Field':
           result.reference = serializers.deserialize(value,
                   specifiedType: const FullType(
@@ -102,6 +113,8 @@ class _$SubcategoriesRecord extends SubcategoriesRecord {
   @override
   final String parentCategory;
   @override
+  final String banner;
+  @override
   final DocumentReference<Object> reference;
 
   factory _$SubcategoriesRecord(
@@ -109,7 +122,7 @@ class _$SubcategoriesRecord extends SubcategoriesRecord {
       (new SubcategoriesRecordBuilder()..update(updates)).build();
 
   _$SubcategoriesRecord._(
-      {this.id, this.image, this.parentCategory, this.reference})
+      {this.id, this.image, this.parentCategory, this.banner, this.reference})
       : super._();
 
   @override
@@ -128,13 +141,17 @@ class _$SubcategoriesRecord extends SubcategoriesRecord {
         id == other.id &&
         image == other.image &&
         parentCategory == other.parentCategory &&
+        banner == other.banner &&
         reference == other.reference;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, id.hashCode), image.hashCode), parentCategory.hashCode),
+        $jc(
+            $jc($jc($jc(0, id.hashCode), image.hashCode),
+                parentCategory.hashCode),
+            banner.hashCode),
         reference.hashCode));
   }
 
@@ -144,6 +161,7 @@ class _$SubcategoriesRecord extends SubcategoriesRecord {
           ..add('id', id)
           ..add('image', image)
           ..add('parentCategory', parentCategory)
+          ..add('banner', banner)
           ..add('reference', reference))
         .toString();
   }
@@ -166,6 +184,10 @@ class SubcategoriesRecordBuilder
   set parentCategory(String parentCategory) =>
       _$this._parentCategory = parentCategory;
 
+  String _banner;
+  String get banner => _$this._banner;
+  set banner(String banner) => _$this._banner = banner;
+
   DocumentReference<Object> _reference;
   DocumentReference<Object> get reference => _$this._reference;
   set reference(DocumentReference<Object> reference) =>
@@ -181,6 +203,7 @@ class SubcategoriesRecordBuilder
       _id = $v.id;
       _image = $v.image;
       _parentCategory = $v.parentCategory;
+      _banner = $v.banner;
       _reference = $v.reference;
       _$v = null;
     }
@@ -205,6 +228,7 @@ class SubcategoriesRecordBuilder
             id: id,
             image: image,
             parentCategory: parentCategory,
+            banner: banner,
             reference: reference);
     replace(_$result);
     return _$result;

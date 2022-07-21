@@ -238,45 +238,88 @@ class _SubcategoriaSingleWidgetState extends State<SubcategoriaSingleWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Expanded(
-                              child: Container(
-                                height: 250,
-                                child: PageView(
-                                  controller: pageViewController ??=
-                                      PageController(initialPage: 0),
-                                  scrollDirection: Axis.horizontal,
-                                  children: [
-                                    Align(
-                                      alignment: AlignmentDirectional(0, -1),
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(10),
-                                        child: Image.asset(
-                                          'assets/images/Diseo_sin_ttulo_(17).png',
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.95,
-                                          height: 200,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                    Align(
-                                      alignment: AlignmentDirectional(0, -1),
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(20),
-                                        child: Image.network(
-                                          'https://img.freepik.com/foto-gratis/banner-tienda-pintura-composicion-pinceles-carta-colores-contenedores-pintura_162490-10.jpg',
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.95,
-                                          height: 100,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                              child: StreamBuilder<List<SubcategoriesRecord>>(
+                                stream: querySubcategoriesRecord(
+                                  parent: subcategoriaSingleCategoriesRecord
+                                      .reference,
+                                  queryBuilder: (subcategoriesRecord) =>
+                                      subcategoriesRecord.where('id',
+                                          isEqualTo: widget.subcategoryId),
+                                  singleRecord: true,
                                 ),
+                                builder: (context, snapshot) {
+                                  // Customize what your widget looks like when it's loading.
+                                  if (!snapshot.hasData) {
+                                    return Center(
+                                      child: SizedBox(
+                                        width: 50,
+                                        height: 50,
+                                        child: SpinKitFadingCircle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryColor,
+                                          size: 50,
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  List<SubcategoriesRecord>
+                                      pageViewSubcategoriesRecordList =
+                                      snapshot.data;
+                                  // Return an empty Container when the document does not exist.
+                                  if (snapshot.data.isEmpty) {
+                                    return Container();
+                                  }
+                                  final pageViewSubcategoriesRecord =
+                                      pageViewSubcategoriesRecordList.isNotEmpty
+                                          ? pageViewSubcategoriesRecordList
+                                              .first
+                                          : null;
+                                  return Container(
+                                    height: 250,
+                                    child: PageView(
+                                      controller: pageViewController ??=
+                                          PageController(initialPage: 0),
+                                      scrollDirection: Axis.horizontal,
+                                      children: [
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(0, -1),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            child: Image.network(
+                                              pageViewSubcategoriesRecord
+                                                  .banner,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.95,
+                                              height: 200,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(0, -1),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            child: Image.network(
+                                              'https://img.freepik.com/foto-gratis/banner-tienda-pintura-composicion-pinceles-carta-colores-contenedores-pintura_162490-10.jpg',
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.95,
+                                              height: 100,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
                               ),
                             ),
                           ],
@@ -1097,7 +1140,8 @@ class _SubcategoriaSingleWidgetState extends State<SubcategoriaSingleWidget> {
                                                                 AlignmentDirectional(
                                                                     0, 0),
                                                             child: Text(
-                                                              '[unit]',
+                                                              columnVariantsRecord
+                                                                  .unit,
                                                               textAlign:
                                                                   TextAlign
                                                                       .center,
@@ -1655,7 +1699,8 @@ class _SubcategoriaSingleWidgetState extends State<SubcategoriaSingleWidget> {
                                                                 AlignmentDirectional(
                                                                     0, 0),
                                                             child: Text(
-                                                              '[unit]',
+                                                              columnVariantsRecord
+                                                                  .unit,
                                                               textAlign:
                                                                   TextAlign
                                                                       .center,
@@ -2226,7 +2271,8 @@ class _SubcategoriaSingleWidgetState extends State<SubcategoriaSingleWidget> {
                                                                 AlignmentDirectional(
                                                                     0, 0),
                                                             child: Text(
-                                                              '[unit]',
+                                                              columnVariantsRecord
+                                                                  .unit,
                                                               textAlign:
                                                                   TextAlign
                                                                       .center,
