@@ -1736,35 +1736,137 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                         ),
                                       ),
                                     ),
-                                    Align(
-                                      alignment:
-                                          AlignmentDirectional(-0.8, -0.93),
-                                      child: InkWell(
-                                        onTap: () async {
-                                          context.pushNamed(
-                                            'MarcaSingle',
-                                            params: {
-                                              'brandId': serializeParam(
-                                                  gridViewProductsRecord.brand,
-                                                  ParamType.String),
-                                            }.withoutNulls,
-                                          );
-                                        },
-                                        child: Container(
-                                          width: 30,
-                                          height: 30,
-                                          clipBehavior: Clip.antiAlias,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                          ),
-                                          child: Image.network(
-                                            valueOrDefault<String>(
-                                              gridViewProductsRecord.brandLogo,
-                                              'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          20, 0, 0, 0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Align(
+                                            alignment: AlignmentDirectional(
+                                                -0.8, -0.93),
+                                            child: InkWell(
+                                              onTap: () async {
+                                                context.pushNamed(
+                                                  'MarcaSingle',
+                                                  params: {
+                                                    'brandId': serializeParam(
+                                                        gridViewProductsRecord
+                                                            .brand,
+                                                        ParamType.String),
+                                                  }.withoutNulls,
+                                                );
+                                              },
+                                              child: Container(
+                                                width: 30,
+                                                height: 30,
+                                                clipBehavior: Clip.antiAlias,
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: Image.network(
+                                                  valueOrDefault<String>(
+                                                    gridViewProductsRecord
+                                                        .brandLogo,
+                                                    'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
+                                                  ),
+                                                  fit: BoxFit.contain,
+                                                ),
+                                              ),
                                             ),
-                                            fit: BoxFit.contain,
                                           ),
-                                        ),
+                                          if ((gridViewProductsRecord.owner) !=
+                                              'srconstruccion')
+                                            Expanded(
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(25, 10, 10, 0),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.end,
+                                                  children: [
+                                                    Text(
+                                                      'Exclusivo en',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyText1
+                                                          .override(
+                                                            fontFamily:
+                                                                'Montserrat',
+                                                            color: Colors.black,
+                                                            fontSize: 11,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .normal,
+                                                          ),
+                                                    ),
+                                                    InkWell(
+                                                      onTap: () async {
+                                                        context.pushNamed(
+                                                          'PerfilDelSeller',
+                                                          params: {
+                                                            'storeName': serializeParam(
+                                                                gridViewProductsRecord
+                                                                    .ownerName,
+                                                                ParamType
+                                                                    .String),
+                                                          }.withoutNulls,
+                                                          queryParams: {
+                                                            'storeId':
+                                                                serializeParam(
+                                                                    gridViewProductsRecord
+                                                                        .owner,
+                                                                    ParamType
+                                                                        .String),
+                                                            'calledFromPage':
+                                                                serializeParam(
+                                                                    'List',
+                                                                    ParamType
+                                                                        .String),
+                                                            'productId':
+                                                                serializeParam(
+                                                                    '\"\"',
+                                                                    ParamType
+                                                                        .String),
+                                                            'variantId':
+                                                                serializeParam(
+                                                                    '\"\"',
+                                                                    ParamType
+                                                                        .String),
+                                                          }.withoutNulls,
+                                                        );
+                                                      },
+                                                      child: Text(
+                                                        gridViewProductsRecord
+                                                            .ownerName
+                                                            .maybeHandleOverflow(
+                                                          maxChars: 15,
+                                                          replacement: '…',
+                                                        ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Montserrat',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryColor,
+                                                                  fontSize: 11,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                        ],
                                       ),
                                     ),
                                   ],

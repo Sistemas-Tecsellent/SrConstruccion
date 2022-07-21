@@ -6,14 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ListadoSellersWidget extends StatefulWidget {
-  const ListadoSellersWidget({Key key}) : super(key: key);
+class ListadoSellersCompletoWidget extends StatefulWidget {
+  const ListadoSellersCompletoWidget({Key key}) : super(key: key);
 
   @override
-  _ListadoSellersWidgetState createState() => _ListadoSellersWidgetState();
+  _ListadoSellersCompletoWidgetState createState() =>
+      _ListadoSellersCompletoWidgetState();
 }
 
-class _ListadoSellersWidgetState extends State<ListadoSellersWidget> {
+class _ListadoSellersCompletoWidgetState
+    extends State<ListadoSellersCompletoWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -38,7 +40,7 @@ class _ListadoSellersWidgetState extends State<ListadoSellersWidget> {
           },
         ),
         title: Text(
-          'Tiendas cerca de mi',
+          'Todas las tiendas',
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Montserrat',
                 color: Colors.black,
@@ -76,15 +78,7 @@ class _ListadoSellersWidgetState extends State<ListadoSellersWidget> {
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                             child: StreamBuilder<List<StoresRecord>>(
-                              stream: queryStoresRecord(
-                                queryBuilder: (storesRecord) => storesRecord
-                                    .where('location',
-                                        isEqualTo: FFAppState().locationKey)
-                                    .where('locationCity',
-                                        isEqualTo:
-                                            FFAppState().locationKeyCity),
-                                limit: 10,
-                              ),
+                              stream: queryStoresRecord(),
                               builder: (context, snapshot) {
                                 // Customize what your widget looks like when it's loading.
                                 if (!snapshot.hasData) {
@@ -604,15 +598,7 @@ class _ListadoSellersWidgetState extends State<ListadoSellersWidget> {
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                             child: StreamBuilder<List<StoresRecord>>(
-                              stream: queryStoresRecord(
-                                queryBuilder: (storesRecord) => storesRecord
-                                    .where('location',
-                                        isEqualTo: FFAppState().locationKey)
-                                    .where('locationCity',
-                                        isEqualTo:
-                                            FFAppState().locationKeyCity),
-                                limit: 10,
-                              ),
+                              stream: queryStoresRecord(),
                               builder: (context, snapshot) {
                                 // Customize what your widget looks like when it's loading.
                                 if (!snapshot.hasData) {
@@ -924,7 +910,7 @@ class _ListadoSellersWidgetState extends State<ListadoSellersWidget> {
                                                                   .toList()
                                                                   ?.toList() ??
                                                               [])
-                                                          .take(3)
+                                                          .take(2)
                                                           .toList();
                                                   return Row(
                                                     mainAxisSize:
