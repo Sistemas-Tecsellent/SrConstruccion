@@ -109,9 +109,9 @@ export 'sobre_sr_construccion/sobre_sr_construccion_widget.dart'
 export 'resumen_solicitud_cotizacion_copy/resumen_solicitud_cotizacion_copy_widget.dart'
     show ResumenSolicitudCotizacionCopyWidget;
 export 'ofertas_marcas/ofertas_marcas_widget.dart' show OfertasMarcasWidget;
-export 'ofertas_tiendas/ofertas_tiendas_widget.dart' show OfertasTiendasWidget;
 export 'detalle_pedido_programado5_d_i_a_s/detalle_pedido_programado5_d_i_a_s_widget.dart'
     show DetallePedidoProgramado5DIASWidget;
+export 'ofertas_tiendas/ofertas_tiendas_widget.dart' show OfertasTiendasWidget;
 export 'detalle_pedido_programado_pickup/detalle_pedido_programado_pickup_widget.dart'
     show DetallePedidoProgramadoPickupWidget;
 export 'search_products_seller/search_products_seller_widget.dart'
@@ -127,3 +127,5 @@ export 'calculando_costo_de_envio_por_seller/calculando_costo_de_envio_por_selle
     show CalculandoCostoDeEnvioPorSellerWidget;
 export 'mis_pedidos_historial/mis_pedidos_historial_widget.dart'
     show MisPedidosHistorialWidget;
+export 'listado_sellers_completo/listado_sellers_completo_widget.dart'
+    show ListadoSellersCompletoWidget;

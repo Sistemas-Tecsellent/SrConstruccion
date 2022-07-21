@@ -554,11 +554,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => OfertasMarcasWidget(),
             ),
             FFRoute(
-              name: 'OfertasTiendas',
-              path: 'ofertas-tiendas',
-              builder: (context, params) => OfertasTiendasWidget(),
-            ),
-            FFRoute(
               name: 'DetallePedidoProgramado5DIAS',
               path: 'Pedido-Programado-5DIAS/:orderId',
               requireAuth: true,
@@ -566,6 +561,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 orderId: params.getParam('orderId', ParamType.String),
                 bundleId: params.getParam('bundleId', ParamType.String),
               ),
+            ),
+            FFRoute(
+              name: 'OfertasTiendas',
+              path: 'ofertas-tiendas',
+              builder: (context, params) => OfertasTiendasWidget(),
             ),
             FFRoute(
               name: 'DetallePedidoProgramadoPickup',
@@ -627,6 +627,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               path: 'mis-pedidos-historial',
               requireAuth: true,
               builder: (context, params) => MisPedidosHistorialWidget(),
+            ),
+            FFRoute(
+              name: 'listadoSellersCompleto',
+              path: 'vendedores-todos',
+              builder: (context, params) => ListadoSellersCompletoWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
