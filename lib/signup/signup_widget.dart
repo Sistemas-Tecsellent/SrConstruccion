@@ -583,7 +583,7 @@ class _SignupWidgetState extends State<SignupWidget> {
 
                                         await Future.delayed(
                                             const Duration(milliseconds: 3000));
-                                        context.pushNamedAuth(
+                                        context.goNamedAuth(
                                             'Onboarding1', mounted);
                                       },
                                       text: 'Crear Cuenta',
