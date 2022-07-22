@@ -2473,7 +2473,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                                   '\$',
                                                                                                   style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                                         fontFamily: 'Montserrat',
-                                                                                                        color: Color(0xFF1EEBBD),
+                                                                                                        color: FlutterFlowTheme.of(context).alternate,
                                                                                                         fontSize: 13,
                                                                                                         fontWeight: FontWeight.w600,
                                                                                                       ),
@@ -2490,7 +2490,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                                                                   ),
                                                                                                   style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                                         fontFamily: 'Montserrat',
-                                                                                                        color: Color(0xFF1EEBBD),
+                                                                                                        color: FlutterFlowTheme.of(context).alternate,
                                                                                                         fontSize: 13,
                                                                                                         fontWeight: FontWeight.w600,
                                                                                                       ),

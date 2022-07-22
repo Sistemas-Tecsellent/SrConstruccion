@@ -2944,7 +2944,7 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(25, 10, 10, 0),
                                               child: Column(
-                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisSize: MainAxisSize.min,
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.end,
                                                 children: [

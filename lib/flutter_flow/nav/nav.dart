@@ -100,14 +100,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => CotizacionesDeEnvioWidget(),
             ),
             FFRoute(
-              name: 'Home',
-              path: 'home',
-              builder: (context, params) => HomeWidget(),
-            ),
-            FFRoute(
               name: 'login',
               path: 'iniciar-sesion',
               builder: (context, params) => LoginWidget(),
+            ),
+            FFRoute(
+              name: 'Home',
+              path: 'home',
+              builder: (context, params) => HomeWidget(),
             ),
             FFRoute(
               name: 'ProductPageSeller',
@@ -198,16 +198,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => ResumenSolicitudCotizacionWidget(),
             ),
             FFRoute(
+              name: 'PerfilPuntos',
+              path: 'mi-perfil/beneficios',
+              builder: (context, params) => PerfilPuntosWidget(),
+            ),
+            FFRoute(
               name: 'CotizacionConSubCotizaciones',
               path: 'cotizacionConSubCotizaciones',
               requireAuth: true,
               builder: (context, params) =>
                   CotizacionConSubCotizacionesWidget(),
-            ),
-            FFRoute(
-              name: 'PerfilPuntos',
-              path: 'mi-perfil/beneficios',
-              builder: (context, params) => PerfilPuntosWidget(),
             ),
             FFRoute(
               name: 'VendedoresEnMapa',
@@ -237,6 +237,15 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
+              name: 'DetallePedidoProgramado',
+              path: 'mis-pedidos/pedido-programado/express/:orderId',
+              requireAuth: true,
+              builder: (context, params) => DetallePedidoProgramadoWidget(
+                bundleId: params.getParam('bundleId', ParamType.String),
+                orderId: params.getParam('orderId', ParamType.String),
+              ),
+            ),
+            FFRoute(
               name: 'PerfilDelSeller',
               path: 'vendedor/:storeName',
               builder: (context, params) => PerfilDelSellerWidget(
@@ -246,15 +255,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 productId: params.getParam('productId', ParamType.String),
                 variantId: params.getParam('variantId', ParamType.String),
                 storeName: params.getParam('storeName', ParamType.String),
-              ),
-            ),
-            FFRoute(
-              name: 'DetallePedidoProgramado',
-              path: 'mis-pedidos/pedido-programado/express/:orderId',
-              requireAuth: true,
-              builder: (context, params) => DetallePedidoProgramadoWidget(
-                bundleId: params.getParam('bundleId', ParamType.String),
-                orderId: params.getParam('orderId', ParamType.String),
               ),
             ),
             FFRoute(
