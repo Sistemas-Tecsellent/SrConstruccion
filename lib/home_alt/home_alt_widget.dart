@@ -1102,32 +1102,6 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                                                       height: 60,
                                                                                       fit: BoxFit.contain,
                                                                                     ),
-                                                                                    Image.asset(
-                                                                                      'assets/images/Motorcicle_Sr._Construccin.png',
-                                                                                      width: 60,
-                                                                                      height: 60,
-                                                                                      fit: BoxFit.contain,
-                                                                                    ),
-                                                                                    Image.asset(
-                                                                                      'assets/images/Trailer.png',
-                                                                                      width: 60,
-                                                                                      height: 60,
-                                                                                      fit: BoxFit.contain,
-                                                                                    ),
-                                                                                    Align(
-                                                                                      alignment: AlignmentDirectional(0, 0),
-                                                                                      child: Container(
-                                                                                        width: 50,
-                                                                                        height: 50,
-                                                                                        clipBehavior: Clip.antiAlias,
-                                                                                        decoration: BoxDecoration(
-                                                                                          shape: BoxShape.circle,
-                                                                                        ),
-                                                                                        child: Image.network(
-                                                                                          'https://picsum.photos/seed/733/600',
-                                                                                        ),
-                                                                                      ),
-                                                                                    ),
                                                                                   ],
                                                                                 ),
                                                                                 Padding(
@@ -1486,6 +1460,9 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                                 child: Text(
                                                                   rowCategoriesRecord
                                                                       .title,
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyText1
@@ -1887,7 +1864,7 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                                                     ),
                                                                                     alignment: AlignmentDirectional(0, 0),
                                                                                     child: Text(
-                                                                                      '[unit]',
+                                                                                      columnVariantsRecord.unit,
                                                                                       textAlign: TextAlign.center,
                                                                                       style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                             fontFamily: 'Montserrat',
@@ -1965,43 +1942,110 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                               Align(
                                                                 alignment:
                                                                     AlignmentDirectional(
-                                                                        -0.9,
-                                                                        -0.9),
-                                                                child: InkWell(
-                                                                  onTap:
-                                                                      () async {
-                                                                    context
-                                                                        .pushNamed(
-                                                                      'MarcaSingle',
-                                                                      params: {
-                                                                        'brandId': serializeParam(
-                                                                            rowProductsRecord.brand,
-                                                                            ParamType.String),
-                                                                      }.withoutNulls,
-                                                                    );
-                                                                  },
-                                                                  child:
-                                                                      Container(
-                                                                    width: 30,
-                                                                    height: 30,
-                                                                    clipBehavior:
-                                                                        Clip.antiAlias,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      shape: BoxShape
-                                                                          .circle,
-                                                                    ),
-                                                                    child: Image
-                                                                        .network(
-                                                                      valueOrDefault<
-                                                                          String>(
-                                                                        rowProductsRecord
-                                                                            .brandLogo,
-                                                                        'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
+                                                                        0, -1),
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          10,
+                                                                          10,
+                                                                          20,
+                                                                          0),
+                                                                  child: Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      InkWell(
+                                                                        onTap:
+                                                                            () async {
+                                                                          context
+                                                                              .pushNamed(
+                                                                            'MarcaSingle',
+                                                                            params:
+                                                                                {
+                                                                              'brandId': serializeParam(rowProductsRecord.brand, ParamType.String),
+                                                                            }.withoutNulls,
+                                                                          );
+                                                                        },
+                                                                        child:
+                                                                            Container(
+                                                                          width:
+                                                                              30,
+                                                                          height:
+                                                                              30,
+                                                                          clipBehavior:
+                                                                              Clip.antiAlias,
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            shape:
+                                                                                BoxShape.circle,
+                                                                          ),
+                                                                          child:
+                                                                              Image.network(
+                                                                            valueOrDefault<String>(
+                                                                              rowProductsRecord.brandLogo,
+                                                                              'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset%20predeterminado.png?alt=media&token=7c92986b-dd75-4755-8169-58cbbc6bce94',
+                                                                            ),
+                                                                            fit:
+                                                                                BoxFit.contain,
+                                                                          ),
+                                                                        ),
                                                                       ),
-                                                                      fit: BoxFit
-                                                                          .contain,
-                                                                    ),
+                                                                      if ((rowProductsRecord
+                                                                              .owner) !=
+                                                                          'srconstruccion')
+                                                                        Column(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.min,
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.end,
+                                                                          children: [
+                                                                            Text(
+                                                                              'Exclusivo en',
+                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                    fontFamily: 'Montserrat',
+                                                                                    color: Colors.black,
+                                                                                    fontSize: 11,
+                                                                                    fontWeight: FontWeight.normal,
+                                                                                  ),
+                                                                            ),
+                                                                            InkWell(
+                                                                              onTap: () async {
+                                                                                context.pushNamed(
+                                                                                  'PerfilDelSeller',
+                                                                                  params: {
+                                                                                    'storeName': serializeParam(rowProductsRecord.ownerName, ParamType.String),
+                                                                                  }.withoutNulls,
+                                                                                  queryParams: {
+                                                                                    'storeId': serializeParam(rowProductsRecord.owner, ParamType.String),
+                                                                                    'calledFromPage': serializeParam('List', ParamType.String),
+                                                                                    'productId': serializeParam('\"\"', ParamType.String),
+                                                                                    'variantId': serializeParam('\"\"', ParamType.String),
+                                                                                  }.withoutNulls,
+                                                                                );
+                                                                              },
+                                                                              child: Text(
+                                                                                rowProductsRecord.ownerName.maybeHandleOverflow(
+                                                                                  maxChars: 15,
+                                                                                  replacement: '…',
+                                                                                ),
+                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                      fontFamily: 'Montserrat',
+                                                                                      color: FlutterFlowTheme.of(context).primaryColor,
+                                                                                      fontSize: 11,
+                                                                                      fontWeight: FontWeight.w500,
+                                                                                    ),
+                                                                              ),
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                    ],
                                                                   ),
                                                                 ),
                                                               ),
@@ -2889,6 +2933,99 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                           ),
                                         ),
                                       ),
+                                    ),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        if ((gridViewProductsRecord.owner) !=
+                                            'srconstruccion')
+                                          Expanded(
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(25, 10, 10, 0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.end,
+                                                children: [
+                                                  Text(
+                                                    'Exclusivo en',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              'Montserrat',
+                                                          color: Colors.black,
+                                                          fontSize: 11,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                        ),
+                                                  ),
+                                                  InkWell(
+                                                    onTap: () async {
+                                                      context.pushNamed(
+                                                        'PerfilDelSeller',
+                                                        params: {
+                                                          'storeName':
+                                                              serializeParam(
+                                                                  gridViewProductsRecord
+                                                                      .ownerName,
+                                                                  ParamType
+                                                                      .String),
+                                                        }.withoutNulls,
+                                                        queryParams: {
+                                                          'storeId': serializeParam(
+                                                              gridViewProductsRecord
+                                                                  .owner,
+                                                              ParamType.String),
+                                                          'calledFromPage':
+                                                              serializeParam(
+                                                                  'List',
+                                                                  ParamType
+                                                                      .String),
+                                                          'productId':
+                                                              serializeParam(
+                                                                  '\"\"',
+                                                                  ParamType
+                                                                      .String),
+                                                          'variantId':
+                                                              serializeParam(
+                                                                  '\"\"',
+                                                                  ParamType
+                                                                      .String),
+                                                        }.withoutNulls,
+                                                      );
+                                                    },
+                                                    child: Text(
+                                                      gridViewProductsRecord
+                                                          .ownerName
+                                                          .maybeHandleOverflow(
+                                                        maxChars: 15,
+                                                        replacement: '…',
+                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Montserrat',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryColor,
+                                                                fontSize: 11,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                              ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                      ],
                                     ),
                                   ],
                                 ),

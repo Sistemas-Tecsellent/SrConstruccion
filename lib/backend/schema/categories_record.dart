@@ -24,6 +24,9 @@ abstract class CategoriesRecord
   bool get isTop;
 
   @nullable
+  String get banner;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -31,7 +34,8 @@ abstract class CategoriesRecord
     ..title = ''
     ..id = ''
     ..image = ''
-    ..isTop = false;
+    ..isTop = false
+    ..banner = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('categories');
@@ -59,6 +63,7 @@ Map<String, dynamic> createCategoriesRecordData({
   String id,
   String image,
   bool isTop,
+  String banner,
 }) =>
     serializers.toFirestore(
         CategoriesRecord.serializer,
@@ -66,4 +71,5 @@ Map<String, dynamic> createCategoriesRecordData({
           ..title = title
           ..id = id
           ..image = image
-          ..isTop = isTop));
+          ..isTop = isTop
+          ..banner = banner));

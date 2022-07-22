@@ -1099,6 +1099,21 @@ class _ProductPageSellerWidgetState extends State<ProductPageSellerWidget> {
                                                                                         ),
                                                                                   ),
                                                                                 ),
+                                                                              if (!(loggedIn) ?? true)
+                                                                                Text(
+                                                                                  formatNumber(
+                                                                                    columnVariantsRecord.publicPrice,
+                                                                                    formatType: FormatType.decimal,
+                                                                                    decimalType: DecimalType.periodDecimal,
+                                                                                    currency: '',
+                                                                                  ),
+                                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                        fontFamily: 'Montserrat',
+                                                                                        color: FlutterFlowTheme.of(context).alternate,
+                                                                                        fontSize: 16,
+                                                                                        fontWeight: FontWeight.w600,
+                                                                                      ),
+                                                                                ),
                                                                             ],
                                                                           ),
                                                                         ],
@@ -1372,6 +1387,21 @@ class _ProductPageSellerWidgetState extends State<ProductPageSellerWidget> {
                                                                                           fontWeight: FontWeight.w600,
                                                                                         ),
                                                                                   ),
+                                                                                ),
+                                                                              if (!(loggedIn) ?? true)
+                                                                                Text(
+                                                                                  formatNumber(
+                                                                                    columnVariantsRecord.publicPrice,
+                                                                                    formatType: FormatType.decimal,
+                                                                                    decimalType: DecimalType.periodDecimal,
+                                                                                    currency: '',
+                                                                                  ),
+                                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                        fontFamily: 'Montserrat',
+                                                                                        color: FlutterFlowTheme.of(context).alternate,
+                                                                                        fontSize: 16,
+                                                                                        fontWeight: FontWeight.w600,
+                                                                                      ),
                                                                                 ),
                                                                             ],
                                                                           ),

@@ -436,105 +436,96 @@ class _SignupWidgetState extends State<SignupWidget> {
                                                 MainAxisAlignment.center,
                                             children: [
                                               Expanded(
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 0, 0, 40),
-                                                  child: TextFormField(
-                                                    controller:
-                                                        confirmPasswordController,
-                                                    obscureText:
-                                                        !confirmPasswordVisibility,
-                                                    decoration: InputDecoration(
-                                                      labelText:
-                                                          'Confirmar Contraseña',
-                                                      labelStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Montserrat',
-                                                                color: Color(
-                                                                    0xFF95A1AC),
-                                                                fontSize: 14,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .normal,
-                                                              ),
-                                                      hintText:
-                                                          'Confirmar contraseña...',
-                                                      hintStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Montserrat',
-                                                                color: Color(
-                                                                    0xFF95A1AC),
-                                                                fontSize: 14,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .normal,
-                                                              ),
-                                                      enabledBorder:
-                                                          UnderlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color:
-                                                              Color(0xFFDBE2E7),
-                                                          width: 2,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8),
-                                                      ),
-                                                      focusedBorder:
-                                                          UnderlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color:
-                                                              Color(0xFFDBE2E7),
-                                                          width: 2,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8),
-                                                      ),
-                                                      filled: true,
-                                                      fillColor:
-                                                          Color(0x00FFFFFF),
-                                                      suffixIcon: InkWell(
-                                                        onTap: () => setState(
-                                                          () => confirmPasswordVisibility =
-                                                              !confirmPasswordVisibility,
-                                                        ),
-                                                        focusNode: FocusNode(
-                                                            skipTraversal:
-                                                                true),
-                                                        child: Icon(
-                                                          confirmPasswordVisibility
-                                                              ? Icons
-                                                                  .visibility_outlined
-                                                              : Icons
-                                                                  .visibility_off_outlined,
-                                                          color:
-                                                              Color(0xFF95A1AC),
-                                                          size: 22,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
+                                                child: TextFormField(
+                                                  controller:
+                                                      confirmPasswordController,
+                                                  obscureText:
+                                                      !confirmPasswordVisibility,
+                                                  decoration: InputDecoration(
+                                                    labelText:
+                                                        'Confirmar Contraseña',
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
                                                         .bodyText1
                                                         .override(
                                                           fontFamily:
                                                               'Montserrat',
                                                           color:
-                                                              Color(0xFF2B343A),
+                                                              Color(0xFF95A1AC),
                                                           fontSize: 14,
                                                           fontWeight:
                                                               FontWeight.normal,
                                                         ),
+                                                    hintText:
+                                                        'Confirmar contraseña...',
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              'Montserrat',
+                                                          color:
+                                                              Color(0xFF95A1AC),
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                        ),
+                                                    enabledBorder:
+                                                        UnderlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            Color(0xFFDBE2E7),
+                                                        width: 2,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8),
+                                                    ),
+                                                    focusedBorder:
+                                                        UnderlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            Color(0xFFDBE2E7),
+                                                        width: 2,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8),
+                                                    ),
+                                                    filled: true,
+                                                    fillColor:
+                                                        Color(0x00FFFFFF),
+                                                    suffixIcon: InkWell(
+                                                      onTap: () => setState(
+                                                        () => confirmPasswordVisibility =
+                                                            !confirmPasswordVisibility,
+                                                      ),
+                                                      focusNode: FocusNode(
+                                                          skipTraversal: true),
+                                                      child: Icon(
+                                                        confirmPasswordVisibility
+                                                            ? Icons
+                                                                .visibility_outlined
+                                                            : Icons
+                                                                .visibility_off_outlined,
+                                                        color:
+                                                            Color(0xFF95A1AC),
+                                                        size: 22,
+                                                      ),
+                                                    ),
                                                   ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyText1
+                                                      .override(
+                                                        fontFamily:
+                                                            'Montserrat',
+                                                        color:
+                                                            Color(0xFF2B343A),
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
                                                 ),
                                               ),
                                             ],
@@ -590,6 +581,8 @@ class _SignupWidgetState extends State<SignupWidget> {
                                             .doc(user.uid)
                                             .update(usersCreateData);
 
+                                        await Future.delayed(
+                                            const Duration(milliseconds: 3000));
                                         context.pushNamedAuth(
                                             'Onboarding1', mounted);
                                       },

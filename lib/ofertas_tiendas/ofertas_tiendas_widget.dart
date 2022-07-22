@@ -190,7 +190,7 @@ class _OfertasTiendasWidgetState extends State<OfertasTiendasWidget> {
                           Expanded(
                             child: Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                                  EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                               child: Container(
                                 width: double.infinity,
                                 height: 250,
@@ -202,28 +202,10 @@ class _OfertasTiendasWidgetState extends State<OfertasTiendasWidget> {
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(5),
                                       child: Image.asset(
-                                        'assets/images/Diseo_sin_ttulo_(16).png',
+                                        'assets/images/Banner_Oferta_1_(3).png',
                                         width: 100,
                                         height: 100,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(5),
-                                      child: Image.network(
-                                        'https://image.shutterstock.com/image-vector/summer-ad-sale-banner-popart-260nw-1458893918.jpg',
-                                        width: 100,
-                                        height: 100,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(5),
-                                      child: Image.network(
-                                        'https://static.vecteezy.com/system/resources/previews/002/822/446/non_2x/sale-banner-template-design-big-sale-special-offer-promotion-discount-banner-vector.jpg',
-                                        width: 100,
-                                        height: 100,
-                                        fit: BoxFit.cover,
+                                        fit: BoxFit.fitHeight,
                                       ),
                                     ),
                                   ],
@@ -755,7 +737,13 @@ class _OfertasTiendasWidgetState extends State<OfertasTiendasWidget> {
                                                                     CrossAxisAlignment
                                                                         .start,
                                                                 children: [
-                                                                  Stack(
+                                                                  Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
                                                                     children: [
                                                                       InkWell(
                                                                         onTap:
@@ -791,6 +779,54 @@ class _OfertasTiendasWidgetState extends State<OfertasTiendasWidget> {
                                                                           ),
                                                                         ),
                                                                       ),
+                                                                      if ((rowProductsRecord
+                                                                              .owner) !=
+                                                                          'srconstruccion')
+                                                                        Column(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.end,
+                                                                          children: [
+                                                                            Text(
+                                                                              'Exclusivo en',
+                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                    fontFamily: 'Montserrat',
+                                                                                    color: Colors.black,
+                                                                                    fontSize: 11,
+                                                                                    fontWeight: FontWeight.normal,
+                                                                                  ),
+                                                                            ),
+                                                                            InkWell(
+                                                                              onTap: () async {
+                                                                                context.pushNamed(
+                                                                                  'PerfilDelSeller',
+                                                                                  params: {
+                                                                                    'storeName': serializeParam(rowProductsRecord.ownerName, ParamType.String),
+                                                                                  }.withoutNulls,
+                                                                                  queryParams: {
+                                                                                    'storeId': serializeParam(rowProductsRecord.owner, ParamType.String),
+                                                                                    'calledFromPage': serializeParam('List', ParamType.String),
+                                                                                    'productId': serializeParam('\"\"', ParamType.String),
+                                                                                    'variantId': serializeParam('\"\"', ParamType.String),
+                                                                                  }.withoutNulls,
+                                                                                );
+                                                                              },
+                                                                              child: Text(
+                                                                                rowProductsRecord.ownerName.maybeHandleOverflow(
+                                                                                  maxChars: 15,
+                                                                                  replacement: '…',
+                                                                                ),
+                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                      fontFamily: 'Montserrat',
+                                                                                      color: FlutterFlowTheme.of(context).primaryColor,
+                                                                                      fontSize: 11,
+                                                                                      fontWeight: FontWeight.w500,
+                                                                                    ),
+                                                                              ),
+                                                                            ),
+                                                                          ],
+                                                                        ),
                                                                     ],
                                                                   ),
                                                                   ClipRRect(
@@ -903,7 +939,8 @@ class _OfertasTiendasWidgetState extends State<OfertasTiendasWidget> {
                                                                             0),
                                                                         child:
                                                                             Text(
-                                                                          '[unit]',
+                                                                          columnVariantsRecord
+                                                                              .unit,
                                                                           textAlign:
                                                                               TextAlign.center,
                                                                           style: FlutterFlowTheme.of(context)

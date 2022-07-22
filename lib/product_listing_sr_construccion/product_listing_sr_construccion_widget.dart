@@ -460,22 +460,16 @@ class _ProductListingSrConstruccionWidgetState
                                                       width: 150,
                                                       decoration:
                                                           BoxDecoration(),
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.min,
-                                                        children: [
-                                                          Text(
-                                                            gridViewProductsRecord
-                                                                .title
-                                                                .maybeHandleOverflow(
-                                                                    maxChars:
-                                                                        40),
-                                                            maxLines: 2,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
+                                                      child: Text(
+                                                        gridViewProductsRecord
+                                                            .title
+                                                            .maybeHandleOverflow(
+                                                                maxChars: 40),
+                                                        maxLines: 2,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
                                                                 .bodyText1,
-                                                          ),
-                                                        ],
                                                       ),
                                                     ),
                                                     Padding(
@@ -693,7 +687,7 @@ class _ProductListingSrConstruccionWidgetState
                       padding: EdgeInsetsDirectional.fromSTEB(10, 10, 0, 0),
                       child: StreamBuilder<List<ProductsRecord>>(
                         stream: queryProductsRecord(
-                          limit: 20,
+                          limit: 30,
                         ),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.
@@ -1043,33 +1037,25 @@ class _ProductListingSrConstruccionWidgetState
                                                         width: 140,
                                                         decoration:
                                                             BoxDecoration(),
-                                                        child: Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children: [
-                                                            Text(
-                                                              gridViewProductsRecord
-                                                                  .title
-                                                                  .maybeHandleOverflow(
-                                                                maxChars: 40,
-                                                                replacement:
-                                                                    '…',
+                                                        child: Text(
+                                                          gridViewProductsRecord
+                                                              .title
+                                                              .maybeHandleOverflow(
+                                                            maxChars: 40,
+                                                            replacement: '…',
+                                                          ),
+                                                          maxLines: 2,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Montserrat',
+                                                                fontSize: 13,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
                                                               ),
-                                                              maxLines: 2,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyText1
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Montserrat',
-                                                                    fontSize:
-                                                                        13,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
-                                                                  ),
-                                                            ),
-                                                          ],
                                                         ),
                                                       ),
                                                     ),
@@ -1139,7 +1125,8 @@ class _ProductListingSrConstruccionWidgetState
                                                                 AlignmentDirectional(
                                                                     0, 0),
                                                             child: Text(
-                                                              '[unit]',
+                                                              columnVariantsRecord
+                                                                  .unit,
                                                               textAlign:
                                                                   TextAlign
                                                                       .center,

@@ -884,6 +884,87 @@ class _SubcategoryProductListingMARCAWidgetState
                                                               ),
                                                             ),
                                                           ),
+                                                          if ((gridViewProductsRecord
+                                                                  .owner) !=
+                                                              'srconstruccion')
+                                                            Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .end,
+                                                              children: [
+                                                                Text(
+                                                                  'Exclusivo en',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText1
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Montserrat',
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontSize:
+                                                                            11,
+                                                                        fontWeight:
+                                                                            FontWeight.normal,
+                                                                      ),
+                                                                ),
+                                                                InkWell(
+                                                                  onTap:
+                                                                      () async {
+                                                                    context
+                                                                        .pushNamed(
+                                                                      'PerfilDelSeller',
+                                                                      params: {
+                                                                        'storeName': serializeParam(
+                                                                            gridViewProductsRecord.ownerName,
+                                                                            ParamType.String),
+                                                                      }.withoutNulls,
+                                                                      queryParams:
+                                                                          {
+                                                                        'storeId': serializeParam(
+                                                                            gridViewProductsRecord.owner,
+                                                                            ParamType.String),
+                                                                        'calledFromPage': serializeParam(
+                                                                            'List',
+                                                                            ParamType.String),
+                                                                        'productId': serializeParam(
+                                                                            '\"\"',
+                                                                            ParamType.String),
+                                                                        'variantId': serializeParam(
+                                                                            '\"\"',
+                                                                            ParamType.String),
+                                                                      }.withoutNulls,
+                                                                    );
+                                                                  },
+                                                                  child: Text(
+                                                                    gridViewProductsRecord
+                                                                        .ownerName
+                                                                        .maybeHandleOverflow(
+                                                                      maxChars:
+                                                                          15,
+                                                                      replacement:
+                                                                          '…',
+                                                                    ),
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyText1
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Montserrat',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primaryColor,
+                                                                          fontSize:
+                                                                              11,
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
+                                                                        ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
                                                         ],
                                                       ),
                                                     ),
@@ -1085,7 +1166,8 @@ class _SubcategoryProductListingMARCAWidgetState
                                                                 AlignmentDirectional(
                                                                     0, 0),
                                                             child: Text(
-                                                              '[unit]',
+                                                              columnVariantsRecord
+                                                                  .unit,
                                                               textAlign:
                                                                   TextAlign
                                                                       .center,

@@ -49,7 +49,7 @@ class _SellersHomeWidgetState extends State<SellersHomeWidget> {
               children: List.generate(rowStoresRecordList.length, (rowIndex) {
                 final rowStoresRecord = rowStoresRecordList[rowIndex];
                 return Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(5, 5, 5, 5),
                   child: InkWell(
                     onTap: () async {
                       context.pushNamed(
