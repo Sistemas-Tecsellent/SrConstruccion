@@ -50,7 +50,7 @@
     <key>FacebookAppID</key>
     <string>491151169051585</string>
     <key>FacebookDisplayName</key>
-    <string>SrCon</string>
+    <string>SrConstruccion</string>
 
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
