@@ -1284,8 +1284,8 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                                       }
                                     },
                                     child: Container(
-                                      width: 160,
-                                      height: 260,
+                                      width: 180,
+                                      height: 280,
                                       decoration: BoxDecoration(
                                         color: Colors.white,
                                         boxShadow: [
@@ -1918,8 +1918,8 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                                       }
                                     },
                                     child: Container(
-                                      width: 160,
-                                      height: 260,
+                                      width: 180,
+                                      height: 280,
                                       decoration: BoxDecoration(
                                         color: Colors.white,
                                         boxShadow: [
@@ -2547,8 +2547,8 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                                       }
                                     },
                                     child: Container(
-                                      width: 160,
-                                      height: 260,
+                                      width: 180,
+                                      height: 280,
                                       decoration: BoxDecoration(
                                         color: Colors.white,
                                         boxShadow: [
@@ -2756,7 +2756,7 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                                                       ),
                                                       width: 200,
                                                       height: 100,
-                                                      fit: BoxFit.cover,
+                                                      fit: BoxFit.contain,
                                                     ),
                                                   ),
                                                   Row(
