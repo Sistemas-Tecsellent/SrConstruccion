@@ -73,8 +73,8 @@ class _Onboarding1WidgetState extends State<Onboarding1Widget> {
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 80),
-                                  child: Image.asset(
-                                    'assets/images/111111.png',
+                                  child: Image.network(
+                                    'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2F111111.png?alt=media&token=c1b05aa4-d5f0-40a9-8301-90429f5d61c8',
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -504,7 +504,7 @@ class _Onboarding1WidgetState extends State<Onboarding1Widget> {
                                               .update(usersUpdateData);
                                           await Future.delayed(const Duration(
                                               milliseconds: 3000));
-                                          context.pushNamed('HomeAlt');
+                                          context.goNamed('HomeAlt');
                                         },
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
