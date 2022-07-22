@@ -1,12 +1,9 @@
-import '../auth/auth_util.dart';
 import '../components/sugerencias_recomendaciones_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -26,35 +23,10 @@ class ProductPageServiciosWidget extends StatefulWidget {
 
 class _ProductPageServiciosWidgetState
     extends State<ProductPageServiciosWidget> {
-  List<dynamic> applicableVariants;
-  dynamic firstLoadVariant;
-  final scaffoldKey = GlobalKey<ScaffoldState>();
   PageController pageViewController;
   double ratingBarValue1;
   double ratingBarValue2;
-
-  @override
-  void initState() {
-    super.initState();
-    // On page load action.
-    SchedulerBinding.instance?.addPostFrameCallback((_) async {
-      applicableVariants = await actions.getApplicableVariants(
-        widget.productId,
-        valueOrDefault(currentUserDocument?.type, ''),
-        valueOrDefault<String>(
-          FFAppState().locationKey,
-          'global',
-        ),
-        FFAppState().localStores.toList(),
-      );
-      firstLoadVariant = await actions.getFirstItemFromJsonList(
-        applicableVariants.toList(),
-      );
-      setState(() => FFAppState().currentVariantFormatted = firstLoadVariant);
-      setState(
-          () => FFAppState().applicableVariants = applicableVariants.toList());
-    });
-  }
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {

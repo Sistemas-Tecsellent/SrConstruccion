@@ -1081,8 +1081,8 @@ class _CategoriaSingleMARCAWidgetState
                                               }
                                             },
                                             child: Container(
-                                              width: 160,
-                                              height: 250,
+                                              width: 180,
+                                              height: 280,
                                               decoration: BoxDecoration(
                                                 color: Colors.white,
                                                 boxShadow: [
@@ -1742,8 +1742,8 @@ class _CategoriaSingleMARCAWidgetState
                                               }
                                             },
                                             child: Container(
-                                              width: 160,
-                                              height: 260,
+                                              width: 180,
+                                              height: 280,
                                               decoration: BoxDecoration(
                                                 color: Colors.white,
                                                 boxShadow: [
@@ -2397,8 +2397,8 @@ class _CategoriaSingleMARCAWidgetState
                                               }
                                             },
                                             child: Container(
-                                              width: 160,
-                                              height: 260,
+                                              width: 180,
+                                              height: 280,
                                               decoration: BoxDecoration(
                                                 color: Colors.white,
                                                 boxShadow: [

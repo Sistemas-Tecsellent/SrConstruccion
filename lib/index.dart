@@ -4,8 +4,8 @@ export 'perfil/perfil_widget.dart' show PerfilWidget;
 export 'home_alt/home_alt_widget.dart' show HomeAltWidget;
 export 'cotizaciones_de_envio/cotizaciones_de_envio_widget.dart'
     show CotizacionesDeEnvioWidget;
-export 'home/home_widget.dart' show HomeWidget;
 export 'login/login_widget.dart' show LoginWidget;
+export 'home/home_widget.dart' show HomeWidget;
 export 'product_page_seller/product_page_seller_widget.dart'
     show ProductPageSellerWidget;
 export 'product_page/product_page_widget.dart' show ProductPageWidget;
@@ -27,19 +27,19 @@ export 'cotizacion_formulario/cotizacion_formulario_widget.dart'
     show CotizacionFormularioWidget;
 export 'resumen_solicitud_cotizacion/resumen_solicitud_cotizacion_widget.dart'
     show ResumenSolicitudCotizacionWidget;
+export 'perfil_puntos/perfil_puntos_widget.dart' show PerfilPuntosWidget;
 export 'cotizacion_con_sub_cotizaciones/cotizacion_con_sub_cotizaciones_widget.dart'
     show CotizacionConSubCotizacionesWidget;
-export 'perfil_puntos/perfil_puntos_widget.dart' show PerfilPuntosWidget;
 export 'vendedores_en_mapa/vendedores_en_mapa_widget.dart'
     show VendedoresEnMapaWidget;
 export 'search/search_widget.dart' show SearchWidget;
 export 'checkout_seller/checkout_seller_widget.dart' show CheckoutSellerWidget;
 export 'pedido_programado/pedido_programado_widget.dart'
     show PedidoProgramadoWidget;
-export 'perfil_del_seller/perfil_del_seller_widget.dart'
-    show PerfilDelSellerWidget;
 export 'detalle_pedido_programado/detalle_pedido_programado_widget.dart'
     show DetallePedidoProgramadoWidget;
+export 'perfil_del_seller/perfil_del_seller_widget.dart'
+    show PerfilDelSellerWidget;
 export 'valoraciones/valoraciones_widget.dart' show ValoracionesWidget;
 export 'carrito_por_sellers/carrito_por_sellers_widget.dart'
     show CarritoPorSellersWidget;

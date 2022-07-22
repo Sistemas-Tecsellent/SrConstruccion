@@ -787,7 +787,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(30, 0, 10, 0),
                               child: Text(
-                                'Cotizaciónes de Envío',
+                                'Cotizaciones de Envío',
                                 textAlign: TextAlign.start,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1
