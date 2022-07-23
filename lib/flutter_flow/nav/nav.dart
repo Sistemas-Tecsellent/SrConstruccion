@@ -100,11 +100,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => CotizacionesDeEnvioWidget(),
             ),
             FFRoute(
-              name: 'login',
-              path: 'iniciar-sesion',
-              builder: (context, params) => LoginWidget(),
-            ),
-            FFRoute(
               name: 'Home',
               path: 'home',
               builder: (context, params) => HomeWidget(),
@@ -135,6 +130,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'signup',
               path: 'registro',
               builder: (context, params) => SignupWidget(),
+            ),
+            FFRoute(
+              name: 'login',
+              path: 'iniciar-sesion',
+              builder: (context, params) => LoginWidget(),
             ),
             FFRoute(
               name: 'NotificationesAjustes',
