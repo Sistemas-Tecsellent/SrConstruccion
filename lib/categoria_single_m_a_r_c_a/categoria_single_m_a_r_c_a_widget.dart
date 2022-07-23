@@ -991,7 +991,7 @@ class _CategoriaSingleMARCAWidgetState
                                     isEqualTo: widget.categoryId)
                                 .where('brand', isEqualTo: widget.brandId)
                                 .orderBy('sales', descending: true),
-                            limit: 5,
+                            limit: 20,
                           ),
                           builder: (context, snapshot) {
                             // Customize what your widget looks like when it's loading.
@@ -1652,7 +1652,7 @@ class _CategoriaSingleMARCAWidgetState
                                     isEqualTo: widget.categoryId)
                                 .where('brand', isEqualTo: widget.brandId)
                                 .orderBy('likes', descending: true),
-                            limit: 5,
+                            limit: 20,
                           ),
                           builder: (context, snapshot) {
                             // Customize what your widget looks like when it's loading.
@@ -2307,7 +2307,7 @@ class _CategoriaSingleMARCAWidgetState
                                 .where('categoryId',
                                     isEqualTo: widget.categoryId)
                                 .where('brand', isEqualTo: widget.brandId),
-                            limit: 6,
+                            limit: 40,
                           ),
                           builder: (context, snapshot) {
                             // Customize what your widget looks like when it's loading.

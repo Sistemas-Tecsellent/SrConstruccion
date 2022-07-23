@@ -179,7 +179,7 @@ class _ProductListingSrConstruccionWidgetState
                       padding: EdgeInsetsDirectional.fromSTEB(10, 10, 0, 0),
                       child: StreamBuilder<List<ProductsRecord>>(
                         stream: queryProductsRecord(
-                          limit: 20,
+                          limit: 50,
                         ),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.

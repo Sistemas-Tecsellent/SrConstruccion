@@ -1324,9 +1324,9 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                 context: context,
                 phone: false,
               ))
-                FutureBuilder<List<ProductsRecord>>(
-                  future: queryProductsRecordOnce(
-                    limit: 20,
+                StreamBuilder<List<ProductsRecord>>(
+                  stream: queryProductsRecord(
+                    limit: 50,
                   ),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
