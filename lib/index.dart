@@ -4,13 +4,13 @@ export 'perfil/perfil_widget.dart' show PerfilWidget;
 export 'home_alt/home_alt_widget.dart' show HomeAltWidget;
 export 'cotizaciones_de_envio/cotizaciones_de_envio_widget.dart'
     show CotizacionesDeEnvioWidget;
-export 'login/login_widget.dart' show LoginWidget;
 export 'home/home_widget.dart' show HomeWidget;
 export 'product_page_seller/product_page_seller_widget.dart'
     show ProductPageSellerWidget;
 export 'product_page/product_page_widget.dart' show ProductPageWidget;
 export 'carrito/carrito_widget.dart' show CarritoWidget;
 export 'signup/signup_widget.dart' show SignupWidget;
+export 'login/login_widget.dart' show LoginWidget;
 export 'notificationes_ajustes/notificationes_ajustes_widget.dart'
     show NotificationesAjustesWidget;
 export 'ajustes/ajustes_widget.dart' show AjustesWidget;

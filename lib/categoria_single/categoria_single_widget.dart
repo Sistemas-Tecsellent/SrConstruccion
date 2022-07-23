@@ -1200,7 +1200,7 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                     queryBuilder: (productsRecord) => productsRecord
                         .where('categoryId', isEqualTo: widget.categoryId)
                         .orderBy('sales', descending: true),
-                    limit: 5,
+                    limit: 20,
                   ),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
@@ -1834,7 +1834,7 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                     queryBuilder: (productsRecord) => productsRecord
                         .where('categoryId', isEqualTo: widget.categoryId)
                         .orderBy('likes', descending: true),
-                    limit: 5,
+                    limit: 20,
                   ),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
@@ -2463,7 +2463,7 @@ class _CategoriaSingleWidgetState extends State<CategoriaSingleWidget> {
                   stream: queryProductsRecord(
                     queryBuilder: (productsRecord) => productsRecord
                         .where('categoryId', isEqualTo: widget.categoryId),
-                    limit: 6,
+                    limit: 40,
                   ),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.

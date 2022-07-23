@@ -1481,7 +1481,7 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                           widget.storeId)
                                                   .where('isInSale',
                                                       isEqualTo: true),
-                                          limit: 10,
+                                          limit: 20,
                                         ),
                                         builder: (context, snapshot) {
                                           // Customize what your widget looks like when it's loading.
@@ -2067,7 +2067,7 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                           queryBuilder: (productsRecord) =>
                                               productsRecord.where('owner',
                                                   isEqualTo: widget.storeId),
-                                          limit: 5,
+                                          limit: 20,
                                         ),
                                         builder: (context, snapshot) {
                                           // Customize what your widget looks like when it's loading.
@@ -2622,7 +2622,7 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                       isEqualTo: widget.storeId)
                                                   .orderBy('createdDate',
                                                       descending: true),
-                                          limit: 5,
+                                          limit: 20,
                                         ),
                                         builder: (context, snapshot) {
                                           // Customize what your widget looks like when it's loading.
@@ -3186,7 +3186,7 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                                       isEqualTo: widget.storeId)
                                                   .orderBy('sales',
                                                       descending: true),
-                                          limit: 5,
+                                          limit: 20,
                                         ),
                                         builder: (context, snapshot) {
                                           // Customize what your widget looks like when it's loading.
@@ -3738,13 +3738,13 @@ class _PerfilDelSellerWidgetState extends State<PerfilDelSellerWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0, 0, 0, 100),
                                         child:
-                                            FutureBuilder<List<ProductsRecord>>(
-                                          future: queryProductsRecordOnce(
+                                            StreamBuilder<List<ProductsRecord>>(
+                                          stream: queryProductsRecord(
                                             queryBuilder: (productsRecord) =>
                                                 productsRecord.where('stores',
                                                     arrayContains:
                                                         widget.storeId),
-                                            limit: 10,
+                                            limit: 40,
                                           ),
                                           builder: (context, snapshot) {
                                             // Customize what your widget looks like when it's loading.

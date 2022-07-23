@@ -833,6 +833,7 @@ class _SubcategoriaSingleWidgetState extends State<SubcategoriaSingleWidget> {
                             .where('subcategories',
                                 arrayContains: widget.subcategoryId)
                             .where('isMostSold', isEqualTo: true),
+                        limit: 20,
                       ),
                       builder: (context, snapshot) {
                         // Customize what your widget looks like when it's loading.
