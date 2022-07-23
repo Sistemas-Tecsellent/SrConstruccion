@@ -959,7 +959,7 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                     queryBuilder: (productsRecord) => productsRecord
                         .where('brand', isEqualTo: widget.brandId)
                         .orderBy('sales', descending: true),
-                    limit: 5,
+                    limit: 20,
                   ),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
@@ -1595,7 +1595,7 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                     queryBuilder: (productsRecord) => productsRecord
                         .where('brand', isEqualTo: widget.brandId)
                         .orderBy('likes', descending: true),
-                    limit: 5,
+                    limit: 20,
                   ),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
@@ -2220,7 +2220,7 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                   stream: queryProductsRecord(
                     queryBuilder: (productsRecord) => productsRecord
                         .where('brand', isEqualTo: widget.brandId),
-                    limit: 5,
+                    limit: 20,
                   ),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
