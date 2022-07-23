@@ -2804,7 +2804,8 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                               AlignmentDirectional(
                                                                   0, 0),
                                                           child: Text(
-                                                            '[unit]',
+                                                            cageVariantsRecord
+                                                                .unit,
                                                             textAlign: TextAlign
                                                                 .center,
                                                             style: FlutterFlowTheme
