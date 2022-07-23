@@ -13,6 +13,8 @@ import 'flutter_flow/nav/nav.dart';
 import 'index.dart';
 
 import 'backend/stripe/payment_manager.dart';
+import 'package:url_strategy/url_strategy.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +23,7 @@ void main() async {
   FFAppState(); // Initialize FFAppState
 
   await initializeStripe();
-
+  setUrlStrategy(PathUrlStrategy());
   runApp(MyApp());
 }
 
