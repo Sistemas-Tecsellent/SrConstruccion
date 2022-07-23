@@ -678,7 +678,62 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(30, 0, 10, 0),
                               child: Text(
-                                'Tiendas',
+                                'Tiendas cerca de mi',
+                                textAlign: TextAlign.start,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Montserrat',
+                                      color: Colors.white,
+                                    ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 200,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: Color(0x00FDC054),
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(20),
+                        bottomRight: Radius.circular(0),
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(0),
+                      ),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(40, 0, 0, 0),
+                      child: InkWell(
+                        onTap: () async {
+                          context.pushNamed('listadoSellersCompleto');
+                        },
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Icon(
+                              Icons.store_outlined,
+                              color: Colors.white,
+                              size: 22,
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(30, 0, 10, 0),
+                              child: Text(
+                                'Todas las tiendas',
                                 textAlign: TextAlign.start,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1
@@ -723,8 +778,8 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            FaIcon(
-                              FontAwesomeIcons.truck,
+                            Icon(
+                              Icons.local_shipping_outlined,
                               color: Colors.white,
                               size: 22,
                             ),
@@ -732,7 +787,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(30, 0, 10, 0),
                               child: Text(
-                                'Cotizaciónes de Envío',
+                                'Cotizaciones de Envío',
                                 textAlign: TextAlign.start,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1

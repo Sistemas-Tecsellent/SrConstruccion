@@ -186,7 +186,7 @@ class _ProductPageSellerWidgetState extends State<ProductPageSellerWidget> {
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
@@ -242,10 +242,9 @@ class _ProductPageSellerWidgetState extends State<ProductPageSellerWidget> {
                                         width:
                                             MediaQuery.of(context).size.width *
                                                 0.9,
-                                        height: 330,
+                                        height: 310,
                                         constraints: BoxConstraints(
-                                          maxWidth: 500,
-                                          maxHeight: 500,
+                                          maxWidth: 300,
                                         ),
                                         decoration: BoxDecoration(
                                           boxShadow: [
@@ -673,7 +672,7 @@ class _ProductPageSellerWidgetState extends State<ProductPageSellerWidget> {
                                                     MainAxisAlignment
                                                         .spaceEvenly,
                                                 crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                                    CrossAxisAlignment.center,
                                                 children: [
                                                   Padding(
                                                     padding:
@@ -703,6 +702,10 @@ class _ProductPageSellerWidgetState extends State<ProductPageSellerWidget> {
                                                           MediaQuery.of(context)
                                                               .size
                                                               .width,
+                                                      constraints:
+                                                          BoxConstraints(
+                                                        maxWidth: 500,
+                                                      ),
                                                       decoration: BoxDecoration(
                                                         color: Colors.white,
                                                       ),
@@ -966,6 +969,10 @@ class _ProductPageSellerWidgetState extends State<ProductPageSellerWidget> {
                                                           MediaQuery.of(context)
                                                               .size
                                                               .width,
+                                                      constraints:
+                                                          BoxConstraints(
+                                                        maxWidth: 500,
+                                                      ),
                                                       decoration: BoxDecoration(
                                                         color: Colors.white,
                                                       ),
@@ -1098,6 +1105,21 @@ class _ProductPageSellerWidgetState extends State<ProductPageSellerWidget> {
                                                                                           fontWeight: FontWeight.w600,
                                                                                         ),
                                                                                   ),
+                                                                                ),
+                                                                              if (!(loggedIn) ?? true)
+                                                                                Text(
+                                                                                  formatNumber(
+                                                                                    columnVariantsRecord.publicPrice,
+                                                                                    formatType: FormatType.decimal,
+                                                                                    decimalType: DecimalType.periodDecimal,
+                                                                                    currency: '',
+                                                                                  ),
+                                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                        fontFamily: 'Montserrat',
+                                                                                        color: FlutterFlowTheme.of(context).alternate,
+                                                                                        fontSize: 16,
+                                                                                        fontWeight: FontWeight.w600,
+                                                                                      ),
                                                                                 ),
                                                                             ],
                                                                           ),
@@ -1240,6 +1262,10 @@ class _ProductPageSellerWidgetState extends State<ProductPageSellerWidget> {
                                                           MediaQuery.of(context)
                                                               .size
                                                               .width,
+                                                      constraints:
+                                                          BoxConstraints(
+                                                        maxWidth: 500,
+                                                      ),
                                                       decoration: BoxDecoration(
                                                         color: Colors.white,
                                                       ),
@@ -1372,6 +1398,21 @@ class _ProductPageSellerWidgetState extends State<ProductPageSellerWidget> {
                                                                                           fontWeight: FontWeight.w600,
                                                                                         ),
                                                                                   ),
+                                                                                ),
+                                                                              if (!(loggedIn) ?? true)
+                                                                                Text(
+                                                                                  formatNumber(
+                                                                                    columnVariantsRecord.publicPrice,
+                                                                                    formatType: FormatType.decimal,
+                                                                                    decimalType: DecimalType.periodDecimal,
+                                                                                    currency: '',
+                                                                                  ),
+                                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                        fontFamily: 'Montserrat',
+                                                                                        color: FlutterFlowTheme.of(context).alternate,
+                                                                                        fontSize: 16,
+                                                                                        fontWeight: FontWeight.w600,
+                                                                                      ),
                                                                                 ),
                                                                             ],
                                                                           ),

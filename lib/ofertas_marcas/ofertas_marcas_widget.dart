@@ -190,7 +190,7 @@ class _OfertasMarcasWidgetState extends State<OfertasMarcasWidget> {
                           Expanded(
                             child: Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                                  EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                               child: Container(
                                 width: double.infinity,
                                 height: 250,
@@ -202,27 +202,9 @@ class _OfertasMarcasWidgetState extends State<OfertasMarcasWidget> {
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(5),
                                       child: Image.asset(
-                                        'assets/images/Diseo_sin_ttulo_(16).png',
+                                        'assets/images/Banner_Oferta_1_(5).png',
                                         width: 100,
                                         height: 200,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(5),
-                                      child: Image.network(
-                                        'https://image.shutterstock.com/image-vector/summer-ad-sale-banner-popart-260nw-1458893918.jpg',
-                                        width: 100,
-                                        height: 100,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(5),
-                                      child: Image.network(
-                                        'https://static.vecteezy.com/system/resources/previews/002/822/446/non_2x/sale-banner-template-design-big-sale-special-offer-promotion-discount-banner-vector.jpg',
-                                        width: 100,
-                                        height: 100,
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -728,7 +710,13 @@ class _OfertasMarcasWidgetState extends State<OfertasMarcasWidget> {
                                                                     CrossAxisAlignment
                                                                         .start,
                                                                 children: [
-                                                                  Stack(
+                                                                  Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
                                                                     children: [
                                                                       InkWell(
                                                                         onTap:
@@ -764,6 +752,54 @@ class _OfertasMarcasWidgetState extends State<OfertasMarcasWidget> {
                                                                           ),
                                                                         ),
                                                                       ),
+                                                                      if ((rowProductsRecord
+                                                                              .owner) !=
+                                                                          'srconstruccion')
+                                                                        Column(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.end,
+                                                                          children: [
+                                                                            Text(
+                                                                              'Exclusivo en',
+                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                    fontFamily: 'Montserrat',
+                                                                                    color: Colors.black,
+                                                                                    fontSize: 11,
+                                                                                    fontWeight: FontWeight.normal,
+                                                                                  ),
+                                                                            ),
+                                                                            InkWell(
+                                                                              onTap: () async {
+                                                                                context.pushNamed(
+                                                                                  'PerfilDelSeller',
+                                                                                  params: {
+                                                                                    'storeName': serializeParam(rowProductsRecord.ownerName, ParamType.String),
+                                                                                  }.withoutNulls,
+                                                                                  queryParams: {
+                                                                                    'storeId': serializeParam(rowProductsRecord.owner, ParamType.String),
+                                                                                    'calledFromPage': serializeParam('List', ParamType.String),
+                                                                                    'productId': serializeParam('\"\"', ParamType.String),
+                                                                                    'variantId': serializeParam('\"\"', ParamType.String),
+                                                                                  }.withoutNulls,
+                                                                                );
+                                                                              },
+                                                                              child: Text(
+                                                                                rowProductsRecord.ownerName.maybeHandleOverflow(
+                                                                                  maxChars: 15,
+                                                                                  replacement: '…',
+                                                                                ),
+                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                      fontFamily: 'Montserrat',
+                                                                                      color: FlutterFlowTheme.of(context).primaryColor,
+                                                                                      fontSize: 11,
+                                                                                      fontWeight: FontWeight.w500,
+                                                                                    ),
+                                                                              ),
+                                                                            ),
+                                                                          ],
+                                                                        ),
                                                                     ],
                                                                   ),
                                                                   ClipRRect(
@@ -785,6 +821,75 @@ class _OfertasMarcasWidgetState extends State<OfertasMarcasWidget> {
                                                                       fit: BoxFit
                                                                           .contain,
                                                                     ),
+                                                                  ),
+                                                                  Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    children: [
+                                                                      if (columnVariantsRecord
+                                                                              .tags
+                                                                              .toList()
+                                                                              ?.contains('Oferta') ??
+                                                                          true)
+                                                                        Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0,
+                                                                              0,
+                                                                              10,
+                                                                              0),
+                                                                          child:
+                                                                              Row(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.max,
+                                                                            children: [
+                                                                              FaIcon(
+                                                                                FontAwesomeIcons.tag,
+                                                                                color: FlutterFlowTheme.of(context).alternate,
+                                                                                size: 9,
+                                                                              ),
+                                                                              Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(2, 0, 0, 0),
+                                                                                child: Text(
+                                                                                  'Oferta',
+                                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                        fontFamily: 'Montserrat',
+                                                                                        color: FlutterFlowTheme.of(context).alternate,
+                                                                                        fontSize: 9,
+                                                                                      ),
+                                                                                ),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                      if (columnVariantsRecord
+                                                                              .tags
+                                                                              .toList()
+                                                                              ?.contains('Envio Gratis') ??
+                                                                          true)
+                                                                        Row(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          children: [
+                                                                            FaIcon(
+                                                                              FontAwesomeIcons.shippingFast,
+                                                                              color: Color(0xFF5AE93E),
+                                                                              size: 9,
+                                                                            ),
+                                                                            Padding(
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(2, 0, 0, 0),
+                                                                              child: Text(
+                                                                                'Envio Gratis',
+                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                      fontFamily: 'Montserrat',
+                                                                                      color: Color(0xFF5AE93E),
+                                                                                      fontSize: 9,
+                                                                                    ),
+                                                                              ),
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                    ],
                                                                   ),
                                                                   Align(
                                                                     alignment:
@@ -876,7 +981,8 @@ class _OfertasMarcasWidgetState extends State<OfertasMarcasWidget> {
                                                                             0),
                                                                         child:
                                                                             Text(
-                                                                          '[unit]',
+                                                                          columnVariantsRecord
+                                                                              .unit,
                                                                           textAlign:
                                                                               TextAlign.center,
                                                                           style: FlutterFlowTheme.of(context)
@@ -936,75 +1042,6 @@ class _OfertasMarcasWidgetState extends State<OfertasMarcasWidget> {
                                                                           ),
                                                                         ),
                                                                       ),
-                                                                    ],
-                                                                  ),
-                                                                  Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    children: [
-                                                                      if (columnVariantsRecord
-                                                                              .tags
-                                                                              .toList()
-                                                                              ?.contains('Oferta') ??
-                                                                          true)
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0,
-                                                                              0,
-                                                                              10,
-                                                                              0),
-                                                                          child:
-                                                                              Row(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.max,
-                                                                            children: [
-                                                                              FaIcon(
-                                                                                FontAwesomeIcons.tag,
-                                                                                color: FlutterFlowTheme.of(context).alternate,
-                                                                                size: 9,
-                                                                              ),
-                                                                              Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(2, 0, 0, 0),
-                                                                                child: Text(
-                                                                                  'Oferta',
-                                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                        fontFamily: 'Montserrat',
-                                                                                        color: FlutterFlowTheme.of(context).alternate,
-                                                                                        fontSize: 9,
-                                                                                      ),
-                                                                                ),
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        ),
-                                                                      if (columnVariantsRecord
-                                                                              .tags
-                                                                              .toList()
-                                                                              ?.contains('Envio Gratis') ??
-                                                                          true)
-                                                                        Row(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.max,
-                                                                          children: [
-                                                                            FaIcon(
-                                                                              FontAwesomeIcons.shippingFast,
-                                                                              color: Color(0xFF5AE93E),
-                                                                              size: 9,
-                                                                            ),
-                                                                            Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(2, 0, 0, 0),
-                                                                              child: Text(
-                                                                                'Envio Gratis',
-                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                      fontFamily: 'Montserrat',
-                                                                                      color: Color(0xFF5AE93E),
-                                                                                      fontSize: 9,
-                                                                                    ),
-                                                                              ),
-                                                                            ),
-                                                                          ],
-                                                                        ),
                                                                     ],
                                                                   ),
                                                                 ],

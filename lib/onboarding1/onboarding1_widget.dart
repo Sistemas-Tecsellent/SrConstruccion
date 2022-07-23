@@ -73,8 +73,8 @@ class _Onboarding1WidgetState extends State<Onboarding1Widget> {
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 80),
-                                  child: Image.asset(
-                                    'assets/images/111111.png',
+                                  child: Image.network(
+                                    'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2F111111.png?alt=media&token=c1b05aa4-d5f0-40a9-8301-90429f5d61c8',
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -158,53 +158,59 @@ class _Onboarding1WidgetState extends State<Onboarding1Widget> {
                                                 ),
                                           ),
                                         ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 10, 0, 20),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              FFButtonWidget(
-                                                onPressed: () async {
-                                                  await pageViewController
-                                                      .nextPage(
-                                                    duration: Duration(
-                                                        milliseconds: 300),
-                                                    curve: Curves.ease,
-                                                  );
-                                                },
-                                                text: 'Siguiente',
-                                                options: FFButtonOptions(
-                                                  width: 100,
-                                                  height: 30,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryColor,
-                                                  textStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .subtitle2
-                                                          .override(
-                                                            fontFamily:
-                                                                'Montserrat',
-                                                            color: Colors.white,
-                                                            fontSize: 12,
-                                                          ),
-                                                  elevation: 0,
-                                                  borderSide: BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 1,
+                                        if (responsiveVisibility(
+                                          context: context,
+                                          phone: false,
+                                          tablet: false,
+                                          tabletLandscape: false,
+                                        ))
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 10, 0, 20),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                FFButtonWidget(
+                                                  onPressed: () async {
+                                                    await pageViewController
+                                                        .nextPage(
+                                                      duration: Duration(
+                                                          milliseconds: 300),
+                                                      curve: Curves.ease,
+                                                    );
+                                                  },
+                                                  text: 'Siguiente',
+                                                  options: FFButtonOptions(
+                                                    width: 100,
+                                                    height: 30,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryColor,
+                                                    textStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .subtitle2
+                                                        .override(
+                                                          fontFamily:
+                                                              'Montserrat',
+                                                          color: Colors.white,
+                                                          fontSize: 12,
+                                                        ),
+                                                    elevation: 0,
+                                                    borderSide: BorderSide(
+                                                      color: Colors.transparent,
+                                                      width: 1,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            40),
                                                   ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(40),
                                                 ),
-                                              ),
-                                            ],
+                                              ],
+                                            ),
                                           ),
-                                        ),
                                       ],
                                     ),
                                   ),
@@ -498,7 +504,7 @@ class _Onboarding1WidgetState extends State<Onboarding1Widget> {
                                               .update(usersUpdateData);
                                           await Future.delayed(const Duration(
                                               milliseconds: 3000));
-                                          context.pushNamed('HomeAlt');
+                                          context.goNamed('HomeAlt');
                                         },
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,

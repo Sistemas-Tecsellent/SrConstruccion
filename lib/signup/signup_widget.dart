@@ -436,105 +436,96 @@ class _SignupWidgetState extends State<SignupWidget> {
                                                 MainAxisAlignment.center,
                                             children: [
                                               Expanded(
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 0, 0, 40),
-                                                  child: TextFormField(
-                                                    controller:
-                                                        confirmPasswordController,
-                                                    obscureText:
-                                                        !confirmPasswordVisibility,
-                                                    decoration: InputDecoration(
-                                                      labelText:
-                                                          'Confirmar Contraseña',
-                                                      labelStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Montserrat',
-                                                                color: Color(
-                                                                    0xFF95A1AC),
-                                                                fontSize: 14,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .normal,
-                                                              ),
-                                                      hintText:
-                                                          'Confirmar contraseña...',
-                                                      hintStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Montserrat',
-                                                                color: Color(
-                                                                    0xFF95A1AC),
-                                                                fontSize: 14,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .normal,
-                                                              ),
-                                                      enabledBorder:
-                                                          UnderlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color:
-                                                              Color(0xFFDBE2E7),
-                                                          width: 2,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8),
-                                                      ),
-                                                      focusedBorder:
-                                                          UnderlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color:
-                                                              Color(0xFFDBE2E7),
-                                                          width: 2,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8),
-                                                      ),
-                                                      filled: true,
-                                                      fillColor:
-                                                          Color(0x00FFFFFF),
-                                                      suffixIcon: InkWell(
-                                                        onTap: () => setState(
-                                                          () => confirmPasswordVisibility =
-                                                              !confirmPasswordVisibility,
-                                                        ),
-                                                        focusNode: FocusNode(
-                                                            skipTraversal:
-                                                                true),
-                                                        child: Icon(
-                                                          confirmPasswordVisibility
-                                                              ? Icons
-                                                                  .visibility_outlined
-                                                              : Icons
-                                                                  .visibility_off_outlined,
-                                                          color:
-                                                              Color(0xFF95A1AC),
-                                                          size: 22,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
+                                                child: TextFormField(
+                                                  controller:
+                                                      confirmPasswordController,
+                                                  obscureText:
+                                                      !confirmPasswordVisibility,
+                                                  decoration: InputDecoration(
+                                                    labelText:
+                                                        'Confirmar Contraseña',
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
                                                         .bodyText1
                                                         .override(
                                                           fontFamily:
                                                               'Montserrat',
                                                           color:
-                                                              Color(0xFF2B343A),
+                                                              Color(0xFF95A1AC),
                                                           fontSize: 14,
                                                           fontWeight:
                                                               FontWeight.normal,
                                                         ),
+                                                    hintText:
+                                                        'Confirmar contraseña...',
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              'Montserrat',
+                                                          color:
+                                                              Color(0xFF95A1AC),
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                        ),
+                                                    enabledBorder:
+                                                        UnderlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            Color(0xFFDBE2E7),
+                                                        width: 2,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8),
+                                                    ),
+                                                    focusedBorder:
+                                                        UnderlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            Color(0xFFDBE2E7),
+                                                        width: 2,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8),
+                                                    ),
+                                                    filled: true,
+                                                    fillColor:
+                                                        Color(0x00FFFFFF),
+                                                    suffixIcon: InkWell(
+                                                      onTap: () => setState(
+                                                        () => confirmPasswordVisibility =
+                                                            !confirmPasswordVisibility,
+                                                      ),
+                                                      focusNode: FocusNode(
+                                                          skipTraversal: true),
+                                                      child: Icon(
+                                                        confirmPasswordVisibility
+                                                            ? Icons
+                                                                .visibility_outlined
+                                                            : Icons
+                                                                .visibility_off_outlined,
+                                                        color:
+                                                            Color(0xFF95A1AC),
+                                                        size: 22,
+                                                      ),
+                                                    ),
                                                   ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyText1
+                                                      .override(
+                                                        fontFamily:
+                                                            'Montserrat',
+                                                        color:
+                                                            Color(0xFF2B343A),
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
                                                 ),
                                               ),
                                             ],
@@ -590,7 +581,9 @@ class _SignupWidgetState extends State<SignupWidget> {
                                             .doc(user.uid)
                                             .update(usersCreateData);
 
-                                        context.pushNamedAuth(
+                                        await Future.delayed(
+                                            const Duration(milliseconds: 3000));
+                                        context.goNamedAuth(
                                             'Onboarding1', mounted);
                                       },
                                       text: 'Crear Cuenta',
@@ -621,118 +614,135 @@ class _SignupWidgetState extends State<SignupWidget> {
                           ],
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                        child: Row(
+                      if (responsiveVisibility(
+                        context: context,
+                        phone: false,
+                        tablet: false,
+                        tabletLandscape: false,
+                        desktop: false,
+                      ))
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              AutoSizeText(
+                                'Usa una red social para crear una cuenta',
+                                textAlign: TextAlign.center,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText2
+                                    .override(
+                                      fontFamily: 'Montserrat',
+                                      color: Colors.black,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      if (responsiveVisibility(
+                        context: context,
+                        phone: false,
+                        tablet: false,
+                        tabletLandscape: false,
+                        desktop: false,
+                      ))
+                        Row(
                           mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            AutoSizeText(
-                              'Usa una red social para crear una cuenta',
-                              textAlign: TextAlign.center,
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyText2
-                                  .override(
-                                    fontFamily: 'Montserrat',
-                                    color: Colors.black,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.normal,
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+                              child: InkWell(
+                                onTap: () async {
+                                  GoRouter.of(context).prepareAuthEvent();
+                                  final user =
+                                      await signInWithFacebook(context);
+                                  if (user == null) {
+                                    return;
+                                  }
+
+                                  final usersUpdateData = createUsersRecordData(
+                                    createdTime: getCurrentTimestamp,
+                                  );
+                                  await currentUserReference
+                                      .update(usersUpdateData);
+                                  context.pushNamedAuth('Onboarding1', mounted);
+                                },
+                                child: Card(
+                                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                                  color: Color(0xFF090F13),
+                                  elevation: 3,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50),
                                   ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        2, 2, 2, 2),
+                                    child: Container(
+                                      width: 50,
+                                      height: 50,
+                                      clipBehavior: Clip.antiAlias,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: SvgPicture.asset(
+                                        'assets/images/social_facebook.svg',
+                                        fit: BoxFit.none,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+                              child: InkWell(
+                                onTap: () async {
+                                  GoRouter.of(context).prepareAuthEvent();
+                                  final user = await signInWithGoogle(context);
+                                  if (user == null) {
+                                    return;
+                                  }
+
+                                  final usersUpdateData = createUsersRecordData(
+                                    createdTime: getCurrentTimestamp,
+                                  );
+                                  await currentUserReference
+                                      .update(usersUpdateData);
+                                  context.pushNamedAuth('Onboarding1', mounted);
+                                },
+                                child: Card(
+                                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                                  color: Color(0xFF090F13),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        2, 2, 2, 2),
+                                    child: Container(
+                                      width: 50,
+                                      height: 50,
+                                      clipBehavior: Clip.antiAlias,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: SvgPicture.asset(
+                                        'assets/images/social_GoogleWhite.svg',
+                                        fit: BoxFit.none,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
                         ),
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
-                            child: InkWell(
-                              onTap: () async {
-                                GoRouter.of(context).prepareAuthEvent();
-                                final user = await signInWithFacebook(context);
-                                if (user == null) {
-                                  return;
-                                }
-
-                                final usersUpdateData = createUsersRecordData(
-                                  createdTime: getCurrentTimestamp,
-                                );
-                                await currentUserReference
-                                    .update(usersUpdateData);
-                                context.pushNamedAuth('Onboarding1', mounted);
-                              },
-                              child: Card(
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                color: Color(0xFF090F13),
-                                elevation: 3,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      2, 2, 2, 2),
-                                  child: Container(
-                                    width: 50,
-                                    height: 50,
-                                    clipBehavior: Clip.antiAlias,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: SvgPicture.asset(
-                                      'assets/images/social_facebook.svg',
-                                      fit: BoxFit.none,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
-                            child: InkWell(
-                              onTap: () async {
-                                GoRouter.of(context).prepareAuthEvent();
-                                final user = await signInWithGoogle(context);
-                                if (user == null) {
-                                  return;
-                                }
-
-                                final usersUpdateData = createUsersRecordData(
-                                  createdTime: getCurrentTimestamp,
-                                );
-                                await currentUserReference
-                                    .update(usersUpdateData);
-                                context.pushNamedAuth('Onboarding1', mounted);
-                              },
-                              child: Card(
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                color: Color(0xFF090F13),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      2, 2, 2, 2),
-                                  child: Container(
-                                    width: 50,
-                                    height: 50,
-                                    clipBehavior: Clip.antiAlias,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: SvgPicture.asset(
-                                      'assets/images/social_GoogleWhite.svg',
-                                      fit: BoxFit.none,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
                     ],
                   ),
                 ),

@@ -313,23 +313,6 @@ class _CategoriaSingleMARCAWidgetState
                                             ),
                                           ),
                                         ),
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional(0, -1),
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            child: Image.network(
-                                              'https://img.freepik.com/foto-gratis/banner-tienda-pintura-composicion-pinceles-carta-colores-contenedores-pintura_162490-10.jpg',
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.95,
-                                              height: 100,
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                        ),
                                       ],
                                     ),
                                   ),
@@ -1098,8 +1081,8 @@ class _CategoriaSingleMARCAWidgetState
                                               }
                                             },
                                             child: Container(
-                                              width: 160,
-                                              height: 250,
+                                              width: 180,
+                                              height: 280,
                                               decoration: BoxDecoration(
                                                 color: Colors.white,
                                                 boxShadow: [
@@ -1178,7 +1161,13 @@ class _CategoriaSingleMARCAWidgetState
                                                             CrossAxisAlignment
                                                                 .start,
                                                         children: [
-                                                          Stack(
+                                                          Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceBetween,
                                                             children: [
                                                               InkWell(
                                                                 onTap:
@@ -1213,6 +1202,79 @@ class _CategoriaSingleMARCAWidgetState
                                                                   ),
                                                                 ),
                                                               ),
+                                                              if ((rowProductsRecord
+                                                                      .owner) !=
+                                                                  'srconstruccion')
+                                                                Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .end,
+                                                                  children: [
+                                                                    Text(
+                                                                      'Exclusivo en',
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyText1
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Montserrat',
+                                                                            color:
+                                                                                Colors.black,
+                                                                            fontSize:
+                                                                                11,
+                                                                            fontWeight:
+                                                                                FontWeight.normal,
+                                                                          ),
+                                                                    ),
+                                                                    InkWell(
+                                                                      onTap:
+                                                                          () async {
+                                                                        context
+                                                                            .pushNamed(
+                                                                          'PerfilDelSeller',
+                                                                          params:
+                                                                              {
+                                                                            'storeName':
+                                                                                serializeParam(rowProductsRecord.ownerName, ParamType.String),
+                                                                          }.withoutNulls,
+                                                                          queryParams:
+                                                                              {
+                                                                            'storeId':
+                                                                                serializeParam(rowProductsRecord.owner, ParamType.String),
+                                                                            'calledFromPage':
+                                                                                serializeParam('List', ParamType.String),
+                                                                            'productId':
+                                                                                serializeParam('\"\"', ParamType.String),
+                                                                            'variantId':
+                                                                                serializeParam('\"\"', ParamType.String),
+                                                                          }.withoutNulls,
+                                                                        );
+                                                                      },
+                                                                      child:
+                                                                          Text(
+                                                                        rowProductsRecord
+                                                                            .ownerName
+                                                                            .maybeHandleOverflow(
+                                                                          maxChars:
+                                                                              15,
+                                                                          replacement:
+                                                                              '…',
+                                                                        ),
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyText1
+                                                                            .override(
+                                                                              fontFamily: 'Montserrat',
+                                                                              color: FlutterFlowTheme.of(context).primaryColor,
+                                                                              fontSize: 11,
+                                                                              fontWeight: FontWeight.w500,
+                                                                            ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
                                                             ],
                                                           ),
                                                           ClipRRect(
@@ -1414,7 +1476,8 @@ class _CategoriaSingleMARCAWidgetState
                                                                       AlignmentDirectional(
                                                                           0, 0),
                                                                   child: Text(
-                                                                    '[unit]',
+                                                                    columnVariantsRecord
+                                                                        .unit,
                                                                     textAlign:
                                                                         TextAlign
                                                                             .center,
@@ -1679,8 +1742,8 @@ class _CategoriaSingleMARCAWidgetState
                                               }
                                             },
                                             child: Container(
-                                              width: 160,
-                                              height: 260,
+                                              width: 180,
+                                              height: 280,
                                               decoration: BoxDecoration(
                                                 color: Colors.white,
                                                 boxShadow: [
@@ -1754,7 +1817,13 @@ class _CategoriaSingleMARCAWidgetState
                                                             CrossAxisAlignment
                                                                 .start,
                                                         children: [
-                                                          Stack(
+                                                          Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceBetween,
                                                             children: [
                                                               InkWell(
                                                                 onTap:
@@ -1789,6 +1858,79 @@ class _CategoriaSingleMARCAWidgetState
                                                                   ),
                                                                 ),
                                                               ),
+                                                              if ((rowProductsRecord
+                                                                      .owner) !=
+                                                                  'srconstruccion')
+                                                                Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .end,
+                                                                  children: [
+                                                                    Text(
+                                                                      'Exclusivo en',
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyText1
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Montserrat',
+                                                                            color:
+                                                                                Colors.black,
+                                                                            fontSize:
+                                                                                11,
+                                                                            fontWeight:
+                                                                                FontWeight.normal,
+                                                                          ),
+                                                                    ),
+                                                                    InkWell(
+                                                                      onTap:
+                                                                          () async {
+                                                                        context
+                                                                            .pushNamed(
+                                                                          'PerfilDelSeller',
+                                                                          params:
+                                                                              {
+                                                                            'storeName':
+                                                                                serializeParam(rowProductsRecord.ownerName, ParamType.String),
+                                                                          }.withoutNulls,
+                                                                          queryParams:
+                                                                              {
+                                                                            'storeId':
+                                                                                serializeParam(rowProductsRecord.owner, ParamType.String),
+                                                                            'calledFromPage':
+                                                                                serializeParam('List', ParamType.String),
+                                                                            'productId':
+                                                                                serializeParam('\"\"', ParamType.String),
+                                                                            'variantId':
+                                                                                serializeParam('\"\"', ParamType.String),
+                                                                          }.withoutNulls,
+                                                                        );
+                                                                      },
+                                                                      child:
+                                                                          Text(
+                                                                        rowProductsRecord
+                                                                            .ownerName
+                                                                            .maybeHandleOverflow(
+                                                                          maxChars:
+                                                                              15,
+                                                                          replacement:
+                                                                              '…',
+                                                                        ),
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyText1
+                                                                            .override(
+                                                                              fontFamily: 'Montserrat',
+                                                                              color: FlutterFlowTheme.of(context).primaryColor,
+                                                                              fontSize: 11,
+                                                                              fontWeight: FontWeight.w500,
+                                                                            ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
                                                             ],
                                                           ),
                                                           ClipRRect(
@@ -1990,7 +2132,8 @@ class _CategoriaSingleMARCAWidgetState
                                                                       AlignmentDirectional(
                                                                           0, 0),
                                                                   child: Text(
-                                                                    '[unit]',
+                                                                    columnVariantsRecord
+                                                                        .unit,
                                                                     textAlign:
                                                                         TextAlign
                                                                             .center,
@@ -2254,8 +2397,8 @@ class _CategoriaSingleMARCAWidgetState
                                               }
                                             },
                                             child: Container(
-                                              width: 160,
-                                              height: 260,
+                                              width: 180,
+                                              height: 280,
                                               decoration: BoxDecoration(
                                                 color: Colors.white,
                                                 boxShadow: [
@@ -2329,7 +2472,13 @@ class _CategoriaSingleMARCAWidgetState
                                                             CrossAxisAlignment
                                                                 .start,
                                                         children: [
-                                                          Stack(
+                                                          Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceBetween,
                                                             children: [
                                                               InkWell(
                                                                 onTap:
@@ -2364,6 +2513,79 @@ class _CategoriaSingleMARCAWidgetState
                                                                   ),
                                                                 ),
                                                               ),
+                                                              if ((rowProductsRecord
+                                                                      .owner) !=
+                                                                  'srconstruccion')
+                                                                Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .end,
+                                                                  children: [
+                                                                    Text(
+                                                                      'Exclusivo en',
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyText1
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Montserrat',
+                                                                            color:
+                                                                                Colors.black,
+                                                                            fontSize:
+                                                                                11,
+                                                                            fontWeight:
+                                                                                FontWeight.normal,
+                                                                          ),
+                                                                    ),
+                                                                    InkWell(
+                                                                      onTap:
+                                                                          () async {
+                                                                        context
+                                                                            .pushNamed(
+                                                                          'PerfilDelSeller',
+                                                                          params:
+                                                                              {
+                                                                            'storeName':
+                                                                                serializeParam(rowProductsRecord.ownerName, ParamType.String),
+                                                                          }.withoutNulls,
+                                                                          queryParams:
+                                                                              {
+                                                                            'storeId':
+                                                                                serializeParam(rowProductsRecord.owner, ParamType.String),
+                                                                            'calledFromPage':
+                                                                                serializeParam('List', ParamType.String),
+                                                                            'productId':
+                                                                                serializeParam('\"\"', ParamType.String),
+                                                                            'variantId':
+                                                                                serializeParam('\"\"', ParamType.String),
+                                                                          }.withoutNulls,
+                                                                        );
+                                                                      },
+                                                                      child:
+                                                                          Text(
+                                                                        rowProductsRecord
+                                                                            .ownerName
+                                                                            .maybeHandleOverflow(
+                                                                          maxChars:
+                                                                              15,
+                                                                          replacement:
+                                                                              '…',
+                                                                        ),
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyText1
+                                                                            .override(
+                                                                              fontFamily: 'Montserrat',
+                                                                              color: FlutterFlowTheme.of(context).primaryColor,
+                                                                              fontSize: 11,
+                                                                              fontWeight: FontWeight.w500,
+                                                                            ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
                                                             ],
                                                           ),
                                                           ClipRRect(
@@ -2564,7 +2786,8 @@ class _CategoriaSingleMARCAWidgetState
                                                                       AlignmentDirectional(
                                                                           0, 0),
                                                                   child: Text(
-                                                                    '[unit]',
+                                                                    columnVariantsRecord
+                                                                        .unit,
                                                                     textAlign:
                                                                         TextAlign
                                                                             .center,

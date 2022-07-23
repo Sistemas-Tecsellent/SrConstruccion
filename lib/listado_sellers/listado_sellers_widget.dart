@@ -408,38 +408,48 @@ class _ListadoSellersWidgetState extends State<ListadoSellersWidget> {
                                                       final categorie3Item =
                                                           categorie3[
                                                               categorie3Index];
-                                                      return Container(
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: Colors.white,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(10),
-                                                          border: Border.all(
-                                                            color: Color(
-                                                                0xFFC5C5C5),
+                                                      return Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0, 0, 2, 0),
+                                                        child: Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: Colors.white,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10),
+                                                            border: Border.all(
+                                                              color: Color(
+                                                                  0xFFC5C5C5),
+                                                            ),
                                                           ),
-                                                        ),
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                0, 0),
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(5,
-                                                                      0, 5, 0),
-                                                          child: Text(
-                                                            categorie3Item,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Montserrat',
-                                                                  color: Color(
-                                                                      0xFFC5C5C5),
-                                                                  fontSize: 9,
-                                                                ),
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  0, 0),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        5,
+                                                                        0,
+                                                                        5,
+                                                                        0),
+                                                            child: Text(
+                                                              categorie3Item,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText1
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Montserrat',
+                                                                    color: Color(
+                                                                        0xFFC5C5C5),
+                                                                    fontSize: 9,
+                                                                  ),
+                                                            ),
                                                           ),
                                                         ),
                                                       );
@@ -585,7 +595,7 @@ class _ListadoSellersWidgetState extends State<ListadoSellersWidget> {
                       ))
                         Container(
                           width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height * 1,
+                          height: MediaQuery.of(context).size.height * 0.87,
                           decoration: BoxDecoration(
                             color:
                                 FlutterFlowTheme.of(context).primaryBackground,
@@ -928,38 +938,48 @@ class _ListadoSellersWidgetState extends State<ListadoSellersWidget> {
                                                       final categories2Item =
                                                           categories2[
                                                               categories2Index];
-                                                      return Container(
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: Colors.white,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(10),
-                                                          border: Border.all(
-                                                            color: Color(
-                                                                0xFFC5C5C5),
+                                                      return Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0, 0, 2, 0),
+                                                        child: Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: Colors.white,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10),
+                                                            border: Border.all(
+                                                              color: Color(
+                                                                  0xFFC5C5C5),
+                                                            ),
                                                           ),
-                                                        ),
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                0, 0),
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(5,
-                                                                      0, 5, 0),
-                                                          child: Text(
-                                                            categories2Item,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Montserrat',
-                                                                  color: Color(
-                                                                      0xFFC5C5C5),
-                                                                  fontSize: 9,
-                                                                ),
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  0, 0),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        5,
+                                                                        0,
+                                                                        5,
+                                                                        0),
+                                                            child: Text(
+                                                              categories2Item,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText1
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Montserrat',
+                                                                    color: Color(
+                                                                        0xFFC5C5C5),
+                                                                    fontSize: 9,
+                                                                  ),
+                                                            ),
                                                           ),
                                                         ),
                                                       );

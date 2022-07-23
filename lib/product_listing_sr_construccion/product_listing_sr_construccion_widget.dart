@@ -283,7 +283,7 @@ class _ProductListingSrConstruccionWidgetState
                                           child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    10, 0, 10, 1),
+                                                    10, 10, 10, 10),
                                             child: StreamBuilder<
                                                 List<VariantsRecord>>(
                                               stream: queryVariantsRecord(
@@ -334,6 +334,11 @@ class _ProductListingSrConstruccionWidgetState
                                                 return Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     Padding(
                                                       padding:
@@ -384,96 +389,212 @@ class _ProductListingSrConstruccionWidgetState
                                                         ],
                                                       ),
                                                     ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0, 0, 0, 5),
-                                                      child: ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10),
-                                                        child: Image.network(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            gridViewProductsRecord
-                                                                .mainImage,
-                                                            'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
-                                                          ),
-                                                          width: 100,
-                                                          height: 100,
-                                                          fit: BoxFit.contain,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    if (columnVariantsRecord
-                                                            .tags
-                                                            .toList()
-                                                            ?.contains(
-                                                                'Oferta') ??
-                                                        true)
-                                                      Padding(
+                                                    Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0, 0),
+                                                      child: Padding(
                                                         padding:
                                                             EdgeInsetsDirectional
                                                                 .fromSTEB(
-                                                                    0, 5, 0, 5),
-                                                        child: Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children: [
-                                                            FaIcon(
-                                                              FontAwesomeIcons
-                                                                  .tag,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .alternate,
-                                                              size: 10,
+                                                                    0, 0, 0, 5),
+                                                        child: ClipRRect(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(10),
+                                                          child: Image.network(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              gridViewProductsRecord
+                                                                  .mainImage,
+                                                              'https://firebasestorage.googleapis.com/v0/b/srconstruccion-d4663.appspot.com/o/assets%2FAsset.png?alt=media&token=85f6129c-7ee9-4db8-87ae-2e1adc4e010a',
                                                             ),
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
+                                                            width: 100,
+                                                            height: 100,
+                                                            fit: BoxFit.contain,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        if (columnVariantsRecord
+                                                                .tags
+                                                                .toList()
+                                                                ?.contains(
+                                                                    'Oferta') ??
+                                                            true)
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0,
+                                                                        0,
+                                                                        3,
+                                                                        0),
+                                                            child: Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: [
+                                                                FaIcon(
+                                                                  FontAwesomeIcons
+                                                                      .tag,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                                  size: 9,
+                                                                ),
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          5,
+                                                                          2,
                                                                           0,
                                                                           0,
                                                                           0),
-                                                              child: Text(
-                                                                'Oferta',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Montserrat',
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .alternate,
-                                                                      fontSize:
-                                                                          11,
-                                                                    ),
-                                                              ),
+                                                                  child: Text(
+                                                                    'Oferta',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyText1
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Montserrat',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).alternate,
+                                                                          fontSize:
+                                                                              9,
+                                                                        ),
+                                                                  ),
+                                                                ),
+                                                              ],
                                                             ),
-                                                          ],
-                                                        ),
-                                                      ),
+                                                          ),
+                                                        if (columnVariantsRecord
+                                                                .tags
+                                                                .toList()
+                                                                ?.contains(
+                                                                    'Envio Gratis') ??
+                                                            true)
+                                                          Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              FaIcon(
+                                                                FontAwesomeIcons
+                                                                    .shippingFast,
+                                                                color: Color(
+                                                                    0xFF5AE93E),
+                                                                size: 11,
+                                                              ),
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            5,
+                                                                            0,
+                                                                            0,
+                                                                            0),
+                                                                child: Text(
+                                                                  'Envio Gratis',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText1
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Montserrat',
+                                                                        color: Color(
+                                                                            0xFF5AE93E),
+                                                                        fontSize:
+                                                                            11,
+                                                                      ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                      ],
+                                                    ),
                                                     Container(
                                                       width: 150,
                                                       decoration:
                                                           BoxDecoration(),
+                                                      child: Text(
+                                                        gridViewProductsRecord
+                                                            .title
+                                                            .maybeHandleOverflow(
+                                                                maxChars: 40),
+                                                        maxLines: 2,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText1,
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      width: 150,
+                                                      decoration:
+                                                          BoxDecoration(),
+                                                      child: Text(
+                                                        gridViewProductsRecord
+                                                            .sku
+                                                            .maybeHandleOverflow(
+                                                                maxChars: 40),
+                                                        maxLines: 2,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Montserrat',
+                                                                  color: Color(
+                                                                      0xFF909090),
+                                                                  fontSize: 12,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 5, 0, 0),
                                                       child: Row(
                                                         mainAxisSize:
-                                                            MainAxisSize.min,
+                                                            MainAxisSize.max,
                                                         children: [
-                                                          Text(
-                                                            gridViewProductsRecord
-                                                                .title
-                                                                .maybeHandleOverflow(
-                                                                    maxChars:
-                                                                        40),
-                                                            maxLines: 2,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1,
+                                                          Container(
+                                                            width: 50,
+                                                            height: 15,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: Color(
+                                                                  0xFFEEEEEE),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          40),
+                                                            ),
+                                                            alignment:
+                                                                AlignmentDirectional(
+                                                                    0, 0),
+                                                            child: Text(
+                                                              columnVariantsRecord
+                                                                  .unit,
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText1
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Montserrat',
+                                                                    fontSize: 9,
+                                                                  ),
+                                                            ),
                                                           ),
                                                         ],
                                                       ),
@@ -529,140 +650,6 @@ class _ProductListingSrConstruccionWidgetState
                                                         ],
                                                       ),
                                                     ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0, 5, 0, 5),
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .end,
-                                                        children: [
-                                                          Text(
-                                                            'Stock ',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Montserrat',
-                                                                  fontSize: 11,
-                                                                ),
-                                                          ),
-                                                          FutureBuilder<
-                                                              ApiCallResponse>(
-                                                            future:
-                                                                GetVariantInventoryCall
-                                                                    .call(
-                                                              productId:
-                                                                  gridViewProductsRecord
-                                                                      .id,
-                                                              variantId:
-                                                                  columnVariantsRecord
-                                                                      .id,
-                                                              userLocationState:
-                                                                  FFAppState()
-                                                                      .locationKey,
-                                                              userLocationCity:
-                                                                  FFAppState()
-                                                                      .locationKeyCity,
-                                                              priceType:
-                                                                  valueOrDefault(
-                                                                      currentUserDocument
-                                                                          ?.type,
-                                                                      ''),
-                                                            ),
-                                                            builder: (context,
-                                                                snapshot) {
-                                                              // Customize what your widget looks like when it's loading.
-                                                              if (!snapshot
-                                                                  .hasData) {
-                                                                return Center(
-                                                                  child:
-                                                                      SizedBox(
-                                                                    width: 50,
-                                                                    height: 50,
-                                                                    child:
-                                                                        SpinKitFadingCircle(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryColor,
-                                                                      size: 50,
-                                                                    ),
-                                                                  ),
-                                                                );
-                                                              }
-                                                              final textGetVariantInventoryResponse =
-                                                                  snapshot.data;
-                                                              return Text(
-                                                                GetVariantInventoryCall
-                                                                    .inventory(
-                                                                  (textGetVariantInventoryResponse
-                                                                          ?.jsonBody ??
-                                                                      ''),
-                                                                ).toString(),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Montserrat',
-                                                                      color: Color(
-                                                                          0xFFC9C9C9),
-                                                                      fontSize:
-                                                                          11,
-                                                                    ),
-                                                              );
-                                                            },
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    if (columnVariantsRecord
-                                                            .tags
-                                                            .toList()
-                                                            ?.contains(
-                                                                'Envio Gratis') ??
-                                                        true)
-                                                      Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          FaIcon(
-                                                            FontAwesomeIcons
-                                                                .shippingFast,
-                                                            color: Color(
-                                                                0xFF5AE93E),
-                                                            size: 11,
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        5,
-                                                                        0,
-                                                                        0,
-                                                                        0),
-                                                            child: Text(
-                                                              'Envio Gratis',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyText1
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Montserrat',
-                                                                    color: Color(
-                                                                        0xFF5AE93E),
-                                                                    fontSize:
-                                                                        11,
-                                                                  ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
                                                   ],
                                                 );
                                               },
@@ -693,7 +680,7 @@ class _ProductListingSrConstruccionWidgetState
                       padding: EdgeInsetsDirectional.fromSTEB(10, 10, 0, 0),
                       child: StreamBuilder<List<ProductsRecord>>(
                         stream: queryProductsRecord(
-                          limit: 20,
+                          limit: 30,
                         ),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.
@@ -1040,36 +1027,28 @@ class _ProductListingSrConstruccionWidgetState
                                                               .fromSTEB(
                                                                   0, 5, 0, 0),
                                                       child: Container(
-                                                        width: 140,
+                                                        width: 139,
+                                                        constraints:
+                                                            BoxConstraints(
+                                                          maxWidth: 139,
+                                                        ),
                                                         decoration:
                                                             BoxDecoration(),
-                                                        child: Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children: [
-                                                            Text(
-                                                              gridViewProductsRecord
-                                                                  .title
-                                                                  .maybeHandleOverflow(
-                                                                maxChars: 40,
-                                                                replacement:
-                                                                    '…',
+                                                        child: Text(
+                                                          gridViewProductsRecord
+                                                              .title,
+                                                          maxLines: 2,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Montserrat',
+                                                                fontSize: 13,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
                                                               ),
-                                                              maxLines: 2,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyText1
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Montserrat',
-                                                                    fontSize:
-                                                                        13,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
-                                                                  ),
-                                                            ),
-                                                          ],
                                                         ),
                                                       ),
                                                     ),
@@ -1139,7 +1118,8 @@ class _ProductListingSrConstruccionWidgetState
                                                                 AlignmentDirectional(
                                                                     0, 0),
                                                             child: Text(
-                                                              '[unit]',
+                                                              columnVariantsRecord
+                                                                  .unit,
                                                               textAlign:
                                                                   TextAlign
                                                                       .center,
@@ -1203,98 +1183,6 @@ class _ProductListingSrConstruccionWidgetState
                                                                       FontWeight
                                                                           .w600,
                                                                 ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0, 5, 0, 5),
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .end,
-                                                        children: [
-                                                          Text(
-                                                            'Stock ',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Montserrat',
-                                                                  fontSize: 11,
-                                                                ),
-                                                          ),
-                                                          FutureBuilder<
-                                                              ApiCallResponse>(
-                                                            future:
-                                                                GetVariantInventoryCall
-                                                                    .call(
-                                                              productId:
-                                                                  gridViewProductsRecord
-                                                                      .id,
-                                                              variantId:
-                                                                  columnVariantsRecord
-                                                                      .id,
-                                                              userLocationState:
-                                                                  FFAppState()
-                                                                      .locationKey,
-                                                              userLocationCity:
-                                                                  FFAppState()
-                                                                      .locationKeyCity,
-                                                              priceType:
-                                                                  valueOrDefault(
-                                                                      currentUserDocument
-                                                                          ?.type,
-                                                                      ''),
-                                                            ),
-                                                            builder: (context,
-                                                                snapshot) {
-                                                              // Customize what your widget looks like when it's loading.
-                                                              if (!snapshot
-                                                                  .hasData) {
-                                                                return Center(
-                                                                  child:
-                                                                      SizedBox(
-                                                                    width: 50,
-                                                                    height: 50,
-                                                                    child:
-                                                                        SpinKitFadingCircle(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryColor,
-                                                                      size: 50,
-                                                                    ),
-                                                                  ),
-                                                                );
-                                                              }
-                                                              final textGetVariantInventoryResponse =
-                                                                  snapshot.data;
-                                                              return Text(
-                                                                GetVariantInventoryCall
-                                                                    .inventory(
-                                                                  (textGetVariantInventoryResponse
-                                                                          ?.jsonBody ??
-                                                                      ''),
-                                                                ).toString(),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Montserrat',
-                                                                      color: Color(
-                                                                          0xFFC9C9C9),
-                                                                      fontSize:
-                                                                          11,
-                                                                    ),
-                                                              );
-                                                            },
                                                           ),
                                                         ],
                                                       ),

@@ -198,41 +198,63 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Expanded(
-                          child: Container(
-                            height: 250,
-                            child: PageView(
-                              controller: pageViewController ??=
-                                  PageController(initialPage: 0),
-                              scrollDirection: Axis.horizontal,
-                              children: [
-                                Align(
-                                  alignment: AlignmentDirectional(0, -1),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(10),
-                                    child: Image.asset(
-                                      'assets/images/Truper_Banner.png',
-                                      width: MediaQuery.of(context).size.width *
-                                          0.95,
-                                      height: 200,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: AlignmentDirectional(0, -1),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(20),
-                                    child: Image.network(
-                                      'https://tecshopsystems.com/LAGACERO/images/ferreteria/banner1.jpg',
-                                      width: MediaQuery.of(context).size.width *
-                                          0.95,
-                                      height: 100,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                              ],
+                          child: StreamBuilder<List<BrandsRecord>>(
+                            stream: queryBrandsRecord(
+                              queryBuilder: (brandsRecord) => brandsRecord
+                                  .where('id', isEqualTo: widget.brandId),
+                              singleRecord: true,
                             ),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50,
+                                    height: 50,
+                                    child: SpinKitFadingCircle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                      size: 50,
+                                    ),
+                                  ),
+                                );
+                              }
+                              List<BrandsRecord> pageViewBrandsRecordList =
+                                  snapshot.data;
+                              // Return an empty Container when the document does not exist.
+                              if (snapshot.data.isEmpty) {
+                                return Container();
+                              }
+                              final pageViewBrandsRecord =
+                                  pageViewBrandsRecordList.isNotEmpty
+                                      ? pageViewBrandsRecordList.first
+                                      : null;
+                              return Container(
+                                height: 250,
+                                child: PageView(
+                                  controller: pageViewController ??=
+                                      PageController(initialPage: 0),
+                                  scrollDirection: Axis.horizontal,
+                                  children: [
+                                    Align(
+                                      alignment: AlignmentDirectional(0, -1),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: Image.network(
+                                          pageViewBrandsRecord.banner,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.95,
+                                          height: 200,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
                           ),
                         ),
                       ],
@@ -1021,8 +1043,8 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                       }
                                     },
                                     child: Container(
-                                      width: 160,
-                                      height: 260,
+                                      width: 180,
+                                      height: 280,
                                       decoration: BoxDecoration(
                                         color: Colors.white,
                                         boxShadow: [
@@ -1089,7 +1111,12 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Stack(
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
                                                     children: [
                                                       InkWell(
                                                         onTap: () async {
@@ -1124,6 +1151,93 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                           ),
                                                         ),
                                                       ),
+                                                      if ((rowProductsRecord
+                                                              .owner) !=
+                                                          'srconstruccion')
+                                                        Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .end,
+                                                          children: [
+                                                            Text(
+                                                              'Exclusivo en',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText1
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Montserrat',
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontSize:
+                                                                        11,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                  ),
+                                                            ),
+                                                            InkWell(
+                                                              onTap: () async {
+                                                                context
+                                                                    .pushNamed(
+                                                                  'PerfilDelSeller',
+                                                                  params: {
+                                                                    'storeName': serializeParam(
+                                                                        rowProductsRecord
+                                                                            .ownerName,
+                                                                        ParamType
+                                                                            .String),
+                                                                  }.withoutNulls,
+                                                                  queryParams: {
+                                                                    'storeId': serializeParam(
+                                                                        rowProductsRecord
+                                                                            .owner,
+                                                                        ParamType
+                                                                            .String),
+                                                                    'calledFromPage': serializeParam(
+                                                                        'List',
+                                                                        ParamType
+                                                                            .String),
+                                                                    'productId': serializeParam(
+                                                                        '\"\"',
+                                                                        ParamType
+                                                                            .String),
+                                                                    'variantId': serializeParam(
+                                                                        '\"\"',
+                                                                        ParamType
+                                                                            .String),
+                                                                  }.withoutNulls,
+                                                                );
+                                                              },
+                                                              child: Text(
+                                                                rowProductsRecord
+                                                                    .ownerName
+                                                                    .maybeHandleOverflow(
+                                                                  maxChars: 15,
+                                                                  replacement:
+                                                                      '…',
+                                                                ),
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyText1
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Montserrat',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryColor,
+                                                                      fontSize:
+                                                                          11,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                    ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
                                                     ],
                                                   ),
                                                   ClipRRect(
@@ -1140,150 +1254,6 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                       height: 100,
                                                       fit: BoxFit.contain,
                                                     ),
-                                                  ),
-                                                  Align(
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            -1, -0.45),
-                                                    child: Text(
-                                                      rowProductsRecord.title
-                                                          .maybeHandleOverflow(
-                                                        maxChars: 50,
-                                                        replacement: '…',
-                                                      ),
-                                                      textAlign:
-                                                          TextAlign.start,
-                                                      maxLines: 2,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyText1
-                                                          .override(
-                                                            fontFamily:
-                                                                'Montserrat',
-                                                            color: Colors.black,
-                                                            fontSize: 13,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          ),
-                                                    ),
-                                                  ),
-                                                  Align(
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            -1, -0.45),
-                                                    child: Text(
-                                                      rowProductsRecord.sku
-                                                          .maybeHandleOverflow(
-                                                        maxChars: 50,
-                                                        replacement: '…',
-                                                      ),
-                                                      textAlign:
-                                                          TextAlign.start,
-                                                      maxLines: 2,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyText1
-                                                          .override(
-                                                            fontFamily:
-                                                                'Montserrat',
-                                                            color: Color(
-                                                                0xFF909090),
-                                                            fontSize: 11,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          ),
-                                                    ),
-                                                  ),
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Container(
-                                                        width: 50,
-                                                        height: 15,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color:
-                                                              Color(0xFFEEEEEE),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(40),
-                                                        ),
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                0, 0),
-                                                        child: Text(
-                                                          '[unit]',
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Montserrat',
-                                                                fontSize: 9,
-                                                              ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Text(
-                                                        '\$',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Montserrat',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .alternate,
-                                                                  fontSize: 18,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                ),
-                                                      ),
-                                                      Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                -1, -0.7),
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(2,
-                                                                      0, 0, 0),
-                                                          child: Text(
-                                                            GetOneVariantCall
-                                                                .price(
-                                                              (cageGetOneVariantResponse
-                                                                      ?.jsonBody ??
-                                                                  ''),
-                                                            ).toString(),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Montserrat',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .alternate,
-                                                                  fontSize: 18,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
                                                   ),
                                                   Row(
                                                     mainAxisSize:
@@ -1381,6 +1351,151 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                             ),
                                                           ],
                                                         ),
+                                                    ],
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            -1, -0.45),
+                                                    child: Text(
+                                                      rowProductsRecord.title
+                                                          .maybeHandleOverflow(
+                                                        maxChars: 50,
+                                                        replacement: '…',
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.start,
+                                                      maxLines: 2,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyText1
+                                                          .override(
+                                                            fontFamily:
+                                                                'Montserrat',
+                                                            color: Colors.black,
+                                                            fontSize: 13,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            -1, -0.45),
+                                                    child: Text(
+                                                      rowProductsRecord.sku
+                                                          .maybeHandleOverflow(
+                                                        maxChars: 50,
+                                                        replacement: '…',
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.start,
+                                                      maxLines: 2,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyText1
+                                                          .override(
+                                                            fontFamily:
+                                                                'Montserrat',
+                                                            color: Color(
+                                                                0xFF909090),
+                                                            fontSize: 11,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Container(
+                                                        width: 50,
+                                                        height: 15,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color:
+                                                              Color(0xFFEEEEEE),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(40),
+                                                        ),
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                0, 0),
+                                                        child: Text(
+                                                          columnVariantsRecord
+                                                              .unit,
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Montserrat',
+                                                                fontSize: 9,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Text(
+                                                        '\$',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Montserrat',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                                  fontSize: 18,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                      ),
+                                                      Align(
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                -1, -0.7),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(2,
+                                                                      0, 0, 0),
+                                                          child: Text(
+                                                            GetOneVariantCall
+                                                                .price(
+                                                              (cageGetOneVariantResponse
+                                                                      ?.jsonBody ??
+                                                                  ''),
+                                                            ).toString(),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Montserrat',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                                  fontSize: 18,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ),
                                                     ],
                                                   ),
                                                 ],
@@ -1564,8 +1679,8 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                       }
                                     },
                                     child: Container(
-                                      width: 160,
-                                      height: 260,
+                                      width: 180,
+                                      height: 280,
                                       decoration: BoxDecoration(
                                         color: Colors.white,
                                         boxShadow: [
@@ -1632,7 +1747,12 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Stack(
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
                                                     children: [
                                                       Container(
                                                         width: 30,
@@ -1653,6 +1773,93 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                           ),
                                                         ),
                                                       ),
+                                                      if ((rowProductsRecord
+                                                              .owner) !=
+                                                          'srconstruccion')
+                                                        Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .end,
+                                                          children: [
+                                                            Text(
+                                                              'Exclusivo en',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText1
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Montserrat',
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontSize:
+                                                                        11,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                  ),
+                                                            ),
+                                                            InkWell(
+                                                              onTap: () async {
+                                                                context
+                                                                    .pushNamed(
+                                                                  'PerfilDelSeller',
+                                                                  params: {
+                                                                    'storeName': serializeParam(
+                                                                        rowProductsRecord
+                                                                            .ownerName,
+                                                                        ParamType
+                                                                            .String),
+                                                                  }.withoutNulls,
+                                                                  queryParams: {
+                                                                    'storeId': serializeParam(
+                                                                        rowProductsRecord
+                                                                            .owner,
+                                                                        ParamType
+                                                                            .String),
+                                                                    'calledFromPage': serializeParam(
+                                                                        'List',
+                                                                        ParamType
+                                                                            .String),
+                                                                    'productId': serializeParam(
+                                                                        '\"\"',
+                                                                        ParamType
+                                                                            .String),
+                                                                    'variantId': serializeParam(
+                                                                        '\"\"',
+                                                                        ParamType
+                                                                            .String),
+                                                                  }.withoutNulls,
+                                                                );
+                                                              },
+                                                              child: Text(
+                                                                rowProductsRecord
+                                                                    .ownerName
+                                                                    .maybeHandleOverflow(
+                                                                  maxChars: 15,
+                                                                  replacement:
+                                                                      '…',
+                                                                ),
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyText1
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Montserrat',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryColor,
+                                                                      fontSize:
+                                                                          11,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                    ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
                                                     ],
                                                   ),
                                                   ClipRRect(
@@ -1669,154 +1876,6 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                       height: 100,
                                                       fit: BoxFit.contain,
                                                     ),
-                                                  ),
-                                                  Align(
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            -1, -0.45),
-                                                    child: Text(
-                                                      rowProductsRecord.title
-                                                          .maybeHandleOverflow(
-                                                        maxChars: 40,
-                                                        replacement: '…',
-                                                      ),
-                                                      textAlign:
-                                                          TextAlign.start,
-                                                      maxLines: 2,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyText1
-                                                          .override(
-                                                            fontFamily:
-                                                                'Montserrat',
-                                                            color: Colors.black,
-                                                            fontSize: 13,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          ),
-                                                    ),
-                                                  ),
-                                                  Align(
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            -1, -0.45),
-                                                    child: Text(
-                                                      rowProductsRecord.sku
-                                                          .maybeHandleOverflow(
-                                                        maxChars: 40,
-                                                        replacement: '…',
-                                                      ),
-                                                      textAlign:
-                                                          TextAlign.start,
-                                                      maxLines: 2,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyText1
-                                                          .override(
-                                                            fontFamily:
-                                                                'Montserrat',
-                                                            color: Color(
-                                                                0xFF909090),
-                                                            fontSize: 11,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          ),
-                                                    ),
-                                                  ),
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Container(
-                                                        width: 50,
-                                                        height: 15,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color:
-                                                              Color(0xFFEEEEEE),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(40),
-                                                        ),
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                0, 0),
-                                                        child: Text(
-                                                          '[unit]',
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Montserrat',
-                                                                fontSize: 9,
-                                                              ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                -1, -0.7),
-                                                        child: Text(
-                                                          '\$',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Montserrat',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .alternate,
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
-                                                        ),
-                                                      ),
-                                                      Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                -1, -0.7),
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(2,
-                                                                      0, 0, 0),
-                                                          child: Text(
-                                                            GetOneVariantCall
-                                                                .price(
-                                                              (cageGetOneVariantResponse
-                                                                      ?.jsonBody ??
-                                                                  ''),
-                                                            ).toString(),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Montserrat',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .alternate,
-                                                                  fontSize: 18,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
                                                   ),
                                                   Row(
                                                     mainAxisSize:
@@ -1914,6 +1973,155 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                             ),
                                                           ],
                                                         ),
+                                                    ],
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            -1, -0.45),
+                                                    child: Text(
+                                                      rowProductsRecord.title
+                                                          .maybeHandleOverflow(
+                                                        maxChars: 40,
+                                                        replacement: '…',
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.start,
+                                                      maxLines: 2,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyText1
+                                                          .override(
+                                                            fontFamily:
+                                                                'Montserrat',
+                                                            color: Colors.black,
+                                                            fontSize: 13,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            -1, -0.45),
+                                                    child: Text(
+                                                      rowProductsRecord.sku
+                                                          .maybeHandleOverflow(
+                                                        maxChars: 40,
+                                                        replacement: '…',
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.start,
+                                                      maxLines: 2,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyText1
+                                                          .override(
+                                                            fontFamily:
+                                                                'Montserrat',
+                                                            color: Color(
+                                                                0xFF909090),
+                                                            fontSize: 11,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Container(
+                                                        width: 50,
+                                                        height: 15,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color:
+                                                              Color(0xFFEEEEEE),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(40),
+                                                        ),
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                0, 0),
+                                                        child: Text(
+                                                          columnVariantsRecord
+                                                              .unit,
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Montserrat',
+                                                                fontSize: 9,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Align(
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                -1, -0.7),
+                                                        child: Text(
+                                                          '\$',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Montserrat',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                                fontSize: 18,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                      Align(
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                -1, -0.7),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(2,
+                                                                      0, 0, 0),
+                                                          child: Text(
+                                                            GetOneVariantCall
+                                                                .price(
+                                                              (cageGetOneVariantResponse
+                                                                      ?.jsonBody ??
+                                                                  ''),
+                                                            ).toString(),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Montserrat',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                                  fontSize: 18,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ),
                                                     ],
                                                   ),
                                                 ],
@@ -2096,8 +2304,8 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                       }
                                     },
                                     child: Container(
-                                      width: 160,
-                                      height: 260,
+                                      width: 180,
+                                      height: 280,
                                       decoration: BoxDecoration(
                                         color: Colors.white,
                                         boxShadow: [
@@ -2164,7 +2372,12 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Stack(
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
                                                     children: [
                                                       Container(
                                                         width: 30,
@@ -2185,6 +2398,93 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                           ),
                                                         ),
                                                       ),
+                                                      if ((rowProductsRecord
+                                                              .owner) !=
+                                                          'srconstruccion')
+                                                        Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .end,
+                                                          children: [
+                                                            Text(
+                                                              'Exclusivo en',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText1
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Montserrat',
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontSize:
+                                                                        11,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                  ),
+                                                            ),
+                                                            InkWell(
+                                                              onTap: () async {
+                                                                context
+                                                                    .pushNamed(
+                                                                  'PerfilDelSeller',
+                                                                  params: {
+                                                                    'storeName': serializeParam(
+                                                                        rowProductsRecord
+                                                                            .ownerName,
+                                                                        ParamType
+                                                                            .String),
+                                                                  }.withoutNulls,
+                                                                  queryParams: {
+                                                                    'storeId': serializeParam(
+                                                                        rowProductsRecord
+                                                                            .owner,
+                                                                        ParamType
+                                                                            .String),
+                                                                    'calledFromPage': serializeParam(
+                                                                        'List',
+                                                                        ParamType
+                                                                            .String),
+                                                                    'productId': serializeParam(
+                                                                        '\"\"',
+                                                                        ParamType
+                                                                            .String),
+                                                                    'variantId': serializeParam(
+                                                                        '\"\"',
+                                                                        ParamType
+                                                                            .String),
+                                                                  }.withoutNulls,
+                                                                );
+                                                              },
+                                                              child: Text(
+                                                                rowProductsRecord
+                                                                    .ownerName
+                                                                    .maybeHandleOverflow(
+                                                                  maxChars: 15,
+                                                                  replacement:
+                                                                      '…',
+                                                                ),
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyText1
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Montserrat',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryColor,
+                                                                      fontSize:
+                                                                          11,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                    ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
                                                     ],
                                                   ),
                                                   ClipRRect(
@@ -2201,154 +2501,6 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                       height: 100,
                                                       fit: BoxFit.contain,
                                                     ),
-                                                  ),
-                                                  Align(
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            -1, -0.45),
-                                                    child: Text(
-                                                      rowProductsRecord.title
-                                                          .maybeHandleOverflow(
-                                                        maxChars: 40,
-                                                        replacement: '…',
-                                                      ),
-                                                      textAlign:
-                                                          TextAlign.start,
-                                                      maxLines: 2,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyText1
-                                                          .override(
-                                                            fontFamily:
-                                                                'Montserrat',
-                                                            color: Colors.black,
-                                                            fontSize: 13,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          ),
-                                                    ),
-                                                  ),
-                                                  Align(
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            -1, -0.45),
-                                                    child: Text(
-                                                      rowProductsRecord.sku
-                                                          .maybeHandleOverflow(
-                                                        maxChars: 40,
-                                                        replacement: '…',
-                                                      ),
-                                                      textAlign:
-                                                          TextAlign.start,
-                                                      maxLines: 2,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyText1
-                                                          .override(
-                                                            fontFamily:
-                                                                'Montserrat',
-                                                            color: Color(
-                                                                0xFF909090),
-                                                            fontSize: 11,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          ),
-                                                    ),
-                                                  ),
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Container(
-                                                        width: 50,
-                                                        height: 15,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color:
-                                                              Color(0xFFEEEEEE),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(40),
-                                                        ),
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                0, 0),
-                                                        child: Text(
-                                                          '[unit]',
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Montserrat',
-                                                                fontSize: 9,
-                                                              ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                -1, -0.7),
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(0,
-                                                                      0, 2, 0),
-                                                          child: Text(
-                                                            '\$',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Montserrat',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .alternate,
-                                                                  fontSize: 18,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                -1, -0.7),
-                                                        child: Text(
-                                                          GetOneVariantCall
-                                                              .price(
-                                                            (cageGetOneVariantResponse
-                                                                    ?.jsonBody ??
-                                                                ''),
-                                                          ).toString(),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Montserrat',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .alternate,
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
-                                                        ),
-                                                      ),
-                                                    ],
                                                   ),
                                                   Row(
                                                     mainAxisSize:
@@ -2446,6 +2598,155 @@ class _MarcaSingleWidgetState extends State<MarcaSingleWidget> {
                                                             ),
                                                           ],
                                                         ),
+                                                    ],
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            -1, -0.45),
+                                                    child: Text(
+                                                      rowProductsRecord.title
+                                                          .maybeHandleOverflow(
+                                                        maxChars: 40,
+                                                        replacement: '…',
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.start,
+                                                      maxLines: 2,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyText1
+                                                          .override(
+                                                            fontFamily:
+                                                                'Montserrat',
+                                                            color: Colors.black,
+                                                            fontSize: 13,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            -1, -0.45),
+                                                    child: Text(
+                                                      rowProductsRecord.sku
+                                                          .maybeHandleOverflow(
+                                                        maxChars: 40,
+                                                        replacement: '…',
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.start,
+                                                      maxLines: 2,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyText1
+                                                          .override(
+                                                            fontFamily:
+                                                                'Montserrat',
+                                                            color: Color(
+                                                                0xFF909090),
+                                                            fontSize: 11,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Container(
+                                                        width: 50,
+                                                        height: 15,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color:
+                                                              Color(0xFFEEEEEE),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(40),
+                                                        ),
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                0, 0),
+                                                        child: Text(
+                                                          columnVariantsRecord
+                                                              .unit,
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Montserrat',
+                                                                fontSize: 9,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Align(
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                -1, -0.7),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      0, 2, 0),
+                                                          child: Text(
+                                                            '\$',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Montserrat',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                                  fontSize: 18,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Align(
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                -1, -0.7),
+                                                        child: Text(
+                                                          GetOneVariantCall
+                                                              .price(
+                                                            (cageGetOneVariantResponse
+                                                                    ?.jsonBody ??
+                                                                ''),
+                                                          ).toString(),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Montserrat',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                                fontSize: 18,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                              ),
+                                                        ),
+                                                      ),
                                                     ],
                                                   ),
                                                 ],

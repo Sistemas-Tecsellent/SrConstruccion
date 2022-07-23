@@ -4,8 +4,8 @@ export 'perfil/perfil_widget.dart' show PerfilWidget;
 export 'home_alt/home_alt_widget.dart' show HomeAltWidget;
 export 'cotizaciones_de_envio/cotizaciones_de_envio_widget.dart'
     show CotizacionesDeEnvioWidget;
-export 'home/home_widget.dart' show HomeWidget;
 export 'login/login_widget.dart' show LoginWidget;
+export 'home/home_widget.dart' show HomeWidget;
 export 'product_page_seller/product_page_seller_widget.dart'
     show ProductPageSellerWidget;
 export 'product_page/product_page_widget.dart' show ProductPageWidget;
@@ -27,22 +27,22 @@ export 'cotizacion_formulario/cotizacion_formulario_widget.dart'
     show CotizacionFormularioWidget;
 export 'resumen_solicitud_cotizacion/resumen_solicitud_cotizacion_widget.dart'
     show ResumenSolicitudCotizacionWidget;
+export 'perfil_puntos/perfil_puntos_widget.dart' show PerfilPuntosWidget;
 export 'cotizacion_con_sub_cotizaciones/cotizacion_con_sub_cotizaciones_widget.dart'
     show CotizacionConSubCotizacionesWidget;
-export 'perfil_puntos/perfil_puntos_widget.dart' show PerfilPuntosWidget;
 export 'vendedores_en_mapa/vendedores_en_mapa_widget.dart'
     show VendedoresEnMapaWidget;
 export 'search/search_widget.dart' show SearchWidget;
 export 'checkout_seller/checkout_seller_widget.dart' show CheckoutSellerWidget;
 export 'pedido_programado/pedido_programado_widget.dart'
     show PedidoProgramadoWidget;
-export 'perfil_del_seller/perfil_del_seller_widget.dart'
-    show PerfilDelSellerWidget;
 export 'detalle_pedido_programado/detalle_pedido_programado_widget.dart'
     show DetallePedidoProgramadoWidget;
+export 'perfil_del_seller/perfil_del_seller_widget.dart'
+    show PerfilDelSellerWidget;
+export 'valoraciones/valoraciones_widget.dart' show ValoracionesWidget;
 export 'carrito_por_sellers/carrito_por_sellers_widget.dart'
     show CarritoPorSellersWidget;
-export 'valoraciones/valoraciones_widget.dart' show ValoracionesWidget;
 export 'onboarding1/onboarding1_widget.dart' show Onboarding1Widget;
 export 'profesional/profesional_widget.dart' show ProfesionalWidget;
 export 'pago_pendiente/pago_pendiente_widget.dart' show PagoPendienteWidget;
@@ -64,9 +64,9 @@ export 'empresa/empresa_widget.dart' show EmpresaWidget;
 export 'listado_marcas/listado_marcas_widget.dart' show ListadoMarcasWidget;
 export 'listado_sellers/listado_sellers_widget.dart' show ListadoSellersWidget;
 export 'devolucion/devolucion_widget.dart' show DevolucionWidget;
+export 'devolucion2/devolucion2_widget.dart' show Devolucion2Widget;
 export 'product_listing_for_seller/product_listing_for_seller_widget.dart'
     show ProductListingForSellerWidget;
-export 'devolucion2/devolucion2_widget.dart' show Devolucion2Widget;
 export 'solicitud_devolucion_enviada/solicitud_devolucion_enviada_widget.dart'
     show SolicitudDevolucionEnviadaWidget;
 export 'solicitud_devolucion_aceptada/solicitud_devolucion_aceptada_widget.dart'
@@ -78,12 +78,12 @@ export 'checkout/checkout_widget.dart' show CheckoutWidget;
 export 'marca_single/marca_single_widget.dart' show MarcaSingleWidget;
 export 'detalle_devolucion/detalle_devolucion_widget.dart'
     show DetalleDevolucionWidget;
-export 'subcategoria_single/subcategoria_single_widget.dart'
-    show SubcategoriaSingleWidget;
 export 'solicitud_devolucion_enviado/solicitud_devolucion_enviado_widget.dart'
     show SolicitudDevolucionEnviadoWidget;
 export 'wish_list_products/wish_list_products_widget.dart'
     show WishListProductsWidget;
+export 'subcategoria_single/subcategoria_single_widget.dart'
+    show SubcategoriaSingleWidget;
 export 'info_transferencia/info_transferencia_widget.dart'
     show InfoTransferenciaWidget;
 export 'validacion_r_f_c/validacion_r_f_c_widget.dart' show ValidacionRFCWidget;
@@ -109,9 +109,9 @@ export 'sobre_sr_construccion/sobre_sr_construccion_widget.dart'
 export 'resumen_solicitud_cotizacion_copy/resumen_solicitud_cotizacion_copy_widget.dart'
     show ResumenSolicitudCotizacionCopyWidget;
 export 'ofertas_marcas/ofertas_marcas_widget.dart' show OfertasMarcasWidget;
-export 'ofertas_tiendas/ofertas_tiendas_widget.dart' show OfertasTiendasWidget;
 export 'detalle_pedido_programado5_d_i_a_s/detalle_pedido_programado5_d_i_a_s_widget.dart'
     show DetallePedidoProgramado5DIASWidget;
+export 'ofertas_tiendas/ofertas_tiendas_widget.dart' show OfertasTiendasWidget;
 export 'detalle_pedido_programado_pickup/detalle_pedido_programado_pickup_widget.dart'
     show DetallePedidoProgramadoPickupWidget;
 export 'search_products_seller/search_products_seller_widget.dart'
@@ -127,3 +127,5 @@ export 'calculando_costo_de_envio_por_seller/calculando_costo_de_envio_por_selle
     show CalculandoCostoDeEnvioPorSellerWidget;
 export 'mis_pedidos_historial/mis_pedidos_historial_widget.dart'
     show MisPedidosHistorialWidget;
+export 'listado_sellers_completo/listado_sellers_completo_widget.dart'
+    show ListadoSellersCompletoWidget;
