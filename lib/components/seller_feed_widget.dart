@@ -31,7 +31,7 @@ class _SellerFeedWidgetState extends State<SellerFeedWidget> {
               .where('id',
                   whereIn: (currentUserDocument?.likedProducts?.toList() ?? []))
               .where('owner', isEqualTo: widget.storeId),
-          limit: 5,
+          limit: 20,
         ),
         builder: (context, snapshot) {
           // Customize what your widget looks like when it's loading.

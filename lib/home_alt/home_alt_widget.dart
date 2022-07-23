@@ -2491,9 +2491,9 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                 context: context,
                 phone: false,
               ))
-                FutureBuilder<List<ProductsRecord>>(
-                  future: queryProductsRecordOnce(
-                    limit: 20,
+                StreamBuilder<List<ProductsRecord>>(
+                  stream: queryProductsRecord(
+                    limit: 50,
                   ),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
@@ -2804,7 +2804,8 @@ class _HomeAltWidgetState extends State<HomeAltWidget>
                                                               AlignmentDirectional(
                                                                   0, 0),
                                                           child: Text(
-                                                            '[unit]',
+                                                            cageVariantsRecord
+                                                                .unit,
                                                             textAlign: TextAlign
                                                                 .center,
                                                             style: FlutterFlowTheme

@@ -512,6 +512,7 @@ class _OfertasMarcasWidgetState extends State<OfertasMarcasWidget> {
                                                 isEqualTo:
                                                     columnBrandsRecord.id)
                                             .where('isInSale', isEqualTo: true),
+                                    limit: 20,
                                   ),
                                   builder: (context, snapshot) {
                                     // Customize what your widget looks like when it's loading.
